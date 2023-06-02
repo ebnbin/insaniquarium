@@ -4,4 +4,5 @@ include(
     ":desktop",
     ":android",
     ":ios",
+    ":tools",
 )

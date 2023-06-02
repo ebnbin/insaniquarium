@@ -25,4 +25,6 @@ object Dependencies {
 
     const val GDX_BACKEND_ROBOVM = "com.badlogicgames.gdx:gdx-backend-robovm:${Versions.GDX}"
     const val GDX_PLATFORM_NATIVES_IOS = "com.badlogicgames.gdx:gdx-platform:${Versions.GDX}:natives-ios"
+
+    const val GDX_TOOLS = "com.badlogicgames.gdx:gdx-tools:${Versions.GDX}"
 }
