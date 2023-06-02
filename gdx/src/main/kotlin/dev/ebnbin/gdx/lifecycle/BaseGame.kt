@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
+import dev.ebnbin.gdx.asset.AssetHelper
 import dev.ebnbin.gdx.dev.DevLogStage
 import dev.ebnbin.gdx.dev.DevMenuStage
 import dev.ebnbin.gdx.utils.act
@@ -19,6 +20,8 @@ val baseGame: BaseGame
     get() = gameGetter()
 
 abstract class BaseGame : ApplicationListener {
+    internal lateinit var assetHelper: AssetHelper
+
     private lateinit var devLogStage: DevLogStage
     private lateinit var devMenuStage: DevMenuStage
 
@@ -35,6 +38,7 @@ abstract class BaseGame : ApplicationListener {
 
     override fun create() {
         created = true
+        assetHelper = AssetHelper()
         devLogStage = DevLogStage()
         devMenuStage = DevMenuStage()
     }
@@ -74,6 +78,7 @@ abstract class BaseGame : ApplicationListener {
         screen = null
         devMenuStage.dispose()
         devLogStage.dispose()
+        assetHelper.dispose()
         created = false
     }
 
