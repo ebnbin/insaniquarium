@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
+import dev.ebnbin.gdx.dev.DevStage
 import dev.ebnbin.gdx.utils.act
 import dev.ebnbin.gdx.utils.dispose
 import dev.ebnbin.gdx.utils.draw
@@ -17,17 +18,26 @@ val baseGame: BaseGame
     get() = gameGetter()
 
 abstract class BaseGame : ApplicationListener {
+    private lateinit var devStage: DevStage
+
+    private fun stageList(): List<BaseStage> {
+        return (screen?.stageList ?: emptyList()) + listOf(
+            devStage,
+        )
+    }
+
     private var created: Boolean = false
     private var resized: Boolean = false
     private var resumed: Boolean = false
 
     override fun create() {
         created = true
+        devStage = DevStage()
     }
 
     override fun resize(width: Int, height: Int) {
         resized = true
-        screen?.stageList?.resize(width, height)
+        stageList().resize(width, height)
     }
 
     override fun resume() {
@@ -35,29 +45,30 @@ abstract class BaseGame : ApplicationListener {
             return
         }
         resumed = true
-        screen?.stageList?.resume()
+        stageList().resume()
     }
 
     override fun render() {
         if (!resumed) {
             resume()
         }
-        screen?.stageList?.act(Gdx.graphics.deltaTime)
+        stageList().act(Gdx.graphics.deltaTime)
         ScreenUtils.clear(Color.CLEAR)
-        screen?.stageList?.draw()
+        stageList().draw()
     }
 
     override fun pause() {
         if (!resumed) {
             return
         }
-        screen?.stageList?.pause()
+        stageList().pause()
         resumed = false
     }
 
     override fun dispose() {
         resized = false
-        screen?.stageList?.dispose()
+        screen = null
+        devStage.dispose()
         created = false
     }
 
