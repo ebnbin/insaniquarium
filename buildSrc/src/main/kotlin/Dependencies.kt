@@ -30,4 +30,7 @@ object Dependencies {
 
     // https://github.com/kotcrab/vis-ui
     const val VIS_UI = "com.kotcrab.vis:vis-ui:1.5.1"
+
+    // https://github.com/google/gson
+    const val GSON = "com.google.code.gson:gson:2.10.1"
 }
