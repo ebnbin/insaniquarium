@@ -3,10 +3,17 @@ package dev.ebnbin.insaniquarium
 import com.badlogic.gdx.utils.ScreenUtils
 import dev.ebnbin.gdx.BaseGame
 
+private var insaniquariumGame: InsaniquariumGame? = null
+
+val game: InsaniquariumGame
+    get() = requireNotNull(insaniquariumGame)
+
 class InsaniquariumGame : BaseGame() {
     private lateinit var aquariumStage: AquariumStage
 
     override fun create() {
+        insaniquariumGame?.dispose()
+        insaniquariumGame = this
         super.create()
         aquariumStage = AquariumStage()
     }
@@ -20,5 +27,6 @@ class InsaniquariumGame : BaseGame() {
     override fun dispose() {
         aquariumStage.dispose()
         super.dispose()
+        insaniquariumGame = null
     }
 }
