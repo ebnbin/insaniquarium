@@ -4,7 +4,7 @@ import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
-import dev.ebnbin.gdx.dev.DevStage
+import dev.ebnbin.gdx.dev.DevLogStage
 import dev.ebnbin.gdx.utils.act
 import dev.ebnbin.gdx.utils.dispose
 import dev.ebnbin.gdx.utils.draw
@@ -18,11 +18,11 @@ val baseGame: BaseGame
     get() = gameGetter()
 
 abstract class BaseGame : ApplicationListener {
-    private lateinit var devStage: DevStage
+    private lateinit var devLogStage: DevLogStage
 
     private fun stageList(): List<BaseStage> {
         return (screen?.stageList ?: emptyList()) + listOf(
-            devStage,
+            devLogStage,
         )
     }
 
@@ -32,7 +32,7 @@ abstract class BaseGame : ApplicationListener {
 
     override fun create() {
         created = true
-        devStage = DevStage()
+        devLogStage = DevLogStage()
     }
 
     override fun resize(width: Int, height: Int) {
@@ -68,7 +68,7 @@ abstract class BaseGame : ApplicationListener {
     override fun dispose() {
         resized = false
         screen = null
-        devStage.dispose()
+        devLogStage.dispose()
         created = false
     }
 
