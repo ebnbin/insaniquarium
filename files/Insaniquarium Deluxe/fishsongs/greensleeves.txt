@@ -1,0 +1,106 @@
+*attrib title = Greensleeves
+*speed 3
+
+*line 2
+*volume 0.5
+
+*line 1
+d5 q,
+f5 h, g5 q,
+a5 qd, bb5 e, a5 q,
+g5 h, e5 q, 
+c5 qd, d5 e, e5 q, 
+f5 h, d5 q
+
+*line 2
+r q,
+d3 q, f4 q, a4 q, 
+d3 q, f4 q, a4 q, 
+c3 q, e4 q, g4 q,
+c3 q, e4 q, g4 q,
+bb2 q, d4 q, f4 q
+
+
+*line 1
+d5 qd, c#5 e, d5 q, 
+e5 h, c#5 q, 
+a4 h, d5 q,
+f5 h, g5 q,
+a5 qd, bb5 e, a5 q,
+
+*line 2
+bb2 q, d4 q, f4 q,
+a2 q, c#4 q, e4 q,
+a2 q, c#4 q, e4 q,
+d3 q, f4 q, a4 q,
+d3 q, f4 q, a4 q
+
+*line 1
+g5 h, e5 q,
+c5 qd, d5 e, e5 q, 
+f5 qd, e5 e, d5 q,
+c#5 qd, b4 e, c#5 q,
+d5 hd
+
+*line 2
+c3 q, e4 q, g4 q,
+c3 q, e4 q, g4 q,
+bb2 q, d4 q, f4 q,
+a2 q, c#4 q, e4 q,
+d3 q, f3 q, a3 q
+
+*line 1
+d5 hd,
+c6 hd,
+c6 qd, bb5 e, a5 q,
+g5 h, e5 q,
+c5 qd, d5 e, e5 q
+
+*line 2
+d4 q, f4 q, a4 q,
+f3 q, a4 q, c5 q,
+f3 q, a4 q, c5 q,
+c3 q, e4 q, g4 q,
+c3 q, e4 q, g4 q
+
+
+*line 1
+f5 h, d5 q,
+d5 qd, c#5 e, d5 q,
+e5 h, c#5 q,
+a4 hd
+
+*line 2
+d3 q, f4 q, a4 q,
+d3 q, f4 q, a4 q,
+a2 q, c#4 q, e4 q,
+a2 q, c#4 q, e4 q,
+
+*line 1
+c6 hd,
+c6 qd, bb5 e, a5 q,
+g5 h, e5 q,
+c5 qd, d5 e, e5 q
+
+*line 2
+f3 q, a4 q, c5 q,
+f3 q, a4 q, c5 q,
+c3 q, e4 q, g4 q,
+c3 q, e4 q, g4 q,
+
+*line 1
+f5 qd, e5 e, d5 q,
+c#5 qd, b4 e, c#5 q,
+d5 hd
+d3 st, f3 st, a3 0, d5 0, f5 0, d6 q
+
+*line 2
+bb2 q, d4 q, f4 q,
+a2 q, c#4 q, e4 q,
+d3 q, f3 q, a3 q,
+
+
+
+
+
+

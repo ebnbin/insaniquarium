@@ -1,0 +1,42 @@
+*attrib title = BEETHOVEN: Rage Over a Lost Penny
+*attrib beethovenrare
+
+*speed 6
+
+*line 1
+b4 q, d5 e, d5 e, g5 e, g5 e, b5 q,
+d6 s, c6 s, d6 s, c6 s, a5 e, r e, d6 s, c6 s, d6 s, c6 s, a5 e, r e
+b4 q, d5 e, d5 e, g5 e, g5 e, b5 q,
+d6 s, c6 s, d6 s, c6 s, a5 e, a5 s, b5 s, g5 q, r q
+
+*line 2
+g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, 
+g3 0, c4 0, f#4 e, g3 0, c4 0, f#4 e, g3 0, c4 0, f#4 e, g3 0, c4 0, f#4 e, g3 0, c4 0, f#4 e, g3 0, c4 0, f#4 e, g3 0, c4 0, f#4 e, g3 0, c4 0, f#4 e, 
+g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, g3 0, b3 0, d4 e, 
+g3 0, c4 0, f#4 e, g3 0, c4 0, f#4 e, g3 0, c4 0, f#4 e, g3 0, c4 0, f#4 e, g3 0, b3 0, d4 e, g3 0, b3 e, g3 0, b3 e, g3 0, b3 e
+
+
+*line 1
+b5 s, a5 s, g5 s, f#5 s, e5 s, f#5 s, g5 s, a5 s, b5 e, b5 e, e6 q,
+e6 s, d#6 s, e6 s, d#6 s, b5 e, r e, e6 s, d#6 s, e6 s, d#6 s, b5 e, r e, 
+b5 s, a5 s, g5 s, f#5 s, e5 s, f#5 s, g5 s, a5 s, b5 e, b5 e, e6 q,
+c#6 s, d6 s, c#6 s, d6 s, c#6 s, d6 s, b5 s, c#6 s, d6 q, d5 q
+
+*line 2
+e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, 
+f#3 0, a3 0, b3 e, f#3 0, a3 0, b3 e, f#3 0, a3 0, b3 e, f#3 0, a3 0, b3 e, f#3 0, a3 0, b3 e, f#3 0, a3 0, b3 e, f#3 0, a3 0, b3 e, f#3 0, a3 0, b3 e, 
+e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, e3 0, g3 0, b3 e, 
+e3 0, g3 0, a3 e, e3 0, g3 0, a3 e, e3 0, g3 0, a3 e, e3 0, g3 0, a3 e, d3 0, f#3 0, a3 e, d3 0, f#3 0, a3 e, d3 0, f#3 0, a3 e, d3 0, f#3 0, a3 e, 
+
+*line 1
+b4 q, d5 e, d5 e, g5 e, g5 e, b5 q,
+d6 s, c6 s, d6 s, c6 s, a5 e, r e, d6 s, c6 s, d6 s, c6 s, a5 e, r e
+b4 q, d5 e, d5 e, g5 e, g5 e, b5 q,
+d6 s, c6 s, d6 s, c6 s, a5 e, a5 s, b5 s, g5 q, r q
+
+*line 2
+b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, 
+c3 0, d3 0, f#3 e, c3 0, d3 0, f#3 e, c3 0, d3 0, f#3 e, c3 0, d3 0, f#3 e, c3 0, d3 0, f#3 e, c3 0, d3 0, f#3 e, c3 0, d3 0, f#3 e, c3 0, d3 0, f#3 e, 
+b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, b2 0, d3 0, g3 e, 
+c3 0, d3 0, f#3 e, c3 0, d3 0, f#3 e, c3 0, d3 0, f#3 e, c3 0, d3 0, f#3 e, b2 0, d3 0, g3 q, g2 q
+

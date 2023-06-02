@@ -1,0 +1,46 @@
+*attrib title = BEETHOVEN: Moonlight Sonata Op. 27#2 3rd Mvmt.
+*attrib beethovenrare
+
+*speed 6
+
+*line 1
+r s, g#2 s, c#3 s, e3 s, g#3 s, c#3 s, e3 s, g#3 s, c#4 s, e3 s, g#3 s, c#4 s, e4 s, g#3 s, c#4 s, e4 s,
+g#4 s, c#4 s, e4 s, g#4 s, c#5 s, e4 s, g#4 s, c#5 s, e5 s, g#4 s, c#5 s, e5 s, g#4 0, c#5 0, e5 0, g#5 e, g#4 0, c#5 0, e5 0, g#5 e, 
+r s, g#2 s, b#2 s, d#3 s, g#3 s, b#2 s, d#3 s, g#3 s, b#3 s, d#3 s, g#3 s, b#3 s, d#4 s, g#3 s, b#3 s, d#4 s,
+
+g#4 s, b#3 s, d#4 s, g#4 s, b#4 s, d#4 s, g#4 s, b#4 s, d#5 s, g#4 s, b#4 s, d#5 s, g#4 0, b#4 0, d#5 0, g#5 e, g#4 0, b#4 0, d#5 0, g#5 e, 
+r s, c#3 s, e#3 s, g#3 s, c#4 s, e#3 s, g#3 s, c#4 s, e#4 s, g#3 s, c#4 s, e#4 s, g#4 s, c#4 s, e#4 s, g#4 s
+c#5 s, e#4 s, g#4 s, c#5 s, e#5 s, g#4 s, c#5 s, e#5 s, g#5 s, c#5 s, e#5 s, g#5 s, c#5 0, e#5 0, g#5 0, c#6 e, c#5 0, e#5 0, g#5 0, c#6 e, 
+
+r s, c#3 s, f#3 s, a3 s, c#4 s, c#4 s, f#4 s, a4 s, c#5 s, c#5 s, f#5 s, a5 s, c#5 0, f#5 0, c#6 e, c#5 0, f#5 0, c#6 e, 
+r s, c#3 s, e3 s, g3 s, c#4 s, c#4 s, e4 s, g4 s, c#5 s, c#5 s, e5 s, g5 s, c#5 0, g5 0, c#6 e, c#5 0, g5 0, c#6 e, 
+
+*line 2
+*localshift 12
+c#2 e, g#2 e, c#2 e, g#2 e, c#2 e, g#2 e, c#2 e, g#2 e, 
+c#2 e, g#2 e, c#2 e, g#2 e, c#2 e, g#2 e, c#2 0, c#3 e, g#2 e
+b#1 e, g#2 e, b#1 e, g#2 e, b#1 e, g#2 e, b#1 e, g#2 e, 
+
+b#1 e, g#2 e, b#1 e, g#2 e, b#1 e, g#2 e, b#1 0, b#2 e, g#2 e
+b1 e, g#2 e, b1 e, g#2 e, b1 e, g#2 e, b1 e, g#2 e, 
+b1 e, g#2 e, b1 e, g#2 e, b1 e, g#2 e, b2 0, b1 e, g#2 e, 
+
+a1 e, a2 e, a1 e, a2 e, a1 e, a2 e, a1 e, a2 e, 
+a1 e, a2 e, a1 e, a2 e, a1 e, a2 e, a1 e, a2 e, 
+*localshift 0
+
+*line 1
+b#4 0, g#5 0, b#5 e, g#4 s, g#5 s, g#4 s, g#5 s, a#4 s, g#5 s, b#4 s, g#5 s, c#5 s, g#5 s, d#5 s, g#5 s, b#4 s, g#5 s
+d#5 s, g#5 s, c#5 s, g#5 s, f#5 s, g#5 s, e5 s, g#5 s, d#5 s, g#5 s, c#5 s, g#5 s, b#4 s, g#5 s, a4 s, g5 s
+g#4 s, g#5 s, g#4 s, g#5 s, g#4 s, g#5 s, a#4 s, g#5 s, b#4 s, g#5 s, c#5 s, g#5 s, d#5 s, g#5 s, b#4 s, g#5 s, 
+d#5 s, g#5 s, c#5 s, g#5 s, f#5 s, g#5 s, e5 s, g#5 s, d#5 s, g#5 s, c#5 s, g#5 s, b#4 s, g#5 s, a4 s, g5 s
+g#4 s, g#5 s, a4 s, g5 s, g#4 s, g#5 s, a4 s, g5 s, g#4 s, g#5 s, a4 s, g5 s, g#4 s, g#5 s, a4 s, g5 s, 
+g#4 0, g#5 q, g#3 hd
+
+*line 2
+g#1 0, g#2 e, g#3 0, b#3 e, b#3 e, c#4 e, d#4 e, e4 e, f#4 e, d#4 e, 
+f#4 e, e4 e, a4 e, g#4 e, f#4 e, e4 e, d#4 e, c#4 e,
+g#3 0, b#3 e, b#3 e, b#3 e, c#4 e, d#4 e, e4 e, f#4 e, d#4 e,
+f#4 e, e4 e, a4 e, g#4 e, f#4 e, e4 e, d#4 e, c#4 e,
+g#3 0, b#3 e, g#3 0, c#4 e, g#3 0, b#3 e, g#3 0, c#4 e, g#3 0, b#3 e, g#3 0, c#4 e, g#3 0, b#3 e, g#3 0, c#4 e, 
+g#3 0, b#3 q, g#1 0, g#2 hd

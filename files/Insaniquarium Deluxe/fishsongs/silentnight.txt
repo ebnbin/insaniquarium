@@ -1,0 +1,43 @@
+*attrib title = Silent Night
+*attrib santarare
+*speed 10
+
+*line 2
+*volume 0.5
+
+*line 1
+d4 0, f4 ed, eb4 0, g4 s, d4 0, f4 e, bb3 0, d4 qd,
+d4 0, f4 ed, eb4 0, g4 s, d4 0, f4 e, bb3 0, d4 qd,
+eb4 0, c5 q, eb4 0, c5 e, eb4 0, a4 qd,
+d4 0, bb4 q, d4 0, bb4 e, d4 0, f4 qd
+
+*line 2
+bb2 e, f3 e, bb2 e, f3 e, bb2 e, f3 e, 
+bb2 e, f3 e, bb2 e, f3 e, bb2 e, f3 e, 
+f3 e, a3 e, f3 e, c4 e, f3 e, c4 e,
+bb2 e, bb3 e, bb2 e, bb3 e, bb2 e, bb3 e, 
+
+*line 1
+eb4 0, g4 q, eb4 0, g4 e, g4 0, bb4 ed, f4 0, a4 s, eb4 0, g4 e,
+d4 0, f4 ed, eb4 0, g4 s, d4 0, f4 e, bb3 0, d4 qd,
+eb4 0, g4 q, eb4 0, g4 e, g4 0, bb4 ed, f4 0, a4 s, eb4 0, g4 e,
+d4 0, f4 ed, eb4 0, g4 s, d4 0, f4 e, bb3 0, d4 qd
+
+*line 2
+eb3 e, bb3 e, eb3 e, bb3 e, eb3 e, bb3 e, 
+bb2 e, bb3 e, bb2 e, bb3 e, bb2 e, bb3 e, 
+eb3 e, bb3 e, eb3 e, bb3 e, eb3 e, bb3 e, 
+bb2 e, bb3 e, bb2 e, bb3 e, bb2 e, bb3 e, 
+
+*line 1
+f4 0, c5 q, f4 0, c5 e, f4 0, eb5 ed, f4 0k, c5 s, f4 0, a4 e,
+f4 0, bb4 qd, f4 0, d5 qd,
+bb3 0, bb4 ed, f4 s, bb3 0, d4 e, a3 0, f4 ed, a3 0, eb4 s, a3 0, c4 e, 
+bb3 hd
+
+*line 2
+f3 e, a3 e, f3 e, a3 e, f3 e, eb4 e,
+bb3 e, d4 e, bb3 e, d4 e, bb3 e, d4 e, 
+d3 0, f3 q, bb2 0, f3 e, f2 0, f3 ed, f2 0, f3 s, f2 0, f3 e,
+bb2 0, d3 hd
+

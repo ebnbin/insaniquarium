@@ -1,0 +1,63 @@
+*attrib title = Joy to the World
+*attrib santarare
+*speed 6.5
+
+*line 2
+*volume 0.7
+
+*line 1
+d4 0, d5 q, d4 0, c#5 ed, d4 0, b4 s,
+d4 0, a4 qd, e4 0, g4 e,
+d4 0, f#4 q, c#4 0, e4 q,
+d4 qd, f#4 0, a4 e,
+g4 0, b4 qd, g4 0, b4 e, 
+g4 0, c#5 qd, g4 0, c#5 e
+
+*line 2
+d3 0, f#3 q, d3 0, a3 ed, d3 0, g3 s,
+d3 0, f#3 qd, g2 0, b3 e,
+a2 0, a3 q, a2 e, g3 e,
+d3 0, f#3 qd, f#3 0, d4 e,
+g3 0, d4 qd, g3 0, d4 e,
+a4 qd, a4 e
+
+*line 1
+f#4 0, d5 qd, f#4 0, d5 e,
+f#4 0, d5 e, a4 0, c#5 e, g4 0, b4 e, f#4 0, a4 e,
+f#4 0, a4 ed, e4 0, g4 s, d4 0, f#4 e, f#4 0, d5 e,
+f#4 0, d5 e, a4 0, c#5 e, g4 0, b4 e, f#4 0, a4 e,
+f#4 0, a4 ed, e4 0, g4 s, d4 0, f#4 e,
+
+*line 2
+d3 0, a3 qd, d3 0, a3 e,
+d3 0, a3 q, d3 0, d4 q,
+d3 0, d4 q, a3 e, d3 0, a3 e,
+d3 0, a3 q, d3 0, d4 q,
+d3 0, d4 q, a3 e,
+
+*line 1
+d4 0, f#4 e, 
+d4 0, f#4 e, d4 0, f#4 e, d4 0, f#4 e, d4 0, f#4 s, e4 0, g4 s,
+f#4 0, a4 qd, e4 0, g4 s, d4 0, f#4 s,
+c#4 0, e4 e, c#4 0, e4 e, c#4 0, e4 e, c#4 0, e4 s, d4 0, f#4 s,
+
+*line 2
+r e,
+r q, r e, d3 0, a3 e, 
+d3 0, a3 e, d3 0, a3 e, d3 0, a3 e, d3 0, a3 e, 
+a2 0, a3 qd, a2 e,
+
+*line 1
+e4 0, g4 qd, d4 0, f#4 s, c#4 0, e4 s,
+d4 e, f#4 0, d5 q, g4 0, b4 e,
+f#4 0, a4 ed, e4 0, g4 s, d4 0, f#4 e, e4 0, g4 e,
+d4 0, f#4 q, c#4 0, e4 q, d4 h
+
+*line 2
+a2 0, a3 e, a2 e, a2 e, a2 0, a3 e,
+d3 0, f#3 e, a3 q, d3 0, d4 e,
+d3 0, d4 qd, g2 0, b3 e,
+a2 0, a3 q, a2 0, a3 e, g3 e,
+d3 0, f#3 h
+
+

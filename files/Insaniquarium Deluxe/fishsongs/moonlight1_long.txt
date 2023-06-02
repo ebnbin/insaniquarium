@@ -1,0 +1,73 @@
+*attrib title = BEETHOVEN: Moonlight Sonata
+*attrib beethoven
+
+*speed 12
+
+*line 1
+*volume 0.3
+
+*on
+
+*line 1
+g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, 
+g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, 
+a3 et, c#4 et, e4 et, a3 et, c#4 et, e4 et, a3 et, d4 et, f#4 et, a3 et, d4 et, f#4 et
+
+g#3 et, b#3 et, f#4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, d#4 et, f#3 et, b#3 et, d#4 et
+e3 et, g#3 et, c#4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, 
+g#3 et, d#4 et, f#4 et, g#3 et, d#4 et, f#4 et, g#3 et, d#4 et, f#4 et, g#3 et, d#4 et, f#4 et, 
+g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, a3 et, c#4 et, f#4 et, a3 et, c#4 et, f#4 et,
+
+g#3 et, b3 et, e4 et,  g#3 et, b3 et, e4 et, a3 et, b3 et, d#4 et, a3 et, b3 et, d#4 et
+g#3 et, b3 et, e4 et, g#3 et, b3 et, e4 et, g#3 et, b3 et, e4 et, g#3 et, b3 et, e4 et, 
+g3 et, b3 et, e4 et, g3 et, b3 et, e4 et, g3 et, b3 et, e4 et, g3 et, b3 et, e4 et, 
+g3 et, b3 et, f4 et, g3 et, b3 et, f4 et, g3 et, b3 et, f4 et, g3 et, b3 et, f4 et, 
+
+g3 et, c4 et, e4 et, g3 et, b3 et, e4 et, g3 et, c#4 et, e4 et, f#3 et, c#4 et, e4 et
+f#3 et, b3 et, d4 et, f#3 et, b3 et, d4 et, g3 et, b3 et, c#4 et, e3 et, b3 et, c#4 et
+f#3 et, b3 et, d4 et, f#3 et, b3 et, d4 et, f#3 et, a#3 et, c#4 et, f#3 et, a#3 et, c#4 et, 
+b3 et, d4 et, f#4 et, b3 et, d4 et, f#4 et, b3 et, d#4 et, f#4 et, b3 et, d#4 et, f#4 et, 
+
+b3 et, e4 et, g4 et, b3 et, e4 et, g4 et, b3 et, e4 et, g4 et, b3 et, e4 et, g4 et, 
+b3 et, d#4 et, f#4 et, b3 et, d#4 et, f#4 et, b3 et, d#4 et, f#4 et, b3 et, d#4 et, f#4 et, 
+b3 et, e4 et, g4 et, b3 et, e4 et, g4 et, b3 et, e4 et, g4 et, b3 et, e4 et, g4 et, 
+b3 et, d#4 et, f#4 et, b3 et, d#4 et, f#4 et, b3 et, d4 et, e#4 et, b3 et, d4 et, e#4 et, 
+
+*line 2
+c#2 0, c#3 w,
+b1 0, b2 w
+a1 0, a2 h, f#1 0, f#2 h,
+
+g#1 0, g#2 h, g#1 0, g#2 h,
+c#2 0, g#2 0, c#3 hd, g#4 ed, g#4 s
+g#4 0, b#1 0, g#2 0, b#2 hd, g#4 ed, g# s,
+g#4 0, c#2 0, c#3 h, a4 0, f#1 0, f#2 h,
+
+g#4 0, b1 0, b2 h, f#4 0, b1 0, b2 q, b4 q, 
+e4 0, e2 0, e3 w,
+e2 0, e3 hd, g4 ed, g4 s,
+g4 0, d2 0, d3 hd, g4 ed, g4 s,
+
+g4 0, c2 0, c3 q, b1 0, b2 q, a#1 0, a#2 q, f#4 q
+f#4 0, b1 0, b2 h, g4 0, e2 q, e4 0, g2 q
+f#4 0, f#2 h, f#4 0, f#1 0, f#2 h
+b1 0, b2 hd, b4 q, 
+
+c5 q, e2 0, e3 q, g2 0, g3 q, a#4 0, e2 0, e3 q,
+b4 0, b1 0, b2 hd, b4 q,
+c5 q, e2 0, e3 q, g2 0, g3 q, a#4 0, e2 0, e3 q
+b4 0, b1 0, b2 h, b4 0, g#1 0, g#2 h
+
+*on
+*line 1
+b3 et, c#4 et, g#4 et, b3 et, c#4 et, g#4 et, a3 et, c#4 et, f#4 et, a3 et, c#4 et, f#4 et, 
+g3 et, b3 et, d4 et, g3 et, b3 et, d4 et, f#3 et, a3 et, d#4 et, f#3 et, a3 et, d#4 et, 
+c#3 et, f#3 et, a3 et, c#3 et, f#3 et, a3 et, c#3 et, f#3 et, g#3 et, c#3 et, e#3 et, g#3 et
+#f#3 et, a3 et, c#4 et, a3 et, c#4 et, f#4 et, c#4 et, f#4 et, a4 et, c#4 et, f#4 et, a et
+
+*line 2
+b4 0, e#1 0, e#2 h, a4 0, f#1 0, f#2 h,
+g4 0, b1 0, b2 h, f#4 0, b#1 0, b#2 h, 
+c#4 0, c#2 h, c#4 0, c#2 q, c#4 q,
+f#1 0, c#2 0, f#2 hd, 
+#c#5 ed, c#5 e

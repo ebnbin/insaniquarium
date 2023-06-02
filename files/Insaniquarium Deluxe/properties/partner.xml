@@ -1,0 +1,17 @@
+<Properties>
+<Boolean id="NoReg">true</Boolean>
+<Boolean id="DontUpdate">true</Boolean>
+<Boolean id="DefaultWindowed">false</Boolean>
+<String id="ScrExe">WinFish_Scr.exe</String>
+<String id="PartnerName">Steam</String>
+<String id="ProdName">Insaniquarium</String>
+<String id="RegistryKey">PopCap\Insaniquarium</String>
+
+<Boolean id="VistaCompliant">true</Boolean>
+<String id="DisplayName">Insaniquarium Deluxe</String>
+<String id="Offering">15</String>
+<Integer id="Height">480</Integer>
+<Integer id="Width">640</Integer>
+
+<Integer id="SteamId">3320</Integer>
+</Properties>

@@ -1,0 +1,49 @@
+*attrib title = Camptown Races
+*speed 7
+
+
+*on
+*line 1
+c5 e, c5 e, a4 e, c5 e
+d5 e, c5 e, a4 q, 
+a4 e, g4 qd,
+a4 e, g4 qd
+
+c5 e, c5 e, a4 e, c5 e
+d5 e, c5 e, a4 q, 
+g4 e, a4 s, bb4 s, a4 e, g4 e,
+f4 q, r q
+
+f4 ed, f4 s, a4 e, c5 e, 
+f5 h,
+d5 ed, d5 s, f5 e, d5 e, 
+c5 h
+
+c5 e, c5 e, a4 e, c5 e, 
+d5 e, c5 e, a4 q,
+g4 ed, bb4 s, a4 e, g4 e, 
+f h 
+
+*line 2
+*volume 0.7
+f3 e, a3 0, c4 e, c3 e, a3 0, c4 e
+f3 e, a3 0, c4 e, c3 e, a3 0, c4 e
+c3 e, e3 0, g3 e, g2 e, e3 0, g3 e,
+c3 e, e3 0, g3 e, g2 e, e3 0, g3 e,
+
+f3 e, a3 0, c4 e, c3 e, a3 0, c4 e
+f3 e, a3 0, c4 e, c3 e, a3 0, c4 e
+g3 e, bb3 0, c4 e, g3 e, bb3 0, c4 e, 
+r e, f3 0, a3 0, c4 e, f3 0, a3 0, c4 e , r e 
+
+f4 e, a4 0, c5 e, f4 e, a4 0, c5 e, 
+f4 e, a4 0, c5 e, f4 e, a4 0, c5 e, 
+bb4 e, d5 0, f5 e, bb4 e, d5 0, f5 e, 
+f4 e, a4 0, c5 e, c4 e, a4 0, c5 e, 
+
+f3 e, a3 0, c4 e, c3 e, a3 0, c4 e
+f3 e, a3 0, c4 e, c3 e, a3 0, c4 e
+g3 e, bb3 0, c4 e, g3 e, bb3 0, c4 e, 
+r e, f3 0, a3 0, c4 e, f3 0, a3 0, c4 e , r e 
+
+*on

@@ -1,0 +1,96 @@
+*attrib title = We Wish You a Merry Christmas
+*attrib santarare
+*speed 4.5
+
+*line 1
+*volume 0.8
+
+*line 2
+*volume 0.3
+
+*line 1
+eb4 q, 
+c4 0, ab4 q, c4 0, ab4 e, c4 0, bb4 e, c4 0, ab4 e, c4 0, g4 e,
+db4 0, f4 q, db4 0, f4 q, db4 0, f4 q, 
+d4 0, bb4 q, d4 0, bb4 e, db4 0, c5 e, db4 0, bb4 e, db4 0, ab4 e, 
+eb4 0, g4 q, eb4 q, eb4 q
+
+*line 2
+eb3 q,
+ab2 0, eb3 q, ab2 0, eb3 e, ab2 0, eb3 e, ab2 0, ab3 e, ab2 0, ab3 e,
+db3 0, ab3 q, db3 0, ab3 q, db3 0, ab3 q, 
+bb2 0, f3 q, bb2 0, f3 e, bb2 0, ab3 e, bb2 0, g3 e, bb2 0, f3 e,
+eb3 0, bb3 q, eb3 0, g3 q, db3 0, g3 q
+
+*line 1
+e4 0, c5 q, e4 0, c5 e, e4 0, db5 e, e4 0, c5 e, e4 0, bb4 e,
+f4 0, ab4 q, c4 0, f4 q, eb4 e, eb4 e, 
+db4 0, f4 q, f4 0, bb4 q, eb4 0, g4 q,
+eb4 0, ab4 h
+
+*line 2
+c3 0, g3 q, c3 0, g3 e, c3 0, g3 e, c3 0, c4 e, c3 0, c4 e,
+f3 0, c4 q, f3 0, ab3 q, c3 0, ab3 e, c3 0, ab3 e,
+db3 0, ab3 q, bb2 0, db4 q, eb3 0, db4 q,
+ab3 0, c4 h
+
+*line 1
+*volume 0.6
+
+*line 1
+c4 0, eb4 q, 
+eb4 0, ab4 q, eb4 0, ab4 q, eb4 0, ab4 q,
+eb3 0, g4 h, eb4 0, g4 q,
+d4 0, ab4 q, d4 0, g4 q, d4 0, f4 q,
+eb4 h, eb4 0, bb4 q,
+
+*line 2
+ab3 q,
+ab2 0, c4 q, ab2 0, c4 q, ab2 0, c4 q, 
+bb2 0, bb3 h, bb2 0, bb3 q, bb2 0, c4 q, bb2 0, bb3 q, bb2 0, ab3 q,
+eb3 0, g3 h, eb3 0, g3 q
+
+*on
+*line 1
+eb4 0, c5 q, db4 0, bb4 q, c4 0, ab4 q,
+eb4 0, eb5 q, eb4 q, eb4 e, eb4 e,
+db4 0, f4 q, f4 0, bb4 q, eb4 0, g4 q,
+eb4 0, ab4 h
+
+*line 2
+ab2 0, ab3 q, ab2 0, ab3 q, ab2 0, ab3 q, 
+c3 0, ab3 q, c3 0, ab3 q, c3 0, ab3 e, c3 0, ab3 e, 
+db3 0, ab3 q, bb2 0, db4 q, eb3 0, db4 q, 
+ab3 0, c4 h
+
+
+
+
+
+*line 1
+*volume 1.0
+
+*line 1
+eb4 q, 
+c4 0, ab4 q, c4 0, ab4 e, c4 0, bb4 e, c4 0, ab4 e, c4 0, g4 e,
+db4 0, f4 q, db4 0, f4 q, db4 0, f4 q, 
+d4 0, bb4 q, d4 0, bb4 e, db4 0, c5 e, db4 0, bb4 e, db4 0, ab4 e, 
+eb4 0, g4 q, eb4 q, eb4 q
+
+*line 2
+eb3 q,
+ab2 0, eb3 q, ab2 0, eb3 e, ab2 0, eb3 e, ab2 0, ab3 e, ab2 0, ab3 e,
+db3 0, ab3 q, db3 0, ab3 q, db3 0, ab3 q, 
+bb2 0, f3 q, bb2 0, f3 e, bb2 0, ab3 e, bb2 0, g3 e, bb2 0, f3 e,
+eb3 0, bb3 q, eb3 0, g3 q, db3 0, g3 q
+
+*line 1
+e4 0, c5 q, e4 0, c5 e, e4 0, db5 e, e4 0, c5 e, e4 0, bb4 e,
+f4 0, ab4 q, c4 0, f4 q, eb4 e, eb4 e, 
+db4 0, f4 q, f4 0, bb4 q, eb4 0, g4 q,
+ab3 st, c4 st, eb4 st, ab4 st, c5 st, eb5 st, ab5 q, ab2 q
+
+*line 2
+c3 0, g3 q, c3 0, g3 e, c3 0, g3 e, c3 0, c4 e, c3 0, c4 e,
+f3 0, c4 q, f3 0, ab3 q, c3 0, ab3 e, c3 0, ab3 e,
+db3 0, ab3 q, bb2 0, db4 q, eb3 0, db4 q,

@@ -1,0 +1,36 @@
+*attrib title = BEETHOVEN: Waldstein Op. 53 3rd Mvmt. 
+*attrib beethovenrare
+*speed 9
+
+*line 1
+
+*on
+c2 s, e3 s, g3 s, c4 s, g5 0, e4 s, e3 s, g3 s, c4 s
+g5 0, e4 s, e3 s, g3 s, c4 s, e4 s, e3 s, e5 0, g3 s, c4 s
+
+d5 s, f3 s, g3 s, b3 s, g4 0, d4 s, f3 s, g3 s, b3 s
+c5 s, e3 s, g3 s, c4 s, e5 0, e4 s, e3 s, g3 s, c4 s, c3 0
+
+c2 s, e3 s, g3 s, c4 s, g5 0, e4 s, e3 s, g3 s, c4 s, 
+g5 0, e4 s, e3 s, g3 s, c4 s, e4 s, e3 s, e5 0, g3 s, c4 s
+
+d5 s, f3 s, g3 s, b3 s, g4 0, d4 s, f3 s, g3 s, b3 s
+c5 e, e3 s, g3 s, c4 s, e4 s, d4 s, c4 0, g2 s, 
+
+g1 0, b3 s, g3 s, b3 s, d4 s, f5 0, g4 s, g3 s, b3 s, d4 s
+f5 0, g4 s, g3 s, b3 s, d4 s, g4 s, g3 s, d5 0, b3 s, g3 s,
+
+e5 s, g3 s, c4 s, g4 s, c5 s, g3 s, e4 s, g4 s
+b4 s, g3 s, d4 s, g4 s, d5 s, g3 s, b3 s, g4 0, g2 s
+
+g1 s, g3 s, b3 s, d4 s, f5 0, g4 s, g3 s, b3 s, d4 s,
+f5 0, g4 s, g3 s, b3 s, d4 s, g4 s, g3 s, d5 0, b3 s, g4 s
+
+eb5 s, g3 s, c4 s, g4 s, c5 s, g3 s, eb4 s, g4 s
+b4 s, g3 s, d4 s, g4 s, d5 s, g3 s, b3 s, g4 s
+
+e5 s, g3 s, c4 s, e4 s, c5 s, g3 s, e4 s, g4 s,
+b4 s, g3 s, d4 s, g4 s, d5 s, g3 s, b3 s, g4 s
+
+eb5 s, g3 s, c4 s, g4 s, c5 s, g3 s, c4 s, eb4 s,
+c4 q, c2 0, c3 q

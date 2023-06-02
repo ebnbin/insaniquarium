@@ -1,0 +1,55 @@
+*attrib title = BEETHOVEN: Hammerklavier Op. 106 1st Mvmt. 
+*attrib beethovenrare
+
+*speed 4.5
+
+*on
+*line 1
+r e, r q+e, d5 0, f5 0, bb5 0, d6 e, d5 0, f5 0, bb5 0, d6 q, d5 0, f5 0, bb5 0, eb6 e, d5 0, f5 0, bb5 0, d6 e, 
+d5 0, f5 0, bb5 0, d6 q, bb4 0, d5 0, f5 0, bb5 q, r h
+r q+e, f5 0, bb5 0, d6 0, f6 e, f5 0, bb5 0, d6 0, f6 q, f5 0, bb5 0, d6 0, g6 e,  f5 0, bb5 0, d6 0, f6 e, 
+f5 0, bb5 0, d6 0, f6 q, d5 0, f5 0, bb5 0, d6 q, r hd
+
+
+*line 2
+bb2 e, f3 0, bb3 0, d4 qd, f3 0, bb3 0, d4 e, f3 0, bb3 0, d4 q, f3 0, bb3 0, d4 e, f3 0, bb3 0, d4 e, 
+f3 0, bb3 0, d4 q, d3 0, f3 0, bb3 q, r q+e, bb2 e
+f3 0, bb3 0, d4 0, f4 qd, f3 0, bb3 0, d4 0, f4 e, f3 0, bb3 0, d4 0, f4 q, f3 0, bb3 0, d4 0, f4 e, f3 0, bb3 0, d4 0, f4 e, 
+f3 0, bb3 0, d4 0, f4 q, f3 0, bb3 0, d4 q, r hd 
+
+*line 1
+bb4 e, c5 e, d5 q, g4 q, a4 0, c5 q, ab4 0, c5 e, d5 e,
+g4 0, eb5 q, a4 q, bb4 0, d5 q, g4 0, d5 e, eb5 e,
+f4 0, f5 q, bb4 e, g5 e, g4 0, f5 e, eb5 e, a4 e, f5 e
+f4 0, bb4 0, eb5 e, d5 e, g4 0, c5 0, f5 e, eb5 e, a4 0, c5 hd
+
+*line 2
+r h, e4 q, f4 q, b3 q, 
+c4 q, f#3 q, g3 q, eb3 q,
+d3 q, db3 q, c3 q, f2 q
+bb2 q, eb2 q, f2 hd
+
+*on
+*line 1
+bb5 e, c6 e, d6 q, g5 q, a5 0, c6 q, ab5 0, c6 e, d6 e
+g5 0, eb6 q, a5 q, bb5 0, d6 q, g5 0, d6 e, eb6 e
+f5 0, f6 q, bb5 e, g6 e, g5 0, f6 e, eb6 e, a5 e, f6 e
+f5 0, eb6 e, d6 e, bb5 e, eb6 e, d6 e, c6 e, f5 0, a5 0, d6 e, eb6 e
+f5 0, bb5 0, g6 e, f6 e, bb5 0, g6 e, f6 e, g5 0, f6 e, eb6 e, a5 0, f6 e, eb6 e
+f5 0, eb6 e, d6 e, bb5 0, eb6 e, d6 e, d6 e, c6 e, f5 0, a5 0, d6 e, eb6 e
+f5 0, bb5 0, g6 e, f6 e, bb5 0, e6 e, g6 e, eb6 e, ab6 e, c6 0, eb6 e, a6 e 
+bb5 0, d6 0, c7 e, bb6 e, bb5 0, eb6 0, a6 e, g6 e, bb5 0, d6 0, f6 q, a5 0, c6 0, f6 0, a6 q, 
+bb5 0, d6 0, f6 0, bb6 h
+
+*line 2
+r h, e5 q, f5 q, b4 q, 
+c5 q, f#4 q, g4 q, eb4 q,
+d4 q, db4 q, c4 q, f3 q,
+bb3 q, gb3 q, f3 q, eb3 q,
+d3 q, db3 q, c3 q, f2 q, 
+bb2 q, gb2 q, f2 q, eb2 q, 
+d2 q, db2 q, c2 q, f#1 q, 
+g1 q, eb2 q, f2 q, f1 0, f2 q
+bb1 0, bb2 e,
+
+

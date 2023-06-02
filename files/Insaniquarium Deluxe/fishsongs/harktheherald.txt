@@ -1,0 +1,68 @@
+*attrib title = Hark! The Herald Angels Sing
+*attrib santarare
+*speed 5
+
+*line 2
+*volume 0.6
+
+*line 1
+b3 0, d4 q, d4 0, g4 q, d4 0, g4 qd, d4 0, f#4 e,
+d4 0, g4 q, g4 0, b4 q, g4 0, b4 q, f#4 0, a4 q,
+g4 0, d5 q, f#4 0, d5 q, e4 0, d5 q, a4 e, c5 e,
+g4 0, b4 q, f#4 0, a4 q, g4 0, b4 h
+
+*line 2
+g2 0, g3 q, g3 0, b3 q, g3 0, b3 q, d3 e, a3 e,
+b2 0, g3 q, g2 0, d4 q, d3 0, d4 h
+b2 0, d4 q, b2 0, d4 q, c3 0, e4 q, c3 0, e4 q,
+d3 0, d4 q, d3 0, d4 q, g2 0, d4 h
+
+
+*line 1
+d4 q, d4 0, g4 q, d4 0, g4 qd, d4 0, f#4 e,
+b3 0, g4 q, g4 0, b4 q, g4 0, b4 q, a4 q,
+f#4 0, d5 q, e4 0, a4 q, f#4 0, a4 qd, d4 0, f#4 e,
+d4 0, f#4 q, c#4 0, e4 q, d4 h
+
+*line 2
+g3 0, b3 q, g3 0, b3 q, g3 0, b3 q, d3 e, a3 e,
+e3 0, g3 q, d3 0, d4 q, c#3 0, e4 qd, a2 e,
+b2 0, d4 q, c#3 0, e4 q, d3 0, d4 q, f#2 e, a3 e,
+g2 0, b3 q, a2 0, g3 q, d3 0, f#3 h
+
+*line 1
+d4 0, d5 q, d4 0, d5 q, d4 0, d5 q, g4 q,
+a4 0, c5 q, g4 0, b4 q, g4 0, b4 q, f#4 0, a4 q,
+d4 0, d5 q, d4 0, d5 q, d4 0, d5 q, g4 q,
+a4 0, c5 q, g4 0, b4 q, g4 0, b4 q, f#4 0, a4 q
+
+*line 2
+d4 q, d4 q, d4 q, b3 0, d4 q,
+f#3 0, d4 q, g3 0, d4 q, d3 0, d4 h
+d4 q, d4 q, d4 q, b3 0, d4 q, f#3 0, d4 q, 
+g3 0, d4 q, d3 0, d4 h
+
+*line 1
+c5 0, e5 q, c5 0, e5 q, c5 0, e5 q, b4 0, d5 q,
+a4 0, c5 q, g#4 0, b4 q, a4 0, c5 h,
+f#4 0, a4 q, f#4 0, b4 e, c5 e, g4 0, d5 qd, d4 0, g4 e,
+d4 0, g4 q, f#4 0, a4 q, g4 0, b4 h
+
+*line 2
+c3 0, e4 q, c3 0, e4 q, c3 0, e4 q, c3 0, e4 q, 
+c3 0, e4 q, e3 0, d4 q, a3 0, c4 h,
+c4 0, d4 q, c4 0, d4 q, b3 0, d4 q, g3 e, b3 e,
+d3 0, b3 q, d3 0, d4 q, g3 0, d3 h
+
+*line 1
+c5 0, e5 q, c5 e, e5 e, c5 0, e5 q, b4 0, d5 q,
+a4 0, c5 q, g#4 0, b4 q, a4 0, c5 h
+d4 0, a4 q, f#4 0, b4 e, c5 e, g4 0, d5 qd, g4 e,
+d4 0, g4 q, d4 0, a4 q, d4 0, g4 h
+
+*line 2
+c4 0, e4 q, c4 0, e4 q, c4 0, e4 q, b3 0, d4 q,
+a3 0, c4 q, g#3 0, b3 q, a3 0, c4 q, g3 q,
+f#3 0, d4 q, c4 0, d4 q, b3 0, d4 q, g3 e, b3 e
+d3 0, b3 q, d3 0, c4 q, g3 0, b3 h
+

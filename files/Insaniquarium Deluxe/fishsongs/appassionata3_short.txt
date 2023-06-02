@@ -1,0 +1,31 @@
+*attrib title = BEETHOVEN: Appassionata Op. 57 3rd Mvmt. 
+*attrib beethovenrare
+
+*speed 7
+*shift 12
+
+*line 1
+r s, c3 s, f3 s, ab3 s, c4 s, db4 s, c4 s, bb3 s, ab3 s, bb3 s, ab3 s, g3 s, f3 s, g3 s, ab3 s, f3 s
+r s, c3 s, f3 s, ab3 s, c4 s, db4 s, c4 s, bb3 s, ab3 s, bb3 s, ab3 s, g3 s, f3 s, g3 s, ab3 s, f3 s
+r s, db3 s, gb3 s, bb3 s, db4 s, eb4 s, db4 s, c4 s, bb3 s, c4 s, bb3 s, ab3 s, gb3 s, ab3 s, gb3 s, f3 s,
+e3 s, f3 s, g3 s, e3 s, f3 s, g3 s, ab3 s, f3 s, g3 s, ab3 s, bb3 s, g3 s, e3 s, f3 s, g3 s, e3 s
+
+*line 2
+f1 q, r q, r q, r ed, f2 s, 
+f1 q, r q, r q, r ed, f2 s, 
+bb1 q, r q, r q, r ed, db2 s,
+c2 q, db2 q, bb1 q, c2 q, 
+
+*line 1
+f3 s, c3 s, f3 s, ab3 s, c4 s, db4 s, c4 s, bb3 s, ab3 s, bb3 s, ab3 s, g3 s, f3 s, g3 s, ab3 s, f3 s
+r s, c3 s, f3 s, ab3 s, c4 s, db4 s, c4 s, bb3 s, ab3 s, bb3 s, ab3 s, g3 s, f3 s, g3 s, ab3 s, f3 s
+r s, db3 s, gb3 s, bb3 s, db4 s, eb4 s, db4 s, c4 s, bb3 s, c4 s, bb3 s, ab3 s, gb3 s, ab3 s, gb3 s, f3 s
+e3 s, f3 s, g3 s, e3 s, f3 s, g3 s, ab3 s, f3 s, g3 s, ab3 s, bb3 s, g3 s, e3 s, f3 s, g3 s, e3 s
+
+*line 2
+f1 0, f2 q, r ed, ab4 0, c5 s, ab4 0, c5 q, f4 0, ab4 q,
+f1 0, f2 q, r ed, ab4 0, c5 s, ab4 0, c5 q, f4 0, ab4 q,
+bb1 0, bb2 q, r ed, bb4 0, db5 s, bb4 0, db5 h
+bb4 0, c5 e, c2 0, c3 e, r e, db2 0, db3 e, r e, bb1 0, bb2 e, r e, c2 0, c3 e,
+
+f2 0, f3 q

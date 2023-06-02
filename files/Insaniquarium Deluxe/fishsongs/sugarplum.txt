@@ -1,0 +1,59 @@
+*attrib title = TCHAIKOVSKY: Dance of the Sugar Plum Fairy
+*speed 15
+
+*line 1
+*volume 0.5
+r e, e5 0, b5 0, g6 s, b4 0, g5 0, e6 s, e5 0, b5 0, g6 e, c5 0, e5 0, a5 0, f#6 e
+a4 0, c5 0, f#5 0, d#6 e, a#4 0, c#5 0, g5 0, e6 e, b4 0, f5 0, g#5 0, d6 s, b4 0, f5 0, g#5 0, d6 s, b4 0, f5 0, g#5 0, d6 e
+a#4 0, e5 0, g5 0, c#6 s, a#4 0, e5 0, g5 0, c#6 s, a#4 0, e5 0, g5 0, c#6 e, a4 0, d#5 0, f#5 0, c6 s, a4 0, d#5 0, f#5 0, c6 s, a4 0, d#5 0, f#5 0, c6 e
+g4 0, e5 0, b5 s, b4 0, e5 0, e6 s, a4 0, e5 0, c6 s, c5 0, f#5 0, e6 s, g4 0, e5 0, b5 e, r e
+
+*line 2
+*volume 0.8
+e3 e, e4 e, e3 e, f#4 e, 
+e3 e, g4 e, e3 e, g#4 e, 
+e3 e, a#4 e, e3 e, c#5 e,
+b4 e, c5 e, b4 e, 
+f#4 t, e4 t, d4 t, c#4 t
+
+*line 1
+r e, e4 0, c5 0, g5 s, g4 0, e5 s, e4 0, c5 0, g5 e, d#4 0, c5 0, f#5 e
+a4 0, d#5 0, f#5 0, c6 e, g4 0, e5 0, g5 0, b5 e, e5 0, a#5 0, c#6 0, g6 s, e5 0, a#5 0, c#6 0, g6 s, e5 0, a#5 0, c#6 0, g6 e
+d5 0, f#5 0, g#5 0, b5 0, d5 0, f#6 s, d5 0, f#5 0, g#5 0, b5 0, d5 0, f#6 s, d5 0, f#5 0, g#5 0, b5 0, d5 0, f#6 e, c#5 0, f#5 0, a#5 0, e6 s, c#5 0, f#5 0, a#5 0, e6 s, c#5 0, f#5 0, a#5 0, e6 e
+b4 0, f#5 0, b5 0, d#6 s, d#5 0, f#6 s, f#5 0, a#5 0, e6 s, f#4 0, f#6 s, b4 0, f#5 0, b5 0, d#6 e, r e
+
+*line 2
+c4 q, b3 q, 
+a3 q, g3 q
+f#3 e, b3 0, d4 e, f#2 e, c#4 0, e4 e
+d#4 e, e4 e, d#4 e,
+c#4 t, b3 t, a3 t, g#3 t, 
+
+*line 1
+r e, e5 0, b5 0, g6 s, b4 0, g5 0, e6 s, e5 0, b5 0, g6 e, c5 0, e5 0, a5 0, f#6 e
+a4 0, c5 0, f#5 0, d#6 e, a#4 0, c#5 0, g5 0, e6 e, b4 0, f5 0, g#5 0, d6 s, b4 0, f5 0, g#5 0, d6 s, b4 0, f5 0, g#5 0, d6 e
+a#4 0, e5 0, g5 0, c#6 s, a#4 0, e5 0, g5 0, c#6 s, a#4 0, e5 0, g5 0, c#6 e, a4 0, d#5 0, f#5 0, c6 s, a4 0, d#5 0, f#5 0, c6 s, a4 0, d#5 0, f#5 0, c6 e
+g4 0, e5 0, b5 s, b4 0, e5 0, e6 s, a4 0, e5 0, c6 s, c5 0, f#5 0, e6 s, g4 0, e5 0, b5 e, r e
+
+*line 2
+e3 0, f#3 e, e4 e, e3 e, f#4 e, 
+e3 e, g4 e, e3 e, g#4 e,
+e3 e, a#4 e, e3 e, c5 e
+b4 e, c5 e, b4 e, 
+bb4 t, a4 t, g4 t, f4 t
+
+
+*line 1
+r e, f#4 0, c#5 0, a#5 0, e6 s, a#4 0, e5 0, f#5 0, c#6 s, f#4 0, c#5 0, a#5 0, e6 e, b4 0, f#5 0, b5 0, d#6 e
+r e, e4 0, b4 0, g#5 0, d6 s, g#4 0, d5 0, e5 0, b5 s, e4 0, b4 0, g#5 0, d6 e, a4 0, e5 0, a5 0, c#6 e
+r e, d4 0, a4 0, f#5 0, c6 s, f#4 0, c5 0, d5 0, a5 s, d4 0, a4 0, f#5 0, c6 e, g4 0, d5 0, g5 0, b5 e
+r e, a5 0, b5 t, f#5 0, d#6 t, d#5 0, f#6 t, b4 0, b6 t, e5 0, g5 0, b5 0, e6 e,
+
+e3 0, g3 0, b3 0, e4 q
+
+*line 2
+f#3 0, e4 qd, f#4 0, a4 t, g4 t, f#4 t, e4 t
+e3 0, d4 qd, e4 0, g4 t, f4 t, eb4 t, d4 t
+d3 0, c4 qd, bb3 0, f4 t, eb4 t, d4 t, c4 t,
+d#3 0, bb3 s
+

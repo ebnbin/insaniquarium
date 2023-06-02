@@ -1,0 +1,88 @@
+*attrib title = We Three Kings
+*attrib santarare
+*speed 6
+
+*line 2
+*volume 0.5
+
+*line 1
+g4 0, b4 q, f#4 0, a4 e, 
+e4 0, g4 q, e4 e,
+d#4 0, f#4 e, d#4 0, g4 e, d#4 0, f#4 e,
+e4 q, r e,
+g4 0, b4 q, f#4 0, a4 e,
+e4 0, g4 q, e4 e,
+d#4 0, f#4 e, d#4 0, g4 e, d#4 0, f#4 e
+
+*line 2
+e3 0, b3 q, e3 0, b3 e, 
+e3 0, b3 q, e3 0, g3 e,
+b2 0, a3 e, b2 0, b3 e, b2 0, a3 e,
+e3 0, g3 q, r e,
+e3 0, b3 q, e3 0, b3 e,
+e3 0, b3 q, e3 0, g3 e,
+b2 0, a3 e, b2 0, b3 e, b2 0, a3 e
+
+*line 1
+e4 q, r e, 
+e4 0, g4 q, e4 0, g4 e, 
+f#4 0, a4 q, f#4 0, a4 e, 
+g4 0, b4 q, g4 0, b4 e,
+g4 0, d5 e, f#4 0, c5 e, g4 0, b4 e,
+f#4 0, a4 e, g4 0, b4 e, f#4 0, a4 e,
+e4 0, g4 q, d#4 0, f#4 e,
+e4 qd
+
+*line 2
+e3 0, g3 q, r e,
+e3 0, b3 q, e3 0, b3 e, 
+d3 0, d4 q, d3 0, d4 e,
+g3 0, d4 q, g3 0, d4 e,
+b3 e, a3 0, d4 e, g3 0, d4 e,
+a3 0, c4 e, a3 0, c4 e, a3 0, c4 e, 
+b3 q, b2 0, a3 e,
+e3 0, g3 qd
+
+*line 1
+d4 0, f#4 q, a4 e
+d4 0, g4 q, d4 0, g4 e, 
+d4 0, g4 q, b3 0, d4 e,
+b3 0, g4 q, e4 e,
+d4 0, g4 q, r e,
+d4 0, g4 q, d4 0, g4 e,
+d4 0, g4 q, b3 0, d4 e,
+b3 0, g4 q, e4 e,
+d4 0, g4 q, r e
+
+*line 2
+d3 0, a3 q, c4 e,
+g3 0, b3 q, g3 0, b3 e,
+g3 0, b3 q, g3 e,
+e3 0, g3 q, c3 0, c4 e,
+g3 0, b3 q, r e,
+g3 0, b3 q, g3 0, b3 e,
+g3 0, b3 q, g3 e,
+e3 0, g3 q, c3 0, c4 e,
+g3 0, b3 q, r e
+
+*line 1
+e4 0, g4 q, e4 0, g4 e,
+f#4 0, a4 q, f#4 0, b4 e,
+g4 0, c5 q, g4 0, b4 e,
+g4 0, a4 q, f#4 0, b4 e,
+g4 q, d4 0, g4 e,
+b3 0, g4 q, d4 e,
+e4 0, g4 q, c4 0, e4 e,
+d4 0, g4 qd
+
+*line 2
+e3 0, b3 q, e3 0, b3 e,
+d3 0, d4 q, d3 0, d4 e,
+c3 0, e4 q, g3 0, d4 e,
+d3 0, d4 q, d3 0, c4 e,
+g3 0, b3 q, g3 0, b3 e,
+g3 q, b2 0, g3 e,
+c3 0, g3 q, c3 0, c4 e,
+g2 0, b3 qd
+
+

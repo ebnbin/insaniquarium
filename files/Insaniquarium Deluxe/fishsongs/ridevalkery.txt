@@ -1,0 +1,20 @@
+*attrib title = WAGNER: Ride of the Valkyries
+*speed 6
+
+f#3 e, b3 ed, f#3 s, b3 e, d4 qd, b3 qd, d4 ed, b3 s, d4 e, f#4 qd, d4 qd
+f#4 ed, d4 s, f#4 e, a4 qd, a3 qd, d4 ed, a3 s, d4 e, f#4 hd
+
+a3 e, d4 ed, a3 s, d4 e, f#4 qd, d4 qd, f#4 ed, d4 s, f#4 e, a4 qd, f#4 qd,
+a4 ed, f#4 sd, a4 e, c#5 qd, c#4 qd, f#4 ed, c#4 s, f#4 e, a#4 qd
+
+r q
+
+f#3 e, g3 ed, e3 s, g3 e, b3 h, f#4 e, g4 ed, e4 s, g4 e, b4 h, r e
+f#3 0, f#4 e, g3 0, g4 ed, e4 s, g4 e, c4 0, c5 qd, f#3 0, f#4 qd,
+f#3 0, b3 0, d4 ed, b3 0, d4 0, f#4 s, d4 0, f#4 0, b4 e, f#4 0, b4 0, d5 qd
+
+r e
+
+f#3 e, g3 ed, e3 s, g3 e, b3 h, f#4 e, g4 ed, e4 s, g4 e, b4 h, r e
+f#3 0, f#4 e, g3 0, g4 ed, e4 s, g4 e, c#4 0, c#5 qd, f#3 0, f#4 qd,
+b3 0, d#4 0, f#4 ed, d#4 0, f#4 0, b4 s, f#4 0, b4 0, d#5 e, b4 0, d#5 0, f#5 qd

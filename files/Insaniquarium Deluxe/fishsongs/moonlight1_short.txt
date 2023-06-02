@@ -1,0 +1,37 @@
+*attrib title = BEETHOVEN: Moonlight Sonata
+*attrib beethoven
+
+*speed 12
+
+*line 1
+*volume 0.3
+
+*on
+
+*line 1
+g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, 
+g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, 
+a3 et, c#4 et, e4 et, a3 et, c#4 et, e4 et, a3 et, d4 et, f#4 et, a3 et, d4 et, f#4 et
+
+g#3 et, b#3 et, f#4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, d#4 et, f#3 et, b#3 et, d#4 et
+e3 et, g#3 et, c#4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, 
+g#3 et, d#4 et, f#4 et, g#3 et, d#4 et, f#4 et, g#3 et, d#4 et, f#4 et, g#3 et, d#4 et, f#4 et, 
+
+g#3 et, c#4 et, e4 et, g#3 et, c#4 et, e4 et, a3 et, c#4 et, f#4 et, a3 et, c#4 et, f#4 et,
+g#3 et, b3 et, e4 et,  g#3 et, b3 et, e4 et, a3 et, b3 et, d#4 et, a3 et, b3 et, d#4 et
+
+
+
+*line 2
+c#2 0, c#3 w,
+b1 0, b2 w
+a1 0, a2 h, f#1 0, f#2 h,
+
+g#1 0, g#2 h, g#1 0, g#2 h,
+c#2 0, g#2 0, c#3 hd, g#4 ed, g#4 s
+g#4 0, b#1 0, g#2 0, b#2 hd, g#4 ed, g# s,
+
+g#4 0, c#2 0, c#3 h, a4 0, f#1 0, f#2 h,
+g#4 0, b1 0, b2 h, f#4 0, b1 0, b2 q, b4 q, 
+
+e3 0, e4 w

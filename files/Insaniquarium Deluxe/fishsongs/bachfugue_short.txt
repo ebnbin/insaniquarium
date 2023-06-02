@@ -1,0 +1,42 @@
+*attrib title = BACH: Fugue in D Minor
+
+*speed 9
+
+*line 1
+r h
+r w
+
+*line 2
+r s, a4 s, g4 s, a4 s, f4 s, a4 s, e4 s, a4 s, 
+d4 s, a4 s, c#4 s, a4 s, d4 s, a4 s, e4 s, a4 s, f4 s, a4 s, a3 s, a4 s, b3 s, a4 s, c#4 s, a4 s
+
+*line 1
+r h, r s, d5 s, c5 s, d5 s, bb4 s, d5 s, a4 s, d5 s
+g4 s, d5 s, f#4 s, d5 s, g4 s, d5 s, a4 s, d5 s, bb4 s, d5 s, d4 s, d5 s, e4 s, d5 s, f#4 s, d5 s
+g4 s, d5 s, f#4 s, d5 s, g4 s, d5 s, a4 s, d5 s, bb4 e, d5 e, bb4 e, d5 e
+
+*line 2
+d4 s, a4 s, c#4 s, a4 s, d4 s, a4 s, e4 s, a4 s, f4 e, f#4 e, g4 e, c4 e,
+bb3 e, a3 e, bb3 e, c4 e, d4 e, f#3 e, g3 e, a3 e, 
+bb3 e, a3 e, bb3 e, f#3 e, g3 s, g4 s, g3 s, g4 s, d4 s, g4 s, d4 s, g4 s
+
+*line 1
+eb5 e, g4 e, eb5 e, g4 e, c5 e, a4 e, c5 e, a4 e, 
+d5 e, f4 e, d5 e, f4 e, bb4 e, g4 e, bb4 e, g4 e
+c#5 e, e4 e, c#5 e, e4 e, a4 e, f4 e, a4 e, f4 e
+
+*line 2
+c4 s, eb4 s, c4 s, eb4 s, c4 s, eb4 s, c4 s, eb4 s, c4 s, f5 s, c4 s, f5 s, c4 s, f5 s, c4 s, f5 s, 
+bb3 s, d4 s, bb3 s, d4 s, bb3 s, d4 s, bb3 s, d4 s, bb3 s, e4 s, bb3 s, e4 s, bb3 s, e4 s, bb3 s, e4 s, 
+a3 s, c#4 s, a3 s, c#4 s, a3 s, c#4 s, a3 s, c#4 s, f3 s, d4 s, f3 s, d4 s, f3 s, d4 s, f3 s, d4 s, 
+
+*line 1
+g4 e, c#4 e, g4 e, c#4 e, f4 e, d4 e, f4 e, d4 e, 
+a4 e, c#4 e, c#5 e, a4 e
+d3 0, f3 0, a3 0, d4 0, f4 0, a4 0, d5 q
+
+*line 2
+e3 s, bb3 s, e3 s, bb3 s, e3 s, bb3 s, e3 s, bb3 s, d3 s, a3 s, d3 s, a3 s, d3 s, a3 s, d3 s, a3 s
+c#3 s, e3 s, c#3 s, e3 s, c#3 s, e3 s, c#3 s, e3 s
+
+

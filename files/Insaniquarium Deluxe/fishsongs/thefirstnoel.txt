@@ -1,0 +1,74 @@
+*attrib title = The First Noel
+*attrib santarare
+*speed 5
+
+*line 2
+*volume 0.5
+
+*line 1
+c#4 0, f#4 e, e4 e,
+d4 qd, e4 e, d4 0, f#4 e, g4 e,
+e4 0, a4 h, g4 0, b4 e, c#5 e,
+a4 0, d5 q, a4 0, c#5 q, g4 0, b4 e, f#4 e,
+e4 0, a4 h, g4 0, b4 e, g4 0, c#5 e, 
+f#4 0, d5 q, f#4 0, c#5 q, g4 0, b4 q
+
+*line 2
+a2 0, a3 e, g3 e,
+d3 0, f#3 h, b2 0, b3 q,
+a2 0, c#4 q, a3 q, g3 0, d4 q,
+f#3 0, d4 q, f#3 0, d4 q, g3 0, d4 q,
+a3 0, c#4 h, g3 0, d4 e, a3 0, d4 e,
+b3 0, d4 q, a3 0, d4 q, g3 0, d4 q
+
+*line 1
+a4 q, d4 0, b4 q, g4 0, c#5 q,
+a4 0, d5 q, f#4 0, a4 q, e4 0, g4 q,
+d4 0, f#4 h, c#4 0, f#4 e, e4 e, 
+d4 qd, e4 e, d4 0, f#4 e, g4 e,
+e4 0, a4 h, g4 0, b4 e, c#5 e,
+
+*line 2
+f#3 0, d4 q, g3 0, d4 q, e3 0, e4 q,
+f#3 0, d4 e, g3 e, a3 0, d4 q, a2 0, a3 q,
+d3 0, a3 h, a2 0, a3 e, g3 e,
+d3 0, f#3 h, b2 0, b3 q,
+a2 0, c#4 q, a3 q, g3 0, d4 q
+
+*line 1
+a4 0, d5 q, a4 0, c#5 q, g4 0, b4 e, f#4 e,
+e4 0, a4 h, g4 0, b4 e, g4 0, c#5 e,
+f#4 0, d5 q, f#4 0, c#5 q, g4 0, b4 q, 
+a4 q, d4 0, b4 q, g4 0, c#5 q,
+a4 0, d5 q, f#4 0, a4 q, e4 0, g4 q,
+d4 0, f#4 h
+
+*line 2
+f#3 0, d4 q, f#3 0, d4 q, g3 0, d4 q,
+a3 0, c#4 h, g3 0, d4 e, a3 0, d4 e, 
+b3 0, d4 q, a3 0, d4 q, g3 0, d4 q,
+f#3 0, d4 q, g3 0, d4 q, e3 0, e4 q,
+f#3 0, d4 e, g3 e, a3 0, d4 q, a2 0, a3 q,
+d3 0, a3 h
+
+*line 1
+c#4 0, f#4 e, e4 e,
+d4 qd, e4 e, d4 0, f#4 e, g4 e,
+c#4 0, a4 q, d4 q, f#4 0, d5 e, c#5 e,
+g4 0, b4 h, g4 0, b4 q,
+f#4 0, a4 h, a4 q,
+f#4 0, d5 q, f#4 0, c#5 q, g4 0, b4 q,
+f#4 0, a4 q, b4 q, g4 0, c#5 q,
+a4 0, d5 q, d4 0, a4 q, c#4 0, g4 q,
+d4 0, f#4 h
+
+*line 2
+a2 0, a3 e, g3 e,
+d3 0, f#3 h, b2 0, b3 q,
+f#3 0, a3 h, d3 0, a3 q,
+g3 0, b3 qd, a3 0, c#4 e, b3 0, d4 e, c#4 0, e4 e,
+d4 0, f#4 h, c#4 0, e4 q,
+b3 0, d4 q, a3 0, d4 q, g3 0, d4 q,
+d4 q, d3 0, f#4 q, e3 0, e4 q, 
+f#3 0, d4 e, g3 e, a3 0, e4 q, a2 0, a3 q,
+d3 0, a3 h

@@ -1,0 +1,61 @@
+*attrib title = BEETHOVEN: Pathetique Op. 13 3rd Mvmt. 
+*attrib beethovenrare
+
+*speed 4.5
+
+*line 1
+g4 e, c5 e, d5 e, 
+eb5 qd, f5 e, d5 qd, eb5 e,
+c5 h, d5 t, c5 sd, b4 e, c5 e, d5 e, 
+f5 t, eb5 sd, d5 e, eb5 e, f5 e, g5 q, g5 q, 
+g5 hd, f5 e, g5 e
+f5 t, g5 t, ab5 q+e+s, d5 q, eb5 e, f5 e
+
+*line 2
+r e, r q
+c3 e, eb3 e, g3 e, c4 e, c3 e, f3 e, g3 e, b3 e
+c3 e, eb3 e, g3 e, c4 e, eb4 e, g4 e, eb4 e, d4 e,
+c4 e, eb4 e, c4 0, eb4 e, g4 e, b4 0, d4 e, g4 e, ab4 0, c4 e, g4 e
+g3 e, b3 e, d4 e, g4 e, g3 e, b3 e, d4 e, g4 e
+f3 e, ab3 e, b3 e, d4 e, f3 e, ab3 e, b3 e, d4 e
+
+*line 1
+eb5 t, f5 t, g5 q+e+s, c5 q, c5 e, d5 e, 
+eb5 q, eb5 e, f5 e, d5 q, d5 e, eb5 e
+c5 q, r q, r q, f5 e, g5 e, 
+ab4 0, ab5 h, d5 q, eb5 e, f5 e, 
+g4 0, g5 h, c5 q, c5 e, d5 e
+
+*line 2
+eb3 e, g3 e, c4 e, eb4 e, ab3 e, c4 e, eb4 e, f#4 e
+g3 e, c4 e, eb4 e, g4 e, g3 e, b3 e, d4 e, g4 e
+r e, c3 e, eb3 e, g3 e, c4 q, r q
+r e, f2 e, b2 e, d3 e, f3 e, ab3 e, g3 e, f3 e, 
+r e, eb2 e, g2 e, c3 e, eb3 e, g3 e, ab3 e, f#3 e
+
+*line 1
+eb5 q, eb5 e, f5 e, d5 q, d5 e, eb5 e,
+c5 q, bb5 h, bb5 q
+r e, ab5 e, g5 e, f5 e, eb5 e, d5 e, c5 e, b4 e, 
+c5 q, c5 0, c6 h, bb5 q
+r e, ab5 e, g5 e, f5 e, eb5 e, d5 e, c5 e, b4 e
+
+*line 2
+g2 e, g3 e, c4 e, g3 e, g2 e, g3 e, b3 e, g3 e, 
+c3 e, c4 e, b3 e, c4 e, e3 e, c4 e, g3 e, c4 e
+f3 e, c4 e, ab3 e, c4 e, g3 e, f4 e, b3 e, f4 e, 
+ab3 e, eb4 e, c4 e, eb4 e, g3 e, e4 e, c4 e, e4 e
+f3 e, f4 e, c4 e, f4 e, g3 e, g4 e, g3 e, g4 e
+
+*line 1
+c5 q, d5 st, eb5 st, d5 st, c5 s, d5 s, eb5 q, b4 0, d5 0, b5 q
+c5 0, eb5 0, c6 q
+
+*line 2
+c4 q, g3 0, b3 q, c2 0, c3 q, g2 0, g3 q
+c2 0, c3 q
+
+
+
+
+

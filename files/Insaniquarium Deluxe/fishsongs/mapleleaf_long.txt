@@ -1,0 +1,157 @@
+*attrib title = JOPLIN: Maple Leaf Rag
+*speed 9
+
+*on
+*line 1
+r e
+r s, ab4 s, eb4 0, eb5 s, ab4 s, c5 s, eb4 0, eb5 e, g4 s
+eb4 0, eb5 s, g4 s, bb4 s, eb4 0, eb5 s+q
+r s, ab4 s, eb4 0, eb5 s, ab4 s, c5 s, eb4 0, eb5 e, g4 s
+eb4 0, eb5 s, g4 s, bb4 s, eb4 0, eb5 s+e, r s, eb4 0, eb5 s
+
+r s, ab4 s, cb5 s, fb4 0, fb5 s, r s, eb4 0, eb5 s, r s, eb4 0, eb5 s
+r s, ab4 s, cb5 s, fb4 0, fb5 s, r s, eb4 0, eb5 s, r e
+r s, ab2 s, cb3 s, ab3 s, r s, ab3 s, cb4 s, ab4 s
+r s, ab4 s, cb5 s, ab5 s, r s, ab5 s, cb6 s, ab6 s
+
+ab5 0, ab6 e, ab5 0, ab6 e, ab5 0, ab6 e, ab5 0, ab6 s, ab5 0, ab6 s,
+r s,  eb6 s, ab5 0, f6 s, c6 s, eb6 s, ab5 0, f6 e, fb5 0, ab5 s
+r s, bb5 s, fb5 0, cb6 s, ab5 s, bb5 s, eb5 0, c6 e, ab5 s
+eb5 0, c6 s, ab5 s, eb5 0, bb5 e, eb5 0, ab5 e, r s, ab4 0, ab5 s
+
+r e, ab4 0, ab5 e, ab4 0, ab5 e, ab4 0, ab5 s, ab4 0, ab5 s, 
+r s, eb5 s, ab4 0, f5 s, c5 s, eb5 s, ab4 0, f5 e, fb4 0, ab4 s
+r s, bb4 s, fb4 0, cb5 s, ab4 s, bb4 s, eb4 0, c5 e, ab4 s
+eb4 0, c5 s, ab4 s, eb4 0, bb4 e, eb4 0, ab4 e, r e
+
+*line 2
+eb2 0, eb3 e,
+ab2 0, ab3 e, eb3 0, ab3 0, c4 e, eb3 0, ab3 0, c4 e, a2 0, a3 e,
+bb2 0, bb3 e, eb3 0, g3 0, db4 e, eb3 0, g3 0, db4 e, eb2 0, eb3 e
+ab2 0, ab3 e, eb3 0, ab3 0, c4 e, eb3 0, ab3 0, c4 e, a2 0, a3 e,
+bb2 0, bb3 e, eb3 0, g3 0, db4 e, eb3 0, g3 0, db4 e, eb2 0, eb3 e
+
+fb2 0, fb3 q, eb2 0, eb3 e, eb2 0, eb3 e,
+fb2 0, fb3 q, eb2 0, eb3 e, r e
+ab1 q, ab2 q,
+ab3 q, ab4 q,
+
+d4 0, f4 0, ab4 0, b4 e, d4 0, f4 0, ab4 0, b4 e, d4 0, f4 0, ab4 0, b4 e, d4 0, f4 0, ab4 0, b4 e, 
+eb4 0, ab4 0, c5 e, eb4 0, ab4 0, c5 e, eb4 0, ab4 0, c5 e, eb4 0, ab4 0, c5 e, 
+fb4 0, ab4 0, cb5 e, fb4 0, ab4 0, cb5 e, eb4 0, ab4 0, c5 e, eb4 0, ab4 0, c5 e, 
+eb4 0, ab4 0, c5 e, eb4 0, g4 0, db5 e, ab4 0, c5 e, r e
+
+d3 0, f3 0, ab3 0, b3 e, d3 0, f3 0, ab3 0, b3 e, d3 0, f3 0, ab3 0, b3 e, d3 0, f3 0, ab3 0, b3 e,  
+eb3 0, ab3 0, c4 e, eb3 0, ab3 0, c4 e, eb3 0, ab3 0, c4 e, eb3 0, ab3 0, c4 e, 
+fb3 0, ab3 0, cb4 e, fb3 0, ab3 0, cb4 e, eb3 0, ab3 0, c4 e, eb3 0, ab3 0, c4 e, 
+eb3 0, ab3 0, c4 e, eb3 0, g3 0, db4 e, ab3 0, c4 e, a2 0, a3 e
+
+*line 1
+r s, g5 s, eb5 0, eb6 s, g5 s, bb5 s, d5 0, d6 e, g5 s,
+db5 0, db6 s, g5 s, bb5 s, c5 0, c6 e, eb5 s, bb4 0, bb5 s, eb5 s
+r s, c5 s, ab4 0, ab5 s, c5 s, eb5 s, f4 0, f5 e, c5 s,
+ab4 0, ab5 s, c5 s, eb5 s, f4 0, f5 e, c5 s, f4 0, f5 e
+
+
+r s, eb5 s, g4 0, g5 s, bb4 s, db5 s, f4 0, f5 e, eb5 s,
+g4 0, g5 s, bb4 s, db5 s, f4 0, f5 e, db5 s, f4 0, f5 e
+r s, c5 s, ab4 0, ab5 s, c5 s, eb5 s, f4 0, f5 e, c5 s,
+ab4 0, ab5 s, c5 s, eb5 s, f4 0, f5 e, c5 s, f4 0, f5 e
+
+r s, g5 s, eb5 0, eb6 s, g5 s, bb5 s, d5 0, d6 e, g5 s,
+db5 0, db6 s, g5 s, bb5 s, c5 0, c6 e, eb5 s, bb4 0, bb5 s, eb5 s
+r s, c5 s, ab4 0, ab5 s, c5 s, eb5 s, f4 0, f5 e, c5 s,
+ab4 0, ab5 e, ab4 0, ab5 e, g4 0, g5 e, gb4 0, gb5 e,
+
+r s, f4 s , a4 s, c5 s, f5 s, c5 s, a4 s, f4 s,
+r s, f4 s, bb4 s, db5 s, f4 0, f5 e, f4 0, bb4 0, db5 e,
+d4 0, f4 0, ab4 0, c5 e, r s, d4 0, f4 0, ab4 0, c5 s, r s, db4 0, bb4 e, eb4 s
+r s, ab4 s, c5 s, eb5 s, ab4 0, ab5 e, r e
+
+*line 2
+bb2 0, bb3 e, eb3 0, g3 0, db4 e, eb2 0, eb3 e, eb3 0, g3 0, db4 e, 
+bb2 0, bb3 e, eb3 0, g3 0, db4 e, eb2 0, eb3 e, g2 0, g3 e,
+ab2 0, ab3 e, eb3 0, ab3 0, c4 e, eb2 0, eb3 e, eb3 0, ab3 0, c4 e
+ab2 0, ab3 e, eb3 0, ab3 0, c4 e, ab2 0, ab3 e, a2 0, a3 e
+
+bb2 0, bb3 e, eb3 0, g3 0, db4 e, eb2 0, eb3 e, eb3 0, g3 0, db4 e,
+bb2 0, bb3 e, eb3 0, g3 0, db4 e, bb2 0, bb3 e, b2 0, b3 e,
+c3 0, c4 e, eb3 0, ab3 0, c4 e, eb2 0, eb3 e, eb3 0, ab3 0, c4 e
+ab2 0, ab3 e, eb3 0, ab3 0, c4 e, ab2 0, ab3 e, a2 0, a3 e
+
+bb2 0, bb3 e, eb3 0, g3 0, db4 e, eb2 0, eb3 e, eb3 0, g3 0, db4 e,
+bb2 0, bb3 e, eb3 0, g3 0, db4 e, eb2 0, eb3 e, g2 0, g3 e, 
+ab2 0, ab3 e, eb3 0, ab3 0, c4 e, eb2 0, eb3 e, eb3 0, ab3 0, c4 e
+ab2 0, ab3 e, ab2 0, ab3 e, g2 0, g3 e, gb2 0, gb3 e
+
+f2 0, f3 e, f2 0, f3 e, a2 0, a3 e, a2 0, a3 e, 
+bb2 0, bb3 e, f3 0, bb3 0, db4 e, f3 0, bb3 0, db4 e, f3 0, bb3 0, db4 e, 
+bb2 0, f3 0, bb3 e, bb2 0, f3 0, bb3 e, eb2 0, eb3 e, g2 0, g3 e,
+ab2 0, ab3 e, ab3 0, c4 0, eb3 e, ab3 0, c4 0, eb3 e, eb2 0, eb3 e
+
+
+
+*line 1
+r s, ab4 s, eb4 0, eb5 s, ab4 s, c5 s, eb4 0, eb5 e, g4 s
+eb4 0, eb5 s, g4 s, bb4 s, eb4 0, eb5 s+q
+r s, ab4 s, eb4 0, eb5 s, ab4 s, c5 s, eb4 0, eb5 e, g4 s
+eb4 0, eb5 s, g4 s, bb4 s, eb4 0, eb5 s+e, r s, eb4 0, eb5 s
+
+r s, ab4 s, cb5 s, fb4 0, fb5 s, r s, eb4 0, eb5 s, r s, eb4 0, eb5 s
+r s, ab4 s, cb5 s, fb4 0, fb5 s, r s, eb4 0, eb5 s, r e
+r s, ab2 s, cb3 s, ab3 s, r s, ab3 s, cb4 s, ab4 s
+r s, ab4 s, cb5 s, ab5 s, r s, ab5 s, cb6 s, ab6 s
+
+ab5 0, ab6 e, ab5 0, ab6 e, ab5 0, ab6 e, ab5 0, ab6 s, ab5 0, ab6 s,
+r s,  eb6 s, ab5 0, f6 s, c6 s, eb6 s, ab5 0, f6 e, fb5 0, ab5 s
+r s, bb5 s, fb5 0, cb6 s, ab5 s, bb5 s, eb5 0, c6 e, ab5 s
+eb5 0, c6 s, ab5 s, eb5 0, bb5 e, eb5 0, ab5 e, r s, ab4 0, ab5 s
+
+r e, ab4 0, ab5 e, ab4 0, ab5 e, ab4 0, ab5 s, ab4 0, ab5 s, 
+r s, eb5 s, ab4 0, f5 s, c5 s, eb5 s, ab4 0, f5 e, fb4 0, ab4 s
+r s, bb4 s, fb4 0, cb5 s, ab4 s, bb4 s, eb4 0, c5 e, ab4 s
+eb4 0, c5 s, ab4 s, eb4 0, bb4 e, eb4 0, ab4 e, r e
+
+*line 2
+ab2 0, ab3 e, eb3 0, ab3 0, c4 e, eb3 0, ab3 0, c4 e, a2 0, a3 e,
+bb2 0, bb3 e, eb3 0, g3 0, db4 e, eb3 0, g3 0, db4 e, eb2 0, eb3 e
+ab2 0, ab3 e, eb3 0, ab3 0, c4 e, eb3 0, ab3 0, c4 e, a2 0, a3 e,
+bb2 0, bb3 e, eb3 0, g3 0, db4 e, eb3 0, g3 0, db4 e, eb2 0, eb3 e
+
+fb2 0, fb3 q, eb2 0, eb3 e, eb2 0, eb3 e,
+fb2 0, fb3 q, eb2 0, eb3 e, r e
+ab1 q, ab2 q,
+ab3 q, ab4 q,
+
+d4 0, f4 0, ab4 0, b4 e, d4 0, f4 0, ab4 0, b4 e, d4 0, f4 0, ab4 0, b4 e, d4 0, f4 0, ab4 0, b4 e, 
+eb4 0, ab4 0, c5 e, eb4 0, ab4 0, c5 e, eb4 0, ab4 0, c5 e, eb4 0, ab4 0, c5 e, 
+fb4 0, ab4 0, cb5 e, fb4 0, ab4 0, cb5 e, eb4 0, ab4 0, c5 e, eb4 0, ab4 0, c5 e, 
+eb4 0, ab4 0, c5 e, eb4 0, g4 0, db5 e, ab4 0, c5 e, r e
+
+d3 0, f3 0, ab3 0, b3 e, d3 0, f3 0, ab3 0, b3 e, d3 0, f3 0, ab3 0, b3 e, d3 0, f3 0, ab3 0, b3 e,  
+eb3 0, ab3 0, c4 e, eb3 0, ab3 0, c4 e, eb3 0, ab3 0, c4 e, eb3 0, ab3 0, c4 e, 
+fb3 0, ab3 0, cb4 e, fb3 0, ab3 0, cb4 e, eb3 0, ab3 0, c4 e, eb3 0, ab3 0, c4 e, 
+eb3 0, ab3 0, c4 e, eb3 0, g3 0, db4 e, ab3 0, c4 e,
+
+*on
+ab3 0, ab4 0, c5 0, eb5 0, ab5 e
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,58 @@
+*attrib title = Jingle Bells
+*attrib santarare
+*speed 6
+
+*line 2
+*volume 0.5
+
+*on
+
+*line 1
+d4 e, d4 0, b4 e, d4 0, a4 e, d4 0, g4 e, d4 q, r e, d4 s, d4 s,
+d4 e, d4 0, b4 e, d4 0, a4 e, d4 0, g4 e, c4 0, e4 q, r e, c4 0, e4 e 
+c4 0, e4 e, e4 0, c5 e, e4 0, b4 e, e4 0, a4 e, f#4 0, d5 q, r e, f#4 0, d5 s, f#4 0, d5 s
+f#4 0, e5 e, f#4 0, d5 e, f#4 0, c5 e, f#4 0, a4 e, g4 0, b4 qd, d4 e
+
+d4 e, d4 0, b4 e, d4 0, a4 e, d4 0, g4 e, d4 q, r e, d4 s, d4 s,
+d4 e, d4 0, b4 e, d4 0, a4 e, d4 0, g4 e, c4 0, e4 q, r e, c4 0, e4 e 
+c4 0, e4 e, e4 0, c5 e, e4 0, b4 e, e4 0, a4 e, f#4 0, d5 e, f#4 0, d5 e, f#4 0, d5 e, f#4 0, d5 s, f#4 0, d5 s
+f#4 0, e5 e, f#4 0, d5 e, f#4 0, c5 e, f#4 0, a4 e, g4 qd, r e
+
+*line 2
+g3 e, d4 e, b3 e, d4 e, g3 e, d4 e, b3 e, d4 e, 
+g3 e, b3 e, d4 e, b3 e, g3 e, e4 e, c4 e, e4 e,
+g3 e, e4 e, c4 e, e4 e, f#3 e, d4 e, a3 e, d4 e,
+f#3 e, d4 e, a3 e, d4 e, g3 e, d4 e, b3 e, d4 e
+
+g3 e, d4 e, b3 e, d4 e, g3 e, d4 e, b3 e, d4 e, 
+g3 e, b3 e, d4 e, b3 e, g3 e, e4 e, c4 e, e4 e,
+g3 e, e4 e, c4 e, e4 e, f#3 e, d4 e, a3 e, d4 e,
+f#3 e, d4 e, a3 e, d4 e, g3 0, d4 0, b3 0, d4 h
+
+
+*on
+
+*line 1
+g4 0, b4 e, g4 0, b4 e, g4 0, b4 q, g4 0, b4 e, g4 0, b4 e, g4 0, b4 q,
+g4 0, b4 e, g4 0, d5 e, d4 0, g4 ed, d4 0, a4 s, g4 0, b4 q, r q,
+e4 0, c5 e, e4 0, c5 e, e4 0, c5 e, e4 0, c5 s, e4 0, c5 s, e4 0, c5 e, d4 0, b4 e, d4 0, b4 e, g4 0, b4 s, g4 0, b4 s
+
+g4 0, b4 e, g4 0, a4 e, g4 0, a4 e, g4 0, b4 e,  f#4 0, a4 q, f#4 0, d5 q, 
+g4 0, b4 e, g4 0, b4 e, g4 0, b4 q, g4 0, b4 e, g4 0, b4 e, g4 0, b4 q,
+g4 0, b4 e, g4 0, d5 e, d4 0, g4 ed, d4 0, a4 s, g4 0, b4 q, r q,
+
+e4 0, c5 e, e4 0, c5 e, e4 0, c5 e, e4 0, c5 s, e4 0, c5 s, e4 0, c5 e, d4 0, b4 e, d4 0, b4 e, g4 0, b4 s, g4 0, b4 s
+f#4 0, d5 e, f#4 0, d5 e, f#4 0, c5 e, f#4 0, a4 e, 
+g4 st, b4 st, d5 st, g4 0, b4 0, g5 q, g2 0, g3 q
+
+*line 2
+g3 e, d4 e, b3 e, d4 e, g3 e, d4 e, b3 e, d4 e, 
+g3 e, d4 e, b3 e, d4 e, g3 e, d4 e, b3 e, d4 e, 
+g3 e, e4 e, c4 e, e4 e, g3 e, d4 e, b3 e, d4 e, 
+
+a3 e, e4 e, c#4 e, e4 e, f#3 e, d4 e, a3 e, d4 e,
+g3 e, d4 e, b3 e, d4 e, g3 e, d4 e, b3 e, d4 e, 
+g3 e, d4 e, b3 e, d4 e, g3 e, d4 e, b3 e, d4 e, 
+
+g3 e, e4 e, c4 e, e4 e, g3 e, d4 e, b3 e, d4 e, 
+f#3 e, d4 e, a3 e, d4 e, 

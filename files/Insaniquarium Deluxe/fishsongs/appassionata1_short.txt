@@ -1,0 +1,36 @@
+*attrib title = BEETHOVEN: Appassionata Op. 57 1st Mvmt. 
+*attrib beethovenrare
+
+*speed 6
+*shift 0
+
+*on
+*line 1
+c4 q+s, ab3 s, f3 hd+qd, ab3 q+s, c4 s, 
+f4 qd, ab q+s, c5 s, f5 qd, f4 qd,
+c5 qd+q, d5 e, c5 st, d5 st, e5 st, d5 s, e5 s, d5 s, e5 s, d5 s, e5 s, d5 s, c5 s, e5 s, d5 s,
+c5 q, r e+q+e+q+e, db4 q+s, bb3 s
+
+*line 2
+*localshift 12
+c2 q+s, ab1 s, f1 hd+qd, ab1 q+s, c2 s,
+f2 qd, ab2 q+s, c3 s, f3 qd, ab3 qd,
+e3 0, g3 0, c4 hd, f3 0, ab3 0, b3 hd,
+e3 0, g3 0, c4 q, r e+q+e+q+e, db2 q+s, bb1 s
+*localshift 0
+
+*line 1
+gb3 hd+qd, bb3 q+s, db4 s, 
+gb4 qd, bb4 q+s, db5 s, gb5 qd, gb4 qd,
+db5 qd+q, eb5 e, db5 st, eb5 st, f5 st, eb5 s, f5 s, eb5 s, f5 s, eb5 s, f5 s, eb5 s, db5 s, f5 s, eb5 s
+db5 q, r e+q+e+qd
+
+*line 2
+*localshift 12
+gb1 hd+qd, bb1 q+s, db2 s,
+gb2 qd, bb2 q+s, db3 s, gb3 qd, bb3 qd,
+f3 0, ab3 0, db4 hd, gb3 0, a3 0, c4 hd,
+f3 0, ab3 0, db4 q, r e
+*localshift 0
+
+db2 0, db3 q

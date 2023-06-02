@@ -1,0 +1,49 @@
+*attrib title = O Christmas Tree
+*attrib santarare
+*speed 6
+
+*line 2
+*volume 0.5
+
+*line 1
+d4 q,
+d4 0, g4 ed, d4 0, g4 s, d4 0, g4 q, f#4 0, a4 q,
+g4 0, b4 ed, g4 0, b4 s, g4 0, b4 qd, g4 0, b4 e,
+g4 0, a4 e, g#4 0, b4 e, a4 0, c5 q, d4 0, f#4 q,
+d4 0, a4 q, d4 0, g4 q,
+
+*line 2
+g3 0, b3 q,
+g3 0, b3 ed, g3 0, b3 s, g3 0, b3 q, d3 0, d4 q,
+g3 0, d4 ed, g3 0, d4 s, g3 0, d4 qd, e3 0, e4 e,
+c3 0, e4 e, b2 0, e4 e, a2 0, e4 q, d3 0, c4 q,
+g3 0, c4 q, g3 0, b3 q
+
+*line 1
+r e, g4 0, d5 e,
+g4 0, d5 e, g4 0, b4 e, g4 0, e5 qd, g4 0, d5 e,
+g4 0, d5 e, f#4 0, c5 e, f#4 0, c5 qd, a4 0, c5 e,
+a4 0, c5 e, f#4 0, a4 e, g4 0, d5 qd, f#4 0, c5 e,
+g4 0, c5 e, g4 0, b4 e, g4 0, b4 q,
+
+*line 2
+r e, g3 0, b3 e,
+g3 0, b3 e, g3 0, d4 e, g3 0, c4 qd, g3 0, b3 e,
+d3 0, b3 e, d3 0, a3 e, d3 0, a3 qd, d3 0, d4 e,
+d3 0, d4 e, c4 0, d4 e, b3 0, d4 qd, a3 0, d4 e,
+g3 0, e4 e, g3 0, d4 e, g3 0, d4 q,
+
+*line 1
+d4 q,
+d4 0, g4 ed, e4 0, g4 s, d4 0, g4 q, e4 0, a4 e, f#4 e,
+g4 0, b4 ed, a4 0, b4 s, g4 0, b4 qd, g#4 0, b4 e,
+a4 e, g#4 0, b4 e, a4 0, c5 q, d4 0, f#4 q,
+d4 0, a4 q, d4 0, g4 q
+
+*line 2
+a3 0, c4 q,
+b3 0, d4 ed, c4 0, e4 s, b3 0, d4 q, a3 0, c4 q,
+g3 0, d4 ed, f#3 0, d#4 s, e3 0, e4 qd, d3 0, e4 e,
+c3 0, e4 e, b2 0, d4 e, a2 0, e4 q, d3 0, d4 q,
+g3 0, c4 q, g3 0, b3 q
+

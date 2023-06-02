@@ -1,0 +1,25 @@
+*attrib title = BEETHOVEN: Ode to Joy
+*attrib beethoven
+
+*speed 4
+
+d3 0, a3 0, f#4 q, f#4 q, g4 q, a4 q,
+a2 0, a3 0, a4 q, g4 q, f#4 q, e4 q,
+d3 0, f#3 0, d4 q, d4 q, g3 0, e4 q, a3 0, f#4 q
+a3 0, f#4 qd, e4 e, g3 0, a3 0, e4 h
+
+d3 0, a3 0, f#4 q, f#4 q, g4 q, a4 q,
+a2 0, a3 0, a4 q, g4 q, f#4 q, e4 q,
+d3 0, f#3 0, d4 q, d4 q, g3 0, e4 q, a3 0, f#4 q
+g3 0, a3 0, e4 qd, d4 e, f#3 0, a3 0, d4 h
+
+a3 0, e4 q, e4 q, f#4 q, d4 q
+a3 0, e4 q, f#4 e, g4 e, f#4 q, d4 q
+a3 0, e4 q, f#4 e, g4 e, a#3 0, f#4 q, e4 q
+b3 0, d4 q, g#3 0, e4 q,  c#2 0, a3 h
+
+d3 0, a3 0, f#4 q, f#4 q, g4 q, a4 q,
+a2 0, a3 0, a4 q, g4 q, f#4 q, e4 q,
+d3 0, f#3 0, d4 q, d4 q, g3 0, e4 q, a3 0, f#4 q
+g3 0, a3 0, e4 qd, d4 e, d3 0, f#3 0, a3 0, d4 h
+

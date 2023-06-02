@@ -1,0 +1,59 @@
+*attrib title = BEETHOVEN: Fifth Symphony
+*attrib beethoven
+
+*speed 6
+
+*line 1
+r e, g3 0, g4 e, g3 0, g4 e, g3 0, g4 e, 
+eb3 0, eb4 h+q
+r e, f3 0, f4 e, f3 0, f4 e, f3 0, f4 e, 
+d3 0, d4 h+q
+r e, g4 e, g4 e, g4 e,
+r e, ab4 e, ab4 e, ab4 e,
+r e, eb5 e, eb5 e, eb5 e
+
+*line 2
+*localshift 12
+r e, g1 0, g2 e, g1 0, g2 e, g1 0, g2 e, 
+eb1 0, eb2 h+q
+r e, f1 0, f2 e, f1 0, f2 e, f1 0, f2 e,
+d1 0, d2 h+q
+*localshift 0
+
+r h,
+c4 0, eb4 h,
+c4 0, eb4 0, g4 h
+
+*line 1
+c5 h
+r e, g4 e, g4 e, g4 e,
+r e, ab4 e, ab4 e, ab4 e, 
+r e, f5 e, f5 e, f5 e, 
+d5 h,
+r e, g5 e, g5 e, f5 e,
+eb5 h,
+d5 e, g5 e, g5 e, f5 e,
+eb5 h
+
+*line 2
+c4 0, eb4 0, g4 h
+r h
+b3 0, d4 h,
+b3 0, d4 0, g4 h
+b3 0, d4 0, g4 h
+r h
+c4 0, eb4 e, eb4 e, eb4 e, f4 e
+b3 0, g4 h,
+c4 e, eb4 e, eb4 e, f4 e
+
+*line 1
+d5 e, g4 0, d5 0, g5 e, g4 0, d5 0, g5 e, g4 0, d5 0, f5 e,
+g4 0, c5 0, eb5 q, r q,
+c4 0, f#4 0, c5 q, r q,
+g4 0, b4 0, g5 h, r q
+
+*line 2
+b3 0, g4 e, b2 0, g3 0, b3 e, b2 0, g3 0, b3 e, b2 0, g3 0, b3 e, 
+c3 0, g3 0, c4 q, r q, 
+ab2 0, c3 0, ab3 q, r q,
+g2 0, d3 0, g3 q, r q

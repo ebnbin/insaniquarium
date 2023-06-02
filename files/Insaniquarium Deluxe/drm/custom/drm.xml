@@ -1,0 +1,15 @@
+﻿<Properties>
+<!-- Bullet Information -->
+<Bullets id="main" font="!sys:Arial:10,bold" width="406">
+<Bullet id="Bullet1" image="custom\images\bullet1">4 tanks with secret pets and amazing new bosses!</Bullet>
+<Bullet id="Bullet2" image="custom\images\bullet2" spacing="10">Test your skills in Challenge mode or beat the clock in Timed!</Bullet>
+<Bullet id="Bullet3" image="custom\images\bullet3">Earn shells and customize your own Virtual Tank screensaver!</Bullet>
+</Bullets>
+
+<String id="CopyrightDisclaimer">©2002 PopCap Games, Inc. Full copyright and trademark information is available in the game’s Readme file. All rights reserved.</String>
+
+<String id="ContentDescriptorHeading">Why is this game rated E?</String>
+<String id="ContentDescriptors">Animated Blood&cr;Mild Cartoon Violence&cr;Suggestive Themes</String>
+
+<String id="BuyURL">steam://store/3320</String>
+</Properties>

@@ -1,0 +1,51 @@
+*attrib title = ROSSINI: William Tell Overture
+
+
+*speed 6
+*line 1
+b3 s, b3 s, 
+b3 e, b3 s, b3 s, b3 e, b3 s, b3 s, 
+b3 0, e4 e, b3 0, f#4 e, b3 0, g#4 e, b3 s, b3 s
+b3 e, b3 s, b3 s, b3 0, e4 e, b3 0, g#4 s, b3 0, g#4 s
+b3 0, f#4 e, b3 0, d#4 e, b3 e, b3 s, b3 s, 
+b3 e, b3 s, b3 s, b3 e, b3 s, b3 s
+
+*line 2
+e3 0, g#3 s, e3 0, g#3 s, 
+e3 0, g#3 e, e3 0, g#3 s, e3 0, g#3 s, e3 0, g#3 e, e3 0, g#3 s, e3 0, g#3 s, 
+e3 0, g#3 e, e3 0, g#3 e, e3 0, g#3 e, e3 0, g#3 s, e3 0, g#3 s, 
+e3 0, g#3 e, e3 0, g#3 s, e3 0, g#3 s, e3 0, g#3 e, e3 0, g#3 s, e3 0, g#3 s, 
+b2 0, d#3 0, f#3 e, b2 0, d#3 0, f#3 e, b2 0, d#3 0, f#3 e, e3 0, g#3 s, e3 0, g#3 s,
+e3 0, g#3 e, e3 0, g#3 s, e3 0, g#3 s, e3 0, g#3 e, e3 0, g#3 s, e3 0, g#3 s, 
+
+*line 1
+b3 0, e4 e, b3 0, f#4 e, b3 0, g#4 e, e4 s, g#4 s, 
+a3 0, b3 0, d#4 0, b4 q+s, a4 s, g#4 s, f#4 s
+b3 0, e4 e, g#3 0, b3 0, g#4 e, g#3 0, b3 0, e4 e, b4 0, b5 s, b4 0, b5 s, 
+b4 0, b5 e, b4 0, b5 s, b4 0, b5 s, b4 0, b5 e, b4 0, b5 s, b4 0, b5 s, 
+e5 0, e6 e, f#5 0, f#6 e, g#5 0, g#6 e, b4 0, b5 s, b4 0, b5 s, 
+b4 0, b5 e, b4 0, b5 s, b4 0, b5 s, e5 0, e6 e, g#5 0, g#6 s, g#5 0, g#6 s
+
+*line 2
+e3 0, g#3 e, e3 0, g#3 e, e3 0, g#3 e, r e
+*volume 0.7
+b1 0, f#2 0, b2 e, b2 0, d#3 0, f#3 0, b3 s, b2 0, d#3 0, f#3 0, b3 s, b2 0, d#3 0, f#3 0, b3 e, b2 0, d#3 0, a3 0, b3 e
+e3 0, g#3 e, e2 0, b2 e, e2 0, b2 0, e3 e, e3 0, g#3 0, b3 s, e3 0, g#3 0, b3 s, 
+e3 0, g#3 0, b3 e, e3 0, g#3 0, b3 s, e3 0, g#3 0, b3 s, e3 0, g#3 0, b3 e, e3 0, g#3 0, b3 s, e3 0, g#3 0, b3 s, 
+e3 0, g#3 0, e4 e, e3 0, b3 0, f#4 e, e3 0, b3 0, g#4 e, e3 0, g#3 0, b3 s, e3 0, g#3 0, b3 s, 
+e3 0, g#3 0, b3 e, e3 0, g#3 0, b3 s, e3 0, g#3 0, b3 s, e3 0, g#3 0, e4 e, e3 0, b3 0, g#4 e
+
+*line 1
+f#5 0, f#6 e, d#5 0, d#6 e, b4 0, b5 e, b4 0, b5 s, b4 0, b5 s, 
+b4 0, b5 e, b4 0, b5 s, b4 0, b5 s, b4 0, b5 e, b4 0, b5 s, b4 0, b5 s, 
+e5 0, e6 e, f#5 0, f#6 e, g#5 0, g#6 e, e5 0, e6 s, g#5 0, g#6 s
+b5 0, d#6 0, b6 q+s, a5 0, a6 s, g#5 0, g#6 s, f#5 0, f#6 s,
+e5 0, e6 e, g#5 0, g#6 e, e5 0, e6 e, 
+
+*line 2
+b3 0, d#4 0, f#4 e, b2 0, f#3 0, d#4 e, b2 0, d#3 0, b3 e, e3 0, g#3 0, b3 s, e3 0, g#3 0, b3 s, 
+e3 0, g#3 0, b3 e, e3 0, g#3 0, b3 s, e3 0, g#3 0, b3 s, e3 0, g#3 0, b3 e, e3 0, g#3 0, b3 s, e3 0, g#3 0, b3 s, 
+e3 0, g#3 0, e4 e, e3 0, b3 0, f#4 e, e3 0, b3 0, g#4 e, r e, 
+b1 0, f#2 0, b2 e, b2 0, d#3 0, f#3 0, b3 s, b2 0, d#3 0, f#3 0, b3 s, b2 0, d#3 0, f#3 0, b3 e, b2 0, d#3 0, a3 0, b3 e
+e3 0, g#3 0, e4 e, e3 0, b3 0, g#4 e, e3 0, g#3 0, e4 e, 
+ 

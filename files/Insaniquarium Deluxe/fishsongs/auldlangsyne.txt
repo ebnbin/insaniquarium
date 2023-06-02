@@ -1,0 +1,55 @@
+*attrib title = Auld Lang Syne
+*attrib santarare
+*speed 5
+
+*line 2
+*volume 0.5
+
+*line 1
+c4 q,
+c4 0, f4 qd, c4 0, e4 e, c4 0, f4 q, f4 0, a4 q,
+e4 0, g4 qd, d4 0, f4 e, e4 0, g4 q, e4 0, a4 q,
+f4 qd, f4 e, f4 0, a4 q, f4 0, c5 q,
+f4 0, d5 hd
+
+f4 0, d5 q,
+f4 0, c5 qd, f4 0, a4 e, f4 0, a4 q, f4 q,
+e4 0, g4 qd, d4 0, f4 e, e4 0, g4 q, e4 0, a4 q,
+d4 0, f4 qd, a3 0, d4 e, bb3 0, d4 q, bb3 0, c4 q,
+a3 0, f4 hd
+
+f4 0, d5 q, f4 0, c5 qd, a4 e, f4 0, a4 q, f4 q,
+e4 0, g4 qd, d4 0, f4 e, e4 0, g4 q, e4 0, d5 q,
+f4 0, c5 qd, a4 e, f4 0, a4 q, c5 q,
+f4 0, d5 hd
+
+f4 0, f5 q,
+f4 0, c5 qd, f4 0, a4 e, f4 0, a4 q, c4 0, f4 q,
+e4 0, g4 qd, d4 0, f4 e, e4 0, g4 q, e4 0, a4 e, g4 e,
+d4 0, f4 qd, a3 0, d4 e, bb3 0, d4 q, c4 q,
+a3 0, f4 hd
+
+*line 2
+r q,
+f3 0, a3 qd, g3 0, bb3 e, a3 q, f3 0, c4 q,
+c3 0, c4 qd, c3 0, a3 e, c3 0, bb3 q, c3 0, c4 q,
+f3 0, a3 qd, f3 0, a3 e, f3 0, c4 q, f3 0, a3 q,
+bb3 hd,
+
+bb3 q,
+a3 0, c4 qd, f3 0, c4 e, f3 0, c4 q, f3 0, a3 q,
+c3 0, c4 qd, c3 0, a3 e, c3 0, bb3 q, c3 0, c4 q,
+d3 0, a3 qd, f3 e, bb3 0, f3 q, c3 0, e3 q,
+f2 0, f3 hd
+
+f3 0, bb3 q,
+f3 0, a3 qd, c4 e, f3 0, c4 q, a2 q,
+c3 0, c4 qd, c3 0, a3 e, c3 0, bb3 q, c3 0, bb3 q,
+f3 0, a3 qd, c4 e, f3 0, c4 q, a3 q, bb3 hd,
+
+bb3 0, d4 q,
+a3 0, c4 qd, f3 0, c4 e, f3 0, c4 q, a2 0, f3 q,
+c3 0, c4 qd, c3 0, c4 e, c3 0, c4 q, c#3 0, a3 q,
+d3 0, a3 qd, f3 e, bb3 0, f3 q, c3 0, e3 q,
+f2 0, f3 hd
+

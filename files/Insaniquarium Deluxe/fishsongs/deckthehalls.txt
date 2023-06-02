@@ -1,0 +1,58 @@
+*attrib title = Deck the Halls
+*attrib santarare
+*speed 4
+
+*line 2
+*volume 0.5
+
+*line 1
+a4 0, c5 qd, g4 0, bb4 e, f4 0, a4 q, e4 0, g4 q,
+d4 0, f4 q, e4 0, g4 q, f4 0, a4 q, d4 0, f4 q,
+e4 0, g4 e, f4 0, a4 e, g4 0, bb4 e, e4 0, g4 e, f4 0, a4 qd, d4 0, g4 e,
+c4 0, f4 q, c4 0, e4 q, c4 0, f4 h
+
+*line 2
+f3 0, c4 qd, e3 0, c4 e, f3 0, c4 q, c3 0, bb3 q,
+d3 0, a3 q, c3 0, c4 q, f3 0, c4 q, f3 0, a3 q,
+c3 0, c4 e, c3 0, c4 e, c3 0, c4 e, c3 0, c4 e, f3 0, c4 qd, bb2 0, bb3 e, 
+c3 0, a3 q, c3 0, g3 q, f3 0, a4 h
+
+*line 1
+a4 0, c5 qd, g4 0, bb4 e, f4 0, a4 q, e4 0, g4 q,
+d4 0, f4 q, e4 0, g4 q, f4 0, a4 q, c4 0, f4 q,
+e4 0, g4 e, f4 0, a4 e, g4 0, bb4 e, e4 0, g4 e, f4 0, a4 qd, d4 0, g4 e, 
+c4 0, f4 q, c4 0, e4 q, c4 0, f4 h
+
+*line 2
+f3 0, c4 qd, e3 0, c4 e, f3 0, c4 q, c3 0, bb3 q,
+d3 0, a3 q, c3 0, c4 q, f3 0, c4 q, f3 0, a3 q,
+c3 0, c4 e, c3 0, c4 e, c3 0, c4 e, c3 0, c4 e, f3 0, c4 qd, bb2 0, bb3 e,
+c3 0, a3 q, c3 0, g3 q, f3 0, a3 h
+
+*line 1
+e4 0, g4 qd, f4 0, a4 e, g4 0, bb4 q, e4 0, g4 q,
+f4 0, a4 qd, f4 0, bb4 e, f4 0, c5 q, g4 q,
+f4 0, a4 e, f4 0, b4 e, e4 0, c5 q, a4 0, d5 e, a4 0, e5 e, a4 0, f5 q,
+g4 0, e5 q, f4 0, d5 q, e4 0, c5 h
+
+*line 2
+c3 0, c4 qd, c3 0, c4 e, c3 0, c4 q, c3 0, c4 q,
+f3 0, c4 qd, f3 0, g3 e, f3 0, a3 q, e3 0, c4 q,
+f3 0, c4 e, f3 0, c4 e, a3 0, c4 q, f3 0, c4 e, f3 0, c4 e, d3 0, c4 q,
+g3 0, c4 q, g3 0, b3 q, c3 0, c4 h
+
+*line 1
+a4 0, c5 qd, g4 0, bb4 e, f4 0, a4 q, e4 0, g4 q,
+d4 0, f4 q, e4 0, g4 q, f4 0, a4 q, c4 0, f4 q,
+f4 0, d5 e, f4 0, d5 e, f4 0, d5 e, f4 0, d5 e, f4 0, c5 qd, g4 0, bb4 e,
+f4 0, a4 q, e4 0, g4 q, f4 h
+
+*line 2
+f3 0, c4 qd, e3 0, c4 e, f3 0, c4 q, c3 0, bb3 q, 
+d3 0, a3 q, c3 0, c4 q, f3 0, c4 q, f3 0, a3 q, 
+bb3 e, bb3 e, bb3 e, bb3 e, a3 0, c4 qd, bb3 0, d4 e,
+c4 q, c3 0, bb3 q, f3 0, a3 h
+
+
+
+

@@ -1,0 +1,92 @@
+*attrib title = MOZART: Turkish March
+*speed 7
+
+*on
+*line 1
+b4 s, a4 s, g#4 s, a4 s, 
+c5 e, r e, d5 s, c5 s, b4 s, c5 s, 
+e5 e, r e, f5 s, e5 s, d#5 s, e5 s, 
+b5 s, a5 s, g#5 s, a5 s, b5 s, a5 s, g#5 s, a5 s, 
+c6 q, a5 e, c6 e,
+
+g5 t, a5 t, b5 s, f#5 0, a5 e, e5 0, g5 e, f#5 0, a5 e
+g5 t, a5 t, b5 s, f#5 0, a5 e, e5 0, g5 e, f#5 0, a5 e
+g5 t, a5 t, b5 s, f#5 0, a5 e, e5 0, g5 e, d#5 0, f#5 e,
+e5 q,
+
+*line 2
+r q, 
+a3 e, c4 0, e4 e, c4 0, e4 e, c4 0, e4 e, 
+a3 e, c4 0, e4 e, c4 0, e4 e, c4 0, e4 e, 
+a3 e, c4 0, e4 e, a3 e, c4 0, e4 e, 
+a3 e, c4 0, e4 e, c4 0, e4 e, c4 0, e4 e, 
+
+e3 e, b3 0, e4 e, b3 0, e4 e, b3 0, e4 e, 
+e3 e, b3 0, e4 e, b3 0, e4 e, b3 0, e4 e, 
+e3 e, b3 0, e4 e, b2 e, b3 e,
+e3 q
+
+*line 1
+b4 s, a4 s, g#4 s, a4 s, 
+c5 e, r e, d5 s, c5 s, b4 s, c5 s, 
+e5 e, r e, f5 s, e5 s, d#5 s, e5 s, 
+b5 s, a5 s, g#5 s, a5 s, b5 s, a5 s, g#5 s, a5 s, 
+c6 q, a5 e, c6 e,
+
+g5 t, a5 t, b5 s, f#5 0, a5 e, e5 0, g5 e, f#5 0, a5 e
+g5 t, a5 t, b5 s, f#5 0, a5 e, e5 0, g5 e, f#5 0, a5 e
+g5 t, a5 t, b5 s, f#5 0, a5 e, e5 0, g5 e, d#5 0, f#5 e,
+e5 q,
+
+*line 2
+r q, 
+a3 e, c4 0, e4 e, c4 0, e4 e, c4 0, e4 e, 
+a3 e, c4 0, e4 e, c4 0, e4 e, c4 0, e4 e, 
+a3 e, c4 0, e4 e, a3 e, c4 0, e4 e, 
+a3 e, c4 0, e4 e, c4 0, e4 e, c4 0, e4 e, 
+
+e3 e, b3 0, e4 e, b3 0, e4 e, b3 0, e4 e, 
+e3 e, b3 0, e4 e, b3 0, e4 e, b3 0, e4 e, 
+e3 e, b3 0, e4 e, b2 e, b3 e,
+e3 q
+
+*line 1
+c5 0, e5 e, d5 0, f5 e,
+e5 0, g5 e, e5 0, g5 e, a5 s, g5 s, f5 s, e5 s,
+b4 0, d5 e, g4 e, c5 0, e5 e, d5 0, f5 e,
+e5 0, g5 e, e5 0, g5 e, a5 s, g5 s, f5 s, e5 s,
+b4 0, d5 q, a4 0, c5 e, b4 0, d5 e, 
+c5 0, e5 e, c5 0, e5 e, f5 s, e5 s, d5 s, c5 s, 
+g#4 0, b4 e, e4 e, a4 0, c5 e, b4 0, d5 e,
+c5 0, e5 e, c5 0, e5 e, f5 s, e5 s, d5 s, c5 s, 
+g#4 0, b4 q, b4 s, a4 s, g#4 s, a4 s, 
+c5 e, r e, d5 s, c5 s, b4 s, c5 s,
+e5 e, r e, f5 s, e5 s, d#5 s, e5 s, 
+b5 s, a5 s, g#5 s, a5 s, b5 s, a5 s, g#5 s, a5 s,
+c6 q, a5 e, b5 e, c6 e, b5 e, a5 e, g#5 e,
+a5 e, e5 e, f5 e, d5 e,
+c5 q, b4 s, c5 s, b4 s, a4 t, b4 t,
+a4 q
+
+*line 2
+r q,
+c3 e, c4 e, e3 e, e4 e,
+g3 q, r q
+c3 e, c4 e, e3 e, e4 e,
+g3 q, r q,
+a2 e, a3 e, c3 e, c4 e,
+e3 q, r q,
+a2 e, a3 e, c3 e, c4 e,
+e3 q, r q,
+a3 e, c4 0, e4 e, c4 0, e4 e, c4 0, e4 e, 
+a3 e, c4 0, e4 e, c4 0, e4 e, c4 0, e4 e, 
+a3 e, c4 0, e4 e, a3 e, c4 0, e4 e, 
+f3 e, a3 0, d#4 e, a3 0, d#4 e, a3 0, d#4 e, 
+e3 e, a3 0, e4 e, d3 e, f3 0, b3 e,
+c3 e, e3 0, a3 e, d3 e, f3 0, b3 e,
+e3 0, a3 e, e3 0, a3 e, e3 0, g#3 e, e3 0, g#3 e,
+a2 0, a3 q
+
+
+
+

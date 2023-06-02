@@ -1,0 +1,84 @@
+*attrib title = BEETHOVEN: Pathetique Op. 13 2nd Mvmt. 
+*attrib beethovenrare
+
+*speed 25
+
+*line 1
+*volume 0.7
+c4 0, ab3 s, eb3 s, ab3 s, eb3 s, bb3 0, g3 s, eb3 s, g3 s, eb3 s
+eb4 0, ab3 s, eb3 s, ab3 s, eb3 s, bb3 s, eb3 s, db4 0, bb3 s, eb3 s
+c4 0, ab3 s, eb3 s, eb4 0, bb3 s, eb3 s, ab4 0, c4 s, ab3 s, bb4 0, d4 s, ab3 s
+eb4 0, g3 s, bb3 s, g3 s, bb3 s, g3 s, bb3 s, e4 0, g3 s, bb3 s
+f4 0, g3 s, bb3 s, g3 s, bb3 s, bb3 0, g3 s, eb3 s, g3 s, eb3 0, c4 t, db4 t
+
+*line 2
+*volume 0.8
+ab2 q, db3 q, 
+c3 q, g2 q
+ab2 e, g2 e, f2 e, f3 e
+eb3 q, eb2 q, 
+db2 q, db3 q
+
+*line 1
+eb4 0, ab3 s, eb3 s, ab3 s, eb3 s, a3 0, eb3 s, c3 s, eb3 s, c3 s
+db4 0, f3 s, db3 s, f3 s, db3 s, c4 0, db3 s, bb3 0, db3 s, ab3 0, db3 s, g3 0, db3 s
+db3 0, g3 0, bb3 s, eb3 s, db3 s, eb3 s, c3 0, ab3 st, eb3 st, ab3 st, c4 st, eb4 st, ab4 st
+c4 0, c5 s, eb4 s, c4 s, eb4 s, bb3 0, bb4 s, eb4 s, bb3 s, eb4 s
+eb4 0, eb5 s, ab4 s, eb4 s, ab4 s, eb4 s, bb4 s, eb4 0, db5 s, bb4 s
+
+*line 2
+c3 q, f2 q, 
+bb1 q, eb2 q, 
+ab1 e, ab2 e, ab1 e, r e
+ab2 0, ab3 s, eb3 s, ab3 s, eb3 s, db3 0, g3 s, eb3 s, g3 s, eb3 s, 
+c3 0, ab3 s, eb3 s, ab3 s, eb3 s, g2 0, g3 s, eb3 s, g3 s, eb3 s
+
+*line 1
+eb4 0, c5 s, ab4 s, eb4 0, eb5 s, bb4 s, ab4 0, ab5 s, c5 s, ab4 0, bb5 s, d5 s
+g4 0, eb5 s, bb4 s, g4 s, bb4 s, g4 s, bb4 s, g4 0, e5 s, bb4 s
+g4 0, f5 s, bb4 s, g4 s, bb4 s, g4 0, bb4 s, eb4 s, g4 s, eb4 0, c5 t, db5 t,
+ab4 0, eb5 s, eb4 s, ab4 s, eb4 s, eb4 0, a4 s, c4 s, eb4 s, c4 s
+
+*line 2
+ab2 0, ab3 s, eb3 s, g2 0, g3 s, eb3 s, f2 0, f3 s, ab2 s, f2 0, f3 s, ab2 s
+eb2 s, g2 s, bb2 s, eb3 s, g3 s, bb3 s, g3 s, bb3 s
+db2 s, g2 s, bb2 s, db3 s, g3 s, bb3 s, g3 s, db3 s
+c3 s, eb3 s, c3 s, eb3 s, f2 0, c3 s, f3 s, c3 s, f3 s
+
+*line 1
+f4 0, db5 s, db4 s, f4 s, db4 s, db4 0, c5 s, db4 0, bb4 s, db4 0, ab4 s, db4 0, g4 s
+db4 0, bb4 s, eb4 s, db4 s, eb4 s, c4 0, ab4 e, r sd, c4 t
+c5 q+s, ab5 s, g5 s, f5 s, 
+c6 q+s, ab5 s, g5 s, f5 s
+
+*line 2
+bb2 0, db3 s, f3 s, db3 s, f3 s, eb2 0, bb2 s, eb3 s, bb2 s, eb3 s
+ab2 s, eb3 s, g3 s, eb3 s, ab3 e, r e
+*volume 0.4
+r s, c4 s, c4 s, c4 s, c4 s, c4 s, c4 s, c4 s, 
+e3 0, g3 0, c4 s, e3 0, g3 0, c4 s, e3 0, g3 0, c4 s, e3 0, g3 0, c4 s, f3 0, ab3 0, c4 s, f3 0, ab3 0, c4 s, f3 0, ab3 0, c4 s, f3 0, ab3 0, c4 s, 
+
+*line 1
+c5 q+s, ab5 s, g5 s, f5 s, 
+eb5 e, d5 ed, eb5 z, d5 z, c5 z, d5 z, f5 sd, eb5 t, 
+eb5 q, f4 e, g4 z, f4 z, e4 z, f4 z, ab4 t, c5 t, 
+b4 zt, c5 zt, d5 zt, c5 t, bb4 t, g5 s+s, f5 t, eb5 t, d5 t, c5 t, bb4 t, a4 t, c5 t, bb4 t, ab4 t, f4 t
+eb4 e
+
+*line 2
+g3 0, bb3 0, e4 s, g3 0, bb3 0, e4 s, g3 0, bb3 0, e4 s, g3 0, bb3 0, e4 s, ab3 0, c4 0, f4 s, ab3 0, c4 0, f4 s, ab3 0, c4 0, f4 s, ab3 0, c4 0, f4 s, 
+bb3 0, f4 0, ab4 s, bb3 0, f4 0, ab4 s, bb3 0, f4 0, ab4 s, bb3 0, f4 0, ab4 s, b3 0, f4 0, ab4 s, b3 0, f4 0, ab4 s, b3 0, d4 0, ab4 s, b3 0, d4 0, ab4 s, 
+c4 0, eb4 0, g4 s, c4 0, eb4 0, g4 s, c4 0, eb4 0, g4 s, c4 0, eb4 0, g4 s, ab3 0, eb4 s, ab3 0, eb4 s, ab3 0, eb4 s, ab3 0, eb4 s, 
+r t, r s, bb3 0, eb4 0, g4 s, bb3 0, eb4 0, g4 s, bb3 0, eb4 0, g4 s, r s, bb2 0, d3 0, ab3 s, bb2 0, d3 0, ab3 s, bb2 0, d3 0, ab3 s, 
+eb3 0, g3 e
+
+
+
+
+
+
+
+
+
+
+

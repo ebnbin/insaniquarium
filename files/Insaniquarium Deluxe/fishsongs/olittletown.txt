@@ -1,0 +1,67 @@
+*attrib title = O Little Town of Bethlehem
+*attrib santarare
+*speed 5
+
+*line 2
+*volume 0.5
+
+*line 1
+d4 0, b4 q,
+d4 0, b4 q, d4 0, b4 q, c#4 0, a#4 q, d4 0, b4 q,
+f4 0, d5 q, e4 0, c5 q, c4 0, e4 q, e4 0, a4 q,
+d4 0, g4 q, d4 0, f#4 e, g4 e, d4 0, a4 q, d4 q,
+d4 0, b4 hd
+
+*line 2
+g3 q,
+g3 q, g3 q, g3 q, g3 q,
+c3 0, g#3 q, c3 0, a3 q, c3 0, a3 q, c3 0, c4 q,
+d3 0, b3 q, d3 0, a3 e, b3 e, d3 0, c4 q, d3 0, c4 q,
+g2 0, b3 hd
+
+*line 1
+d4 0, b4 q,
+d4 0, b4 q, g4 0, b4 q, g#4 0, e5 q, g#4 0, d5 q,
+a4 0, d5 q, e4 0, c5 q, c4 0, e4 q, e4 0, a4 q,
+d4 0, g4 q, d4 0, f#4 e, g4 e, f#4 0, b4 q, f#4 0, a4 q,
+g4 hd
+
+*line 2
+g3 q,
+g3 q, f3 0, b3 q, e3 0, b3 q, e3 0, e4 q,
+a3 0, e4 q, a3 0, e4 q, a2 0, e4 q, c3 0, c4 q,
+d3 0, b3 q, a#3 e, d3 0, b3 e, d3 0, d4 q, d3 0, c4 q,
+g3 0, b3 hd
+
+*line 1
+g4 0, b4 q,
+g4 0, b4 q, g4 0, b4 q, f#4 0, a4 q, e4 0, g4 q,
+d#4 0, f#4 h, d#4 0, f#4 q, d#4 0, f#4 q,
+e4 q, f#4 q, g4 q, e4 0, a4 q, 
+f#4 0, b4 hd
+
+*line 2
+g3 0, d4 q, 
+g3 0, d4 q, g3 0, b3 q, a3 0, c4 q, a#4 0, c#4 q,
+b3 0, d#4 h, b3 0, d#4 q, a2 0, b3 q,
+e3 q, f#3 q, g3 q, c4 0, e4 q,
+b3 0, d#4 hd
+
+*line 1
+g4 0, b4 q,
+d4 0, b4 q, d4 0, b4 q, c#4 0, a#4 q, d4 0, b4 q,
+e4 0, d5 q, e4 0, c5 q, c4 0, e4 q, e4 0, e5 e, f#4 e,
+g4 0, d5 q, c#4 0, g4 q, d4 0, b4 qd, c4 0, a4 e,
+b3 0, g4 hd
+
+*line 2
+g3 0, d4 q,
+g3 0, d4 q, g3 0, b3 q, g3 q, g3 q,
+c3 0, g#3 q, c3 0, a3 q, c3 0, a3 q, c3 0, c4 q,
+d3 0, b3 q, e3 0, a3 e, g3 e, d3 0, g3 qd, d3 0, f#3 e,
+g2 0, g3 hd
+
+
+ 
+
+

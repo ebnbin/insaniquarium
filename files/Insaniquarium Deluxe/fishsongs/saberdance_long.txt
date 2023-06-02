@@ -1,0 +1,184 @@
+*attrib title = KHACHATURIAN: Saber Dance
+*speed 6
+
+*line 2
+*volume 0.7
+
+*line 1
+r w
+r e, b3 0, d4 e, r e, b3 0, d4 e, r e, b3 0, d4 e, r e, b3 0, d4 e, 
+r e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, 
+b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, 
+
+
+*line 2
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+
+*line 1
+e5 s, f5 s, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, e5 s, f5 s, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, 
+e5 s, f5 s, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, e5 s, f5 s, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, 
+b4 0, f#5 e, b4 0, f5 e, b4 0, f5 e, b4 0, e5 e, b4 0, e5 e, b4 0, d#5 e, b4 0, d#5 e, b4 0, d5 e
+b4 0, d5 q, f4 ed, e4 t, d#4 t, d4 q, f#5 s, f5 s, e5 s, d#5 s
+d5 q, f4 ed, e4 t, d#4 t, d4 h
+
+*line 2
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+
+*line 1
+r e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, 
+d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, 
+g5 s, g#5 s, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, g5 s, g#5 s, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, 
+g5 s, g#5 s, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, g5 s, g#5 s, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, 
+
+
+*line 2
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+
+*line 1
+d5 0, a5 e, d5 0, g#5 e, d5 0, g#5 e, d5 0, g5 e, d5 0, g5 e, d5 0, f#5 e, d5 0, f#5 e, d5 0, f5 e 
+d5 0, f5 q, g#4 ed, g4 t, f#4 t, f4 q, a5 s, g#5 s, g5 s, f#5 s,
+f5 q, g#4 ed, g4 t, f#4 t, f4 h, 
+
+*line 2
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+
+*line 1
+r e, f4 e, ab4 e, bb4 e, d4 0, f4 0, b4 h
+r h, d4 q, f4 q, 
+d4 0, a4 qd, f4 e, g4 q, f4 0, ab4 q,
+r h, d4 0, f4 0, b4 q, d4 0, f4 0, c5 q, 
+d4 0, f4 0, b4 h, d4 q, f4 q,
+d4 0, a4 qd, f4 e, g4 q, f4 0, ab4 q,
+
+*line 2
+*volume 0.5
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+
+*line 1
+r h, e4 0, g4 0, bb4 h
+r h, c4 q, d4 q, 
+c4 0, e4 h, c4 0, f4 q, c4 0, g4 q
+r h, c4 0, f#4 h,
+r q, eb4 q, eb4 0, f#4 0, c5 h
+r h, eb4 0, f#4 0, b4 qd, a4 e, 
+eb4 0, f#4 0, b4 q, b3 0, d4 0, g4 hd
+
+*line 2
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, 
+g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, 
+g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, 
+g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, 
+g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, 
+g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, g3 e, c4 0, d4 e, 
+g3 e, c4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+
+*speed 5.6
+*line 1
+r q, b3 0, g4 e, c4 0, a4 e, d4 0, b4 e, e4 0, c5 e, f4 0, d5 q
+g4 0, e5 e, e4 0, c5 e, f4 0, d5 q, g4 0, e5 e, e4 0, c5 e, f4 0, d5 q, 
+g4 0, e5 e, e4 0, c5 e, d5 e, f4 0, b4 e, r e, f4 0, b4 e, r e, f4 0, b4 e
+r e, f4 0, b4 e, d5 e, f4 0, bb4 e, r e, f4 0, bb4 e, r e, f4 0, bb4 e, 
+r e, f4 0, bb4 e, f5 ed, e5 t, d#5 t, d5 q, f5 ed, e5 t, d#5 t,
+d5 q, f5 ed, e5 t, d#5 t, d5 q, f5 ed, e5 t, d#5 t, 
+d5 e, c#5 e, b4 0, d5 w,
+
+*line 2
+*volume 0.7
+*localshift 0
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e,
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+bb3 e, e4 0, f4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+
+*speed 5.3
+*line 1
+r w
+
+*line 2
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+
+*speed 5.1
+*line 1
+r e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, 
+b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, 
+f5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, f5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, 
+f5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, f5 e, b4 0, f#5 e, b4 0, f#5 e, b4 0, f#5 e, 
+b4 0, f#5 e, b4 0, f5 e, b4 0, f5 e, b4 0, e5 e, b4 0, e5 e, b4 0, d#5 e, b4 0, d#5 e, b4 0, d5 e
+b4 0, d5 q, f4 ed, e4 t, d#4 t, d4 q, f#5 s, f5 s, e5 s, d#5 s
+d5 q, f4 ed, e4 t, d#4 t, d4 h
+
+
+*line 2
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+
+*speed 4.9
+*line 1
+r e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, 
+d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, 
+g#5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, g#5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, 
+g#5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, g#5 e, d5 0, a5 e, d5 0, a5 e, d5 0, a5 e, 
+d5 0, a5 e, d5 0, g#5 e, d5 0, g#5 e, d5 0, g5 e, d5 0, g5 e, d5 0, f#5 e, d5 0, f#5 e, d5 0, f5 e 
+
+*line 2
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+
+*speed 4.7
+*line 1
+d5 0, f5 q, g#4 ed, g4 t, f#4 t, f4 q, a5 s, g#5 s, g5 s, f#5 s,
+f5 q, g#4 ed, g4 t, f#4 t, f4 q, f#5 s, f5 s, e5 s, d#5 s
+
+*line 2
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, bb3 e, e4 0, f4 e, 
+
+
+*speed 5.0
+*line 1
+d5 q, f4 ed, e4 t, d#4 t, d4 q, f#5 s, f5 s, e5 s, d#5 s, 
+d5 q, f4 ed, e4 t, d#4 t, d4 q, d#5 s, e5 s, f5 s, f#5 s
+g5 e, f#5 e, f5 e, e5 e, d#5 e, d5 e, c#5 e, c5 e, 
+c#5 e, c5 e, b4 e, a#4 e, a4 e, g#4 e, g4 e, f#4 e,
+g4 e, f#4 e, f4 e, e4 e, d#4 e, d4 e, c#4 e, c4 e,
+c#4 e, c4 e, b3 e, a#3 e, a3 e, g#3 e, g3 e, f#3 e,
+g3 q, g#3 e, g#4 e, a#3 e, a#4 e, c#4 e, c#5 e, 
+d4 0, d5 q, g4 st, b4 st, g5 st+e, g2 0, g3 q
+
+*line 2
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, g3 e, c#4 0, d4 e, 
+*localshift -12
+g5 e, f#5 e, f5 e, e5 e, d#5 e, d5 e, c#5 e, c5 e, 
+c#5 e, c5 e, b4 e, a#4 e, a4 e, g#4 e, g4 e, f#4 e,
+g4 e, f#4 e, f4 e, e4 e, d#4 e, d4 e, c#4 e, c4 e,
+c#4 e, c4 e, b3 e, a#3 e, a3 e, g#3 e, g3 e, f#3 e,
+g3 q

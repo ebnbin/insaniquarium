@@ -1,0 +1,46 @@
+*attrib title = O' Susanna
+*speed 7.5
+
+*on
+*line 1
+f4 s, g4 s,
+a4 e, c5 e, c5 ed, d5 s,
+c5 e, a4 e, f4 ed, g4 s,
+a4 e, a4 e, g4 e, f4 e,
+e4 0, g4 q, r e, f4 s, g4 s, 
+a4 e, c5 e, c5 ed, d5 s, 
+c5 e, a4 e, f4 ed, g4 s,
+f4 0, a4 e, f4 0, a4 e, e4 0, g4 e, e4 0, g4 e
+f4 q, r q
+
+bb4 q, bb4 q, 
+d5 e, d5 q, d5 e,
+c5 e, c5 e, a4 e, f4 e,
+e4 0, g4 q, r e, f4 s, g4 s,
+a4 e, c5 e, c5 ed, d5 s,
+c5 e, a4 e, f4 ed, g4 s,
+f4 0, a4 e, f4 0, a4 e, e4 0, g4 e, e4 0, g4 e,
+f4 tt, a4 tt, c5 tt, f5 q
+f3 0, c4 0, f4 q
+
+*on
+*line 2
+*volume 0.5
+r e,
+f3 tt, a3 tt, c4 tt+ed, f3 0, a3 0, c4 q, 
+f3 tt, a3 tt, c4 tt+qd, bb3 s,
+f3 tt, a3 tt, c4 tt+ed, f3 0, bb3 0, c4 q,
+r e, c4 e, c4 e, r e, 
+f3 tt, a3 tt, c4 tt+ed, f3 0, a3 0, c4 q, 
+f3 tt, a3 tt, c4 tt+ed, f3 0, a3 0, c4 q, 
+f3 tt, a3 tt, c4 tt+ed, f3 0, bb3 0, c4 q,
+r e, f3 0, a3 e, f3 0, a3 e, r e
+
+f3 tt, bb3 tt, d4 tt+ed, f3 0, bb3 0, d4 q, 
+bb3 e, f3 0, bb3 0, d4 q, bb3 e,
+f3 tt, a3 tt, c4 tt+ed, f3 0, a3 0, c4 q, 
+f3 0, bb3 0, c4 e, c5 0, c4 e, c4 0, c3 e,  r e
+f3 tt, a3 tt, c4 tt+ed, f3 0, a3 0, c4 q, 
+f3 tt, a3 tt, c4 tt+ed, f3 0, a3 0, c4 q, 
+f3 tt, a3 tt, c4 tt+ed, f3 0, bb3 0, c4 q,
+
