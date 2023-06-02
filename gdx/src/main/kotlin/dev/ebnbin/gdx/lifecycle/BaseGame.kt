@@ -17,20 +17,17 @@ val baseGame: BaseGame
     get() = gameGetter()
 
 abstract class BaseGame : ApplicationListener {
-    private lateinit var stageList: List<BaseStage>
-
-    abstract fun stageList(): List<BaseStage>
-
     private var created: Boolean = false
+    private var resized: Boolean = false
     private var resumed: Boolean = false
 
     override fun create() {
         created = true
-        stageList = stageList()
     }
 
     override fun resize(width: Int, height: Int) {
-        stageList.resize(width, height)
+        resized = true
+        screen?.stageList?.resize(width, height)
     }
 
     override fun resume() {
@@ -38,28 +35,46 @@ abstract class BaseGame : ApplicationListener {
             return
         }
         resumed = true
-        stageList.resume()
+        screen?.stageList?.resume()
     }
 
     override fun render() {
         if (!resumed) {
             resume()
         }
-        stageList.act(Gdx.graphics.deltaTime)
+        screen?.stageList?.act(Gdx.graphics.deltaTime)
         ScreenUtils.clear(Color.CLEAR)
-        stageList.draw()
+        screen?.stageList?.draw()
     }
 
     override fun pause() {
         if (!resumed) {
             return
         }
-        stageList.pause()
+        screen?.stageList?.pause()
         resumed = false
     }
 
     override fun dispose() {
-        stageList.dispose()
+        resized = false
+        screen?.stageList?.dispose()
         created = false
     }
+
+    var screen: Screen? = null
+        set(value) {
+            val resized = resized
+            val resumed = resumed
+            if (resumed) {
+                field?.stageList?.pause()
+            }
+            field?.stageList?.dispose()
+            field = value
+            if (resized) {
+                field?.stageList?.resize()
+            }
+            if (resumed) {
+                field?.stageList?.resume()
+            }
+        }
 }

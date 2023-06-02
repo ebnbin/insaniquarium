@@ -1,8 +1,9 @@
 package dev.ebnbin.gdx.utils
 
+import com.badlogic.gdx.Gdx
 import dev.ebnbin.gdx.lifecycle.BaseStage
 
-fun List<BaseStage>.resize(width: Int, height: Int) {
+fun List<BaseStage>.resize(width: Int = Gdx.graphics.width, height: Int = Gdx.graphics.height) {
     forEach {
         val viewport = it.viewport
         viewport.update(width, height, true)

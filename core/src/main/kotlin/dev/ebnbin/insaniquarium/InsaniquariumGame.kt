@@ -1,7 +1,7 @@
 package dev.ebnbin.insaniquarium
 
 import dev.ebnbin.gdx.lifecycle.BaseGame
-import dev.ebnbin.gdx.lifecycle.BaseStage
+import dev.ebnbin.gdx.lifecycle.Screen
 
 private var insaniquariumGame: InsaniquariumGame? = null
 
@@ -9,16 +9,15 @@ val game: InsaniquariumGame
     get() = requireNotNull(insaniquariumGame)
 
 class InsaniquariumGame : BaseGame() {
-    override fun stageList(): List<BaseStage> {
-        return listOf(
-            AquariumStage(),
-        )
-    }
-
     override fun create() {
         insaniquariumGame?.dispose()
         insaniquariumGame = this
         super.create()
+        screen = Screen(
+            stageList = listOf(
+                AquariumStage(),
+            ),
+        )
     }
 
     override fun dispose() {
