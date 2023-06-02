@@ -34,6 +34,7 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 // called every time gradle gets executed, takes the native dependencies of the natives configuration, and extracts
