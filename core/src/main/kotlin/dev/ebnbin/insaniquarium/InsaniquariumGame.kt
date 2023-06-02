@@ -34,6 +34,8 @@ class InsaniquariumGame : BaseGame() {
         init {
             dev.ebnbin.gdx.Gdx.init(
                 gameGetter = ::game,
+                unitWidth = 1280f,
+                unitHeight = 720f,
             )
         }
     }
