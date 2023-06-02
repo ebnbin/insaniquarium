@@ -29,4 +29,12 @@ class InsaniquariumGame : BaseGame() {
         super.dispose()
         insaniquariumGame = null
     }
+
+    companion object {
+        init {
+            dev.ebnbin.gdx.Gdx.init(
+                gameGetter = ::game,
+            )
+        }
+    }
 }

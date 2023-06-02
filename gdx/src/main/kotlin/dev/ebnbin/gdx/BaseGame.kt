@@ -2,6 +2,11 @@ package dev.ebnbin.gdx
 
 import com.badlogic.gdx.ApplicationListener
 
+internal lateinit var gameGetter: () -> BaseGame
+
+val baseGame: BaseGame
+    get() = gameGetter()
+
 abstract class BaseGame : ApplicationListener {
     override fun create() {
     }
