@@ -8,15 +8,6 @@ hs_err_pid*
 ## Robovm
 /ios/robovm-build/
 
-## GWT
-/html/war/
-/html/gwt-unitCache/
-.apt_generated/
-.gwt/
-gwt-unitCache/
-www-test/
-.gwt-tmp/
-
 ## Android Studio and Intellij and Android in general
 /android/src/main/jniLibs/armeabi-v7a/
 /android/src/main/jniLibs/arm64-v8a/
@@ -29,46 +20,6 @@ www-test/
 *.iml
 /android/out/
 com_crashlytics_export_strings.xml
-
-## NetBeans
-
-/nbproject/private/
-/android/nbproject/private/
-/core/nbproject/private/
-/desktop/nbproject/private/
-/html/nbproject/private/
-/ios/nbproject/private/
-
-/build/
-/android/build/
-/core/build/
-/desktop/build/
-/html/build/
-/ios/build/
-
-/nbbuild/
-/android/nbbuild/
-/core/nbbuild/
-/desktop/nbbuild/
-/html/nbbuild/
-/ios/nbbuild/
-
-/dist/
-/android/dist/
-/core/dist/
-/desktop/dist/
-/html/dist/
-/ios/dist/
-
-/nbdist/
-/android/nbdist/
-/core/nbdist/
-/desktop/nbdist/
-/html/nbdist/
-/ios/nbdist/
-
-nbactions.xml
-nb-configuration.xml
 
 ## Gradle
 
