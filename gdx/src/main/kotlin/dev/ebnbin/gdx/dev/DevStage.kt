@@ -5,8 +5,9 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.lifecycle.BaseStage
+import dev.ebnbin.gdx.utils.UnitFitViewport
 
-class DevStage : BaseStage() {
+class DevStage : BaseStage(viewport = UnitFitViewport()) {
     private val bitmapFont: BitmapFont = BitmapFont()
 
     private val label: Label = Label(null, Label.LabelStyle(bitmapFont, null)).also {
