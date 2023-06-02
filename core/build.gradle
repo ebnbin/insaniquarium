@@ -1,8 +1,0 @@
-apply plugin: "kotlin"
-
-
-dependencies {
-    api Dependencies.GDX
-}
-
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
