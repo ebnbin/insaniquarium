@@ -10,7 +10,6 @@ dependencies {
 sourceSets.main.resources.srcDirs = ["../assets"]
 
 project.ext.mainClassName = "dev.ebnbin.insaniquarium.DesktopLauncherKt"
-project.ext.assetsDir = new File("../assets")
 
 import org.gradle.internal.os.OperatingSystem
 
@@ -18,8 +17,6 @@ task run(dependsOn: classes, type: JavaExec) {
     mainClass = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
-    workingDir = project.assetsDir
-    ignoreExitValue = true
 
     if (OperatingSystem.current() == OperatingSystem.MAC_OS) {
         // Required to run on macOS
@@ -31,9 +28,12 @@ task debug(dependsOn: classes, type: JavaExec) {
     mainClass = project.mainClassName
     classpath = sourceSets.main.runtimeClasspath
     standardInput = System.in
-    workingDir = project.assetsDir
-    ignoreExitValue = true
     debug = true
+
+    if (OperatingSystem.current() == OperatingSystem.MAC_OS) {
+        // Required to run on macOS
+        jvmArgs += "-XstartOnFirstThread"
+    }
 }
 
 task dist(type: Jar) {
@@ -42,11 +42,9 @@ task dist(type: Jar) {
         attributes 'Main-Class': project.mainClassName
     }
     dependsOn configurations.runtimeClasspath
+    dependsOn classes
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
     with jar
 }
-
-
-dist.dependsOn classes
