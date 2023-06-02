@@ -27,4 +27,7 @@ object Dependencies {
     const val GDX_PLATFORM_NATIVES_IOS = "com.badlogicgames.gdx:gdx-platform:${Versions.GDX}:natives-ios"
 
     const val GDX_TOOLS = "com.badlogicgames.gdx:gdx-tools:${Versions.GDX}"
+
+    // https://github.com/kotcrab/vis-ui
+    const val VIS_UI = "com.kotcrab.vis:vis-ui:1.5.1"
 }

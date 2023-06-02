@@ -4,4 +4,5 @@ plugins {
 
 dependencies {
     api(Dependencies.GDX)
+    api(Dependencies.VIS_UI)
 }
