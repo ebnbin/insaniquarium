@@ -1,6 +1,4 @@
 buildscript {
-    ext.kotlinVersion = '1.8.21'
-
     repositories {
         mavenLocal()
         mavenCentral()
@@ -11,7 +9,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:7.2.2'
         classpath 'com.mobidevelop.robovm:robovm-gradle-plugin:2.3.19'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+        classpath Dependencies.KOTLIN_GRADLE_PLUGIN
 
     }
 }

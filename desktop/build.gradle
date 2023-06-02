@@ -5,7 +5,6 @@ dependencies {
     implementation project(":core")
     api "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
     api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 }
 
 sourceCompatibility = 1.8

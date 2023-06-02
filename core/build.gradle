@@ -3,7 +3,6 @@ apply plugin: "kotlin"
 
 dependencies {
     api "com.badlogicgames.gdx:gdx:$gdxVersion"
-    api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 }
 
 sourceCompatibility = 1.7

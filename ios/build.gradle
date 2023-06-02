@@ -8,7 +8,6 @@ dependencies {
 	api "com.mobidevelop.robovm:robovm-cocoatouch:$roboVMVersion"
 	api "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
 	api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
-	api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 }
 
 sourceCompatibility = '1.7'
