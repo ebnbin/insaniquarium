@@ -4,7 +4,7 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
 
 fun main() {
-    val listener = InsaniquariumGame()
+    val listener = LauncherHelper.createGame()
     val config = Lwjgl3ApplicationConfiguration().also {
         it.setTitle("Insaniquarium")
         it.setForegroundFPS(60)

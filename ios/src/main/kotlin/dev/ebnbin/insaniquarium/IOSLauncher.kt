@@ -7,7 +7,7 @@ import org.robovm.apple.uikit.UIApplication
 
 class IOSLauncher : IOSApplication.Delegate() {
     override fun createApplication(): IOSApplication {
-        val listener = InsaniquariumGame()
+        val listener = LauncherHelper.createGame()
         val config = IOSApplicationConfiguration()
         return IOSApplication(listener, config)
     }

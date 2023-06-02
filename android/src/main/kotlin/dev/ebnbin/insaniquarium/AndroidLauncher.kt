@@ -7,7 +7,7 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 class AndroidLauncher : AndroidApplication() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val listener = InsaniquariumGame()
+        val listener = LauncherHelper.createGame()
         val config = AndroidApplicationConfiguration()
         initialize(listener, config)
     }
