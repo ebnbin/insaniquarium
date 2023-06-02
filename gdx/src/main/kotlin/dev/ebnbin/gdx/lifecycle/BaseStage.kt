@@ -9,4 +9,18 @@ abstract class BaseStage : Stage {
     constructor(viewport: Viewport = UnitScreenViewport()) : super(viewport)
 
     constructor(viewport: Viewport = UnitScreenViewport(), batch: Batch) : super(viewport, batch)
+
+    open fun resize(width: Float, height: Float) {
+    }
+
+    open fun resume() {
+    }
+
+    open fun pause() {
+    }
+
+    @Deprecated("Replace with act(delta).", ReplaceWith("act(delta)"))
+    final override fun act() {
+        super.act()
+    }
 }
