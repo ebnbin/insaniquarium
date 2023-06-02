@@ -7,7 +7,6 @@ dependencies {
     api Dependencies.GDX_PLATFORM_NATIVES_DESKTOP
 }
 
-sourceCompatibility = 1.8
 sourceSets.main.resources.srcDirs = ["../assets"]
 
 project.ext.mainClassName = "dev.ebnbin.insaniquarium.DesktopLauncherKt"

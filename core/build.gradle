@@ -5,5 +5,4 @@ dependencies {
     api Dependencies.GDX
 }
 
-sourceCompatibility = 1.7
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'

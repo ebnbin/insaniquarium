@@ -10,7 +10,6 @@ dependencies {
 	api Dependencies.GDX_PLATFORM_NATIVES_IOS
 }
 
-sourceCompatibility = '1.7'
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
 
 ext {
