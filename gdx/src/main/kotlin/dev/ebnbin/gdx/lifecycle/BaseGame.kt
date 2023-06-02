@@ -1,4 +1,4 @@
-package dev.ebnbin.gdx
+package dev.ebnbin.gdx.lifecycle
 
 import com.badlogic.gdx.ApplicationListener
 

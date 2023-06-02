@@ -1,4 +1,4 @@
-package dev.ebnbin.gdx
+package dev.ebnbin.gdx.lifecycle
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Batch

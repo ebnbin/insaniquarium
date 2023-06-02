@@ -1,7 +1,7 @@
 package dev.ebnbin.insaniquarium
 
 import com.badlogic.gdx.utils.ScreenUtils
-import dev.ebnbin.gdx.BaseGame
+import dev.ebnbin.gdx.lifecycle.BaseGame
 
 private var insaniquariumGame: InsaniquariumGame? = null
 
