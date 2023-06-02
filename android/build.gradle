@@ -94,5 +94,3 @@ task run(type: Exec) {
     def adb = path + "/platform-tools/adb"
     commandLine "$adb", 'shell', 'am', 'start', '-n', 'dev.ebnbin.insaniquarium/dev.ebnbin.insaniquarium.AndroidLauncher'
 }
-
-eclipse.project.name = appName + "-android"

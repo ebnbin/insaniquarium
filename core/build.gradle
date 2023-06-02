@@ -8,5 +8,3 @@ dependencies {
 
 sourceCompatibility = 1.7
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-
-eclipse.project.name = appName + "-core"
