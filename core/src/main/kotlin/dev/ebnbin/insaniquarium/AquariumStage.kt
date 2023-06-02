@@ -9,6 +9,7 @@ class AquariumStage : BaseStage() {
 
     init {
         val image = Image(texture)
+        image.setFillParent(true)
         addActor(image)
     }
 
