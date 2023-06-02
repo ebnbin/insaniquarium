@@ -6,8 +6,8 @@ dependencies {
 	implementation project(":core")
 	api Dependencies.ROBOVM_RT
 	api Dependencies.ROBOVM_COCOATOUCH
-	api "com.badlogicgames.gdx:gdx-backend-robovm:$gdxVersion"
-	api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-ios"
+	api Dependencies.GDX_BACKEND_ROBOVM
+	api Dependencies.GDX_PLATFORM_NATIVES_IOS
 }
 
 sourceCompatibility = '1.7'

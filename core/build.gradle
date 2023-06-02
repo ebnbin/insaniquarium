@@ -2,7 +2,7 @@ apply plugin: "kotlin"
 
 
 dependencies {
-    api "com.badlogicgames.gdx:gdx:$gdxVersion"
+    api Dependencies.GDX
 }
 
 sourceCompatibility = 1.7

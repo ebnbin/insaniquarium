@@ -3,8 +3,8 @@ apply plugin: "kotlin"
 
 dependencies {
     implementation project(":core")
-    api "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
-    api "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+    api Dependencies.GDX_BACKEND_LWJGL3
+    api Dependencies.GDX_PLATFORM_NATIVES_DESKTOP
 }
 
 sourceCompatibility = 1.8
