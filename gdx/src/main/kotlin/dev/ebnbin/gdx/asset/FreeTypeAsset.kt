@@ -4,10 +4,17 @@ import com.badlogic.gdx.assets.AssetLoaderParameters
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader
 import com.google.gson.annotations.Expose
+import kotlin.math.roundToInt
 
 class FreeTypeAsset(
     @Expose
     val fontFileName: String = "",
+    @Expose
+    val size: Float = 16f,
+    @Expose
+    val shadowOffsetX: Float = 0f,
+    @Expose
+    val shadowOffsetY: Float = 0f,
 ) : Asset<BitmapFont>() {
     override val directory: String
         get() = "freetype"
@@ -22,6 +29,9 @@ class FreeTypeAsset(
         get() = FreetypeFontLoader.FreeTypeFontLoaderParameter().also {
             val extension = extension ?: defaultExtension
             it.fontFileName = "$directory/$fontFileName${if (extension == "") "" else ".$extension"}"
+            it.fontParameters.size = size.roundToInt()
+            it.fontParameters.shadowOffsetX = shadowOffsetX.roundToInt()
+            it.fontParameters.shadowOffsetY = shadowOffsetY.roundToInt()
         }
 
     override fun loaded(assetHelper: AssetHelper) {

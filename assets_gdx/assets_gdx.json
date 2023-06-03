@@ -2,6 +2,9 @@
   "freeType": {
     "gdx_dev": {
       "fontFileName": "gdx_noto_sans_mono",
+      "size": 16.0,
+      "shadowOffsetX": 1.0,
+      "shadowOffsetY": 1.0,
       "name": "gdx_dev",
       "preload": true
     }
