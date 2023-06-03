@@ -15,16 +15,34 @@ class DevLogStage : BaseStage(viewport = UnitFitViewport()) {
         it.data.markupEnabled = true
     }
 
-    private val label: Label = Label(null, Label.LabelStyle(bitmapFont, null)).also {
+    private val leftLabel: Label = Label(null, Label.LabelStyle(bitmapFont, null)).also {
+        it.setFillParent(true)
+        it.setAlignment(Align.bottomLeft)
+        addActor(it)
+    }
+
+    private val rightLabel: Label = Label(null, Label.LabelStyle(bitmapFont, null)).also {
         it.setFillParent(true)
         it.setAlignment(Align.topRight)
         addActor(it)
     }
 
+    private val logMap: MutableMap<String, (delta: Float) -> String> = mutableMapOf()
+
+    internal fun put(key: String, value: (delta: Float) -> String) {
+        logMap[key] = value
+    }
+
+    internal fun remove(key: String) {
+        logMap.remove(key)
+    }
+
     override fun act(delta: Float) {
         super.act(delta)
-        val logText = createLogMap().logText(delta)
-        label.setText(logText)
+        val leftLogText = logMap.logText(delta)
+        leftLabel.setText(leftLogText)
+        val rightLogText = createLogMap().logText(delta)
+        rightLabel.setText(rightLogText)
     }
 
     override fun dispose() {

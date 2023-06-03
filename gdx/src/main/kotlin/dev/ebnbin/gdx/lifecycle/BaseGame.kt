@@ -121,6 +121,14 @@ abstract class BaseGame : ApplicationListener {
         loadingStage.load(assetSet, createStageList)
     }
 
+    fun putLog(key: String, value: (delta: Float) -> String) {
+        devLogStage.put(key, value)
+    }
+
+    fun removeLog(key: String) {
+        devLogStage.remove(key)
+    }
+
     fun restart() {
         pause()
         dispose()
