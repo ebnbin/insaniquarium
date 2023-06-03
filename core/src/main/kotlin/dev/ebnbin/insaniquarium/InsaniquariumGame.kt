@@ -1,6 +1,7 @@
 package dev.ebnbin.insaniquarium
 
 import dev.ebnbin.gdx.lifecycle.BaseGame
+import dev.ebnbin.insaniquarium.aquarium.AquariumStage
 
 private var insaniquariumGame: InsaniquariumGame? = null
 
