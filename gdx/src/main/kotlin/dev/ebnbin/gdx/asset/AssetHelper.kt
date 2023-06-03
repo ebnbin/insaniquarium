@@ -85,7 +85,42 @@ class AssetHelper(assets: Assets) : AssetManager() {
         callSuper()
         val newAssetSet = assetNames.mapNotNullTo(mutableSetOf()) { assetMap[it] }
         val (removed, added) = oldAssetSet.diff(newAssetSet)
-        removed.forEach { it.unloaded(this) }
-        added.forEach { it.loaded(this) }
+        removed.forEach {
+            removeAssetExtraMap(it)
+            it.unloaded(this)
+        }
+        added.forEach {
+            it.loaded(this)
+        }
+    }
+
+    //*****************************************************************************************************************
+
+    private val assetExtraMapMap: MutableMap<Asset<*>, MutableMap<String, Any?>> = mutableMapOf()
+
+    fun <T> getAssetExtraOrPut(asset: Asset<*>, key: String, defaultValue: (AssetHelper) -> T): T {
+        if (assetExtraMapMap.containsKey(asset)) {
+            val assetExtraMap = assetExtraMapMap.getValue(asset)
+            if (assetExtraMap.containsKey(key)) {
+                @Suppress("UNCHECKED_CAST")
+                return assetExtraMap.getValue(key) as T
+            }
+        }
+        val assetExtraMap = assetExtraMapMap.getOrElse(asset) { mutableMapOf() }
+        val assetExtra = defaultValue(this)
+        assetExtraMap[key] = assetExtra
+        assetExtraMapMap[asset] = assetExtraMap
+        return assetExtra
+    }
+
+    private fun removeAssetExtraMap(asset: Asset<*>) {
+        assetExtraMapMap.remove(asset)
+    }
+
+    //*****************************************************************************************************************
+
+    override fun dispose() {
+        assetExtraMapMap.clear()
+        super.dispose()
     }
 }

@@ -20,9 +20,10 @@ class AquariumStage : BaseStage() {
         addActor(aquariumImage)
     }
 
-    private val clydeImage: Image = Image(baseGame.assets.texture.getValue("clyde").get()).also {
-        addActor(it)
-    }
+    private val clydeImage: Image =
+        Image(baseGame.assets.texture.getValue("clyde").getTextureRegionList().first()).also {
+            addActor(it)
+        }
 
     override fun resize(width: Float, height: Float) {
         super.resize(width, height)

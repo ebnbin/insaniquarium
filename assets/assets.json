@@ -20,6 +20,10 @@
       "name": "aquarium_f"
     },
     "clyde": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
       "name": "clyde"
     }
   }
