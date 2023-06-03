@@ -23,7 +23,10 @@ dependencies {
 android {
     namespace = "dev.ebnbin.insaniquarium"
     compileSdk = 33 // https://developer.android.com/about/versions
-    sourceSets.getByName("main").assets.srcDirs("../assets")
+    sourceSets.getByName("main").assets.srcDirs(
+        "../assets_gdx",
+        "../assets",
+    )
     packagingOptions.resources.excludes.add("META-INF/robovm/ios/robovm.xml")
     defaultConfig {
         minSdk = 23

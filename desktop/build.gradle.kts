@@ -12,7 +12,10 @@ dependencies {
 }
 
 sourceSets.main.configure {
-    resources.srcDirs("../assets")
+    resources.srcDirs(
+        "../assets_gdx",
+        "../assets",
+    )
 }
 
 val mainClassName = "dev.ebnbin.insaniquarium.DesktopLauncherKt"

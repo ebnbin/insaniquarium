@@ -54,12 +54,14 @@ abstract class BaseGame : ApplicationListener {
     }
 
     private fun initAssets() {
-        val jsonFile = Gdx.files.internal("assets.json")
-        assets = if (jsonFile.exists()) {
-            jsonFile.readString().fromJson()
-        } else {
-            Assets()
-        }
+        assets = listOf(
+            "assets_gdx.json",
+            "assets.json",
+        )
+            .map { Gdx.files.internal(it) }
+            .filter { it.exists() }
+            .map { it.readString().fromJson<Assets>() }
+            .fold(Assets()) { acc, assets -> acc + assets }
     }
 
     override fun resize(width: Int, height: Int) {

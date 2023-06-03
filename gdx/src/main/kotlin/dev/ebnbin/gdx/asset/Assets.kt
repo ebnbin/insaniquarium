@@ -14,4 +14,10 @@ data class Assets(
         set.addAll(texture.values)
         return set
     }
+
+    operator fun plus(other: Assets): Assets {
+        return Assets(
+            texture = texture + other.texture,
+        )
+    }
 }
