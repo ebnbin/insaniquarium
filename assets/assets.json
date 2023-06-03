@@ -3,6 +3,26 @@
     "aquarium_a": {
       "name": "aquarium_a",
       "extension": "png"
+    },
+    "aquarium_b": {
+      "name": "aquarium_b",
+      "extension": "png"
+    },
+    "aquarium_c": {
+      "name": "aquarium_c",
+      "extension": "png"
+    },
+    "aquarium_d": {
+      "name": "aquarium_d",
+      "extension": "png"
+    },
+    "aquarium_e": {
+      "name": "aquarium_e",
+      "extension": "png"
+    },
+    "aquarium_f": {
+      "name": "aquarium_f",
+      "extension": "png"
     }
   }
 }
