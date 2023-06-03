@@ -42,7 +42,6 @@ abstract class BaseGame : ApplicationListener {
     }
 
     private var created: Boolean = false
-    private var resized: Boolean = false
     private var resumed: Boolean = false
 
     override fun create() {
@@ -64,7 +63,6 @@ abstract class BaseGame : ApplicationListener {
     }
 
     override fun resize(width: Int, height: Int) {
-        resized = true
         stageList().resize(width, height)
     }
 
@@ -94,7 +92,6 @@ abstract class BaseGame : ApplicationListener {
     }
 
     override fun dispose() {
-        resized = false
         screen = null
         loadingStage.dispose()
         devMenuStage.dispose()
@@ -105,16 +102,13 @@ abstract class BaseGame : ApplicationListener {
 
     var screen: Screen? = null
         internal set(value) {
-            val resized = resized
             val resumed = resumed
             if (resumed) {
                 field?.stageList?.pause()
             }
             field?.stageList?.dispose()
             field = value
-            if (resized) {
-                field?.stageList?.resize()
-            }
+            field?.stageList?.resize()
             if (resumed) {
                 field?.stageList?.resume()
             }
