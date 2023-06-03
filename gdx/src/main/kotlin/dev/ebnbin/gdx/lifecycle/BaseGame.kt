@@ -126,4 +126,12 @@ abstract class BaseGame : ApplicationListener {
     ) {
         loadingStage.load(assetSet, createStageList)
     }
+
+    fun restart() {
+        pause()
+        dispose()
+        create()
+        resize(Gdx.graphics.width, Gdx.graphics.height)
+        resume()
+    }
 }

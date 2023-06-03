@@ -6,7 +6,9 @@ import com.kotcrab.vis.ui.VisUI
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.gdx.lifecycle.BaseStage
+import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.UnitFitViewport
+import dev.ebnbin.gdx.utils.createMenuItem
 
 class DevMenuStage : BaseStage(UnitFitViewport()) {
     init {
@@ -16,7 +18,7 @@ class DevMenuStage : BaseStage(UnitFitViewport()) {
 
     private val menuBar: MenuBar = MenuBar().also {
         it.table.align(Align.topLeft)
-        it.addMenu(Menu("DEV"))
+        it.addMenu(createDevMenu())
         addActor(it.table)
     }
 
@@ -28,5 +30,15 @@ class DevMenuStage : BaseStage(UnitFitViewport()) {
     override fun dispose() {
         VisUI.dispose()
         super.dispose()
+    }
+
+    companion object {
+        private fun createDevMenu(): Menu {
+            val menu = Menu("DEV")
+            menu.createMenuItem("restart") {
+                baseGame.restart()
+            }
+            return menu
+        }
     }
 }
