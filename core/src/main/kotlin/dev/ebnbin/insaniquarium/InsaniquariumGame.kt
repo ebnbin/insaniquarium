@@ -15,6 +15,11 @@ class InsaniquariumGame : BaseGame() {
         loadScreen(
             assetSet = setOf(
                 assets.texture.getValue("aquarium_a"),
+                assets.texture.getValue("aquarium_b"),
+                assets.texture.getValue("aquarium_c"),
+                assets.texture.getValue("aquarium_d"),
+                assets.texture.getValue("aquarium_e"),
+                assets.texture.getValue("aquarium_f"),
             ),
             createStageList = {
                 listOf(
