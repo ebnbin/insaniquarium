@@ -16,6 +16,9 @@ class AssetHelper(assets: Assets) : AssetManager() {
 
     val assetSet: Set<Asset<*>> = assets.all()
 
+    /**
+     * Asset -> AssetDescriptor.
+     */
     private val assetDescriptorMap: Map<Asset<*>, AssetDescriptor<*>> = assetSet.associateWith {
         it.createAssetDescriptor()
     }
@@ -23,6 +26,13 @@ class AssetHelper(assets: Assets) : AssetManager() {
     private fun <T> assetDescriptor(asset: Asset<T>): AssetDescriptor<T> {
         @Suppress("UNCHECKED_CAST")
         return assetDescriptorMap.getValue(asset) as AssetDescriptor<T>
+    }
+
+    /**
+     * fileName -> Asset.
+     */
+    private val assetMap: Map<String, Asset<*>> = assetSet.associateBy {
+        assetDescriptor(it).fileName
     }
 
     init {
@@ -54,5 +64,28 @@ class AssetHelper(assets: Assets) : AssetManager() {
         val (removed, added) = oldAssetSet.diff(newAssetSet)
         removed.forEach { unload(it) }
         added.forEach { load(it) }
+    }
+
+    //*****************************************************************************************************************
+
+    override fun unload(fileName: String?) {
+        diffAssets { super.unload(fileName) }
+    }
+
+    override fun <T : Any?> addAsset(fileName: String?, type: Class<T>?, asset: T) {
+        diffAssets { super.addAsset(fileName, type, asset) }
+    }
+
+    override fun clear() {
+        diffAssets { super.clear() }
+    }
+
+    private fun diffAssets(callSuper: () -> Unit) {
+        val oldAssetSet = assetNames.mapNotNullTo(mutableSetOf()) { assetMap[it] }
+        callSuper()
+        val newAssetSet = assetNames.mapNotNullTo(mutableSetOf()) { assetMap[it] }
+        val (removed, added) = oldAssetSet.diff(newAssetSet)
+        removed.forEach { it.unloaded(this) }
+        added.forEach { it.loaded(this) }
     }
 }

@@ -23,4 +23,10 @@ class FreeTypeAsset(
             val extension = extension ?: defaultExtension
             it.fontFileName = "$directory/$fontFileName${if (extension == "") "" else ".$extension"}"
         }
+
+    override fun loaded(assetHelper: AssetHelper) {
+        super.loaded(assetHelper)
+        val bitmapFont = assetHelper.get(this)
+        bitmapFont.data.markupEnabled = true
+    }
 }

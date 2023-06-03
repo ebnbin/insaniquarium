@@ -11,9 +11,7 @@ import dev.ebnbin.gdx.utils.UnitFitViewport
 import dev.ebnbin.gdx.utils.colorMarkup
 
 class DevLogStage : BaseStage(viewport = UnitFitViewport()) {
-    private val bitmapFont: BitmapFont = baseGame.assets.freeType.getValue("gdx_dev").get().also {
-        it.data.markupEnabled = true
-    }
+    private val bitmapFont: BitmapFont = baseGame.assets.freeType.getValue("gdx_dev").get()
 
     private val leftLabel: Label = Label(null, Label.LabelStyle(bitmapFont, null)).also {
         it.setFillParent(true)

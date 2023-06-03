@@ -35,6 +35,12 @@ sealed class Asset<T>(
         return baseGame.assetHelper.get(this)
     }
 
+    open fun loaded(assetHelper: AssetHelper) {
+    }
+
+    open fun unloaded(assetHelper: AssetHelper) {
+    }
+
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
