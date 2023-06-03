@@ -2,6 +2,7 @@ package dev.ebnbin.insaniquarium
 
 import dev.ebnbin.gdx.lifecycle.BaseGame
 import dev.ebnbin.insaniquarium.aquarium.AquariumStage
+import dev.ebnbin.insaniquarium.aquarium.TankStage
 
 private var insaniquariumGame: InsaniquariumGame? = null
 
@@ -26,6 +27,7 @@ class InsaniquariumGame : BaseGame() {
             createStageList = {
                 listOf(
                     AquariumStage(),
+                    TankStage(),
                 )
             },
         )
@@ -42,6 +44,7 @@ class InsaniquariumGame : BaseGame() {
                 gameGetter = ::game,
                 unitWidth = 1280f,
                 unitHeight = 720f,
+                unitsPerMeter = 600f,
             )
         }
     }

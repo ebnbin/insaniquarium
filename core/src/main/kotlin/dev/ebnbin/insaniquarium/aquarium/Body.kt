@@ -3,12 +3,13 @@ package dev.ebnbin.insaniquarium.aquarium
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.Actor
+import dev.ebnbin.gdx.utils.unitToMeter
 
 class Body(
     private val textureRegion: TextureRegion,
 ) : Actor() {
     init {
-        setSize(textureRegion.regionWidth.toFloat(), textureRegion.regionHeight.toFloat())
+        setSize(textureRegion.regionWidth.toFloat().unitToMeter, textureRegion.regionHeight.toFloat().unitToMeter)
     }
 
     override fun draw(batch: Batch, parentAlpha: Float) {

@@ -8,9 +8,11 @@ object Gdx {
         gameGetter: () -> BaseGame,
         unitWidth: Float,
         unitHeight: Float,
+        unitsPerMeter: Float = 1f,
     ) {
         dev.ebnbin.gdx.lifecycle.gameGetter = gameGetter
         World.unitWidth = unitWidth
         World.unitHeight = unitHeight
+        World.unitsPerMeter = unitsPerMeter
     }
 }
