@@ -1,4 +1,4 @@
-package dev.ebnbin.insaniquarium.aquarium
+package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
