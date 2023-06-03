@@ -10,9 +10,11 @@ sealed class Asset<T>(
     @Expose
     val name: String = "",
     @Expose
-    val extension: String = "",
+    val extension: String? = null,
 ) {
     abstract val directory: String
+
+    abstract val defaultExtension: String
 
     abstract val type: Class<T>
 
@@ -22,6 +24,7 @@ sealed class Asset<T>(
      * Should only be called by [AssetHelper].
      */
     internal fun createAssetDescriptor(): AssetDescriptor<T> {
+        val extension = extension ?: defaultExtension
         val file = Gdx.files.internal("$directory/$name${if (extension == "") "" else ".$extension"}")
         return AssetDescriptor(file, type, params)
     }
@@ -35,14 +38,12 @@ sealed class Asset<T>(
         if (javaClass != other?.javaClass) return false
         other as Asset<*>
         if (directory != other.directory) return false
-        if (name != other.name) return false
-        return extension == other.extension
+        return name == other.name
     }
 
     override fun hashCode(): Int {
         var result = directory.hashCode()
         result = 31 * result + name.hashCode()
-        result = 31 * result + extension.hashCode()
         return result
     }
 }

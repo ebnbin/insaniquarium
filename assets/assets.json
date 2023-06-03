@@ -1,28 +1,22 @@
 {
   "texture": {
     "aquarium_a": {
-      "name": "aquarium_a",
-      "extension": "png"
+      "name": "aquarium_a"
     },
     "aquarium_b": {
-      "name": "aquarium_b",
-      "extension": "png"
+      "name": "aquarium_b"
     },
     "aquarium_c": {
-      "name": "aquarium_c",
-      "extension": "png"
+      "name": "aquarium_c"
     },
     "aquarium_d": {
-      "name": "aquarium_d",
-      "extension": "png"
+      "name": "aquarium_d"
     },
     "aquarium_e": {
-      "name": "aquarium_e",
-      "extension": "png"
+      "name": "aquarium_e"
     },
     "aquarium_f": {
-      "name": "aquarium_f",
-      "extension": "png"
+      "name": "aquarium_f"
     }
   }
 }

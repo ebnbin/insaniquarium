@@ -8,6 +8,9 @@ class TextureAsset : Asset<Texture>() {
     override val directory: String
         get() = "texture"
 
+    override val defaultExtension: String
+        get() = "png"
+
     override val type: Class<Texture>
         get() = Texture::class.java
 
