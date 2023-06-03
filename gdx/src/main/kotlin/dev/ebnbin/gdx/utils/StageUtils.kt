@@ -18,13 +18,13 @@ fun List<BaseStage>.resume() {
 }
 
 fun List<BaseStage>.act(delta: Float) {
-    forEach {
+    filter { it.isEnabled }.forEach {
         it.act(delta)
     }
 }
 
 fun List<BaseStage>.draw() {
-    forEach {
+    filter { it.isEnabled }.forEach {
         it.viewport.apply(true)
         it.draw()
     }

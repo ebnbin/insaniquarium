@@ -8,6 +8,9 @@ import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.UnitScreenViewport
 
 open class LoadingStage(viewport: Viewport = UnitScreenViewport()) : BaseStage(viewport) {
+    override val isEnabled: Boolean
+        get() = isLoading
+
     private var isLoading: Boolean = false
     private var isUpdating: Boolean = false
 
@@ -37,7 +40,7 @@ open class LoadingStage(viewport: Viewport = UnitScreenViewport()) : BaseStage(v
 
     override fun act(delta: Float) {
         super.act(delta)
-        if (!isLoading || !isUpdating) {
+        if (!isUpdating) {
             return
         }
         if (baseGame.assetHelper.update()) {

@@ -5,6 +5,12 @@ import com.badlogic.gdx.utils.viewport.Viewport
 import dev.ebnbin.gdx.utils.UnitScreenViewport
 
 abstract class BaseStage(viewport: Viewport = UnitScreenViewport()) : Stage(viewport) {
+    /**
+     * Whether [act] and [draw] should be called.
+     */
+    open val isEnabled: Boolean
+        get() = true
+
     open fun resize(width: Float, height: Float) {
     }
 
