@@ -29,4 +29,7 @@ private fun devValidateAssets() {
         .forEach {
             it.writeText(it.readText().fromJson<Assets>().toJson())
         }
+
+    val configFile = File("../assets/config.json")
+    configFile.writeText(configFile.readText().fromJson<Config>().toJson())
 }

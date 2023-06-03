@@ -1,6 +1,8 @@
 package dev.ebnbin.insaniquarium
 
+import com.badlogic.gdx.Gdx
 import dev.ebnbin.gdx.lifecycle.BaseGame
+import dev.ebnbin.gdx.utils.fromJson
 import dev.ebnbin.insaniquarium.aquarium.AquariumStage
 import dev.ebnbin.insaniquarium.aquarium.TankStage
 
@@ -10,10 +12,14 @@ val game: InsaniquariumGame
     get() = requireNotNull(insaniquariumGame)
 
 class InsaniquariumGame : BaseGame() {
+    lateinit var config: Config
+        private set
+
     override fun create() {
         insaniquariumGame?.dispose()
         insaniquariumGame = this
         super.create()
+        config = Gdx.files.internal("config.json").readString().fromJson()
         loadScreen(
             assetSet = setOf(
                 assets.texture.getValue("aquarium_a"),

@@ -4,10 +4,14 @@ import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.Actor
 import dev.ebnbin.gdx.utils.unitToMeter
+import dev.ebnbin.insaniquarium.game
 
-class Body(
-    private val textureRegion: TextureRegion,
-) : Actor() {
+class Body(id: String) : Actor() {
+    private val bodyConfig: BodyConfig = game.config.body.getValue(id)
+
+    private val textureRegion: TextureRegion =
+        game.assets.texture.getValue(bodyConfig.assetId).getTextureRegionList().first()
+
     init {
         setSize(textureRegion.regionWidth.toFloat().unitToMeter, textureRegion.regionHeight.toFloat().unitToMeter)
     }
