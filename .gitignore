@@ -9,10 +9,10 @@ hs_err_pid*
 /ios/robovm-build/
 
 ## Android Studio and Intellij and Android in general
-/android/src/main/jniLibs/armeabi-v7a/
-/android/src/main/jniLibs/arm64-v8a/
-/android/src/main/jniLibs/x86/
-/android/src/main/jniLibs/x86_64/
+/android/src/main/jniLibs/armeabi-v7a/libgdx*.so
+/android/src/main/jniLibs/arm64-v8a/libgdx*.so
+/android/src/main/jniLibs/x86/libgdx*.so
+/android/src/main/jniLibs/x86_64/libgdx*.so
 /android/gen/
 .idea/
 *.ipr

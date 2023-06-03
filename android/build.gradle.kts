@@ -14,6 +14,10 @@ dependencies {
     natives(Dependencies.GDX_PLATFORM_NATIVES_ARM64_V8A)
     natives(Dependencies.GDX_PLATFORM_NATIVES_X86)
     natives(Dependencies.GDX_PLATFORM_NATIVES_X86_64)
+    natives(Dependencies.GDX_FREETYPE_PLATFORM_NATIVES_ARMEABI_V7A)
+    natives(Dependencies.GDX_FREETYPE_PLATFORM_NATIVES_ARM64_V8A)
+    natives(Dependencies.GDX_FREETYPE_PLATFORM_NATIVES_X86)
+    natives(Dependencies.GDX_FREETYPE_PLATFORM_NATIVES_X86_64)
 }
 
 android {

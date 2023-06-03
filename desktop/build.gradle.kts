@@ -8,6 +8,7 @@ dependencies {
     implementation(project(":core"))
     implementation(Dependencies.GDX_BACKEND_LWJGL3)
     implementation(Dependencies.GDX_PLATFORM_NATIVES_DESKTOP)
+    implementation(Dependencies.GDX_FREETYPE_PLATFORM_NATIVES_DESKTOP)
 }
 
 sourceSets.main.configure {
