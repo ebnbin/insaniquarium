@@ -29,12 +29,10 @@ open class LoadingStage(viewport: Viewport = UnitScreenViewport()) : BaseStage(v
         this.createStageList = createStageList
         val oldScreen = baseGame.screen
         baseGame.screen = null
-        oldScreen?.assetSet?.forEach {
-            baseGame.assetHelper.unload(it) // TODO: diff
-        }
-        assetSet.forEach {
-            baseGame.assetHelper.load(it)
-        }
+        baseGame.assetHelper.loadAllDiff(
+            oldAssetSet = oldScreen?.assetSet ?: emptySet(),
+            newAssetSet = assetSet,
+        )
         isUpdating = true
     }
 

@@ -2,6 +2,7 @@ package dev.ebnbin.gdx.asset
 
 import com.badlogic.gdx.assets.AssetDescriptor
 import com.badlogic.gdx.assets.AssetManager
+import dev.ebnbin.gdx.utils.diff
 
 class AssetHelper(assets: Assets) : AssetManager() {
     val assetSet: Set<Asset<*>> = assets.all()
@@ -29,5 +30,11 @@ class AssetHelper(assets: Assets) : AssetManager() {
             return
         }
         unload(assetDescriptor.fileName)
+    }
+
+    fun loadAllDiff(oldAssetSet: Set<Asset<*>>, newAssetSet: Set<Asset<*>>) {
+        val (removed, added) = oldAssetSet.diff(newAssetSet)
+        removed.forEach { unload(it) }
+        added.forEach { load(it) }
     }
 }
