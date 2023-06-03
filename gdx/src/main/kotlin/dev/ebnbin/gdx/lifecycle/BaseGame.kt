@@ -5,11 +5,13 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
 import dev.ebnbin.gdx.asset.AssetHelper
+import dev.ebnbin.gdx.asset.Assets
 import dev.ebnbin.gdx.dev.DevLogStage
 import dev.ebnbin.gdx.dev.DevMenuStage
 import dev.ebnbin.gdx.utils.act
 import dev.ebnbin.gdx.utils.dispose
 import dev.ebnbin.gdx.utils.draw
+import dev.ebnbin.gdx.utils.fromJson
 import dev.ebnbin.gdx.utils.pause
 import dev.ebnbin.gdx.utils.resize
 import dev.ebnbin.gdx.utils.resume
@@ -20,6 +22,9 @@ val baseGame: BaseGame
     get() = gameGetter()
 
 abstract class BaseGame : ApplicationListener {
+    lateinit var assets: Assets
+        private set
+
     internal lateinit var assetHelper: AssetHelper
 
     private lateinit var devLogStage: DevLogStage
@@ -38,9 +43,19 @@ abstract class BaseGame : ApplicationListener {
 
     override fun create() {
         created = true
+        initAssets()
         assetHelper = AssetHelper()
         devLogStage = DevLogStage()
         devMenuStage = DevMenuStage()
+    }
+
+    private fun initAssets() {
+        val jsonFile = Gdx.files.internal("assets.json")
+        assets = if (jsonFile.exists()) {
+            jsonFile.readString().fromJson()
+        } else {
+            Assets()
+        }
     }
 
     override fun resize(width: Int, height: Int) {

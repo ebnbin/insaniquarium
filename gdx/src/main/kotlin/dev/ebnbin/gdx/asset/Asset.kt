@@ -3,19 +3,24 @@ package dev.ebnbin.gdx.asset
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.assets.AssetDescriptor
 import com.badlogic.gdx.assets.AssetLoaderParameters
+import com.google.gson.annotations.Expose
 import dev.ebnbin.gdx.lifecycle.baseGame
 
 sealed class Asset<T>(
-    val name: String,
+    @Expose
+    val name: String = "",
+    @Expose
+    val extension: String = "",
 ) {
-    abstract fun directory(): String
+    abstract val directory: String
 
-    abstract fun type(): Class<T>
+    abstract val type: Class<T>
 
-    abstract fun params(): AssetLoaderParameters<T>
+    abstract val params: AssetLoaderParameters<T>
 
     private fun assetDescriptor(): AssetDescriptor<T> {
-        return AssetDescriptor(Gdx.files.internal("${directory()}/$name"), type(), params())
+        val file = Gdx.files.internal("$directory/$name${if (extension == "") "" else ".$extension"}")
+        return AssetDescriptor(file, type, params)
     }
 
     fun get(): T {
@@ -40,13 +45,15 @@ sealed class Asset<T>(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
         other as Asset<*>
-        if (directory() != other.directory()) return false
-        return name == other.name
+        if (directory != other.directory) return false
+        if (name != other.name) return false
+        return extension == other.extension
     }
 
     override fun hashCode(): Int {
-        var result = directory().hashCode()
+        var result = directory.hashCode()
         result = 31 * result + name.hashCode()
+        result = 31 * result + extension.hashCode()
         return result
     }
 }

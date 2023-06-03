@@ -4,16 +4,13 @@ import com.badlogic.gdx.assets.AssetLoaderParameters
 import com.badlogic.gdx.assets.loaders.TextureLoader
 import com.badlogic.gdx.graphics.Texture
 
-class TextureAsset(name: String) : Asset<Texture>(name) {
-    override fun directory(): String {
-        return "texture"
-    }
+class TextureAsset : Asset<Texture>() {
+    override val directory: String
+        get() = "texture"
 
-    override fun type(): Class<Texture> {
-        return Texture::class.java
-    }
+    override val type: Class<Texture>
+        get() = Texture::class.java
 
-    override fun params(): AssetLoaderParameters<Texture> {
-        return TextureLoader.TextureParameter()
-    }
+    override val params: AssetLoaderParameters<Texture>
+        get() = TextureLoader.TextureParameter()
 }
