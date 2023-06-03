@@ -2,9 +2,18 @@ package dev.ebnbin.gdx.asset
 
 import com.badlogic.gdx.assets.AssetDescriptor
 import com.badlogic.gdx.assets.AssetManager
+import com.badlogic.gdx.graphics.g2d.BitmapFont
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGeneratorLoader
+import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader
 import dev.ebnbin.gdx.utils.diff
 
 class AssetHelper(assets: Assets) : AssetManager() {
+    init {
+        setLoader(BitmapFont::class.java, ".ttf", FreetypeFontLoader(fileHandleResolver))
+        setLoader(FreeTypeFontGenerator::class.java, FreeTypeFontGeneratorLoader(fileHandleResolver))
+    }
+
     val assetSet: Set<Asset<*>> = assets.all()
 
     private val assetDescriptorMap: Map<Asset<*>, AssetDescriptor<*>> = assetSet.associateWith {
