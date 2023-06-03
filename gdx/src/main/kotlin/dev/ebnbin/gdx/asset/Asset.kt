@@ -18,27 +18,20 @@ sealed class Asset<T>(
 
     abstract val params: AssetLoaderParameters<T>
 
-    private fun assetDescriptor(): AssetDescriptor<T> {
+    /**
+     * Should only be called by [AssetHelper].
+     */
+    internal fun createAssetDescriptor(): AssetDescriptor<T> {
         val file = Gdx.files.internal("$directory/$name${if (extension == "") "" else ".$extension"}")
         return AssetDescriptor(file, type, params)
     }
 
     fun get(): T {
-        val assetDescriptor = assetDescriptor()
-        return if (baseGame.assetHelper.isLoaded(assetDescriptor)) {
-            baseGame.assetHelper.get(assetDescriptor)
-        } else {
-            baseGame.assetHelper.load(assetDescriptor)
-            baseGame.assetHelper.finishLoadingAsset(assetDescriptor)
-        }
+        return baseGame.assetHelper.get(this)
     }
 
     fun unload() {
-        val assetDescriptor = assetDescriptor()
-        if (!baseGame.assetHelper.isLoaded(assetDescriptor)) {
-            return
-        }
-        baseGame.assetHelper.unload(assetDescriptor.fileName)
+        baseGame.assetHelper.unload(this)
     }
 
     override fun equals(other: Any?): Boolean {

@@ -44,7 +44,7 @@ abstract class BaseGame : ApplicationListener {
     override fun create() {
         created = true
         initAssets()
-        assetHelper = AssetHelper()
+        assetHelper = AssetHelper(assets)
         devLogStage = DevLogStage()
         devMenuStage = DevMenuStage()
     }
