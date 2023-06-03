@@ -20,13 +20,13 @@ class AquariumStage : BaseStage() {
         addActor(aquariumImage)
     }
 
-    private val clydeImage: Image =
-        Image(baseGame.assets.texture.getValue("clyde").getTextureRegionList().first()).also {
-            addActor(it)
-        }
+    private val clyde: Body = Body(baseGame.assets.texture.getValue("clyde").getTextureRegionList().first()).also {
+        it.debug()
+        addActor(it)
+    }
 
     override fun resize(width: Float, height: Float) {
         super.resize(width, height)
-        clydeImage.setPosition(width / 2f, height / 2f, Align.center)
+        clyde.setPosition(width / 2f, height / 2f, Align.center)
     }
 }
