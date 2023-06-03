@@ -1,7 +1,6 @@
 package dev.ebnbin.insaniquarium
 
 import dev.ebnbin.gdx.lifecycle.BaseGame
-import dev.ebnbin.gdx.lifecycle.Screen
 
 private var insaniquariumGame: InsaniquariumGame? = null
 
@@ -13,10 +12,15 @@ class InsaniquariumGame : BaseGame() {
         insaniquariumGame?.dispose()
         insaniquariumGame = this
         super.create()
-        screen = Screen(
-            stageList = listOf(
-                AquariumStage(),
+        loadScreen(
+            assetSet = setOf(
+                assets.texture.getValue("aquarium_a"),
             ),
+            createStageList = {
+                listOf(
+                    AquariumStage(),
+                )
+            },
         )
     }
 

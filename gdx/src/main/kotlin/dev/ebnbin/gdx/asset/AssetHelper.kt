@@ -15,14 +15,12 @@ class AssetHelper(assets: Assets) : AssetManager() {
         return assetDescriptorMap.getValue(asset) as AssetDescriptor<T>
     }
 
+    fun <T> load(asset: Asset<T>) {
+        load(assetDescriptor(asset))
+    }
+
     fun <T> get(asset: Asset<T>): T {
-        val assetDescriptor = assetDescriptor(asset)
-        return if (isLoaded(assetDescriptor)) {
-            get(assetDescriptor)
-        } else {
-            load(assetDescriptor)
-            finishLoadingAsset(assetDescriptor)
-        }
+        return get(assetDescriptor(asset))
     }
 
     fun <T> unload(asset: Asset<T>) {

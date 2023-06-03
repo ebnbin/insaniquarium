@@ -4,10 +4,12 @@ import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
+import dev.ebnbin.gdx.asset.Asset
 import dev.ebnbin.gdx.asset.AssetHelper
 import dev.ebnbin.gdx.asset.Assets
 import dev.ebnbin.gdx.dev.DevLogStage
 import dev.ebnbin.gdx.dev.DevMenuStage
+import dev.ebnbin.gdx.loading.LoadingStage
 import dev.ebnbin.gdx.utils.act
 import dev.ebnbin.gdx.utils.dispose
 import dev.ebnbin.gdx.utils.draw
@@ -29,9 +31,11 @@ abstract class BaseGame : ApplicationListener {
 
     private lateinit var devLogStage: DevLogStage
     private lateinit var devMenuStage: DevMenuStage
+    private lateinit var loadingStage: LoadingStage
 
     private fun stageList(): List<BaseStage> {
         return (screen?.stageList ?: emptyList()) + listOf(
+            loadingStage,
             devMenuStage,
             devLogStage,
         )
@@ -47,6 +51,7 @@ abstract class BaseGame : ApplicationListener {
         assetHelper = AssetHelper(assets)
         devLogStage = DevLogStage()
         devMenuStage = DevMenuStage()
+        loadingStage = LoadingStage()
     }
 
     private fun initAssets() {
@@ -91,6 +96,7 @@ abstract class BaseGame : ApplicationListener {
     override fun dispose() {
         resized = false
         screen = null
+        loadingStage.dispose()
         devMenuStage.dispose()
         devLogStage.dispose()
         assetHelper.dispose()
@@ -98,7 +104,7 @@ abstract class BaseGame : ApplicationListener {
     }
 
     var screen: Screen? = null
-        set(value) {
+        internal set(value) {
             val resized = resized
             val resumed = resumed
             if (resumed) {
@@ -113,4 +119,11 @@ abstract class BaseGame : ApplicationListener {
                 field?.stageList?.resume()
             }
         }
+
+    fun loadScreen(
+        assetSet: Set<Asset<*>>,
+        createStageList: () -> List<BaseStage>,
+    ) {
+        loadingStage.load(assetSet, createStageList)
+    }
 }
