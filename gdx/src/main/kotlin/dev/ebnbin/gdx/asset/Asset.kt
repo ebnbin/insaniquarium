@@ -11,6 +11,8 @@ sealed class Asset<T>(
     val name: String = "",
     @Expose
     val extension: String? = null,
+    @Expose
+    val preload: Boolean? = null,
 ) {
     abstract val directory: String
 

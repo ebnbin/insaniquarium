@@ -2,7 +2,8 @@
   "freeType": {
     "gdx_dev": {
       "fontFileName": "gdx_noto_sans_mono",
-      "name": "gdx_dev"
+      "name": "gdx_dev",
+      "preload": true
     }
   },
   "texture": {}

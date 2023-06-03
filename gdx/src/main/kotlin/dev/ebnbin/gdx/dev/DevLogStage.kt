@@ -11,7 +11,7 @@ import dev.ebnbin.gdx.utils.UnitFitViewport
 import dev.ebnbin.gdx.utils.colorMarkup
 
 class DevLogStage : BaseStage(viewport = UnitFitViewport()) {
-    private val bitmapFont: BitmapFont = BitmapFont().also {
+    private val bitmapFont: BitmapFont = baseGame.assets.freeType.getValue("gdx_dev").get().also {
         it.data.markupEnabled = true
     }
 
@@ -43,11 +43,6 @@ class DevLogStage : BaseStage(viewport = UnitFitViewport()) {
         leftLabel.setText(leftLogText)
         val rightLogText = createLogMap().logText(delta)
         rightLabel.setText(rightLogText)
-    }
-
-    override fun dispose() {
-        bitmapFont.dispose()
-        super.dispose()
     }
 
     companion object {

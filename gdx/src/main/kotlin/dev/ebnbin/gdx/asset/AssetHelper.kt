@@ -25,6 +25,15 @@ class AssetHelper(assets: Assets) : AssetManager() {
         return assetDescriptorMap.getValue(asset) as AssetDescriptor<T>
     }
 
+    init {
+        assetSet
+            .filter { it.preload == true }
+            .forEach {
+                load(it)
+                finishLoadingAsset(assetDescriptor(it))
+            }
+    }
+
     fun <T> load(asset: Asset<T>) {
         load(assetDescriptor(asset))
     }
