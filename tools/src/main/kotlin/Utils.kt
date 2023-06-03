@@ -4,10 +4,15 @@ import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
 import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 
 fun Int.toColor(): Color {
     return Color(this, true)
 }
+
+val Int.colorIsTransparent: Boolean
+    get() = toColor().alpha == 0
 
 val Int.colorIsOpaque: Boolean
     get() = toColor().alpha == 255
@@ -154,4 +159,26 @@ fun Graphics2D.drawScaledImage(
     val scaled = sub.getScaledInstance(dstWidth, dstHeight, BufferedImage.SCALE_DEFAULT)
     drawImage(scaled, dstX, dstY, null)
     return this
+}
+
+fun BufferedImage.nonTransparentSize(): Pair<Int, Int> {
+    var xFirst = width - 1
+    var xLast = 0
+    var yFirst = height - 1
+    var yLast = 0
+    for (y in 0 until height) {
+        for (x in 0 until width) {
+            if (getRGB(x, y).colorIsTransparent) {
+                continue
+            }
+            xFirst = min(xFirst, x)
+            xLast = max(xLast, x)
+            yFirst = min(yFirst, y)
+            yLast = max(yLast, y)
+        }
+    }
+    require(xFirst <= xLast && yFirst <= yLast)
+    val width = xLast - xFirst + 1
+    val height = yLast - yFirst + 1
+    return width to height
 }

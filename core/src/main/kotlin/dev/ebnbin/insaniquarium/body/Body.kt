@@ -2,15 +2,16 @@ package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.Actor
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.game
 
 class Body(id: String) : Actor() {
-    private val bodyConfig: BodyConfig = game.config.body.getValue(id)
+    private val config: BodyConfig = game.config.body.getValue(id)
 
     private val textureRegion: TextureRegion =
-        game.assets.texture.getValue(bodyConfig.assetId).getTextureRegionList().first()
+        game.assets.texture.getValue(config.assetId).getTextureRegionList().first()
 
     init {
         setSize(textureRegion.regionWidth.toFloat().unitToMeter, textureRegion.regionHeight.toFloat().unitToMeter)
@@ -35,6 +36,16 @@ class Body(id: String) : Actor() {
             textureRegion.regionHeight,
             textureRegion.isFlipX,
             textureRegion.isFlipY,
+        )
+    }
+
+    override fun drawDebugBounds(shapes: ShapeRenderer) {
+        super.drawDebugBounds(shapes)
+        shapes.rect(
+            x + (width - config.width) / 2f,
+            y + (height - config.height) / 2f,
+            config.width,
+            config.height,
         )
     }
 }

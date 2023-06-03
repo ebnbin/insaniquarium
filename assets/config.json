@@ -2,6 +2,9 @@
   "body": {
     "clyde": {
       "id": "clyde",
+      "width": 0.135,
+      "height": 0.14,
+      "depth": 0.135,
       "assetId": "clyde"
     }
   }

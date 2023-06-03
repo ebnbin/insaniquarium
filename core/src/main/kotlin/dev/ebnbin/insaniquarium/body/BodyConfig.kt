@@ -6,5 +6,11 @@ data class BodyConfig(
     @Expose
     val id: String,
     @Expose
+    val width: Float,
+    @Expose
+    val height: Float,
+    @Expose
+    val depth: Float,
+    @Expose
     val assetId: String,
 )

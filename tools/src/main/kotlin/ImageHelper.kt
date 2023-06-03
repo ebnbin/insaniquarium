@@ -1,3 +1,5 @@
+import dev.ebnbin.gdx.utils.unitToMeter
+import dev.ebnbin.insaniquarium.body.BodyConfig
 import java.io.File
 
 object ImageHelper {
@@ -19,13 +21,27 @@ object ImageHelper {
         srcFile: File,
         srcMaskFile: File,
         dstFile: File,
-    ) {
+    ): BodyConfig {
+        var bodyConfig: BodyConfig
         srcFile
             .readImage()
             .mask(srcMaskFile.readImage())
             .scale(1200, 120)
             .split(1, 10)
+            .also {
+                val nonTransparentSize = it.first().nonTransparentSize()
+                val width = nonTransparentSize.first.toFloat().unitToMeter
+                val height = nonTransparentSize.second.toFloat().unitToMeter
+                bodyConfig = BodyConfig(
+                    id = "clyde",
+                    width = width,
+                    height = height,
+                    depth = width,
+                    assetId = "clyde",
+                )
+            }
             .pack()
             .write(dstFile)
+        return bodyConfig
     }
 }
