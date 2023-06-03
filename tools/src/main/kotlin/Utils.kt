@@ -1,7 +1,38 @@
+import java.awt.Color
 import java.awt.Graphics2D
 import java.awt.image.BufferedImage
 import java.io.File
 import javax.imageio.ImageIO
+import kotlin.math.abs
+
+fun Int.toColor(): Color {
+    return Color(this, true)
+}
+
+val Int.colorIsOpaque: Boolean
+    get() = toColor().alpha == 255
+
+val Int.colorGray: Int
+    get() {
+        val color = toColor()
+        require(color.alpha == 255 && color.red == color.green && color.green == color.blue)
+        return color.red
+    }
+
+fun Int.colorCopy(
+    red: Int? = null,
+    green: Int? = null,
+    blue: Int? = null,
+    alpha: Int? = null,
+): Int {
+    val color = toColor()
+    return Color(
+        red ?: color.red,
+        green ?: color.green,
+        blue ?: color.blue,
+        alpha ?: color.alpha,
+    ).rgb
+}
 
 fun createImage(width: Int, height: Int): BufferedImage {
     return BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB)
@@ -14,10 +45,91 @@ fun File.readImage(): BufferedImage {
 fun BufferedImage.write(file: File) {
     require(file.extension == "png")
     val dir = file.parentFile
-    if (!dir.exists()) {
+    if (dir != null && !dir.exists()) {
         require(dir.mkdirs())
     }
     require(ImageIO.write(this, "png", file))
+}
+
+fun BufferedImage.mapPixel(transform: (x: Int, y: Int, color: Int) -> Int): BufferedImage {
+    return createImage(width, height).also {
+        for (y in 0 until height) {
+            for (x in 0 until width) {
+                it.setRGB(x, y, transform(x, y, getRGB(x, y)))
+            }
+        }
+    }
+}
+
+fun BufferedImage.mask(maskImage: BufferedImage): BufferedImage {
+    require(width == maskImage.width && height == maskImage.height)
+    return mapPixel { x, y, color ->
+        require(color.colorIsOpaque)
+        color.colorCopy(alpha = maskImage.getRGB(x, y).colorGray)
+    }
+}
+
+fun BufferedImage.scale(width: Int, height: Int): BufferedImage {
+    return createImage(width, height).useGraphics {
+        drawImage(getScaledInstance(width, height, BufferedImage.SCALE_DEFAULT), 0, 0, null)
+    }
+}
+
+fun BufferedImage.split(row: Int, column: Int): List<BufferedImage> {
+    require(row > 0 && column > 0)
+    require(width % column == 0 && height % row == 0)
+    val tileWidth = width / column
+    val tileHeight = height / row
+    val list = mutableListOf<BufferedImage>()
+    for (rowIndex in 0 until row) {
+        for (columnIndex in 0 until column) {
+            list.add(getSubimage(columnIndex * tileWidth, rowIndex * tileHeight, tileWidth, tileHeight))
+        }
+    }
+    return list
+}
+
+fun List<BufferedImage>.pack(): BufferedImage {
+    val first = first()
+    if (size == 1) {
+        return first
+    }
+    val tileWidth = first.width
+    val tileHeight = first.height
+    require(all { it.width == tileWidth && it.height == tileHeight })
+
+    fun rowColumn(): Pair<Int, Int> {
+        var minDiff = Int.MAX_VALUE
+        var row = 1
+        var column = size
+        for (currentRow in 1..size) {
+            if (size % currentRow != 0) {
+                continue
+            }
+            val currentColumn = size / currentRow
+            val width = currentColumn * tileWidth
+            val height = currentRow * tileHeight
+            val diff = abs(width - height)
+            if (diff < minDiff) {
+                minDiff = diff
+                row = currentRow
+                column = currentColumn
+            }
+        }
+        return row to column
+    }
+
+    val (row, column) = rowColumn()
+    return createImage(column * tileWidth, row * tileHeight).useGraphics {
+        for (rowIndex in 0 until row) {
+            for (columnIndex in 0 until column) {
+                val img = get(rowIndex * column + columnIndex)
+                val x = columnIndex * tileWidth
+                val y = rowIndex * tileHeight
+                drawImage(img, x, y, null)
+            }
+        }
+    }
 }
 
 fun BufferedImage.useGraphics(block: Graphics2D.() -> Unit): BufferedImage {

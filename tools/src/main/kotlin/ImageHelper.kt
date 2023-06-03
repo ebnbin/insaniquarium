@@ -14,4 +14,18 @@ object ImageHelper {
             }
             .write(dstFile)
     }
+
+    fun clyde(
+        srcFile: File,
+        srcMaskFile: File,
+        dstFile: File,
+    ) {
+        srcFile
+            .readImage()
+            .mask(srcMaskFile.readImage())
+            .scale(1200, 120)
+            .split(1, 10)
+            .pack()
+            .write(dstFile)
+    }
 }
