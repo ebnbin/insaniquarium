@@ -9,6 +9,7 @@ import dev.ebnbin.gdx.lifecycle.BaseStage
 import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.UnitFitViewport
 import dev.ebnbin.gdx.utils.colorMarkup
+import dev.ebnbin.gdx.utils.toTimestampString
 
 class DevLogStage : BaseStage(viewport = UnitFitViewport()) {
     private val bitmapFont: BitmapFont = baseGame.assets.freeType.getValue("gdx_dev").get()
@@ -54,6 +55,12 @@ class DevLogStage : BaseStage(viewport = UnitFitViewport()) {
 
         private fun createLogMap(): Map<String, (delta: Float) -> String> {
             return mapOf(
+                "timestamp" to {
+                    val timestamp = System.currentTimeMillis()
+                    val timeText = timestamp.toTimestampString("yyyy-MM-dd,HH:mm:ss")
+                    val millisecondText = timestamp.toTimestampString(":SSS").colorMarkup(Color.GRAY)
+                    "$timeText$millisecondText"
+                },
                 "fps" to {
                     val fps = Gdx.graphics.framesPerSecond
                     val color = when {
