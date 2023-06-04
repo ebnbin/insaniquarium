@@ -20,8 +20,19 @@ class DevMenuStage : BaseStage(UnitFitViewport()) {
 
     private val menuBar: MenuBar = MenuBar().also {
         it.table.align(Align.topLeft)
-        it.addMenu(createDevMenu())
         addActor(it.table)
+    }
+
+    fun addMenu(menu: Menu) {
+        menuBar.addMenu(menu)
+    }
+
+    fun removeMenu(menu: Menu) {
+        menuBar.removeMenu(menu)
+    }
+
+    init {
+        addMenu(createDevMenu())
     }
 
     override fun resize(width: Float, height: Float) {

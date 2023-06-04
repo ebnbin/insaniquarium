@@ -1,6 +1,7 @@
 package dev.ebnbin.gdx.loading
 
 import com.badlogic.gdx.utils.viewport.Viewport
+import com.kotcrab.vis.ui.widget.Menu
 import dev.ebnbin.gdx.asset.Asset
 import dev.ebnbin.gdx.lifecycle.BaseStage
 import dev.ebnbin.gdx.lifecycle.Screen
@@ -16,10 +17,12 @@ open class LoadingStage(viewport: Viewport = UnitScreenViewport()) : BaseStage(v
 
     private lateinit var assetSet: Set<Asset<*>>
     private lateinit var createStageList: () -> List<BaseStage>
+    private var createDevMenu: ((List<BaseStage>) -> Menu)? = null
 
     fun load(
         assetSet: Set<Asset<*>>,
         createStageList: () -> List<BaseStage>,
+        createDevMenu: ((List<BaseStage>) -> Menu)? = null,
     ) {
         if (isLoading) {
             return
@@ -27,6 +30,7 @@ open class LoadingStage(viewport: Viewport = UnitScreenViewport()) : BaseStage(v
         isLoading = true
         this.assetSet = assetSet
         this.createStageList = createStageList
+        this.createDevMenu = createDevMenu
         val oldScreen = baseGame.screen
         baseGame.screen = null
         baseGame.assetHelper.loadAllDiff(
@@ -42,9 +46,11 @@ open class LoadingStage(viewport: Viewport = UnitScreenViewport()) : BaseStage(v
             return
         }
         if (baseGame.assetHelper.update()) {
+            val stageList = createStageList()
             val screen = Screen(
                 assetSet = assetSet,
-                stageList = createStageList(),
+                stageList = stageList,
+                devMenu = createDevMenu?.invoke(stageList),
             )
             baseGame.screen = screen
             isUpdating = false

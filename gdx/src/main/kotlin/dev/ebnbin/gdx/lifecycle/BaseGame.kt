@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
+import com.kotcrab.vis.ui.widget.Menu
 import dev.ebnbin.gdx.asset.Asset
 import dev.ebnbin.gdx.asset.AssetHelper
 import dev.ebnbin.gdx.asset.Assets
@@ -166,8 +167,10 @@ abstract class BaseGame : ApplicationListener {
             if (resumed) {
                 field?.stageList?.pause()
             }
+            field?.devMenu?.let { devMenuStage.removeMenu(it) }
             field?.stageList?.dispose()
             field = value
+            field?.devMenu?.let { devMenuStage.addMenu(it) }
             field?.stageList?.resize()
             if (resumed) {
                 field?.stageList?.resume()
@@ -177,8 +180,9 @@ abstract class BaseGame : ApplicationListener {
     fun loadScreen(
         assetSet: Set<Asset<*>>,
         createStageList: () -> List<BaseStage>,
+        createDevMenu: ((List<BaseStage>) -> Menu)? = null,
     ) {
-        loadingStage.load(assetSet, createStageList)
+        loadingStage.load(assetSet, createStageList, createDevMenu)
     }
 
     fun putLog(key: String, value: (delta: Float) -> String) {

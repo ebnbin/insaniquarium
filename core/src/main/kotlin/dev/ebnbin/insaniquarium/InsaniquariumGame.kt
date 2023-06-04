@@ -1,6 +1,7 @@
 package dev.ebnbin.insaniquarium
 
 import com.badlogic.gdx.Gdx
+import com.kotcrab.vis.ui.widget.Menu
 import dev.ebnbin.gdx.lifecycle.BaseGame
 import dev.ebnbin.gdx.utils.fromJson
 import dev.ebnbin.insaniquarium.aquarium.AquariumStage
@@ -35,6 +36,9 @@ class InsaniquariumGame : BaseGame() {
                     AquariumStage(),
                     TankStage(),
                 )
+            },
+            createDevMenu = {
+                Menu("aquarium")
             },
         )
     }
