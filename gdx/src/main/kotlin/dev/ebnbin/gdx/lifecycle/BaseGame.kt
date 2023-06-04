@@ -11,12 +11,14 @@ import dev.ebnbin.gdx.dev.DevLogStage
 import dev.ebnbin.gdx.dev.DevMenuStage
 import dev.ebnbin.gdx.loading.LoadingStage
 import dev.ebnbin.gdx.utils.act
+import dev.ebnbin.gdx.utils.actionTime
 import dev.ebnbin.gdx.utils.dispose
 import dev.ebnbin.gdx.utils.draw
 import dev.ebnbin.gdx.utils.fromJson
 import dev.ebnbin.gdx.utils.pause
 import dev.ebnbin.gdx.utils.resize
 import dev.ebnbin.gdx.utils.resume
+import kotlin.math.max
 
 internal lateinit var gameGetter: () -> BaseGame
 
@@ -76,13 +78,64 @@ abstract class BaseGame : ApplicationListener {
         stageList().resume()
     }
 
+    private var frameStartTime: Long = 0L
+
     override fun render() {
         if (!resumed) {
             resume()
         }
-        stageList().act(Gdx.graphics.deltaTime)
-        ScreenUtils.clear(Color.CLEAR)
-        stageList().draw()
+        val currentTime = System.nanoTime()
+        if (currentTime - frameStartTime >= 1_000_000_000L) {
+            frameStartTime = currentTime
+            actAverageTime = actTime / max(1, actCount) / 1_000_000f
+            clearAverageTime = clearTime / max(1, clearCount) / 1_000_000f
+            drawAverageTime = drawTime / max(1, drawCount) / 1_000_000f
+            actCount = 0
+            actTime = 0L
+            clearCount = 0
+            clearTime = 0L
+            drawCount = 0
+            drawTime = 0L
+        }
+        act()
+        clear()
+        draw()
+    }
+
+    private var actCount: Int = 0
+    private var actTime: Long = 0L // ns
+    internal var actAverageTime: Float = 0f // ms
+        private set
+
+    private fun act() {
+        ++actCount
+        actTime += actionTime {
+            stageList().act(Gdx.graphics.deltaTime)
+        }
+    }
+
+    private var clearCount: Int = 0
+    private var clearTime: Long = 0L // ns
+    internal var clearAverageTime: Float = 0f // ms
+        private set
+
+    private fun clear() {
+        ++clearCount
+        clearTime += actionTime {
+            ScreenUtils.clear(Color.CLEAR)
+        }
+    }
+
+    private var drawCount: Int = 0
+    private var drawTime: Long = 0L // ns
+    internal var drawAverageTime: Float = 0f // ms
+        private set
+
+    private fun draw() {
+        ++drawCount
+        drawTime += actionTime {
+            stageList().draw()
+        }
     }
 
     override fun pause() {

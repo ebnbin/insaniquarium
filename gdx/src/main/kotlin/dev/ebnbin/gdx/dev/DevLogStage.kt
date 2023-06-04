@@ -70,6 +70,13 @@ class DevLogStage : BaseStage(viewport = UnitFitViewport()) {
                     }
                     "$fps".colorMarkup(color)
                 },
+                "act,clear,draw" to {
+                    "%6.3f,%6.3f,%6.3f".format(
+                        baseGame.actAverageTime,
+                        baseGame.clearAverageTime,
+                        baseGame.drawAverageTime,
+                    )
+                },
                 "assets" to {
                     val loaded = baseGame.assetHelper.loadedAssets
                     if (baseGame.assetHelper.isFinished) {
