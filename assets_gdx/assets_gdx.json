@@ -5,6 +5,8 @@
       "size": 16.0,
       "shadowOffsetX": 1.0,
       "shadowOffsetY": 1.0,
+      "includeDefaultChars": true,
+      "characters": "",
       "name": "gdx_dev",
       "preload": true
     }
