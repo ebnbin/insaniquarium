@@ -5,6 +5,7 @@ import java.io.File
 
 fun main() {
     dev.ebnbin.gdx.Gdx.init(
+        id = "",
         gameGetter = {
             @Suppress("CAST_NEVER_SUCCEEDS")
             null as BaseGame

@@ -47,6 +47,7 @@ class InsaniquariumGame : BaseGame() {
     companion object {
         init {
             dev.ebnbin.gdx.Gdx.init(
+                id = "dev.ebnbin.insaniquarium",
                 gameGetter = ::game,
                 unitWidth = 1280f,
                 unitHeight = 720f,
