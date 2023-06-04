@@ -5,9 +5,8 @@ import dev.ebnbin.gdx.lifecycle.BaseStage
 import dev.ebnbin.gdx.utils.MeterFitViewport
 
 class TankStage : BaseStage(viewport = MeterFitViewport()) {
-    init {
-        val tank = Tank()
-        tank.setPosition(width / 2f, height / 2f, Align.center)
-        addActor(tank)
+    val tank: Tank = Tank().also {
+        it.setPosition(width / 2f, height / 2f, Align.center)
+        addActor(it)
     }
 }

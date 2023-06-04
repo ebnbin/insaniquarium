@@ -3,6 +3,7 @@ package dev.ebnbin.insaniquarium
 import com.badlogic.gdx.Gdx
 import com.kotcrab.vis.ui.widget.Menu
 import dev.ebnbin.gdx.lifecycle.BaseGame
+import dev.ebnbin.gdx.utils.createMenuItem
 import dev.ebnbin.gdx.utils.fromJson
 import dev.ebnbin.insaniquarium.aquarium.AquariumStage
 import dev.ebnbin.insaniquarium.aquarium.TankStage
@@ -38,7 +39,30 @@ class InsaniquariumGame : BaseGame() {
                 )
             },
             createDevMenu = {
-                Menu("aquarium")
+                val menu = Menu("aquarium")
+                val tankStage = it.filterIsInstance<TankStage>().single()
+                menu.createMenuItem("add body") {
+                    tankStage.tank.devAddBody()
+                }
+                menu.createMenuItem("add 10 bodies") {
+                    repeat(10) {
+                        tankStage.tank.devAddBody()
+                    }
+                }
+                menu.createMenuItem("add 100 bodies") {
+                    repeat(100) {
+                        tankStage.tank.devAddBody()
+                    }
+                }
+                menu.createMenuItem("add 1000 bodies") {
+                    repeat(1000) {
+                        tankStage.tank.devAddBody()
+                    }
+                }
+                menu.createMenuItem("clear bodies") {
+                    tankStage.tank.devClearBodies()
+                }
+                menu
             },
         )
     }

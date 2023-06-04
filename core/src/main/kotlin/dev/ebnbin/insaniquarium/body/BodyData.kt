@@ -133,6 +133,8 @@ data class BodyData(
         fun create(
             tank: Tank,
             id: String,
+            initX: Float? = null,
+            initY: Float? = null,
         ): BodyData {
             return BodyData(
                 id = id,
@@ -140,8 +142,8 @@ data class BodyData(
                 tankHeight = tank.height,
                 velocityX = 0f,
                 velocityY = 0f,
-                x = tank.width / 2f,
-                y = tank.height / 2f,
+                x = initX ?: (tank.width / 2f),
+                y = initY ?: (tank.height / 2f),
             )
         }
     }
