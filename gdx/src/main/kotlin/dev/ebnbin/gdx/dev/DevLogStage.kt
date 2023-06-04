@@ -7,11 +7,15 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.lifecycle.BaseStage
 import dev.ebnbin.gdx.lifecycle.baseGame
+import dev.ebnbin.gdx.pref.GdxPrefManager
 import dev.ebnbin.gdx.utils.UnitFitViewport
 import dev.ebnbin.gdx.utils.colorMarkup
 import dev.ebnbin.gdx.utils.toTimestampString
 
 class DevLogStage : BaseStage(viewport = UnitFitViewport()) {
+    override val isEnabled: Boolean
+        get() = GdxPrefManager.show_dev_log.data
+
     private val bitmapFont: BitmapFont = baseGame.assets.freeType.getValue("gdx_dev").get()
 
     private val leftLabel: Label = Label(null, Label.LabelStyle(bitmapFont, null)).also {

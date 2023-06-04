@@ -7,7 +7,9 @@ import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.gdx.lifecycle.BaseStage
 import dev.ebnbin.gdx.lifecycle.baseGame
+import dev.ebnbin.gdx.pref.GdxPrefManager
 import dev.ebnbin.gdx.utils.UnitFitViewport
+import dev.ebnbin.gdx.utils.createBooleanMenuItem
 import dev.ebnbin.gdx.utils.createMenuItem
 
 class DevMenuStage : BaseStage(UnitFitViewport()) {
@@ -38,6 +40,7 @@ class DevMenuStage : BaseStage(UnitFitViewport()) {
             menu.createMenuItem("restart") {
                 baseGame.restart()
             }
+            menu.createBooleanMenuItem(GdxPrefManager.show_dev_log)
             return menu
         }
     }
