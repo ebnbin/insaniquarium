@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.ScreenUtils
 import dev.ebnbin.gdx.asset.Asset
 import dev.ebnbin.gdx.asset.AssetHelper
 import dev.ebnbin.gdx.asset.Assets
+import dev.ebnbin.gdx.dev.DevGameLogStage
 import dev.ebnbin.gdx.dev.DevGdxLogStage
 import dev.ebnbin.gdx.dev.DevMenuStage
 import dev.ebnbin.gdx.loading.LoadingStage
@@ -32,6 +33,7 @@ abstract class BaseGame : ApplicationListener {
     internal lateinit var assetHelper: AssetHelper
 
     private lateinit var devGdxLogStage: DevGdxLogStage
+    private lateinit var devGameLogStage: DevGameLogStage
     private lateinit var devMenuStage: DevMenuStage
     private lateinit var loadingStage: LoadingStage
 
@@ -39,6 +41,7 @@ abstract class BaseGame : ApplicationListener {
         return (screen?.stageList ?: emptyList()) + listOf(
             loadingStage,
             devMenuStage,
+            devGameLogStage,
             devGdxLogStage,
         )
     }
@@ -51,6 +54,7 @@ abstract class BaseGame : ApplicationListener {
         initAssets()
         assetHelper = AssetHelper(assets)
         devGdxLogStage = DevGdxLogStage()
+        devGameLogStage = DevGameLogStage()
         devMenuStage = DevMenuStage()
         loadingStage = LoadingStage()
     }
@@ -150,6 +154,7 @@ abstract class BaseGame : ApplicationListener {
         screen = null
         loadingStage.dispose()
         devMenuStage.dispose()
+        devGameLogStage.dispose()
         devGdxLogStage.dispose()
         assetHelper.dispose()
         created = false
@@ -177,11 +182,11 @@ abstract class BaseGame : ApplicationListener {
     }
 
     fun putLog(key: String, value: (delta: Float) -> String) {
-        devGdxLogStage.put(key, value)
+        devGameLogStage.put(key, value)
     }
 
     fun removeLog(key: String) {
-        devGdxLogStage.remove(key)
+        devGameLogStage.remove(key)
     }
 
     fun restart() {

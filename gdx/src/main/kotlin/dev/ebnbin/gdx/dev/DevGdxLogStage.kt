@@ -14,38 +14,20 @@ import dev.ebnbin.gdx.utils.toTimestampString
 
 class DevGdxLogStage : BaseStage(viewport = UnitFitViewport()) {
     override val isEnabled: Boolean
-        get() = GdxPrefManager.show_dev_log.data
+        get() = GdxPrefManager.show_dev_gdx_log.data
 
     private val bitmapFont: BitmapFont = baseGame.assets.freeType.getValue("gdx_dev").get()
 
-    private val leftLabel: Label = Label(null, Label.LabelStyle(bitmapFont, null)).also {
-        it.setFillParent(true)
-        it.setAlignment(Align.bottomLeft)
-        addActor(it)
-    }
-
-    private val rightLabel: Label = Label(null, Label.LabelStyle(bitmapFont, null)).also {
+    private val label: Label = Label(null, Label.LabelStyle(bitmapFont, null)).also {
         it.setFillParent(true)
         it.setAlignment(Align.topRight)
         addActor(it)
     }
 
-    private val logMap: MutableMap<String, (delta: Float) -> String> = mutableMapOf()
-
-    internal fun put(key: String, value: (delta: Float) -> String) {
-        logMap[key] = value
-    }
-
-    internal fun remove(key: String) {
-        logMap.remove(key)
-    }
-
     override fun act(delta: Float) {
         super.act(delta)
-        val leftLogText = logMap.logText(delta)
-        leftLabel.setText(leftLogText)
-        val rightLogText = createLogMap().logText(delta)
-        rightLabel.setText(rightLogText)
+        val logText = createLogMap().logText(delta)
+        label.setText(logText)
     }
 
     companion object {
