@@ -37,6 +37,7 @@ object ImageHelper {
                     width = width,
                     height = height,
                     depth = width,
+                    density = null,
                     assetId = "clyde",
                 )
             }

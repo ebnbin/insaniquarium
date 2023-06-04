@@ -1,19 +1,10 @@
-import dev.ebnbin.gdx.lifecycle.BaseGame
 import dev.ebnbin.gdx.utils.toJson
 import dev.ebnbin.insaniquarium.Config
+import dev.ebnbin.insaniquarium.InsaniquariumGame
 import java.io.File
 
 fun main() {
-    dev.ebnbin.gdx.Gdx.init(
-        id = "",
-        gameGetter = {
-            @Suppress("CAST_NEVER_SUCCEEDS")
-            null as BaseGame
-        },
-        unitWidth = 1280f,
-        unitHeight = 720f,
-        unitsPerMeter = 600f,
-    )
+    InsaniquariumGame
 
     ImageHelper.aquarium(
         srcFile = File("../files/Insaniquarium Deluxe/images/aquarium1.jpg"),
