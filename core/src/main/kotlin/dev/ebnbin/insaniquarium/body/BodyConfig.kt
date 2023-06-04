@@ -12,5 +12,7 @@ data class BodyConfig(
     @Expose
     val depth: Float,
     @Expose
+    val density: Float?,
+    @Expose
     val assetId: String,
 )

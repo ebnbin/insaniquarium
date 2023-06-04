@@ -6,22 +6,20 @@ import com.badlogic.gdx.scenes.scene2d.Actor
 import dev.ebnbin.insaniquarium.aquarium.Tank
 
 class Body(
-    tank: Tank,
-    id: String,
+    val tank: Tank,
+    val id: String,
 ) : Actor() {
     init {
         debug()
     }
 
-    val data: BodyData = BodyData(
-        id = id,
-        x = tank.width / 2f,
-        y = tank.height / 2f,
-    )
+    var data: BodyData = BodyData.create(tank, id)
+        private set
 
     override fun act(delta: Float) {
         super.act(delta)
-        data.act(this, delta)
+        data = data.update(this, delta)
+        data.act(this)
     }
 
     override fun draw(batch: Batch, parentAlpha: Float) {

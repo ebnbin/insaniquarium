@@ -4,11 +4,16 @@ import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.Align
+import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.gdx.utils.unitToMeter
+import dev.ebnbin.insaniquarium.aquarium.Tank
 import dev.ebnbin.insaniquarium.game
 
 data class BodyData(
     val id: String,
+
+    val velocityX: Float,
+    val velocityY: Float,
 
     val x: Float,
     val y: Float,
@@ -28,6 +33,24 @@ data class BodyData(
     val bottom: Float = y - halfHeight
     val top: Float = bottom + height
 
+    val depth: Float = config.depth
+
+    val area: Float = width * height
+
+    val volume: Float = area * depth
+
+    val density: Float = config.density ?: World.DENSITY_WATER
+
+    val mass: Float = volume * density
+
+    //*****************************************************************************************************************
+
+    val forceX: Float = 0f
+    val forceY: Float = 0f
+
+    val accelerationX: Float = forceX / mass
+    val accelerationY: Float = forceY / mass
+
     //*****************************************************************************************************************
 
     private val textureRegion: TextureRegion =
@@ -38,7 +61,22 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    fun act(body: Body, delta: Float) {
+    fun update(body: Body, delta: Float): BodyData {
+        val nextVelocityX = velocityX + accelerationX * delta
+        val nextVelocityY = velocityY + accelerationY * delta
+
+        val nextX = x + nextVelocityX * delta
+        val nextY = y + nextVelocityY * delta
+
+        return copy(
+            velocityX = nextVelocityX,
+            velocityY = nextVelocityY,
+            x = nextX,
+            y = nextY,
+        )
+    }
+
+    fun act(body: Body) {
         body.setSize(actorWidth, actorHeight)
         body.setPosition(x, y, Align.center)
     }
@@ -66,5 +104,20 @@ data class BodyData(
 
     fun drawDebugBounds(body: Body, shapes: ShapeRenderer) {
         shapes.rect(left, bottom, width, height)
+    }
+
+    companion object {
+        fun create(
+            tank: Tank,
+            id: String,
+        ): BodyData {
+            return BodyData(
+                id = id,
+                velocityX = 0f,
+                velocityY = 0f,
+                x = tank.width / 2f,
+                y = tank.height / 2f,
+            )
+        }
     }
 }
