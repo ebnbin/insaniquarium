@@ -4,13 +4,19 @@ import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.Align
+import dev.ebnbin.gdx.lifecycle.baseGame
+import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.World
+import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.aquarium.Tank
 import dev.ebnbin.insaniquarium.game
 
 data class BodyData(
     val id: String,
+
+    val tankWidth: Float,
+    val tankHeight: Float,
 
     val velocityX: Float,
     val velocityY: Float,
@@ -33,6 +39,11 @@ data class BodyData(
     val bottom: Float = y - halfHeight
     val top: Float = bottom + height
 
+    /**
+     * Percent of body inside tank.
+     */
+    val insideTopPercent: Float = ((height + tankHeight - top) / height).minMax(0f, 1f)
+
     val depth: Float = config.depth
 
     val area: Float = width * height
@@ -45,8 +56,14 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val forceX: Float = 0f
-    val forceY: Float = 0f
+    val gravityX: Float = 0f
+    val gravityY: Float = Direction.NEGATIVE * (mass * World.G)
+
+    val buoyancyX: Float = 0f
+    val buoyancyY: Float = Direction.POSITIVE * (World.DENSITY_WATER * World.G * volume * insideTopPercent)
+
+    val forceX: Float = listOf(gravityX, buoyancyX).sum()
+    val forceY: Float = listOf(gravityY, buoyancyY).sum()
 
     val accelerationX: Float = forceX / mass
     val accelerationY: Float = forceY / mass
@@ -77,6 +94,25 @@ data class BodyData(
     }
 
     fun act(body: Body) {
+        baseGame.putLog("gravity") {
+            "$gravityX,$gravityY"
+        }
+        baseGame.putLog("buoyancy") {
+            "$buoyancyX,$buoyancyY"
+        }
+        baseGame.putLog("force") {
+            "$forceX,$forceY"
+        }
+        baseGame.putLog("acceleration") {
+            "$accelerationX,$accelerationY"
+        }
+        baseGame.putLog("velocity") {
+            "$velocityX,$velocityY"
+        }
+        baseGame.putLog("position") {
+            "$x,$y"
+        }
+
         body.setSize(actorWidth, actorHeight)
         body.setPosition(x, y, Align.center)
     }
@@ -113,6 +149,8 @@ data class BodyData(
         ): BodyData {
             return BodyData(
                 id = id,
+                tankWidth = tank.width,
+                tankHeight = tank.height,
                 velocityX = 0f,
                 velocityY = 0f,
                 x = tank.width / 2f,
