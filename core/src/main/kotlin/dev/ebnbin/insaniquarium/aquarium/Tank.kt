@@ -10,6 +10,12 @@ class Tank : Group() {
         debug()
 
         setSize(960f.unitToMeter, 600f.unitToMeter)
+
+        val clyde = Body(
+            tank = this,
+            id = "clyde",
+        )
+        addActor(clyde)
     }
 
     fun devAddBody() {

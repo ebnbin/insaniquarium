@@ -38,10 +38,20 @@ data class BodyData(
     val halfWidth: Float = width / 2f
     val halfHeight: Float = height / 2f
 
+    val minX: Float = halfWidth
+    val maxX: Float = tankWidth - halfWidth
+
+    val minY: Float = halfHeight
+    val maxY: Float = Float.MAX_VALUE
+
     val left: Float = x - halfWidth
     val right: Float = left + width
     val bottom: Float = y - halfHeight
     val top: Float = bottom + height
+
+    val isInsideLeft: Boolean = left > 0f
+    val isInsideRight: Boolean = right < tankWidth
+    val isInsideBottom: Boolean = bottom > 0f
 
     /**
      * Percent of body inside tank.
@@ -61,13 +71,27 @@ data class BodyData(
     //*****************************************************************************************************************
 
     val gravityX: Float = 0f
-    val gravityY: Float = Direction.NEGATIVE * (mass * World.G)
+    val gravityY: Float = -(mass * World.G)
 
     val buoyancyX: Float = 0f
-    val buoyancyY: Float = Direction.POSITIVE * (World.DENSITY_WATER * World.G * volume * insideTopPercent)
+    val buoyancyY: Float = +(World.DENSITY_WATER * World.G * volume * insideTopPercent)
 
-    val forceX: Float = listOf(gravityX, buoyancyX).sum()
-    val forceY: Float = listOf(gravityY, buoyancyY).sum()
+    val normalReactionX: Float = gravityX + buoyancyX
+    val normalReactionY: Float = gravityY + buoyancyY
+
+    val normalX: Float = if (!isInsideLeft && normalReactionX < 0f || !isInsideRight && normalReactionX > 0f) {
+        -normalReactionX
+    } else {
+        0f
+    }
+    val normalY: Float = if (!isInsideBottom && normalReactionY < 0f) {
+        -normalReactionY
+    } else {
+        0f
+    }
+
+    val forceX: Float = normalReactionX + normalX
+    val forceY: Float = normalReactionY + normalY
 
     val accelerationX: Float = forceX / mass
     val accelerationY: Float = forceY / mass
@@ -83,11 +107,23 @@ data class BodyData(
     //*****************************************************************************************************************
 
     fun update(body: Body, delta: Float): BodyData {
-        val nextVelocityX = velocityX + accelerationX * delta
-        val nextVelocityY = velocityY + accelerationY * delta
+        val nextVelocityX = (velocityX + accelerationX * delta).let {
+            if (!isInsideLeft && it < 0f || !isInsideRight && it > 0f) {
+                0f
+            } else {
+                it
+            }
+        }
+        val nextVelocityY = (velocityY + accelerationY * delta).let {
+            if (!isInsideBottom && it < 0f) {
+                0f
+            } else {
+                it
+            }
+        }
 
-        val nextX = x + nextVelocityX * delta
-        val nextY = y + nextVelocityY * delta
+        val nextX = (x + nextVelocityX * delta).minMax(minX, maxX)
+        val nextY = (y + nextVelocityY * delta).minMax(minY, maxY)
 
         return copy(
             velocityX = nextVelocityX,
@@ -152,31 +188,37 @@ data class BodyData(
     // dev
 
     private fun devLog() {
-        baseGame.putLog("size        ") {
+        baseGame.putLog("size          ") {
             "${width.devText()},${height.devText()},${depth.devText()}"
         }
-        baseGame.putLog("lrbt        ") {
+        baseGame.putLog("lrbt          ") {
             "${left.devText()},${right.devText()},${bottom.devText()},${top.devText()}"
         }
-        baseGame.putLog("density     ") {
+        baseGame.putLog("density       ") {
             density.devText()
         }
-        baseGame.putLog("gravity     ") {
+        baseGame.putLog("gravity       ") {
             "${gravityX.devText(XY.X)},${gravityY.devText(XY.Y)}"
         }
-        baseGame.putLog("buoyancy    ") {
+        baseGame.putLog("buoyancy      ") {
             "${buoyancyX.devText(XY.X)},${buoyancyY.devText(XY.Y)}"
         }
-        baseGame.putLog("force       ") {
+        baseGame.putLog("normalReaction") {
+            "${normalReactionX.devText(XY.X)},${normalReactionY.devText(XY.Y)}"
+        }
+        baseGame.putLog("normal        ") {
+            "${normalX.devText(XY.X)},${normalY.devText(XY.Y)}"
+        }
+        baseGame.putLog("force         ") {
             "${forceX.devText(XY.X)},${forceY.devText(XY.Y)}"
         }
-        baseGame.putLog("acceleration") {
+        baseGame.putLog("acceleration  ") {
             "${accelerationX.devText(XY.X)},${accelerationY.devText(XY.Y)}"
         }
-        baseGame.putLog("velocity    ") {
+        baseGame.putLog("velocity      ") {
             "${velocityX.devText(XY.X)},${velocityY.devText(XY.Y)}"
         }
-        baseGame.putLog("position    ") {
+        baseGame.putLog("position      ") {
             "${x.devText()},${y.devText()}"
         }
     }
