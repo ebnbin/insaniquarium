@@ -36,6 +36,7 @@ class DevGameLogStage : BaseStage(viewport = UnitFitViewport()) {
         super.act(delta)
         val logText = logMap.logText(delta)
         label.setText(logText)
+        logMap.clear()
     }
 
     companion object {
