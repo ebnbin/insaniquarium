@@ -1,5 +1,6 @@
 package dev.ebnbin.insaniquarium.body
 
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
@@ -7,6 +8,9 @@ import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.World
+import dev.ebnbin.gdx.utils.colorMarkup
+import dev.ebnbin.gdx.utils.direction
+import dev.ebnbin.gdx.utils.magnitude
 import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.aquarium.Tank
@@ -94,24 +98,7 @@ data class BodyData(
     }
 
     fun act(body: Body) {
-        baseGame.putLog("gravity") {
-            "$gravityX,$gravityY"
-        }
-        baseGame.putLog("buoyancy") {
-            "$buoyancyX,$buoyancyY"
-        }
-        baseGame.putLog("force") {
-            "$forceX,$forceY"
-        }
-        baseGame.putLog("acceleration") {
-            "$accelerationX,$accelerationY"
-        }
-        baseGame.putLog("velocity") {
-            "$velocityX,$velocityY"
-        }
-        baseGame.putLog("position") {
-            "$x,$y"
-        }
+        devLog()
 
         body.setSize(actorWidth, actorHeight)
         body.setPosition(x, y, Align.center)
@@ -157,5 +144,85 @@ data class BodyData(
                 y = tank.height / 2f,
             )
         }
+    }
+
+    //*****************************************************************************************************************
+    // dev
+
+    private fun devLog() {
+        baseGame.putLog("size        ") {
+            "${width.devText()},${height.devText()},${depth.devText()}"
+        }
+        baseGame.putLog("lrbt        ") {
+            "${left.devText()},${right.devText()},${bottom.devText()},${top.devText()}"
+        }
+        baseGame.putLog("density     ") {
+            density.devText()
+        }
+        baseGame.putLog("gravity     ") {
+            "${gravityX.devText(XY.X)},${gravityY.devText(XY.Y)}"
+        }
+        baseGame.putLog("buoyancy    ") {
+            "${buoyancyX.devText(XY.X)},${buoyancyY.devText(XY.Y)}"
+        }
+        baseGame.putLog("force       ") {
+            "${forceX.devText(XY.X)},${forceY.devText(XY.Y)}"
+        }
+        baseGame.putLog("acceleration") {
+            "${accelerationX.devText(XY.X)},${accelerationY.devText(XY.Y)}"
+        }
+        baseGame.putLog("velocity    ") {
+            "${velocityX.devText(XY.X)},${velocityY.devText(XY.Y)}"
+        }
+        baseGame.putLog("position    ") {
+            "${x.devText()},${y.devText()}"
+        }
+    }
+
+    private enum class XY {
+        X,
+        Y,
+        ;
+    }
+
+    private fun Float.devText(xy: XY? = null): String {
+        val directionText = when (direction) {
+            Direction.ZERO -> " "
+            Direction.POSITIVE -> when (xy) {
+                XY.X -> "►"
+                XY.Y -> "▲"
+                null -> "+"
+            }.colorMarkup(Color.GREEN)
+            Direction.NEGATIVE -> when (xy) {
+                XY.X -> "◄"
+                XY.Y -> "▼"
+                null -> "-"
+            }.colorMarkup(Color.RED)
+        }
+        var nonZero = false
+        val magnitudeText = "%11.6f".format(magnitude)
+            .reversed()
+            .map {
+                if (nonZero) {
+                    "$it"
+                } else {
+                    when (it) {
+                        '0' -> {
+                            "$it".colorMarkup(Color.GRAY)
+                        }
+                        '.' -> {
+                            nonZero = true
+                            "$it".colorMarkup(Color.GRAY)
+                        }
+                        else -> {
+                            nonZero = true
+                            "$it"
+                        }
+                    }
+                }
+            }
+            .reversed()
+            .joinToString("")
+        return "$directionText$magnitudeText"
     }
 }

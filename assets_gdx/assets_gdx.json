@@ -6,7 +6,7 @@
       "shadowOffsetX": 1.0,
       "shadowOffsetY": 1.0,
       "includeDefaultChars": true,
-      "characters": "",
+      "characters": "▲►▼◄",
       "name": "gdx_dev",
       "preload": true
     }
