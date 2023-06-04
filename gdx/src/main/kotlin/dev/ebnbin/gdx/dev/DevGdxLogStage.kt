@@ -12,7 +12,7 @@ import dev.ebnbin.gdx.utils.UnitFitViewport
 import dev.ebnbin.gdx.utils.colorMarkup
 import dev.ebnbin.gdx.utils.toTimestampString
 
-class DevLogStage : BaseStage(viewport = UnitFitViewport()) {
+class DevGdxLogStage : BaseStage(viewport = UnitFitViewport()) {
     override val isEnabled: Boolean
         get() = GdxPrefManager.show_dev_log.data
 
