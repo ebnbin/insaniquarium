@@ -146,12 +146,12 @@ data class BodyData(
     //*****************************************************************************************************************
 
     fun update(body: Body, delta: Float): BodyData {
-        val nextTouchAct = BodyHelper.nextTouchAct(
+        val nextTouchAct = BodyActHelper.nextTouchAct(
             configTouchAct = config.touchAct,
             touchPoint = body.tank.touchPoint,
         )
 
-        val nextSwimActX = BodyHelper.nextSwimAct(
+        val nextSwimActX = BodyActHelper.nextSwimAct(
             enabled = nextTouchAct == null,
             configSwimAct = config.swimActX,
             swimAct = swimActX,
@@ -159,7 +159,7 @@ data class BodyData(
             containDrivingTarget = containDrivingTargetX,
             delta = delta,
         )
-        val nextSwimActY = BodyHelper.nextSwimAct(
+        val nextSwimActY = BodyActHelper.nextSwimAct(
             enabled = nextTouchAct == null,
             configSwimAct = config.swimActY,
             swimAct = swimActY,

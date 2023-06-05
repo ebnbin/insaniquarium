@@ -3,7 +3,7 @@ package dev.ebnbin.insaniquarium.body
 import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
 
-object BodyHelper {
+object BodyActHelper {
     fun nextTouchAct(
         configTouchAct: BodyConfig.TouchAct?,
         touchPoint: Point?,
