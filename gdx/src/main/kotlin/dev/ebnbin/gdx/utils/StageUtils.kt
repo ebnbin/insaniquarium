@@ -2,6 +2,7 @@ package dev.ebnbin.gdx.utils
 
 import com.badlogic.gdx.Gdx
 import dev.ebnbin.gdx.lifecycle.BaseStage
+import dev.ebnbin.gdx.pref.GdxPrefManager
 
 fun List<BaseStage>.resize(width: Int = Gdx.graphics.width, height: Int = Gdx.graphics.height) {
     forEach {
@@ -19,6 +20,7 @@ fun List<BaseStage>.resume() {
 
 fun List<BaseStage>.act(delta: Float) {
     filter { it.isEnabled }.forEach {
+        it.isDebugAll = GdxPrefManager.is_debug_all.data
         it.act(delta)
     }
 }

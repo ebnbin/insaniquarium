@@ -11,10 +11,6 @@ class Body(
     initX: Float? = null,
     initY: Float? = null,
 ) : Actor() {
-    init {
-        debug()
-    }
-
     var data: BodyData = BodyData.create(tank, id, initX, initY)
         private set
 
@@ -22,7 +18,9 @@ class Body(
         super.act(delta)
         data = data.update(this, delta)
         data.act(this)
-        data.actDebug(this, delta)
+        if (debug) {
+            data.actDebug(this, delta)
+        }
     }
 
     override fun draw(batch: Batch, parentAlpha: Float) {

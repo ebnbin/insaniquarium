@@ -16,4 +16,9 @@ object GdxPrefManager : PrefManager("gdx") {
         key = "show_dev_game_log",
         defaultValue = false,
     )
+    val is_debug_all: SimplePref<Boolean> = SimplePref(
+        prefManager = this,
+        key = "is_debug_all",
+        defaultValue = false,
+    )
 }

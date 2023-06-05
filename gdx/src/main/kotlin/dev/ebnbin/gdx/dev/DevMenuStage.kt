@@ -52,6 +52,7 @@ class DevMenuStage : BaseStage(UnitFitViewport()) {
             menu.createBooleanMenuItem(GdxPrefManager.use_fixed_delta)
             menu.createBooleanMenuItem(GdxPrefManager.show_dev_gdx_log)
             menu.createBooleanMenuItem(GdxPrefManager.show_dev_game_log)
+            menu.createBooleanMenuItem(GdxPrefManager.is_debug_all)
             return menu
         }
     }
