@@ -12,6 +12,7 @@ import dev.ebnbin.gdx.utils.colorMarkup
 import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.magnitude
 import dev.ebnbin.gdx.utils.minMax
+import dev.ebnbin.gdx.utils.trim
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.aquarium.Tank
 import dev.ebnbin.insaniquarium.game
@@ -103,8 +104,8 @@ data class BodyData(
     val forceX: Float = normalReactionX + normalX
     val forceY: Float = normalReactionY + normalY
 
-    val accelerationX: Float = forceX / mass
-    val accelerationY: Float = forceY / mass
+    val accelerationX: Float = (forceX / mass).trim() // float number
+    val accelerationY: Float = (forceY / mass).trim()
 
     //*****************************************************************************************************************
 
