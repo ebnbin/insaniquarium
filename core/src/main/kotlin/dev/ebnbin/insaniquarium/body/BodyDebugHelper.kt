@@ -11,43 +11,40 @@ import dev.ebnbin.gdx.utils.magnitude
 
 object BodyDebugHelper {
     fun act(data: BodyData, body: Body, delta: Float) {
-        baseGame.putLog("size          ") {
+        baseGame.putLog("size            ") {
             "${data.width.devText()},${data.height.devText()},${data.depth.devText()}"
         }
-        baseGame.putLog("lrbt          ") {
+        baseGame.putLog("lrbt            ") {
             "${data.left.devText()},${data.right.devText()},${data.bottom.devText()},${data.top.devText()}"
         }
-        baseGame.putLog("density       ") {
+        baseGame.putLog("density         ") {
             data.density.devText()
         }
-        baseGame.putLog("gravity       ") {
-            "${data.gravityX.devText(XY.X)},${data.gravityY.devText(XY.Y)}"
+        baseGame.putLog("gravity,buoyancy") {
+            "${data.gravityY.devText(XY.Y)},${data.buoyancyY.devText(XY.Y)}"
         }
-        baseGame.putLog("buoyancy      ") {
-            "${data.buoyancyX.devText(XY.X)},${data.buoyancyY.devText(XY.Y)}"
-        }
-        baseGame.putLog("drag          ") {
+        baseGame.putLog("drag            ") {
             "${data.dragX.devText(XY.X)},${data.dragY.devText(XY.Y)}"
         }
-        baseGame.putLog("driving       ") {
+        baseGame.putLog("driving         ") {
             "${data.drivingX.devText(XY.X)},${data.drivingY.devText(XY.Y)}"
         }
-        baseGame.putLog("normalReaction") {
+        baseGame.putLog("normalReaction  ") {
             "${data.normalReactionX.devText(XY.X)},${data.normalReactionY.devText(XY.Y)}"
         }
-        baseGame.putLog("normal        ") {
+        baseGame.putLog("normal          ") {
             "${data.normalX.devText(XY.X)},${data.normalY.devText(XY.Y)}"
         }
-        baseGame.putLog("force         ") {
+        baseGame.putLog("force           ") {
             "${data.forceX.devText(XY.X)},${data.forceY.devText(XY.Y)}"
         }
-        baseGame.putLog("acceleration  ") {
+        baseGame.putLog("acceleration    ") {
             "${data.accelerationX.devText(XY.X)},${data.accelerationY.devText(XY.Y)}"
         }
-        baseGame.putLog("velocity      ") {
+        baseGame.putLog("velocity        ") {
             "${data.velocityX.devText(XY.X)},${data.velocityY.devText(XY.Y)}"
         }
-        baseGame.putLog("position      ") {
+        baseGame.putLog("position        ") {
             "${data.x.devText()},${data.y.devText()}"
         }
     }

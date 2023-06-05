@@ -107,12 +107,10 @@ data class BodyData(
 
     val dragCoefficient: Float = config.dragCoefficient ?: World.DEFAULT_DRAG_COEFFICIENT
 
-    val gravityX: Float = 0f
     val gravityY: Float = BodyForceHelper.gravityY(
         mass = mass,
     )
 
-    val buoyancyX: Float = 0f
     val buoyancyY: Float = BodyForceHelper.buoyancyY(
         volume = volume,
         insideTopPercent = insideTopPercent,
@@ -142,7 +140,7 @@ data class BodyData(
         mass = mass,
     )
 
-    val normalReactionX: Float = gravityX + buoyancyX + dragX + drivingX
+    val normalReactionX: Float = dragX + drivingX
     val normalReactionY: Float = gravityY + buoyancyY + dragY + drivingY
 
     val normalX: Float = BodyForceHelper.normal(
