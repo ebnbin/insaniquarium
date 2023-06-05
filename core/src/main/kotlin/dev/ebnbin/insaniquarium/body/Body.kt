@@ -22,6 +22,7 @@ class Body(
         super.act(delta)
         data = data.update(this, delta)
         data.act(this)
+        data.actDebug(this, delta)
     }
 
     override fun draw(batch: Batch, parentAlpha: Float) {
@@ -29,8 +30,8 @@ class Body(
         data.draw(this, batch, parentAlpha)
     }
 
-    override fun drawDebugBounds(shapes: ShapeRenderer) {
-        super.drawDebugBounds(shapes)
-        data.drawDebugBounds(this, shapes)
+    override fun drawDebug(shapes: ShapeRenderer) {
+        super.drawDebug(shapes)
+        data.drawDebug(this, shapes)
     }
 }

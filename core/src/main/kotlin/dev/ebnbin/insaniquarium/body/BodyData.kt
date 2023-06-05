@@ -1,16 +1,11 @@
 package dev.ebnbin.insaniquarium.body
 
-import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.Align
-import dev.ebnbin.gdx.lifecycle.baseGame
-import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.World
-import dev.ebnbin.gdx.utils.colorMarkup
 import dev.ebnbin.gdx.utils.direction
-import dev.ebnbin.gdx.utils.magnitude
 import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.trim
 import dev.ebnbin.gdx.utils.unitToMeter
@@ -203,8 +198,6 @@ data class BodyData(
     }
 
     fun act(body: Body) {
-        devLog()
-
         body.setSize(actorWidth, actorHeight)
         body.setPosition(x, y, Align.center)
     }
@@ -230,11 +223,17 @@ data class BodyData(
         )
     }
 
-    fun drawDebugBounds(body: Body, shapes: ShapeRenderer) {
-        shapes.rect(left, bottom, width, height)
-        drivingTargetX?.let { shapes.line(it.position, 0f, it.position, tankHeight) }
-        drivingTargetY?.let { shapes.line(0f, it.position, tankWidth, it.position) }
+    //*****************************************************************************************************************
+
+    fun actDebug(body: Body, delta: Float) {
+        BodyDebugHelper.act(this, body, delta)
     }
+
+    fun drawDebug(body: Body, shapes: ShapeRenderer) {
+        BodyDebugHelper.draw(this, body, shapes)
+    }
+
+    //*****************************************************************************************************************
 
     companion object {
         fun create(
@@ -256,97 +255,5 @@ data class BodyData(
                 swimActY = null,
             )
         }
-    }
-
-    //*****************************************************************************************************************
-    // dev
-
-    private fun devLog() {
-        baseGame.putLog("size          ") {
-            "${width.devText()},${height.devText()},${depth.devText()}"
-        }
-        baseGame.putLog("lrbt          ") {
-            "${left.devText()},${right.devText()},${bottom.devText()},${top.devText()}"
-        }
-        baseGame.putLog("density       ") {
-            density.devText()
-        }
-        baseGame.putLog("gravity       ") {
-            "${gravityX.devText(XY.X)},${gravityY.devText(XY.Y)}"
-        }
-        baseGame.putLog("buoyancy      ") {
-            "${buoyancyX.devText(XY.X)},${buoyancyY.devText(XY.Y)}"
-        }
-        baseGame.putLog("drag          ") {
-            "${dragX.devText(XY.X)},${dragY.devText(XY.Y)}"
-        }
-        baseGame.putLog("driving       ") {
-            "${drivingX.devText(XY.X)},${drivingY.devText(XY.Y)}"
-        }
-        baseGame.putLog("normalReaction") {
-            "${normalReactionX.devText(XY.X)},${normalReactionY.devText(XY.Y)}"
-        }
-        baseGame.putLog("normal        ") {
-            "${normalX.devText(XY.X)},${normalY.devText(XY.Y)}"
-        }
-        baseGame.putLog("force         ") {
-            "${forceX.devText(XY.X)},${forceY.devText(XY.Y)}"
-        }
-        baseGame.putLog("acceleration  ") {
-            "${accelerationX.devText(XY.X)},${accelerationY.devText(XY.Y)}"
-        }
-        baseGame.putLog("velocity      ") {
-            "${velocityX.devText(XY.X)},${velocityY.devText(XY.Y)}"
-        }
-        baseGame.putLog("position      ") {
-            "${x.devText()},${y.devText()}"
-        }
-    }
-
-    private enum class XY {
-        X,
-        Y,
-        ;
-    }
-
-    private fun Float.devText(xy: XY? = null): String {
-        val directionText = when (direction) {
-            Direction.ZERO -> " "
-            Direction.POSITIVE -> when (xy) {
-                XY.X -> "►"
-                XY.Y -> "▲"
-                null -> "+"
-            }.colorMarkup(Color.GREEN)
-            Direction.NEGATIVE -> when (xy) {
-                XY.X -> "◄"
-                XY.Y -> "▼"
-                null -> "-"
-            }.colorMarkup(Color.RED)
-        }
-        var nonZero = false
-        val magnitudeText = "%11.6f".format(magnitude)
-            .reversed()
-            .map {
-                if (nonZero) {
-                    "$it"
-                } else {
-                    when (it) {
-                        '0' -> {
-                            "$it".colorMarkup(Color.GRAY)
-                        }
-                        '.' -> {
-                            nonZero = true
-                            "$it".colorMarkup(Color.GRAY)
-                        }
-                        else -> {
-                            nonZero = true
-                            "$it"
-                        }
-                    }
-                }
-            }
-            .reversed()
-            .joinToString("")
-        return "$directionText$magnitudeText"
     }
 }
