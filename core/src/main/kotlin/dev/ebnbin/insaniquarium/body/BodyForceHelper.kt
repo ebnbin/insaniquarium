@@ -31,12 +31,18 @@ object BodyForceHelper {
     fun driving(
         drivingTarget: BodyData.DrivingTarget?,
         position: Float,
+        velocity: Float,
         mass: Float,
     ): Float {
         if (drivingTarget == null) {
             return 0f
         }
-        return ((drivingTarget.position - position).direction) * (drivingTarget.acceleration * mass)
+        val direction = (drivingTarget.position - position).direction
+        var magnitude = drivingTarget.acceleration * mass
+        if (direction.isOpposite(velocity.direction)) {
+            magnitude *= drivingTarget.oppositeAccelerationMultiplier
+        }
+        return direction * magnitude
     }
 
     fun normal(

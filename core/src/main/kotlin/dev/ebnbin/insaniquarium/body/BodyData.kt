@@ -42,7 +42,15 @@ data class BodyData(
     data class DrivingTarget(
         val position: Float,
         val acceleration: Float,
-    )
+        /**
+         * The acceleration multiplier when the direction of velocity is opposite to the direction of the target.
+         */
+        val oppositeAccelerationMultiplier: Float = DEFAULT_OPPOSITE_ACCELERATION_MULTIPLIER,
+    ) {
+        companion object {
+            private const val DEFAULT_OPPOSITE_ACCELERATION_MULTIPLIER = 1.5f
+        }
+    }
 
     val drivingTargetX: DrivingTarget? = touchAct?.drivingTargetX ?: swimActX?.drivingTarget
     val drivingTargetY: DrivingTarget? = touchAct?.drivingTargetY ?: swimActY?.drivingTarget
@@ -124,11 +132,13 @@ data class BodyData(
     val drivingX: Float = BodyForceHelper.driving(
         drivingTarget = drivingTargetX,
         position = x,
+        velocity = velocityX,
         mass = mass,
     )
     val drivingY: Float = BodyForceHelper.driving(
         drivingTarget = drivingTargetY,
         position = y,
+        velocity = velocityY,
         mass = mass,
     )
 
