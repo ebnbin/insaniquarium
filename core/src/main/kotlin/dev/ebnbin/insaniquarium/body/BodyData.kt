@@ -269,11 +269,11 @@ data class BodyData(
     //*****************************************************************************************************************
 
     fun actDebug(body: Body, delta: Float) {
-        BodyDebugHelper.act(this, body, delta)
+        BodyDevHelper.act(this, body, delta)
     }
 
     fun drawDebug(body: Body, shapes: ShapeRenderer) {
-        BodyDebugHelper.draw(this, body, shapes)
+        BodyDevHelper.draw(this, body, shapes)
     }
 
     //*****************************************************************************************************************

@@ -9,7 +9,7 @@ import dev.ebnbin.gdx.utils.colorMarkup
 import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.magnitude
 
-object BodyDebugHelper {
+object BodyDevHelper {
     fun act(data: BodyData, body: Body, delta: Float) {
         baseGame.putLog("size            ") {
             "${data.width.devText()},${data.height.devText()},${data.depth.devText()}"
