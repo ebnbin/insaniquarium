@@ -62,6 +62,9 @@ data class BodyData(
 
     val area: Float = width * height
 
+    val areaX: Float = height * depth
+    val areaY: Float = width * depth
+
     val volume: Float = area * depth
 
     val density: Float = config.density ?: World.DENSITY_WATER
@@ -76,8 +79,15 @@ data class BodyData(
     val buoyancyX: Float = 0f
     val buoyancyY: Float = +(World.DENSITY_WATER * World.G * volume * insideTopPercent)
 
-    val normalReactionX: Float = gravityX + buoyancyX
-    val normalReactionY: Float = gravityY + buoyancyY
+    val dragCoefficient: Float = config.dragCoefficient ?: World.DEFAULT_DRAG_COEFFICIENT
+
+    val dragX: Float =
+        -velocityX.direction * (0.5f * World.DENSITY_WATER * velocityX * velocityX * dragCoefficient * areaX)
+    val dragY: Float =
+        -velocityY.direction * (0.5f * World.DENSITY_WATER * velocityY * velocityY * dragCoefficient * areaY)
+
+    val normalReactionX: Float = gravityX + buoyancyX + dragX
+    val normalReactionY: Float = gravityY + buoyancyY + dragY
 
     val normalX: Float = if (!isInsideLeft && normalReactionX < 0f || !isInsideRight && normalReactionX > 0f) {
         -normalReactionX
@@ -202,6 +212,9 @@ data class BodyData(
         }
         baseGame.putLog("buoyancy      ") {
             "${buoyancyX.devText(XY.X)},${buoyancyY.devText(XY.Y)}"
+        }
+        baseGame.putLog("drag          ") {
+            "${dragX.devText(XY.X)},${dragY.devText(XY.Y)}"
         }
         baseGame.putLog("normalReaction") {
             "${normalReactionX.devText(XY.X)},${normalReactionY.devText(XY.Y)}"

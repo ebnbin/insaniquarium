@@ -14,5 +14,7 @@ data class BodyConfig(
     @Expose
     val density: Float?,
     @Expose
+    val dragCoefficient: Float?,
+    @Expose
     val assetId: String,
 )
