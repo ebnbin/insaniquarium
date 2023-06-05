@@ -5,9 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.utils.World
-import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.minMax
-import dev.ebnbin.gdx.utils.trim
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.aquarium.Tank
 import dev.ebnbin.insaniquarium.game
@@ -99,41 +97,66 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val gravityX: Float = 0f
-    val gravityY: Float = -(mass * World.G)
-
-    val buoyancyX: Float = 0f
-    val buoyancyY: Float = +(World.DENSITY_WATER * World.G * volume * insideTopPercent)
-
     val dragCoefficient: Float = config.dragCoefficient ?: World.DEFAULT_DRAG_COEFFICIENT
 
-    val dragX: Float =
-        -velocityX.direction * (0.5f * World.DENSITY_WATER * velocityX * velocityX * dragCoefficient * areaX)
-    val dragY: Float =
-        -velocityY.direction * (0.5f * World.DENSITY_WATER * velocityY * velocityY * dragCoefficient * areaY)
+    val gravityX: Float = 0f
+    val gravityY: Float = BodyForceHelper.gravityY(
+        mass = mass,
+    )
 
-    val drivingX: Float = drivingTargetX?.let { ((it.position - x).direction) * (it.acceleration * mass) } ?: 0f
-    val drivingY: Float = drivingTargetY?.let { ((it.position - y).direction) * (it.acceleration * mass) } ?: 0f
+    val buoyancyX: Float = 0f
+    val buoyancyY: Float = BodyForceHelper.buoyancyY(
+        volume = volume,
+        insideTopPercent = insideTopPercent,
+    )
+
+    val dragX: Float = BodyForceHelper.drag(
+        dragCoefficient = dragCoefficient,
+        velocity = velocityX,
+        referenceArea = areaX,
+    )
+    val dragY: Float = BodyForceHelper.drag(
+        dragCoefficient = dragCoefficient,
+        velocity = velocityY,
+        referenceArea = areaY,
+    )
+
+    val drivingX: Float = BodyForceHelper.driving(
+        drivingTarget = drivingTargetX,
+        position = x,
+        mass = mass,
+    )
+    val drivingY: Float = BodyForceHelper.driving(
+        drivingTarget = drivingTargetY,
+        position = y,
+        mass = mass,
+    )
 
     val normalReactionX: Float = gravityX + buoyancyX + dragX + drivingX
     val normalReactionY: Float = gravityY + buoyancyY + dragY + drivingY
 
-    val normalX: Float = if (!isInsideLeft && normalReactionX < 0f || !isInsideRight && normalReactionX > 0f) {
-        -normalReactionX
-    } else {
-        0f
-    }
-    val normalY: Float = if (!isInsideBottom && normalReactionY < 0f) {
-        -normalReactionY
-    } else {
-        0f
-    }
+    val normalX: Float = BodyForceHelper.normal(
+        isInsideLeftOrBottom = isInsideLeft,
+        isInsideRightOrTop = isInsideRight,
+        normalReaction = normalReactionX,
+    )
+    val normalY: Float = BodyForceHelper.normal(
+        isInsideLeftOrBottom = isInsideBottom,
+        isInsideRightOrTop = true,
+        normalReaction = normalReactionY,
+    )
 
     val forceX: Float = normalReactionX + normalX
     val forceY: Float = normalReactionY + normalY
 
-    val accelerationX: Float = (forceX / mass).trim() // float number
-    val accelerationY: Float = (forceY / mass).trim()
+    val accelerationX: Float = BodyForceHelper.acceleration(
+        force = forceX,
+        mass = mass,
+    )
+    val accelerationY: Float = BodyForceHelper.acceleration(
+        force = forceY,
+        mass = mass,
+    )
 
     //*****************************************************************************************************************
 
@@ -168,23 +191,35 @@ data class BodyData(
             delta = delta,
         )
 
-        val nextVelocityX = (velocityX + accelerationX * delta).let {
-            if (!isInsideLeft && it < 0f || !isInsideRight && it > 0f) {
-                0f
-            } else {
-                it
-            }
-        }
-        val nextVelocityY = (velocityY + accelerationY * delta).let {
-            if (!isInsideBottom && it < 0f) {
-                0f
-            } else {
-                it
-            }
-        }
+        val nextVelocityX = BodyForceHelper.nextVelocity(
+            velocity = velocityX,
+            acceleration = accelerationX,
+            isInsideLeftOrBottom = isInsideLeft,
+            isInsideRightOrTop = isInsideRight,
+            delta = delta,
+        )
+        val nextVelocityY = BodyForceHelper.nextVelocity(
+            velocity = velocityY,
+            acceleration = accelerationY,
+            isInsideLeftOrBottom = isInsideBottom,
+            isInsideRightOrTop = true,
+            delta = delta,
+        )
 
-        val nextX = (x + nextVelocityX * delta).minMax(minX, maxX)
-        val nextY = (y + nextVelocityY * delta).minMax(minY, maxY)
+        val nextX = BodyForceHelper.nextPosition(
+            position = x,
+            velocity = nextVelocityX,
+            minPosition = minX,
+            maxPosition = maxX,
+            delta = delta,
+        )
+        val nextY = BodyForceHelper.nextPosition(
+            position = y,
+            velocity = nextVelocityY,
+            minPosition = minY,
+            maxPosition = maxY,
+            delta = delta,
+        )
 
         return copy(
             velocityX = nextVelocityX,
