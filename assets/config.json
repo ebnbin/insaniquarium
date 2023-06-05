@@ -5,6 +5,20 @@
       "width": 0.135,
       "height": 0.14,
       "depth": 0.135,
+      "touchAct": {
+        "accelerationX": 0.4,
+        "accelerationY": 0.25
+      },
+      "swimActX": {
+        "acceleration": 0.2,
+        "idlingTimeRandomStart": 2.0,
+        "idlingTimeRandomEnd": 8.0
+      },
+      "swimActY": {
+        "acceleration": 0.125,
+        "idlingTimeRandomStart": 2.0,
+        "idlingTimeRandomEnd": 8.0
+      },
       "assetId": "clyde"
     }
   }

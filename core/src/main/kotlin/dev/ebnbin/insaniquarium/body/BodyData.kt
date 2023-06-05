@@ -23,19 +23,36 @@ data class BodyData(
     val tankWidth: Float,
     val tankHeight: Float,
 
-    val drivingTargetX: DrivingTarget?,
-    val drivingTargetY: DrivingTarget?,
-
     val velocityX: Float,
     val velocityY: Float,
 
     val x: Float,
     val y: Float,
+
+    val touchAct: TouchAct?,
+
+    val swimActX: SwimAct?,
+    val swimActY: SwimAct?,
 ) {
+    data class TouchAct(
+        val drivingTargetX: DrivingTarget,
+        val drivingTargetY: DrivingTarget,
+    )
+
+    data class SwimAct(
+        val drivingTarget: DrivingTarget?,
+        val remainingTime: Float,
+    )
+
+    //*****************************************************************************************************************
+
     data class DrivingTarget(
         val position: Float,
         val acceleration: Float,
     )
+
+    val drivingTargetX: DrivingTarget? = touchAct?.drivingTargetX ?: swimActX?.drivingTarget
+    val drivingTargetY: DrivingTarget? = touchAct?.drivingTargetY ?: swimActY?.drivingTarget
 
     //*****************************************************************************************************************
 
@@ -68,6 +85,9 @@ data class BodyData(
      * Percent of body inside tank.
      */
     val insideTopPercent: Float = ((height + tankHeight - top) / height).minMax(0f, 1f)
+
+    val containDrivingTargetX: Boolean = drivingTargetX?.position?.let { it in left..right } ?: false
+    val containDrivingTargetY: Boolean = drivingTargetY?.position?.let { it in bottom..top } ?: false
 
     val depth: Float = config.depth
 
@@ -131,8 +151,27 @@ data class BodyData(
     //*****************************************************************************************************************
 
     fun update(body: Body, delta: Float): BodyData {
-        val nextDrivingTargetX = body.tank.touchX?.let { DrivingTarget(it, acceleration = 0.4f) }
-        val nextDrivingTargetY = body.tank.touchY?.let { DrivingTarget(it, acceleration = 0.25f) }
+        val nextTouchAct = BodyHelper.nextTouchAct(
+            configTouchAct = config.touchAct,
+            touchPoint = body.tank.touchPoint,
+        )
+
+        val nextSwimActX = BodyHelper.nextSwimAct(
+            enabled = nextTouchAct == null,
+            configSwimAct = config.swimActX,
+            swimAct = swimActX,
+            tankSize = tankWidth,
+            containDrivingTarget = containDrivingTargetX,
+            delta = delta,
+        )
+        val nextSwimActY = BodyHelper.nextSwimAct(
+            enabled = nextTouchAct == null,
+            configSwimAct = config.swimActY,
+            swimAct = swimActY,
+            tankSize = tankHeight,
+            containDrivingTarget = containDrivingTargetY,
+            delta = delta,
+        )
 
         val nextVelocityX = (velocityX + accelerationX * delta).let {
             if (!isInsideLeft && it < 0f || !isInsideRight && it > 0f) {
@@ -153,12 +192,13 @@ data class BodyData(
         val nextY = (y + nextVelocityY * delta).minMax(minY, maxY)
 
         return copy(
-            drivingTargetX = nextDrivingTargetX,
-            drivingTargetY = nextDrivingTargetY,
             velocityX = nextVelocityX,
             velocityY = nextVelocityY,
             x = nextX,
             y = nextY,
+            touchAct = nextTouchAct,
+            swimActX = nextSwimActX,
+            swimActY = nextSwimActY,
         )
     }
 
@@ -192,6 +232,8 @@ data class BodyData(
 
     fun drawDebugBounds(body: Body, shapes: ShapeRenderer) {
         shapes.rect(left, bottom, width, height)
+        drivingTargetX?.let { shapes.line(it.position, 0f, it.position, tankHeight) }
+        drivingTargetY?.let { shapes.line(0f, it.position, tankWidth, it.position) }
     }
 
     companion object {
@@ -205,12 +247,13 @@ data class BodyData(
                 id = id,
                 tankWidth = tank.width,
                 tankHeight = tank.height,
-                drivingTargetX = null,
-                drivingTargetY = null,
                 velocityX = 0f,
                 velocityY = 0f,
                 x = initX ?: (tank.width / 2f),
                 y = initY ?: (tank.height / 2f),
+                touchAct = null,
+                swimActX = null,
+                swimActY = null,
             )
         }
     }
