@@ -4,9 +4,9 @@ import com.badlogic.gdx.scenes.scene2d.Group
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
 import dev.ebnbin.gdx.utils.Point
+import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.body.Body
-import kotlin.random.Random
 
 class Tank : Group() {
     init {
@@ -45,8 +45,8 @@ class Tank : Group() {
         val body = Body(
             tank = this,
             id = "clyde",
-            initX = Random.nextFloat() * width,
-            initY = Random.nextFloat() * height,
+            initX = Random.nextFloat(0f, width),
+            initY = Random.nextFloat(0f, height),
         )
         addActor(body)
     }

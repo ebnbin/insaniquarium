@@ -1,7 +1,7 @@
 package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.utils.Point
-import kotlin.random.Random
+import dev.ebnbin.gdx.utils.Random
 
 object BodyHelper {
     fun nextTouchAct(
@@ -44,7 +44,7 @@ object BodyHelper {
         fun createTargetingSwimAct(): BodyData.SwimAct {
             return BodyData.SwimAct(
                 drivingTarget = BodyData.DrivingTarget(
-                    position = Random.nextFloat() * tankSize,
+                    position = Random.nextFloat(0f, tankSize),
                     acceleration = configSwimAct.acceleration,
                 ),
                 remainingTime = Float.MAX_VALUE,
@@ -54,8 +54,10 @@ object BodyHelper {
         fun createIdlingSwimAct(): BodyData.SwimAct {
             return BodyData.SwimAct(
                 drivingTarget = null,
-                remainingTime = configSwimAct.idlingTimeRandomStart +
-                    Random.nextFloat() * (configSwimAct.idlingTimeRandomEnd - configSwimAct.idlingTimeRandomStart),
+                remainingTime = Random.nextFloat(
+                    configSwimAct.idlingTimeRandomStart,
+                    configSwimAct.idlingTimeRandomEnd,
+                ),
             )
         }
 
