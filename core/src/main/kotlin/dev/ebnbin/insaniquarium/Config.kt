@@ -5,5 +5,5 @@ import dev.ebnbin.insaniquarium.body.BodyConfig
 
 data class Config(
     @Expose
-    val body: Map<String, BodyConfig>,
+    val body: Map<String, BodyConfig> = emptyMap(),
 )

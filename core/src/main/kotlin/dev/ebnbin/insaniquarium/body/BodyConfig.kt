@@ -4,17 +4,17 @@ import com.google.gson.annotations.Expose
 
 data class BodyConfig(
     @Expose
-    val id: String,
+    val id: String = "",
     @Expose
-    val width: Float,
+    val width: Float = 0f,
     @Expose
-    val height: Float,
+    val height: Float = 0f,
     @Expose
-    val depth: Float,
+    val depth: Float = 0f,
     @Expose
-    val density: Float?,
+    val density: Float? = null,
     @Expose
-    val dragCoefficient: Float?,
+    val dragCoefficient: Float? = null,
     @Expose
-    val assetId: String,
+    val assetId: String = "",
 )
