@@ -12,6 +12,7 @@ import dev.ebnbin.gdx.dev.DevGameLogStage
 import dev.ebnbin.gdx.dev.DevGdxLogStage
 import dev.ebnbin.gdx.dev.DevMenuStage
 import dev.ebnbin.gdx.loading.LoadingStage
+import dev.ebnbin.gdx.pref.GdxPrefManager
 import dev.ebnbin.gdx.utils.act
 import dev.ebnbin.gdx.utils.actionTime
 import dev.ebnbin.gdx.utils.dispose
@@ -21,6 +22,7 @@ import dev.ebnbin.gdx.utils.pause
 import dev.ebnbin.gdx.utils.resize
 import dev.ebnbin.gdx.utils.resume
 import kotlin.math.max
+import kotlin.math.min
 
 internal lateinit var gameGetter: () -> BaseGame
 
@@ -85,6 +87,8 @@ abstract class BaseGame : ApplicationListener {
 
     private var frameStartTime: Long = 0L
 
+    private var deltaAccumulator: Float = 0f
+
     override fun render() {
         if (!resumed) {
             resume()
@@ -92,52 +96,61 @@ abstract class BaseGame : ApplicationListener {
         val currentTime = System.nanoTime()
         if (currentTime - frameStartTime >= 1_000_000_000L) {
             frameStartTime = currentTime
+            actsPerSecond = actCount
+            drawsPerSecond = drawCount
             actAverageTime = actTime / max(1, actCount) / 1_000_000f
-            clearAverageTime = clearTime / max(1, clearCount) / 1_000_000f
+            clearAverageTime = clearTime / max(1, drawCount) / 1_000_000f
             drawAverageTime = drawTime / max(1, drawCount) / 1_000_000f
             actCount = 0
             actTime = 0L
-            clearCount = 0
             clearTime = 0L
             drawCount = 0
             drawTime = 0L
         }
-        act()
-        clear()
+        if (GdxPrefManager.use_fixed_delta.data) {
+            val delta = min(DELTA_MAX, Gdx.graphics.deltaTime)
+            deltaAccumulator += delta
+            while (deltaAccumulator >= DELTA_FIXED) {
+                act(DELTA_FIXED)
+                deltaAccumulator -= DELTA_FIXED
+            }
+        } else {
+            act(Gdx.graphics.deltaTime)
+        }
         draw()
     }
 
-    private var actCount: Int = 0
-    private var actTime: Long = 0L // ns
+    internal var actsPerSecond: Int = 0
+        private set
+    internal var drawsPerSecond: Int = 0
+        private set
+
     internal var actAverageTime: Float = 0f // ms
         private set
-
-    private fun act() {
-        ++actCount
-        actTime += actionTime {
-            stageList().act(Gdx.graphics.deltaTime)
-        }
-    }
-
-    private var clearCount: Int = 0
-    private var clearTime: Long = 0L // ns
     internal var clearAverageTime: Float = 0f // ms
         private set
+    internal var drawAverageTime: Float = 0f // ms
+        private set
 
-    private fun clear() {
-        ++clearCount
-        clearTime += actionTime {
-            ScreenUtils.clear(Color.CLEAR)
+    private var actCount: Int = 0
+    private var actTime: Long = 0L // ns
+
+    private fun act(delta: Float) {
+        ++actCount
+        actTime += actionTime {
+            stageList().act(delta)
         }
     }
 
     private var drawCount: Int = 0
+    private var clearTime: Long = 0L // ns
     private var drawTime: Long = 0L // ns
-    internal var drawAverageTime: Float = 0f // ms
-        private set
 
     private fun draw() {
         ++drawCount
+        clearTime += actionTime {
+            ScreenUtils.clear(Color.CLEAR)
+        }
         drawTime += actionTime {
             stageList().draw()
         }
@@ -199,5 +212,10 @@ abstract class BaseGame : ApplicationListener {
         create()
         resize(Gdx.graphics.width, Gdx.graphics.height)
         resume()
+    }
+
+    companion object {
+        private const val DELTA_MAX = 1f / 20f
+        private const val DELTA_FIXED = 1f / 60f
     }
 }

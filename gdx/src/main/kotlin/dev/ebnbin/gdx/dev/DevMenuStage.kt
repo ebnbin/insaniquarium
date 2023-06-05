@@ -51,6 +51,7 @@ class DevMenuStage : BaseStage(UnitFitViewport()) {
             menu.createMenuItem("restart") {
                 baseGame.restart()
             }
+            menu.createBooleanMenuItem(GdxPrefManager.use_fixed_delta)
             menu.createBooleanMenuItem(GdxPrefManager.show_dev_gdx_log)
             menu.createBooleanMenuItem(GdxPrefManager.show_dev_game_log)
             return menu

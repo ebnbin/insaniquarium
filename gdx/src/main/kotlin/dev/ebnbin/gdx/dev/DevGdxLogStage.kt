@@ -47,16 +47,22 @@ class DevGdxLogStage : BaseStage(viewport = UnitFitViewport()) {
                     val millisecondText = timestamp.toTimestampString(":SSS").colorMarkup(Color.GRAY)
                     "$timeText$millisecondText"
                 },
-                "fps" to {
+                "realDelta,delta(ms)" to {
+                    "%6.3f,%6.3f".format(
+                        Gdx.graphics.deltaTime * 1000f,
+                        it * 1000f,
+                    )
+                },
+                "acts/draws/framesPerSecond" to {
                     val fps = Gdx.graphics.framesPerSecond
                     val color = when {
                         fps >= 60 -> Color.GREEN
-                        fps >= 30 -> Color.ORANGE
+                        fps >= 20 -> Color.ORANGE
                         else -> Color.RED
                     }
-                    "$fps".colorMarkup(color)
+                    "${baseGame.actsPerSecond},${baseGame.drawsPerSecond},${"$fps".colorMarkup(color)}"
                 },
-                "act,clear,draw" to {
+                "act/clear/drawAverageTime(ms)" to {
                     "%6.3f,%6.3f,%6.3f".format(
                         baseGame.actAverageTime,
                         baseGame.clearAverageTime,
