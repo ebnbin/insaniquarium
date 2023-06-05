@@ -2,6 +2,7 @@ package dev.ebnbin.gdx.lifecycle
 
 import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
 import com.kotcrab.vis.ui.widget.Menu
@@ -35,18 +36,24 @@ abstract class BaseGame : ApplicationListener {
 
     internal lateinit var assetHelper: AssetHelper
 
+    private lateinit var inputMultiplexer: InputMultiplexer
+
     private lateinit var devGdxLogStage: DevGdxLogStage
     private lateinit var devGameLogStage: DevGameLogStage
     private lateinit var devMenuStage: DevMenuStage
     private lateinit var loadingStage: LoadingStage
 
-    private fun stageList(): List<BaseStage> {
-        return (screen?.stageList ?: emptyList()) + listOf(
+    private fun globalStageList(): List<BaseStage> {
+        return listOf(
             loadingStage,
             devMenuStage,
             devGameLogStage,
             devGdxLogStage,
         )
+    }
+
+    private fun stageList(): List<BaseStage> {
+        return (screen?.stageList ?: emptyList()) + globalStageList()
     }
 
     private var created: Boolean = false
@@ -56,10 +63,15 @@ abstract class BaseGame : ApplicationListener {
         created = true
         initAssets()
         assetHelper = AssetHelper(assets)
+        inputMultiplexer = InputMultiplexer()
+        Gdx.input.inputProcessor = inputMultiplexer
         devGdxLogStage = DevGdxLogStage()
         devGameLogStage = DevGameLogStage()
         devMenuStage = DevMenuStage()
         loadingStage = LoadingStage()
+        globalStageList().reversed().forEach {
+            inputMultiplexer.addProcessor(it)
+        }
     }
 
     private fun initAssets() {
@@ -166,10 +178,12 @@ abstract class BaseGame : ApplicationListener {
 
     override fun dispose() {
         screen = null
-        loadingStage.dispose()
-        devMenuStage.dispose()
-        devGameLogStage.dispose()
-        devGdxLogStage.dispose()
+        globalStageList().forEach {
+            inputMultiplexer.removeProcessor(it)
+            it.dispose()
+        }
+        Gdx.input.inputProcessor = null
+        inputMultiplexer.clear()
         assetHelper.dispose()
         created = false
     }
@@ -181,8 +195,10 @@ abstract class BaseGame : ApplicationListener {
                 field?.stageList?.pause()
             }
             field?.devMenu?.let { devMenuStage.removeMenu(it) }
+            field?.stageList?.forEach { inputMultiplexer.removeProcessor(it) }
             field?.stageList?.dispose()
             field = value
+            field?.stageList?.reversed()?.forEach { inputMultiplexer.addProcessor(it) }
             field?.devMenu?.let { devMenuStage.addMenu(it) }
             field?.stageList?.resize()
             if (resumed) {

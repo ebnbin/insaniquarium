@@ -1,6 +1,5 @@
 package dev.ebnbin.gdx.dev
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.utils.Align
 import com.kotcrab.vis.ui.VisUI
 import com.kotcrab.vis.ui.widget.Menu
@@ -14,7 +13,6 @@ import dev.ebnbin.gdx.utils.createMenuItem
 
 class DevMenuStage : BaseStage(UnitFitViewport()) {
     init {
-        Gdx.input.inputProcessor = this
         VisUI.load(VisUI.SkinScale.X2)
     }
 
