@@ -169,7 +169,7 @@ data class BodyData(
     //*****************************************************************************************************************
 
     private val textureRegion: TextureRegion =
-        game.assets.texture.getValue(config.assetId).getTextureRegionList().first()
+        game.assets.texture.getValue(config.anim.assetId).getTextureRegionList().first()
 
     private val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
     private val actorHeight: Float = textureRegion.regionHeight.toFloat().unitToMeter

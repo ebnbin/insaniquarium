@@ -19,7 +19,11 @@
         "idlingTimeRandomStart": 2.0,
         "idlingTimeRandomEnd": 8.0
       },
-      "assetId": "clyde"
+      "anim": {
+        "assetId": "clyde",
+        "duration": 1.0,
+        "mode": "loop"
+      }
     }
   }
 }

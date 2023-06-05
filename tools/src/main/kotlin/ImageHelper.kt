@@ -37,7 +37,10 @@ object ImageHelper {
                     width = width,
                     height = height,
                     depth = width,
-                    assetId = "clyde",
+                    anim = BodyConfig.Anim(
+                        assetId = "clyde",
+                        duration = 1.0f,
+                    ),
                 )
             }
             .pack()

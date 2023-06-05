@@ -1,6 +1,8 @@
 package dev.ebnbin.insaniquarium.body
 
 import com.google.gson.annotations.Expose
+import dev.ebnbin.gdx.utils.AnimMode
+import dev.ebnbin.gdx.utils.Interpolation
 
 data class BodyConfig(
     @Expose
@@ -22,7 +24,7 @@ data class BodyConfig(
     @Expose
     val swimActY: SwimAct? = null,
     @Expose
-    val assetId: String = "",
+    val anim: Anim = Anim(),
 ) {
     data class TouchAct(
         @Expose
@@ -38,5 +40,16 @@ data class BodyConfig(
         val idlingTimeRandomStart: Float = 0f,
         @Expose
         val idlingTimeRandomEnd: Float = 0f,
+    )
+
+    data class Anim(
+        @Expose
+        val assetId: String = "",
+        @Expose
+        val duration: Float = 0f,
+        @Expose
+        val mode: AnimMode = AnimMode.NORMAL,
+        @Expose
+        val interpolation: Interpolation = Interpolation.LINEAR,
     )
 }
