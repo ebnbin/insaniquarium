@@ -23,12 +23,22 @@ data class BodyData(
     val tankWidth: Float,
     val tankHeight: Float,
 
+    val drivingTargetX: DrivingTarget?,
+    val drivingTargetY: DrivingTarget?,
+
     val velocityX: Float,
     val velocityY: Float,
 
     val x: Float,
     val y: Float,
 ) {
+    data class DrivingTarget(
+        val position: Float,
+        val acceleration: Float,
+    )
+
+    //*****************************************************************************************************************
+
     val config: BodyConfig = game.config.body.getValue(id)
 
     //*****************************************************************************************************************
@@ -87,8 +97,11 @@ data class BodyData(
     val dragY: Float =
         -velocityY.direction * (0.5f * World.DENSITY_WATER * velocityY * velocityY * dragCoefficient * areaY)
 
-    val normalReactionX: Float = gravityX + buoyancyX + dragX
-    val normalReactionY: Float = gravityY + buoyancyY + dragY
+    val drivingX: Float = drivingTargetX?.let { ((it.position - x).direction) * (it.acceleration * mass) } ?: 0f
+    val drivingY: Float = drivingTargetY?.let { ((it.position - y).direction) * (it.acceleration * mass) } ?: 0f
+
+    val normalReactionX: Float = gravityX + buoyancyX + dragX + drivingX
+    val normalReactionY: Float = gravityY + buoyancyY + dragY + drivingY
 
     val normalX: Float = if (!isInsideLeft && normalReactionX < 0f || !isInsideRight && normalReactionX > 0f) {
         -normalReactionX
@@ -118,6 +131,9 @@ data class BodyData(
     //*****************************************************************************************************************
 
     fun update(body: Body, delta: Float): BodyData {
+        val nextDrivingTargetX = body.tank.touchX?.let { DrivingTarget(it, acceleration = 0.4f) }
+        val nextDrivingTargetY = body.tank.touchY?.let { DrivingTarget(it, acceleration = 0.25f) }
+
         val nextVelocityX = (velocityX + accelerationX * delta).let {
             if (!isInsideLeft && it < 0f || !isInsideRight && it > 0f) {
                 0f
@@ -137,6 +153,8 @@ data class BodyData(
         val nextY = (y + nextVelocityY * delta).minMax(minY, maxY)
 
         return copy(
+            drivingTargetX = nextDrivingTargetX,
+            drivingTargetY = nextDrivingTargetY,
             velocityX = nextVelocityX,
             velocityY = nextVelocityY,
             x = nextX,
@@ -187,6 +205,8 @@ data class BodyData(
                 id = id,
                 tankWidth = tank.width,
                 tankHeight = tank.height,
+                drivingTargetX = null,
+                drivingTargetY = null,
                 velocityX = 0f,
                 velocityY = 0f,
                 x = initX ?: (tank.width / 2f),
@@ -216,6 +236,9 @@ data class BodyData(
         }
         baseGame.putLog("drag          ") {
             "${dragX.devText(XY.X)},${dragY.devText(XY.Y)}"
+        }
+        baseGame.putLog("driving       ") {
+            "${drivingX.devText(XY.X)},${drivingY.devText(XY.Y)}"
         }
         baseGame.putLog("normalReaction") {
             "${normalReactionX.devText(XY.X)},${normalReactionY.devText(XY.Y)}"
