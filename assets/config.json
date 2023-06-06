@@ -6,23 +6,24 @@
       "height": 0.14,
       "depth": 0.135,
       "touchAct": {
-        "accelerationX": 0.4,
-        "accelerationY": 0.25
+        "accelerationX": 0.2,
+        "accelerationY": 0.3
       },
       "swimActX": {
-        "acceleration": 0.2,
+        "acceleration": 0.1,
         "idlingTimeRandomStart": 2.0,
         "idlingTimeRandomEnd": 8.0
       },
       "swimActY": {
-        "acceleration": 0.125,
+        "acceleration": 0.15,
         "idlingTimeRandomStart": 2.0,
         "idlingTimeRandomEnd": 8.0
       },
       "anim": {
         "assetId": "clyde",
-        "duration": 1.0,
-        "mode": "loop"
+        "duration": 1.125,
+        "mode": "loop",
+        "interpolation": "pow2_in"
       }
     }
   }

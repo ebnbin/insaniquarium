@@ -8,9 +8,13 @@ enum class Interpolation(
         serializedName = "linear",
         interpolation = com.badlogic.gdx.math.Interpolation.linear,
     ),
+    POW2_IN(
+        serializedName = "pow2_in",
+        interpolation = com.badlogic.gdx.math.Interpolation.pow2In,
+    ),
     ;
 
-    fun apply(a: Float): Float {
-        return interpolation.apply(a)
+    fun apply(alpha: Float): Float {
+        return interpolation.apply(alpha)
     }
 }

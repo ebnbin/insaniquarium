@@ -22,7 +22,8 @@
     "clyde": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "startIndex": 4
       },
       "name": "clyde"
     }

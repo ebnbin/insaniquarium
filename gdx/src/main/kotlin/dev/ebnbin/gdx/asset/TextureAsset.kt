@@ -17,6 +17,8 @@ class TextureAsset(
         val row: Int = 1,
         @Expose
         val column: Int = 1,
+        @Expose
+        val startIndex: Int = 0,
     )
 
     override val directory: String
@@ -35,7 +37,7 @@ class TextureAsset(
         requireNotNull(region)
         return baseGame.assetHelper.getAssetExtraOrPut(this, "textureRegionList") {
             val texture = it.get(this)
-            texture.split(region.row, region.column)
+            texture.split(region.row, region.column, region.startIndex)
         }
     }
 }

@@ -26,6 +26,8 @@ data class BodyData(
 
     val swimActX: SwimAct?,
     val swimActY: SwimAct?,
+
+    val stateTime: Float,
 ) {
     data class TouchAct(
         val drivingTargetX: DrivingTarget,
@@ -168,8 +170,7 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    private val textureRegion: TextureRegion =
-        game.assets.texture.getValue(config.anim.assetId).getTextureRegionList().first()
+    private val textureRegion: TextureRegion = config.anim.getFrame(stateTime)
 
     private val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
     private val actorHeight: Float = textureRegion.regionHeight.toFloat().unitToMeter
@@ -229,6 +230,8 @@ data class BodyData(
             delta = delta,
         )
 
+        val nextStateTime = stateTime + delta
+
         return copy(
             velocityX = nextVelocityX,
             velocityY = nextVelocityY,
@@ -237,6 +240,7 @@ data class BodyData(
             touchAct = nextTouchAct,
             swimActX = nextSwimActX,
             swimActY = nextSwimActY,
+            stateTime = nextStateTime,
         )
     }
 
@@ -296,6 +300,7 @@ data class BodyData(
                 touchAct = null,
                 swimActX = null,
                 swimActY = null,
+                stateTime = 0f,
             )
         }
     }
