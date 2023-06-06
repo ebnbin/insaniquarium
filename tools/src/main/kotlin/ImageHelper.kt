@@ -1,7 +1,8 @@
+import dev.ebnbin.gdx.asset.TextureAsset
 import java.io.File
 
 object ImageHelper {
-    fun aquarium(info: AquariumTextureInfo) {
+    fun aquarium(info: AquariumTextureInfo): TextureAsset {
         val srcFile = File(TextureInfo.aquariumSrcDir, info.srcFileName)
         val dstFile = File(TextureInfo.dstDir, "${info.name}.png")
 
@@ -13,19 +14,32 @@ object ImageHelper {
                 drawScaledImage(srcImage, 608, 0, 32, 480, 1120, 0, 160, 720) // right
             }
             .write(dstFile)
+
+        return TextureAsset(
+            name = info.name,
+        )
     }
 
-    fun pet(info: PetTextureInfo) {
+    fun pet(info: PetTextureInfo): TextureAsset {
         val srcFile = File(TextureInfo.petSrcDir, info.srcFileName)
         val srcMaskFile = File(TextureInfo.petSrcDir, info.srcMaskFileName)
         val dstFile = File(TextureInfo.dstDir, "${info.name}.png")
 
-        srcFile
+        val packResult = srcFile
             .readImage()
             .mask(srcMaskFile.readImage())
             .scale(info.scale)
             .split(info.row, info.column)
             .pack()
-            .write(dstFile)
+        packResult.image.write(dstFile)
+
+        return TextureAsset(
+            name = info.name,
+            region = TextureAsset.Region(
+                row = packResult.row,
+                column = packResult.column,
+                startIndex = info.startIndex,
+            ),
+        )
     }
 }

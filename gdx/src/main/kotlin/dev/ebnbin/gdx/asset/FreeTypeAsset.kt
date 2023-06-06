@@ -8,8 +8,11 @@ import com.google.gson.annotations.Expose
 import kotlin.math.roundToInt
 
 class FreeTypeAsset(
+    name: String,
+    extension: String? = null,
+    preload: Boolean? = null,
     @Expose
-    val fontFileName: String = "",
+    val fontFileName: String,
     @Expose
     val size: Float = 16f,
     @Expose
@@ -20,7 +23,11 @@ class FreeTypeAsset(
     val includeDefaultChars: Boolean = true,
     @Expose
     val characters: String = "",
-) : Asset<BitmapFont>() {
+) : Asset<BitmapFont>(
+    name = name,
+    extension = extension,
+    preload = preload,
+) {
     override val directory: String
         get() = "freetype"
 

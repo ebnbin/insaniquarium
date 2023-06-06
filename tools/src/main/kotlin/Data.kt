@@ -10,4 +10,5 @@ data class PetTextureInfo(
     val scale: Float,
     val row: Int,
     val column: Int,
+    val startIndex: Int = 0,
 )

@@ -9,14 +9,21 @@ import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.split
 
 class TextureAsset(
+    name: String,
+    extension: String? = null,
+    preload: Boolean? = null,
     @Expose
     val region: Region? = null,
-) : Asset<Texture>() {
+) : Asset<Texture>(
+    name = name,
+    extension = extension,
+    preload = preload,
+) {
     data class Region(
         @Expose
-        val row: Int = 1,
+        val row: Int,
         @Expose
-        val column: Int = 1,
+        val column: Int,
         @Expose
         val startIndex: Int = 0,
     )
@@ -37,7 +44,11 @@ class TextureAsset(
         requireNotNull(region)
         return baseGame.assetHelper.getAssetExtraOrPut(this, "textureRegionList") {
             val texture = it.get(this)
-            texture.split(region.row, region.column, region.startIndex)
+            texture.split(
+                row = region.row,
+                column = region.column,
+                startIndex = region.startIndex,
+            )
         }
     }
 }

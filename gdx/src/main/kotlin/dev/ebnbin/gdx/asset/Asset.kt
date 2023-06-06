@@ -8,7 +8,7 @@ import dev.ebnbin.gdx.lifecycle.baseGame
 
 sealed class Asset<T>(
     @Expose
-    val name: String = "",
+    val name: String,
     @Expose
     val extension: String? = null,
     @Expose

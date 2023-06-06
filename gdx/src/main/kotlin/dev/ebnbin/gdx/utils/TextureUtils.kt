@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
  * @param startIndex Rearrange the list.
  */
 fun Texture.split(
-    row: Int = 1,
-    column: Int = 1,
+    row: Int,
+    column: Int,
     startIndex: Int = 0,
 ): List<TextureRegion> {
     require(row > 0 && column > 0)

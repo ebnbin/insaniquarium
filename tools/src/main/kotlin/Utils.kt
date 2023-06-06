@@ -102,10 +102,20 @@ fun BufferedImage.split(row: Int, column: Int): List<BufferedImage> {
     return list
 }
 
-fun List<BufferedImage>.pack(): BufferedImage {
+data class PackResult(
+    val row: Int,
+    val column: Int,
+    val image: BufferedImage,
+)
+
+fun List<BufferedImage>.pack(): PackResult {
     val first = first()
     if (size == 1) {
-        return first
+        return PackResult(
+            row = 1,
+            column = 1,
+            image = first,
+        )
     }
     val tileWidth = first.width
     val tileHeight = first.height
@@ -133,7 +143,7 @@ fun List<BufferedImage>.pack(): BufferedImage {
     }
 
     val (row, column) = rowColumn()
-    return createImage(column * tileWidth, row * tileHeight).useGraphics {
+    val image = createImage(column * tileWidth, row * tileHeight).useGraphics {
         for (rowIndex in 0 until row) {
             for (columnIndex in 0 until column) {
                 val img = get(rowIndex * column + columnIndex)
@@ -143,6 +153,11 @@ fun List<BufferedImage>.pack(): BufferedImage {
             }
         }
     }
+    return PackResult(
+        row = row,
+        column = column,
+        image = image,
+    )
 }
 
 fun BufferedImage.useGraphics(block: Graphics2D.() -> Unit): BufferedImage {

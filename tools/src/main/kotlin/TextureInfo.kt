@@ -50,6 +50,7 @@ object TextureInfo {
             scale = 1.5f,
             row = 1,
             column = 10,
+            startIndex = 4,
         ),
     )
 }
