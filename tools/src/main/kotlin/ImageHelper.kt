@@ -1,15 +1,13 @@
-import dev.ebnbin.gdx.utils.unitToMeter
-import dev.ebnbin.insaniquarium.body.BodyConfig
 import java.io.File
 
 object ImageHelper {
-    fun aquarium(
-        srcFile: File,
-        dstFile: File,
-    ) {
-        val srcImage = srcFile.readImage()
+    fun aquarium(info: AquariumTextureInfo) {
+        val srcFile = File(TextureInfo.aquariumSrcDir, info.srcFileName)
+        val dstFile = File(TextureInfo.dstDir, "${info.name}.png")
+
         createImage(1280, 720)
             .useGraphics {
+                val srcImage = srcFile.readImage()
                 drawScaledImage(srcImage, 0, 0, 32, 480, 0, 0, 160, 720) // left
                 drawScaledImage(srcImage, 32, 0, 576, 480, 160, 0, 960, 720) // center
                 drawScaledImage(srcImage, 608, 0, 32, 480, 1120, 0, 160, 720) // right
@@ -17,34 +15,17 @@ object ImageHelper {
             .write(dstFile)
     }
 
-    fun clyde(
-        srcFile: File,
-        srcMaskFile: File,
-        dstFile: File,
-    ): BodyConfig {
-        var bodyConfig: BodyConfig
+    fun pet(info: PetTextureInfo) {
+        val srcFile = File(TextureInfo.petSrcDir, info.srcFileName)
+        val srcMaskFile = File(TextureInfo.petSrcDir, info.srcMaskFileName)
+        val dstFile = File(TextureInfo.dstDir, "${info.name}.png")
+
         srcFile
             .readImage()
             .mask(srcMaskFile.readImage())
-            .scale(1200, 120)
-            .split(1, 10)
-            .also {
-                val nonTransparentSize = it.first().nonTransparentSize()
-                val width = nonTransparentSize.first.toFloat().unitToMeter
-                val height = nonTransparentSize.second.toFloat().unitToMeter
-                bodyConfig = BodyConfig(
-                    id = "clyde",
-                    width = width,
-                    height = height,
-                    depth = width,
-                    anim = BodyConfig.Anim(
-                        assetId = "clyde",
-                        duration = 1.0f,
-                    ),
-                )
-            }
+            .scale(info.scale)
+            .split(info.row, info.column)
             .pack()
             .write(dstFile)
-        return bodyConfig
     }
 }

@@ -80,6 +80,14 @@ fun BufferedImage.scale(width: Int, height: Int): BufferedImage {
     }
 }
 
+fun BufferedImage.scale(scale: Float): BufferedImage {
+    val scaledWidth = width * scale
+    require(scaledWidth.toInt().toFloat() == scaledWidth)
+    val scaledHeight = height * scale
+    require(scaledHeight.toInt().toFloat() == scaledHeight)
+    return scale(scaledWidth.toInt(), scaledHeight.toInt())
+}
+
 fun BufferedImage.split(row: Int, column: Int): List<BufferedImage> {
     require(row > 0 && column > 0)
     require(width % column == 0 && height % row == 0)
