@@ -9,8 +9,8 @@ import kotlin.math.roundToInt
 
 class FreeTypeAsset(
     name: String,
-    extension: String? = null,
-    preload: Boolean? = null,
+    extension: String = "ttf",
+    preload: Boolean = false,
     @Expose
     val fontFileName: String,
     @Expose
@@ -31,15 +31,11 @@ class FreeTypeAsset(
     override val directory: String
         get() = "freetype"
 
-    override val defaultExtension: String
-        get() = "ttf"
-
     override val type: Class<BitmapFont>
         get() = BitmapFont::class.java
 
     override val params: AssetLoaderParameters<BitmapFont>
         get() = FreetypeFontLoader.FreeTypeFontLoaderParameter().also {
-            val extension = extension ?: defaultExtension
             it.fontFileName = "$directory/$fontFileName${if (extension == "") "" else ".$extension"}"
             it.fontParameters.size = size.roundToInt()
             it.fontParameters.shadowOffsetX = shadowOffsetX.roundToInt()

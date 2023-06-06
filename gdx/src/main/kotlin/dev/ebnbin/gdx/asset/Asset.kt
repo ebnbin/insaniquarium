@@ -10,13 +10,11 @@ sealed class Asset<T>(
     @Expose
     val name: String,
     @Expose
-    val extension: String? = null,
+    val extension: String,
     @Expose
-    val preload: Boolean? = null,
+    val preload: Boolean = false,
 ) {
     abstract val directory: String
-
-    abstract val defaultExtension: String
 
     abstract val type: Class<T>
 
@@ -26,7 +24,6 @@ sealed class Asset<T>(
      * Should only be called by [AssetHelper].
      */
     internal fun createAssetDescriptor(): AssetDescriptor<T> {
-        val extension = extension ?: defaultExtension
         val file = Gdx.files.internal("$directory/$name${if (extension == "") "" else ".$extension"}")
         return AssetDescriptor(file, type, params)
     }

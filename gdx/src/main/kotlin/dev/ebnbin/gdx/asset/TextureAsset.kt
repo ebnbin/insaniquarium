@@ -10,8 +10,8 @@ import dev.ebnbin.gdx.utils.split
 
 class TextureAsset(
     name: String,
-    extension: String? = null,
-    preload: Boolean? = null,
+    extension: String = "png",
+    preload: Boolean = false,
     @Expose
     val region: Region? = null,
 ) : Asset<Texture>(
@@ -30,9 +30,6 @@ class TextureAsset(
 
     override val directory: String
         get() = "texture"
-
-    override val defaultExtension: String
-        get() = "png"
 
     override val type: Class<Texture>
         get() = Texture::class.java

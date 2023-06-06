@@ -37,7 +37,7 @@ class AssetHelper(assets: Assets) : AssetManager() {
 
     init {
         assetSet
-            .filter { it.preload == true }
+            .filter { it.preload }
             .forEach {
                 load(it)
                 finishLoadingAsset(assetDescriptor(it))

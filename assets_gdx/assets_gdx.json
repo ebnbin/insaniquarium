@@ -8,6 +8,7 @@
       "includeDefaultChars": true,
       "characters": "▲►▼◄",
       "name": "gdx_dev",
+      "extension": "ttf",
       "preload": true
     }
   },

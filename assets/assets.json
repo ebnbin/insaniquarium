@@ -2,22 +2,34 @@
   "freeType": {},
   "texture": {
     "aquarium_a": {
-      "name": "aquarium_a"
+      "name": "aquarium_a",
+      "extension": "png",
+      "preload": false
     },
     "aquarium_b": {
-      "name": "aquarium_b"
+      "name": "aquarium_b",
+      "extension": "png",
+      "preload": false
     },
     "aquarium_c": {
-      "name": "aquarium_c"
+      "name": "aquarium_c",
+      "extension": "png",
+      "preload": false
     },
     "aquarium_d": {
-      "name": "aquarium_d"
+      "name": "aquarium_d",
+      "extension": "png",
+      "preload": false
     },
     "aquarium_e": {
-      "name": "aquarium_e"
+      "name": "aquarium_e",
+      "extension": "png",
+      "preload": false
     },
     "aquarium_f": {
-      "name": "aquarium_f"
+      "name": "aquarium_f",
+      "extension": "png",
+      "preload": false
     },
     "clyde": {
       "region": {
@@ -25,7 +37,9 @@
         "column": 5,
         "startIndex": 4
       },
-      "name": "clyde"
+      "name": "clyde",
+      "extension": "png",
+      "preload": false
     }
   }
 }
