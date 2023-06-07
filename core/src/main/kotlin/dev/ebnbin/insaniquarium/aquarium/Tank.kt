@@ -40,10 +40,10 @@ class Tank : Group() {
     var touchPoint: Point? = null
         private set
 
-    fun devAddBody() {
+    fun devAddBody(id: BodyId = BodyId.values().random()) {
         val body = Body(
             tank = this,
-            id = BodyId.CLYDE,
+            id = id,
             initX = Random.nextFloat(0f, width),
             initY = Random.nextFloat(0f, height),
         )

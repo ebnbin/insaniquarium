@@ -20,6 +20,24 @@ fun PopupMenu.createMenuItem(
     return menuItem
 }
 
+fun <T> PopupMenu.createListMenuItem(
+    title: String,
+    dataList: List<T>,
+    dataToString: (T) -> String = { "$it" },
+    clicked: ((MenuItem, T) -> Unit)? = null,
+): MenuItem {
+    val menuItem = MenuItem(title)
+    val popupMenu = PopupMenu()
+    dataList.forEach { data ->
+        popupMenu.createMenuItem(dataToString(data)) {
+            clicked?.invoke(menuItem, data)
+        }
+    }
+    menuItem.subMenu = popupMenu
+    addItem(menuItem)
+    return menuItem
+}
+
 fun PopupMenu.createBooleanMenuItem(
     pref: SimplePref<Boolean>,
 ): MenuItem {
