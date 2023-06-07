@@ -329,11 +329,10 @@ data class BodyData(
     companion object {
         fun create(
             tank: Tank,
-            type: BodyType,
             params: BodyParams,
         ): BodyData {
             return BodyData(
-                type = type,
+                type = params.type,
                 id = "${UUID.randomUUID()}",
                 tankWidth = tank.width,
                 tankHeight = tank.height,

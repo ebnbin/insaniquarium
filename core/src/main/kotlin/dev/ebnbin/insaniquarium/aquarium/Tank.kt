@@ -43,13 +43,9 @@ class Tank : Group() {
     var touchPoint: Point? = null
         private set
 
-    private fun addBody(
-        type: BodyType,
-        params: BodyParams = BodyParams(),
-    ): Body {
+    private fun addBody(params: BodyParams): Body {
         val body = Body(
             tank = this,
-            type = type,
             params = params,
         )
         getGroup(body.data.config.group).addActor(body)
@@ -69,8 +65,8 @@ class Tank : Group() {
 
     fun devAddBody(type: BodyType = BodyType.values().random()) {
         addBody(
-            type = type,
             params = BodyParams(
+                type = type,
                 x = Random.nextFloat(0f, width),
                 y = Random.nextFloat(0f, height),
             ),

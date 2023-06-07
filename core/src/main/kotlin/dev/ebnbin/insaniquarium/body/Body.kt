@@ -7,10 +7,9 @@ import dev.ebnbin.insaniquarium.aquarium.Tank
 
 class Body(
     val tank: Tank,
-    val type: BodyType,
     params: BodyParams,
 ) : Actor() {
-    var data: BodyData = BodyData.create(tank, type, params)
+    var data: BodyData = BodyData.create(tank, params)
         private set
 
     override fun act(delta: Float) {
