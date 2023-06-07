@@ -29,11 +29,11 @@ class Tank : Group() {
 
         setSize(960f.unitToMeter, 600f.unitToMeter)
 
-        val clyde = Body(
+        val presto = Body(
             tank = this,
-            id = "clyde",
+            id = "presto",
         )
-        addActor(clyde)
+        addActor(presto)
     }
 
     var touchPoint: Point? = null

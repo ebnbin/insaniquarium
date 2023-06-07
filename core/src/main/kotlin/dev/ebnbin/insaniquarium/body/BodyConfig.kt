@@ -47,7 +47,7 @@ data class BodyConfig(
         @Expose
         val assetId: String,
         @Expose
-        val duration: Float,
+        val duration: Float = 1f,
         @Expose
         val mode: AnimMode = AnimMode.NORMAL,
         @Expose

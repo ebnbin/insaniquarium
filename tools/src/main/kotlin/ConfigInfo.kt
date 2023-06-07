@@ -21,10 +21,6 @@ object ConfigInfo {
                 index = 0,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            touchAct = BodyConfig.TouchAct(
-                accelerationX = 0.2f,
-                accelerationY = 0.3f,
-            ),
             swimActX = BodyConfig.SwimAct(
                 acceleration = 0.1f,
                 idlingTimeRandomStart = 2f,
@@ -41,6 +37,40 @@ object ConfigInfo {
                 mode = AnimMode.LOOP,
                 interpolation = Interpolation.POW2_IN,
             ),
-        )
+        ),
+        BodyConfigInfo(
+            id = "presto",
+            width = BodyConfigInfo.Size(
+                textureName = "presto",
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "presto",
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "presto_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            touchAct = BodyConfig.TouchAct(
+                accelerationX = 0.4f,
+                accelerationY = 0.25f,
+            ),
+            swimActX = BodyConfig.SwimAct(
+                acceleration = 0.2f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                acceleration = 0.125f,
+                idlingTimeRandomStart = 6f,
+                idlingTimeRandomEnd = 10f,
+            ),
+            anim = BodyConfig.Anim(
+                assetId = "presto",
+                mode = AnimMode.LOOP,
+            ),
+        ),
     )
 }

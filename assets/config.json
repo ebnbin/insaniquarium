@@ -7,10 +7,7 @@
       "depth": 0.135,
       "density": 1000.0,
       "dragCoefficient": 1.0,
-      "touchAct": {
-        "accelerationX": 0.2,
-        "accelerationY": 0.3
-      },
+      "touchAct": null,
       "swimActX": {
         "acceleration": 0.1,
         "idlingTimeRandomStart": 2.0,
@@ -26,6 +23,34 @@
         "duration": 1.125,
         "mode": "loop",
         "interpolation": "pow2_in"
+      }
+    },
+    "presto": {
+      "id": "presto",
+      "width": 0.14166667,
+      "height": 0.095,
+      "depth": 0.09833334,
+      "density": 1000.0,
+      "dragCoefficient": 1.0,
+      "touchAct": {
+        "accelerationX": 0.4,
+        "accelerationY": 0.25
+      },
+      "swimActX": {
+        "acceleration": 0.2,
+        "idlingTimeRandomStart": 2.0,
+        "idlingTimeRandomEnd": 8.0
+      },
+      "swimActY": {
+        "acceleration": 0.125,
+        "idlingTimeRandomStart": 6.0,
+        "idlingTimeRandomEnd": 10.0
+      },
+      "anim": {
+        "assetId": "presto",
+        "duration": 1.0,
+        "mode": "loop",
+        "interpolation": "linear"
       }
     }
   }

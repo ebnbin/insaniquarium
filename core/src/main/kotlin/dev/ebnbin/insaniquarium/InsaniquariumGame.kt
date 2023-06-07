@@ -31,6 +31,9 @@ class InsaniquariumGame : BaseGame() {
                 assets.texture.getValue("aquarium_e"),
                 assets.texture.getValue("aquarium_f"),
                 assets.texture.getValue("clyde"),
+                assets.texture.getValue("presto"),
+                assets.texture.getValue("presto_turn"),
+                assets.texture.getValue("presto_transform"),
             ),
             createStageList = {
                 listOf(

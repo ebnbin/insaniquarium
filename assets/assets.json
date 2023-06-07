@@ -46,6 +46,36 @@
       "name": "clyde",
       "extension": "png",
       "preload": false
+    },
+    "presto": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "presto",
+      "extension": "png",
+      "preload": false
+    },
+    "presto_transform": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "presto_transform",
+      "extension": "png",
+      "preload": false
+    },
+    "presto_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "presto_turn",
+      "extension": "png",
+      "preload": false
     }
   }
 }

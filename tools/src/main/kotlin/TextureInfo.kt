@@ -58,5 +58,29 @@ object TextureInfo {
                 ),
             ),
         ),
+        PetTextureInfo(
+            srcFileName = "presto.gif",
+            srcMaskFileName = "_presto.gif",
+            scale = 1.5f,
+            row = 3,
+            column = 10,
+            outputList = listOf(
+                PetTextureInfo.Output(
+                    name = "presto",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                PetTextureInfo.Output(
+                    name = "presto_turn",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                PetTextureInfo.Output(
+                    name = "presto_transform",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+            ),
+        ),
     )
 }
