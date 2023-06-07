@@ -11,6 +11,9 @@ import dev.ebnbin.gdx.utils.magnitude
 
 object BodyDevHelper {
     fun act(data: BodyData, body: Body, delta: Float) {
+        baseGame.putLog("type,id         ") {
+            "${data.type.serializedName},${data.id}"
+        }
         baseGame.putLog("size            ") {
             "${data.width.devText()},${data.height.devText()},${data.depth.devText()}"
         }

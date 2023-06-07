@@ -3,6 +3,7 @@ package dev.ebnbin.insaniquarium.aquarium
 import com.badlogic.gdx.scenes.scene2d.Group
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
+import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.unitToMeter
@@ -55,6 +56,10 @@ class Tank : Group() {
         return body
     }
 
+    private fun removeBody(body: Body) {
+        getGroup(body.data.config.group).removeActor(body)
+    }
+
     private fun getGroup(group: BodyConfig.Group): Group {
         return when (group) {
             BodyConfig.Group.PET -> petGroup
@@ -75,5 +80,20 @@ class Tank : Group() {
     fun devClearBodies() {
         moneyGroup.clearChildren()
         petGroup.clearChildren()
+    }
+
+    override fun act(delta: Float) {
+        super.act(delta)
+        children
+            .filterIsInstance<Group>()
+            .flatMap { it.children }
+            .filterIsInstance<Body>()
+            .filter { it.data.canRemove }
+            .forEach { removeBody(it) }
+        if (debug) {
+            baseGame.putLog("tank") {
+                "pet:${petGroup.children.size},money:${moneyGroup.children.size}"
+            }
+        }
     }
 }

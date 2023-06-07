@@ -8,9 +8,12 @@ import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.aquarium.Tank
 import dev.ebnbin.insaniquarium.game
+import java.util.UUID
 
 data class BodyData(
     val type: BodyType,
+
+    val id: String,
 
     val tankWidth: Float,
     val tankHeight: Float,
@@ -203,6 +206,10 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
+    val canRemove: Boolean = disappearAct != null && disappearAct.time <= -DisappearAct.DISAPPEAR_DURATION
+
+    //*****************************************************************************************************************
+
     fun update(body: Body, delta: Float): BodyData {
         val nextTouchAct = BodyActHelper.nextTouchAct(
             configTouchAct = config.touchAct,
@@ -327,6 +334,7 @@ data class BodyData(
         ): BodyData {
             return BodyData(
                 type = type,
+                id = "${UUID.randomUUID()}",
                 tankWidth = tank.width,
                 tankHeight = tank.height,
                 velocityX = 0f,
