@@ -9,6 +9,7 @@ import dev.ebnbin.gdx.utils.fromJson
 import dev.ebnbin.insaniquarium.aquarium.AquariumStage
 import dev.ebnbin.insaniquarium.aquarium.TankStage
 import dev.ebnbin.insaniquarium.body.BodyId
+import dev.ebnbin.insaniquarium.body.assets
 
 private var insaniquariumGame: InsaniquariumGame? = null
 
@@ -32,17 +33,7 @@ class InsaniquariumGame : BaseGame() {
                 assets.texture.getValue("aquarium_d"),
                 assets.texture.getValue("aquarium_e"),
                 assets.texture.getValue("aquarium_f"),
-                assets.texture.getValue("clyde"),
-                assets.texture.getValue("presto"),
-                assets.texture.getValue("presto_turn"),
-                assets.texture.getValue("presto_transform"),
-                assets.texture.getValue("silver_coin"),
-                assets.texture.getValue("gold_coin"),
-                assets.texture.getValue("star"),
-                assets.texture.getValue("diamond"),
-                assets.texture.getValue("treasure_chest"),
-                assets.texture.getValue("beetle"),
-            ),
+            ) + BodyId.values().flatMap { it.assets() },
             createStageList = {
                 listOf(
                     AquariumStage(),

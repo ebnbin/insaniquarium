@@ -1,8 +1,17 @@
 package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import dev.ebnbin.gdx.asset.Asset
+import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.animFrame
 import dev.ebnbin.insaniquarium.game
+
+fun BodyId.assets(): Set<Asset<*>> {
+    val config = game.config.body.getValue(serializedName)
+    return setOf(
+        baseGame.assets.texture.getValue(config.anim.assetId),
+    )
+}
 
 fun BodyConfig.Anim.getFrame(stateTime: Float): TextureRegion {
     val textureRegionList = game.assets.texture.getValue(assetId).getTextureRegionList()
