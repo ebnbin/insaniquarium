@@ -292,8 +292,7 @@ data class BodyData(
         fun create(
             tank: Tank,
             id: BodyId,
-            initX: Float? = null,
-            initY: Float? = null,
+            params: BodyParams,
         ): BodyData {
             return BodyData(
                 id = id,
@@ -301,8 +300,8 @@ data class BodyData(
                 tankHeight = tank.height,
                 velocityX = 0f,
                 velocityY = 0f,
-                x = initX ?: (tank.width / 2f),
-                y = initY ?: (tank.height / 2f),
+                x = params.x ?: (tank.width / 2f),
+                y = params.y ?: (tank.height / 2f),
                 touchAct = null,
                 swimActX = null,
                 swimActY = null,

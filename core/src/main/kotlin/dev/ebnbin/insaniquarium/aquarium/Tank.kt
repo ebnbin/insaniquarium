@@ -9,6 +9,7 @@ import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.body.Body
 import dev.ebnbin.insaniquarium.body.BodyConfig
 import dev.ebnbin.insaniquarium.body.BodyId
+import dev.ebnbin.insaniquarium.body.BodyParams
 
 class Tank : Group() {
     private val petGroup: Group = Group()
@@ -43,14 +44,12 @@ class Tank : Group() {
 
     private fun addBody(
         id: BodyId,
-        initX: Float? = null,
-        initY: Float? = null,
+        params: BodyParams = BodyParams(),
     ): Body {
         val body = Body(
             tank = this,
             id = id,
-            initX = initX,
-            initY = initY,
+            params = params,
         )
         getGroup(body.data.config.group).addActor(body)
         return body
@@ -66,8 +65,10 @@ class Tank : Group() {
     fun devAddBody(id: BodyId = BodyId.values().random()) {
         addBody(
             id = id,
-            initX = Random.nextFloat(0f, width),
-            initY = Random.nextFloat(0f, height),
+            params = BodyParams(
+                x = Random.nextFloat(0f, width),
+                y = Random.nextFloat(0f, height),
+            ),
         )
     }
 
