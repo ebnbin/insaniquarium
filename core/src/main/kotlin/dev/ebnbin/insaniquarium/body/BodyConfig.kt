@@ -3,11 +3,14 @@ package dev.ebnbin.insaniquarium.body
 import com.google.gson.annotations.Expose
 import dev.ebnbin.gdx.utils.AnimMode
 import dev.ebnbin.gdx.utils.Interpolation
+import dev.ebnbin.gdx.utils.SerializableEnum
 import dev.ebnbin.gdx.utils.World
 
 data class BodyConfig(
     @Expose
     val id: String,
+    @Expose
+    val group: Group,
     @Expose
     val width: Float,
     @Expose
@@ -27,6 +30,12 @@ data class BodyConfig(
     @Expose
     val anim: Anim,
 ) {
+    enum class Group(override val serializedName: String) : SerializableEnum {
+        PET("pet"),
+        MONEY("money"),
+        ;
+    }
+
     data class TouchAct(
         @Expose
         val accelerationX: Float,

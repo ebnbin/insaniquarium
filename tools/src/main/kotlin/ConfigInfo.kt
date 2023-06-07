@@ -6,6 +6,7 @@ object ConfigInfo {
     val bodyList: List<BodyConfigInfo> = listOf(
         BodyConfigInfo(
             id = "clyde",
+            group = BodyConfig.Group.PET,
             width = BodyConfigInfo.Size(
                 textureName = "clyde",
                 index = 0,
@@ -40,6 +41,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             id = "presto",
+            group = BodyConfig.Group.PET,
             width = BodyConfigInfo.Size(
                 textureName = "presto",
                 wh = BodyConfigInfo.WH.WIDTH,
@@ -75,6 +77,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             id = "silver_coin",
+            group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "silver_coin",
                 wh = BodyConfigInfo.WH.WIDTH,
@@ -97,6 +100,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             id = "gold_coin",
+            group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "gold_coin",
                 wh = BodyConfigInfo.WH.WIDTH,
@@ -119,6 +123,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             id = "star",
+            group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "star",
                 wh = BodyConfigInfo.WH.WIDTH,
@@ -141,6 +146,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             id = "diamond",
+            group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "diamond",
                 wh = BodyConfigInfo.WH.WIDTH,
@@ -163,6 +169,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             id = "treasure_chest",
+            group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "treasure_chest",
                 wh = BodyConfigInfo.WH.WIDTH,
@@ -185,6 +192,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             id = "beetle",
+            group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "beetle",
                 wh = BodyConfigInfo.WH.WIDTH,

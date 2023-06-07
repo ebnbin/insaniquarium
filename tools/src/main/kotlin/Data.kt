@@ -25,6 +25,7 @@ data class BodyTextureInfo(
 
 data class BodyConfigInfo(
     val id: String,
+    val group: BodyConfig.Group,
     val width: Size,
     val height: Size,
     val depth: Size,

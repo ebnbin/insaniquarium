@@ -7,10 +7,17 @@ import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.body.Body
+import dev.ebnbin.insaniquarium.body.BodyConfig
 import dev.ebnbin.insaniquarium.body.BodyId
 
 class Tank : Group() {
+    private val petGroup: Group = Group()
+    private val moneyGroup: Group = Group()
+
     init {
+        addActor(petGroup)
+        addActor(moneyGroup)
+
         addListener(object : InputListener() {
             override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 touchPoint = Point(x, y)
@@ -29,28 +36,43 @@ class Tank : Group() {
         })
 
         setSize(960f.unitToMeter, 600f.unitToMeter)
-
-        val presto = Body(
-            tank = this,
-            id = BodyId.PRESTO,
-        )
-        addActor(presto)
     }
 
     var touchPoint: Point? = null
         private set
 
-    fun devAddBody(id: BodyId = BodyId.values().random()) {
+    private fun addBody(
+        id: BodyId,
+        initX: Float? = null,
+        initY: Float? = null,
+    ): Body {
         val body = Body(
             tank = this,
+            id = id,
+            initX = initX,
+            initY = initY,
+        )
+        getGroup(body.data.config.group).addActor(body)
+        return body
+    }
+
+    private fun getGroup(group: BodyConfig.Group): Group {
+        return when (group) {
+            BodyConfig.Group.PET -> petGroup
+            BodyConfig.Group.MONEY -> moneyGroup
+        }
+    }
+
+    fun devAddBody(id: BodyId = BodyId.values().random()) {
+        addBody(
             id = id,
             initX = Random.nextFloat(0f, width),
             initY = Random.nextFloat(0f, height),
         )
-        addActor(body)
     }
 
     fun devClearBodies() {
-        clearChildren()
+        moneyGroup.clearChildren()
+        petGroup.clearChildren()
     }
 }
