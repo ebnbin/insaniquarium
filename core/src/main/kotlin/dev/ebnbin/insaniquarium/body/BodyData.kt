@@ -93,6 +93,13 @@ data class BodyData(
 
     val depth: Float = config.depth
 
+    val halfDepth: Float = depth / 2f
+
+    val depthLeft: Float = x - halfDepth
+    val depthRight: Float = depthLeft + depth
+    val depthBottom: Float = y - halfDepth
+    val depthTop: Float = depthBottom + depth
+
     val area: Float = width * height
 
     val areaX: Float = height * depth

@@ -50,12 +50,11 @@ object BodyDevHelper {
     }
 
     fun draw(data: BodyData, body: Body, shapes: ShapeRenderer) {
-        shapes.rect(
-            data.left,
-            data.bottom,
-            data.width,
-            data.height,
-        )
+        shapes.rect(data.left, data.bottom, data.width, data.height)
+        shapes.line(data.left, data.bottom, data.right, data.top)
+        shapes.line(data.left, data.top, data.right, data.bottom)
+        shapes.rect(data.depthLeft, data.bottom, data.depth, data.height)
+        shapes.rect(data.left, data.depthBottom, data.width, data.depth)
         data.drivingTargetX?.let {
             shapes.line(it.position, 0f, it.position, data.tankHeight)
         }
