@@ -42,15 +42,15 @@ object TextureInfo {
 
     val petSrcDir: File = srcDir("pet")
 
-    val petList: List<PetTextureInfo> = listOf(
-        PetTextureInfo(
+    val petList: List<BodyTextureInfo> = listOf(
+        BodyTextureInfo(
             srcFileName = "clyde.gif",
             srcMaskFileName = "_clyde.gif",
             scale = 1.5f,
             row = 1,
             column = 10,
             outputList = listOf(
-                PetTextureInfo.Output(
+                BodyTextureInfo.Output(
                     name = "clyde",
                     tileStart = 0,
                     tileCount = 10,
@@ -58,24 +58,24 @@ object TextureInfo {
                 ),
             ),
         ),
-        PetTextureInfo(
+        BodyTextureInfo(
             srcFileName = "presto.gif",
             srcMaskFileName = "_presto.gif",
             scale = 1.5f,
             row = 3,
             column = 10,
             outputList = listOf(
-                PetTextureInfo.Output(
+                BodyTextureInfo.Output(
                     name = "presto",
                     tileStart = 0,
                     tileCount = 10,
                 ),
-                PetTextureInfo.Output(
+                BodyTextureInfo.Output(
                     name = "presto_turn",
                     tileStart = 10,
                     tileCount = 10,
                 ),
-                PetTextureInfo.Output(
+                BodyTextureInfo.Output(
                     name = "presto_transform",
                     tileStart = 20,
                     tileCount = 10,

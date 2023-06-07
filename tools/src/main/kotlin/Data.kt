@@ -6,7 +6,7 @@ data class AquariumTextureInfo(
     val srcFileName: String,
 )
 
-data class PetTextureInfo(
+data class BodyTextureInfo(
     val srcFileName: String,
     val srcMaskFileName: String,
     val scale: Float,

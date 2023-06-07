@@ -20,7 +20,7 @@ object TextureAssetHelper {
         )
     }
 
-    fun pet(info: PetTextureInfo): List<TextureAsset> {
+    fun body(info: BodyTextureInfo): List<TextureAsset> {
         val srcFile = File(TextureInfo.petSrcDir, info.srcFileName)
         val srcMaskFile = File(TextureInfo.petSrcDir, info.srcMaskFileName)
         val split = srcFile
