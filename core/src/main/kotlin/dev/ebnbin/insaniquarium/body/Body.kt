@@ -7,7 +7,7 @@ import dev.ebnbin.insaniquarium.aquarium.Tank
 
 class Body(
     val tank: Tank,
-    val id: String,
+    val id: BodyId,
     initX: Float? = null,
     initY: Float? = null,
 ) : Actor() {

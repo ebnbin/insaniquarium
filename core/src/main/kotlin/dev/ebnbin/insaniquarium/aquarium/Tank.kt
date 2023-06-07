@@ -7,6 +7,7 @@ import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.body.Body
+import dev.ebnbin.insaniquarium.body.BodyId
 
 class Tank : Group() {
     init {
@@ -31,7 +32,7 @@ class Tank : Group() {
 
         val presto = Body(
             tank = this,
-            id = "presto",
+            id = BodyId.PRESTO,
         )
         addActor(presto)
     }
@@ -42,7 +43,7 @@ class Tank : Group() {
     fun devAddBody() {
         val body = Body(
             tank = this,
-            id = "clyde",
+            id = BodyId.CLYDE,
             initX = Random.nextFloat(0f, width),
             initY = Random.nextFloat(0f, height),
         )
