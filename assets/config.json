@@ -1,5 +1,22 @@
 {
   "body": {
+    "beetle": {
+      "id": "beetle",
+      "width": 0.08833333,
+      "height": 0.08166666,
+      "depth": 0.085,
+      "density": 990.0,
+      "dragCoefficient": 1.0,
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "anim": {
+        "assetId": "beetle",
+        "duration": 0.3,
+        "mode": "loop",
+        "interpolation": "linear"
+      }
+    },
     "clyde": {
       "id": "clyde",
       "width": 0.135,
@@ -25,6 +42,40 @@
         "interpolation": "pow2_in"
       }
     },
+    "diamond": {
+      "id": "diamond",
+      "width": 0.08,
+      "height": 0.07,
+      "depth": 0.075,
+      "density": 1020.0,
+      "dragCoefficient": 1.0,
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "anim": {
+        "assetId": "diamond",
+        "duration": 0.6,
+        "mode": "loop",
+        "interpolation": "linear"
+      }
+    },
+    "gold_coin": {
+      "id": "gold_coin",
+      "width": 0.075,
+      "height": 0.075,
+      "depth": 0.011666667,
+      "density": 1020.0,
+      "dragCoefficient": 1.0,
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "anim": {
+        "assetId": "gold_coin",
+        "duration": 0.6,
+        "mode": "loop",
+        "interpolation": "linear"
+      }
+    },
     "presto": {
       "id": "presto",
       "width": 0.14166667,
@@ -48,7 +99,58 @@
       },
       "anim": {
         "assetId": "presto",
-        "duration": 1.0,
+        "duration": 0.5,
+        "mode": "loop",
+        "interpolation": "linear"
+      }
+    },
+    "silver_coin": {
+      "id": "silver_coin",
+      "width": 0.075,
+      "height": 0.075,
+      "depth": 0.011666667,
+      "density": 1020.0,
+      "dragCoefficient": 1.0,
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "anim": {
+        "assetId": "silver_coin",
+        "duration": 0.6,
+        "mode": "loop",
+        "interpolation": "linear"
+      }
+    },
+    "star": {
+      "id": "star",
+      "width": 0.11,
+      "height": 0.105,
+      "depth": 0.025,
+      "density": 1010.0,
+      "dragCoefficient": 1.0,
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "anim": {
+        "assetId": "star",
+        "duration": 0.6,
+        "mode": "loop",
+        "interpolation": "linear"
+      }
+    },
+    "treasure_chest": {
+      "id": "treasure_chest",
+      "width": 0.11333334,
+      "height": 0.125,
+      "depth": 0.11333334,
+      "density": 1020.0,
+      "dragCoefficient": 1.0,
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "anim": {
+        "assetId": "treasure_chest",
+        "duration": 0.6,
         "mode": "loop",
         "interpolation": "linear"
       }

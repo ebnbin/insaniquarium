@@ -21,8 +21,8 @@ object TextureAssetHelper {
     }
 
     fun body(info: BodyTextureInfo): List<TextureAsset> {
-        val srcFile = File(TextureInfo.petSrcDir, info.srcFileName)
-        val srcMaskFile = File(TextureInfo.petSrcDir, info.srcMaskFileName)
+        val srcFile = File(TextureInfo.srcDir(info.group), info.srcFileName)
+        val srcMaskFile = File(TextureInfo.srcDir(info.group), info.srcMaskFileName)
         val split = srcFile
             .readImage()
             .mask(srcMaskFile.readImage())

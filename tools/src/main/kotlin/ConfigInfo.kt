@@ -69,6 +69,139 @@ object ConfigInfo {
             ),
             anim = BodyConfig.Anim(
                 assetId = "presto",
+                duration = 0.5f,
+                mode = AnimMode.LOOP,
+            ),
+        ),
+        BodyConfigInfo(
+            id = "silver_coin",
+            width = BodyConfigInfo.Size(
+                textureName = "silver_coin",
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "silver_coin",
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "silver_coin",
+                index = 5,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            density = 1020f,
+            anim = BodyConfig.Anim(
+                assetId = "silver_coin",
+                duration = 0.6f,
+                mode = AnimMode.LOOP,
+            ),
+        ),
+        BodyConfigInfo(
+            id = "gold_coin",
+            width = BodyConfigInfo.Size(
+                textureName = "gold_coin",
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "gold_coin",
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "gold_coin",
+                index = 5,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            density = 1020f,
+            anim = BodyConfig.Anim(
+                assetId = "gold_coin",
+                duration = 0.6f,
+                mode = AnimMode.LOOP,
+            ),
+        ),
+        BodyConfigInfo(
+            id = "star",
+            width = BodyConfigInfo.Size(
+                textureName = "star",
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "star",
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "star",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1010f,
+            anim = BodyConfig.Anim(
+                assetId = "star",
+                duration = 0.6f,
+                mode = AnimMode.LOOP,
+            ),
+        ),
+        BodyConfigInfo(
+            id = "diamond",
+            width = BodyConfigInfo.Size(
+                textureName = "diamond",
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "diamond",
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "diamond",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1020f,
+            anim = BodyConfig.Anim(
+                assetId = "diamond",
+                duration = 0.6f,
+                mode = AnimMode.LOOP,
+            ),
+        ),
+        BodyConfigInfo(
+            id = "treasure_chest",
+            width = BodyConfigInfo.Size(
+                textureName = "treasure_chest",
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "treasure_chest",
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "treasure_chest",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1020f,
+            anim = BodyConfig.Anim(
+                assetId = "treasure_chest",
+                duration = 0.6f,
+                mode = AnimMode.LOOP,
+            ),
+        ),
+        BodyConfigInfo(
+            id = "beetle",
+            width = BodyConfigInfo.Size(
+                textureName = "beetle",
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "beetle",
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "beetle",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 990f,
+            anim = BodyConfig.Anim(
+                assetId = "beetle",
+                duration = 0.3f,
                 mode = AnimMode.LOOP,
             ),
         ),

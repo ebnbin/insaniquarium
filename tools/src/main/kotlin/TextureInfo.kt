@@ -3,7 +3,7 @@ import java.io.File
 object TextureInfo {
     val dstDir: File = File("../assets/texture")
 
-    private fun srcDir(group: String): File {
+    fun srcDir(group: String): File {
         return File("files/images/$group")
     }
 
@@ -40,10 +40,12 @@ object TextureInfo {
 
     //*****************************************************************************************************************
 
-    val petSrcDir: File = srcDir("pet")
+    private const val GROUP_PET = "pet"
+    private const val GROUP_MONEY = "money"
 
-    val petList: List<BodyTextureInfo> = listOf(
+    val bodyList: List<BodyTextureInfo> = listOf(
         BodyTextureInfo(
+            group = GROUP_PET,
             srcFileName = "clyde.gif",
             srcMaskFileName = "_clyde.gif",
             scale = 1.5f,
@@ -59,6 +61,7 @@ object TextureInfo {
             ),
         ),
         BodyTextureInfo(
+            group = GROUP_PET,
             srcFileName = "presto.gif",
             srcMaskFileName = "_presto.gif",
             scale = 1.5f,
@@ -78,6 +81,46 @@ object TextureInfo {
                 BodyTextureInfo.Output(
                     name = "presto_transform",
                     tileStart = 20,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_MONEY,
+            srcFileName = "money.gif",
+            srcMaskFileName = "money_.gif",
+            scale = 1.5f,
+            row = 6,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "silver_coin",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "gold_coin",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "star",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "diamond",
+                    tileStart = 30,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "treasure_chest",
+                    tileStart = 40,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "beetle",
+                    tileStart = 50,
                     tileCount = 10,
                 ),
             ),

@@ -36,6 +36,12 @@ class InsaniquariumGame : BaseGame() {
                 assets.texture.getValue("presto"),
                 assets.texture.getValue("presto_turn"),
                 assets.texture.getValue("presto_transform"),
+                assets.texture.getValue("silver_coin"),
+                assets.texture.getValue("gold_coin"),
+                assets.texture.getValue("star"),
+                assets.texture.getValue("diamond"),
+                assets.texture.getValue("treasure_chest"),
+                assets.texture.getValue("beetle"),
             ),
             createStageList = {
                 listOf(

@@ -7,6 +7,7 @@ data class AquariumTextureInfo(
 )
 
 data class BodyTextureInfo(
+    val group: String,
     val srcFileName: String,
     val srcMaskFileName: String,
     val scale: Float,
