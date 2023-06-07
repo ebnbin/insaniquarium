@@ -2,6 +2,7 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
+import dev.ebnbin.gdx.utils.World
 
 object BodyActHelper {
     fun nextTouchAct(
@@ -87,6 +88,37 @@ object BodyActHelper {
             } else {
                 updateSwimAct(swimAct)
             }
+        }
+    }
+
+    fun nextDisappearAct(
+        configDisappearAct: BodyConfig.DisappearAct?,
+        disappearAct: BodyData.DisappearAct?,
+        data: BodyData,
+        delta: Float,
+    ): BodyData.DisappearAct? {
+        if (configDisappearAct == null) {
+            return null
+        }
+        return if (disappearAct == null) {
+            val canDisappear = if (data.density == World.DENSITY_WATER) {
+                false
+            } else if (data.density > World.DENSITY_WATER) {
+                !data.isInsideBottom
+            } else {
+                data.insideTopPercent < 1f
+            }
+            if (canDisappear) {
+                BodyData.DisappearAct(
+                    time = configDisappearAct.delay,
+                )
+            } else {
+                null
+            }
+        } else {
+            disappearAct.copy(
+                time = disappearAct.time - delta,
+            )
         }
     }
 }

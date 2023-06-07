@@ -34,6 +34,7 @@ object ConfigHelper {
             touchAct = info.touchAct,
             swimActX = info.swimActX,
             swimActY = info.swimActY,
+            disappearAct = info.disappearAct,
             anim = info.anim,
         ).also {
             cache.clear()

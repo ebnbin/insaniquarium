@@ -28,6 +28,8 @@ data class BodyConfig(
     @Expose
     val swimActY: SwimAct? = null,
     @Expose
+    val disappearAct: DisappearAct? = null,
+    @Expose
     val anim: Anim,
 ) {
     enum class Group(override val serializedName: String) : SerializableEnum {
@@ -50,6 +52,11 @@ data class BodyConfig(
         val idlingTimeRandomStart: Float,
         @Expose
         val idlingTimeRandomEnd: Float,
+    )
+
+    data class DisappearAct(
+        @Expose
+        val delay: Float = 0f,
     )
 
     data class Anim(

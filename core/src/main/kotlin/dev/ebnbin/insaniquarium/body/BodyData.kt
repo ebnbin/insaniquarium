@@ -26,6 +26,8 @@ data class BodyData(
     val swimActX: SwimAct?,
     val swimActY: SwimAct?,
 
+    val disappearAct: DisappearAct?,
+
     val stateTime: Float,
 ) {
     data class TouchAct(
@@ -37,6 +39,18 @@ data class BodyData(
         val drivingTarget: DrivingTarget?,
         val remainingTime: Float,
     )
+
+    data class DisappearAct(
+        /**
+         * >= 0f: Delaying.
+         * < 0f: Disappearing.
+         */
+        val time: Float,
+    ) {
+        companion object {
+            const val DISAPPEAR_DURATION = 1f
+        }
+    }
 
     //*****************************************************************************************************************
 
@@ -181,6 +195,12 @@ data class BodyData(
     private val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
     private val actorHeight: Float = textureRegion.regionHeight.toFloat().unitToMeter
 
+    val alpha: Float = if (disappearAct == null || disappearAct.time >= 0f) {
+        1f
+    } else {
+        ((DisappearAct.DISAPPEAR_DURATION + disappearAct.time) / DisappearAct.DISAPPEAR_DURATION).minMax(0f, 1f)
+    }
+
     //*****************************************************************************************************************
 
     fun update(body: Body, delta: Float): BodyData {
@@ -203,6 +223,13 @@ data class BodyData(
             swimAct = swimActY,
             tankSize = tankHeight,
             containDrivingTarget = containDrivingTargetY,
+            delta = delta,
+        )
+
+        val nextDisappearAct = BodyActHelper.nextDisappearAct(
+            configDisappearAct = config.disappearAct,
+            disappearAct = disappearAct,
+            data = this,
             delta = delta,
         )
 
@@ -246,6 +273,7 @@ data class BodyData(
             touchAct = nextTouchAct,
             swimActX = nextSwimActX,
             swimActY = nextSwimActY,
+            disappearAct = nextDisappearAct,
             stateTime = nextStateTime,
         )
     }
@@ -256,6 +284,8 @@ data class BodyData(
     }
 
     fun draw(body: Body, batch: Batch, parentAlpha: Float) {
+        val oldColor = batch.color.cpy()
+        batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
         batch.draw(
             textureRegion.texture,
             body.x,
@@ -274,6 +304,7 @@ data class BodyData(
             textureRegion.isFlipX,
             textureRegion.isFlipY,
         )
+        batch.color = oldColor
     }
 
     //*****************************************************************************************************************
@@ -305,6 +336,7 @@ data class BodyData(
                 touchAct = null,
                 swimActX = null,
                 swimActY = null,
+                disappearAct = null,
                 stateTime = 0f,
             )
         }

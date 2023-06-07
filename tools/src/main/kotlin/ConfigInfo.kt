@@ -92,6 +92,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.HEIGHT,
             ),
             density = 1020f,
+            disappearAct = BodyConfig.DisappearAct(),
             anim = BodyConfig.Anim(
                 assetId = "silver_coin",
                 duration = 0.6f,
@@ -115,6 +116,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.HEIGHT,
             ),
             density = 1020f,
+            disappearAct = BodyConfig.DisappearAct(),
             anim = BodyConfig.Anim(
                 assetId = "gold_coin",
                 duration = 0.6f,
@@ -138,6 +140,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1010f,
+            disappearAct = BodyConfig.DisappearAct(),
             anim = BodyConfig.Anim(
                 assetId = "star",
                 duration = 0.6f,
@@ -161,6 +164,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1020f,
+            disappearAct = BodyConfig.DisappearAct(),
             anim = BodyConfig.Anim(
                 assetId = "diamond",
                 duration = 0.6f,
@@ -184,6 +188,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1020f,
+            disappearAct = BodyConfig.DisappearAct(),
             anim = BodyConfig.Anim(
                 assetId = "treasure_chest",
                 duration = 0.6f,
@@ -207,6 +212,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 990f,
+            disappearAct = BodyConfig.DisappearAct(),
             anim = BodyConfig.Anim(
                 assetId = "beetle",
                 duration = 0.3f,

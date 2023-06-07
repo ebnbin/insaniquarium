@@ -11,6 +11,9 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
+      "disappearAct": {
+        "delay": 0.0
+      },
       "anim": {
         "assetId": "beetle",
         "duration": 0.3,
@@ -37,6 +40,7 @@
         "idlingTimeRandomStart": 2.0,
         "idlingTimeRandomEnd": 8.0
       },
+      "disappearAct": null,
       "anim": {
         "assetId": "clyde",
         "duration": 1.125,
@@ -55,6 +59,9 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
+      "disappearAct": {
+        "delay": 0.0
+      },
       "anim": {
         "assetId": "diamond",
         "duration": 0.6,
@@ -73,6 +80,9 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
+      "disappearAct": {
+        "delay": 0.0
+      },
       "anim": {
         "assetId": "gold_coin",
         "duration": 0.6,
@@ -102,6 +112,7 @@
         "idlingTimeRandomStart": 6.0,
         "idlingTimeRandomEnd": 10.0
       },
+      "disappearAct": null,
       "anim": {
         "assetId": "presto",
         "duration": 0.5,
@@ -120,6 +131,9 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
+      "disappearAct": {
+        "delay": 0.0
+      },
       "anim": {
         "assetId": "silver_coin",
         "duration": 0.6,
@@ -138,6 +152,9 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
+      "disappearAct": {
+        "delay": 0.0
+      },
       "anim": {
         "assetId": "star",
         "duration": 0.6,
@@ -156,6 +173,9 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
+      "disappearAct": {
+        "delay": 0.0
+      },
       "anim": {
         "assetId": "treasure_chest",
         "duration": 0.6,
