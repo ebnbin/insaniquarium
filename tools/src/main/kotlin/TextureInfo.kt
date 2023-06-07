@@ -44,13 +44,19 @@ object TextureInfo {
 
     val petList: List<PetTextureInfo> = listOf(
         PetTextureInfo(
-            name = "clyde",
             srcFileName = "clyde.gif",
             srcMaskFileName = "_clyde.gif",
             scale = 1.5f,
             row = 1,
             column = 10,
-            startIndex = 4,
+            outputList = listOf(
+                PetTextureInfo.Output(
+                    name = "clyde",
+                    tileStart = 0,
+                    tileCount = 10,
+                    startIndex = 4,
+                ),
+            ),
         ),
     )
 }

@@ -7,14 +7,20 @@ data class AquariumTextureInfo(
 )
 
 data class PetTextureInfo(
-    val name: String,
     val srcFileName: String,
     val srcMaskFileName: String,
     val scale: Float,
     val row: Int,
     val column: Int,
-    val startIndex: Int = 0,
-)
+    val outputList: List<Output>,
+) {
+    data class Output(
+        val name: String,
+        val tileStart: Int,
+        val tileCount: Int,
+        val startIndex: Int = 0,
+    )
+}
 
 data class BodyConfigInfo(
     val id: String,

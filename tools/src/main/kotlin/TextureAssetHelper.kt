@@ -20,26 +20,26 @@ object TextureAssetHelper {
         )
     }
 
-    fun pet(info: PetTextureInfo): TextureAsset {
+    fun pet(info: PetTextureInfo): List<TextureAsset> {
         val srcFile = File(TextureInfo.petSrcDir, info.srcFileName)
         val srcMaskFile = File(TextureInfo.petSrcDir, info.srcMaskFileName)
-        val dstFile = File(TextureInfo.dstDir, "${info.name}.png")
-
-        val packResult = srcFile
+        val split = srcFile
             .readImage()
             .mask(srcMaskFile.readImage())
             .scale(info.scale)
             .split(info.row, info.column)
-            .pack()
-        packResult.image.write(dstFile)
-
-        return TextureAsset(
-            name = info.name,
-            region = TextureAsset.Region(
-                row = packResult.row,
-                column = packResult.column,
-                startIndex = info.startIndex,
-            ),
-        )
+        return info.outputList.map {
+            val dstFile = File(TextureInfo.dstDir, "${it.name}.png")
+            val packResult = split.subList(it.tileStart, it.tileStart + it.tileCount).pack()
+            packResult.image.write(dstFile)
+            TextureAsset(
+                name = it.name,
+                region = TextureAsset.Region(
+                    row = packResult.row,
+                    column = packResult.column,
+                    startIndex = it.startIndex,
+                ),
+            )
+        }
     }
 }

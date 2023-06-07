@@ -28,8 +28,8 @@ fun main() {
     TextureInfo.aquariumList.forEach {
         textureAssetMap[it.name] = TextureAssetHelper.aquarium(it)
     }
-    TextureInfo.petList.forEach {
-        textureAssetMap[it.name] = TextureAssetHelper.pet(it)
+    TextureInfo.petList.forEach { pet ->
+        textureAssetMap.putAll(TextureAssetHelper.pet(pet).associateBy { it.name })
     }
 
     val assets = Assets(
