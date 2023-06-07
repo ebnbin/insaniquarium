@@ -1,7 +1,7 @@
 import dev.ebnbin.gdx.asset.TextureAsset
 import java.io.File
 
-object ImageHelper {
+object TextureAssetHelper {
     fun aquarium(info: AquariumTextureInfo): TextureAsset {
         val srcFile = File(TextureInfo.aquariumSrcDir, info.srcFileName)
         val dstFile = File(TextureInfo.dstDir, "${info.name}.png")

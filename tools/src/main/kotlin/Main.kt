@@ -26,10 +26,10 @@ fun main() {
 
     val textureAssetMap = mutableMapOf<String, TextureAsset>()
     TextureInfo.aquariumList.forEach {
-        textureAssetMap[it.name] = ImageHelper.aquarium(it)
+        textureAssetMap[it.name] = TextureAssetHelper.aquarium(it)
     }
     TextureInfo.petList.forEach {
-        textureAssetMap[it.name] = ImageHelper.pet(it)
+        textureAssetMap[it.name] = TextureAssetHelper.pet(it)
     }
 
     val assets = Assets(
