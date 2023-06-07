@@ -5,6 +5,8 @@
       "width": 0.135,
       "height": 0.14,
       "depth": 0.135,
+      "density": 1000.0,
+      "dragCoefficient": 1.0,
       "touchAct": {
         "accelerationX": 0.2,
         "accelerationY": 0.3

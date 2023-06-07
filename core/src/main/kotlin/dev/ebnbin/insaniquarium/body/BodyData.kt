@@ -4,7 +4,6 @@ import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.Align
-import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.aquarium.Tank
@@ -101,13 +100,13 @@ data class BodyData(
 
     val volume: Float = area * depth
 
-    val density: Float = config.density ?: World.DENSITY_WATER
+    val density: Float = config.density
 
     val mass: Float = volume * density
 
     //*****************************************************************************************************************
 
-    val dragCoefficient: Float = config.dragCoefficient ?: World.DEFAULT_DRAG_COEFFICIENT
+    val dragCoefficient: Float = config.dragCoefficient
 
     val gravityY: Float = BodyForceHelper.gravityY(
         mass = mass,

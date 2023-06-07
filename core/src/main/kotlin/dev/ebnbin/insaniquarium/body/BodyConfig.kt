@@ -3,20 +3,21 @@ package dev.ebnbin.insaniquarium.body
 import com.google.gson.annotations.Expose
 import dev.ebnbin.gdx.utils.AnimMode
 import dev.ebnbin.gdx.utils.Interpolation
+import dev.ebnbin.gdx.utils.World
 
 data class BodyConfig(
     @Expose
-    val id: String = "",
+    val id: String,
     @Expose
-    val width: Float = 0f,
+    val width: Float,
     @Expose
-    val height: Float = 0f,
+    val height: Float,
     @Expose
-    val depth: Float = 0f,
+    val depth: Float,
     @Expose
-    val density: Float? = null,
+    val density: Float = World.DENSITY_WATER,
     @Expose
-    val dragCoefficient: Float? = null,
+    val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
     @Expose
     val touchAct: TouchAct? = null,
     @Expose
@@ -24,29 +25,29 @@ data class BodyConfig(
     @Expose
     val swimActY: SwimAct? = null,
     @Expose
-    val anim: Anim = Anim(),
+    val anim: Anim,
 ) {
     data class TouchAct(
         @Expose
-        val accelerationX: Float = 0f,
+        val accelerationX: Float,
         @Expose
-        val accelerationY: Float = 0f,
+        val accelerationY: Float,
     )
 
     data class SwimAct(
         @Expose
-        val acceleration: Float = 0f,
+        val acceleration: Float,
         @Expose
-        val idlingTimeRandomStart: Float = 0f,
+        val idlingTimeRandomStart: Float,
         @Expose
-        val idlingTimeRandomEnd: Float = 0f,
+        val idlingTimeRandomEnd: Float,
     )
 
     data class Anim(
         @Expose
-        val assetId: String = "",
+        val assetId: String,
         @Expose
-        val duration: Float = 0f,
+        val duration: Float,
         @Expose
         val mode: AnimMode = AnimMode.NORMAL,
         @Expose

@@ -2,7 +2,9 @@ import dev.ebnbin.gdx.asset.Assets
 import dev.ebnbin.gdx.asset.FreeTypeAsset
 import dev.ebnbin.gdx.asset.TextureAsset
 import dev.ebnbin.gdx.utils.toJson
+import dev.ebnbin.insaniquarium.Config
 import dev.ebnbin.insaniquarium.InsaniquariumGame
+import dev.ebnbin.insaniquarium.body.BodyConfig
 import java.io.File
 
 fun main() {
@@ -34,4 +36,13 @@ fun main() {
         texture = textureAssetMap.toSortedMap(),
     )
     File("../assets/assets.json").writeText(assets.toJson())
+
+    val bodyConfigMap = mutableMapOf<String, BodyConfig>()
+    ConfigInfo.bodyList.forEach {
+        bodyConfigMap[it.id] = ConfigHelper.body(assets, it)
+    }
+    val config = Config(
+        body = bodyConfigMap.toSortedMap(),
+    )
+    File("../assets/config.json").writeText(config.toJson())
 }
