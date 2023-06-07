@@ -6,7 +6,7 @@ import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.animFrame
 import dev.ebnbin.insaniquarium.game
 
-fun BodyId.assets(): Set<Asset<*>> {
+fun BodyType.assets(): Set<Asset<*>> {
     val config = game.config.body.getValue(serializedName)
     return setOf(
         baseGame.assets.texture.getValue(config.anim.assetId),

@@ -39,7 +39,7 @@ fun main() {
 
     val bodyConfigMap = mutableMapOf<String, BodyConfig>()
     ConfigInfo.bodyList.forEach {
-        bodyConfigMap[it.id] = ConfigHelper.body(assets, it)
+        bodyConfigMap[it.type.serializedName] = ConfigHelper.body(assets, it)
     }
     val config = Config(
         body = bodyConfigMap.toSortedMap(),

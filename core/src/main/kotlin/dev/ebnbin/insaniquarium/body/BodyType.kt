@@ -2,7 +2,7 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.utils.SerializableEnum
 
-enum class BodyId(override val serializedName: String) : SerializableEnum {
+enum class BodyType(override val serializedName: String) : SerializableEnum {
     CLYDE("clyde"),
     PRESTO("presto"),
 

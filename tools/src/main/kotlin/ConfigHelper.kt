@@ -24,7 +24,7 @@ object ConfigHelper {
         }
 
         return BodyConfig(
-            id = info.id,
+            type = info.type,
             group = info.group,
             width = size(info.width),
             height = size(info.height),

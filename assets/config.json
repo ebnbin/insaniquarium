@@ -1,7 +1,7 @@
 {
   "body": {
     "beetle": {
-      "id": "beetle",
+      "type": "beetle",
       "group": "money",
       "width": 0.08833333,
       "height": 0.08166666,
@@ -22,7 +22,7 @@
       }
     },
     "clyde": {
-      "id": "clyde",
+      "type": "clyde",
       "group": "pet",
       "width": 0.135,
       "height": 0.14,
@@ -49,7 +49,7 @@
       }
     },
     "diamond": {
-      "id": "diamond",
+      "type": "diamond",
       "group": "money",
       "width": 0.08,
       "height": 0.07,
@@ -70,7 +70,7 @@
       }
     },
     "gold_coin": {
-      "id": "gold_coin",
+      "type": "gold_coin",
       "group": "money",
       "width": 0.075,
       "height": 0.075,
@@ -91,7 +91,7 @@
       }
     },
     "presto": {
-      "id": "presto",
+      "type": "presto",
       "group": "pet",
       "width": 0.14166667,
       "height": 0.095,
@@ -121,7 +121,7 @@
       }
     },
     "silver_coin": {
-      "id": "silver_coin",
+      "type": "silver_coin",
       "group": "money",
       "width": 0.075,
       "height": 0.075,
@@ -142,7 +142,7 @@
       }
     },
     "star": {
-      "id": "star",
+      "type": "star",
       "group": "money",
       "width": 0.11,
       "height": 0.105,
@@ -163,7 +163,7 @@
       }
     },
     "treasure_chest": {
-      "id": "treasure_chest",
+      "type": "treasure_chest",
       "group": "money",
       "width": 0.11333334,
       "height": 0.125,

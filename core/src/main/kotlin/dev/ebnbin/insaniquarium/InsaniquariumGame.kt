@@ -8,7 +8,7 @@ import dev.ebnbin.gdx.utils.createMenuItem
 import dev.ebnbin.gdx.utils.fromJson
 import dev.ebnbin.insaniquarium.aquarium.AquariumStage
 import dev.ebnbin.insaniquarium.aquarium.TankStage
-import dev.ebnbin.insaniquarium.body.BodyId
+import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.insaniquarium.body.assets
 
 private var insaniquariumGame: InsaniquariumGame? = null
@@ -33,7 +33,7 @@ class InsaniquariumGame : BaseGame() {
                 assets.texture.getValue("aquarium_d"),
                 assets.texture.getValue("aquarium_e"),
                 assets.texture.getValue("aquarium_f"),
-            ) + BodyId.values().flatMap { it.assets() },
+            ) + BodyType.values().flatMap { it.assets() },
             createStageList = {
                 listOf(
                     AquariumStage(),
@@ -45,10 +45,10 @@ class InsaniquariumGame : BaseGame() {
                 val tankStage = stageList.filterIsInstance<TankStage>().single()
                 menu.createListMenuItem(
                     title = "body",
-                    dataList = BodyId.values().toList(),
+                    dataList = BodyType.values().toList(),
                     dataToString = { it.serializedName },
-                    clicked = { _, bodyId ->
-                        tankStage.tank.devAddBody(bodyId)
+                    clicked = { _, type ->
+                        tankStage.tank.devAddBody(type)
                     },
                 )
                 menu.createMenuItem("add 10 bodies") {

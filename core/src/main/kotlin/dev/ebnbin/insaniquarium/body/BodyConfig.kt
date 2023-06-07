@@ -8,7 +8,7 @@ import dev.ebnbin.gdx.utils.World
 
 data class BodyConfig(
     @Expose
-    val id: String,
+    val type: BodyType,
     @Expose
     val group: Group,
     @Expose

@@ -1,11 +1,12 @@
 import dev.ebnbin.gdx.utils.AnimMode
 import dev.ebnbin.gdx.utils.Interpolation
 import dev.ebnbin.insaniquarium.body.BodyConfig
+import dev.ebnbin.insaniquarium.body.BodyType
 
 object ConfigInfo {
     val bodyList: List<BodyConfigInfo> = listOf(
         BodyConfigInfo(
-            id = "clyde",
+            type = BodyType.CLYDE,
             group = BodyConfig.Group.PET,
             width = BodyConfigInfo.Size(
                 textureName = "clyde",
@@ -40,7 +41,7 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
-            id = "presto",
+            type = BodyType.PRESTO,
             group = BodyConfig.Group.PET,
             width = BodyConfigInfo.Size(
                 textureName = "presto",
@@ -76,7 +77,7 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
-            id = "silver_coin",
+            type = BodyType.SILVER_COIN,
             group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "silver_coin",
@@ -100,7 +101,7 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
-            id = "gold_coin",
+            type = BodyType.GOLD_COIN,
             group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "gold_coin",
@@ -124,7 +125,7 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
-            id = "star",
+            type = BodyType.STAR,
             group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "star",
@@ -148,7 +149,7 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
-            id = "diamond",
+            type = BodyType.DIAMOND,
             group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "diamond",
@@ -172,7 +173,7 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
-            id = "treasure_chest",
+            type = BodyType.TREASURE_CHEST,
             group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "treasure_chest",
@@ -196,7 +197,7 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
-            id = "beetle",
+            type = BodyType.BEETLE,
             group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "beetle",

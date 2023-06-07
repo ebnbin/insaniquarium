@@ -10,7 +10,7 @@ import dev.ebnbin.insaniquarium.aquarium.Tank
 import dev.ebnbin.insaniquarium.game
 
 data class BodyData(
-    val id: BodyId,
+    val type: BodyType,
 
     val tankWidth: Float,
     val tankHeight: Float,
@@ -72,7 +72,7 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val config: BodyConfig = game.config.body.getValue(id.serializedName)
+    val config: BodyConfig = game.config.body.getValue(type.serializedName)
 
     //*****************************************************************************************************************
 
@@ -322,11 +322,11 @@ data class BodyData(
     companion object {
         fun create(
             tank: Tank,
-            id: BodyId,
+            type: BodyType,
             params: BodyParams,
         ): BodyData {
             return BodyData(
-                id = id,
+                type = type,
                 tankWidth = tank.width,
                 tankHeight = tank.height,
                 velocityX = 0f,
