@@ -13,6 +13,7 @@ import com.google.gson.stream.JsonWriter
 val gson: Gson = GsonBuilder()
     .registerTypeAdapterFactory(EnumTypeAdapterFactory)
     .excludeFieldsWithoutExposeAnnotation()
+    .serializeNulls()
     .setPrettyPrinting()
     .create()
 
