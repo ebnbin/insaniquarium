@@ -23,6 +23,15 @@ class Tank : Group() {
         addListener(object : InputListener() {
             override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 touchPoint = Point(x, y)
+                devSelectedBodyType?.let {
+                    addBody(
+                        params = BodyParams(
+                            type = it,
+                            x = x,
+                            y = y,
+                        ),
+                    )
+                }
                 return true
             }
 
@@ -62,6 +71,8 @@ class Tank : Group() {
             BodyConfig.Group.MONEY -> moneyGroup
         }
     }
+
+    var devSelectedBodyType: BodyType? = null
 
     fun devAddBody(type: BodyType = BodyType.values().random()) {
         addBody(

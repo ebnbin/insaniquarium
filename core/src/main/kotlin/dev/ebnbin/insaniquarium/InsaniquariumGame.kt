@@ -45,11 +45,9 @@ class InsaniquariumGame : BaseGame() {
                 val tankStage = stageList.filterIsInstance<TankStage>().single()
                 menu.createListMenuItem(
                     title = "body",
-                    dataList = BodyType.values().toList(),
-                    dataToString = { it.serializedName },
-                    clicked = { _, type ->
-                        tankStage.tank.devAddBody(type)
-                    },
+                    dataList = listOf(null) + BodyType.values().toList(),
+                    dataToString = { it?.serializedName ?: "" },
+                    property = tankStage.tank::devSelectedBodyType,
                 )
                 menu.createMenuItem("add 10 bodies") {
                     repeat(10) {

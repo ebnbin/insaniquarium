@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
 import com.kotcrab.vis.ui.widget.MenuItem
 import com.kotcrab.vis.ui.widget.PopupMenu
 import dev.ebnbin.gdx.pref.SimplePref
+import kotlin.reflect.KMutableProperty0
 
 fun PopupMenu.createMenuItem(
     title: String,
@@ -24,12 +25,20 @@ fun <T> PopupMenu.createListMenuItem(
     title: String,
     dataList: List<T>,
     dataToString: (T) -> String = { "$it" },
+    property: KMutableProperty0<T>? = null,
     clicked: ((MenuItem, T) -> Unit)? = null,
 ): MenuItem {
     val menuItem = MenuItem(title)
+    if (property != null) {
+        menuItem.setShortcut(dataToString(property.get()))
+    }
     val popupMenu = PopupMenu()
     dataList.forEach { data ->
         popupMenu.createMenuItem(dataToString(data)) {
+            if (property != null) {
+                property.set(data)
+                menuItem.setShortcut(dataToString(data))
+            }
             clicked?.invoke(menuItem, data)
         }
     }
