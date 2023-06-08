@@ -4,6 +4,7 @@ import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.trim
+import kotlin.math.pow
 
 object BodyForceHelper {
     fun gravityY(
@@ -24,8 +25,7 @@ object BodyForceHelper {
         velocity: Float,
         referenceArea: Float,
     ): Float {
-        return -velocity.direction *
-            (0.5f * World.DENSITY_WATER * velocity * velocity * dragCoefficient * referenceArea)
+        return -velocity.direction * (0.5f * World.DENSITY_WATER * velocity.pow(2) * dragCoefficient * referenceArea)
     }
 
     fun driving(

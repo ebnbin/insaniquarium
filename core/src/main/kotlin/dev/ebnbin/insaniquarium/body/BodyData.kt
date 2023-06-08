@@ -3,6 +3,8 @@ package dev.ebnbin.insaniquarium.body
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import com.badlogic.gdx.math.Rectangle
+import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.unitToMeter
@@ -31,6 +33,8 @@ data class BodyData(
 
     val disappearAct: DisappearAct?,
 
+    val eatAct: EatAct?,
+
     val stateTime: Float,
 ) {
     data class TouchAct(
@@ -55,6 +59,11 @@ data class BodyData(
         }
     }
 
+    data class EatAct(
+        val drivingTargetX: DrivingTarget,
+        val drivingTargetY: DrivingTarget,
+    )
+
     //*****************************************************************************************************************
 
     data class DrivingTarget(
@@ -70,8 +79,8 @@ data class BodyData(
         }
     }
 
-    val drivingTargetX: DrivingTarget? = touchAct?.drivingTargetX ?: swimActX?.drivingTarget
-    val drivingTargetY: DrivingTarget? = touchAct?.drivingTargetY ?: swimActY?.drivingTarget
+    val drivingTargetX: DrivingTarget? = eatAct?.drivingTargetX ?: touchAct?.drivingTargetX ?: swimActX?.drivingTarget
+    val drivingTargetY: DrivingTarget? = eatAct?.drivingTargetY ?: touchAct?.drivingTargetY ?: swimActY?.drivingTarget
 
     //*****************************************************************************************************************
 
@@ -193,6 +202,19 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
+    val vector2: Vector2 = Vector2(x, y)
+    val rectangle: Rectangle = Rectangle(left, bottom, width, height)
+
+    fun distance(other: BodyData): Float {
+        return vector2.dst(other.vector2)
+    }
+
+    fun containsCenter(other: BodyData): Boolean {
+        return rectangle.contains(other.vector2)
+    }
+
+    //*****************************************************************************************************************
+
     private val textureRegion: TextureRegion = config.anim.getFrame(stateTime)
 
     private val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
@@ -240,6 +262,12 @@ data class BodyData(
             delta = delta,
         )
 
+        val nextEatAct = BodyActHelper.nextEatAct(
+            configEatAct = config.eatAct,
+            data = this,
+            body = body,
+        )
+
         val nextVelocityX = BodyForceHelper.nextVelocity(
             velocity = velocityX,
             acceleration = accelerationX,
@@ -281,6 +309,7 @@ data class BodyData(
             swimActX = nextSwimActX,
             swimActY = nextSwimActY,
             disappearAct = nextDisappearAct,
+            eatAct = nextEatAct,
             stateTime = nextStateTime,
         )
     }
@@ -344,6 +373,7 @@ data class BodyData(
                 swimActX = null,
                 swimActY = null,
                 disappearAct = null,
+                eatAct = null,
                 stateTime = 0f,
             )
         }

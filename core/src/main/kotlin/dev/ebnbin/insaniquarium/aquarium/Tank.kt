@@ -52,6 +52,16 @@ class Tank : Group() {
     var touchPoint: Point? = null
         private set
 
+    private val toRemoveBodySet: MutableSet<String> = mutableSetOf()
+
+    private fun isBodyRemoved(bodyId: String): Boolean {
+        return toRemoveBodySet.contains(bodyId)
+    }
+
+    fun addBodyToRemove(bodyId: String) {
+        toRemoveBodySet.add(bodyId)
+    }
+
     private fun addBody(params: BodyParams): Body {
         val body = Body(
             tank = this,
@@ -71,6 +81,17 @@ class Tank : Group() {
             BodyConfig.Group.MONEY -> moneyGroup
         }
     }
+
+    fun findBodyByType(typeSet: Set<BodyType>): List<Body> {
+        return children
+            .filterIsInstance<Group>()
+            .flatMap { it.children }
+            .filterIsInstance<Body>()
+            .filter { typeSet.contains(it.data.config.type) }
+            .filter { !it.data.canRemove && !isBodyRemoved(it.data.id) }
+    }
+
+    //*****************************************************************************************************************
 
     var devSelectedBodyType: BodyType? = null
 
@@ -95,7 +116,7 @@ class Tank : Group() {
             .filterIsInstance<Group>()
             .flatMap { it.children }
             .filterIsInstance<Body>()
-            .filter { it.data.canRemove }
+            .filter { it.data.canRemove || isBodyRemoved(it.data.id) }
             .forEach { removeBody(it) }
         if (debug) {
             baseGame.putLog("tank") {

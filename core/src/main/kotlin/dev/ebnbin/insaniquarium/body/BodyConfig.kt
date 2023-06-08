@@ -30,6 +30,8 @@ data class BodyConfig(
     @Expose
     val disappearAct: DisappearAct? = null,
     @Expose
+    val eatAct: EatAct? = null,
+    @Expose
     val anim: Anim,
 ) {
     enum class Group(override val serializedName: String) : SerializableEnum {
@@ -57,6 +59,15 @@ data class BodyConfig(
     data class DisappearAct(
         @Expose
         val delay: Float = 0f,
+    )
+
+    data class EatAct(
+        @Expose
+        val foodTypeSet: Set<BodyType>,
+        @Expose
+        val accelerationX: Float,
+        @Expose
+        val accelerationY: Float,
     )
 
     data class Anim(

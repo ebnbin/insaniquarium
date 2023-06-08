@@ -33,6 +33,17 @@ object ConfigInfo {
                 idlingTimeRandomStart = 2f,
                 idlingTimeRandomEnd = 8f,
             ),
+            eatAct = BodyConfig.EatAct(
+                foodTypeSet = setOf(
+                    BodyType.SILVER_COIN,
+                    BodyType.GOLD_COIN,
+                    BodyType.STAR,
+                    BodyType.DIAMOND,
+                    BodyType.TREASURE_CHEST,
+                ),
+                accelerationX = 0.2f,
+                accelerationY = 0.3f,
+            ),
             anim = BodyConfig.Anim(
                 assetId = "clyde",
                 duration = 1.125f,

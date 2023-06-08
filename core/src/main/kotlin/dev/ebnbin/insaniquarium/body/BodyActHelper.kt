@@ -121,4 +121,34 @@ object BodyActHelper {
             )
         }
     }
+
+    fun nextEatAct(
+        configEatAct: BodyConfig.EatAct?,
+        data: BodyData,
+        body: Body,
+    ): BodyData.EatAct? {
+        if (configEatAct == null) {
+            return null
+        }
+        val foodSet = body.tank.findBodyByType(configEatAct.foodTypeSet)
+        if (foodSet.isEmpty()) {
+            return null
+        }
+        val food = foodSet.minBy {
+            data.distance(it.data)
+        }
+        if (data.containsCenter(food.data)) {
+            body.tank.addBodyToRemove(food.data.id)
+        }
+        return BodyData.EatAct(
+            drivingTargetX = BodyData.DrivingTarget(
+                position = food.data.x,
+                acceleration = configEatAct.accelerationX,
+            ),
+            drivingTargetY = BodyData.DrivingTarget(
+                position = food.data.y,
+                acceleration = configEatAct.accelerationY,
+            ),
+        )
+    }
 }

@@ -36,6 +36,7 @@ data class BodyConfigInfo(
     val swimActX: BodyConfig.SwimAct? = null,
     val swimActY: BodyConfig.SwimAct? = null,
     val disappearAct: BodyConfig.DisappearAct? = null,
+    val eatAct: BodyConfig.EatAct? = null,
     val anim: BodyConfig.Anim,
 ) {
     data class Size(
