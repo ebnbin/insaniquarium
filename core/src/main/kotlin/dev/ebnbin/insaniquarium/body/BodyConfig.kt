@@ -22,7 +22,7 @@ data class BodyConfig(
     @Expose
     val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
     @Expose
-    val anim: Anim,
+    val animations: Map<String, Anim>,
     @Expose
     val touchAct: TouchAct? = null,
     @Expose
@@ -52,8 +52,6 @@ data class BodyConfig(
     }
 
     data class Anim(
-        @Expose
-        val type: AnimType = AnimType.IDLE,
         @Expose
         val assetId: String,
         @Expose
@@ -96,6 +94,6 @@ data class BodyConfig(
 
     data class TurnAct(
         @Expose
-        val anim: Anim,
+        val animType: AnimType,
     )
 }

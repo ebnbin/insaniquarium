@@ -220,22 +220,24 @@ data class BodyData(
     //*****************************************************************************************************************
 
     data class TextureRegionData(
-        val anim: BodyConfig.Anim,
+        val animType: BodyConfig.AnimType,
         val stateTime: Float,
         val isFacingRight: Boolean,
-    ) {
-        val canAnimChange: Boolean = anim.type.canInterrupt || stateTime >= anim.duration
+    )
 
-        val textureRegion: TextureRegion = anim.getFrame(stateTime)
+    val anim: BodyConfig.Anim = config.animations.getValue(textureRegionData.animType.serializedName)
 
-        val width: Float = textureRegion.regionWidth.toFloat().unitToMeter
-        val height: Float = textureRegion.regionHeight.toFloat().unitToMeter
+    val canAnimChange: Boolean = textureRegionData.animType.canInterrupt || textureRegionData.stateTime >= anim.duration
 
-        val isFlipX: Boolean = if (anim.type == BodyConfig.AnimType.TURN) {
-            !isFacingRight
-        } else {
-            isFacingRight
-        }
+    val textureRegion: TextureRegion = anim.getFrame(textureRegionData.stateTime)
+
+    val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
+    val actorHeight: Float = textureRegion.regionHeight.toFloat().unitToMeter
+
+    val isFlipX: Boolean = if (textureRegionData.animType == BodyConfig.AnimType.TURN) {
+        !textureRegionData.isFacingRight
+    } else {
+        textureRegionData.isFacingRight
     }
 
     val alpha: Float = if (disappearAct == null || disappearAct.time >= 0f) {
@@ -330,17 +332,17 @@ data class BodyData(
             }
         }
 
-        val nextTextureRegionData = if (textureRegionData.canAnimChange) {
+        val nextTextureRegionData = if (canAnimChange) {
             if (textureRegionData.isFacingRight != expectedIsFacingRight) {
                 TextureRegionData(
-                    anim = config.turnAct?.anim ?: config.anim,
+                    animType = config.turnAct?.animType ?: BodyConfig.AnimType.IDLE,
                     stateTime = 0f,
                     isFacingRight = expectedIsFacingRight,
                 )
             } else {
                 TextureRegionData(
-                    anim = config.anim,
-                    stateTime = if (textureRegionData.anim.type == config.anim.type) {
+                    animType = BodyConfig.AnimType.IDLE,
+                    stateTime = if (textureRegionData.animType == BodyConfig.AnimType.IDLE) {
                         textureRegionData.stateTime + delta
                     } else {
                         0f
@@ -350,7 +352,7 @@ data class BodyData(
             }
         } else {
             TextureRegionData(
-                anim = textureRegionData.anim,
+                animType = textureRegionData.animType,
                 stateTime = textureRegionData.stateTime + delta,
                 isFacingRight = textureRegionData.isFacingRight,
             )
@@ -372,7 +374,7 @@ data class BodyData(
     }
 
     fun act(body: Body) {
-        body.setSize(textureRegionData.width, textureRegionData.height)
+        body.setSize(actorWidth, actorHeight)
         body.setPosition(x, y, Align.center)
     }
 
@@ -380,7 +382,7 @@ data class BodyData(
         val oldColor = batch.color.cpy()
         batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
         batch.draw(
-            textureRegionData.textureRegion.texture,
+            textureRegion.texture,
             body.x,
             body.y,
             body.originX,
@@ -390,11 +392,11 @@ data class BodyData(
             body.scaleX,
             body.scaleY,
             body.rotation,
-            textureRegionData.textureRegion.regionX,
-            textureRegionData.textureRegion.regionY,
-            textureRegionData.textureRegion.regionWidth,
-            textureRegionData.textureRegion.regionHeight,
-            textureRegionData.isFlipX,
+            textureRegion.regionX,
+            textureRegion.regionY,
+            textureRegion.regionWidth,
+            textureRegion.regionHeight,
+            isFlipX,
             false,
         )
         batch.color = oldColor
@@ -435,7 +437,7 @@ data class BodyData(
                 eatAct = null,
                 expectedIsFacingRight = false,
                 textureRegionData = TextureRegionData(
-                    anim = config.anim,
+                    animType = BodyConfig.AnimType.IDLE,
                     stateTime = 0f,
                     isFacingRight = false,
                 ),
