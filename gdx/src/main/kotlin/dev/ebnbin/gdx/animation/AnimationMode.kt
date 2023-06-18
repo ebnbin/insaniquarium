@@ -1,8 +1,8 @@
-package dev.ebnbin.gdx.utils
+package dev.ebnbin.gdx.animation
 
-enum class AnimMode(
-    override val serializedName: String,
-) : SerializableEnum {
+import dev.ebnbin.gdx.utils.SerializableEnum
+
+enum class AnimationMode(override val serializedName: String) : SerializableEnum {
     NORMAL(
         serializedName = "normal",
     ),

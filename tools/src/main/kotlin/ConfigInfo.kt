@@ -1,4 +1,5 @@
-import dev.ebnbin.gdx.utils.AnimMode
+import dev.ebnbin.gdx.animation.TextureRegionAnimation
+import dev.ebnbin.gdx.animation.AnimationMode
 import dev.ebnbin.gdx.utils.Interpolation
 import dev.ebnbin.insaniquarium.body.BodyConfig
 import dev.ebnbin.insaniquarium.body.BodyType
@@ -24,10 +25,10 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             animations = mapOf(
-                BodyConfig.AnimType.IDLE.serializedName to BodyConfig.Anim(
+                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
                     assetId = "clyde",
                     duration = 1.125f,
-                    mode = AnimMode.LOOP,
+                    mode = AnimationMode.LOOP,
                     interpolation = Interpolation.POW2_IN,
                 ),
             ),
@@ -70,15 +71,15 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             animations = mapOf(
-                BodyConfig.AnimType.IDLE.serializedName to BodyConfig.Anim(
+                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
                     assetId = "presto",
                     duration = 0.5f,
-                    mode = AnimMode.LOOP,
+                    mode = AnimationMode.LOOP,
                 ),
-                BodyConfig.AnimType.TURN.serializedName to BodyConfig.Anim(
+                BodyConfig.AnimationType.TURN.serializedName to TextureRegionAnimation(
                     assetId = "presto_turn",
                     duration = 0.5f,
-                    mode = AnimMode.NORMAL,
+                    mode = AnimationMode.NORMAL,
                 ),
             ),
             touchAct = BodyConfig.TouchAct(
@@ -96,7 +97,7 @@ object ConfigInfo {
                 idlingTimeRandomEnd = 10f,
             ),
             turnAct = BodyConfig.TurnAct(
-                animType = BodyConfig.AnimType.TURN,
+                animationType = BodyConfig.AnimationType.TURN,
             ),
         ),
         BodyConfigInfo(
@@ -117,10 +118,10 @@ object ConfigInfo {
             ),
             density = 1020f,
             animations = mapOf(
-                BodyConfig.AnimType.IDLE.serializedName to BodyConfig.Anim(
+                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
                     assetId = "silver_coin",
                     duration = 0.6f,
-                    mode = AnimMode.LOOP,
+                    mode = AnimationMode.LOOP,
                 ),
             ),
             disappearAct = BodyConfig.DisappearAct(),
@@ -143,10 +144,10 @@ object ConfigInfo {
             ),
             density = 1020f,
             animations = mapOf(
-                BodyConfig.AnimType.IDLE.serializedName to BodyConfig.Anim(
+                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
                     assetId = "gold_coin",
                     duration = 0.6f,
-                    mode = AnimMode.LOOP,
+                    mode = AnimationMode.LOOP,
                 ),
             ),
             disappearAct = BodyConfig.DisappearAct(),
@@ -169,10 +170,10 @@ object ConfigInfo {
             ),
             density = 1010f,
             animations = mapOf(
-                BodyConfig.AnimType.IDLE.serializedName to BodyConfig.Anim(
+                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
                     assetId = "star",
                     duration = 0.6f,
-                    mode = AnimMode.LOOP,
+                    mode = AnimationMode.LOOP,
                 ),
             ),
             disappearAct = BodyConfig.DisappearAct(),
@@ -195,10 +196,10 @@ object ConfigInfo {
             ),
             density = 1020f,
             animations = mapOf(
-                BodyConfig.AnimType.IDLE.serializedName to BodyConfig.Anim(
+                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
                     assetId = "diamond",
                     duration = 0.6f,
-                    mode = AnimMode.LOOP,
+                    mode = AnimationMode.LOOP,
                 ),
             ),
             disappearAct = BodyConfig.DisappearAct(),
@@ -221,10 +222,10 @@ object ConfigInfo {
             ),
             density = 1020f,
             animations = mapOf(
-                BodyConfig.AnimType.IDLE.serializedName to BodyConfig.Anim(
+                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
                     assetId = "treasure_chest",
                     duration = 0.6f,
-                    mode = AnimMode.LOOP,
+                    mode = AnimationMode.LOOP,
                 ),
             ),
             disappearAct = BodyConfig.DisappearAct(),
@@ -247,10 +248,10 @@ object ConfigInfo {
             ),
             density = 990f,
             animations = mapOf(
-                BodyConfig.AnimType.IDLE.serializedName to BodyConfig.Anim(
+                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
                     assetId = "beetle",
                     duration = 0.3f,
-                    mode = AnimMode.LOOP,
+                    mode = AnimationMode.LOOP,
                 ),
             ),
             disappearAct = BodyConfig.DisappearAct(),

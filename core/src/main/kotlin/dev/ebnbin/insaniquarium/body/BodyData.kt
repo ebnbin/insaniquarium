@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Align
+import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.minMax
@@ -220,21 +221,22 @@ data class BodyData(
     //*****************************************************************************************************************
 
     data class TextureRegionData(
-        val animType: BodyConfig.AnimType,
+        val animationType: BodyConfig.AnimationType,
         val stateTime: Float,
         val isFacingRight: Boolean,
     )
 
-    val anim: BodyConfig.Anim = config.animations.getValue(textureRegionData.animType.serializedName)
+    val animation: TextureRegionAnimation = config.animations.getValue(textureRegionData.animationType.serializedName)
 
-    val canAnimChange: Boolean = textureRegionData.animType.canInterrupt || textureRegionData.stateTime >= anim.duration
+    val canAnimationChange: Boolean = textureRegionData.animationType.canInterrupt ||
+        textureRegionData.stateTime >= animation.duration
 
-    val textureRegion: TextureRegion = anim.getFrame(textureRegionData.stateTime)
+    val textureRegion: TextureRegion = animation.getTextureRegion(textureRegionData.stateTime)
 
     val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
     val actorHeight: Float = textureRegion.regionHeight.toFloat().unitToMeter
 
-    val isFlipX: Boolean = if (textureRegionData.animType == BodyConfig.AnimType.TURN) {
+    val isFlipX: Boolean = if (textureRegionData.animationType == BodyConfig.AnimationType.TURN) {
         !textureRegionData.isFacingRight
     } else {
         textureRegionData.isFacingRight
@@ -332,17 +334,17 @@ data class BodyData(
             }
         }
 
-        val nextTextureRegionData = if (canAnimChange) {
+        val nextTextureRegionData = if (canAnimationChange) {
             if (textureRegionData.isFacingRight != expectedIsFacingRight) {
                 TextureRegionData(
-                    animType = config.turnAct?.animType ?: BodyConfig.AnimType.IDLE,
+                    animationType = config.turnAct?.animationType ?: BodyConfig.AnimationType.IDLE,
                     stateTime = 0f,
                     isFacingRight = expectedIsFacingRight,
                 )
             } else {
                 TextureRegionData(
-                    animType = BodyConfig.AnimType.IDLE,
-                    stateTime = if (textureRegionData.animType == BodyConfig.AnimType.IDLE) {
+                    animationType = BodyConfig.AnimationType.IDLE,
+                    stateTime = if (textureRegionData.animationType == BodyConfig.AnimationType.IDLE) {
                         textureRegionData.stateTime + delta
                     } else {
                         0f
@@ -352,7 +354,7 @@ data class BodyData(
             }
         } else {
             TextureRegionData(
-                animType = textureRegionData.animType,
+                animationType = textureRegionData.animationType,
                 stateTime = textureRegionData.stateTime + delta,
                 isFacingRight = textureRegionData.isFacingRight,
             )
@@ -419,8 +421,6 @@ data class BodyData(
             tank: Tank,
             params: BodyParams,
         ): BodyData {
-            val config: BodyConfig = game.config.body.getValue(params.type.serializedName)
-
             return BodyData(
                 type = params.type,
                 id = "${UUID.randomUUID()}",
@@ -437,7 +437,7 @@ data class BodyData(
                 eatAct = null,
                 expectedIsFacingRight = false,
                 textureRegionData = TextureRegionData(
-                    animType = BodyConfig.AnimType.IDLE,
+                    animationType = BodyConfig.AnimationType.IDLE,
                     stateTime = 0f,
                     isFacingRight = false,
                 ),
