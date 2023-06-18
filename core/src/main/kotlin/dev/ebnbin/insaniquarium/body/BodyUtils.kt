@@ -8,9 +8,10 @@ import dev.ebnbin.insaniquarium.game
 
 fun BodyType.assets(): Set<Asset<*>> {
     val config = game.config.body.getValue(serializedName)
-    return setOf(
-        baseGame.assets.texture.getValue(config.anim.assetId),
-    )
+    return setOfNotNull(
+        config.anim.assetId,
+        config.turnAct?.anim?.assetId,
+    ).mapTo(mutableSetOf()) { baseGame.assets.texture.getValue(it) }
 }
 
 fun BodyConfig.Anim.getFrame(stateTime: Float): TextureRegion {

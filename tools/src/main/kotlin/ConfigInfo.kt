@@ -23,6 +23,12 @@ object ConfigInfo {
                 index = 0,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
+            anim = BodyConfig.Anim(
+                assetId = "clyde",
+                duration = 1.125f,
+                mode = AnimMode.LOOP,
+                interpolation = Interpolation.POW2_IN,
+            ),
             swimActX = BodyConfig.SwimAct(
                 acceleration = 0.1f,
                 idlingTimeRandomStart = 2f,
@@ -44,12 +50,6 @@ object ConfigInfo {
                 accelerationX = 0.2f,
                 accelerationY = 0.3f,
             ),
-            anim = BodyConfig.Anim(
-                assetId = "clyde",
-                duration = 1.125f,
-                mode = AnimMode.LOOP,
-                interpolation = Interpolation.POW2_IN,
-            ),
         ),
         BodyConfigInfo(
             type = BodyType.PRESTO,
@@ -67,6 +67,11 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
+            anim = BodyConfig.Anim(
+                assetId = "presto",
+                duration = 0.5f,
+                mode = AnimMode.LOOP,
+            ),
             touchAct = BodyConfig.TouchAct(
                 accelerationX = 0.4f,
                 accelerationY = 0.25f,
@@ -81,10 +86,13 @@ object ConfigInfo {
                 idlingTimeRandomStart = 6f,
                 idlingTimeRandomEnd = 10f,
             ),
-            anim = BodyConfig.Anim(
-                assetId = "presto",
-                duration = 0.5f,
-                mode = AnimMode.LOOP,
+            turnAct = BodyConfig.TurnAct(
+                anim = BodyConfig.Anim(
+                    type = BodyConfig.AnimType.TURN,
+                    assetId = "presto_turn",
+                    duration = 0.5f,
+                    mode = AnimMode.NORMAL,
+                ),
             ),
         ),
         BodyConfigInfo(
@@ -104,12 +112,12 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.HEIGHT,
             ),
             density = 1020f,
-            disappearAct = BodyConfig.DisappearAct(),
             anim = BodyConfig.Anim(
                 assetId = "silver_coin",
                 duration = 0.6f,
                 mode = AnimMode.LOOP,
             ),
+            disappearAct = BodyConfig.DisappearAct(),
         ),
         BodyConfigInfo(
             type = BodyType.GOLD_COIN,
@@ -128,12 +136,12 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.HEIGHT,
             ),
             density = 1020f,
-            disappearAct = BodyConfig.DisappearAct(),
             anim = BodyConfig.Anim(
                 assetId = "gold_coin",
                 duration = 0.6f,
                 mode = AnimMode.LOOP,
             ),
+            disappearAct = BodyConfig.DisappearAct(),
         ),
         BodyConfigInfo(
             type = BodyType.STAR,
@@ -152,12 +160,12 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1010f,
-            disappearAct = BodyConfig.DisappearAct(),
             anim = BodyConfig.Anim(
                 assetId = "star",
                 duration = 0.6f,
                 mode = AnimMode.LOOP,
             ),
+            disappearAct = BodyConfig.DisappearAct(),
         ),
         BodyConfigInfo(
             type = BodyType.DIAMOND,
@@ -176,12 +184,12 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1020f,
-            disappearAct = BodyConfig.DisappearAct(),
             anim = BodyConfig.Anim(
                 assetId = "diamond",
                 duration = 0.6f,
                 mode = AnimMode.LOOP,
             ),
+            disappearAct = BodyConfig.DisappearAct(),
         ),
         BodyConfigInfo(
             type = BodyType.TREASURE_CHEST,
@@ -200,12 +208,12 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1020f,
-            disappearAct = BodyConfig.DisappearAct(),
             anim = BodyConfig.Anim(
                 assetId = "treasure_chest",
                 duration = 0.6f,
                 mode = AnimMode.LOOP,
             ),
+            disappearAct = BodyConfig.DisappearAct(),
         ),
         BodyConfigInfo(
             type = BodyType.BEETLE,
@@ -224,12 +232,12 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 990f,
-            disappearAct = BodyConfig.DisappearAct(),
             anim = BodyConfig.Anim(
                 assetId = "beetle",
                 duration = 0.3f,
                 mode = AnimMode.LOOP,
             ),
+            disappearAct = BodyConfig.DisappearAct(),
         ),
     )
 }

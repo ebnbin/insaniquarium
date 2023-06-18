@@ -22,23 +22,47 @@ data class BodyConfig(
     @Expose
     val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
     @Expose
+    val anim: Anim,
+    @Expose
     val touchAct: TouchAct? = null,
     @Expose
     val swimActX: SwimAct? = null,
     @Expose
     val swimActY: SwimAct? = null,
     @Expose
+    val turnAct: TurnAct? = null,
+    @Expose
     val disappearAct: DisappearAct? = null,
     @Expose
     val eatAct: EatAct? = null,
-    @Expose
-    val anim: Anim,
 ) {
     enum class Group(override val serializedName: String) : SerializableEnum {
         PET("pet"),
         MONEY("money"),
         ;
     }
+
+    enum class AnimType(
+        override val serializedName: String,
+        val canInterrupt: Boolean,
+    ) : SerializableEnum {
+        IDLE("idle", canInterrupt = true),
+        TURN("turn", canInterrupt = false),
+        ;
+    }
+
+    data class Anim(
+        @Expose
+        val type: AnimType = AnimType.IDLE,
+        @Expose
+        val assetId: String,
+        @Expose
+        val duration: Float = 1f,
+        @Expose
+        val mode: AnimMode = AnimMode.NORMAL,
+        @Expose
+        val interpolation: Interpolation = Interpolation.LINEAR,
+    )
 
     data class TouchAct(
         @Expose
@@ -70,14 +94,8 @@ data class BodyConfig(
         val accelerationY: Float,
     )
 
-    data class Anim(
+    data class TurnAct(
         @Expose
-        val assetId: String,
-        @Expose
-        val duration: Float = 1f,
-        @Expose
-        val mode: AnimMode = AnimMode.NORMAL,
-        @Expose
-        val interpolation: Interpolation = Interpolation.LINEAR,
+        val anim: Anim,
     )
 }

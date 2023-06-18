@@ -31,12 +31,13 @@ object ConfigHelper {
             depth = size(info.depth),
             density = info.density,
             dragCoefficient = info.dragCoefficient,
+            anim = info.anim,
             touchAct = info.touchAct,
             swimActX = info.swimActX,
             swimActY = info.swimActY,
+            turnAct = info.turnAct,
             disappearAct = info.disappearAct,
             eatAct = info.eatAct,
-            anim = info.anim,
         ).also {
             cache.clear()
         }

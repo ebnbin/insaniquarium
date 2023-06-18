@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Align
+import dev.ebnbin.gdx.utils.Direction
+import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.aquarium.Tank
@@ -35,7 +37,9 @@ data class BodyData(
 
     val eatAct: EatAct?,
 
-    val stateTime: Float,
+    val expectedIsFacingRight: Boolean,
+
+    val textureRegionData: TextureRegionData,
 ) {
     data class TouchAct(
         val drivingTargetX: DrivingTarget,
@@ -215,10 +219,24 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    private val textureRegion: TextureRegion = config.anim.getFrame(stateTime)
+    data class TextureRegionData(
+        val anim: BodyConfig.Anim,
+        val stateTime: Float,
+        val isFacingRight: Boolean,
+    ) {
+        val canAnimChange: Boolean = anim.type.canInterrupt || stateTime >= anim.duration
 
-    private val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
-    private val actorHeight: Float = textureRegion.regionHeight.toFloat().unitToMeter
+        val textureRegion: TextureRegion = anim.getFrame(stateTime)
+
+        val width: Float = textureRegion.regionWidth.toFloat().unitToMeter
+        val height: Float = textureRegion.regionHeight.toFloat().unitToMeter
+
+        val isFlipX: Boolean = if (anim.type == BodyConfig.AnimType.TURN) {
+            !isFacingRight
+        } else {
+            isFacingRight
+        }
+    }
 
     val alpha: Float = if (disappearAct == null || disappearAct.time >= 0f) {
         1f
@@ -298,7 +316,45 @@ data class BodyData(
             delta = delta,
         )
 
-        val nextStateTime = stateTime + delta
+        val nextExpectedIsFacingRight = if (config.turnAct == null) {
+            false
+        } else {
+            when (drivingX.direction) {
+                Direction.ZERO -> when (velocityX.direction) {
+                    Direction.ZERO -> expectedIsFacingRight
+                    Direction.POSITIVE -> true
+                    Direction.NEGATIVE -> false
+                }
+                Direction.POSITIVE -> true
+                Direction.NEGATIVE -> false
+            }
+        }
+
+        val nextTextureRegionData = if (textureRegionData.canAnimChange) {
+            if (textureRegionData.isFacingRight != expectedIsFacingRight) {
+                TextureRegionData(
+                    anim = config.turnAct?.anim ?: config.anim,
+                    stateTime = 0f,
+                    isFacingRight = expectedIsFacingRight,
+                )
+            } else {
+                TextureRegionData(
+                    anim = config.anim,
+                    stateTime = if (textureRegionData.anim.type == config.anim.type) {
+                        textureRegionData.stateTime + delta
+                    } else {
+                        0f
+                    },
+                    isFacingRight = expectedIsFacingRight,
+                )
+            }
+        } else {
+            TextureRegionData(
+                anim = textureRegionData.anim,
+                stateTime = textureRegionData.stateTime + delta,
+                isFacingRight = textureRegionData.isFacingRight,
+            )
+        }
 
         return copy(
             velocityX = nextVelocityX,
@@ -310,12 +366,13 @@ data class BodyData(
             swimActY = nextSwimActY,
             disappearAct = nextDisappearAct,
             eatAct = nextEatAct,
-            stateTime = nextStateTime,
+            expectedIsFacingRight = nextExpectedIsFacingRight,
+            textureRegionData = nextTextureRegionData,
         )
     }
 
     fun act(body: Body) {
-        body.setSize(actorWidth, actorHeight)
+        body.setSize(textureRegionData.width, textureRegionData.height)
         body.setPosition(x, y, Align.center)
     }
 
@@ -323,7 +380,7 @@ data class BodyData(
         val oldColor = batch.color.cpy()
         batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
         batch.draw(
-            textureRegion.texture,
+            textureRegionData.textureRegion.texture,
             body.x,
             body.y,
             body.originX,
@@ -333,12 +390,12 @@ data class BodyData(
             body.scaleX,
             body.scaleY,
             body.rotation,
-            textureRegion.regionX,
-            textureRegion.regionY,
-            textureRegion.regionWidth,
-            textureRegion.regionHeight,
-            textureRegion.isFlipX,
-            textureRegion.isFlipY,
+            textureRegionData.textureRegion.regionX,
+            textureRegionData.textureRegion.regionY,
+            textureRegionData.textureRegion.regionWidth,
+            textureRegionData.textureRegion.regionHeight,
+            textureRegionData.isFlipX,
+            false,
         )
         batch.color = oldColor
     }
@@ -360,6 +417,8 @@ data class BodyData(
             tank: Tank,
             params: BodyParams,
         ): BodyData {
+            val config: BodyConfig = game.config.body.getValue(params.type.serializedName)
+
             return BodyData(
                 type = params.type,
                 id = "${UUID.randomUUID()}",
@@ -374,7 +433,12 @@ data class BodyData(
                 swimActY = null,
                 disappearAct = null,
                 eatAct = null,
-                stateTime = 0f,
+                expectedIsFacingRight = false,
+                textureRegionData = TextureRegionData(
+                    anim = config.anim,
+                    stateTime = 0f,
+                    isFacingRight = false,
+                ),
             )
         }
     }

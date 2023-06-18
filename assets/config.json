@@ -8,19 +8,21 @@
       "depth": 0.085,
       "density": 990.0,
       "dragCoefficient": 1.0,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
-      },
-      "eatAct": null,
       "anim": {
+        "type": "idle",
         "assetId": "beetle",
         "duration": 0.3,
         "mode": "loop",
         "interpolation": "linear"
-      }
+      },
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "turnAct": null,
+      "disappearAct": {
+        "delay": 0.0
+      },
+      "eatAct": null
     },
     "clyde": {
       "type": "clyde",
@@ -30,6 +32,13 @@
       "depth": 0.135,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "anim": {
+        "type": "idle",
+        "assetId": "clyde",
+        "duration": 1.125,
+        "mode": "loop",
+        "interpolation": "pow2_in"
+      },
       "touchAct": null,
       "swimActX": {
         "acceleration": 0.1,
@@ -41,6 +50,7 @@
         "idlingTimeRandomStart": 2.0,
         "idlingTimeRandomEnd": 8.0
       },
+      "turnAct": null,
       "disappearAct": null,
       "eatAct": {
         "foodTypeSet": [
@@ -52,12 +62,6 @@
         ],
         "accelerationX": 0.2,
         "accelerationY": 0.3
-      },
-      "anim": {
-        "assetId": "clyde",
-        "duration": 1.125,
-        "mode": "loop",
-        "interpolation": "pow2_in"
       }
     },
     "diamond": {
@@ -68,19 +72,21 @@
       "depth": 0.075,
       "density": 1020.0,
       "dragCoefficient": 1.0,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
-      },
-      "eatAct": null,
       "anim": {
+        "type": "idle",
         "assetId": "diamond",
         "duration": 0.6,
         "mode": "loop",
         "interpolation": "linear"
-      }
+      },
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "turnAct": null,
+      "disappearAct": {
+        "delay": 0.0
+      },
+      "eatAct": null
     },
     "gold_coin": {
       "type": "gold_coin",
@@ -90,19 +96,21 @@
       "depth": 0.011666667,
       "density": 1020.0,
       "dragCoefficient": 1.0,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
-      },
-      "eatAct": null,
       "anim": {
+        "type": "idle",
         "assetId": "gold_coin",
         "duration": 0.6,
         "mode": "loop",
         "interpolation": "linear"
-      }
+      },
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "turnAct": null,
+      "disappearAct": {
+        "delay": 0.0
+      },
+      "eatAct": null
     },
     "presto": {
       "type": "presto",
@@ -112,6 +120,13 @@
       "depth": 0.09833334,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "anim": {
+        "type": "idle",
+        "assetId": "presto",
+        "duration": 0.5,
+        "mode": "loop",
+        "interpolation": "linear"
+      },
       "touchAct": {
         "accelerationX": 0.4,
         "accelerationY": 0.25
@@ -126,14 +141,17 @@
         "idlingTimeRandomStart": 6.0,
         "idlingTimeRandomEnd": 10.0
       },
+      "turnAct": {
+        "anim": {
+          "type": "turn",
+          "assetId": "presto_turn",
+          "duration": 0.5,
+          "mode": "normal",
+          "interpolation": "linear"
+        }
+      },
       "disappearAct": null,
-      "eatAct": null,
-      "anim": {
-        "assetId": "presto",
-        "duration": 0.5,
-        "mode": "loop",
-        "interpolation": "linear"
-      }
+      "eatAct": null
     },
     "silver_coin": {
       "type": "silver_coin",
@@ -143,19 +161,21 @@
       "depth": 0.011666667,
       "density": 1020.0,
       "dragCoefficient": 1.0,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
-      },
-      "eatAct": null,
       "anim": {
+        "type": "idle",
         "assetId": "silver_coin",
         "duration": 0.6,
         "mode": "loop",
         "interpolation": "linear"
-      }
+      },
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "turnAct": null,
+      "disappearAct": {
+        "delay": 0.0
+      },
+      "eatAct": null
     },
     "star": {
       "type": "star",
@@ -165,19 +185,21 @@
       "depth": 0.025,
       "density": 1010.0,
       "dragCoefficient": 1.0,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
-      },
-      "eatAct": null,
       "anim": {
+        "type": "idle",
         "assetId": "star",
         "duration": 0.6,
         "mode": "loop",
         "interpolation": "linear"
-      }
+      },
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "turnAct": null,
+      "disappearAct": {
+        "delay": 0.0
+      },
+      "eatAct": null
     },
     "treasure_chest": {
       "type": "treasure_chest",
@@ -187,19 +209,21 @@
       "depth": 0.11333334,
       "density": 1020.0,
       "dragCoefficient": 1.0,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
-      },
-      "eatAct": null,
       "anim": {
+        "type": "idle",
         "assetId": "treasure_chest",
         "duration": 0.6,
         "mode": "loop",
         "interpolation": "linear"
-      }
+      },
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "turnAct": null,
+      "disappearAct": {
+        "delay": 0.0
+      },
+      "eatAct": null
     }
   }
 }

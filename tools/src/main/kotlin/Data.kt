@@ -32,12 +32,13 @@ data class BodyConfigInfo(
     val depth: Size,
     val density: Float = World.DENSITY_WATER,
     val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
+    val anim: BodyConfig.Anim,
     val touchAct: BodyConfig.TouchAct? = null,
     val swimActX: BodyConfig.SwimAct? = null,
     val swimActY: BodyConfig.SwimAct? = null,
+    val turnAct: BodyConfig.TurnAct? = null,
     val disappearAct: BodyConfig.DisappearAct? = null,
     val eatAct: BodyConfig.EatAct? = null,
-    val anim: BodyConfig.Anim,
 ) {
     data class Size(
         val textureName: String,
