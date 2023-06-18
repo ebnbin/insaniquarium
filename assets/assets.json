@@ -67,6 +67,36 @@
       "extension": "png",
       "preload": false
     },
+    "gash": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "gash",
+      "extension": "png",
+      "preload": false
+    },
+    "gash_eat": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "gash_eat",
+      "extension": "png",
+      "preload": false
+    },
+    "gash_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "gash_turn",
+      "extension": "png",
+      "preload": false
+    },
     "gold_coin": {
       "region": {
         "row": 2,

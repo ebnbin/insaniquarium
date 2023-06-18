@@ -62,6 +62,31 @@ object TextureInfo {
         ),
         BodyTextureInfo(
             group = GROUP_PET,
+            srcFileName = "gash.gif",
+            srcMaskFileName = "_gash.gif",
+            scale = 1.5f,
+            row = 3,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "gash",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "gash_turn",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "gash_eat",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_PET,
             srcFileName = "presto.gif",
             srcMaskFileName = "_presto.gif",
             scale = 1.5f,

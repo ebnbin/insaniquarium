@@ -55,6 +55,57 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
+            type = BodyType.GASH,
+            group = BodyConfig.Group.PET,
+            width = BodyConfigInfo.Size(
+                textureName = "gash",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "gash",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "gash_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            animations = mapOf(
+                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
+                    assetId = "gash",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                BodyConfig.AnimationType.TURN.serializedName to TextureRegionAnimation(
+                    assetId = "gash_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+            swimActX = BodyConfig.SwimAct(
+                acceleration = 0.2f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                acceleration = 0.125f,
+                idlingTimeRandomStart = 6f,
+                idlingTimeRandomEnd = 10f,
+            ),
+            turnAct = BodyConfig.TurnAct(
+                animationType = BodyConfig.AnimationType.TURN,
+            ),
+            eatAct = BodyConfig.EatAct(
+                foodTypeSet = setOf(
+                    BodyType.BEETLE,
+                ),
+                accelerationX = 0.8f,
+                accelerationY = 0.5f,
+            ),
+        ),
+        BodyConfigInfo(
             type = BodyType.PRESTO,
             group = BodyConfig.Group.PET,
             width = BodyConfigInfo.Size(

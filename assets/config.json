@@ -91,6 +91,51 @@
       },
       "eatAct": null
     },
+    "gash": {
+      "type": "gash",
+      "group": "pet",
+      "width": 0.175,
+      "height": 0.17833333,
+      "depth": 0.1,
+      "density": 1000.0,
+      "dragCoefficient": 1.0,
+      "animations": {
+        "idle": {
+          "assetId": "gash",
+          "duration": 0.5,
+          "mode": "loop",
+          "interpolation": "linear"
+        },
+        "turn": {
+          "assetId": "gash_turn",
+          "duration": 0.5,
+          "mode": "normal",
+          "interpolation": "linear"
+        }
+      },
+      "touchAct": null,
+      "swimActX": {
+        "acceleration": 0.2,
+        "idlingTimeRandomStart": 2.0,
+        "idlingTimeRandomEnd": 8.0
+      },
+      "swimActY": {
+        "acceleration": 0.125,
+        "idlingTimeRandomStart": 6.0,
+        "idlingTimeRandomEnd": 10.0
+      },
+      "turnAct": {
+        "animationType": "turn"
+      },
+      "disappearAct": null,
+      "eatAct": {
+        "foodTypeSet": [
+          "beetle"
+        ],
+        "accelerationX": 0.8,
+        "accelerationY": 0.5
+      }
+    },
     "gold_coin": {
       "type": "gold_coin",
       "group": "money",
