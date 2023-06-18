@@ -157,6 +157,26 @@
       "extension": "png",
       "preload": false
     },
+    "starcatcher": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "starcatcher",
+      "extension": "png",
+      "preload": false
+    },
+    "starcatcher_hungry": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "starcatcher_hungry",
+      "extension": "png",
+      "preload": false
+    },
     "treasure_chest": {
       "region": {
         "row": 2,

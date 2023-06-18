@@ -36,6 +36,7 @@ data class BodyConfig(
     val eatAct: EatAct? = null,
 ) {
     enum class Group(override val serializedName: String) : SerializableEnum {
+        FISH("fish"),
         PET("pet"),
         MONEY("money"),
         ;

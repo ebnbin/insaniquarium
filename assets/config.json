@@ -261,6 +261,40 @@
       },
       "eatAct": null
     },
+    "starcatcher": {
+      "type": "starcatcher",
+      "group": "fish",
+      "width": 0.135,
+      "height": 0.165,
+      "depth": 0.135,
+      "density": 1080.0,
+      "dragCoefficient": 1.0,
+      "animations": {
+        "idle": {
+          "assetId": "starcatcher",
+          "duration": 1.0,
+          "mode": "loop",
+          "interpolation": "linear"
+        }
+      },
+      "touchAct": null,
+      "swimActX": {
+        "acceleration": 0.1,
+        "idlingTimeRandomStart": 2.0,
+        "idlingTimeRandomEnd": 8.0
+      },
+      "swimActY": null,
+      "turnAct": null,
+      "disappearAct": null,
+      "eatAct": {
+        "foodTypeSet": [
+          "star"
+        ],
+        "accelerationX": 0.2,
+        "accelerationY": 0.0,
+        "animationType": null
+      }
+    },
     "treasure_chest": {
       "type": "treasure_chest",
       "group": "money",

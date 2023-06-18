@@ -7,6 +7,45 @@ import dev.ebnbin.insaniquarium.body.BodyType
 object ConfigInfo {
     val bodyList: List<BodyConfigInfo> = listOf(
         BodyConfigInfo(
+            type = BodyType.STARCATCHER,
+            group = BodyConfig.Group.FISH,
+            width = BodyConfigInfo.Size(
+                textureName = "starcatcher",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "starcatcher",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "starcatcher",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1080f,
+            animations = mapOf(
+                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
+                    assetId = "starcatcher",
+                    duration = 1f,
+                    mode = AnimationMode.LOOP,
+                ),
+            ),
+            swimActX = BodyConfig.SwimAct(
+                acceleration = 0.1f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
+            eatAct = BodyConfig.EatAct(
+                foodTypeSet = setOf(
+                    BodyType.STAR,
+                ),
+                accelerationX = 0.2f,
+                accelerationY = 0f,
+            ),
+        ),
+        BodyConfigInfo(
             type = BodyType.CLYDE,
             group = BodyConfig.Group.PET,
             width = BodyConfigInfo.Size(
