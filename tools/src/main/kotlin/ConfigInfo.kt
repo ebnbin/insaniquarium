@@ -83,6 +83,11 @@ object ConfigInfo {
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
+                BodyConfig.AnimationType.EAT.serializedName to TextureRegionAnimation(
+                    assetId = "gash_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
             ),
             swimActX = BodyConfig.SwimAct(
                 acceleration = 0.2f,
@@ -103,6 +108,7 @@ object ConfigInfo {
                 ),
                 accelerationX = 0.8f,
                 accelerationY = 0.5f,
+                animationType = BodyConfig.AnimationType.EAT,
             ),
         ),
         BodyConfigInfo(

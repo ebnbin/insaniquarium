@@ -47,6 +47,7 @@ data class BodyConfig(
     ) : SerializableEnum {
         IDLE("idle", canInterrupt = true),
         TURN("turn", canInterrupt = false),
+        EAT("eat", canInterrupt = false),
         ;
     }
 
@@ -78,6 +79,8 @@ data class BodyConfig(
         val accelerationX: Float,
         @Expose
         val accelerationY: Float,
+        @Expose
+        val animationType: AnimationType? = null,
     )
 
     data class TurnAct(

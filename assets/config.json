@@ -63,7 +63,8 @@
           "treasure_chest"
         ],
         "accelerationX": 0.2,
-        "accelerationY": 0.3
+        "accelerationY": 0.3,
+        "animationType": null
       }
     },
     "diamond": {
@@ -111,6 +112,12 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
+        },
+        "eat": {
+          "assetId": "gash_eat",
+          "duration": 0.5,
+          "mode": "normal",
+          "interpolation": "linear"
         }
       },
       "touchAct": null,
@@ -133,7 +140,8 @@
           "beetle"
         ],
         "accelerationX": 0.8,
-        "accelerationY": 0.5
+        "accelerationY": 0.5,
+        "animationType": "eat"
       }
     },
     "gold_coin": {

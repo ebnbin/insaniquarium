@@ -137,7 +137,8 @@ object BodyActHelper {
         val food = foodSet.minBy {
             data.distance(it.data)
         }
-        if (data.containsCenter(food.data)) {
+        val isTurning = data.textureRegionData.animationType == BodyConfig.AnimationType.TURN
+        if (!isTurning && data.containsCenter(food.data)) {
             body.tank.addBodyToRemove(food.data.id)
         }
         return BodyData.EatAct(
@@ -149,6 +150,7 @@ object BodyActHelper {
                 position = food.data.y,
                 acceleration = configEatAct.accelerationY,
             ),
+            canPlayEatAnimation = !isTurning && data.overlaps(food.data),
         )
     }
 }

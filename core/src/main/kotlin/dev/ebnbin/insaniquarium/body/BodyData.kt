@@ -67,6 +67,7 @@ data class BodyData(
     data class EatAct(
         val drivingTargetX: DrivingTarget,
         val drivingTargetY: DrivingTarget,
+        val canPlayEatAnimation: Boolean,
     )
 
     //*****************************************************************************************************************
@@ -218,6 +219,10 @@ data class BodyData(
         return rectangle.contains(other.vector2)
     }
 
+    fun overlaps(other: BodyData): Boolean {
+        return rectangle.overlaps(other.rectangle)
+    }
+
     //*****************************************************************************************************************
 
     data class TextureRegionData(
@@ -342,15 +347,23 @@ data class BodyData(
                     isFacingRight = expectedIsFacingRight,
                 )
             } else {
-                TextureRegionData(
-                    animationType = BodyConfig.AnimationType.IDLE,
-                    stateTime = if (textureRegionData.animationType == BodyConfig.AnimationType.IDLE) {
-                        textureRegionData.stateTime + delta
-                    } else {
-                        0f
-                    },
-                    isFacingRight = expectedIsFacingRight,
-                )
+                if (config.eatAct?.animationType != null && eatAct?.canPlayEatAnimation == true) {
+                    TextureRegionData(
+                        animationType = config.eatAct.animationType,
+                        stateTime = 0f,
+                        isFacingRight = expectedIsFacingRight,
+                    )
+                } else {
+                    TextureRegionData(
+                        animationType = BodyConfig.AnimationType.IDLE,
+                        stateTime = if (textureRegionData.animationType == BodyConfig.AnimationType.IDLE) {
+                            textureRegionData.stateTime + delta
+                        } else {
+                            0f
+                        },
+                        isFacingRight = expectedIsFacingRight,
+                    )
+                }
             }
         } else {
             TextureRegionData(
