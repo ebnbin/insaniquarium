@@ -14,10 +14,23 @@ class Body(
 
     override fun act(delta: Float) {
         super.act(delta)
-        data = data.update(this, delta)
+        val input = BodyInput(
+            delta = delta,
+            touchPoint = tank.touchPoint,
+        )
+        act(input)
+    }
+
+    fun act(input: BodyInput) {
+        val nextData = data.update(this, input)
+        if (nextData == null) {
+            tank.removeBody(this)
+            return
+        }
+        data = nextData
         data.act(this)
         if (debug) {
-            data.actDebug(this, delta)
+            data.actDebug(this, input.delta)
         }
     }
 

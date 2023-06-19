@@ -266,10 +266,10 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    fun update(body: Body, delta: Float): BodyData {
+    fun update(body: Body, input: BodyInput): BodyData? {
         val nextTouchAct = BodyActHelper.nextTouchAct(
             configTouchAct = config.touchAct,
-            touchPoint = body.tank.touchPoint,
+            touchPoint = input.touchPoint,
         )
 
         val nextSwimActX = BodyActHelper.nextSwimAct(
@@ -278,7 +278,7 @@ data class BodyData(
             swimAct = swimActX,
             tankSize = tankWidth,
             containDrivingTarget = containDrivingTargetX,
-            delta = delta,
+            delta = input.delta,
         )
         val nextSwimActY = BodyActHelper.nextSwimAct(
             enabled = nextTouchAct == null,
@@ -286,14 +286,14 @@ data class BodyData(
             swimAct = swimActY,
             tankSize = tankHeight,
             containDrivingTarget = containDrivingTargetY,
-            delta = delta,
+            delta = input.delta,
         )
 
         val nextDisappearAct = BodyActHelper.nextDisappearAct(
             configDisappearAct = config.disappearAct,
             disappearAct = disappearAct,
             data = this,
-            delta = delta,
+            delta = input.delta,
         )
 
         val nextEatAct = BodyActHelper.nextEatAct(
@@ -307,14 +307,14 @@ data class BodyData(
             acceleration = accelerationX,
             isInsideLeftOrBottom = isInsideLeft,
             isInsideRightOrTop = isInsideRight,
-            delta = delta,
+            delta = input.delta,
         )
         val nextVelocityY = BodyForceHelper.nextVelocity(
             velocity = velocityY,
             acceleration = accelerationY,
             isInsideLeftOrBottom = isInsideBottom,
             isInsideRightOrTop = true,
-            delta = delta,
+            delta = input.delta,
         )
 
         val nextX = BodyForceHelper.nextPosition(
@@ -322,14 +322,14 @@ data class BodyData(
             velocity = nextVelocityX,
             minPosition = minX,
             maxPosition = maxX,
-            delta = delta,
+            delta = input.delta,
         )
         val nextY = BodyForceHelper.nextPosition(
             position = y,
             velocity = nextVelocityY,
             minPosition = minY,
             maxPosition = maxY,
-            delta = delta,
+            delta = input.delta,
         )
 
         val nextExpectedIsFacingRight = if (hasTurnAnimation) {
@@ -354,7 +354,7 @@ data class BodyData(
             canAnimationActionChange = canAnimationActionChange,
             expectedIsFacingRight = expectedIsFacingRight,
             eatAct = nextEatAct,
-            delta = delta,
+            delta = input.delta,
         )
 
         return copy(
@@ -369,11 +369,7 @@ data class BodyData(
             eatAct = nextEatAct,
             expectedIsFacingRight = nextExpectedIsFacingRight,
             textureRegionData = nextTextureRegionData,
-        ).also {
-            if (it.canRemove) {
-                body.tank.removeBody(body)
-            }
-        }
+        ).takeIf { !canRemove }
     }
 
     fun act(body: Body) {
