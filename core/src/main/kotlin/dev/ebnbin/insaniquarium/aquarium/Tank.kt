@@ -9,8 +9,8 @@ import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.body.Body
 import dev.ebnbin.insaniquarium.body.BodyConfig
-import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.insaniquarium.body.BodyParams
+import dev.ebnbin.insaniquarium.body.BodyType
 
 class Tank : Group() {
     private val fishGroup: Group = Group()
@@ -54,16 +54,22 @@ class Tank : Group() {
     var touchPoint: Point? = null
         private set
 
+    //*****************************************************************************************************************
+
+    private val bodyMap: MutableMap<String, Body> = mutableMapOf()
+
     fun addBody(params: BodyParams): Body {
         val body = Body(
             tank = this,
             params = params,
         )
         getGroup(body.data.config.group).addActor(body)
+        bodyMap[body.data.id] = body
         return body
     }
 
     fun removeBody(body: Body) {
+        bodyMap.remove(body.data.id)
         getGroup(body.data.config.group).removeActor(body)
     }
 
@@ -76,11 +82,12 @@ class Tank : Group() {
     }
 
     fun findBodyByType(typeSet: Set<BodyType>): List<Body> {
-        return children
-            .filterIsInstance<Group>()
-            .flatMap { it.children }
-            .filterIsInstance<Body>()
+        return bodyMap.values
             .filter { typeSet.contains(it.data.config.type) }
+    }
+
+    fun findBodyById(id: String): Body? {
+        return bodyMap[id]
     }
 
     //*****************************************************************************************************************
@@ -98,6 +105,7 @@ class Tank : Group() {
     }
 
     fun devClearBodies() {
+        bodyMap.clear()
         moneyGroup.clearChildren()
         petGroup.clearChildren()
         fishGroup.clearChildren()
