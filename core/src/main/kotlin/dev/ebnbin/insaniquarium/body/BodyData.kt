@@ -262,7 +262,7 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val canRemove: Boolean = disappearAct != null && disappearAct.time <= -DisappearAct.DISAPPEAR_DURATION
+    private val canRemove: Boolean = disappearAct != null && disappearAct.time <= -DisappearAct.DISAPPEAR_DURATION
 
     //*****************************************************************************************************************
 
@@ -369,7 +369,11 @@ data class BodyData(
             eatAct = nextEatAct,
             expectedIsFacingRight = nextExpectedIsFacingRight,
             textureRegionData = nextTextureRegionData,
-        )
+        ).also {
+            if (it.canRemove) {
+                body.tank.removeBody(body)
+            }
+        }
     }
 
     fun act(body: Body) {

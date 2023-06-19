@@ -54,17 +54,7 @@ class Tank : Group() {
     var touchPoint: Point? = null
         private set
 
-    private val toRemoveBodySet: MutableSet<String> = mutableSetOf()
-
-    private fun isBodyRemoved(bodyId: String): Boolean {
-        return toRemoveBodySet.contains(bodyId)
-    }
-
-    fun addBodyToRemove(bodyId: String) {
-        toRemoveBodySet.add(bodyId)
-    }
-
-    private fun addBody(params: BodyParams): Body {
+    fun addBody(params: BodyParams): Body {
         val body = Body(
             tank = this,
             params = params,
@@ -73,7 +63,7 @@ class Tank : Group() {
         return body
     }
 
-    private fun removeBody(body: Body) {
+    fun removeBody(body: Body) {
         getGroup(body.data.config.group).removeActor(body)
     }
 
@@ -91,7 +81,6 @@ class Tank : Group() {
             .flatMap { it.children }
             .filterIsInstance<Body>()
             .filter { typeSet.contains(it.data.config.type) }
-            .filter { !it.data.canRemove && !isBodyRemoved(it.data.id) }
     }
 
     //*****************************************************************************************************************
@@ -116,12 +105,6 @@ class Tank : Group() {
 
     override fun act(delta: Float) {
         super.act(delta)
-        children
-            .filterIsInstance<Group>()
-            .flatMap { it.children }
-            .filterIsInstance<Body>()
-            .filter { it.data.canRemove || isBodyRemoved(it.data.id) }
-            .forEach { removeBody(it) }
         if (debug) {
             baseGame.putLog("tank") {
                 "fish:${fishGroup.children.size},pet:${petGroup.children.size},money:${moneyGroup.children.size}"

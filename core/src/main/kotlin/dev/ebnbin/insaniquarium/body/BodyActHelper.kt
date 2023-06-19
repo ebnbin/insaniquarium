@@ -139,7 +139,7 @@ object BodyActHelper {
         }
         val isTurning = data.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
         if (!isTurning && data.containsCenter(food.data)) {
-            body.tank.addBodyToRemove(food.data.id)
+            body.tank.removeBody(food)
         }
         return BodyData.EatAct(
             drivingTargetX = BodyData.DrivingTarget(
