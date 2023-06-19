@@ -7,9 +7,9 @@ import dev.ebnbin.gdx.utils.createListMenuItem
 import dev.ebnbin.gdx.utils.createMenuItem
 import dev.ebnbin.gdx.utils.fromJson
 import dev.ebnbin.insaniquarium.aquarium.AquariumStage
-import dev.ebnbin.insaniquarium.tank.TankStage
 import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.insaniquarium.body.assets
+import dev.ebnbin.insaniquarium.tank.TankStage
 
 private var insaniquariumGame: InsaniquariumGame? = null
 

@@ -2,6 +2,8 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.World
+import kotlin.math.max
+import kotlin.math.min
 
 object BodyActHelper {
     fun nextTouchAct(
@@ -130,41 +132,76 @@ object BodyActHelper {
 
     fun nextEatAct(
         configEatAct: BodyConfig.EatAct?,
+        eatAct: BodyData.EatAct?,
         data: BodyData,
         input: BodyInput?,
     ): BodyData.EatAct? {
         if (input == null) {
-            return null
+            return eatAct
         }
         if (configEatAct == null) {
             return null
         }
-        val foodSet = input.body.tank.findBodyByType(configEatAct.foodTypeSet)
-        if (foodSet.isEmpty()) {
-            return null
+
+        fun targetFood(): Body? {
+            require(configEatAct.foods.isNotEmpty())
+            val foodTypeSet = configEatAct.foods.keys.mapTo(mutableSetOf()) { BodyType.of(it) }
+            val foodSet = input.body.tank.findBodyByType(foodTypeSet)
+            if (foodSet.isEmpty()) {
+                return null
+            }
+            return foodSet.minBy {
+                data.distance(it.data)
+            }
         }
-        val food = foodSet.minBy {
-            data.distance(it.data)
+
+        fun calcHunger(): Float {
+            if (eatAct == null) {
+                return configEatAct.fullHunger
+            }
+            if (eatAct.hunger == BodyConfig.HUNGER_MAX) {
+                return eatAct.hunger
+            }
+            return max(0f, eatAct.hunger - configEatAct.exhaustionPerSecond * input.delta)
         }
+
+        var hunger = calcHunger()
+
+        val targetFood = targetFood()
         val isTurning = data.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
-        if (!isTurning && data.containsCenter(food.data)) {
-            food.act(
-                input = BodyInput(
-                    body = food,
-                    damage = configEatAct.damagePerSecond * input.delta,
-                ),
-            )
+        if (targetFood != null) {
+            if (!isTurning && data.containsCenter(targetFood.data)) {
+                val food = configEatAct.foods.getValue(targetFood.data.type.serializedName)
+                val removed = targetFood.act(
+                    input = BodyInput(
+                        body = targetFood,
+                        damage = food.damagePerSecond * input.delta,
+                    ),
+                )
+                if (removed && hunger != BodyConfig.HUNGER_MAX) {
+                    hunger = min(configEatAct.fullHunger, hunger + food.hunger)
+                }
+            }
         }
         return BodyData.EatAct(
-            drivingTargetX = BodyData.DrivingTarget(
-                position = food.data.x,
-                acceleration = configEatAct.accelerationX,
-            ),
-            drivingTargetY = BodyData.DrivingTarget(
-                position = food.data.y,
-                acceleration = configEatAct.accelerationY,
-            ),
-            canPlayEatAnimation = !isTurning && data.overlaps(food.data),
+            drivingTargetX = if (targetFood == null) {
+                null
+            } else {
+                BodyData.DrivingTarget(
+                    position = targetFood.data.x,
+                    acceleration = configEatAct.accelerationX,
+                )
+            },
+            drivingTargetY = if (targetFood == null) {
+                null
+            } else {
+                BodyData.DrivingTarget(
+                    position = targetFood.data.y,
+                    acceleration = configEatAct.accelerationY,
+                )
+            },
+            canPlayEatAnimation = !isTurning && targetFood != null && data.overlaps(targetFood.data),
+            hunger = hunger,
         )
     }
 }

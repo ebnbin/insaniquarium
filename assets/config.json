@@ -55,14 +55,21 @@
       },
       "disappearAct": null,
       "eatAct": {
-        "foodTypeSet": [
-          "silver_coin",
-          "star"
-        ],
+        "foods": {
+          "silver_coin": {
+            "damagePerSecond": 10.0,
+            "hunger": 0.0
+          },
+          "star": {
+            "damagePerSecond": 10.0,
+            "hunger": 0.0
+          }
+        },
         "accelerationX": 0.2,
         "accelerationY": 0.3,
-        "damagePerSecond": 10.0,
-        "hasAnimation": false
+        "hasAnimation": false,
+        "fullHunger": -1.0,
+        "exhaustionPerSecond": 0.0
       }
     },
     "gash": {
@@ -107,13 +114,17 @@
       },
       "disappearAct": null,
       "eatAct": {
-        "foodTypeSet": [
-          "beetle"
-        ],
+        "foods": {
+          "beetle": {
+            "damagePerSecond": 10.0,
+            "hunger": 0.0
+          }
+        },
         "accelerationX": 0.8,
         "accelerationY": 0.5,
-        "damagePerSecond": 10.0,
-        "hasAnimation": true
+        "hasAnimation": true,
+        "fullHunger": -1.0,
+        "exhaustionPerSecond": 0.0
       }
     },
     "presto": {
@@ -232,13 +243,17 @@
       "swimActY": null,
       "disappearAct": null,
       "eatAct": {
-        "foodTypeSet": [
-          "star"
-        ],
+        "foods": {
+          "star": {
+            "damagePerSecond": 10.0,
+            "hunger": 10.0
+          }
+        },
         "accelerationX": 0.2,
         "accelerationY": 0.0,
-        "damagePerSecond": 10.0,
-        "hasAnimation": false
+        "hasAnimation": false,
+        "fullHunger": 20.0,
+        "exhaustionPerSecond": 1.0
       }
     }
   }

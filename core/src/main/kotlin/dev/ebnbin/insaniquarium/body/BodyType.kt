@@ -13,4 +13,10 @@ enum class BodyType(override val serializedName: String) : SerializableEnum {
     STAR("star"),
     BEETLE("beetle"),
     ;
+
+    companion object {
+        fun of(value: String): BodyType {
+            return values().single { it.serializedName == value }
+        }
+    }
 }

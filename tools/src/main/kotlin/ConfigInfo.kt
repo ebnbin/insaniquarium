@@ -38,12 +38,16 @@ object ConfigInfo {
                 idlingTimeRandomEnd = 8f,
             ),
             eatAct = BodyConfig.EatAct(
-                foodTypeSet = setOf(
-                    BodyType.STAR,
+                foods = mapOf(
+                    BodyType.STAR.serializedName to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 10f,
+                    ),
                 ),
                 accelerationX = 0.2f,
                 accelerationY = 0f,
-                damagePerSecond = 10f,
+                fullHunger = 20f,
+                exhaustionPerSecond = 1f,
             ),
         ),
         BodyConfigInfo(
@@ -83,13 +87,18 @@ object ConfigInfo {
                 idlingTimeRandomEnd = 8f,
             ),
             eatAct = BodyConfig.EatAct(
-                foodTypeSet = setOf(
-                    BodyType.SILVER_COIN,
-                    BodyType.STAR,
+                foods = mapOf(
+                    BodyType.SILVER_COIN.serializedName to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 0f,
+                    ),
+                    BodyType.STAR.serializedName to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 0f,
+                    ),
                 ),
                 accelerationX = 0.2f,
                 accelerationY = 0.3f,
-                damagePerSecond = 10f,
             ),
         ),
         BodyConfigInfo(
@@ -138,13 +147,15 @@ object ConfigInfo {
                 idlingTimeRandomEnd = 10f,
             ),
             eatAct = BodyConfig.EatAct(
-                foodTypeSet = setOf(
-                    BodyType.BEETLE,
+                foods = mapOf(
+                    BodyType.BEETLE.serializedName to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 0f,
+                    ),
                 ),
                 accelerationX = 0.8f,
                 accelerationY = 0.5f,
                 hasAnimation = true,
-                damagePerSecond = 10f,
             ),
         ),
         BodyConfigInfo(

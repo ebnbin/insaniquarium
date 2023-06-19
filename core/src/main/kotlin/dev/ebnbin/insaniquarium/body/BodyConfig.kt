@@ -98,18 +98,28 @@ data class BodyConfig(
 
     data class EatAct(
         @Expose
-        val foodTypeSet: Set<BodyType>,
+        val foods: Map<String, Food>,
         @Expose
         val accelerationX: Float,
         @Expose
         val accelerationY: Float,
         @Expose
+        val hasAnimation: Boolean = false,
+        @Expose
+        val fullHunger: Float = HUNGER_MAX,
+        @Expose
+        val exhaustionPerSecond: Float = 0f,
+    )
+
+    data class Food(
+        @Expose
         val damagePerSecond: Float = 0f,
         @Expose
-        val hasAnimation: Boolean = false,
+        val hunger: Float = 0f,
     )
 
     companion object {
         const val HEALTH_MAX = -1f
+        const val HUNGER_MAX = -1f
     }
 }

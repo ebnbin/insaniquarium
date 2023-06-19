@@ -83,9 +83,10 @@ data class BodyData(
     }
 
     data class EatAct(
-        val drivingTargetX: DrivingTarget,
-        val drivingTargetY: DrivingTarget,
+        val drivingTargetX: DrivingTarget?,
+        val drivingTargetY: DrivingTarget?,
         val canPlayEatAnimation: Boolean,
+        val hunger: Float,
     )
 
     data class TextureRegionData(
@@ -270,7 +271,8 @@ data class BodyData(
     //*****************************************************************************************************************
 
     private val canRemove: Boolean = (disappearAct != null && disappearAct.time <= -DisappearAct.DISAPPEAR_DURATION) ||
-        health == 0f
+        health == 0f ||
+        eatAct != null && eatAct.hunger == 0f && textureRegionData.animationAction == BodyConfig.AnimationAction.SWIM
 
     //*****************************************************************************************************************
 
@@ -337,6 +339,7 @@ data class BodyData(
 
     val nextEatAct = BodyActHelper.nextEatAct(
         configEatAct = config.eatAct,
+        eatAct = eatAct,
         data = this,
         input = input,
     )
@@ -462,7 +465,6 @@ data class BodyData(
                 swimActY = null,
                 disappearAct = null,
                 eatAct = null,
-                health = config.health,
                 expectedIsFacingRight = false,
                 textureRegionData = TextureRegionData(
                     animationAction = BodyConfig.AnimationAction.SWIM,
@@ -470,6 +472,7 @@ data class BodyData(
                     stateTime = 0f,
                     isFacingRight = false,
                 ),
+                health = config.health,
                 input = null,
             )
         }
