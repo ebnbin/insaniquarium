@@ -44,6 +44,8 @@ data class BodyData(
     val expectedIsFacingRight: Boolean,
 
     val textureRegionData: TextureRegionData,
+
+    val input: BodyInput?,
 ) {
     data class TouchAct(
         val drivingTargetX: DrivingTarget,
@@ -228,6 +230,38 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
+    val nextVelocityX = BodyForceHelper.nextVelocity(
+        velocity = velocityX,
+        acceleration = accelerationX,
+        isInsideLeftOrBottom = isInsideLeft,
+        isInsideRightOrTop = isInsideRight,
+        input = input,
+    )
+    val nextVelocityY = BodyForceHelper.nextVelocity(
+        velocity = velocityY,
+        acceleration = accelerationY,
+        isInsideLeftOrBottom = isInsideBottom,
+        isInsideRightOrTop = true,
+        input = input,
+    )
+
+    val nextX = BodyForceHelper.nextPosition(
+        position = x,
+        velocity = nextVelocityX,
+        minPosition = minX,
+        maxPosition = maxX,
+        input = input,
+    )
+    val nextY = BodyForceHelper.nextPosition(
+        position = y,
+        velocity = nextVelocityY,
+        minPosition = minY,
+        maxPosition = maxY,
+        input = input,
+    )
+
+    //*****************************************************************************************************************
+
     data class TextureRegionData(
         val animationAction: BodyConfig.AnimationAction,
         val animationStatus: BodyConfig.AnimationStatus,
@@ -273,7 +307,7 @@ data class BodyData(
     fun update(input: BodyInput): BodyData? {
         val nextTouchAct = BodyActHelper.nextTouchAct(
             configTouchAct = config.touchAct,
-            touchPoint = input.body?.tank?.touchPoint,
+            touchPoint = input.body.tank.touchPoint,
         )
 
         val nextSwimActX = BodyActHelper.nextSwimAct(
@@ -304,36 +338,6 @@ data class BodyData(
             configEatAct = config.eatAct,
             data = this,
             body = input.body,
-            delta = input.delta,
-        )
-
-        val nextVelocityX = BodyForceHelper.nextVelocity(
-            velocity = velocityX,
-            acceleration = accelerationX,
-            isInsideLeftOrBottom = isInsideLeft,
-            isInsideRightOrTop = isInsideRight,
-            delta = input.delta,
-        )
-        val nextVelocityY = BodyForceHelper.nextVelocity(
-            velocity = velocityY,
-            acceleration = accelerationY,
-            isInsideLeftOrBottom = isInsideBottom,
-            isInsideRightOrTop = true,
-            delta = input.delta,
-        )
-
-        val nextX = BodyForceHelper.nextPosition(
-            position = x,
-            velocity = nextVelocityX,
-            minPosition = minX,
-            maxPosition = maxX,
-            delta = input.delta,
-        )
-        val nextY = BodyForceHelper.nextPosition(
-            position = y,
-            velocity = nextVelocityY,
-            minPosition = minY,
-            maxPosition = maxY,
             delta = input.delta,
         )
 
@@ -381,6 +385,7 @@ data class BodyData(
             health = nextHealth,
             expectedIsFacingRight = nextExpectedIsFacingRight,
             textureRegionData = nextTextureRegionData,
+            input = input,
         ).takeIf { !canRemove }
     }
 
@@ -454,6 +459,7 @@ data class BodyData(
                     stateTime = 0f,
                     isFacingRight = false,
                 ),
+                input = null,
             )
         }
     }
