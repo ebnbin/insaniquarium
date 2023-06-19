@@ -270,10 +270,10 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    fun update(body: Body, input: BodyInput): BodyData? {
+    fun update(input: BodyInput): BodyData? {
         val nextTouchAct = BodyActHelper.nextTouchAct(
             configTouchAct = config.touchAct,
-            touchPoint = input.touchPoint,
+            touchPoint = input.body?.tank?.touchPoint,
         )
 
         val nextSwimActX = BodyActHelper.nextSwimAct(
@@ -303,7 +303,7 @@ data class BodyData(
         val nextEatAct = BodyActHelper.nextEatAct(
             configEatAct = config.eatAct,
             data = this,
-            body = body,
+            body = input.body,
             delta = input.delta,
         )
 

@@ -125,10 +125,13 @@ object BodyActHelper {
     fun nextEatAct(
         configEatAct: BodyConfig.EatAct?,
         data: BodyData,
-        body: Body,
+        body: Body?,
         delta: Float,
     ): BodyData.EatAct? {
         if (configEatAct == null) {
+            return null
+        }
+        if (body == null) {
             return null
         }
         val foodSet = body.tank.findBodyByType(configEatAct.foodTypeSet)
@@ -142,8 +145,7 @@ object BodyActHelper {
         if (!isTurning && data.containsCenter(food.data)) {
             food.act(
                 input = BodyInput(
-                    delta = 0f,
-                    touchPoint = body.tank.touchPoint,
+                    body = food,
                     damage = configEatAct.damagePerSecond * delta,
                 ),
             )
