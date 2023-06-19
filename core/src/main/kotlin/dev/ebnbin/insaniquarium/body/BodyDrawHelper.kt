@@ -9,8 +9,12 @@ object BodyDrawHelper {
         canAnimationActionChange: Boolean,
         expectedIsFacingRight: Boolean,
         eatAct: BodyData.EatAct?,
-        delta: Float,
+        input: BodyInput?,
     ): BodyData.TextureRegionData {
+        if (input == null) {
+            return textureRegionData
+        }
+
         fun createEatTextureRegionData(): BodyData.TextureRegionData {
             return BodyData.TextureRegionData(
                 animationAction = BodyConfig.AnimationAction.EAT,
@@ -42,7 +46,7 @@ object BodyDrawHelper {
             return BodyData.TextureRegionData(
                 animationAction = textureRegionData.animationAction,
                 animationStatus = BodyConfig.AnimationStatus.NORMAL,
-                stateTime = textureRegionData.stateTime + delta,
+                stateTime = textureRegionData.stateTime + input.delta,
                 isFacingRight = textureRegionData.isFacingRight,
             )
         }

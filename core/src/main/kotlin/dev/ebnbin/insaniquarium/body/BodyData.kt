@@ -262,6 +262,43 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
+    val nextTouchAct = BodyActHelper.nextTouchAct(
+        configTouchAct = config.touchAct,
+        input = input,
+    )
+
+    val nextSwimActX = BodyActHelper.nextSwimAct(
+        enabled = nextTouchAct == null,
+        configSwimAct = config.swimActX,
+        swimAct = swimActX,
+        tankSize = tankWidth,
+        containDrivingTarget = containDrivingTargetX,
+        input = input,
+    )
+    val nextSwimActY = BodyActHelper.nextSwimAct(
+        enabled = nextTouchAct == null,
+        configSwimAct = config.swimActY,
+        swimAct = swimActY,
+        tankSize = tankHeight,
+        containDrivingTarget = containDrivingTargetY,
+        input = input,
+    )
+
+    val nextDisappearAct = BodyActHelper.nextDisappearAct(
+        configDisappearAct = config.disappearAct,
+        disappearAct = disappearAct,
+        data = this,
+        input = input,
+    )
+
+    val nextEatAct = BodyActHelper.nextEatAct(
+        configEatAct = config.eatAct,
+        data = this,
+        input = input,
+    )
+
+    //*****************************************************************************************************************
+
     data class TextureRegionData(
         val animationAction: BodyConfig.AnimationAction,
         val animationStatus: BodyConfig.AnimationStatus,
@@ -299,79 +336,51 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
+    val nextTextureRegionData = BodyDrawHelper.nextTextureRegionData(
+        config = config,
+        hasTurnAnimation = hasTurnAnimation,
+        textureRegionData = textureRegionData,
+        isAnimationFinished = isAnimationFinished,
+        canAnimationActionChange = canAnimationActionChange,
+        expectedIsFacingRight = expectedIsFacingRight,
+        eatAct = nextEatAct,
+        input = input,
+    )
+
+    val nextExpectedIsFacingRight = if (hasTurnAnimation) {
+        when (drivingX.direction) {
+            Direction.ZERO -> when (velocityX.direction) {
+                Direction.ZERO -> expectedIsFacingRight
+                Direction.POSITIVE -> true
+                Direction.NEGATIVE -> false
+            }
+            Direction.POSITIVE -> true
+            Direction.NEGATIVE -> false
+        }
+    } else {
+        false
+    }
+
+    //*****************************************************************************************************************
+
     private val canRemove: Boolean = (disappearAct != null && disappearAct.time <= -DisappearAct.DISAPPEAR_DURATION) ||
         health == 0f
 
     //*****************************************************************************************************************
 
-    fun update(input: BodyInput): BodyData? {
-        val nextTouchAct = BodyActHelper.nextTouchAct(
-            configTouchAct = config.touchAct,
-            touchPoint = input.body.tank.touchPoint,
-        )
-
-        val nextSwimActX = BodyActHelper.nextSwimAct(
-            enabled = nextTouchAct == null,
-            configSwimAct = config.swimActX,
-            swimAct = swimActX,
-            tankSize = tankWidth,
-            containDrivingTarget = containDrivingTargetX,
-            delta = input.delta,
-        )
-        val nextSwimActY = BodyActHelper.nextSwimAct(
-            enabled = nextTouchAct == null,
-            configSwimAct = config.swimActY,
-            swimAct = swimActY,
-            tankSize = tankHeight,
-            containDrivingTarget = containDrivingTargetY,
-            delta = input.delta,
-        )
-
-        val nextDisappearAct = BodyActHelper.nextDisappearAct(
-            configDisappearAct = config.disappearAct,
-            disappearAct = disappearAct,
-            data = this,
-            delta = input.delta,
-        )
-
-        val nextEatAct = BodyActHelper.nextEatAct(
-            configEatAct = config.eatAct,
-            data = this,
-            body = input.body,
-            delta = input.delta,
-        )
-
-        val nextExpectedIsFacingRight = if (hasTurnAnimation) {
-            when (drivingX.direction) {
-                Direction.ZERO -> when (velocityX.direction) {
-                    Direction.ZERO -> expectedIsFacingRight
-                    Direction.POSITIVE -> true
-                    Direction.NEGATIVE -> false
-                }
-                Direction.POSITIVE -> true
-                Direction.NEGATIVE -> false
-            }
-        } else {
-            false
-        }
-
-        val nextTextureRegionData = BodyDrawHelper.nextTextureRegionData(
-            config = config,
-            hasTurnAnimation = hasTurnAnimation,
-            textureRegionData = textureRegionData,
-            isAnimationFinished = isAnimationFinished,
-            canAnimationActionChange = canAnimationActionChange,
-            expectedIsFacingRight = expectedIsFacingRight,
-            eatAct = nextEatAct,
-            delta = input.delta,
-        )
-
-        val nextHealth = if (health == BodyConfig.HEALTH_MAX) {
+    val nextHealth = if (input == null) {
+        health
+    } else {
+        if (health == BodyConfig.HEALTH_MAX) {
             health
         } else {
             max(0f, health - input.damage)
         }
+    }
 
+    //*****************************************************************************************************************
+
+    fun update(input: BodyInput): BodyData? {
         return copy(
             velocityX = nextVelocityX,
             velocityY = nextVelocityY,

@@ -1,20 +1,20 @@
 package dev.ebnbin.insaniquarium.body
 
-import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.World
 
 object BodyActHelper {
     fun nextTouchAct(
         configTouchAct: BodyConfig.TouchAct?,
-        touchPoint: Point?,
+        input: BodyInput?,
     ): BodyData.TouchAct? {
+        if (input == null) {
+            return null
+        }
         if (configTouchAct == null) {
             return null
         }
-        if (touchPoint == null) {
-            return null
-        }
+        val touchPoint = input.body.tank.touchPoint ?: return null
         return BodyData.TouchAct(
             drivingTargetX = BodyData.DrivingTarget(
                 position = touchPoint.x,
@@ -33,8 +33,11 @@ object BodyActHelper {
         swimAct: BodyData.SwimAct?,
         tankSize: Float,
         containDrivingTarget: Boolean,
-        delta: Float,
+        input: BodyInput?,
     ): BodyData.SwimAct? {
+        if (input == null) {
+            return swimAct
+        }
         if (!enabled) {
             return null
         }
@@ -64,7 +67,7 @@ object BodyActHelper {
 
         fun updateSwimAct(swimAct: BodyData.SwimAct): BodyData.SwimAct {
             return swimAct.copy(
-                remainingTime = swimAct.remainingTime - delta,
+                remainingTime = swimAct.remainingTime - input.delta,
             )
         }
 
@@ -75,7 +78,7 @@ object BodyActHelper {
                 createIdlingSwimAct()
             }
         }
-        val isRemainingTimeUp = swimAct.remainingTime - delta <= 0f
+        val isRemainingTimeUp = swimAct.remainingTime - input.delta <= 0f
         return if (swimAct.drivingTarget == null) {
             if (isRemainingTimeUp) {
                 createTargetingSwimAct()
@@ -95,8 +98,11 @@ object BodyActHelper {
         configDisappearAct: BodyConfig.DisappearAct?,
         disappearAct: BodyData.DisappearAct?,
         data: BodyData,
-        delta: Float,
+        input: BodyInput?,
     ): BodyData.DisappearAct? {
+        if (input == null) {
+            return disappearAct
+        }
         if (configDisappearAct == null) {
             return null
         }
@@ -117,7 +123,7 @@ object BodyActHelper {
             }
         } else {
             disappearAct.copy(
-                time = disappearAct.time - delta,
+                time = disappearAct.time - input.delta,
             )
         }
     }
@@ -125,16 +131,15 @@ object BodyActHelper {
     fun nextEatAct(
         configEatAct: BodyConfig.EatAct?,
         data: BodyData,
-        body: Body?,
-        delta: Float,
+        input: BodyInput?,
     ): BodyData.EatAct? {
+        if (input == null) {
+            return null
+        }
         if (configEatAct == null) {
             return null
         }
-        if (body == null) {
-            return null
-        }
-        val foodSet = body.tank.findBodyByType(configEatAct.foodTypeSet)
+        val foodSet = input.body.tank.findBodyByType(configEatAct.foodTypeSet)
         if (foodSet.isEmpty()) {
             return null
         }
@@ -146,7 +151,7 @@ object BodyActHelper {
             food.act(
                 input = BodyInput(
                     body = food,
-                    damage = configEatAct.damagePerSecond * delta,
+                    damage = configEatAct.damagePerSecond * input.delta,
                 ),
             )
         }
