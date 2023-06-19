@@ -1,4 +1,4 @@
-package dev.ebnbin.insaniquarium.aquarium
+package dev.ebnbin.insaniquarium.tank
 
 import com.badlogic.gdx.scenes.scene2d.Group
 import com.badlogic.gdx.scenes.scene2d.InputEvent

@@ -11,7 +11,7 @@ import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.unitToMeter
-import dev.ebnbin.insaniquarium.aquarium.Tank
+import dev.ebnbin.insaniquarium.tank.Tank
 import dev.ebnbin.insaniquarium.game
 import java.util.UUID
 import kotlin.math.max

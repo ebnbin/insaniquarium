@@ -1,4 +1,4 @@
-package dev.ebnbin.insaniquarium.aquarium
+package dev.ebnbin.insaniquarium.tank
 
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.lifecycle.BaseStage

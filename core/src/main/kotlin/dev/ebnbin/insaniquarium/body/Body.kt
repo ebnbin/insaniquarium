@@ -3,7 +3,7 @@ package dev.ebnbin.insaniquarium.body
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.Actor
-import dev.ebnbin.insaniquarium.aquarium.Tank
+import dev.ebnbin.insaniquarium.tank.Tank
 
 class Body(
     val tank: Tank,
