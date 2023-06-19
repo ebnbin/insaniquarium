@@ -234,10 +234,14 @@ data class BodyData(
         val animationType: BodyConfig.AnimationType = BodyConfig.AnimationType.of(animationAction, animationStatus)
     }
 
+    val hasTurnAnimation: Boolean = config.animations.containsKey(BodyConfig.AnimationType.TURN.serializedName)
+
     val animation: TextureRegionAnimation = config.animations.getValue(textureRegionData.animationType.serializedName)
 
-    val canAnimationChange: Boolean = textureRegionData.animationAction.canInterrupt ||
+    val isAnimationFinished: Boolean = textureRegionData.animationAction != BodyConfig.AnimationAction.SWIM &&
         textureRegionData.stateTime >= animation.duration
+
+    val canAnimationActionChange: Boolean = textureRegionData.animationAction == BodyConfig.AnimationAction.SWIM
 
     val textureRegion: TextureRegion = animation.getTextureRegion(textureRegionData.stateTime)
 
@@ -328,9 +332,7 @@ data class BodyData(
             delta = delta,
         )
 
-        val nextExpectedIsFacingRight = if (config.turnAct == null) {
-            false
-        } else {
+        val nextExpectedIsFacingRight = if (hasTurnAnimation) {
             when (drivingX.direction) {
                 Direction.ZERO -> when (velocityX.direction) {
                     Direction.ZERO -> expectedIsFacingRight
@@ -340,45 +342,20 @@ data class BodyData(
                 Direction.POSITIVE -> true
                 Direction.NEGATIVE -> false
             }
+        } else {
+            false
         }
 
-        val nextTextureRegionData = if (canAnimationChange) {
-            if (config.eatAct?.animationType != null && nextEatAct?.canPlayEatAnimation == true) {
-                TextureRegionData(
-                    animationAction = config.eatAct.animationType.action,
-                    animationStatus = BodyConfig.AnimationStatus.NORMAL,
-                    stateTime = 0f,
-                    isFacingRight = textureRegionData.isFacingRight,
-                )
-            } else {
-                if (textureRegionData.isFacingRight != expectedIsFacingRight) {
-                    TextureRegionData(
-                        animationAction = config.turnAct?.animationType?.action ?: BodyConfig.AnimationAction.SWIM,
-                        animationStatus = BodyConfig.AnimationStatus.NORMAL,
-                        stateTime = 0f,
-                        isFacingRight = expectedIsFacingRight,
-                    )
-                } else {
-                    TextureRegionData(
-                        animationAction = BodyConfig.AnimationAction.SWIM,
-                        animationStatus = BodyConfig.AnimationStatus.NORMAL,
-                        stateTime = if (textureRegionData.animationAction == BodyConfig.AnimationAction.SWIM) {
-                            textureRegionData.stateTime + delta
-                        } else {
-                            0f
-                        },
-                        isFacingRight = expectedIsFacingRight,
-                    )
-                }
-            }
-        } else {
-            TextureRegionData(
-                animationAction = textureRegionData.animationAction,
-                animationStatus = BodyConfig.AnimationStatus.NORMAL,
-                stateTime = textureRegionData.stateTime + delta,
-                isFacingRight = textureRegionData.isFacingRight,
-            )
-        }
+        val nextTextureRegionData = BodyDrawHelper.nextTextureRegionData(
+            config = config,
+            hasTurnAnimation = hasTurnAnimation,
+            textureRegionData = textureRegionData,
+            isAnimationFinished = isAnimationFinished,
+            canAnimationActionChange = canAnimationActionChange,
+            expectedIsFacingRight = expectedIsFacingRight,
+            eatAct = nextEatAct,
+            delta = delta,
+        )
 
         return copy(
             velocityX = nextVelocityX,

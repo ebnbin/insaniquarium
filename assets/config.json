@@ -19,7 +19,6 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "turnAct": null,
       "disappearAct": {
         "delay": 0.0
       },
@@ -52,7 +51,6 @@
         "idlingTimeRandomStart": 2.0,
         "idlingTimeRandomEnd": 8.0
       },
-      "turnAct": null,
       "disappearAct": null,
       "eatAct": {
         "foodTypeSet": [
@@ -64,7 +62,7 @@
         ],
         "accelerationX": 0.2,
         "accelerationY": 0.3,
-        "animationType": null
+        "hasAnimation": false
       }
     },
     "diamond": {
@@ -86,7 +84,6 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "turnAct": null,
       "disappearAct": {
         "delay": 0.0
       },
@@ -131,9 +128,6 @@
         "idlingTimeRandomStart": 6.0,
         "idlingTimeRandomEnd": 10.0
       },
-      "turnAct": {
-        "animationType": "turn"
-      },
       "disappearAct": null,
       "eatAct": {
         "foodTypeSet": [
@@ -141,7 +135,7 @@
         ],
         "accelerationX": 0.8,
         "accelerationY": 0.5,
-        "animationType": "eat"
+        "hasAnimation": true
       }
     },
     "gold_coin": {
@@ -163,7 +157,6 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "turnAct": null,
       "disappearAct": {
         "delay": 0.0
       },
@@ -205,9 +198,6 @@
         "idlingTimeRandomStart": 6.0,
         "idlingTimeRandomEnd": 10.0
       },
-      "turnAct": {
-        "animationType": "turn"
-      },
       "disappearAct": null,
       "eatAct": null
     },
@@ -230,7 +220,6 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "turnAct": null,
       "disappearAct": {
         "delay": 0.0
       },
@@ -255,7 +244,6 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "turnAct": null,
       "disappearAct": {
         "delay": 0.0
       },
@@ -284,7 +272,6 @@
         "idlingTimeRandomEnd": 8.0
       },
       "swimActY": null,
-      "turnAct": null,
       "disappearAct": null,
       "eatAct": {
         "foodTypeSet": [
@@ -292,7 +279,7 @@
         ],
         "accelerationX": 0.2,
         "accelerationY": 0.0,
-        "animationType": null
+        "hasAnimation": false
       }
     },
     "treasure_chest": {
@@ -314,7 +301,6 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "turnAct": null,
       "disappearAct": {
         "delay": 0.0
       },

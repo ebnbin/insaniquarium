@@ -37,7 +37,6 @@ data class BodyConfigInfo(
     val touchAct: BodyConfig.TouchAct? = null,
     val swimActX: BodyConfig.SwimAct? = null,
     val swimActY: BodyConfig.SwimAct? = null,
-    val turnAct: BodyConfig.TurnAct? = null,
     val disappearAct: BodyConfig.DisappearAct? = null,
     val eatAct: BodyConfig.EatAct? = null,
 ) {

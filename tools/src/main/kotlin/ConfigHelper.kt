@@ -35,7 +35,6 @@ object ConfigHelper {
             touchAct = info.touchAct,
             swimActX = info.swimActX,
             swimActY = info.swimActY,
-            turnAct = info.turnAct,
             disappearAct = info.disappearAct,
             eatAct = info.eatAct,
         ).also {

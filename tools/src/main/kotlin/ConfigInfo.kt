@@ -138,16 +138,13 @@ object ConfigInfo {
                 idlingTimeRandomStart = 6f,
                 idlingTimeRandomEnd = 10f,
             ),
-            turnAct = BodyConfig.TurnAct(
-                animationType = BodyConfig.AnimationType.TURN,
-            ),
             eatAct = BodyConfig.EatAct(
                 foodTypeSet = setOf(
                     BodyType.BEETLE,
                 ),
                 accelerationX = 0.8f,
                 accelerationY = 0.5f,
-                animationType = BodyConfig.AnimationType.EAT,
+                hasAnimation = true,
             ),
         ),
         BodyConfigInfo(
@@ -191,9 +188,6 @@ object ConfigInfo {
                 acceleration = 0.125f,
                 idlingTimeRandomStart = 6f,
                 idlingTimeRandomEnd = 10f,
-            ),
-            turnAct = BodyConfig.TurnAct(
-                animationType = BodyConfig.AnimationType.TURN,
             ),
         ),
         BodyConfigInfo(

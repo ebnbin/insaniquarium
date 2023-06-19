@@ -29,8 +29,6 @@ data class BodyConfig(
     @Expose
     val swimActY: SwimAct? = null,
     @Expose
-    val turnAct: TurnAct? = null,
-    @Expose
     val disappearAct: DisappearAct? = null,
     @Expose
     val eatAct: EatAct? = null,
@@ -62,13 +60,10 @@ data class BodyConfig(
         }
     }
 
-    enum class AnimationAction(
-        override val serializedName: String,
-        val canInterrupt: Boolean,
-    ) : SerializableEnum {
-        SWIM("swim", canInterrupt = true),
-        TURN("turn", canInterrupt = false),
-        EAT("eat", canInterrupt = false),
+    enum class AnimationAction(override val serializedName: String) : SerializableEnum {
+        SWIM("swim"),
+        TURN("turn"),
+        EAT("eat"),
         ;
     }
 
@@ -107,11 +102,6 @@ data class BodyConfig(
         @Expose
         val accelerationY: Float,
         @Expose
-        val animationType: AnimationType? = null,
-    )
-
-    data class TurnAct(
-        @Expose
-        val animationType: AnimationType,
+        val hasAnimation: Boolean = false,
     )
 }
