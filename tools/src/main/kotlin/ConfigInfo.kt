@@ -26,7 +26,7 @@ object ConfigInfo {
             ),
             density = 1080f,
             animations = mapOf(
-                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
                     assetId = "starcatcher",
                     duration = 1f,
                     mode = AnimationMode.LOOP,
@@ -39,7 +39,7 @@ object ConfigInfo {
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
-                    BodyType.STAR.serializedName to BodyConfig.Food(
+                    BodyType.STAR to BodyConfig.Food(
                         damagePerSecond = 10f,
                         hunger = 10f,
                     ),
@@ -69,7 +69,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             animations = mapOf(
-                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
                     assetId = "clyde",
                     duration = 1.125f,
                     mode = AnimationMode.LOOP,
@@ -88,11 +88,11 @@ object ConfigInfo {
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
-                    BodyType.SILVER_COIN.serializedName to BodyConfig.Food(
+                    BodyType.SILVER_COIN to BodyConfig.Food(
                         damagePerSecond = 10f,
                         hunger = 0f,
                     ),
-                    BodyType.STAR.serializedName to BodyConfig.Food(
+                    BodyType.STAR to BodyConfig.Food(
                         damagePerSecond = 10f,
                         hunger = 0f,
                     ),
@@ -120,17 +120,17 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             animations = mapOf(
-                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
                     assetId = "gash",
                     duration = 0.5f,
                     mode = AnimationMode.LOOP,
                 ),
-                BodyConfig.AnimationType.TURN.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.TURN to TextureRegionAnimation(
                     assetId = "gash_turn",
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
-                BodyConfig.AnimationType.EAT.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.EAT to TextureRegionAnimation(
                     assetId = "gash_eat",
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
@@ -148,7 +148,7 @@ object ConfigInfo {
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
-                    BodyType.BEETLE.serializedName to BodyConfig.Food(
+                    BodyType.BEETLE to BodyConfig.Food(
                         damagePerSecond = 10f,
                         hunger = 0f,
                     ),
@@ -175,12 +175,12 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             animations = mapOf(
-                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
                     assetId = "presto",
                     duration = 0.5f,
                     mode = AnimationMode.LOOP,
                 ),
-                BodyConfig.AnimationType.TURN.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.TURN to TextureRegionAnimation(
                     assetId = "presto_turn",
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
@@ -220,7 +220,7 @@ object ConfigInfo {
             density = 1020f,
             health = 1f,
             animations = mapOf(
-                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
                     assetId = "silver_coin",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
@@ -247,7 +247,7 @@ object ConfigInfo {
             density = 1010f,
             health = 1f,
             animations = mapOf(
-                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
                     assetId = "star",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
@@ -274,7 +274,7 @@ object ConfigInfo {
             density = 990f,
             health = 10f,
             animations = mapOf(
-                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
                     assetId = "beetle",
                     duration = 0.3f,
                     mode = AnimationMode.LOOP,

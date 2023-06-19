@@ -23,7 +23,7 @@ data class BodyConfig(
     @Expose
     val health: Float = HEALTH_MAX,
     @Expose
-    val animations: Map<String, TextureRegionAnimation>,
+    val animations: Map<AnimationType, TextureRegionAnimation>,
     @Expose
     val touchAct: TouchAct? = null,
     @Expose
@@ -98,7 +98,7 @@ data class BodyConfig(
 
     data class EatAct(
         @Expose
-        val foods: Map<String, Food>,
+        val foods: Map<BodyType, Food>,
         @Expose
         val accelerationX: Float,
         @Expose

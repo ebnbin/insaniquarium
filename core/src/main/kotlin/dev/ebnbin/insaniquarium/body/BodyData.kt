@@ -100,7 +100,7 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val config: BodyConfig = game.config.body.getValue(type.serializedName)
+    val config: BodyConfig = game.config.body.getValue(type)
 
     //*****************************************************************************************************************
 
@@ -242,9 +242,9 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val hasTurnAnimation: Boolean = config.animations.containsKey(BodyConfig.AnimationType.TURN.serializedName)
+    val hasTurnAnimation: Boolean = config.animations.containsKey(BodyConfig.AnimationType.TURN)
 
-    val animation: TextureRegionAnimation = config.animations.getValue(textureRegionData.animationType.serializedName)
+    val animation: TextureRegionAnimation = config.animations.getValue(textureRegionData.animationType)
 
     val isAnimationFinished: Boolean = textureRegionData.animationAction != BodyConfig.AnimationAction.SWIM &&
         textureRegionData.stateTime >= animation.duration
@@ -449,7 +449,7 @@ data class BodyData(
             tank: Tank,
             params: BodyParams,
         ): BodyData {
-            val config = game.config.body.getValue(params.type.serializedName)
+            val config = game.config.body.getValue(params.type)
 
             return BodyData(
                 type = params.type,

@@ -1,29 +1,43 @@
 {
   "body": {
-    "beetle": {
-      "type": "beetle",
-      "group": "money",
-      "width": 0.08833333,
-      "height": 0.08166666,
-      "depth": 0.085,
-      "density": 990.0,
+    "starcatcher": {
+      "type": "starcatcher",
+      "group": "fish",
+      "width": 0.135,
+      "height": 0.165,
+      "depth": 0.135,
+      "density": 1080.0,
       "dragCoefficient": 1.0,
-      "health": 10.0,
+      "health": -1.0,
       "animations": {
         "swim": {
-          "assetId": "beetle",
-          "duration": 0.3,
+          "assetId": "starcatcher",
+          "duration": 1.0,
           "mode": "loop",
           "interpolation": "linear"
         }
       },
       "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
+      "swimActX": {
+        "acceleration": 0.1,
+        "idlingTimeRandomStart": 2.0,
+        "idlingTimeRandomEnd": 8.0
       },
-      "eatAct": null
+      "swimActY": null,
+      "disappearAct": null,
+      "eatAct": {
+        "foods": {
+          "star": {
+            "damagePerSecond": 10.0,
+            "hunger": 10.0
+          }
+        },
+        "accelerationX": 0.2,
+        "accelerationY": 0.0,
+        "hasAnimation": false,
+        "fullHunger": 20.0,
+        "exhaustionPerSecond": 1.0
+      }
     },
     "clyde": {
       "type": "clyde",
@@ -217,44 +231,30 @@
       },
       "eatAct": null
     },
-    "starcatcher": {
-      "type": "starcatcher",
-      "group": "fish",
-      "width": 0.135,
-      "height": 0.165,
-      "depth": 0.135,
-      "density": 1080.0,
+    "beetle": {
+      "type": "beetle",
+      "group": "money",
+      "width": 0.08833333,
+      "height": 0.08166666,
+      "depth": 0.085,
+      "density": 990.0,
       "dragCoefficient": 1.0,
-      "health": -1.0,
+      "health": 10.0,
       "animations": {
         "swim": {
-          "assetId": "starcatcher",
-          "duration": 1.0,
+          "assetId": "beetle",
+          "duration": 0.3,
           "mode": "loop",
           "interpolation": "linear"
         }
       },
       "touchAct": null,
-      "swimActX": {
-        "acceleration": 0.1,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
+      "swimActX": null,
       "swimActY": null,
-      "disappearAct": null,
-      "eatAct": {
-        "foods": {
-          "star": {
-            "damagePerSecond": 10.0,
-            "hunger": 10.0
-          }
-        },
-        "accelerationX": 0.2,
-        "accelerationY": 0.0,
-        "hasAnimation": false,
-        "fullHunger": 20.0,
-        "exhaustionPerSecond": 1.0
-      }
+      "disappearAct": {
+        "delay": 0.0
+      },
+      "eatAct": null
     }
   }
 }

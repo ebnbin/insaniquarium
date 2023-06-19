@@ -145,8 +145,7 @@ object BodyActHelper {
 
         fun targetFood(): Body? {
             require(configEatAct.foods.isNotEmpty())
-            val foodTypeSet = configEatAct.foods.keys.mapTo(mutableSetOf()) { BodyType.of(it) }
-            val foodSet = input.body.tank.findBodyByType(foodTypeSet)
+            val foodSet = input.body.tank.findBodyByType(configEatAct.foods.keys)
             if (foodSet.isEmpty()) {
                 return null
             }
@@ -171,7 +170,7 @@ object BodyActHelper {
         val isTurning = data.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
         if (targetFood != null) {
             if (!isTurning && data.containsCenter(targetFood.data)) {
-                val food = configEatAct.foods.getValue(targetFood.data.type.serializedName)
+                val food = configEatAct.foods.getValue(targetFood.data.type)
                 val removed = targetFood.act(
                     input = BodyInput(
                         body = targetFood,

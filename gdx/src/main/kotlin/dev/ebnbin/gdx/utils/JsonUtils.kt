@@ -14,6 +14,7 @@ val gson: Gson = GsonBuilder()
     .registerTypeAdapterFactory(EnumTypeAdapterFactory)
     .excludeFieldsWithoutExposeAnnotation()
     .serializeNulls()
+    .enableComplexMapKeySerialization()
     .setPrettyPrinting()
     .create()
 
