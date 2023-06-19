@@ -21,6 +21,8 @@ data class BodyConfig(
     @Expose
     val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
     @Expose
+    val health: Float = HEALTH_MAX,
+    @Expose
     val animations: Map<String, TextureRegionAnimation>,
     @Expose
     val touchAct: TouchAct? = null,
@@ -102,6 +104,12 @@ data class BodyConfig(
         @Expose
         val accelerationY: Float,
         @Expose
+        val damagePerSecond: Float = 0f,
+        @Expose
         val hasAnimation: Boolean = false,
     )
+
+    companion object {
+        const val HEALTH_MAX = -1f
+    }
 }

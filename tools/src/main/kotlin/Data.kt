@@ -33,6 +33,7 @@ data class BodyConfigInfo(
     val depth: Size,
     val density: Float = World.DENSITY_WATER,
     val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
+    val health: Float = BodyConfig.HEALTH_MAX,
     val animations: Map<String, TextureRegionAnimation>,
     val touchAct: BodyConfig.TouchAct? = null,
     val swimActX: BodyConfig.SwimAct? = null,

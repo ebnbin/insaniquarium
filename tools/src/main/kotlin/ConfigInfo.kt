@@ -43,6 +43,7 @@ object ConfigInfo {
                 ),
                 accelerationX = 0.2f,
                 accelerationY = 0f,
+                damagePerSecond = 10f,
             ),
         ),
         BodyConfigInfo(
@@ -88,6 +89,7 @@ object ConfigInfo {
                 ),
                 accelerationX = 0.2f,
                 accelerationY = 0.3f,
+                damagePerSecond = 10f,
             ),
         ),
         BodyConfigInfo(
@@ -142,6 +144,7 @@ object ConfigInfo {
                 accelerationX = 0.8f,
                 accelerationY = 0.5f,
                 hasAnimation = true,
+                damagePerSecond = 10f,
             ),
         ),
         BodyConfigInfo(
@@ -204,6 +207,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.HEIGHT,
             ),
             density = 1020f,
+            health = 1f,
             animations = mapOf(
                 BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "silver_coin",
@@ -230,6 +234,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1010f,
+            health = 1f,
             animations = mapOf(
                 BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "star",
@@ -256,6 +261,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 990f,
+            health = 10f,
             animations = mapOf(
                 BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "beetle",

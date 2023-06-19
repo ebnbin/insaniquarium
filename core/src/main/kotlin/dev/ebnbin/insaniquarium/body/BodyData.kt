@@ -14,6 +14,7 @@ import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.aquarium.Tank
 import dev.ebnbin.insaniquarium.game
 import java.util.UUID
+import kotlin.math.max
 
 data class BodyData(
     val type: BodyType,
@@ -37,6 +38,8 @@ data class BodyData(
     val disappearAct: DisappearAct?,
 
     val eatAct: EatAct?,
+
+    val health: Float,
 
     val expectedIsFacingRight: Boolean,
 
@@ -262,7 +265,8 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    private val canRemove: Boolean = disappearAct != null && disappearAct.time <= -DisappearAct.DISAPPEAR_DURATION
+    private val canRemove: Boolean = (disappearAct != null && disappearAct.time <= -DisappearAct.DISAPPEAR_DURATION) ||
+        health == 0f
 
     //*****************************************************************************************************************
 
@@ -300,6 +304,7 @@ data class BodyData(
             configEatAct = config.eatAct,
             data = this,
             body = body,
+            delta = input.delta,
         )
 
         val nextVelocityX = BodyForceHelper.nextVelocity(
@@ -357,6 +362,12 @@ data class BodyData(
             delta = input.delta,
         )
 
+        val nextHealth = if (health == BodyConfig.HEALTH_MAX) {
+            health
+        } else {
+            max(0f, health - input.damage)
+        }
+
         return copy(
             velocityX = nextVelocityX,
             velocityY = nextVelocityY,
@@ -367,6 +378,7 @@ data class BodyData(
             swimActY = nextSwimActY,
             disappearAct = nextDisappearAct,
             eatAct = nextEatAct,
+            health = nextHealth,
             expectedIsFacingRight = nextExpectedIsFacingRight,
             textureRegionData = nextTextureRegionData,
         ).takeIf { !canRemove }
@@ -418,6 +430,8 @@ data class BodyData(
             tank: Tank,
             params: BodyParams,
         ): BodyData {
+            val config = game.config.body.getValue(params.type.serializedName)
+
             return BodyData(
                 type = params.type,
                 id = "${UUID.randomUUID()}",
@@ -432,6 +446,7 @@ data class BodyData(
                 swimActY = null,
                 disappearAct = null,
                 eatAct = null,
+                health = config.health,
                 expectedIsFacingRight = false,
                 textureRegionData = TextureRegionData(
                     animationAction = BodyConfig.AnimationAction.SWIM,

@@ -8,6 +8,7 @@
       "depth": 0.085,
       "density": 990.0,
       "dragCoefficient": 1.0,
+      "health": 10.0,
       "animations": {
         "swim": {
           "assetId": "beetle",
@@ -32,6 +33,7 @@
       "depth": 0.135,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "health": -1.0,
       "animations": {
         "swim": {
           "assetId": "clyde",
@@ -59,6 +61,7 @@
         ],
         "accelerationX": 0.2,
         "accelerationY": 0.3,
+        "damagePerSecond": 10.0,
         "hasAnimation": false
       }
     },
@@ -70,6 +73,7 @@
       "depth": 0.1,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "health": -1.0,
       "animations": {
         "swim": {
           "assetId": "gash",
@@ -108,6 +112,7 @@
         ],
         "accelerationX": 0.8,
         "accelerationY": 0.5,
+        "damagePerSecond": 10.0,
         "hasAnimation": true
       }
     },
@@ -119,6 +124,7 @@
       "depth": 0.09833334,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "health": -1.0,
       "animations": {
         "swim": {
           "assetId": "presto",
@@ -158,6 +164,7 @@
       "depth": 0.011666667,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "health": 1.0,
       "animations": {
         "swim": {
           "assetId": "silver_coin",
@@ -182,6 +189,7 @@
       "depth": 0.025,
       "density": 1010.0,
       "dragCoefficient": 1.0,
+      "health": 1.0,
       "animations": {
         "swim": {
           "assetId": "star",
@@ -206,6 +214,7 @@
       "depth": 0.135,
       "density": 1080.0,
       "dragCoefficient": 1.0,
+      "health": -1.0,
       "animations": {
         "swim": {
           "assetId": "starcatcher",
@@ -228,6 +237,7 @@
         ],
         "accelerationX": 0.2,
         "accelerationY": 0.0,
+        "damagePerSecond": 10.0,
         "hasAnimation": false
       }
     }

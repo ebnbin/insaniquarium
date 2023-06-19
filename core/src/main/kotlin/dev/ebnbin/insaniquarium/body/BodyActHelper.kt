@@ -126,6 +126,7 @@ object BodyActHelper {
         configEatAct: BodyConfig.EatAct?,
         data: BodyData,
         body: Body,
+        delta: Float,
     ): BodyData.EatAct? {
         if (configEatAct == null) {
             return null
@@ -139,7 +140,13 @@ object BodyActHelper {
         }
         val isTurning = data.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
         if (!isTurning && data.containsCenter(food.data)) {
-            body.tank.removeBody(food)
+            food.act(
+                input = BodyInput(
+                    delta = 0f,
+                    touchPoint = body.tank.touchPoint,
+                    damage = configEatAct.damagePerSecond * delta,
+                ),
+            )
         }
         return BodyData.EatAct(
             drivingTargetX = BodyData.DrivingTarget(

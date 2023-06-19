@@ -31,6 +31,7 @@ object ConfigHelper {
             depth = size(info.depth),
             density = info.density,
             dragCoefficient = info.dragCoefficient,
+            health = info.health,
             animations = info.animations,
             touchAct = info.touchAct,
             swimActX = info.swimActX,
