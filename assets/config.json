@@ -15,6 +15,12 @@
           "duration": 1.0,
           "mode": "loop",
           "interpolation": "linear"
+        },
+        "hungry_swim": {
+          "assetId": "starcatcher_hungry",
+          "duration": 1.0,
+          "mode": "loop",
+          "interpolation": "linear"
         }
       },
       "touchAct": null,
@@ -36,6 +42,7 @@
         "accelerationY": 0.0,
         "hasAnimation": false,
         "fullHunger": 20.0,
+        "hungryHungerPercent": 0.5,
         "exhaustionPerSecond": 1.0
       }
     },
@@ -83,6 +90,7 @@
         "accelerationY": 0.3,
         "hasAnimation": false,
         "fullHunger": -1.0,
+        "hungryHungerPercent": -1.0,
         "exhaustionPerSecond": 0.0
       }
     },
@@ -138,6 +146,7 @@
         "accelerationY": 0.5,
         "hasAnimation": true,
         "fullHunger": -1.0,
+        "hungryHungerPercent": -1.0,
         "exhaustionPerSecond": 0.0
       }
     },

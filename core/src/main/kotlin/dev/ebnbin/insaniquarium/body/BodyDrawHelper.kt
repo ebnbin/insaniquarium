@@ -15,10 +15,21 @@ object BodyDrawHelper {
             return textureRegionData
         }
 
+        val isHungry = config.eatAct != null &&
+            eatAct != null &&
+            config.eatAct.hungryHungerPercent != BodyConfig.HUNGRY_NEVER &&
+            eatAct.hunger != BodyConfig.HUNGER_MAX &&
+            eatAct.hunger < config.eatAct.fullHunger * config.eatAct.hungryHungerPercent
+        val animationStatus = if (isHungry) {
+            BodyConfig.AnimationStatus.HUNGRY
+        } else {
+            BodyConfig.AnimationStatus.NORMAL
+        }
+
         fun createEatTextureRegionData(): BodyData.TextureRegionData {
             return BodyData.TextureRegionData(
                 animationAction = BodyConfig.AnimationAction.EAT,
-                animationStatus = BodyConfig.AnimationStatus.NORMAL,
+                animationStatus = animationStatus,
                 stateTime = 0f,
                 isFacingRight = textureRegionData.isFacingRight,
             )
@@ -27,7 +38,7 @@ object BodyDrawHelper {
         fun createTurnTextureRegionData(): BodyData.TextureRegionData {
             return BodyData.TextureRegionData(
                 animationAction = BodyConfig.AnimationAction.TURN,
-                animationStatus = BodyConfig.AnimationStatus.NORMAL,
+                animationStatus = animationStatus,
                 stateTime = 0f,
                 isFacingRight = expectedIsFacingRight,
             )
@@ -36,7 +47,7 @@ object BodyDrawHelper {
         fun createSwimTextureRegionData(): BodyData.TextureRegionData {
             return BodyData.TextureRegionData(
                 animationAction = BodyConfig.AnimationAction.SWIM,
-                animationStatus = BodyConfig.AnimationStatus.NORMAL,
+                animationStatus = animationStatus,
                 stateTime = 0f,
                 isFacingRight = textureRegionData.isFacingRight,
             )
@@ -45,7 +56,7 @@ object BodyDrawHelper {
         fun updateTextureRegionData(): BodyData.TextureRegionData {
             return BodyData.TextureRegionData(
                 animationAction = textureRegionData.animationAction,
-                animationStatus = BodyConfig.AnimationStatus.NORMAL,
+                animationStatus = animationStatus,
                 stateTime = textureRegionData.stateTime + input.delta,
                 isFacingRight = textureRegionData.isFacingRight,
             )

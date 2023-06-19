@@ -108,6 +108,8 @@ data class BodyConfig(
         @Expose
         val fullHunger: Float = HUNGER_MAX,
         @Expose
+        val hungryHungerPercent: Float = HUNGRY_NEVER,
+        @Expose
         val exhaustionPerSecond: Float = 0f,
     )
 
@@ -121,5 +123,6 @@ data class BodyConfig(
     companion object {
         const val HEALTH_MAX = -1f
         const val HUNGER_MAX = -1f
+        const val HUNGRY_NEVER = -1f
     }
 }

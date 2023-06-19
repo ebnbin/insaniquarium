@@ -31,6 +31,11 @@ object ConfigInfo {
                     duration = 1f,
                     mode = AnimationMode.LOOP,
                 ),
+                BodyConfig.AnimationType.HUNGRY_SWIM to TextureRegionAnimation(
+                    assetId = "starcatcher_hungry",
+                    duration = 1f,
+                    mode = AnimationMode.LOOP,
+                ),
             ),
             swimActX = BodyConfig.SwimAct(
                 acceleration = 0.1f,
@@ -47,6 +52,7 @@ object ConfigInfo {
                 accelerationX = 0.2f,
                 accelerationY = 0f,
                 fullHunger = 20f,
+                hungryHungerPercent = 0.5f,
                 exhaustionPerSecond = 1f,
             ),
         ),
