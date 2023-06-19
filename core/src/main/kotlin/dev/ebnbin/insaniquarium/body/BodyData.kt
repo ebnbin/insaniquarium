@@ -343,17 +343,17 @@ data class BodyData(
         }
 
         val nextTextureRegionData = if (canAnimationChange) {
-            if (textureRegionData.isFacingRight != expectedIsFacingRight) {
+            if (config.eatAct?.animationType != null && nextEatAct?.canPlayEatAnimation == true) {
                 TextureRegionData(
-                    animationAction = config.turnAct?.animationType?.action ?: BodyConfig.AnimationAction.SWIM,
+                    animationAction = config.eatAct.animationType.action,
                     animationStatus = BodyConfig.AnimationStatus.NORMAL,
                     stateTime = 0f,
-                    isFacingRight = expectedIsFacingRight,
+                    isFacingRight = textureRegionData.isFacingRight,
                 )
             } else {
-                if (config.eatAct?.animationType != null && eatAct?.canPlayEatAnimation == true) {
+                if (textureRegionData.isFacingRight != expectedIsFacingRight) {
                     TextureRegionData(
-                        animationAction = config.eatAct.animationType.action,
+                        animationAction = config.turnAct?.animationType?.action ?: BodyConfig.AnimationAction.SWIM,
                         animationStatus = BodyConfig.AnimationStatus.NORMAL,
                         stateTime = 0f,
                         isFacingRight = expectedIsFacingRight,
