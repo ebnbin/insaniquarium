@@ -84,10 +84,7 @@ object ConfigInfo {
             eatAct = BodyConfig.EatAct(
                 foodTypeSet = setOf(
                     BodyType.SILVER_COIN,
-                    BodyType.GOLD_COIN,
                     BodyType.STAR,
-                    BodyType.DIAMOND,
-                    BodyType.TREASURE_CHEST,
                 ),
                 accelerationX = 0.2f,
                 accelerationY = 0.3f,
@@ -217,32 +214,6 @@ object ConfigInfo {
             disappearAct = BodyConfig.DisappearAct(),
         ),
         BodyConfigInfo(
-            type = BodyType.GOLD_COIN,
-            group = BodyConfig.Group.MONEY,
-            width = BodyConfigInfo.Size(
-                textureName = "gold_coin",
-                wh = BodyConfigInfo.WH.WIDTH,
-            ),
-            height = BodyConfigInfo.Size(
-                textureName = "gold_coin",
-                wh = BodyConfigInfo.WH.HEIGHT,
-            ),
-            depth = BodyConfigInfo.Size(
-                textureName = "gold_coin",
-                index = 5,
-                wh = BodyConfigInfo.WH.HEIGHT,
-            ),
-            density = 1020f,
-            animations = mapOf(
-                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
-                    assetId = "gold_coin",
-                    duration = 0.6f,
-                    mode = AnimationMode.LOOP,
-                ),
-            ),
-            disappearAct = BodyConfig.DisappearAct(),
-        ),
-        BodyConfigInfo(
             type = BodyType.STAR,
             group = BodyConfig.Group.MONEY,
             width = BodyConfigInfo.Size(
@@ -262,58 +233,6 @@ object ConfigInfo {
             animations = mapOf(
                 BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "star",
-                    duration = 0.6f,
-                    mode = AnimationMode.LOOP,
-                ),
-            ),
-            disappearAct = BodyConfig.DisappearAct(),
-        ),
-        BodyConfigInfo(
-            type = BodyType.DIAMOND,
-            group = BodyConfig.Group.MONEY,
-            width = BodyConfigInfo.Size(
-                textureName = "diamond",
-                wh = BodyConfigInfo.WH.WIDTH,
-            ),
-            height = BodyConfigInfo.Size(
-                textureName = "diamond",
-                wh = BodyConfigInfo.WH.HEIGHT,
-            ),
-            depth = BodyConfigInfo.Size(
-                textureName = "diamond",
-                index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
-            ),
-            density = 1020f,
-            animations = mapOf(
-                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
-                    assetId = "diamond",
-                    duration = 0.6f,
-                    mode = AnimationMode.LOOP,
-                ),
-            ),
-            disappearAct = BodyConfig.DisappearAct(),
-        ),
-        BodyConfigInfo(
-            type = BodyType.TREASURE_CHEST,
-            group = BodyConfig.Group.MONEY,
-            width = BodyConfigInfo.Size(
-                textureName = "treasure_chest",
-                wh = BodyConfigInfo.WH.WIDTH,
-            ),
-            height = BodyConfigInfo.Size(
-                textureName = "treasure_chest",
-                wh = BodyConfigInfo.WH.HEIGHT,
-            ),
-            depth = BodyConfigInfo.Size(
-                textureName = "treasure_chest",
-                index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
-            ),
-            density = 1020f,
-            animations = mapOf(
-                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
-                    assetId = "treasure_chest",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
                 ),

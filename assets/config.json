@@ -55,39 +55,12 @@
       "eatAct": {
         "foodTypeSet": [
           "silver_coin",
-          "gold_coin",
-          "star",
-          "diamond",
-          "treasure_chest"
+          "star"
         ],
         "accelerationX": 0.2,
         "accelerationY": 0.3,
         "hasAnimation": false
       }
-    },
-    "diamond": {
-      "type": "diamond",
-      "group": "money",
-      "width": 0.08,
-      "height": 0.07,
-      "depth": 0.075,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "animations": {
-        "swim": {
-          "assetId": "diamond",
-          "duration": 0.6,
-          "mode": "loop",
-          "interpolation": "linear"
-        }
-      },
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
-      },
-      "eatAct": null
     },
     "gash": {
       "type": "gash",
@@ -137,30 +110,6 @@
         "accelerationY": 0.5,
         "hasAnimation": true
       }
-    },
-    "gold_coin": {
-      "type": "gold_coin",
-      "group": "money",
-      "width": 0.075,
-      "height": 0.075,
-      "depth": 0.011666667,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "animations": {
-        "swim": {
-          "assetId": "gold_coin",
-          "duration": 0.6,
-          "mode": "loop",
-          "interpolation": "linear"
-        }
-      },
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
-      },
-      "eatAct": null
     },
     "presto": {
       "type": "presto",
@@ -281,30 +230,6 @@
         "accelerationY": 0.0,
         "hasAnimation": false
       }
-    },
-    "treasure_chest": {
-      "type": "treasure_chest",
-      "group": "money",
-      "width": 0.11333334,
-      "height": 0.125,
-      "depth": 0.11333334,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "animations": {
-        "swim": {
-          "assetId": "treasure_chest",
-          "duration": 0.6,
-          "mode": "loop",
-          "interpolation": "linear"
-        }
-      },
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
-      },
-      "eatAct": null
     }
   }
 }

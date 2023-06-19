@@ -10,10 +10,7 @@ enum class BodyType(override val serializedName: String) : SerializableEnum {
     PRESTO("presto"),
 
     SILVER_COIN("silver_coin"),
-    GOLD_COIN("gold_coin"),
     STAR("star"),
-    DIAMOND("diamond"),
-    TREASURE_CHEST("treasure_chest"),
     BEETLE("beetle"),
     ;
 }

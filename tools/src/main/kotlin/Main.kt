@@ -10,6 +10,9 @@ import java.io.File
 fun main() {
     InsaniquariumGame
 
+    TextureInfo.dstDir.deleteRecursively()
+    TextureInfo.dstDir.mkdirs()
+
     val gdxAssets = Assets(
         freeType = mapOf(
             "gdx_dev" to FreeTypeAsset(
