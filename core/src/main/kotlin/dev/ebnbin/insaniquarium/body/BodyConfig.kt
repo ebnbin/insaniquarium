@@ -44,11 +44,37 @@ data class BodyConfig(
 
     enum class AnimationType(
         override val serializedName: String,
+        val action: AnimationAction,
+        val status: AnimationStatus,
+    ) : SerializableEnum {
+        SWIM("swim", action = AnimationAction.SWIM, status = AnimationStatus.NORMAL),
+        TURN("turn", action = AnimationAction.TURN, status = AnimationStatus.NORMAL),
+        EAT("eat", action = AnimationAction.EAT, status = AnimationStatus.NORMAL),
+        HUNGRY_SWIM("hungry_swim", action = AnimationAction.SWIM, status = AnimationStatus.HUNGRY),
+        HUNGRY_TURN("hungry_turn", action = AnimationAction.TURN, status = AnimationStatus.HUNGRY),
+        HUNGRY_EAT("hungry_eat", action = AnimationAction.EAT, status = AnimationStatus.HUNGRY),
+        ;
+
+        companion object {
+            fun of(action: AnimationAction, status: AnimationStatus): AnimationType {
+                return values().single { it.action == action && it.status == status }
+            }
+        }
+    }
+
+    enum class AnimationAction(
+        override val serializedName: String,
         val canInterrupt: Boolean,
     ) : SerializableEnum {
-        IDLE("idle", canInterrupt = true),
+        SWIM("swim", canInterrupt = true),
         TURN("turn", canInterrupt = false),
         EAT("eat", canInterrupt = false),
+        ;
+    }
+
+    enum class AnimationStatus(override val serializedName: String) : SerializableEnum {
+        NORMAL("normal"),
+        HUNGRY("hungry"),
         ;
     }
 

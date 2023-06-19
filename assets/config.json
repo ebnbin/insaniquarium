@@ -9,7 +9,7 @@
       "density": 990.0,
       "dragCoefficient": 1.0,
       "animations": {
-        "idle": {
+        "swim": {
           "assetId": "beetle",
           "duration": 0.3,
           "mode": "loop",
@@ -34,7 +34,7 @@
       "density": 1000.0,
       "dragCoefficient": 1.0,
       "animations": {
-        "idle": {
+        "swim": {
           "assetId": "clyde",
           "duration": 1.125,
           "mode": "loop",
@@ -76,7 +76,7 @@
       "density": 1020.0,
       "dragCoefficient": 1.0,
       "animations": {
-        "idle": {
+        "swim": {
           "assetId": "diamond",
           "duration": 0.6,
           "mode": "loop",
@@ -101,7 +101,7 @@
       "density": 1000.0,
       "dragCoefficient": 1.0,
       "animations": {
-        "idle": {
+        "swim": {
           "assetId": "gash",
           "duration": 0.5,
           "mode": "loop",
@@ -153,7 +153,7 @@
       "density": 1020.0,
       "dragCoefficient": 1.0,
       "animations": {
-        "idle": {
+        "swim": {
           "assetId": "gold_coin",
           "duration": 0.6,
           "mode": "loop",
@@ -178,7 +178,7 @@
       "density": 1000.0,
       "dragCoefficient": 1.0,
       "animations": {
-        "idle": {
+        "swim": {
           "assetId": "presto",
           "duration": 0.5,
           "mode": "loop",
@@ -220,7 +220,7 @@
       "density": 1020.0,
       "dragCoefficient": 1.0,
       "animations": {
-        "idle": {
+        "swim": {
           "assetId": "silver_coin",
           "duration": 0.6,
           "mode": "loop",
@@ -245,7 +245,7 @@
       "density": 1010.0,
       "dragCoefficient": 1.0,
       "animations": {
-        "idle": {
+        "swim": {
           "assetId": "star",
           "duration": 0.6,
           "mode": "loop",
@@ -270,7 +270,7 @@
       "density": 1080.0,
       "dragCoefficient": 1.0,
       "animations": {
-        "idle": {
+        "swim": {
           "assetId": "starcatcher",
           "duration": 1.0,
           "mode": "loop",
@@ -304,7 +304,7 @@
       "density": 1020.0,
       "dragCoefficient": 1.0,
       "animations": {
-        "idle": {
+        "swim": {
           "assetId": "treasure_chest",
           "duration": 0.6,
           "mode": "loop",

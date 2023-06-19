@@ -226,14 +226,17 @@ data class BodyData(
     //*****************************************************************************************************************
 
     data class TextureRegionData(
-        val animationType: BodyConfig.AnimationType,
+        val animationAction: BodyConfig.AnimationAction,
+        val animationStatus: BodyConfig.AnimationStatus,
         val stateTime: Float,
         val isFacingRight: Boolean,
-    )
+    ) {
+        val animationType: BodyConfig.AnimationType = BodyConfig.AnimationType.of(animationAction, animationStatus)
+    }
 
     val animation: TextureRegionAnimation = config.animations.getValue(textureRegionData.animationType.serializedName)
 
-    val canAnimationChange: Boolean = textureRegionData.animationType.canInterrupt ||
+    val canAnimationChange: Boolean = textureRegionData.animationAction.canInterrupt ||
         textureRegionData.stateTime >= animation.duration
 
     val textureRegion: TextureRegion = animation.getTextureRegion(textureRegionData.stateTime)
@@ -241,7 +244,7 @@ data class BodyData(
     val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
     val actorHeight: Float = textureRegion.regionHeight.toFloat().unitToMeter
 
-    val isFlipX: Boolean = if (textureRegionData.animationType == BodyConfig.AnimationType.TURN) {
+    val isFlipX: Boolean = if (textureRegionData.animationAction == BodyConfig.AnimationAction.TURN) {
         !textureRegionData.isFacingRight
     } else {
         textureRegionData.isFacingRight
@@ -342,21 +345,24 @@ data class BodyData(
         val nextTextureRegionData = if (canAnimationChange) {
             if (textureRegionData.isFacingRight != expectedIsFacingRight) {
                 TextureRegionData(
-                    animationType = config.turnAct?.animationType ?: BodyConfig.AnimationType.IDLE,
+                    animationAction = config.turnAct?.animationType?.action ?: BodyConfig.AnimationAction.SWIM,
+                    animationStatus = BodyConfig.AnimationStatus.NORMAL,
                     stateTime = 0f,
                     isFacingRight = expectedIsFacingRight,
                 )
             } else {
                 if (config.eatAct?.animationType != null && eatAct?.canPlayEatAnimation == true) {
                     TextureRegionData(
-                        animationType = config.eatAct.animationType,
+                        animationAction = config.eatAct.animationType.action,
+                        animationStatus = BodyConfig.AnimationStatus.NORMAL,
                         stateTime = 0f,
                         isFacingRight = expectedIsFacingRight,
                     )
                 } else {
                     TextureRegionData(
-                        animationType = BodyConfig.AnimationType.IDLE,
-                        stateTime = if (textureRegionData.animationType == BodyConfig.AnimationType.IDLE) {
+                        animationAction = BodyConfig.AnimationAction.SWIM,
+                        animationStatus = BodyConfig.AnimationStatus.NORMAL,
+                        stateTime = if (textureRegionData.animationAction == BodyConfig.AnimationAction.SWIM) {
                             textureRegionData.stateTime + delta
                         } else {
                             0f
@@ -367,7 +373,8 @@ data class BodyData(
             }
         } else {
             TextureRegionData(
-                animationType = textureRegionData.animationType,
+                animationAction = textureRegionData.animationAction,
+                animationStatus = BodyConfig.AnimationStatus.NORMAL,
                 stateTime = textureRegionData.stateTime + delta,
                 isFacingRight = textureRegionData.isFacingRight,
             )
@@ -450,7 +457,8 @@ data class BodyData(
                 eatAct = null,
                 expectedIsFacingRight = false,
                 textureRegionData = TextureRegionData(
-                    animationType = BodyConfig.AnimationType.IDLE,
+                    animationAction = BodyConfig.AnimationAction.SWIM,
+                    animationStatus = BodyConfig.AnimationStatus.NORMAL,
                     stateTime = 0f,
                     isFacingRight = false,
                 ),

@@ -26,7 +26,7 @@ object ConfigInfo {
             ),
             density = 1080f,
             animations = mapOf(
-                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "starcatcher",
                     duration = 1f,
                     mode = AnimationMode.LOOP,
@@ -64,7 +64,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             animations = mapOf(
-                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "clyde",
                     duration = 1.125f,
                     mode = AnimationMode.LOOP,
@@ -112,7 +112,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             animations = mapOf(
-                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "gash",
                     duration = 0.5f,
                     mode = AnimationMode.LOOP,
@@ -167,7 +167,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             animations = mapOf(
-                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "presto",
                     duration = 0.5f,
                     mode = AnimationMode.LOOP,
@@ -214,7 +214,7 @@ object ConfigInfo {
             ),
             density = 1020f,
             animations = mapOf(
-                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "silver_coin",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
@@ -240,7 +240,7 @@ object ConfigInfo {
             ),
             density = 1020f,
             animations = mapOf(
-                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "gold_coin",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
@@ -266,7 +266,7 @@ object ConfigInfo {
             ),
             density = 1010f,
             animations = mapOf(
-                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "star",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
@@ -292,7 +292,7 @@ object ConfigInfo {
             ),
             density = 1020f,
             animations = mapOf(
-                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "diamond",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
@@ -318,7 +318,7 @@ object ConfigInfo {
             ),
             density = 1020f,
             animations = mapOf(
-                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "treasure_chest",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
@@ -344,7 +344,7 @@ object ConfigInfo {
             ),
             density = 990f,
             animations = mapOf(
-                BodyConfig.AnimationType.IDLE.serializedName to TextureRegionAnimation(
+                BodyConfig.AnimationType.SWIM.serializedName to TextureRegionAnimation(
                     assetId = "beetle",
                     duration = 0.3f,
                     mode = AnimationMode.LOOP,

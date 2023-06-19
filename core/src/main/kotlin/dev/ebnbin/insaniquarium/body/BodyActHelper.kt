@@ -137,7 +137,7 @@ object BodyActHelper {
         val food = foodSet.minBy {
             data.distance(it.data)
         }
-        val isTurning = data.textureRegionData.animationType == BodyConfig.AnimationType.TURN
+        val isTurning = data.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
         if (!isTurning && data.containsCenter(food.data)) {
             body.tank.addBodyToRemove(food.data.id)
         }
