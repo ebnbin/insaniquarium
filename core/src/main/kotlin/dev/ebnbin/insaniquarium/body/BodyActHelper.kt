@@ -158,10 +158,7 @@ object BodyActHelper {
             if (eatAct == null) {
                 return configEatAct.fullHunger
             }
-            if (eatAct.hunger == BodyConfig.HUNGER_MAX) {
-                return eatAct.hunger
-            }
-            return max(0f, eatAct.hunger - configEatAct.exhaustionPerSecond * input.delta)
+            return max(0f, eatAct.hunger - configEatAct.hungerRatePerSecond * input.delta)
         }
 
         var hunger = calcHunger()
@@ -177,7 +174,7 @@ object BodyActHelper {
                         damage = food.damagePerSecond * input.delta,
                     ),
                 )
-                if (removed && hunger != BodyConfig.HUNGER_MAX) {
+                if (removed) {
                     hunger = min(configEatAct.fullHunger, hunger + food.hunger)
                 }
             }

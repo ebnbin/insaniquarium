@@ -43,7 +43,8 @@
         "hasAnimation": false,
         "fullHunger": 20.0,
         "hungryHungerPercent": 0.5,
-        "exhaustionPerSecond": 1.0
+        "hungerRatePerSecond": 1.0,
+        "canDie": true
       }
     },
     "clyde": {
@@ -89,9 +90,10 @@
         "accelerationX": 0.2,
         "accelerationY": 0.3,
         "hasAnimation": false,
-        "fullHunger": -1.0,
+        "fullHunger": 0.0,
         "hungryHungerPercent": -1.0,
-        "exhaustionPerSecond": 0.0
+        "hungerRatePerSecond": 0.0,
+        "canDie": false
       }
     },
     "gash": {
@@ -145,9 +147,10 @@
         "accelerationX": 0.8,
         "accelerationY": 0.5,
         "hasAnimation": true,
-        "fullHunger": -1.0,
+        "fullHunger": 0.0,
         "hungryHungerPercent": -1.0,
-        "exhaustionPerSecond": 0.0
+        "hungerRatePerSecond": 0.0,
+        "canDie": false
       }
     },
     "presto": {

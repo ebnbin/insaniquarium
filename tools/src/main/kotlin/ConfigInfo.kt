@@ -53,7 +53,8 @@ object ConfigInfo {
                 accelerationY = 0f,
                 fullHunger = 20f,
                 hungryHungerPercent = 0.5f,
-                exhaustionPerSecond = 1f,
+                hungerRatePerSecond = 1f,
+                canDie = true,
             ),
         ),
         BodyConfigInfo(

@@ -272,7 +272,9 @@ data class BodyData(
 
     private val canRemove: Boolean = (disappearAct != null && disappearAct.time <= -DisappearAct.DISAPPEAR_DURATION) ||
         health == 0f ||
-        eatAct != null && eatAct.hunger == 0f && textureRegionData.animationAction == BodyConfig.AnimationAction.SWIM
+        (config.eatAct != null && config.eatAct.canDie &&
+            eatAct != null && eatAct.hunger == 0f &&
+            textureRegionData.animationAction == BodyConfig.AnimationAction.SWIM)
 
     //*****************************************************************************************************************
 

@@ -17,8 +17,8 @@ object BodyDrawHelper {
 
         val isHungry = config.eatAct != null &&
             eatAct != null &&
+            config.eatAct.fullHunger != 0f &&
             config.eatAct.hungryHungerPercent != BodyConfig.HUNGRY_NEVER &&
-            eatAct.hunger != BodyConfig.HUNGER_MAX &&
             eatAct.hunger < config.eatAct.fullHunger * config.eatAct.hungryHungerPercent
         val animationStatus = if (isHungry) {
             BodyConfig.AnimationStatus.HUNGRY

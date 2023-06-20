@@ -106,11 +106,13 @@ data class BodyConfig(
         @Expose
         val hasAnimation: Boolean = false,
         @Expose
-        val fullHunger: Float = HUNGER_MAX,
+        val fullHunger: Float = 0f,
         @Expose
         val hungryHungerPercent: Float = HUNGRY_NEVER,
         @Expose
-        val exhaustionPerSecond: Float = 0f,
+        val hungerRatePerSecond: Float = 0f,
+        @Expose
+        val canDie: Boolean = false,
     )
 
     data class Food(
@@ -122,7 +124,6 @@ data class BodyConfig(
 
     companion object {
         const val HEALTH_MAX = -1f
-        const val HUNGER_MAX = -1f
         const val HUNGRY_NEVER = -1f
     }
 }
