@@ -77,6 +77,8 @@ data class BodyData(
          */
         val time: Float,
     ) {
+        val canRemove: Boolean = time <= -DISAPPEAR_DURATION
+
         companion object {
             const val DISAPPEAR_DURATION = 1f
         }
@@ -87,6 +89,7 @@ data class BodyData(
         val drivingTargetY: DrivingTarget?,
         val canPlayEatAnimation: Boolean,
         val hunger: Float,
+        val canRemove: Boolean,
     )
 
     data class TextureRegionData(
@@ -270,11 +273,9 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    private val canRemove: Boolean = (disappearAct != null && disappearAct.time <= -DisappearAct.DISAPPEAR_DURATION) ||
-        health == 0f ||
-        (config.eatAct != null && config.eatAct.canDie &&
-            eatAct != null && eatAct.hunger == 0f &&
-            textureRegionData.animationAction == BodyConfig.AnimationAction.SWIM)
+    private val canRemove: Boolean = (disappearAct?.canRemove == true) ||
+        (health == 0f) ||
+        (eatAct?.canRemove == true)
 
     //*****************************************************************************************************************
 

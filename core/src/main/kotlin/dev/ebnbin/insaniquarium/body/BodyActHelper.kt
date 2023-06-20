@@ -148,6 +148,7 @@ object BodyActHelper {
             drivingTargetY = null,
             canPlayEatAnimation = false,
             hunger = configEatAct.fullHunger,
+            canRemove = false,
         )
 
         val isNotFull = configEatAct.fullHunger == 0f || prevEatAct.hunger < configEatAct.fullHunger
@@ -208,6 +209,8 @@ object BodyActHelper {
             },
             canPlayEatAnimation = !isTurning && targetFood != null && data.overlaps(targetFood.data),
             hunger = hunger,
+            canRemove = configEatAct.canDie && hunger == 0f &&
+                data.textureRegionData.animationAction == BodyConfig.AnimationAction.SWIM,
         )
     }
 }
