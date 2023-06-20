@@ -46,12 +46,13 @@ object ConfigInfo {
                 foods = mapOf(
                     BodyType.STAR to BodyConfig.Food(
                         damagePerSecond = 10f,
-                        hunger = 10f,
+                        hunger = 20f,
                     ),
                 ),
                 accelerationX = 0.2f,
                 accelerationY = 0f,
                 fullHunger = 20f,
+                maxHungerPercent = 1.5f,
                 hungryHungerPercent = 0.5f,
                 hungerRatePerSecond = 1f,
                 canDie = true,
@@ -157,12 +158,15 @@ object ConfigInfo {
                 foods = mapOf(
                     BodyType.BEETLE to BodyConfig.Food(
                         damagePerSecond = 10f,
-                        hunger = 0f,
+                        hunger = 20f,
                     ),
                 ),
                 accelerationX = 0.8f,
                 accelerationY = 0.5f,
                 hasAnimation = true,
+                fullHunger = 10f,
+                maxHungerPercent = 3f,
+                hungerRatePerSecond = 1f,
             ),
         ),
         BodyConfigInfo(

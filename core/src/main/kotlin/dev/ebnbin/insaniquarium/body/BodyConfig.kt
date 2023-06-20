@@ -108,6 +108,8 @@ data class BodyConfig(
         @Expose
         val fullHunger: Float = 0f,
         @Expose
+        val maxHungerPercent: Float = 1f,
+        @Expose
         val hungryHungerPercent: Float = HUNGRY_NEVER,
         @Expose
         val hungerRatePerSecond: Float = 0f,

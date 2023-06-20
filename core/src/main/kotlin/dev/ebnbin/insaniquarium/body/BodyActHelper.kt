@@ -143,7 +143,19 @@ object BodyActHelper {
             return null
         }
 
+        val prevEatAct = eatAct ?: BodyData.EatAct(
+            drivingTargetX = null,
+            drivingTargetY = null,
+            canPlayEatAnimation = false,
+            hunger = configEatAct.fullHunger,
+        )
+
+        val isNotFull = configEatAct.fullHunger == 0f || prevEatAct.hunger < configEatAct.fullHunger
+
         fun targetFood(): Body? {
+            if (!isNotFull) {
+                return null
+            }
             require(configEatAct.foods.isNotEmpty())
             val foodSet = input.body.tank.findBodyByType(configEatAct.foods.keys)
             if (foodSet.isEmpty()) {
@@ -155,10 +167,7 @@ object BodyActHelper {
         }
 
         fun calcHunger(): Float {
-            if (eatAct == null) {
-                return configEatAct.fullHunger
-            }
-            return max(0f, eatAct.hunger - configEatAct.hungerRatePerSecond * input.delta)
+            return max(0f, prevEatAct.hunger - configEatAct.hungerRatePerSecond * input.delta)
         }
 
         var hunger = calcHunger()
@@ -175,7 +184,8 @@ object BodyActHelper {
                     ),
                 )
                 if (removed) {
-                    hunger = min(configEatAct.fullHunger, hunger + food.hunger)
+                    val maxHunger = configEatAct.fullHunger * configEatAct.maxHungerPercent
+                    hunger = min(maxHunger, hunger + food.hunger)
                 }
             }
         }
