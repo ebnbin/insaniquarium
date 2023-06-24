@@ -63,6 +63,11 @@ object TextureInfo {
                     tileStart = 10,
                     tileCount = 10,
                 ),
+                BodyTextureInfo.Output(
+                    name = "starcatcher_die",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
             ),
         ),
         BodyTextureInfo(

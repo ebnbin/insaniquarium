@@ -137,6 +137,16 @@
       "extension": "png",
       "preload": false
     },
+    "starcatcher_die": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "starcatcher_die",
+      "extension": "png",
+      "preload": false
+    },
     "starcatcher_hungry": {
       "region": {
         "row": 2,

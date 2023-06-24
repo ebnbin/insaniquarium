@@ -36,6 +36,11 @@ object ConfigInfo {
                     duration = 1f,
                     mode = AnimationMode.LOOP,
                 ),
+                BodyConfig.AnimationType.DIE to TextureRegionAnimation(
+                    assetId = "starcatcher_die",
+                    duration = 1f,
+                    mode = AnimationMode.NORMAL,
+                ),
             ),
             swimActX = BodyConfig.SwimAct(
                 acceleration = 0.1f,

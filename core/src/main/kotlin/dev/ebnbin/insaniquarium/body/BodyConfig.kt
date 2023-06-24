@@ -53,6 +53,7 @@ data class BodyConfig(
         HUNGRY_SWIM("hungry_swim", action = AnimationAction.SWIM, status = AnimationStatus.HUNGRY),
         HUNGRY_TURN("hungry_turn", action = AnimationAction.TURN, status = AnimationStatus.HUNGRY),
         HUNGRY_EAT("hungry_eat", action = AnimationAction.EAT, status = AnimationStatus.HUNGRY),
+        DIE("die", action = AnimationAction.DIE, status = AnimationStatus.HUNGRY),
         ;
 
         companion object {
@@ -66,6 +67,7 @@ data class BodyConfig(
         SWIM("swim"),
         TURN("turn"),
         EAT("eat"),
+        DIE("die"),
         ;
     }
 
