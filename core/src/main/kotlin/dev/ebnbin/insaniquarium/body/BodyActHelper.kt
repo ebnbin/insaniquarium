@@ -9,11 +9,15 @@ object BodyActHelper {
     fun nextTouchAct(
         configTouchAct: BodyConfig.TouchAct?,
         input: BodyInput?,
+        isDying: Boolean,
     ): BodyData.TouchAct? {
         if (input == null) {
             return null
         }
         if (configTouchAct == null) {
+            return null
+        }
+        if (isDying) {
             return null
         }
         val touchPoint = input.body.tank.touchPoint ?: return null
@@ -36,6 +40,7 @@ object BodyActHelper {
         tankSize: Float,
         containDrivingTarget: Boolean,
         input: BodyInput?,
+        isDying: Boolean,
     ): BodyData.SwimAct? {
         if (input == null) {
             return swimAct
@@ -44,6 +49,9 @@ object BodyActHelper {
             return null
         }
         if (configSwimAct == null) {
+            return null
+        }
+        if (isDying) {
             return null
         }
 
@@ -133,6 +141,7 @@ object BodyActHelper {
         eatAct: BodyData.EatAct?,
         data: BodyData,
         input: BodyInput?,
+        isDying: Boolean,
     ): BodyData.EatAct? {
         if (input == null) {
             return eatAct
@@ -146,12 +155,15 @@ object BodyActHelper {
             drivingTargetY = null,
             canPlayEatAnimation = false,
             hunger = configEatAct.fullHunger,
-            canRemove = false,
+            isDying = false,
         )
 
         val isNotFull = configEatAct.fullHunger == 0f || prevEatAct.hunger < configEatAct.fullHunger
 
         fun targetFood(): Body? {
+            if (isDying) {
+                return null
+            }
             if (!isNotFull) {
                 return null
             }
@@ -207,8 +219,7 @@ object BodyActHelper {
             },
             canPlayEatAnimation = !isTurning && targetFood != null && data.overlaps(targetFood.data),
             hunger = hunger,
-            canRemove = configEatAct.canDie && hunger == 0f &&
-                data.textureRegionData.animationAction == BodyConfig.AnimationAction.SWIM,
+            isDying = configEatAct.canDie && hunger == 0f,
         )
     }
 }

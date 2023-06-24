@@ -90,7 +90,7 @@ data class BodyData(
         val drivingTargetY: DrivingTarget?,
         val canPlayEatAnimation: Boolean,
         val hunger: Float,
-        val canRemove: Boolean,
+        val isDying: Boolean,
     )
 
     data class TextureRegionData(
@@ -169,14 +169,26 @@ data class BodyData(
 
     val volume: Float = area * depth
 
-    val density: Float = config.density
+    val density: Float = if (eatAct?.isDying == true) {
+        CORPSE_DENSITY
+    } else {
+        config.density
+    }
 
     val mass: Float = volume * density
 
     //*****************************************************************************************************************
 
-    val drivingTargetX: DrivingTarget? = eatAct?.drivingTargetX ?: touchAct?.drivingTargetX ?: swimActX?.drivingTarget
-    val drivingTargetY: DrivingTarget? = eatAct?.drivingTargetY ?: touchAct?.drivingTargetY ?: swimActY?.drivingTarget
+    val drivingTargetX: DrivingTarget? = if (eatAct?.isDying == true) {
+        null
+    } else {
+        eatAct?.drivingTargetX ?: touchAct?.drivingTargetX ?: swimActX?.drivingTarget
+    }
+    val drivingTargetY: DrivingTarget? = if (eatAct?.isDying == true) {
+        null
+    } else {
+        eatAct?.drivingTargetY ?: touchAct?.drivingTargetY ?: swimActY?.drivingTarget
+    }
 
     val containDrivingTargetX: Boolean = drivingTargetX?.position?.let { it in left..right } ?: false
     val containDrivingTargetY: Boolean = drivingTargetY?.position?.let { it in bottom..top } ?: false
@@ -274,9 +286,7 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    private val canRemove: Boolean = (disappearAct?.canRemove == true) ||
-        (health == 0f) ||
-        (eatAct?.canRemove == true)
+    private val canRemove: Boolean = (disappearAct?.canRemove == true) || (health == 0f)
 
     //*****************************************************************************************************************
 
@@ -315,6 +325,7 @@ data class BodyData(
     val nextTouchAct = BodyActHelper.nextTouchAct(
         configTouchAct = config.touchAct,
         input = input,
+        isDying = eatAct?.isDying == true,
     )
 
     val nextSwimActX = BodyActHelper.nextSwimAct(
@@ -324,6 +335,7 @@ data class BodyData(
         tankSize = tankWidth,
         containDrivingTarget = containDrivingTargetX,
         input = input,
+        isDying = eatAct?.isDying == true,
     )
     val nextSwimActY = BodyActHelper.nextSwimAct(
         enabled = nextTouchAct == null,
@@ -332,10 +344,12 @@ data class BodyData(
         tankSize = tankHeight,
         containDrivingTarget = containDrivingTargetY,
         input = input,
+        isDying = eatAct?.isDying == true,
     )
 
     val nextDisappearAct = BodyActHelper.nextDisappearAct(
-        canDisappear = config.canDisappear,
+        canDisappear = config.canDisappear ||
+            (textureRegionData.animationType == BodyConfig.AnimationType.DIE && isAnimationFinished),
         disappearAct = disappearAct,
         data = this,
         input = input,
@@ -346,6 +360,7 @@ data class BodyData(
         eatAct = eatAct,
         data = this,
         input = input,
+        isDying = eatAct?.isDying == true,
     )
 
     //*****************************************************************************************************************
@@ -449,6 +464,8 @@ data class BodyData(
     //*****************************************************************************************************************
 
     companion object {
+        const val CORPSE_DENSITY = 1020f
+
         fun create(
             tank: Tank,
             params: BodyParams,

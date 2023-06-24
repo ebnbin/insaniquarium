@@ -53,6 +53,15 @@ object BodyDrawHelper {
             )
         }
 
+        fun createDieTextureRegionData(): BodyData.TextureRegionData {
+            return BodyData.TextureRegionData(
+                animationAction = BodyConfig.AnimationAction.DIE,
+                animationStatus = BodyConfig.AnimationStatus.HUNGRY,
+                stateTime = 0f,
+                isFacingRight = textureRegionData.isFacingRight,
+            )
+        }
+
         fun updateTextureRegionData(): BodyData.TextureRegionData {
             return BodyData.TextureRegionData(
                 animationAction = textureRegionData.animationAction,
@@ -63,7 +72,9 @@ object BodyDrawHelper {
         }
 
         return if (canAnimationActionChange) {
-            if (config.eatAct?.hasAnimation == true && eatAct?.canPlayEatAnimation == true) {
+            if (eatAct?.isDying == true) {
+                createDieTextureRegionData()
+            } else if (config.eatAct?.hasAnimation == true && eatAct?.canPlayEatAnimation == true) {
                 createEatTextureRegionData()
             } else {
                 if (hasTurnAnimation && textureRegionData.isFacingRight != expectedIsFacingRight) {
@@ -74,7 +85,11 @@ object BodyDrawHelper {
             }
         } else {
             if (isAnimationFinished) {
-                createSwimTextureRegionData()
+                if (eatAct?.isDying == true) {
+                    updateTextureRegionData()
+                } else {
+                    createSwimTextureRegionData()
+                }
             } else {
                 updateTextureRegionData()
             }
