@@ -45,13 +45,13 @@ object BodyDevHelper {
             "${data.accelerationX.devText(XY.X)},${data.accelerationY.devText(XY.Y)}"
         }
         baseGame.putLog("velocity        ") {
-            "${data.velocityX.devText(XY.X)},${data.velocityY.devText(XY.Y)}"
+            "${data.status.velocityX.devText(XY.X)},${data.status.velocityY.devText(XY.Y)}"
         }
         baseGame.putLog("position        ") {
-            "${data.x.devText()},${data.y.devText()}"
+            "${data.status.x.devText()},${data.status.y.devText()}"
         }
         baseGame.putLog("hunger          ") {
-            "${data.eatAct?.hunger?.devText()}"
+            "${data.status.eatAct?.hunger?.devText()}"
         }
     }
 

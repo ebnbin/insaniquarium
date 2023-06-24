@@ -24,90 +24,12 @@ data class BodyData(
     val tankWidth: Float,
     val tankHeight: Float,
 
-    val velocityX: Float,
-    val velocityY: Float,
+    val config: BodyConfig,
 
-    val x: Float,
-    val y: Float,
-
-    val touchAct: TouchAct?,
-
-    val swimActX: SwimAct?,
-    val swimActY: SwimAct?,
-
-    val disappearAct: DisappearAct?,
-
-    val eatAct: EatAct?,
-
-    val expectedIsFacingRight: Boolean,
-
-    val textureRegionData: TextureRegionData,
-
-    val health: Float,
+    val status: BodyStatus,
 
     val input: BodyInput?,
 ) {
-    data class DrivingTarget(
-        val position: Float,
-        val acceleration: Float,
-        /**
-         * The acceleration multiplier when the direction of velocity is opposite to the direction of the target.
-         */
-        val oppositeAccelerationMultiplier: Float = DEFAULT_OPPOSITE_ACCELERATION_MULTIPLIER,
-    ) {
-        companion object {
-            private const val DEFAULT_OPPOSITE_ACCELERATION_MULTIPLIER = 1.5f
-        }
-    }
-
-    data class TouchAct(
-        val drivingTargetX: DrivingTarget,
-        val drivingTargetY: DrivingTarget,
-    )
-
-    data class SwimAct(
-        val drivingTarget: DrivingTarget?,
-        val remainingTime: Float,
-    )
-
-    data class DisappearAct(
-        /**
-         * >= 0f: Delaying.
-         * < 0f: Disappearing.
-         */
-        val time: Float = DELAY_DURATION,
-    ) {
-        val canRemove: Boolean = time <= -DISAPPEAR_DURATION
-
-        companion object {
-            const val DELAY_DURATION = 0f
-            const val DISAPPEAR_DURATION = 1f
-        }
-    }
-
-    data class EatAct(
-        val drivingTargetX: DrivingTarget?,
-        val drivingTargetY: DrivingTarget?,
-        val canPlayEatAnimation: Boolean,
-        val hunger: Float,
-        val isDying: Boolean,
-    )
-
-    data class TextureRegionData(
-        val animationAction: BodyConfig.AnimationAction,
-        val animationStatus: BodyConfig.AnimationStatus,
-        val stateTime: Float,
-        val isFacingRight: Boolean,
-    ) {
-        val animationType: BodyConfig.AnimationType = BodyConfig.AnimationType.of(animationAction, animationStatus)
-    }
-
-    //*****************************************************************************************************************
-
-    val config: BodyConfig = game.config.body.getValue(type)
-
-    //*****************************************************************************************************************
-
     val width: Float = config.width
     val height: Float = config.height
 
@@ -120,9 +42,9 @@ data class BodyData(
     val minY: Float = halfHeight
     val maxY: Float = Float.MAX_VALUE
 
-    val left: Float = x - halfWidth
+    val left: Float = status.x - halfWidth
     val right: Float = left + width
-    val bottom: Float = y - halfHeight
+    val bottom: Float = status.y - halfHeight
     val top: Float = bottom + height
 
     val isInsideLeft: Boolean = left > 0f
@@ -136,7 +58,7 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val vector2: Vector2 = Vector2(x, y)
+    val vector2: Vector2 = Vector2(status.x, status.y)
     val rectangle: Rectangle = Rectangle(left, bottom, width, height)
 
     fun distance(other: BodyData): Float {
@@ -157,9 +79,9 @@ data class BodyData(
 
     val halfDepth: Float = depth / 2f
 
-    val depthLeft: Float = x - halfDepth
+    val depthLeft: Float = status.x - halfDepth
     val depthRight: Float = depthLeft + depth
-    val depthBottom: Float = y - halfDepth
+    val depthBottom: Float = status.y - halfDepth
     val depthTop: Float = depthBottom + depth
 
     val area: Float = width * height
@@ -169,7 +91,7 @@ data class BodyData(
 
     val volume: Float = area * depth
 
-    val density: Float = if (eatAct?.isDying == true) {
+    val density: Float = if (status.eatAct?.isDying == true) {
         CORPSE_DENSITY
     } else {
         config.density
@@ -179,15 +101,15 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val drivingTargetX: DrivingTarget? = if (eatAct?.isDying == true) {
+    val drivingTargetX: BodyStatus.DrivingTarget? = if (status.eatAct?.isDying == true) {
         null
     } else {
-        eatAct?.drivingTargetX ?: touchAct?.drivingTargetX ?: swimActX?.drivingTarget
+        status.eatAct?.drivingTargetX ?: status.touchAct?.drivingTargetX ?: status.swimActX?.drivingTarget
     }
-    val drivingTargetY: DrivingTarget? = if (eatAct?.isDying == true) {
+    val drivingTargetY: BodyStatus.DrivingTarget? = if (status.eatAct?.isDying == true) {
         null
     } else {
-        eatAct?.drivingTargetY ?: touchAct?.drivingTargetY ?: swimActY?.drivingTarget
+        status.eatAct?.drivingTargetY ?: status.touchAct?.drivingTargetY ?: status.swimActY?.drivingTarget
     }
 
     val containDrivingTargetX: Boolean = drivingTargetX?.position?.let { it in left..right } ?: false
@@ -208,25 +130,25 @@ data class BodyData(
 
     val dragX: Float = BodyForceHelper.drag(
         dragCoefficient = dragCoefficient,
-        velocity = velocityX,
+        velocity = status.velocityX,
         referenceArea = areaX,
     )
     val dragY: Float = BodyForceHelper.drag(
         dragCoefficient = dragCoefficient,
-        velocity = velocityY,
+        velocity = status.velocityY,
         referenceArea = areaY,
     )
 
     val drivingX: Float = BodyForceHelper.driving(
         drivingTarget = drivingTargetX,
-        position = x,
-        velocity = velocityX,
+        position = status.x,
+        velocity = status.velocityX,
         mass = mass,
     )
     val drivingY: Float = BodyForceHelper.driving(
         drivingTarget = drivingTargetY,
-        position = y,
-        velocity = velocityY,
+        position = status.y,
+        velocity = status.velocityY,
         mass = mass,
     )
 
@@ -260,45 +182,46 @@ data class BodyData(
 
     val hasTurnAnimation: Boolean = config.animations.containsKey(BodyConfig.AnimationType.TURN)
 
-    val animation: TextureRegionAnimation = config.animations.getValue(textureRegionData.animationType)
+    val animation: TextureRegionAnimation = config.animations.getValue(status.textureRegionData.animationType)
 
-    val isAnimationFinished: Boolean = textureRegionData.animationAction != BodyConfig.AnimationAction.SWIM &&
-        textureRegionData.stateTime >= animation.duration
+    val isAnimationFinished: Boolean = status.textureRegionData.animationAction != BodyConfig.AnimationAction.SWIM &&
+        status.textureRegionData.stateTime >= animation.duration
 
-    val canAnimationActionChange: Boolean = textureRegionData.animationAction == BodyConfig.AnimationAction.SWIM
+    val canAnimationActionChange: Boolean = status.textureRegionData.animationAction == BodyConfig.AnimationAction.SWIM
 
-    val textureRegion: TextureRegion = animation.getTextureRegion(textureRegionData.stateTime)
+    val textureRegion: TextureRegion = animation.getTextureRegion(status.textureRegionData.stateTime)
 
     val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
     val actorHeight: Float = textureRegion.regionHeight.toFloat().unitToMeter
 
-    val isFlipX: Boolean = if (textureRegionData.animationAction == BodyConfig.AnimationAction.TURN) {
-        !textureRegionData.isFacingRight
+    val isFlipX: Boolean = if (status.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN) {
+        !status.textureRegionData.isFacingRight
     } else {
-        textureRegionData.isFacingRight
+        status.textureRegionData.isFacingRight
     }
 
-    val alpha: Float = if (disappearAct == null || disappearAct.time >= 0f) {
+    val alpha: Float = if (status.disappearAct == null || status.disappearAct.time >= 0f) {
         1f
     } else {
-        ((DisappearAct.DISAPPEAR_DURATION + disappearAct.time) / DisappearAct.DISAPPEAR_DURATION).minMax(0f, 1f)
+        ((BodyStatus.DisappearAct.DISAPPEAR_DURATION + status.disappearAct.time) /
+            BodyStatus.DisappearAct.DISAPPEAR_DURATION).minMax(0f, 1f)
     }
 
     //*****************************************************************************************************************
 
-    private val canRemove: Boolean = (disappearAct?.canRemove == true) || (health == 0f)
+    private val canRemove: Boolean = (status.disappearAct?.canRemove == true) || (status.health == 0f)
 
     //*****************************************************************************************************************
 
     val nextVelocityX = BodyForceHelper.nextVelocity(
-        velocity = velocityX,
+        velocity = status.velocityX,
         acceleration = accelerationX,
         isInsideLeftOrBottom = isInsideLeft,
         isInsideRightOrTop = isInsideRight,
         input = input,
     )
     val nextVelocityY = BodyForceHelper.nextVelocity(
-        velocity = velocityY,
+        velocity = status.velocityY,
         acceleration = accelerationY,
         isInsideLeftOrBottom = isInsideBottom,
         isInsideRightOrTop = true,
@@ -306,14 +229,14 @@ data class BodyData(
     )
 
     val nextX = BodyForceHelper.nextPosition(
-        position = x,
+        position = status.x,
         velocity = nextVelocityX,
         minPosition = minX,
         maxPosition = maxX,
         input = input,
     )
     val nextY = BodyForceHelper.nextPosition(
-        position = y,
+        position = status.y,
         velocity = nextVelocityY,
         minPosition = minY,
         maxPosition = maxY,
@@ -325,50 +248,50 @@ data class BodyData(
     val nextTouchAct = BodyActHelper.nextTouchAct(
         configTouchAct = config.touchAct,
         input = input,
-        isDying = eatAct?.isDying == true,
+        isDying = status.eatAct?.isDying == true,
     )
 
     val nextSwimActX = BodyActHelper.nextSwimAct(
         enabled = nextTouchAct == null,
         configSwimAct = config.swimActX,
-        swimAct = swimActX,
+        swimAct = status.swimActX,
         tankSize = tankWidth,
         containDrivingTarget = containDrivingTargetX,
         input = input,
-        isDying = eatAct?.isDying == true,
+        isDying = status.eatAct?.isDying == true,
     )
     val nextSwimActY = BodyActHelper.nextSwimAct(
         enabled = nextTouchAct == null,
         configSwimAct = config.swimActY,
-        swimAct = swimActY,
+        swimAct = status.swimActY,
         tankSize = tankHeight,
         containDrivingTarget = containDrivingTargetY,
         input = input,
-        isDying = eatAct?.isDying == true,
+        isDying = status.eatAct?.isDying == true,
     )
 
     val nextDisappearAct = BodyActHelper.nextDisappearAct(
         canDisappear = config.canDisappear ||
-            (textureRegionData.animationType == BodyConfig.AnimationType.DIE && isAnimationFinished),
-        disappearAct = disappearAct,
+            (status.textureRegionData.animationType == BodyConfig.AnimationType.DIE && isAnimationFinished),
+        disappearAct = status.disappearAct,
         data = this,
         input = input,
     )
 
     val nextEatAct = BodyActHelper.nextEatAct(
         configEatAct = config.eatAct,
-        eatAct = eatAct,
+        eatAct = status.eatAct,
         data = this,
         input = input,
-        isDying = eatAct?.isDying == true,
+        isDying = status.eatAct?.isDying == true,
     )
 
     //*****************************************************************************************************************
 
     val nextExpectedIsFacingRight = if (hasTurnAnimation) {
         when (drivingX.direction) {
-            Direction.ZERO -> when (velocityX.direction) {
-                Direction.ZERO -> expectedIsFacingRight
+            Direction.ZERO -> when (status.velocityX.direction) {
+                Direction.ZERO -> status.expectedIsFacingRight
                 Direction.POSITIVE -> true
                 Direction.NEGATIVE -> false
             }
@@ -382,10 +305,10 @@ data class BodyData(
     val nextTextureRegionData = BodyDrawHelper.nextTextureRegionData(
         config = config,
         hasTurnAnimation = hasTurnAnimation,
-        textureRegionData = textureRegionData,
+        textureRegionData = status.textureRegionData,
         isAnimationFinished = isAnimationFinished,
         canAnimationActionChange = canAnimationActionChange,
-        expectedIsFacingRight = expectedIsFacingRight,
+        expectedIsFacingRight = status.expectedIsFacingRight,
         eatAct = nextEatAct,
         input = input,
     )
@@ -393,19 +316,19 @@ data class BodyData(
     //*****************************************************************************************************************
 
     val nextHealth = if (input == null) {
-        health
+        status.health
     } else {
-        if (health == BodyConfig.HEALTH_MAX) {
-            health
+        if (status.health == BodyConfig.HEALTH_MAX) {
+            status.health
         } else {
-            max(0f, health - input.damage)
+            max(0f, status.health - input.damage)
         }
     }
 
     //*****************************************************************************************************************
 
     fun update(input: BodyInput): BodyData? {
-        return copy(
+        val nextStatus = BodyStatus(
             velocityX = nextVelocityX,
             velocityY = nextVelocityY,
             x = nextX,
@@ -415,16 +338,19 @@ data class BodyData(
             swimActY = nextSwimActY,
             disappearAct = nextDisappearAct,
             eatAct = nextEatAct,
-            health = nextHealth,
             expectedIsFacingRight = nextExpectedIsFacingRight,
             textureRegionData = nextTextureRegionData,
+            health = nextHealth,
+        )
+        return copy(
+            status = nextStatus,
             input = input,
         ).takeIf { !canRemove }
     }
 
     fun act(body: Body) {
         body.setSize(actorWidth, actorHeight)
-        body.setPosition(x, y, Align.center)
+        body.setPosition(status.x, status.y, Align.center)
     }
 
     fun draw(body: Body, batch: Batch, parentAlpha: Float) {
@@ -472,11 +398,7 @@ data class BodyData(
         ): BodyData {
             val config = game.config.body.getValue(params.type)
 
-            return BodyData(
-                type = params.type,
-                id = "${UUID.randomUUID()}",
-                tankWidth = tank.width,
-                tankHeight = tank.height,
+            val bodyStatus = BodyStatus(
                 velocityX = 0f,
                 velocityY = 0f,
                 x = params.x ?: (tank.width / 2f),
@@ -487,13 +409,22 @@ data class BodyData(
                 disappearAct = null,
                 eatAct = null,
                 expectedIsFacingRight = false,
-                textureRegionData = TextureRegionData(
+                textureRegionData = BodyStatus.TextureRegionData(
                     animationAction = BodyConfig.AnimationAction.SWIM,
                     animationStatus = BodyConfig.AnimationStatus.NORMAL,
                     stateTime = 0f,
                     isFacingRight = false,
                 ),
                 health = config.health,
+            )
+
+            return BodyData(
+                type = params.type,
+                id = "${UUID.randomUUID()}",
+                tankWidth = tank.width,
+                tankHeight = tank.height,
+                config = config,
+                status = bodyStatus,
                 input = null,
             )
         }

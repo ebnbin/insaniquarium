@@ -4,13 +4,13 @@ object BodyDrawHelper {
     fun nextTextureRegionData(
         config: BodyConfig,
         hasTurnAnimation: Boolean,
-        textureRegionData: BodyData.TextureRegionData,
+        textureRegionData: BodyStatus.TextureRegionData,
         isAnimationFinished: Boolean,
         canAnimationActionChange: Boolean,
         expectedIsFacingRight: Boolean,
-        eatAct: BodyData.EatAct?,
+        eatAct: BodyStatus.EatAct?,
         input: BodyInput?,
-    ): BodyData.TextureRegionData {
+    ): BodyStatus.TextureRegionData {
         if (input == null) {
             return textureRegionData
         }
@@ -26,8 +26,8 @@ object BodyDrawHelper {
             BodyConfig.AnimationStatus.NORMAL
         }
 
-        fun createEatTextureRegionData(): BodyData.TextureRegionData {
-            return BodyData.TextureRegionData(
+        fun createEatTextureRegionData(): BodyStatus.TextureRegionData {
+            return BodyStatus.TextureRegionData(
                 animationAction = BodyConfig.AnimationAction.EAT,
                 animationStatus = animationStatus,
                 stateTime = 0f,
@@ -35,8 +35,8 @@ object BodyDrawHelper {
             )
         }
 
-        fun createTurnTextureRegionData(): BodyData.TextureRegionData {
-            return BodyData.TextureRegionData(
+        fun createTurnTextureRegionData(): BodyStatus.TextureRegionData {
+            return BodyStatus.TextureRegionData(
                 animationAction = BodyConfig.AnimationAction.TURN,
                 animationStatus = animationStatus,
                 stateTime = 0f,
@@ -44,8 +44,8 @@ object BodyDrawHelper {
             )
         }
 
-        fun createSwimTextureRegionData(): BodyData.TextureRegionData {
-            return BodyData.TextureRegionData(
+        fun createSwimTextureRegionData(): BodyStatus.TextureRegionData {
+            return BodyStatus.TextureRegionData(
                 animationAction = BodyConfig.AnimationAction.SWIM,
                 animationStatus = animationStatus,
                 stateTime = 0f,
@@ -53,8 +53,8 @@ object BodyDrawHelper {
             )
         }
 
-        fun createDieTextureRegionData(): BodyData.TextureRegionData {
-            return BodyData.TextureRegionData(
+        fun createDieTextureRegionData(): BodyStatus.TextureRegionData {
+            return BodyStatus.TextureRegionData(
                 animationAction = BodyConfig.AnimationAction.DIE,
                 animationStatus = BodyConfig.AnimationStatus.HUNGRY,
                 stateTime = 0f,
@@ -62,8 +62,8 @@ object BodyDrawHelper {
             )
         }
 
-        fun updateTextureRegionData(): BodyData.TextureRegionData {
-            return BodyData.TextureRegionData(
+        fun updateTextureRegionData(): BodyStatus.TextureRegionData {
+            return BodyStatus.TextureRegionData(
                 animationAction = textureRegionData.animationAction,
                 animationStatus = animationStatus,
                 stateTime = textureRegionData.stateTime + input.delta,

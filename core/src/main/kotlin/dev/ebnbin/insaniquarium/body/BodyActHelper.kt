@@ -10,7 +10,7 @@ object BodyActHelper {
         configTouchAct: BodyConfig.TouchAct?,
         input: BodyInput?,
         isDying: Boolean,
-    ): BodyData.TouchAct? {
+    ): BodyStatus.TouchAct? {
         if (input == null) {
             return null
         }
@@ -21,12 +21,12 @@ object BodyActHelper {
             return null
         }
         val touchPoint = input.body.tank.touchPoint ?: return null
-        return BodyData.TouchAct(
-            drivingTargetX = BodyData.DrivingTarget(
+        return BodyStatus.TouchAct(
+            drivingTargetX = BodyStatus.DrivingTarget(
                 position = touchPoint.x,
                 acceleration = configTouchAct.accelerationX,
             ),
-            drivingTargetY = BodyData.DrivingTarget(
+            drivingTargetY = BodyStatus.DrivingTarget(
                 position = touchPoint.y,
                 acceleration = configTouchAct.accelerationY,
             ),
@@ -36,12 +36,12 @@ object BodyActHelper {
     fun nextSwimAct(
         enabled: Boolean,
         configSwimAct: BodyConfig.SwimAct?,
-        swimAct: BodyData.SwimAct?,
+        swimAct: BodyStatus.SwimAct?,
         tankSize: Float,
         containDrivingTarget: Boolean,
         input: BodyInput?,
         isDying: Boolean,
-    ): BodyData.SwimAct? {
+    ): BodyStatus.SwimAct? {
         if (input == null) {
             return swimAct
         }
@@ -55,9 +55,9 @@ object BodyActHelper {
             return null
         }
 
-        fun createTargetingSwimAct(): BodyData.SwimAct {
-            return BodyData.SwimAct(
-                drivingTarget = BodyData.DrivingTarget(
+        fun createTargetingSwimAct(): BodyStatus.SwimAct {
+            return BodyStatus.SwimAct(
+                drivingTarget = BodyStatus.DrivingTarget(
                     position = Random.nextFloat(0f, tankSize),
                     acceleration = configSwimAct.acceleration,
                 ),
@@ -65,8 +65,8 @@ object BodyActHelper {
             )
         }
 
-        fun createIdlingSwimAct(): BodyData.SwimAct {
-            return BodyData.SwimAct(
+        fun createIdlingSwimAct(): BodyStatus.SwimAct {
+            return BodyStatus.SwimAct(
                 drivingTarget = null,
                 remainingTime = Random.nextFloat(
                     configSwimAct.idlingTimeRandomStart,
@@ -75,7 +75,7 @@ object BodyActHelper {
             )
         }
 
-        fun updateSwimAct(swimAct: BodyData.SwimAct): BodyData.SwimAct {
+        fun updateSwimAct(swimAct: BodyStatus.SwimAct): BodyStatus.SwimAct {
             return swimAct.copy(
                 remainingTime = swimAct.remainingTime - input.delta,
             )
@@ -106,10 +106,10 @@ object BodyActHelper {
 
     fun nextDisappearAct(
         canDisappear: Boolean,
-        disappearAct: BodyData.DisappearAct?,
+        disappearAct: BodyStatus.DisappearAct?,
         data: BodyData,
         input: BodyInput?,
-    ): BodyData.DisappearAct? {
+    ): BodyStatus.DisappearAct? {
         if (input == null) {
             return disappearAct
         }
@@ -125,7 +125,7 @@ object BodyActHelper {
                 data.insideTopPercent < 1f
             }
             if (isNotInsideTank) {
-                BodyData.DisappearAct()
+                BodyStatus.DisappearAct()
             } else {
                 null
             }
@@ -138,11 +138,11 @@ object BodyActHelper {
 
     fun nextEatAct(
         configEatAct: BodyConfig.EatAct?,
-        eatAct: BodyData.EatAct?,
+        eatAct: BodyStatus.EatAct?,
         data: BodyData,
         input: BodyInput?,
         isDying: Boolean,
-    ): BodyData.EatAct? {
+    ): BodyStatus.EatAct? {
         if (input == null) {
             return eatAct
         }
@@ -150,7 +150,7 @@ object BodyActHelper {
             return null
         }
 
-        val prevEatAct = eatAct ?: BodyData.EatAct(
+        val prevEatAct = eatAct ?: BodyStatus.EatAct(
             drivingTargetX = null,
             drivingTargetY = null,
             canPlayEatAnimation = false,
@@ -184,7 +184,7 @@ object BodyActHelper {
         var hunger = calcHunger()
 
         val targetFood = targetFood()
-        val isTurning = data.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
+        val isTurning = data.status.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
         if (targetFood != null) {
             if (!isTurning && data.containsCenter(targetFood.data)) {
                 val food = configEatAct.foods.getValue(targetFood.data.type)
@@ -200,20 +200,20 @@ object BodyActHelper {
                 }
             }
         }
-        return BodyData.EatAct(
+        return BodyStatus.EatAct(
             drivingTargetX = if (targetFood == null) {
                 null
             } else {
-                BodyData.DrivingTarget(
-                    position = targetFood.data.x,
+                BodyStatus.DrivingTarget(
+                    position = targetFood.data.status.x,
                     acceleration = configEatAct.accelerationX,
                 )
             },
             drivingTargetY = if (targetFood == null) {
                 null
             } else {
-                BodyData.DrivingTarget(
-                    position = targetFood.data.y,
+                BodyStatus.DrivingTarget(
+                    position = targetFood.data.status.y,
                     acceleration = configEatAct.accelerationY,
                 )
             },
