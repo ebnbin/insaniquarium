@@ -75,11 +75,12 @@ data class BodyData(
          * >= 0f: Delaying.
          * < 0f: Disappearing.
          */
-        val time: Float,
+        val time: Float = DELAY_DURATION,
     ) {
         val canRemove: Boolean = time <= -DISAPPEAR_DURATION
 
         companion object {
+            const val DELAY_DURATION = 0f
             const val DISAPPEAR_DURATION = 1f
         }
     }
@@ -334,7 +335,7 @@ data class BodyData(
     )
 
     val nextDisappearAct = BodyActHelper.nextDisappearAct(
-        configDisappearAct = config.disappearAct,
+        canDisappear = config.canDisappear,
         disappearAct = disappearAct,
         data = this,
         input = input,

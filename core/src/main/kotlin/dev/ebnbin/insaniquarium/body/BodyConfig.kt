@@ -21,6 +21,8 @@ data class BodyConfig(
     @Expose
     val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
     @Expose
+    val canDisappear: Boolean = false,
+    @Expose
     val health: Float = HEALTH_MAX,
     @Expose
     val animations: Map<AnimationType, TextureRegionAnimation>,
@@ -30,8 +32,6 @@ data class BodyConfig(
     val swimActX: SwimAct? = null,
     @Expose
     val swimActY: SwimAct? = null,
-    @Expose
-    val disappearAct: DisappearAct? = null,
     @Expose
     val eatAct: EatAct? = null,
 ) {
@@ -89,11 +89,6 @@ data class BodyConfig(
         val idlingTimeRandomStart: Float,
         @Expose
         val idlingTimeRandomEnd: Float,
-    )
-
-    data class DisappearAct(
-        @Expose
-        val delay: Float = 0f,
     )
 
     data class EatAct(

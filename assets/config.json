@@ -8,6 +8,7 @@
       "depth": 0.135,
       "density": 1080.0,
       "dragCoefficient": 1.0,
+      "canDisappear": false,
       "health": -1.0,
       "animations": {
         "swim": {
@@ -30,7 +31,6 @@
         "idlingTimeRandomEnd": 8.0
       },
       "swimActY": null,
-      "disappearAct": null,
       "eatAct": {
         "foods": {
           "star": {
@@ -56,6 +56,7 @@
       "depth": 0.135,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "canDisappear": false,
       "health": -1.0,
       "animations": {
         "swim": {
@@ -76,7 +77,6 @@
         "idlingTimeRandomStart": 2.0,
         "idlingTimeRandomEnd": 8.0
       },
-      "disappearAct": null,
       "eatAct": {
         "foods": {
           "silver_coin": {
@@ -106,6 +106,7 @@
       "depth": 0.1,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "canDisappear": false,
       "health": -1.0,
       "animations": {
         "swim": {
@@ -138,7 +139,6 @@
         "idlingTimeRandomStart": 6.0,
         "idlingTimeRandomEnd": 10.0
       },
-      "disappearAct": null,
       "eatAct": {
         "foods": {
           "beetle": {
@@ -164,6 +164,7 @@
       "depth": 0.09833334,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "canDisappear": false,
       "health": -1.0,
       "animations": {
         "swim": {
@@ -193,7 +194,6 @@
         "idlingTimeRandomStart": 6.0,
         "idlingTimeRandomEnd": 10.0
       },
-      "disappearAct": null,
       "eatAct": null
     },
     "silver_coin": {
@@ -204,6 +204,7 @@
       "depth": 0.011666667,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "canDisappear": true,
       "health": 1.0,
       "animations": {
         "swim": {
@@ -216,9 +217,6 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
-      },
       "eatAct": null
     },
     "star": {
@@ -229,6 +227,7 @@
       "depth": 0.025,
       "density": 1010.0,
       "dragCoefficient": 1.0,
+      "canDisappear": true,
       "health": 1.0,
       "animations": {
         "swim": {
@@ -241,9 +240,6 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
-      },
       "eatAct": null
     },
     "beetle": {
@@ -254,6 +250,7 @@
       "depth": 0.085,
       "density": 990.0,
       "dragCoefficient": 1.0,
+      "canDisappear": true,
       "health": 10.0,
       "animations": {
         "swim": {
@@ -266,9 +263,6 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "disappearAct": {
-        "delay": 0.0
-      },
       "eatAct": null
     }
   }

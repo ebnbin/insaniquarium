@@ -229,6 +229,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.HEIGHT,
             ),
             density = 1020f,
+            canDisappear = true,
             health = 1f,
             animations = mapOf(
                 BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
@@ -237,7 +238,6 @@ object ConfigInfo {
                     mode = AnimationMode.LOOP,
                 ),
             ),
-            disappearAct = BodyConfig.DisappearAct(),
         ),
         BodyConfigInfo(
             type = BodyType.STAR,
@@ -256,6 +256,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1010f,
+            canDisappear = true,
             health = 1f,
             animations = mapOf(
                 BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
@@ -264,7 +265,6 @@ object ConfigInfo {
                     mode = AnimationMode.LOOP,
                 ),
             ),
-            disappearAct = BodyConfig.DisappearAct(),
         ),
         BodyConfigInfo(
             type = BodyType.BEETLE,
@@ -283,6 +283,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 990f,
+            canDisappear = true,
             health = 10f,
             animations = mapOf(
                 BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
@@ -291,7 +292,6 @@ object ConfigInfo {
                     mode = AnimationMode.LOOP,
                 ),
             ),
-            disappearAct = BodyConfig.DisappearAct(),
         ),
     )
 }

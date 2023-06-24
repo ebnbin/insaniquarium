@@ -97,7 +97,7 @@ object BodyActHelper {
     }
 
     fun nextDisappearAct(
-        configDisappearAct: BodyConfig.DisappearAct?,
+        canDisappear: Boolean,
         disappearAct: BodyData.DisappearAct?,
         data: BodyData,
         input: BodyInput?,
@@ -105,21 +105,19 @@ object BodyActHelper {
         if (input == null) {
             return disappearAct
         }
-        if (configDisappearAct == null) {
+        if (!canDisappear) {
             return null
         }
         return if (disappearAct == null) {
-            val canDisappear = if (data.density == World.DENSITY_WATER) {
+            val isNotInsideTank = if (data.density == World.DENSITY_WATER) {
                 false
             } else if (data.density > World.DENSITY_WATER) {
                 !data.isInsideBottom
             } else {
                 data.insideTopPercent < 1f
             }
-            if (canDisappear) {
-                BodyData.DisappearAct(
-                    time = configDisappearAct.delay,
-                )
+            if (isNotInsideTank) {
+                BodyData.DisappearAct()
             } else {
                 null
             }
