@@ -166,7 +166,6 @@ object BodyActHelper {
             if (!isNotFull) {
                 return null
             }
-            require(configEatAct.foods.isNotEmpty())
             val foodSet = input.body.tank.findBodyByType(configEatAct.foods.keys)
             if (foodSet.isEmpty()) {
                 return null

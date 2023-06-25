@@ -66,7 +66,11 @@ object BodyDrawHelper {
         fun updateTextureRegionData(): BodyStatus.TextureRegionData {
             return BodyStatus.TextureRegionData(
                 animationAction = textureRegionData.animationAction,
-                animationStatus = animationStatus,
+                animationStatus = if (textureRegionData.animationAction == BodyConfig.AnimationAction.DIE) {
+                    BodyConfig.AnimationStatus.HUNGRY
+                } else {
+                    animationStatus
+                },
                 stateTime = textureRegionData.stateTime + input.delta,
                 isFacingRight = textureRegionData.isFacingRight,
             )

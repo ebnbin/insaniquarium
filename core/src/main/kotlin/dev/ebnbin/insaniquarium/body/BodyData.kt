@@ -93,7 +93,7 @@ data class BodyData(
     val volume: Float = area * depth
 
     val density: Float = if (isDying) {
-        CORPSE_DENSITY
+        config.corpseDensity
     } else {
         config.density
     }
@@ -268,8 +268,6 @@ data class BodyData(
     //*****************************************************************************************************************
 
     companion object {
-        const val CORPSE_DENSITY = 1020f
-
         fun create(
             tank: Tank,
             params: BodyParams,

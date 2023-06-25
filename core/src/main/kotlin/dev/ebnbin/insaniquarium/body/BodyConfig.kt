@@ -19,9 +19,9 @@ data class BodyConfig(
     @Expose
     val density: Float = World.DENSITY_WATER,
     @Expose
-    val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
+    val corpseDensity: Float = density,
     @Expose
-    val canDisappear: Boolean = false,
+    val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
     @Expose
     val health: Float = HEALTH_MAX,
     @Expose
@@ -120,6 +120,13 @@ data class BodyConfig(
         val accelerationY: Float,
         @Expose
         val hasAnimation: Boolean = false,
+        /**
+         * Max
+         * Full
+         * Not full (can eat)
+         * Hungry (animation changed)
+         * Die
+         */
         @Expose
         val fullHunger: Float = 0f,
         @Expose

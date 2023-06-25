@@ -25,7 +25,6 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1020f,
-            canDisappear = true,
             health = 1f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -34,6 +33,12 @@ object ConfigInfo {
                     mode = AnimationMode.LOOP,
                 ),
             ),
+            eatAct = BodyConfig.EatAct(
+                foods = emptyMap(),
+                accelerationX = 0f,
+                accelerationY = 0f,
+                canDie = true,
+            )
         ),
         BodyConfigInfo(
             type = BodyType.STARCATCHER,
@@ -54,6 +59,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1080f,
+            corpseDensity = 1020f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "starcatcher",
@@ -110,6 +116,7 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
+            corpseDensity = 1020f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "beetlemuncher",
@@ -345,7 +352,6 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.HEIGHT,
             ),
             density = 1020f,
-            canDisappear = true,
             health = 1f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -353,6 +359,12 @@ object ConfigInfo {
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
                 ),
+            ),
+            eatAct = BodyConfig.EatAct(
+                foods = emptyMap(),
+                accelerationX = 0f,
+                accelerationY = 0f,
+                canDie = true,
             ),
         ),
         BodyConfigInfo(
@@ -372,7 +384,6 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1010f,
-            canDisappear = true,
             health = 1f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -380,6 +391,12 @@ object ConfigInfo {
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
                 ),
+            ),
+            eatAct = BodyConfig.EatAct(
+                foods = emptyMap(),
+                accelerationX = 0f,
+                accelerationY = 0f,
+                canDie = true,
             ),
         ),
         BodyConfigInfo(
@@ -399,7 +416,6 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 990f,
-            canDisappear = true,
             health = 10f,
             animations = BodyConfig.Animations(
                 swim =  TextureRegionAnimation(
@@ -408,6 +424,12 @@ object ConfigInfo {
                     mode = AnimationMode.LOOP,
                 ),
             ),
+            eatAct = BodyConfig.EatAct(
+                foods = emptyMap(),
+                accelerationX = 0f,
+                accelerationY = 0f,
+                canDie = true,
+            )
         ),
     )
 }

@@ -94,8 +94,8 @@ object BodyStatusHelper {
         )
 
         val nextDisappearAct = BodyActHelper.nextDisappearAct(
-            canDisappear = config.canDisappear ||
-                (status.textureRegionData.animationType == BodyConfig.AnimationType.DIE && data.isAnimationFinished),
+            canDisappear = status.textureRegionData.animationType == BodyConfig.AnimationType.DIE &&
+                data.isAnimationFinished,
             disappearAct = status.disappearAct,
             data = data,
             input = input,
