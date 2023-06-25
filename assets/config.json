@@ -10,6 +10,13 @@
       "corpseDensity": 1020.0,
       "dragCoefficient": 1.0,
       "health": 1.0,
+      "hunger": {
+        "full": 0.0,
+        "maxPercent": 1.0,
+        "hungryPercent": -1.0,
+        "hungerPerSecond": 0.0,
+        "canDie": true
+      },
       "animations": {
         "swim": {
           "assetId": "star_potion",
@@ -27,17 +34,7 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "eatAct": {
-        "foods": {},
-        "accelerationX": 0.0,
-        "accelerationY": 0.0,
-        "hasAnimation": false,
-        "fullHunger": 0.0,
-        "maxHungerPercent": 1.0,
-        "hungryHungerPercent": -1.0,
-        "hungerRatePerSecond": 0.0,
-        "canDie": true
-      }
+      "eatAct": null
     },
     "starcatcher": {
       "type": "starcatcher",
@@ -49,6 +46,13 @@
       "corpseDensity": 1020.0,
       "dragCoefficient": 1.0,
       "health": -1.0,
+      "hunger": {
+        "full": 20.0,
+        "maxPercent": 1.5,
+        "hungryPercent": 0.5,
+        "hungerPerSecond": 1.0,
+        "canDie": true
+      },
       "animations": {
         "swim": {
           "assetId": "starcatcher",
@@ -89,12 +93,7 @@
         },
         "accelerationX": 0.2,
         "accelerationY": 0.0,
-        "hasAnimation": false,
-        "fullHunger": 20.0,
-        "maxHungerPercent": 1.5,
-        "hungryHungerPercent": 0.5,
-        "hungerRatePerSecond": 1.0,
-        "canDie": true
+        "hasAnimation": false
       }
     },
     "beetlemuncher": {
@@ -107,6 +106,13 @@
       "corpseDensity": 1020.0,
       "dragCoefficient": 1.0,
       "health": -1.0,
+      "hunger": {
+        "full": 20.0,
+        "maxPercent": 1.5,
+        "hungryPercent": 0.5,
+        "hungerPerSecond": 1.0,
+        "canDie": true
+      },
       "animations": {
         "swim": {
           "assetId": "beetlemuncher",
@@ -171,12 +177,7 @@
         },
         "accelerationX": 0.4,
         "accelerationY": 0.25,
-        "hasAnimation": true,
-        "fullHunger": 20.0,
-        "maxHungerPercent": 1.5,
-        "hungryHungerPercent": 0.5,
-        "hungerRatePerSecond": 1.0,
-        "canDie": true
+        "hasAnimation": true
       }
     },
     "clyde": {
@@ -189,6 +190,13 @@
       "corpseDensity": 1000.0,
       "dragCoefficient": 1.0,
       "health": -1.0,
+      "hunger": {
+        "full": 0.0,
+        "maxPercent": 1.0,
+        "hungryPercent": -1.0,
+        "hungerPerSecond": 0.0,
+        "canDie": false
+      },
       "animations": {
         "swim": {
           "assetId": "clyde",
@@ -227,12 +235,7 @@
         },
         "accelerationX": 0.2,
         "accelerationY": 0.3,
-        "hasAnimation": false,
-        "fullHunger": 0.0,
-        "maxHungerPercent": 1.0,
-        "hungryHungerPercent": -1.0,
-        "hungerRatePerSecond": 0.0,
-        "canDie": false
+        "hasAnimation": false
       }
     },
     "gash": {
@@ -245,6 +248,13 @@
       "corpseDensity": 1000.0,
       "dragCoefficient": 1.0,
       "health": -1.0,
+      "hunger": {
+        "full": 10.0,
+        "maxPercent": 3.0,
+        "hungryPercent": -1.0,
+        "hungerPerSecond": 1.0,
+        "canDie": false
+      },
       "animations": {
         "swim": {
           "assetId": "gash",
@@ -289,12 +299,7 @@
         },
         "accelerationX": 0.8,
         "accelerationY": 0.5,
-        "hasAnimation": true,
-        "fullHunger": 10.0,
-        "maxHungerPercent": 3.0,
-        "hungryHungerPercent": -1.0,
-        "hungerRatePerSecond": 1.0,
-        "canDie": false
+        "hasAnimation": true
       }
     },
     "presto": {
@@ -307,6 +312,13 @@
       "corpseDensity": 1000.0,
       "dragCoefficient": 1.0,
       "health": -1.0,
+      "hunger": {
+        "full": 0.0,
+        "maxPercent": 1.0,
+        "hungryPercent": -1.0,
+        "hungerPerSecond": 0.0,
+        "canDie": false
+      },
       "animations": {
         "swim": {
           "assetId": "presto",
@@ -352,6 +364,13 @@
       "corpseDensity": 1020.0,
       "dragCoefficient": 1.0,
       "health": 1.0,
+      "hunger": {
+        "full": 0.0,
+        "maxPercent": 1.0,
+        "hungryPercent": -1.0,
+        "hungerPerSecond": 0.0,
+        "canDie": true
+      },
       "animations": {
         "swim": {
           "assetId": "silver_coin",
@@ -369,17 +388,7 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "eatAct": {
-        "foods": {},
-        "accelerationX": 0.0,
-        "accelerationY": 0.0,
-        "hasAnimation": false,
-        "fullHunger": 0.0,
-        "maxHungerPercent": 1.0,
-        "hungryHungerPercent": -1.0,
-        "hungerRatePerSecond": 0.0,
-        "canDie": true
-      }
+      "eatAct": null
     },
     "star": {
       "type": "star",
@@ -391,6 +400,13 @@
       "corpseDensity": 1010.0,
       "dragCoefficient": 1.0,
       "health": 1.0,
+      "hunger": {
+        "full": 0.0,
+        "maxPercent": 1.0,
+        "hungryPercent": -1.0,
+        "hungerPerSecond": 0.0,
+        "canDie": true
+      },
       "animations": {
         "swim": {
           "assetId": "star",
@@ -408,17 +424,7 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "eatAct": {
-        "foods": {},
-        "accelerationX": 0.0,
-        "accelerationY": 0.0,
-        "hasAnimation": false,
-        "fullHunger": 0.0,
-        "maxHungerPercent": 1.0,
-        "hungryHungerPercent": -1.0,
-        "hungerRatePerSecond": 0.0,
-        "canDie": true
-      }
+      "eatAct": null
     },
     "beetle": {
       "type": "beetle",
@@ -430,6 +436,13 @@
       "corpseDensity": 990.0,
       "dragCoefficient": 1.0,
       "health": 10.0,
+      "hunger": {
+        "full": 0.0,
+        "maxPercent": 1.0,
+        "hungryPercent": -1.0,
+        "hungerPerSecond": 0.0,
+        "canDie": true
+      },
       "animations": {
         "swim": {
           "assetId": "beetle",
@@ -447,17 +460,7 @@
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "eatAct": {
-        "foods": {},
-        "accelerationX": 0.0,
-        "accelerationY": 0.0,
-        "hasAnimation": false,
-        "fullHunger": 0.0,
-        "maxHungerPercent": 1.0,
-        "hungryHungerPercent": -1.0,
-        "hungerRatePerSecond": 0.0,
-        "canDie": true
-      }
+      "eatAct": null
     }
   }
 }

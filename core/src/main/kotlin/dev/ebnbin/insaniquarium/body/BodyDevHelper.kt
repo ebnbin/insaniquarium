@@ -51,7 +51,7 @@ object BodyDevHelper {
             "${data.status.x.devText()},${data.status.y.devText()}"
         }
         baseGame.putLog("hunger          ") {
-            "${data.status.eatAct?.hunger?.devText()}"
+            data.status.hunger.devText()
         }
     }
 

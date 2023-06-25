@@ -26,6 +26,9 @@ object ConfigInfo {
             ),
             density = 1020f,
             health = 1f,
+            hunger = BodyConfig.Hunger(
+                canDie = true,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "star_potion",
@@ -33,12 +36,6 @@ object ConfigInfo {
                     mode = AnimationMode.LOOP,
                 ),
             ),
-            eatAct = BodyConfig.EatAct(
-                foods = emptyMap(),
-                accelerationX = 0f,
-                accelerationY = 0f,
-                canDie = true,
-            )
         ),
         BodyConfigInfo(
             type = BodyType.STARCATCHER,
@@ -60,6 +57,13 @@ object ConfigInfo {
             ),
             density = 1080f,
             corpseDensity = 1020f,
+            hunger = BodyConfig.Hunger(
+                full = 20f,
+                maxPercent = 1.5f,
+                hungryPercent = 0.5f,
+                hungerPerSecond = 1f,
+                canDie = true,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "starcatcher",
@@ -91,11 +95,6 @@ object ConfigInfo {
                 ),
                 accelerationX = 0.2f,
                 accelerationY = 0f,
-                fullHunger = 20f,
-                maxHungerPercent = 1.5f,
-                hungryHungerPercent = 0.5f,
-                hungerRatePerSecond = 1f,
-                canDie = true,
             ),
         ),
         BodyConfigInfo(
@@ -117,6 +116,13 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             corpseDensity = 1020f,
+            hunger = BodyConfig.Hunger(
+                full = 20f,
+                maxPercent = 1.5f,
+                hungryPercent = 0.5f,
+                hungerPerSecond = 1f,
+                canDie = true,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "beetlemuncher",
@@ -174,11 +180,6 @@ object ConfigInfo {
                 accelerationX = 0.4f,
                 accelerationY = 0.25f,
                 hasAnimation = true,
-                fullHunger = 20f,
-                maxHungerPercent = 1.5f,
-                hungryHungerPercent = 0.5f,
-                hungerRatePerSecond = 1f,
-                canDie = true,
             ),
         ),
         BodyConfigInfo(
@@ -199,6 +200,7 @@ object ConfigInfo {
                 index = 0,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
+            hunger = BodyConfig.Hunger(),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "clyde",
@@ -250,6 +252,11 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
+            hunger = BodyConfig.Hunger(
+                full = 10f,
+                maxPercent = 3f,
+                hungerPerSecond = 1f,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "gash",
@@ -287,9 +294,6 @@ object ConfigInfo {
                 accelerationX = 0.8f,
                 accelerationY = 0.5f,
                 hasAnimation = true,
-                fullHunger = 10f,
-                maxHungerPercent = 3f,
-                hungerRatePerSecond = 1f,
             ),
         ),
         BodyConfigInfo(
@@ -308,6 +312,7 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
+            hunger = BodyConfig.Hunger(),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "presto",
@@ -353,18 +358,15 @@ object ConfigInfo {
             ),
             density = 1020f,
             health = 1f,
+            hunger = BodyConfig.Hunger(
+                canDie = true,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "silver_coin",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
                 ),
-            ),
-            eatAct = BodyConfig.EatAct(
-                foods = emptyMap(),
-                accelerationX = 0f,
-                accelerationY = 0f,
-                canDie = true,
             ),
         ),
         BodyConfigInfo(
@@ -385,18 +387,15 @@ object ConfigInfo {
             ),
             density = 1010f,
             health = 1f,
+            hunger = BodyConfig.Hunger(
+                canDie = true,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "star",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
                 ),
-            ),
-            eatAct = BodyConfig.EatAct(
-                foods = emptyMap(),
-                accelerationX = 0f,
-                accelerationY = 0f,
-                canDie = true,
             ),
         ),
         BodyConfigInfo(
@@ -417,6 +416,9 @@ object ConfigInfo {
             ),
             density = 990f,
             health = 10f,
+            hunger = BodyConfig.Hunger(
+                canDie = true,
+            ),
             animations = BodyConfig.Animations(
                 swim =  TextureRegionAnimation(
                     assetId = "beetle",
@@ -424,12 +426,6 @@ object ConfigInfo {
                     mode = AnimationMode.LOOP,
                 ),
             ),
-            eatAct = BodyConfig.EatAct(
-                foods = emptyMap(),
-                accelerationX = 0f,
-                accelerationY = 0f,
-                canDie = true,
-            )
         ),
     )
 }

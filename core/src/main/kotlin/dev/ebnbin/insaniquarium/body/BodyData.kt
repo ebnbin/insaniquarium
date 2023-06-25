@@ -27,7 +27,7 @@ data class BodyData(
 
     val input: BodyInput?,
 ) {
-    val isDying: Boolean = config.eatAct?.canDie == true && status.eatAct?.hunger == 0f
+    val isDying: Boolean = config.hunger.canDie && status.hunger == 0f
 
     //*****************************************************************************************************************
 

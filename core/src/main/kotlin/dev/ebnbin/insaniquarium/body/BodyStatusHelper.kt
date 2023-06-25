@@ -29,6 +29,7 @@ object BodyStatusHelper {
                 isFacingRight = false,
             ),
             health = config.health,
+            hunger = config.hunger.full,
         )
     }
 
@@ -103,7 +104,9 @@ object BodyStatusHelper {
 
         val nextEatAct = BodyActHelper.nextEatAct(
             configEatAct = config.eatAct,
+            configHunger = config.hunger,
             eatAct = status.eatAct,
+            hunger = data.status.hunger,
             data = data,
             input = input,
             isDying = data.isDying,
@@ -131,6 +134,7 @@ object BodyStatusHelper {
             canAnimationActionChange = data.canAnimationActionChange,
             expectedIsFacingRight = status.expectedIsFacingRight,
             eatAct = nextEatAct,
+            hunger = data.status.hunger,
             isDying = data.isDying,
             input = input,
         )
@@ -145,6 +149,13 @@ object BodyStatusHelper {
             }
         }
 
+        val nextHunger = BodyActHelper.nextHunger(
+            configHunger = config.hunger,
+            hunger = status.hunger,
+            eatAct = nextEatAct,
+            input = input,
+        )
+
         return BodyStatus(
             velocityX = nextVelocityX,
             velocityY = nextVelocityY,
@@ -158,6 +169,7 @@ object BodyStatusHelper {
             expectedIsFacingRight = nextExpectedIsFacingRight,
             textureRegionData = nextTextureRegionData,
             health = nextHealth,
+            hunger = nextHunger,
         )
     }
 }

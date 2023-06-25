@@ -2,8 +2,7 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.World
-import kotlin.math.max
-import kotlin.math.min
+import dev.ebnbin.gdx.utils.minMax
 
 object BodyActHelper {
     fun nextTouchAct(
@@ -138,7 +137,9 @@ object BodyActHelper {
 
     fun nextEatAct(
         configEatAct: BodyConfig.EatAct?,
+        configHunger: BodyConfig.Hunger,
         eatAct: BodyStatus.EatAct?,
+        hunger: Float,
         data: BodyData,
         input: BodyInput?,
         isDying: Boolean,
@@ -150,14 +151,7 @@ object BodyActHelper {
             return null
         }
 
-        val prevEatAct = eatAct ?: BodyStatus.EatAct(
-            drivingTargetX = null,
-            drivingTargetY = null,
-            canPlayEatAnimation = false,
-            hunger = configEatAct.fullHunger,
-        )
-
-        val isNotFull = configEatAct.fullHunger == 0f || prevEatAct.hunger < configEatAct.fullHunger
+        val isNotFull = configHunger.full == 0f || hunger < configHunger.full
 
         fun targetFood(): Body? {
             if (isDying) {
@@ -175,12 +169,7 @@ object BodyActHelper {
             }
         }
 
-        fun calcHunger(): Float {
-            return max(0f, prevEatAct.hunger - configEatAct.hungerRatePerSecond * input.delta)
-        }
-
-        var hunger = calcHunger()
-
+        var hungerDiff = 0f
         val targetFood = targetFood()
         val isTurning = data.status.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
         if (targetFood != null) {
@@ -193,8 +182,7 @@ object BodyActHelper {
                     ),
                 )
                 if (removed) {
-                    val maxHunger = configEatAct.fullHunger * configEatAct.maxHungerPercent
-                    hunger = min(maxHunger, hunger + food.hunger)
+                    hungerDiff = food.hunger
                 }
             }
         }
@@ -216,7 +204,25 @@ object BodyActHelper {
                 )
             },
             canPlayEatAnimation = !isTurning && targetFood != null && data.overlaps(targetFood.data),
-            hunger = hunger,
+            hungerDiff = hungerDiff,
         )
+    }
+
+    fun nextHunger(
+        configHunger: BodyConfig.Hunger,
+        hunger: Float,
+        eatAct: BodyStatus.EatAct?,
+        input: BodyInput?,
+    ): Float {
+        if (input == null) {
+            return hunger
+        }
+
+        var nextHunger = hunger - configHunger.hungerPerSecond * input.delta
+        if (eatAct != null) {
+            nextHunger += eatAct.hungerDiff
+        }
+        val maxHunger = configHunger.full * configHunger.maxPercent
+        return nextHunger.minMax(0f, maxHunger)
     }
 }

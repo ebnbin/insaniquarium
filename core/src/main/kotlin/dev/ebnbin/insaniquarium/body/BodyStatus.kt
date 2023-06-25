@@ -23,6 +23,8 @@ data class BodyStatus(
     val textureRegionData: TextureRegionData,
 
     val health: Float,
+
+    val hunger: Float,
 ) {
     data class DrivingTarget(
         val position: Float,
@@ -66,7 +68,7 @@ data class BodyStatus(
         val drivingTargetX: DrivingTarget?,
         val drivingTargetY: DrivingTarget?,
         val canPlayEatAnimation: Boolean,
-        val hunger: Float,
+        val hungerDiff: Float,
     )
 
     data class TextureRegionData(

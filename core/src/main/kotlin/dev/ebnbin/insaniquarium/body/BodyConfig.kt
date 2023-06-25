@@ -25,6 +25,8 @@ data class BodyConfig(
     @Expose
     val health: Float = HEALTH_MAX,
     @Expose
+    val hunger: Hunger,
+    @Expose
     val animations: Animations,
     @Expose
     val touchAct: TouchAct? = null,
@@ -42,6 +44,26 @@ data class BodyConfig(
         MONEY("money"),
         ;
     }
+
+    /**
+     * Max
+     * Full
+     * Not full (can eat)
+     * Hungry (animation changed)
+     * Die
+     */
+    data class Hunger(
+        @Expose
+        val full: Float = 0f,
+        @Expose
+        val maxPercent: Float = 1f,
+        @Expose
+        val hungryPercent: Float = HUNGRY_NEVER,
+        @Expose
+        val hungerPerSecond: Float = 0f,
+        @Expose
+        val canDie: Boolean = false,
+    )
 
     data class Animations(
         @Expose
@@ -120,23 +142,6 @@ data class BodyConfig(
         val accelerationY: Float,
         @Expose
         val hasAnimation: Boolean = false,
-        /**
-         * Max
-         * Full
-         * Not full (can eat)
-         * Hungry (animation changed)
-         * Die
-         */
-        @Expose
-        val fullHunger: Float = 0f,
-        @Expose
-        val maxHungerPercent: Float = 1f,
-        @Expose
-        val hungryHungerPercent: Float = HUNGRY_NEVER,
-        @Expose
-        val hungerRatePerSecond: Float = 0f,
-        @Expose
-        val canDie: Boolean = false,
     )
 
     data class Food(

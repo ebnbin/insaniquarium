@@ -33,6 +33,7 @@ object ConfigHelper {
             corpseDensity = info.corpseDensity,
             dragCoefficient = info.dragCoefficient,
             health = info.health,
+            hunger = info.hunger,
             animations = info.animations,
             touchAct = info.touchAct,
             swimActX = info.swimActX,
