@@ -9,7 +9,7 @@ import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.body.Body
 import dev.ebnbin.insaniquarium.body.BodyConfig
-import dev.ebnbin.insaniquarium.body.BodyParams
+import dev.ebnbin.insaniquarium.body.BodyStatus
 import dev.ebnbin.insaniquarium.body.BodyType
 
 class Tank : Group() {
@@ -29,11 +29,13 @@ class Tank : Group() {
                 touchPoint = Point(x, y)
                 devSelectedBodyType?.let {
                     addBody(
-                        params = BodyParams(
-                            type = it,
-                            x = x,
-                            y = y,
-                        ),
+                        type = it,
+                        createStatus = {
+                            BodyStatus(
+                                x = x,
+                                y = y,
+                            )
+                        },
                     )
                 }
                 return true
@@ -60,10 +62,14 @@ class Tank : Group() {
 
     private val bodyMap: MutableMap<String, Body> = mutableMapOf()
 
-    fun addBody(params: BodyParams): Body {
+    fun addBody(
+        type: BodyType,
+        createStatus: (config: BodyConfig) -> BodyStatus,
+    ): Body {
         val body = Body(
             tank = this,
-            params = params,
+            type = type,
+            createStatus = createStatus,
         )
         getGroup(body.data.config.group).addActor(body)
         bodyMap[body.data.id] = body
@@ -99,11 +105,13 @@ class Tank : Group() {
 
     fun devAddBody(type: BodyType = BodyType.values().random()) {
         addBody(
-            params = BodyParams(
-                type = type,
-                x = Random.nextFloat(0f, width),
-                y = Random.nextFloat(0f, height),
-            ),
+            type = type,
+            createStatus = {
+                BodyStatus(
+                    x = Random.nextFloat(0f, width),
+                    y = Random.nextFloat(0f, height),
+                )
+            },
         )
     }
 

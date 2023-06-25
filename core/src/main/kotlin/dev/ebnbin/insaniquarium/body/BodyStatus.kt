@@ -3,26 +3,31 @@ package dev.ebnbin.insaniquarium.body
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
 
 data class BodyStatus(
-    val velocityX: Float,
-    val velocityY: Float,
+    val velocityX: Float = 0f,
+    val velocityY: Float = 0f,
 
-    val x: Float,
-    val y: Float,
+    val x: Float = 0f,
+    val y: Float = 0f,
 
-    val swimActX: SwimAct?,
-    val swimActY: SwimAct?,
+    val swimActX: SwimAct? = null,
+    val swimActY: SwimAct? = null,
 
-    val disappearAct: DisappearAct?,
+    val disappearAct: DisappearAct? = null,
 
-    val eatAct: EatAct?,
+    val eatAct: EatAct? = null,
 
-    val expectedIsFacingRight: Boolean,
+    val expectedIsFacingRight: Boolean = false,
 
-    val textureRegionData: TextureRegionData,
+    val textureRegionData: TextureRegionData = TextureRegionData(
+        animationAction = BodyConfig.AnimationAction.SWIM,
+        animationStatus = BodyConfig.AnimationStatus.NORMAL,
+        stateTime = 0f,
+        isFacingRight = false,
+    ),
 
-    val health: Float?,
+    val health: Float? = null,
 
-    val hunger: Float?,
+    val hunger: Float? = null,
 ) {
     data class DrivingTarget(
         val position: Float,

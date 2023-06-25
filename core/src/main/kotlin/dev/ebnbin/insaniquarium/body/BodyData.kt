@@ -276,21 +276,18 @@ data class BodyData(
     companion object {
         fun create(
             tank: Tank,
-            params: BodyParams,
+            type: BodyType,
+            createStatus: (config: BodyConfig) -> BodyStatus,
         ): BodyData {
-            val config = game.config.body.getValue(params.type)
+            val config = game.config.body.getValue(type)
 
             return BodyData(
-                type = params.type,
+                type = type,
                 id = "${UUID.randomUUID()}",
                 tankWidth = tank.width,
                 tankHeight = tank.height,
                 config = config,
-                status = BodyStatusHelper.createStatus(
-                    tank = tank,
-                    params = params,
-                    config = config,
-                ),
+                status = createStatus(config),
                 input = null,
             )
         }

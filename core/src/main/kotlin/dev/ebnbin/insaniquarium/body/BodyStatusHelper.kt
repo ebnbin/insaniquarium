@@ -2,35 +2,8 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.direction
-import dev.ebnbin.insaniquarium.tank.Tank
 
 object BodyStatusHelper {
-    fun createStatus(
-        tank: Tank,
-        params: BodyParams,
-        config: BodyConfig,
-    ): BodyStatus {
-        return BodyStatus(
-            velocityX = 0f,
-            velocityY = 0f,
-            x = params.x ?: (tank.width / 2f),
-            y = params.y ?: (tank.height / 2f),
-            swimActX = null,
-            swimActY = null,
-            disappearAct = null,
-            eatAct = null,
-            expectedIsFacingRight = false,
-            textureRegionData = BodyStatus.TextureRegionData(
-                animationAction = BodyConfig.AnimationAction.SWIM,
-                animationStatus = BodyConfig.AnimationStatus.NORMAL,
-                stateTime = 0f,
-                isFacingRight = false,
-            ),
-            health = config.health?.full,
-            hunger = config.hunger?.full,
-        )
-    }
-
     fun nextStatus(
         data: BodyData,
         config: BodyConfig,
