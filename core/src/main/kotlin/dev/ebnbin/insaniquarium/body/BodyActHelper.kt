@@ -2,10 +2,12 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.World
+import dev.ebnbin.insaniquarium.tank.Tank
 import kotlin.math.max
 
 object BodyActHelper {
     fun nextTouchAct(
+        tank: Tank,
         configTouchAct: BodyConfig.TouchAct?,
         input: BodyInput?,
         isDying: Boolean,
@@ -19,7 +21,7 @@ object BodyActHelper {
         if (isDying) {
             return null
         }
-        val touchPoint = input.body.tank.touchPoint ?: return null
+        val touchPoint = tank.touchPoint ?: return null
         return BodyStatus.TouchAct(
             drivingTargetX = BodyStatus.DrivingTarget(
                 position = touchPoint.x,
@@ -136,6 +138,7 @@ object BodyActHelper {
     }
 
     fun nextEatAct(
+        tank: Tank,
         configEatAct: BodyConfig.EatAct?,
         hungerStatus: HungerStatus?,
         eatAct: BodyStatus.EatAct?,
@@ -153,7 +156,7 @@ object BodyActHelper {
             if (hungerStatus == HungerStatus.FULL || hungerStatus == HungerStatus.DYING) {
                 return null
             }
-            val foodSet = input.body.tank.findBodyByType(configEatAct.foods.keys)
+            val foodSet = tank.findBodyByType(configEatAct.foods.keys)
             if (foodSet.isEmpty()) {
                 return null
             }
@@ -167,10 +170,9 @@ object BodyActHelper {
         val isTurning = data.status.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
         if (targetFood != null) {
             if (!isTurning && data.containsCenter(targetFood.data)) {
-                val food = configEatAct.foods.getValue(targetFood.data.type)
+                val food = configEatAct.foods.getValue(targetFood.data.body.type)
                 val foodBody = targetFood.act(
                     input = BodyInput(
-                        body = targetFood,
                         damage = food.damagePerSecond * input.delta,
                     ),
                 )

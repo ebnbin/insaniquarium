@@ -10,9 +10,9 @@ import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.magnitude
 
 object BodyDevHelper {
-    fun act(data: BodyData, body: Body, delta: Float) {
+    fun act(data: BodyData) {
         baseGame.putLog("type,id         ") {
-            "${data.type.serializedName},${data.id}"
+            "${data.body.type.serializedName},${data.body.id}"
         }
         baseGame.putLog("size            ") {
             "${data.width.devText()},${data.height.devText()},${data.depth.devText()}"
@@ -58,17 +58,17 @@ object BodyDevHelper {
         }
     }
 
-    fun draw(data: BodyData, body: Body, shapes: ShapeRenderer) {
+    fun draw(data: BodyData, shapes: ShapeRenderer) {
         shapes.rect(data.left, data.bottom, data.width, data.height)
         shapes.line(data.left, data.bottom, data.right, data.top)
         shapes.line(data.left, data.top, data.right, data.bottom)
         shapes.rect(data.depthLeft, data.bottom, data.depth, data.height)
         shapes.rect(data.left, data.depthBottom, data.width, data.depth)
         data.drivingTargetX?.let {
-            shapes.line(it.position, 0f, it.position, data.tankHeight)
+            shapes.line(it.position, 0f, it.position, data.body.tank.height)
         }
         data.drivingTargetY?.let {
-            shapes.line(0f, it.position, data.tankWidth, it.position)
+            shapes.line(0f, it.position, data.body.tank.width, it.position)
         }
     }
 

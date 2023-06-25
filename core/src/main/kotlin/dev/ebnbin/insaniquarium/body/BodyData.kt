@@ -9,42 +9,31 @@ import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.unitToMeter
-import dev.ebnbin.insaniquarium.game
-import dev.ebnbin.insaniquarium.tank.Tank
-import java.util.UUID
 
 data class BodyData(
-    val type: BodyType,
-
-    val id: String,
-
-    val tankWidth: Float,
-    val tankHeight: Float,
-
-    val config: BodyConfig,
-
+    val body: Body,
     val status: BodyStatus,
-
     val input: BodyInput?,
 ) {
-    val hungerStatus: HungerStatus? = config.hunger?.status(status.hunger)
+    val hungerStatus: HungerStatus? = body.config.hunger?.status(status.hunger)
 
     val touchAct: BodyStatus.TouchAct? = BodyActHelper.nextTouchAct(
-        configTouchAct = config.touchAct,
+        tank = body.tank,
+        configTouchAct = body.config.touchAct,
         input = input,
         isDying = hungerStatus == HungerStatus.DYING,
     )
 
     //*****************************************************************************************************************
 
-    val width: Float = config.width
-    val height: Float = config.height
+    val width: Float = body.config.width
+    val height: Float = body.config.height
 
     val halfWidth: Float = width / 2f
     val halfHeight: Float = height / 2f
 
     val minX: Float = halfWidth
-    val maxX: Float = tankWidth - halfWidth
+    val maxX: Float = body.tank.width - halfWidth
 
     val minY: Float = halfHeight
     val maxY: Float = Float.MAX_VALUE
@@ -55,13 +44,13 @@ data class BodyData(
     val top: Float = bottom + height
 
     val isInsideLeft: Boolean = left > 0f
-    val isInsideRight: Boolean = right < tankWidth
+    val isInsideRight: Boolean = right < body.tank.width
     val isInsideBottom: Boolean = bottom > 0f
 
     /**
      * Percent of body inside tank.
      */
-    val insideTopPercent: Float = ((height + tankHeight - top) / height).minMax(0f, 1f)
+    val insideTopPercent: Float = ((height + body.tank.height - top) / height).minMax(0f, 1f)
 
     //*****************************************************************************************************************
 
@@ -82,7 +71,7 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val depth: Float = config.depth
+    val depth: Float = body.config.depth
 
     val halfDepth: Float = depth / 2f
 
@@ -99,9 +88,9 @@ data class BodyData(
     val volume: Float = area * depth
 
     val density: Float = if (hungerStatus == HungerStatus.DYING) {
-        config.hunger?.corpseDensity ?: config.density
+        body.config.hunger?.corpseDensity ?: body.config.density
     } else {
-        config.density
+        body.config.density
     }
 
     val mass: Float = volume * density
@@ -124,7 +113,7 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val dragCoefficient: Float = config.dragCoefficient
+    val dragCoefficient: Float = body.config.dragCoefficient
 
     val gravityY: Float = BodyForceHelper.gravityY(
         mass = mass,
@@ -187,9 +176,9 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val hasTurnAnimation: Boolean = config.animations.turn != null
+    val hasTurnAnimation: Boolean = body.config.animations.turn != null
 
-    val animation: TextureRegionAnimation = status.textureRegionData.getAnimation(config.animations)
+    val animation: TextureRegionAnimation = status.textureRegionData.getAnimation(body.config.animations)
 
     val isAnimationFinished: Boolean = status.textureRegionData.animationAction != BodyConfig.AnimationAction.SWIM &&
         status.textureRegionData.stateTime >= animation.duration
@@ -224,7 +213,7 @@ data class BodyData(
         return copy(
             status = BodyStatusHelper.nextStatus(
                 data = this,
-                config = config,
+                config = body.config,
                 status = status,
                 input = input,
             ),
@@ -232,12 +221,12 @@ data class BodyData(
         )
     }
 
-    fun act(body: Body) {
+    fun act() {
         body.setSize(actorWidth, actorHeight)
         body.setPosition(status.x, status.y, Align.center)
     }
 
-    fun draw(body: Body, batch: Batch, parentAlpha: Float) {
+    fun draw(batch: Batch, parentAlpha: Float) {
         val oldColor = batch.color.cpy()
         batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
         batch.draw(
@@ -263,31 +252,24 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    fun actDebug(body: Body, delta: Float) {
-        BodyDevHelper.act(this, body, delta)
+    fun actDebug() {
+        BodyDevHelper.act(this)
     }
 
-    fun drawDebug(body: Body, shapes: ShapeRenderer) {
-        BodyDevHelper.draw(this, body, shapes)
+    fun drawDebug(shapes: ShapeRenderer) {
+        BodyDevHelper.draw(this, shapes)
     }
 
     //*****************************************************************************************************************
 
     companion object {
         fun create(
-            tank: Tank,
-            type: BodyType,
-            createStatus: (config: BodyConfig) -> BodyStatus,
+            body: Body,
+            createStatus: (body: Body) -> BodyStatus,
         ): BodyData {
-            val config = game.config.body.getValue(type)
-
             return BodyData(
-                type = type,
-                id = "${UUID.randomUUID()}",
-                tankWidth = tank.width,
-                tankHeight = tank.height,
-                config = config,
-                status = createStatus(config),
+                body = body,
+                status = createStatus(body),
                 input = null,
             )
         }

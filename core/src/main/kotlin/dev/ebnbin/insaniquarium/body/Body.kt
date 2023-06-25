@@ -3,20 +3,23 @@ package dev.ebnbin.insaniquarium.body
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.Actor
+import dev.ebnbin.insaniquarium.game
 import dev.ebnbin.insaniquarium.tank.Tank
 
 class Body(
     val tank: Tank,
-    type: BodyType,
-    createStatus: (config: BodyConfig) -> BodyStatus,
+    val type: BodyType,
+    val id: String,
+    createStatus: (body: Body) -> BodyStatus,
 ) : Actor() {
-    var data: BodyData = BodyData.create(tank, type, createStatus)
+    val config: BodyConfig = game.config.body.getValue(type)
+
+    var data: BodyData = BodyData.create(this, createStatus)
         private set
 
     override fun act(delta: Float) {
         super.act(delta)
         val input = BodyInput(
-            body = this,
             delta = delta,
         )
         act(input)
@@ -28,20 +31,20 @@ class Body(
             tank.removeBody(this)
             return this
         }
-        data.act(this)
+        data.act()
         if (debug) {
-            data.actDebug(this, input.delta)
+            data.actDebug()
         }
         return this
     }
 
     override fun draw(batch: Batch, parentAlpha: Float) {
         super.draw(batch, parentAlpha)
-        data.draw(this, batch, parentAlpha)
+        data.draw(batch, parentAlpha)
     }
 
     override fun drawDebug(shapes: ShapeRenderer) {
         super.drawDebug(shapes)
-        data.drawDebug(this, shapes)
+        data.drawDebug(shapes)
     }
 }

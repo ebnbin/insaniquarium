@@ -11,6 +11,7 @@ import dev.ebnbin.insaniquarium.body.Body
 import dev.ebnbin.insaniquarium.body.BodyConfig
 import dev.ebnbin.insaniquarium.body.BodyStatus
 import dev.ebnbin.insaniquarium.body.BodyType
+import java.util.UUID
 
 class Tank : Group() {
     private val foodGroup: Group = Group()
@@ -64,21 +65,22 @@ class Tank : Group() {
 
     fun addBody(
         type: BodyType,
-        createStatus: (config: BodyConfig) -> BodyStatus,
+        createStatus: (body: Body) -> BodyStatus,
     ): Body {
         val body = Body(
             tank = this,
             type = type,
+            id = "${UUID.randomUUID()}",
             createStatus = createStatus,
         )
-        getGroup(body.data.config.group).addActor(body)
-        bodyMap[body.data.id] = body
+        getGroup(body.config.group).addActor(body)
+        bodyMap[body.id] = body
         return body
     }
 
     fun removeBody(body: Body) {
-        bodyMap.remove(body.data.id)
-        getGroup(body.data.config.group).removeActor(body)
+        bodyMap.remove(body.id)
+        getGroup(body.config.group).removeActor(body)
     }
 
     private fun getGroup(group: BodyConfig.Group): Group {
@@ -92,7 +94,7 @@ class Tank : Group() {
 
     fun findBodyByType(typeSet: Set<BodyType>): List<Body> {
         return bodyMap.values
-            .filter { typeSet.contains(it.data.config.type) }
+            .filter { typeSet.contains(it.type) }
     }
 
     fun findBodyById(id: String): Body? {
