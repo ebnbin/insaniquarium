@@ -17,12 +17,6 @@ data class BodyData(
 ) {
     val hungerStatus: HungerStatus? = body.config.hunger?.status(status.hunger)
 
-    val touchAct: BodyStatus.TouchAct? = BodyActHelper.nextTouchAct(
-        tank = body.tank,
-        configTouchAct = body.config.touchAct,
-        isDying = hungerStatus == HungerStatus.DYING,
-    )
-
     //*****************************************************************************************************************
 
     val width: Float = body.config.width
@@ -99,12 +93,12 @@ data class BodyData(
     val drivingTargetX: BodyStatus.DrivingTarget? = if (hungerStatus == HungerStatus.DYING) {
         null
     } else {
-        status.eatAct?.drivingTargetX ?: touchAct?.drivingTargetX ?: status.swimActX?.drivingTarget
+        status.eatAct?.drivingTargetX ?: status.touchAct?.drivingTargetX ?: status.swimActX?.drivingTarget
     }
     val drivingTargetY: BodyStatus.DrivingTarget? = if (hungerStatus == HungerStatus.DYING) {
         null
     } else {
-        status.eatAct?.drivingTargetY ?: touchAct?.drivingTargetY ?: status.swimActY?.drivingTarget
+        status.eatAct?.drivingTargetY ?: status.touchAct?.drivingTargetY ?: status.swimActY?.drivingTarget
     }
 
     val containDrivingTargetX: Boolean = drivingTargetX?.position?.let { it in left..right } ?: false
@@ -209,10 +203,12 @@ data class BodyData(
     //*****************************************************************************************************************
 
     fun update(input: BodyInput): BodyData {
+        if (input.skipUpdate) {
+            return this
+        }
         return copy(
             status = BodyStatusHelper.nextStatus(
                 data = this,
-                config = body.config,
                 status = status,
                 input = input,
             ),

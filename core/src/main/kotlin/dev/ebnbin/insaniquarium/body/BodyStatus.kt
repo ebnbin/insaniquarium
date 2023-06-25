@@ -9,12 +9,18 @@ data class BodyStatus(
     val x: Float = 0f,
     val y: Float = 0f,
 
+    val eatAct: EatAct? = null,
+
+    val touchAct: TouchAct? = null,
+
     val swimActX: SwimAct? = null,
     val swimActY: SwimAct? = null,
 
     val disappearAct: DisappearAct? = null,
 
-    val eatAct: EatAct? = null,
+    val health: Float? = null,
+
+    val hunger: Float? = null,
 
     val expectedIsFacingRight: Boolean = false,
 
@@ -24,10 +30,6 @@ data class BodyStatus(
         stateTime = 0f,
         isFacingRight = false,
     ),
-
-    val health: Float? = null,
-
-    val hunger: Float? = null,
 ) {
     data class DrivingTarget(
         val position: Float,
@@ -39,31 +41,6 @@ data class BodyStatus(
     ) {
         companion object {
             private const val DEFAULT_OPPOSITE_ACCELERATION_MULTIPLIER = 1.5f
-        }
-    }
-
-    data class TouchAct(
-        val drivingTargetX: DrivingTarget,
-        val drivingTargetY: DrivingTarget,
-    )
-
-    data class SwimAct(
-        val drivingTarget: DrivingTarget?,
-        val remainingTime: Float,
-    )
-
-    data class DisappearAct(
-        /**
-         * >= 0f: Delaying.
-         * < 0f: Disappearing.
-         */
-        val time: Float = DELAY_DURATION,
-    ) {
-        val canRemove: Boolean = time <= -DISAPPEAR_DURATION
-
-        companion object {
-            const val DELAY_DURATION = 0f
-            const val DISAPPEAR_DURATION = 1f
         }
     }
 
@@ -105,6 +82,31 @@ data class BodyStatus(
                     return animations.die ?: animations.swim
                 }
             }
+        }
+    }
+
+    data class TouchAct(
+        val drivingTargetX: DrivingTarget,
+        val drivingTargetY: DrivingTarget,
+    )
+
+    data class SwimAct(
+        val drivingTarget: DrivingTarget?,
+        val remainingTime: Float,
+    )
+
+    data class DisappearAct(
+        /**
+         * >= 0f: Delaying.
+         * < 0f: Disappearing.
+         */
+        val time: Float = DELAY_DURATION,
+    ) {
+        val canRemove: Boolean = time <= -DISAPPEAR_DURATION
+
+        companion object {
+            const val DELAY_DURATION = 0f
+            const val DISAPPEAR_DURATION = 1f
         }
     }
 }

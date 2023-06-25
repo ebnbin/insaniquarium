@@ -6,14 +6,9 @@ import dev.ebnbin.gdx.utils.direction
 object BodyStatusHelper {
     fun nextStatus(
         data: BodyData,
-        config: BodyConfig,
         status: BodyStatus,
         input: BodyInput,
     ): BodyStatus {
-        if (input.skipUpdate) {
-            return status
-        }
-
         val nextVelocityX = BodyForceHelper.nextVelocity(
             velocity = status.velocityX,
             acceleration = data.accelerationX,
@@ -44,13 +39,28 @@ object BodyStatusHelper {
             input = input,
         )
 
-        val hasNextTouchAct = data.body.tank.touchPoint != null &&
-            config.touchAct != null &&
-            data.hungerStatus != HungerStatus.DYING
+        val nextEatAct = BodyActHelper.nextEatAct(
+            tank = data.body.tank,
+            configEatAct = data.body.config.eatAct,
+            hungerStatus = data.hungerStatus,
+            data = data,
+            input = input,
+        )
+
+        val hasEatDrivingTarget = nextEatAct?.drivingTargetX != null || nextEatAct?.drivingTargetY != null
+
+        val nextTouchAct = BodyActHelper.nextTouchAct(
+            enabled = !hasEatDrivingTarget,
+            tank = data.body.tank,
+            configTouchAct = data.body.config.touchAct,
+            isDying = data.hungerStatus == HungerStatus.DYING,
+        )
+
+        val hasTouchDrivingTarget = nextTouchAct != null
 
         val nextSwimActX = BodyActHelper.nextSwimAct(
-            enabled = !hasNextTouchAct,
-            configSwimAct = config.swimActX,
+            enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
+            configSwimAct = data.body.config.swimActX,
             swimAct = status.swimActX,
             tankSize = data.body.tank.width,
             containDrivingTarget = data.containDrivingTargetX,
@@ -58,8 +68,8 @@ object BodyStatusHelper {
             isDying = data.hungerStatus == HungerStatus.DYING,
         )
         val nextSwimActY = BodyActHelper.nextSwimAct(
-            enabled = !hasNextTouchAct,
-            configSwimAct = config.swimActY,
+            enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
+            configSwimAct = data.body.config.swimActY,
             swimAct = status.swimActY,
             tankSize = data.body.tank.height,
             containDrivingTarget = data.containDrivingTargetY,
@@ -71,14 +81,6 @@ object BodyStatusHelper {
             canDisappear = status.textureRegionData.animationAction == BodyConfig.AnimationAction.DIE &&
                 data.isAnimationFinished,
             disappearAct = status.disappearAct,
-            data = data,
-            input = input,
-        )
-
-        val nextEatAct = BodyActHelper.nextEatAct(
-            tank = data.body.tank,
-            configEatAct = config.eatAct,
-            hungerStatus = data.hungerStatus,
             data = data,
             input = input,
         )
@@ -97,8 +99,21 @@ object BodyStatusHelper {
             false
         }
 
+        val nextHealth = BodyActHelper.nextHealth(
+            configHealth = data.body.config.health,
+            health = status.health,
+            input = input,
+        )
+
+        val nextHunger = BodyActHelper.nextHunger(
+            configHunger = data.body.config.hunger,
+            hunger = status.hunger,
+            eatAct = nextEatAct,
+            input = input,
+        )
+
         val nextTextureRegionData = BodyDrawHelper.nextTextureRegionData(
-            config = config,
+            config = data.body.config,
             hasTurnAnimation = data.hasTurnAnimation,
             textureRegionData = status.textureRegionData,
             isAnimationFinished = data.isAnimationFinished,
@@ -109,32 +124,20 @@ object BodyStatusHelper {
             input = input,
         )
 
-        val nextHealth = BodyActHelper.nextHealth(
-            configHealth = config.health,
-            health = status.health,
-            input = input,
-        )
-
-        val nextHunger = BodyActHelper.nextHunger(
-            configHunger = config.hunger,
-            hunger = status.hunger,
-            eatAct = nextEatAct,
-            input = input,
-        )
-
         return BodyStatus(
             velocityX = nextVelocityX,
             velocityY = nextVelocityY,
             x = nextX,
             y = nextY,
+            eatAct = nextEatAct,
+            touchAct = nextTouchAct,
             swimActX = nextSwimActX,
             swimActY = nextSwimActY,
             disappearAct = nextDisappearAct,
-            eatAct = nextEatAct,
-            expectedIsFacingRight = nextExpectedIsFacingRight,
-            textureRegionData = nextTextureRegionData,
             health = nextHealth,
             hunger = nextHunger,
+            expectedIsFacingRight = nextExpectedIsFacingRight,
+            textureRegionData = nextTextureRegionData,
         )
     }
 }

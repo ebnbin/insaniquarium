@@ -6,11 +6,77 @@ import dev.ebnbin.insaniquarium.tank.Tank
 import kotlin.math.max
 
 object BodyActHelper {
+    fun nextEatAct(
+        tank: Tank,
+        configEatAct: BodyConfig.EatAct?,
+        hungerStatus: HungerStatus?,
+        data: BodyData,
+        input: BodyInput,
+    ): BodyStatus.EatAct? {
+        if (configEatAct == null) {
+            return null
+        }
+
+        fun targetFood(): Body? {
+            if (hungerStatus == HungerStatus.FULL || hungerStatus == HungerStatus.DYING) {
+                return null
+            }
+            val foodSet = tank.findBodyByType(configEatAct.foods.keys)
+            if (foodSet.isEmpty()) {
+                return null
+            }
+            return foodSet.minBy {
+                data.distance(it.data)
+            }
+        }
+
+        var hungerDiff = 0f
+        val targetFood = targetFood()
+        val isTurning = data.status.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
+        if (targetFood != null) {
+            if (!isTurning && data.containsCenter(targetFood.data)) {
+                val food = configEatAct.foods.getValue(targetFood.data.body.type)
+                val foodBody = targetFood.act(
+                    input = BodyInput(
+                        damage = food.damagePerSecond * input.delta,
+                    ),
+                )
+                if (foodBody.data.canRemove) {
+                    hungerDiff = food.hunger
+                }
+            }
+        }
+        return BodyStatus.EatAct(
+            drivingTargetX = if (targetFood == null) {
+                null
+            } else {
+                BodyStatus.DrivingTarget(
+                    position = targetFood.data.status.x,
+                    acceleration = configEatAct.accelerationX,
+                )
+            },
+            drivingTargetY = if (targetFood == null) {
+                null
+            } else {
+                BodyStatus.DrivingTarget(
+                    position = targetFood.data.status.y,
+                    acceleration = configEatAct.accelerationY,
+                )
+            },
+            canPlayEatAnimation = !isTurning && targetFood != null && data.overlaps(targetFood.data),
+            hungerDiff = hungerDiff,
+        )
+    }
+
     fun nextTouchAct(
+        enabled: Boolean,
         tank: Tank,
         configTouchAct: BodyConfig.TouchAct?,
         isDying: Boolean,
     ): BodyStatus.TouchAct? {
+        if (!enabled) {
+            return null
+        }
         if (configTouchAct == null) {
             return null
         }
@@ -127,66 +193,18 @@ object BodyActHelper {
         }
     }
 
-    fun nextEatAct(
-        tank: Tank,
-        configEatAct: BodyConfig.EatAct?,
-        hungerStatus: HungerStatus?,
-        data: BodyData,
+    fun nextHealth(
+        configHealth: BodyConfig.Health?,
+        health: Float?,
         input: BodyInput,
-    ): BodyStatus.EatAct? {
-        if (configEatAct == null) {
+    ): Float? {
+        if (configHealth == null) {
             return null
         }
-
-        fun targetFood(): Body? {
-            if (hungerStatus == HungerStatus.FULL || hungerStatus == HungerStatus.DYING) {
-                return null
-            }
-            val foodSet = tank.findBodyByType(configEatAct.foods.keys)
-            if (foodSet.isEmpty()) {
-                return null
-            }
-            return foodSet.minBy {
-                data.distance(it.data)
-            }
+        if (health == null) {
+            return configHealth.full
         }
-
-        var hungerDiff = 0f
-        val targetFood = targetFood()
-        val isTurning = data.status.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
-        if (targetFood != null) {
-            if (!isTurning && data.containsCenter(targetFood.data)) {
-                val food = configEatAct.foods.getValue(targetFood.data.body.type)
-                val foodBody = targetFood.act(
-                    input = BodyInput(
-                        damage = food.damagePerSecond * input.delta,
-                    ),
-                )
-                if (foodBody.data.canRemove) {
-                    hungerDiff = food.hunger
-                }
-            }
-        }
-        return BodyStatus.EatAct(
-            drivingTargetX = if (targetFood == null) {
-                null
-            } else {
-                BodyStatus.DrivingTarget(
-                    position = targetFood.data.status.x,
-                    acceleration = configEatAct.accelerationX,
-                )
-            },
-            drivingTargetY = if (targetFood == null) {
-                null
-            } else {
-                BodyStatus.DrivingTarget(
-                    position = targetFood.data.status.y,
-                    acceleration = configEatAct.accelerationY,
-                )
-            },
-            canPlayEatAnimation = !isTurning && targetFood != null && data.overlaps(targetFood.data),
-            hungerDiff = hungerDiff,
-        )
+        return max(0f, health - input.damage)
     }
 
     fun nextHunger(
@@ -208,19 +226,5 @@ object BodyActHelper {
             nextHunger += eatAct.hungerDiff
         }
         return configHunger.minMax(nextHunger)
-    }
-
-    fun nextHealth(
-        configHealth: BodyConfig.Health?,
-        health: Float?,
-        input: BodyInput,
-    ): Float? {
-        if (configHealth == null) {
-            return null
-        }
-        if (health == null) {
-            return configHealth.full
-        }
-        return max(0f, health - input.damage)
     }
 }
