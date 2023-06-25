@@ -22,12 +22,11 @@ class Body(
     }
 
     fun act(input: BodyInput): Boolean {
-        val nextData = data.update(input)
-        if (nextData == null) {
+        data = data.update(input)
+        if (data.canRemove) {
             tank.removeBody(this)
             return true
         }
-        data = nextData
         data.act(this)
         if (debug) {
             data.actDebug(this, input.delta)

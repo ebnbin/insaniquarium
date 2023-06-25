@@ -47,6 +47,76 @@
       "extension": "png",
       "preload": false
     },
+    "beetlemuncher": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "beetlemuncher",
+      "extension": "png",
+      "preload": false
+    },
+    "beetlemuncher_die": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "beetlemuncher_die",
+      "extension": "png",
+      "preload": false
+    },
+    "beetlemuncher_eat": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "beetlemuncher_eat",
+      "extension": "png",
+      "preload": false
+    },
+    "beetlemuncher_hungry": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "beetlemuncher_hungry",
+      "extension": "png",
+      "preload": false
+    },
+    "beetlemuncher_hungry_eat": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "beetlemuncher_hungry_eat",
+      "extension": "png",
+      "preload": false
+    },
+    "beetlemuncher_hungry_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "beetlemuncher_hungry_turn",
+      "extension": "png",
+      "preload": false
+    },
+    "beetlemuncher_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "beetlemuncher_turn",
+      "extension": "png",
+      "preload": false
+    },
     "clyde": {
       "region": {
         "row": 2,

@@ -87,6 +87,51 @@ object TextureInfo {
             ),
         ),
         BodyTextureInfo(
+            group = GROUP_FISH,
+            srcFileName = "gekko.gif",
+            srcMaskFileName = "_gekko.gif",
+            scale = 1.5f,
+            row = 7,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "beetlemuncher",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "beetlemuncher_turn",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "beetlemuncher_eat",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "beetlemuncher_hungry",
+                    tileStart = 30,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "beetlemuncher_hungry_turn",
+                    tileStart = 40,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "beetlemuncher_hungry_eat",
+                    tileStart = 60,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "beetlemuncher_die",
+                    tileStart = 50,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
             group = GROUP_PET,
             srcFileName = "clyde.gif",
             srcMaskFileName = "_clyde.gif",

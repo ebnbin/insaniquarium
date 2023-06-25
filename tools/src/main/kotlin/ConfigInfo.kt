@@ -93,6 +93,88 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
+            type = BodyType.BEETLEMUNCHER,
+            group = BodyConfig.Group.FISH,
+            width = BodyConfigInfo.Size(
+                textureName = "beetlemuncher",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "beetlemuncher",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "beetlemuncher_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            animations = mapOf(
+                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
+                    assetId = "beetlemuncher",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                BodyConfig.AnimationType.TURN to TextureRegionAnimation(
+                    assetId = "beetlemuncher_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                BodyConfig.AnimationType.EAT to TextureRegionAnimation(
+                    assetId = "beetlemuncher_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                BodyConfig.AnimationType.HUNGRY_SWIM to TextureRegionAnimation(
+                    assetId = "beetlemuncher_hungry",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                BodyConfig.AnimationType.HUNGRY_TURN to TextureRegionAnimation(
+                    assetId = "beetlemuncher_hungry_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                BodyConfig.AnimationType.HUNGRY_EAT to TextureRegionAnimation(
+                    assetId = "beetlemuncher_hungry_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                BodyConfig.AnimationType.DIE to TextureRegionAnimation(
+                    assetId = "beetlemuncher_die",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+            swimActX = BodyConfig.SwimAct(
+                acceleration = 0.2f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                acceleration = 0.125f,
+                idlingTimeRandomStart = 6f,
+                idlingTimeRandomEnd = 10f,
+            ),
+            eatAct = BodyConfig.EatAct(
+                foods = mapOf(
+                    BodyType.STAR_POTION to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 20f,
+                    ),
+                ),
+                accelerationX = 0.4f,
+                accelerationY = 0.25f,
+                hasAnimation = true,
+                fullHunger = 20f,
+                maxHungerPercent = 1.5f,
+                hungryHungerPercent = 0.5f,
+                hungerRatePerSecond = 1f,
+                canDie = true,
+            ),
+        ),
+        BodyConfigInfo(
             type = BodyType.CLYDE,
             group = BodyConfig.Group.PET,
             width = BodyConfigInfo.Size(

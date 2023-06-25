@@ -206,11 +206,11 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    private val canRemove: Boolean = (status.disappearAct?.canRemove == true) || (status.health == 0f)
+    val canRemove: Boolean = (status.disappearAct?.canRemove == true) || (status.health == 0f)
 
     //*****************************************************************************************************************
 
-    fun update(input: BodyInput): BodyData? {
+    fun update(input: BodyInput): BodyData {
         return copy(
             status = BodyStatusHelper.nextStatus(
                 data = this,
@@ -219,7 +219,7 @@ data class BodyData(
                 input = input,
             ),
             input = input,
-        ).takeIf { !canRemove }
+        )
     }
 
     fun act(body: Body) {
