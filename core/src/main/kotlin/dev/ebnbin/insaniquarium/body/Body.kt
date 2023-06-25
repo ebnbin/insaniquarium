@@ -21,17 +21,17 @@ class Body(
         act(input)
     }
 
-    fun act(input: BodyInput): Boolean {
+    fun act(input: BodyInput): Body {
         data = data.update(input)
         if (data.canRemove) {
             tank.removeBody(this)
-            return true
+            return this
         }
         data.act(this)
         if (debug) {
             data.actDebug(this, input.delta)
         }
-        return false
+        return this
     }
 
     override fun draw(batch: Batch, parentAlpha: Float) {

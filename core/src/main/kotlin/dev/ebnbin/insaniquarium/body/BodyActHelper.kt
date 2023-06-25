@@ -168,13 +168,13 @@ object BodyActHelper {
         if (targetFood != null) {
             if (!isTurning && data.containsCenter(targetFood.data)) {
                 val food = configEatAct.foods.getValue(targetFood.data.type)
-                val removed = targetFood.act(
+                val foodBody = targetFood.act(
                     input = BodyInput(
                         body = targetFood,
                         damage = food.damagePerSecond * input.delta,
                     ),
                 )
-                if (removed) {
+                if (foodBody.data.canRemove) {
                     hungerDiff = food.hunger
                 }
             }
@@ -218,6 +218,7 @@ object BodyActHelper {
         }
 
         var nextHunger = hunger - configHunger.exhaustionPerSecond * input.delta
+        nextHunger -= input.exhaustion
         if (eatAct != null) {
             nextHunger += eatAct.hungerDiff
         }
