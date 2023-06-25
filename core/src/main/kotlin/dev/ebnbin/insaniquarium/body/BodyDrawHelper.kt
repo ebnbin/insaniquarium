@@ -76,7 +76,7 @@ object BodyDrawHelper {
         return if (canAnimationActionChange) {
             if (isDying) {
                 createDieTextureRegionData()
-            } else if (config.eatAct?.hasAnimation == true && eatAct?.canPlayEatAnimation == true) {
+            } else if (config.animations.eat != null && eatAct?.canPlayEatAnimation == true) {
                 createEatTextureRegionData()
             } else {
                 if (hasTurnAnimation && textureRegionData.isFacingRight != expectedIsFacingRight) {

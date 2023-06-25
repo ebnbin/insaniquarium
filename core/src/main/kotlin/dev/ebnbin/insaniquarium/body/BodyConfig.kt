@@ -99,27 +99,6 @@ data class BodyConfig(
         val die: TextureRegionAnimation? = null,
     )
 
-    enum class AnimationType(
-        override val serializedName: String,
-        val action: AnimationAction,
-        val status: AnimationStatus,
-    ) : SerializableEnum {
-        SWIM("swim", action = AnimationAction.SWIM, status = AnimationStatus.NORMAL),
-        TURN("turn", action = AnimationAction.TURN, status = AnimationStatus.NORMAL),
-        EAT("eat", action = AnimationAction.EAT, status = AnimationStatus.NORMAL),
-        HUNGRY_SWIM("hungry_swim", action = AnimationAction.SWIM, status = AnimationStatus.HUNGRY),
-        HUNGRY_TURN("hungry_turn", action = AnimationAction.TURN, status = AnimationStatus.HUNGRY),
-        HUNGRY_EAT("hungry_eat", action = AnimationAction.EAT, status = AnimationStatus.HUNGRY),
-        DIE("die", action = AnimationAction.DIE, status = AnimationStatus.HUNGRY),
-        ;
-
-        companion object {
-            fun of(action: AnimationAction, status: AnimationStatus): AnimationType {
-                return values().single { it.action == action && it.status == status }
-            }
-        }
-    }
-
     enum class AnimationAction(override val serializedName: String) : SerializableEnum {
         SWIM("swim"),
         TURN("turn"),
@@ -157,8 +136,6 @@ data class BodyConfig(
         val accelerationX: Float,
         @Expose
         val accelerationY: Float,
-        @Expose
-        val hasAnimation: Boolean = false,
     )
 
     data class Food(
@@ -167,8 +144,4 @@ data class BodyConfig(
         @Expose
         val hunger: Float = 0f,
     )
-
-    companion object {
-        const val HEALTH_MAX = -1f
-    }
 }

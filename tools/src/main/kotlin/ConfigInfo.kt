@@ -181,7 +181,6 @@ object ConfigInfo {
                 ),
                 accelerationX = 0.4f,
                 accelerationY = 0.25f,
-                hasAnimation = true,
             ),
         ),
         BodyConfigInfo(
@@ -294,7 +293,6 @@ object ConfigInfo {
                 ),
                 accelerationX = 0.8f,
                 accelerationY = 0.5f,
-                hasAnimation = true,
             ),
         ),
         BodyConfigInfo(

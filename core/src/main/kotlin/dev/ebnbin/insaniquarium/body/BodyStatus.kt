@@ -77,30 +77,29 @@ data class BodyStatus(
         val stateTime: Float,
         val isFacingRight: Boolean,
     ) {
-        val animationType: BodyConfig.AnimationType = BodyConfig.AnimationType.of(animationAction, animationStatus)
-
         fun getAnimation(animations: BodyConfig.Animations): TextureRegionAnimation {
-            return when (animationType) {
-                BodyConfig.AnimationType.SWIM -> {
-                    animations.swim
+            return when (animationAction) {
+                BodyConfig.AnimationAction.SWIM -> {
+                    when (animationStatus) {
+                        BodyConfig.AnimationStatus.NORMAL -> animations.swim
+                        BodyConfig.AnimationStatus.HUNGRY -> animations.hungry ?: animations.swim
+                    }
                 }
-                BodyConfig.AnimationType.TURN -> {
-                    requireNotNull(animations.turn)
+                BodyConfig.AnimationAction.TURN -> {
+                    when (animationStatus) {
+                        BodyConfig.AnimationStatus.NORMAL -> requireNotNull(animations.turn)
+                        BodyConfig.AnimationStatus.HUNGRY -> animations.hungryTurn ?: requireNotNull(animations.turn)
+                    }
                 }
-                BodyConfig.AnimationType.EAT -> {
-                    requireNotNull(animations.eat)
+                BodyConfig.AnimationAction.EAT -> {
+                    when (animationStatus) {
+                        BodyConfig.AnimationStatus.NORMAL -> requireNotNull(animations.eat)
+                        BodyConfig.AnimationStatus.HUNGRY -> animations.hungryEat ?: requireNotNull(animations.eat)
+                    }
                 }
-                BodyConfig.AnimationType.HUNGRY_SWIM -> {
-                    animations.hungry ?: animations.swim
-                }
-                BodyConfig.AnimationType.HUNGRY_TURN -> {
-                    animations.hungryTurn ?: requireNotNull(animations.turn)
-                }
-                BodyConfig.AnimationType.HUNGRY_EAT -> {
-                    animations.hungryEat ?: requireNotNull(animations.eat)
-                }
-                BodyConfig.AnimationType.DIE -> {
-                    animations.die ?: animations.swim
+                BodyConfig.AnimationAction.DIE -> {
+                    requireNotNull(animationStatus == BodyConfig.AnimationStatus.HUNGRY) // FIXME
+                    return animations.die ?: animations.swim
                 }
             }
         }

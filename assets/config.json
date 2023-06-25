@@ -94,8 +94,7 @@
           }
         },
         "accelerationX": 0.2,
-        "accelerationY": 0.0,
-        "hasAnimation": false
+        "accelerationY": 0.0
       }
     },
     "beetlemuncher": {
@@ -178,8 +177,7 @@
           }
         },
         "accelerationX": 0.4,
-        "accelerationY": 0.25,
-        "hasAnimation": true
+        "accelerationY": 0.25
       }
     },
     "clyde": {
@@ -229,8 +227,7 @@
           }
         },
         "accelerationX": 0.2,
-        "accelerationY": 0.3,
-        "hasAnimation": false
+        "accelerationY": 0.3
       }
     },
     "gash": {
@@ -293,8 +290,7 @@
           }
         },
         "accelerationX": 0.8,
-        "accelerationY": 0.5,
-        "hasAnimation": true
+        "accelerationY": 0.5
       }
     },
     "presto": {
