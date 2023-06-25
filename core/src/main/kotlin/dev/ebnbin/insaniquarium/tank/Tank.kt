@@ -13,11 +13,13 @@ import dev.ebnbin.insaniquarium.body.BodyParams
 import dev.ebnbin.insaniquarium.body.BodyType
 
 class Tank : Group() {
+    private val foodGroup: Group = Group()
     private val fishGroup: Group = Group()
     private val petGroup: Group = Group()
     private val moneyGroup: Group = Group()
 
     init {
+        addActor(foodGroup)
         addActor(fishGroup)
         addActor(petGroup)
         addActor(moneyGroup)
@@ -75,6 +77,7 @@ class Tank : Group() {
 
     private fun getGroup(group: BodyConfig.Group): Group {
         return when (group) {
+            BodyConfig.Group.FOOD -> foodGroup
             BodyConfig.Group.FISH -> fishGroup
             BodyConfig.Group.PET -> petGroup
             BodyConfig.Group.MONEY -> moneyGroup
@@ -109,13 +112,17 @@ class Tank : Group() {
         moneyGroup.clearChildren()
         petGroup.clearChildren()
         fishGroup.clearChildren()
+        foodGroup.clearChildren()
     }
 
     override fun act(delta: Float) {
         super.act(delta)
         if (debug) {
             baseGame.putLog("tank") {
-                "fish:${fishGroup.children.size},pet:${petGroup.children.size},money:${moneyGroup.children.size}"
+                "food:${foodGroup.children.size}," +
+                    "fish:${fishGroup.children.size}," +
+                    "pet:${petGroup.children.size}," +
+                    "money:${moneyGroup.children.size}"
             }
         }
     }

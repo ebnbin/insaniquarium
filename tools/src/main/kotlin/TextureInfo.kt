@@ -40,11 +40,27 @@ object TextureInfo {
 
     //*****************************************************************************************************************
 
+    private const val GROUP_FOOD = "food"
     private const val GROUP_FISH = "fish"
     private const val GROUP_PET = "pet"
     private const val GROUP_MONEY = "money"
 
     val bodyList: List<BodyTextureInfo> = listOf(
+        BodyTextureInfo(
+            group = GROUP_FOOD,
+            srcFileName = "food.gif",
+            srcMaskFileName = "_food.gif",
+            scale = 1.5f,
+            row = 5,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "star_potion",
+                    tileStart = 30,
+                    tileCount = 10,
+                ),
+            ),
+        ),
         BodyTextureInfo(
             group = GROUP_FISH,
             srcFileName = "starcatcher.gif",

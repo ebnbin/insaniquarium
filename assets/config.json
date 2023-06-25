@@ -1,5 +1,28 @@
 {
   "body": {
+    "star_potion": {
+      "type": "star_potion",
+      "group": "food",
+      "width": 0.085,
+      "height": 0.08166666,
+      "depth": 0.085,
+      "density": 1020.0,
+      "dragCoefficient": 1.0,
+      "canDisappear": true,
+      "health": 1.0,
+      "animations": {
+        "swim": {
+          "assetId": "star_potion",
+          "duration": 1.0,
+          "mode": "loop",
+          "interpolation": "linear"
+        }
+      },
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "eatAct": null
+    },
     "starcatcher": {
       "type": "starcatcher",
       "group": "fish",

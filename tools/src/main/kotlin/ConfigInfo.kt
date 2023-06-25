@@ -7,6 +7,35 @@ import dev.ebnbin.insaniquarium.body.BodyType
 object ConfigInfo {
     val bodyList: List<BodyConfigInfo> = listOf(
         BodyConfigInfo(
+            type = BodyType.STAR_POTION,
+            group = BodyConfig.Group.FOOD,
+            width = BodyConfigInfo.Size(
+                textureName = "star_potion",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "star_potion",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "star_potion",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1020f,
+            canDisappear = true,
+            health = 1f,
+            animations = mapOf(
+                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
+                    assetId = "star_potion",
+                    duration = 1f,
+                    mode = AnimationMode.LOOP,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
             type = BodyType.STARCATCHER,
             group = BodyConfig.Group.FISH,
             width = BodyConfigInfo.Size(

@@ -127,6 +127,16 @@
       "extension": "png",
       "preload": false
     },
+    "star_potion": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "star_potion",
+      "extension": "png",
+      "preload": false
+    },
     "starcatcher": {
       "region": {
         "row": 2,
