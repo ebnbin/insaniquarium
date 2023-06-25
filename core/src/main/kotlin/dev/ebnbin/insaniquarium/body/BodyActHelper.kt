@@ -2,7 +2,6 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.World
-import dev.ebnbin.gdx.utils.minMax
 
 object BodyActHelper {
     fun nextTouchAct(
@@ -137,12 +136,10 @@ object BodyActHelper {
 
     fun nextEatAct(
         configEatAct: BodyConfig.EatAct?,
-        configHunger: BodyConfig.Hunger,
+        hungerStatus: HungerStatus?,
         eatAct: BodyStatus.EatAct?,
-        hunger: Float,
         data: BodyData,
         input: BodyInput?,
-        isDying: Boolean,
     ): BodyStatus.EatAct? {
         if (input == null) {
             return eatAct
@@ -151,13 +148,8 @@ object BodyActHelper {
             return null
         }
 
-        val isNotFull = configHunger.full == 0f || hunger < configHunger.full
-
         fun targetFood(): Body? {
-            if (isDying) {
-                return null
-            }
-            if (!isNotFull) {
+            if (hungerStatus == HungerStatus.FULL || hungerStatus == HungerStatus.DYING) {
                 return null
             }
             val foodSet = input.body.tank.findBodyByType(configEatAct.foods.keys)
@@ -209,20 +201,25 @@ object BodyActHelper {
     }
 
     fun nextHunger(
-        configHunger: BodyConfig.Hunger,
-        hunger: Float,
+        configHunger: BodyConfig.Hunger?,
+        hunger: Float?,
         eatAct: BodyStatus.EatAct?,
         input: BodyInput?,
-    ): Float {
+    ): Float? {
+        if (configHunger == null) {
+            return null
+        }
         if (input == null) {
             return hunger
+        }
+        if (hunger == null) {
+            return configHunger.full
         }
 
         var nextHunger = hunger - configHunger.exhaustionPerSecond * input.delta
         if (eatAct != null) {
             nextHunger += eatAct.hungerDiff
         }
-        val maxHunger = configHunger.full * configHunger.maxPercent
-        return nextHunger.minMax(0f, maxHunger)
+        return configHunger.minMax(nextHunger)
     }
 }

@@ -27,7 +27,7 @@ data class BodyData(
 
     val input: BodyInput?,
 ) {
-    val isDying: Boolean = config.hunger.canDie && status.hunger == 0f
+    val hungerStatus: HungerStatus? = config.hunger?.status(status.hunger)
 
     //*****************************************************************************************************************
 
@@ -92,8 +92,8 @@ data class BodyData(
 
     val volume: Float = area * depth
 
-    val density: Float = if (isDying) {
-        config.hunger.corpseDensity ?: config.density
+    val density: Float = if (hungerStatus == HungerStatus.DYING) {
+        config.hunger?.corpseDensity ?: config.density
     } else {
         config.density
     }
@@ -102,12 +102,12 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val drivingTargetX: BodyStatus.DrivingTarget? = if (isDying) {
+    val drivingTargetX: BodyStatus.DrivingTarget? = if (hungerStatus == HungerStatus.DYING) {
         null
     } else {
         status.eatAct?.drivingTargetX ?: status.touchAct?.drivingTargetX ?: status.swimActX?.drivingTarget
     }
-    val drivingTargetY: BodyStatus.DrivingTarget? = if (isDying) {
+    val drivingTargetY: BodyStatus.DrivingTarget? = if (hungerStatus == HungerStatus.DYING) {
         null
     } else {
         status.eatAct?.drivingTargetY ?: status.touchAct?.drivingTargetY ?: status.swimActY?.drivingTarget

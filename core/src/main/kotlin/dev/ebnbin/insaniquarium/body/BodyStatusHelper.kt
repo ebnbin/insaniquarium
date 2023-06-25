@@ -29,7 +29,7 @@ object BodyStatusHelper {
                 isFacingRight = false,
             ),
             health = config.health,
-            hunger = config.hunger.full,
+            hunger = config.hunger?.full,
         )
     }
 
@@ -72,7 +72,7 @@ object BodyStatusHelper {
         val nextTouchAct = BodyActHelper.nextTouchAct(
             configTouchAct = config.touchAct,
             input = input,
-            isDying = data.isDying,
+            isDying = data.hungerStatus == HungerStatus.DYING,
         )
 
         val nextSwimActX = BodyActHelper.nextSwimAct(
@@ -82,7 +82,7 @@ object BodyStatusHelper {
             tankSize = data.tankWidth,
             containDrivingTarget = data.containDrivingTargetX,
             input = input,
-            isDying = data.isDying,
+            isDying = data.hungerStatus == HungerStatus.DYING,
         )
         val nextSwimActY = BodyActHelper.nextSwimAct(
             enabled = nextTouchAct == null,
@@ -91,7 +91,7 @@ object BodyStatusHelper {
             tankSize = data.tankHeight,
             containDrivingTarget = data.containDrivingTargetY,
             input = input,
-            isDying = data.isDying,
+            isDying = data.hungerStatus == HungerStatus.DYING,
         )
 
         val nextDisappearAct = BodyActHelper.nextDisappearAct(
@@ -104,12 +104,10 @@ object BodyStatusHelper {
 
         val nextEatAct = BodyActHelper.nextEatAct(
             configEatAct = config.eatAct,
-            configHunger = config.hunger,
+            hungerStatus = data.hungerStatus,
             eatAct = status.eatAct,
-            hunger = data.status.hunger,
             data = data,
             input = input,
-            isDying = data.isDying,
         )
 
         val nextExpectedIsFacingRight = if (data.hasTurnAnimation) {
@@ -134,8 +132,7 @@ object BodyStatusHelper {
             canAnimationActionChange = data.canAnimationActionChange,
             expectedIsFacingRight = status.expectedIsFacingRight,
             eatAct = nextEatAct,
-            hunger = data.status.hunger,
-            isDying = data.isDying,
+            hungerStatus = data.hungerStatus,
             input = input,
         )
 

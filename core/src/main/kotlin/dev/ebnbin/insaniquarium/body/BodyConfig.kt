@@ -23,7 +23,7 @@ data class BodyConfig(
     @Expose
     val health: Float = HEALTH_MAX,
     @Expose
-    val hunger: Hunger,
+    val hunger: Hunger? = null,
     @Expose
     val animations: Animations,
     @Expose
@@ -43,22 +43,31 @@ data class BodyConfig(
         ;
     }
 
-    /**
-     * Max
-     * Full
-     * Not full (can eat)
-     * Hungry (animation changed)
-     * Die
-     */
     data class Hunger(
         @Expose
+        /**
+         * >= 0f.
+         * 0f: Never full.
+         */
         val full: Float = 0f,
+        /**
+         * >= 1f.
+         * 1f: Never full.
+         */
         @Expose
         val maxPercent: Float = 1f,
+        /**
+         * >= 0f && <= 1f.
+         * 0f: Never hungry.
+         * 1f: Always hungry.
+         */
         @Expose
-        val hungryPercent: Float = HUNGRY_NEVER,
+        val hungryPercent: Float = 0f,
         @Expose
         val exhaustionPerSecond: Float = 0f,
+        /**
+         * Whether die when hunger == 0f.
+         */
         @Expose
         val canDie: Boolean = false,
         @Expose
@@ -153,6 +162,5 @@ data class BodyConfig(
 
     companion object {
         const val HEALTH_MAX = -1f
-        const val HUNGRY_NEVER = -1f
     }
 }

@@ -2,6 +2,7 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.asset.Asset
 import dev.ebnbin.gdx.lifecycle.baseGame
+import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.insaniquarium.game
 
 fun BodyType.assets(): Set<Asset<*>> {
@@ -17,4 +18,62 @@ fun BodyType.assets(): Set<Asset<*>> {
     ).mapTo(mutableSetOf()) {
         baseGame.assets.texture.getValue(it.assetId)
     }
+}
+
+enum class HungerStatus {
+    FULL,
+    NOT_FULL,
+    HUNGRY,
+    DYING,
+    ;
+}
+
+fun BodyConfig.Hunger?.status(hunger: Float?): HungerStatus? {
+    if (this == null || hunger == null) {
+        return null
+    }
+    return when {
+        hunger == 0f -> {
+            // NOT_FULL or HUNGRY or DYING.
+            if (canDie) {
+                HungerStatus.DYING
+            } else {
+                // NOT_FULL or HUNGRY.
+                if (hungryPercent == 0f) {
+                    HungerStatus.NOT_FULL
+                } else {
+                    HungerStatus.HUNGRY
+                }
+            }
+        }
+        hunger >= full -> {
+            // FULL or NOT_FULL or HUNGRY.
+            if (maxPercent == 1f) {
+                // NOT_FULL or HUNGRY.
+                if (hungryPercent == 1f) {
+                    HungerStatus.HUNGRY
+                } else {
+                    HungerStatus.NOT_FULL
+                }
+            } else {
+                return HungerStatus.FULL
+            }
+        }
+        hunger >= full * hungryPercent -> {
+            // NOT_FULL or HUNGRY.
+            if (hungryPercent == 1f) {
+                HungerStatus.HUNGRY
+            } else {
+                HungerStatus.NOT_FULL
+            }
+        }
+        else -> {
+            HungerStatus.HUNGRY
+        }
+    }
+}
+
+fun BodyConfig.Hunger.minMax(hunger: Float): Float {
+    val maxHunger = full * maxPercent
+    return hunger.minMax(0f, maxHunger)
 }

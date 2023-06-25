@@ -12,7 +12,7 @@
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
-        "hungryPercent": -1.0,
+        "hungryPercent": 0.0,
         "exhaustionPerSecond": 0.0,
         "canDie": true,
         "corpseDensity": null
@@ -189,14 +189,7 @@
       "density": 1000.0,
       "dragCoefficient": 1.0,
       "health": -1.0,
-      "hunger": {
-        "full": 0.0,
-        "maxPercent": 1.0,
-        "hungryPercent": -1.0,
-        "exhaustionPerSecond": 0.0,
-        "canDie": false,
-        "corpseDensity": null
-      },
+      "hunger": null,
       "animations": {
         "swim": {
           "assetId": "clyde",
@@ -250,7 +243,7 @@
       "hunger": {
         "full": 10.0,
         "maxPercent": 3.0,
-        "hungryPercent": -1.0,
+        "hungryPercent": 0.0,
         "exhaustionPerSecond": 1.0,
         "canDie": false,
         "corpseDensity": null
@@ -311,14 +304,7 @@
       "density": 1000.0,
       "dragCoefficient": 1.0,
       "health": -1.0,
-      "hunger": {
-        "full": 0.0,
-        "maxPercent": 1.0,
-        "hungryPercent": -1.0,
-        "exhaustionPerSecond": 0.0,
-        "canDie": false,
-        "corpseDensity": null
-      },
+      "hunger": null,
       "animations": {
         "swim": {
           "assetId": "presto",
@@ -366,7 +352,7 @@
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
-        "hungryPercent": -1.0,
+        "hungryPercent": 0.0,
         "exhaustionPerSecond": 0.0,
         "canDie": true,
         "corpseDensity": null
@@ -402,7 +388,7 @@
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
-        "hungryPercent": -1.0,
+        "hungryPercent": 0.0,
         "exhaustionPerSecond": 0.0,
         "canDie": true,
         "corpseDensity": null
@@ -438,7 +424,7 @@
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
-        "hungryPercent": -1.0,
+        "hungryPercent": 0.0,
         "exhaustionPerSecond": 0.0,
         "canDie": true,
         "corpseDensity": null

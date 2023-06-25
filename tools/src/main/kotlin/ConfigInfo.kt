@@ -200,7 +200,6 @@ object ConfigInfo {
                 index = 0,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            hunger = BodyConfig.Hunger(),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "clyde",
@@ -312,7 +311,6 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            hunger = BodyConfig.Hunger(),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "presto",

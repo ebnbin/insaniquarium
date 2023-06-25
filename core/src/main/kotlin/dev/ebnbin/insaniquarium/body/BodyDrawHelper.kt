@@ -9,20 +9,16 @@ object BodyDrawHelper {
         canAnimationActionChange: Boolean,
         expectedIsFacingRight: Boolean,
         eatAct: BodyStatus.EatAct?,
-        hunger: Float,
-        isDying: Boolean,
+        hungerStatus: HungerStatus?,
         input: BodyInput?,
     ): BodyStatus.TextureRegionData {
         if (input == null) {
             return textureRegionData
         }
 
-        val isHungry = config.eatAct != null &&
-            eatAct != null &&
-            config.hunger.full != 0f &&
-            config.hunger.hungryPercent != BodyConfig.HUNGRY_NEVER &&
-            hunger < config.hunger.full * config.hunger.hungryPercent
-        val animationStatus = if (isHungry) {
+        val isDying = hungerStatus == HungerStatus.DYING
+
+        val animationStatus = if (hungerStatus == HungerStatus.HUNGRY || isDying) {
             BodyConfig.AnimationStatus.HUNGRY
         } else {
             BodyConfig.AnimationStatus.NORMAL

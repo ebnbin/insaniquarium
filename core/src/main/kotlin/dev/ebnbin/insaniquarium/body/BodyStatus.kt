@@ -24,7 +24,7 @@ data class BodyStatus(
 
     val health: Float,
 
-    val hunger: Float,
+    val hunger: Float?,
 ) {
     data class DrivingTarget(
         val position: Float,
