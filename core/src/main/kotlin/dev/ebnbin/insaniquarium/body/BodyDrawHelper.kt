@@ -9,6 +9,7 @@ object BodyDrawHelper {
         canAnimationActionChange: Boolean,
         expectedIsFacingRight: Boolean,
         eatAct: BodyStatus.EatAct?,
+        isDying: Boolean,
         input: BodyInput?,
     ): BodyStatus.TextureRegionData {
         if (input == null) {
@@ -72,7 +73,7 @@ object BodyDrawHelper {
         }
 
         return if (canAnimationActionChange) {
-            if (eatAct?.isDying == true) {
+            if (isDying) {
                 createDieTextureRegionData()
             } else if (config.eatAct?.hasAnimation == true && eatAct?.canPlayEatAnimation == true) {
                 createEatTextureRegionData()
@@ -85,7 +86,7 @@ object BodyDrawHelper {
             }
         } else {
             if (isAnimationFinished) {
-                if (eatAct?.isDying == true) {
+                if (isDying) {
                     updateTextureRegionData()
                 } else {
                     createSwimTextureRegionData()

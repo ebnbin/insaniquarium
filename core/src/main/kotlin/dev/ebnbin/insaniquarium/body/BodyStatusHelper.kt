@@ -71,7 +71,7 @@ object BodyStatusHelper {
         val nextTouchAct = BodyActHelper.nextTouchAct(
             configTouchAct = config.touchAct,
             input = input,
-            isDying = status.eatAct?.isDying == true,
+            isDying = data.isDying,
         )
 
         val nextSwimActX = BodyActHelper.nextSwimAct(
@@ -81,7 +81,7 @@ object BodyStatusHelper {
             tankSize = data.tankWidth,
             containDrivingTarget = data.containDrivingTargetX,
             input = input,
-            isDying = status.eatAct?.isDying == true,
+            isDying = data.isDying,
         )
         val nextSwimActY = BodyActHelper.nextSwimAct(
             enabled = nextTouchAct == null,
@@ -90,7 +90,7 @@ object BodyStatusHelper {
             tankSize = data.tankHeight,
             containDrivingTarget = data.containDrivingTargetY,
             input = input,
-            isDying = status.eatAct?.isDying == true,
+            isDying = data.isDying,
         )
 
         val nextDisappearAct = BodyActHelper.nextDisappearAct(
@@ -106,7 +106,7 @@ object BodyStatusHelper {
             eatAct = status.eatAct,
             data = data,
             input = input,
-            isDying = status.eatAct?.isDying == true,
+            isDying = data.isDying,
         )
 
         val nextExpectedIsFacingRight = if (data.hasTurnAnimation) {
@@ -131,6 +131,7 @@ object BodyStatusHelper {
             canAnimationActionChange = data.canAnimationActionChange,
             expectedIsFacingRight = status.expectedIsFacingRight,
             eatAct = nextEatAct,
+            isDying = data.isDying,
             input = input,
         )
 

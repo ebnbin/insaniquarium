@@ -65,7 +65,6 @@ data class BodyStatus(
         val drivingTargetY: DrivingTarget?,
         val canPlayEatAnimation: Boolean,
         val hunger: Float,
-        val isDying: Boolean,
     )
 
     data class TextureRegionData(

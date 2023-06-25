@@ -155,7 +155,6 @@ object BodyActHelper {
             drivingTargetY = null,
             canPlayEatAnimation = false,
             hunger = configEatAct.fullHunger,
-            isDying = false,
         )
 
         val isNotFull = configEatAct.fullHunger == 0f || prevEatAct.hunger < configEatAct.fullHunger
@@ -219,7 +218,6 @@ object BodyActHelper {
             },
             canPlayEatAnimation = !isTurning && targetFood != null && data.overlaps(targetFood.data),
             hunger = hunger,
-            isDying = configEatAct.canDie && hunger == 0f,
         )
     }
 }
