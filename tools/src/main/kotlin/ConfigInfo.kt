@@ -56,13 +56,13 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1080f,
-            corpseDensity = 1020f,
             hunger = BodyConfig.Hunger(
                 full = 20f,
                 maxPercent = 1.5f,
                 hungryPercent = 0.5f,
-                hungerPerSecond = 1f,
+                exhaustionPerSecond = 1f,
                 canDie = true,
+                corpseDensity = 1020f,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -115,13 +115,13 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            corpseDensity = 1020f,
             hunger = BodyConfig.Hunger(
                 full = 20f,
                 maxPercent = 1.5f,
                 hungryPercent = 0.5f,
-                hungerPerSecond = 1f,
+                exhaustionPerSecond = 1f,
                 canDie = true,
+                corpseDensity = 1020f,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -255,7 +255,7 @@ object ConfigInfo {
             hunger = BodyConfig.Hunger(
                 full = 10f,
                 maxPercent = 3f,
-                hungerPerSecond = 1f,
+                exhaustionPerSecond = 1f,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(

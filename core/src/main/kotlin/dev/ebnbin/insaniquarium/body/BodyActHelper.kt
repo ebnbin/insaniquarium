@@ -218,7 +218,7 @@ object BodyActHelper {
             return hunger
         }
 
-        var nextHunger = hunger - configHunger.hungerPerSecond * input.delta
+        var nextHunger = hunger - configHunger.exhaustionPerSecond * input.delta
         if (eatAct != null) {
             nextHunger += eatAct.hungerDiff
         }

@@ -31,7 +31,6 @@ data class BodyConfigInfo(
     val height: Size,
     val depth: Size,
     val density: Float = World.DENSITY_WATER,
-    val corpseDensity: Float = density,
     val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
     val health: Float = BodyConfig.HEALTH_MAX,
     val hunger: BodyConfig.Hunger,

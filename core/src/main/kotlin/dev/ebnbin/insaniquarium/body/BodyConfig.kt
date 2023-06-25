@@ -19,8 +19,6 @@ data class BodyConfig(
     @Expose
     val density: Float = World.DENSITY_WATER,
     @Expose
-    val corpseDensity: Float = density,
-    @Expose
     val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
     @Expose
     val health: Float = HEALTH_MAX,
@@ -60,9 +58,11 @@ data class BodyConfig(
         @Expose
         val hungryPercent: Float = HUNGRY_NEVER,
         @Expose
-        val hungerPerSecond: Float = 0f,
+        val exhaustionPerSecond: Float = 0f,
         @Expose
         val canDie: Boolean = false,
+        @Expose
+        val corpseDensity: Float? = null,
     )
 
     data class Animations(

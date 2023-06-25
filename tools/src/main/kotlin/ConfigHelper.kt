@@ -30,7 +30,6 @@ object ConfigHelper {
             height = size(info.height),
             depth = size(info.depth),
             density = info.density,
-            corpseDensity = info.corpseDensity,
             dragCoefficient = info.dragCoefficient,
             health = info.health,
             hunger = info.hunger,

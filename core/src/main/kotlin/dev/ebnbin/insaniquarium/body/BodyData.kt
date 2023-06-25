@@ -93,7 +93,7 @@ data class BodyData(
     val volume: Float = area * depth
 
     val density: Float = if (isDying) {
-        config.corpseDensity
+        config.hunger.corpseDensity ?: config.density
     } else {
         config.density
     }

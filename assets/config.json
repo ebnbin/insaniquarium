@@ -7,15 +7,15 @@
       "height": 0.08166666,
       "depth": 0.085,
       "density": 1020.0,
-      "corpseDensity": 1020.0,
       "dragCoefficient": 1.0,
       "health": 1.0,
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
         "hungryPercent": -1.0,
-        "hungerPerSecond": 0.0,
-        "canDie": true
+        "exhaustionPerSecond": 0.0,
+        "canDie": true,
+        "corpseDensity": null
       },
       "animations": {
         "swim": {
@@ -43,15 +43,15 @@
       "height": 0.165,
       "depth": 0.135,
       "density": 1080.0,
-      "corpseDensity": 1020.0,
       "dragCoefficient": 1.0,
       "health": -1.0,
       "hunger": {
         "full": 20.0,
         "maxPercent": 1.5,
         "hungryPercent": 0.5,
-        "hungerPerSecond": 1.0,
-        "canDie": true
+        "exhaustionPerSecond": 1.0,
+        "canDie": true,
+        "corpseDensity": 1020.0
       },
       "animations": {
         "swim": {
@@ -103,15 +103,15 @@
       "height": 0.18833333,
       "depth": 0.135,
       "density": 1000.0,
-      "corpseDensity": 1020.0,
       "dragCoefficient": 1.0,
       "health": -1.0,
       "hunger": {
         "full": 20.0,
         "maxPercent": 1.5,
         "hungryPercent": 0.5,
-        "hungerPerSecond": 1.0,
-        "canDie": true
+        "exhaustionPerSecond": 1.0,
+        "canDie": true,
+        "corpseDensity": 1020.0
       },
       "animations": {
         "swim": {
@@ -187,15 +187,15 @@
       "height": 0.14,
       "depth": 0.135,
       "density": 1000.0,
-      "corpseDensity": 1000.0,
       "dragCoefficient": 1.0,
       "health": -1.0,
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
         "hungryPercent": -1.0,
-        "hungerPerSecond": 0.0,
-        "canDie": false
+        "exhaustionPerSecond": 0.0,
+        "canDie": false,
+        "corpseDensity": null
       },
       "animations": {
         "swim": {
@@ -245,15 +245,15 @@
       "height": 0.17833333,
       "depth": 0.1,
       "density": 1000.0,
-      "corpseDensity": 1000.0,
       "dragCoefficient": 1.0,
       "health": -1.0,
       "hunger": {
         "full": 10.0,
         "maxPercent": 3.0,
         "hungryPercent": -1.0,
-        "hungerPerSecond": 1.0,
-        "canDie": false
+        "exhaustionPerSecond": 1.0,
+        "canDie": false,
+        "corpseDensity": null
       },
       "animations": {
         "swim": {
@@ -309,15 +309,15 @@
       "height": 0.095,
       "depth": 0.09833334,
       "density": 1000.0,
-      "corpseDensity": 1000.0,
       "dragCoefficient": 1.0,
       "health": -1.0,
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
         "hungryPercent": -1.0,
-        "hungerPerSecond": 0.0,
-        "canDie": false
+        "exhaustionPerSecond": 0.0,
+        "canDie": false,
+        "corpseDensity": null
       },
       "animations": {
         "swim": {
@@ -361,15 +361,15 @@
       "height": 0.075,
       "depth": 0.011666667,
       "density": 1020.0,
-      "corpseDensity": 1020.0,
       "dragCoefficient": 1.0,
       "health": 1.0,
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
         "hungryPercent": -1.0,
-        "hungerPerSecond": 0.0,
-        "canDie": true
+        "exhaustionPerSecond": 0.0,
+        "canDie": true,
+        "corpseDensity": null
       },
       "animations": {
         "swim": {
@@ -397,15 +397,15 @@
       "height": 0.105,
       "depth": 0.025,
       "density": 1010.0,
-      "corpseDensity": 1010.0,
       "dragCoefficient": 1.0,
       "health": 1.0,
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
         "hungryPercent": -1.0,
-        "hungerPerSecond": 0.0,
-        "canDie": true
+        "exhaustionPerSecond": 0.0,
+        "canDie": true,
+        "corpseDensity": null
       },
       "animations": {
         "swim": {
@@ -433,15 +433,15 @@
       "height": 0.08166666,
       "depth": 0.085,
       "density": 990.0,
-      "corpseDensity": 990.0,
       "dragCoefficient": 1.0,
       "health": 10.0,
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
         "hungryPercent": -1.0,
-        "hungerPerSecond": 0.0,
-        "canDie": true
+        "exhaustionPerSecond": 0.0,
+        "canDie": true,
+        "corpseDensity": null
       },
       "animations": {
         "swim": {
