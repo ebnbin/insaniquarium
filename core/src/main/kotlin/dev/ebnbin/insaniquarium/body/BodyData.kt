@@ -13,14 +13,13 @@ import dev.ebnbin.gdx.utils.unitToMeter
 data class BodyData(
     val body: Body,
     val status: BodyStatus,
-    val input: BodyInput?,
+    val input: BodyInput,
 ) {
     val hungerStatus: HungerStatus? = body.config.hunger?.status(status.hunger)
 
     val touchAct: BodyStatus.TouchAct? = BodyActHelper.nextTouchAct(
         tank = body.tank,
         configTouchAct = body.config.touchAct,
-        input = input,
         isDying = hungerStatus == HungerStatus.DYING,
     )
 
@@ -270,7 +269,7 @@ data class BodyData(
             return BodyData(
                 body = body,
                 status = createStatus(body),
-                input = null,
+                input = BodyInput(),
             )
         }
     }

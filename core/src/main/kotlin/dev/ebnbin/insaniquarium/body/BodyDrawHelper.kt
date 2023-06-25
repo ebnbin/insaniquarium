@@ -10,12 +10,8 @@ object BodyDrawHelper {
         expectedIsFacingRight: Boolean,
         eatAct: BodyStatus.EatAct?,
         hungerStatus: HungerStatus?,
-        input: BodyInput?,
+        input: BodyInput,
     ): BodyStatus.TextureRegionData {
-        if (input == null) {
-            return textureRegionData
-        }
-
         val isDying = hungerStatus == HungerStatus.DYING
 
         val animationStatus = if (hungerStatus == HungerStatus.HUNGRY || isDying) {

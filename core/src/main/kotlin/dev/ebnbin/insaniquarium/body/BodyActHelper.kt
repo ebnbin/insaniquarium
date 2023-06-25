@@ -9,12 +9,8 @@ object BodyActHelper {
     fun nextTouchAct(
         tank: Tank,
         configTouchAct: BodyConfig.TouchAct?,
-        input: BodyInput?,
         isDying: Boolean,
     ): BodyStatus.TouchAct? {
-        if (input == null) {
-            return null
-        }
         if (configTouchAct == null) {
             return null
         }
@@ -40,12 +36,9 @@ object BodyActHelper {
         swimAct: BodyStatus.SwimAct?,
         tankSize: Float,
         containDrivingTarget: Boolean,
-        input: BodyInput?,
+        input: BodyInput,
         isDying: Boolean,
     ): BodyStatus.SwimAct? {
-        if (input == null) {
-            return swimAct
-        }
         if (!enabled) {
             return null
         }
@@ -109,11 +102,8 @@ object BodyActHelper {
         canDisappear: Boolean,
         disappearAct: BodyStatus.DisappearAct?,
         data: BodyData,
-        input: BodyInput?,
+        input: BodyInput,
     ): BodyStatus.DisappearAct? {
-        if (input == null) {
-            return disappearAct
-        }
         if (!canDisappear) {
             return null
         }
@@ -141,13 +131,9 @@ object BodyActHelper {
         tank: Tank,
         configEatAct: BodyConfig.EatAct?,
         hungerStatus: HungerStatus?,
-        eatAct: BodyStatus.EatAct?,
         data: BodyData,
-        input: BodyInput?,
+        input: BodyInput,
     ): BodyStatus.EatAct? {
-        if (input == null) {
-            return eatAct
-        }
         if (configEatAct == null) {
             return null
         }
@@ -207,13 +193,10 @@ object BodyActHelper {
         configHunger: BodyConfig.Hunger?,
         hunger: Float?,
         eatAct: BodyStatus.EatAct?,
-        input: BodyInput?,
+        input: BodyInput,
     ): Float? {
         if (configHunger == null) {
             return null
-        }
-        if (input == null) {
-            return hunger
         }
         if (hunger == null) {
             return configHunger.full
@@ -230,11 +213,8 @@ object BodyActHelper {
     fun nextHealth(
         configHealth: BodyConfig.Health?,
         health: Float?,
-        input: BodyInput?,
+        input: BodyInput,
     ): Float? {
-        if (input == null) {
-            return health
-        }
         if (configHealth == null) {
             return null
         }

@@ -8,8 +8,12 @@ object BodyStatusHelper {
         data: BodyData,
         config: BodyConfig,
         status: BodyStatus,
-        input: BodyInput?,
+        input: BodyInput,
     ): BodyStatus {
+        if (input.skipUpdate) {
+            return status
+        }
+
         val nextVelocityX = BodyForceHelper.nextVelocity(
             velocity = status.velocityX,
             acceleration = data.accelerationX,
@@ -40,8 +44,7 @@ object BodyStatusHelper {
             input = input,
         )
 
-        val hasNextTouchAct = input != null &&
-            data.body.tank.touchPoint != null &&
+        val hasNextTouchAct = data.body.tank.touchPoint != null &&
             config.touchAct != null &&
             data.hungerStatus != HungerStatus.DYING
 
@@ -76,7 +79,6 @@ object BodyStatusHelper {
             tank = data.body.tank,
             configEatAct = config.eatAct,
             hungerStatus = data.hungerStatus,
-            eatAct = status.eatAct,
             data = data,
             input = input,
         )
