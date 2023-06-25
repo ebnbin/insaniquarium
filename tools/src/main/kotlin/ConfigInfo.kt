@@ -27,8 +27,8 @@ object ConfigInfo {
             density = 1020f,
             canDisappear = true,
             health = 1f,
-            animations = mapOf(
-                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
                     assetId = "star_potion",
                     duration = 1f,
                     mode = AnimationMode.LOOP,
@@ -54,18 +54,18 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1080f,
-            animations = mapOf(
-                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
                     assetId = "starcatcher",
                     duration = 1f,
                     mode = AnimationMode.LOOP,
                 ),
-                BodyConfig.AnimationType.HUNGRY_SWIM to TextureRegionAnimation(
+                hungry = TextureRegionAnimation(
                     assetId = "starcatcher_hungry",
                     duration = 1f,
                     mode = AnimationMode.LOOP,
                 ),
-                BodyConfig.AnimationType.DIE to TextureRegionAnimation(
+                die = TextureRegionAnimation(
                     assetId = "starcatcher_die",
                     duration = 1f,
                     mode = AnimationMode.NORMAL,
@@ -110,38 +110,38 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            animations = mapOf(
-                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
                     assetId = "beetlemuncher",
                     duration = 0.5f,
                     mode = AnimationMode.LOOP,
                 ),
-                BodyConfig.AnimationType.TURN to TextureRegionAnimation(
+                turn = TextureRegionAnimation(
                     assetId = "beetlemuncher_turn",
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
-                BodyConfig.AnimationType.EAT to TextureRegionAnimation(
+                eat = TextureRegionAnimation(
                     assetId = "beetlemuncher_eat",
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
-                BodyConfig.AnimationType.HUNGRY_SWIM to TextureRegionAnimation(
+                hungry = TextureRegionAnimation(
                     assetId = "beetlemuncher_hungry",
                     duration = 0.5f,
                     mode = AnimationMode.LOOP,
                 ),
-                BodyConfig.AnimationType.HUNGRY_TURN to TextureRegionAnimation(
+                hungryTurn = TextureRegionAnimation(
                     assetId = "beetlemuncher_hungry_turn",
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
-                BodyConfig.AnimationType.HUNGRY_EAT to TextureRegionAnimation(
+                hungryEat = TextureRegionAnimation(
                     assetId = "beetlemuncher_hungry_eat",
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
-                BodyConfig.AnimationType.DIE to TextureRegionAnimation(
+                die = TextureRegionAnimation(
                     assetId = "beetlemuncher_die",
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
@@ -192,8 +192,8 @@ object ConfigInfo {
                 index = 0,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            animations = mapOf(
-                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
                     assetId = "clyde",
                     duration = 1.125f,
                     mode = AnimationMode.LOOP,
@@ -243,18 +243,18 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            animations = mapOf(
-                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
                     assetId = "gash",
                     duration = 0.5f,
                     mode = AnimationMode.LOOP,
                 ),
-                BodyConfig.AnimationType.TURN to TextureRegionAnimation(
+                turn = TextureRegionAnimation(
                     assetId = "gash_turn",
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
-                BodyConfig.AnimationType.EAT to TextureRegionAnimation(
+                eat = TextureRegionAnimation(
                     assetId = "gash_eat",
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
@@ -301,13 +301,13 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            animations = mapOf(
-                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
                     assetId = "presto",
                     duration = 0.5f,
                     mode = AnimationMode.LOOP,
                 ),
-                BodyConfig.AnimationType.TURN to TextureRegionAnimation(
+                turn = TextureRegionAnimation(
                     assetId = "presto_turn",
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
@@ -347,8 +347,8 @@ object ConfigInfo {
             density = 1020f,
             canDisappear = true,
             health = 1f,
-            animations = mapOf(
-                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
                     assetId = "silver_coin",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
@@ -374,8 +374,8 @@ object ConfigInfo {
             density = 1010f,
             canDisappear = true,
             health = 1f,
-            animations = mapOf(
-                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
                     assetId = "star",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
@@ -401,8 +401,8 @@ object ConfigInfo {
             density = 990f,
             canDisappear = true,
             health = 10f,
-            animations = mapOf(
-                BodyConfig.AnimationType.SWIM to TextureRegionAnimation(
+            animations = BodyConfig.Animations(
+                swim =  TextureRegionAnimation(
                     assetId = "beetle",
                     duration = 0.3f,
                     mode = AnimationMode.LOOP,

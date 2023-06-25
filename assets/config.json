@@ -16,7 +16,13 @@
           "duration": 1.0,
           "mode": "loop",
           "interpolation": "linear"
-        }
+        },
+        "turn": null,
+        "eat": null,
+        "hungry": null,
+        "hungryTurn": null,
+        "hungryEat": null,
+        "die": null
       },
       "touchAct": null,
       "swimActX": null,
@@ -40,12 +46,16 @@
           "mode": "loop",
           "interpolation": "linear"
         },
-        "hungry_swim": {
+        "turn": null,
+        "eat": null,
+        "hungry": {
           "assetId": "starcatcher_hungry",
           "duration": 1.0,
           "mode": "loop",
           "interpolation": "linear"
         },
+        "hungryTurn": null,
+        "hungryEat": null,
         "die": {
           "assetId": "starcatcher_die",
           "duration": 1.0,
@@ -106,19 +116,19 @@
           "mode": "normal",
           "interpolation": "linear"
         },
-        "hungry_swim": {
+        "hungry": {
           "assetId": "beetlemuncher_hungry",
           "duration": 0.5,
           "mode": "loop",
           "interpolation": "linear"
         },
-        "hungry_turn": {
+        "hungryTurn": {
           "assetId": "beetlemuncher_hungry_turn",
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
         },
-        "hungry_eat": {
+        "hungryEat": {
           "assetId": "beetlemuncher_hungry_eat",
           "duration": 0.5,
           "mode": "normal",
@@ -175,7 +185,13 @@
           "duration": 1.125,
           "mode": "loop",
           "interpolation": "pow2_in"
-        }
+        },
+        "turn": null,
+        "eat": null,
+        "hungry": null,
+        "hungryTurn": null,
+        "hungryEat": null,
+        "die": null
       },
       "touchAct": null,
       "swimActX": {
@@ -237,7 +253,11 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
-        }
+        },
+        "hungry": null,
+        "hungryTurn": null,
+        "hungryEat": null,
+        "die": null
       },
       "touchAct": null,
       "swimActX": {
@@ -289,7 +309,12 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
-        }
+        },
+        "eat": null,
+        "hungry": null,
+        "hungryTurn": null,
+        "hungryEat": null,
+        "die": null
       },
       "touchAct": {
         "accelerationX": 0.4,
@@ -323,7 +348,13 @@
           "duration": 0.6,
           "mode": "loop",
           "interpolation": "linear"
-        }
+        },
+        "turn": null,
+        "eat": null,
+        "hungry": null,
+        "hungryTurn": null,
+        "hungryEat": null,
+        "die": null
       },
       "touchAct": null,
       "swimActX": null,
@@ -346,7 +377,13 @@
           "duration": 0.6,
           "mode": "loop",
           "interpolation": "linear"
-        }
+        },
+        "turn": null,
+        "eat": null,
+        "hungry": null,
+        "hungryTurn": null,
+        "hungryEat": null,
+        "die": null
       },
       "touchAct": null,
       "swimActX": null,
@@ -369,7 +406,13 @@
           "duration": 0.3,
           "mode": "loop",
           "interpolation": "linear"
-        }
+        },
+        "turn": null,
+        "eat": null,
+        "hungry": null,
+        "hungryTurn": null,
+        "hungryEat": null,
+        "die": null
       },
       "touchAct": null,
       "swimActX": null,

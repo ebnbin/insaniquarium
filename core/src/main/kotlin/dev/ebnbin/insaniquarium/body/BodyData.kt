@@ -181,9 +181,9 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val hasTurnAnimation: Boolean = config.animations.containsKey(BodyConfig.AnimationType.TURN)
+    val hasTurnAnimation: Boolean = config.animations.turn != null
 
-    val animation: TextureRegionAnimation = config.animations.getValue(status.textureRegionData.animationType)
+    val animation: TextureRegionAnimation = status.textureRegionData.getAnimation(config.animations)
 
     val isAnimationFinished: Boolean = status.textureRegionData.animationAction != BodyConfig.AnimationAction.SWIM &&
         status.textureRegionData.stateTime >= animation.duration

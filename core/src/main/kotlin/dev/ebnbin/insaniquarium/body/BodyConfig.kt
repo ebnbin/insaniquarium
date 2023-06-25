@@ -25,7 +25,7 @@ data class BodyConfig(
     @Expose
     val health: Float = HEALTH_MAX,
     @Expose
-    val animations: Map<AnimationType, TextureRegionAnimation>,
+    val animations: Animations,
     @Expose
     val touchAct: TouchAct? = null,
     @Expose
@@ -42,6 +42,23 @@ data class BodyConfig(
         MONEY("money"),
         ;
     }
+
+    data class Animations(
+        @Expose
+        val swim: TextureRegionAnimation,
+        @Expose
+        val turn: TextureRegionAnimation? = null,
+        @Expose
+        val eat: TextureRegionAnimation? = null,
+        @Expose
+        val hungry: TextureRegionAnimation? = null,
+        @Expose
+        val hungryTurn: TextureRegionAnimation? = null,
+        @Expose
+        val hungryEat: TextureRegionAnimation? = null,
+        @Expose
+        val die: TextureRegionAnimation? = null,
+    )
 
     enum class AnimationType(
         override val serializedName: String,

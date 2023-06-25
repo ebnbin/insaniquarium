@@ -1,4 +1,3 @@
-import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.insaniquarium.body.BodyConfig
 import dev.ebnbin.insaniquarium.body.BodyType
@@ -35,7 +34,7 @@ data class BodyConfigInfo(
     val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
     val canDisappear: Boolean = false,
     val health: Float = BodyConfig.HEALTH_MAX,
-    val animations: Map<BodyConfig.AnimationType, TextureRegionAnimation>,
+    val animations: BodyConfig.Animations,
     val touchAct: BodyConfig.TouchAct? = null,
     val swimActX: BodyConfig.SwimAct? = null,
     val swimActY: BodyConfig.SwimAct? = null,

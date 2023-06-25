@@ -6,7 +6,15 @@ import dev.ebnbin.insaniquarium.game
 
 fun BodyType.assets(): Set<Asset<*>> {
     val config = game.config.body.getValue(this)
-    return config.animations.mapTo(mutableSetOf()) {
-        baseGame.assets.texture.getValue(it.value.assetId)
+    return listOfNotNull(
+        config.animations.swim,
+        config.animations.turn,
+        config.animations.eat,
+        config.animations.hungry,
+        config.animations.hungryTurn,
+        config.animations.hungryEat,
+        config.animations.die,
+    ).mapTo(mutableSetOf()) {
+        baseGame.assets.texture.getValue(it.assetId)
     }
 }
