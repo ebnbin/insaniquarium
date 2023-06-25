@@ -3,7 +3,6 @@ package dev.ebnbin.insaniquarium.body
 import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.insaniquarium.tank.Tank
-import kotlin.math.max
 
 object BodyStatusHelper {
     fun createStatus(
@@ -28,7 +27,7 @@ object BodyStatusHelper {
                 stateTime = 0f,
                 isFacingRight = false,
             ),
-            health = config.health,
+            health = config.health?.full,
             hunger = config.hunger?.full,
         )
     }
@@ -136,15 +135,11 @@ object BodyStatusHelper {
             input = input,
         )
 
-        val nextHealth = if (input == null) {
-            status.health
-        } else {
-            if (status.health == BodyConfig.HEALTH_MAX) {
-                status.health
-            } else {
-                max(0f, status.health - input.damage)
-            }
-        }
+        val nextHealth = BodyActHelper.nextHealth(
+            configHealth = config.health,
+            health = status.health,
+            input = input,
+        )
 
         val nextHunger = BodyActHelper.nextHunger(
             configHunger = config.hunger,

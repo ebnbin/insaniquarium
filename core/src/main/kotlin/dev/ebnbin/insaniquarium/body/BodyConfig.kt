@@ -21,7 +21,7 @@ data class BodyConfig(
     @Expose
     val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
     @Expose
-    val health: Float = HEALTH_MAX,
+    val health: Health? = null,
     @Expose
     val hunger: Hunger? = null,
     @Expose
@@ -42,6 +42,14 @@ data class BodyConfig(
         MONEY("money"),
         ;
     }
+
+    data class Health(
+        /**
+         * > 0f.
+         */
+        @Expose
+        val full: Float,
+    )
 
     data class Hunger(
         @Expose

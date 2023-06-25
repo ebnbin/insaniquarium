@@ -50,6 +50,9 @@ object BodyDevHelper {
         baseGame.putLog("position        ") {
             "${data.status.x.devText()},${data.status.y.devText()}"
         }
+        baseGame.putLog("health          ") {
+            "${data.status.health?.devText()}"
+        }
         baseGame.putLog("hunger          ") {
             "${data.status.hunger?.devText()},${data.hungerStatus}"
         }

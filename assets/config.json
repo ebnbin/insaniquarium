@@ -8,7 +8,9 @@
       "depth": 0.085,
       "density": 1020.0,
       "dragCoefficient": 1.0,
-      "health": 1.0,
+      "health": {
+        "full": 1.0
+      },
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
@@ -44,7 +46,7 @@
       "depth": 0.135,
       "density": 1080.0,
       "dragCoefficient": 1.0,
-      "health": -1.0,
+      "health": null,
       "hunger": {
         "full": 20.0,
         "maxPercent": 1.5,
@@ -104,7 +106,7 @@
       "depth": 0.135,
       "density": 1000.0,
       "dragCoefficient": 1.0,
-      "health": -1.0,
+      "health": null,
       "hunger": {
         "full": 20.0,
         "maxPercent": 1.5,
@@ -188,7 +190,7 @@
       "depth": 0.135,
       "density": 1000.0,
       "dragCoefficient": 1.0,
-      "health": -1.0,
+      "health": null,
       "hunger": null,
       "animations": {
         "swim": {
@@ -239,7 +241,7 @@
       "depth": 0.1,
       "density": 1000.0,
       "dragCoefficient": 1.0,
-      "health": -1.0,
+      "health": null,
       "hunger": {
         "full": 10.0,
         "maxPercent": 3.0,
@@ -303,7 +305,7 @@
       "depth": 0.09833334,
       "density": 1000.0,
       "dragCoefficient": 1.0,
-      "health": -1.0,
+      "health": null,
       "hunger": null,
       "animations": {
         "swim": {
@@ -348,7 +350,9 @@
       "depth": 0.011666667,
       "density": 1020.0,
       "dragCoefficient": 1.0,
-      "health": 1.0,
+      "health": {
+        "full": 1.0
+      },
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
@@ -384,7 +388,9 @@
       "depth": 0.025,
       "density": 1010.0,
       "dragCoefficient": 1.0,
-      "health": 1.0,
+      "health": {
+        "full": 1.0
+      },
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,
@@ -420,7 +426,9 @@
       "depth": 0.085,
       "density": 990.0,
       "dragCoefficient": 1.0,
-      "health": 10.0,
+      "health": {
+        "full": 10.0
+      },
       "hunger": {
         "full": 0.0,
         "maxPercent": 1.0,

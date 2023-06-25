@@ -22,7 +22,7 @@ data class BodyStatus(
 
     val textureRegionData: TextureRegionData,
 
-    val health: Float,
+    val health: Float?,
 
     val hunger: Float?,
 ) {

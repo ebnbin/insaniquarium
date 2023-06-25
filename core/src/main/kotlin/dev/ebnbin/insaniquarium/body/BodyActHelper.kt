@@ -2,6 +2,7 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.World
+import kotlin.math.max
 
 object BodyActHelper {
     fun nextTouchAct(
@@ -221,5 +222,22 @@ object BodyActHelper {
             nextHunger += eatAct.hungerDiff
         }
         return configHunger.minMax(nextHunger)
+    }
+
+    fun nextHealth(
+        configHealth: BodyConfig.Health?,
+        health: Float?,
+        input: BodyInput?,
+    ): Float? {
+        if (input == null) {
+            return health
+        }
+        if (configHealth == null) {
+            return null
+        }
+        if (health == null) {
+            return configHealth.full
+        }
+        return max(0f, health - input.damage)
     }
 }

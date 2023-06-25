@@ -25,7 +25,9 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1020f,
-            health = 1f,
+            health = BodyConfig.Health(
+                full = 1f,
+            ),
             hunger = BodyConfig.Hunger(
                 canDie = true,
             ),
@@ -355,7 +357,9 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.HEIGHT,
             ),
             density = 1020f,
-            health = 1f,
+            health = BodyConfig.Health(
+                full = 1f,
+            ),
             hunger = BodyConfig.Hunger(
                 canDie = true,
             ),
@@ -384,7 +388,9 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1010f,
-            health = 1f,
+            health = BodyConfig.Health(
+                full = 1f,
+            ),
             hunger = BodyConfig.Hunger(
                 canDie = true,
             ),
@@ -413,7 +419,9 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 990f,
-            health = 10f,
+            health = BodyConfig.Health(
+                full = 10f,
+            ),
             hunger = BodyConfig.Hunger(
                 canDie = true,
             ),
