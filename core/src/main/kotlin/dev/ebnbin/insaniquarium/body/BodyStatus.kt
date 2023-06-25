@@ -9,8 +9,6 @@ data class BodyStatus(
     val x: Float,
     val y: Float,
 
-    val touchAct: TouchAct?,
-
     val swimActX: SwimAct?,
     val swimActY: SwimAct?,
 

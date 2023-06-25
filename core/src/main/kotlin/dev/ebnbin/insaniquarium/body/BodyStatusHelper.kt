@@ -15,7 +15,6 @@ object BodyStatusHelper {
             velocityY = 0f,
             x = params.x ?: (tank.width / 2f),
             y = params.y ?: (tank.height / 2f),
-            touchAct = null,
             swimActX = null,
             swimActY = null,
             disappearAct = null,
@@ -68,14 +67,12 @@ object BodyStatusHelper {
             input = input,
         )
 
-        val nextTouchAct = BodyActHelper.nextTouchAct(
-            configTouchAct = config.touchAct,
-            input = input,
-            isDying = data.hungerStatus == HungerStatus.DYING,
-        )
+        val hasNextTouchAct = input?.body?.tank?.touchPoint != null &&
+            config.touchAct != null &&
+            data.hungerStatus != HungerStatus.DYING
 
         val nextSwimActX = BodyActHelper.nextSwimAct(
-            enabled = nextTouchAct == null,
+            enabled = !hasNextTouchAct,
             configSwimAct = config.swimActX,
             swimAct = status.swimActX,
             tankSize = data.tankWidth,
@@ -84,7 +81,7 @@ object BodyStatusHelper {
             isDying = data.hungerStatus == HungerStatus.DYING,
         )
         val nextSwimActY = BodyActHelper.nextSwimAct(
-            enabled = nextTouchAct == null,
+            enabled = !hasNextTouchAct,
             configSwimAct = config.swimActY,
             swimAct = status.swimActY,
             tankSize = data.tankHeight,
@@ -153,7 +150,6 @@ object BodyStatusHelper {
             velocityY = nextVelocityY,
             x = nextX,
             y = nextY,
-            touchAct = nextTouchAct,
             swimActX = nextSwimActX,
             swimActY = nextSwimActY,
             disappearAct = nextDisappearAct,
