@@ -7,14 +7,11 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
-import dev.ebnbin.gdx.utils.Direction
-import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.unitToMeter
-import dev.ebnbin.insaniquarium.tank.Tank
 import dev.ebnbin.insaniquarium.game
+import dev.ebnbin.insaniquarium.tank.Tank
 import java.util.UUID
-import kotlin.math.max
 
 data class BodyData(
     val type: BodyType,
@@ -213,137 +210,14 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val nextVelocityX = BodyForceHelper.nextVelocity(
-        velocity = status.velocityX,
-        acceleration = accelerationX,
-        isInsideLeftOrBottom = isInsideLeft,
-        isInsideRightOrTop = isInsideRight,
-        input = input,
-    )
-    val nextVelocityY = BodyForceHelper.nextVelocity(
-        velocity = status.velocityY,
-        acceleration = accelerationY,
-        isInsideLeftOrBottom = isInsideBottom,
-        isInsideRightOrTop = true,
-        input = input,
-    )
-
-    val nextX = BodyForceHelper.nextPosition(
-        position = status.x,
-        velocity = nextVelocityX,
-        minPosition = minX,
-        maxPosition = maxX,
-        input = input,
-    )
-    val nextY = BodyForceHelper.nextPosition(
-        position = status.y,
-        velocity = nextVelocityY,
-        minPosition = minY,
-        maxPosition = maxY,
-        input = input,
-    )
-
-    //*****************************************************************************************************************
-
-    val nextTouchAct = BodyActHelper.nextTouchAct(
-        configTouchAct = config.touchAct,
-        input = input,
-        isDying = status.eatAct?.isDying == true,
-    )
-
-    val nextSwimActX = BodyActHelper.nextSwimAct(
-        enabled = nextTouchAct == null,
-        configSwimAct = config.swimActX,
-        swimAct = status.swimActX,
-        tankSize = tankWidth,
-        containDrivingTarget = containDrivingTargetX,
-        input = input,
-        isDying = status.eatAct?.isDying == true,
-    )
-    val nextSwimActY = BodyActHelper.nextSwimAct(
-        enabled = nextTouchAct == null,
-        configSwimAct = config.swimActY,
-        swimAct = status.swimActY,
-        tankSize = tankHeight,
-        containDrivingTarget = containDrivingTargetY,
-        input = input,
-        isDying = status.eatAct?.isDying == true,
-    )
-
-    val nextDisappearAct = BodyActHelper.nextDisappearAct(
-        canDisappear = config.canDisappear ||
-            (status.textureRegionData.animationType == BodyConfig.AnimationType.DIE && isAnimationFinished),
-        disappearAct = status.disappearAct,
-        data = this,
-        input = input,
-    )
-
-    val nextEatAct = BodyActHelper.nextEatAct(
-        configEatAct = config.eatAct,
-        eatAct = status.eatAct,
-        data = this,
-        input = input,
-        isDying = status.eatAct?.isDying == true,
-    )
-
-    //*****************************************************************************************************************
-
-    val nextExpectedIsFacingRight = if (hasTurnAnimation) {
-        when (drivingX.direction) {
-            Direction.ZERO -> when (status.velocityX.direction) {
-                Direction.ZERO -> status.expectedIsFacingRight
-                Direction.POSITIVE -> true
-                Direction.NEGATIVE -> false
-            }
-            Direction.POSITIVE -> true
-            Direction.NEGATIVE -> false
-        }
-    } else {
-        false
-    }
-
-    val nextTextureRegionData = BodyDrawHelper.nextTextureRegionData(
-        config = config,
-        hasTurnAnimation = hasTurnAnimation,
-        textureRegionData = status.textureRegionData,
-        isAnimationFinished = isAnimationFinished,
-        canAnimationActionChange = canAnimationActionChange,
-        expectedIsFacingRight = status.expectedIsFacingRight,
-        eatAct = nextEatAct,
-        input = input,
-    )
-
-    //*****************************************************************************************************************
-
-    val nextHealth = if (input == null) {
-        status.health
-    } else {
-        if (status.health == BodyConfig.HEALTH_MAX) {
-            status.health
-        } else {
-            max(0f, status.health - input.damage)
-        }
-    }
-
-    //*****************************************************************************************************************
-
     fun update(input: BodyInput): BodyData? {
-        val nextStatus = BodyStatus(
-            velocityX = nextVelocityX,
-            velocityY = nextVelocityY,
-            x = nextX,
-            y = nextY,
-            touchAct = nextTouchAct,
-            swimActX = nextSwimActX,
-            swimActY = nextSwimActY,
-            disappearAct = nextDisappearAct,
-            eatAct = nextEatAct,
-            expectedIsFacingRight = nextExpectedIsFacingRight,
-            textureRegionData = nextTextureRegionData,
-            health = nextHealth,
-        )
         return copy(
-            status = nextStatus,
+            status = BodyStatusHelper.nextStatus(
+                data = this,
+                config = config,
+                status = status,
+                input = input,
+            ),
             input = input,
         ).takeIf { !canRemove }
     }
@@ -398,33 +272,17 @@ data class BodyData(
         ): BodyData {
             val config = game.config.body.getValue(params.type)
 
-            val bodyStatus = BodyStatus(
-                velocityX = 0f,
-                velocityY = 0f,
-                x = params.x ?: (tank.width / 2f),
-                y = params.y ?: (tank.height / 2f),
-                touchAct = null,
-                swimActX = null,
-                swimActY = null,
-                disappearAct = null,
-                eatAct = null,
-                expectedIsFacingRight = false,
-                textureRegionData = BodyStatus.TextureRegionData(
-                    animationAction = BodyConfig.AnimationAction.SWIM,
-                    animationStatus = BodyConfig.AnimationStatus.NORMAL,
-                    stateTime = 0f,
-                    isFacingRight = false,
-                ),
-                health = config.health,
-            )
-
             return BodyData(
                 type = params.type,
                 id = "${UUID.randomUUID()}",
                 tankWidth = tank.width,
                 tankHeight = tank.height,
                 config = config,
-                status = bodyStatus,
+                status = BodyStatusHelper.createStatus(
+                    tank = tank,
+                    params = params,
+                    config = config,
+                ),
                 input = null,
             )
         }
