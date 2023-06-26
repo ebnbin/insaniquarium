@@ -576,7 +576,7 @@ object BodyStatusHelper {
             }
         } else {
             if (isAnimationFinished) {
-                if (isDying) {
+                if (isDying && animationData.action == BodyStatus.AnimationData.Action.DIE) {
                     updateTextureRegionData()
                 } else {
                     createSwimTextureRegionData()
