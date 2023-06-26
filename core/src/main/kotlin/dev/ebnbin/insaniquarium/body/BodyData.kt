@@ -59,17 +59,17 @@ data class BodyData(
 
     val animation: TextureRegionAnimation = status.animationData.getAnimation(body.config)
 
-    val isAnimationFinished: Boolean = status.animationData.action != BodyStatus.AnimationData.Action.SWIM &&
+    val isAnimationFinished: Boolean = status.animationData.action != BodyAnimationData.Action.SWIM &&
         status.animationData.stateTime >= animation.duration
 
-    val canAnimationActionChange: Boolean = status.animationData.action == BodyStatus.AnimationData.Action.SWIM
+    val canAnimationActionChange: Boolean = status.animationData.action == BodyAnimationData.Action.SWIM
 
     val textureRegion: TextureRegion = animation.getTextureRegion(status.animationData.stateTime)
 
     val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
     val actorHeight: Float = textureRegion.regionHeight.toFloat().unitToMeter
 
-    val isFlipX: Boolean = if (status.animationData.action == BodyStatus.AnimationData.Action.TURN) {
+    val isFlipX: Boolean = if (status.animationData.action == BodyAnimationData.Action.TURN) {
         !status.animationData.isFacingRight
     } else {
         status.animationData.isFacingRight

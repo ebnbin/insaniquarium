@@ -1,7 +1,6 @@
 package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.Color
-import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.asset.Asset
 import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Direction
@@ -90,45 +89,6 @@ fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
 fun BodyConfig.Hunger.minMax(hunger: Float): Float {
     val maxHunger = full * maxPercent
     return hunger.minMax(0f, maxHunger)
-}
-
-fun BodyStatus.AnimationData.getAnimation(config: BodyConfig): TextureRegionAnimation {
-    return when (action) {
-        BodyStatus.AnimationData.Action.SWIM -> {
-            when (status) {
-                BodyStatus.AnimationData.Status.NORMAL -> {
-                    config.animations.swim
-                }
-                BodyStatus.AnimationData.Status.HUNGRY -> {
-                    config.animations.hungry ?: config.animations.swim
-                }
-            }
-        }
-        BodyStatus.AnimationData.Action.TURN -> {
-            when (status) {
-                BodyStatus.AnimationData.Status.NORMAL -> {
-                    requireNotNull(config.animations.turn)
-                }
-                BodyStatus.AnimationData.Status.HUNGRY -> {
-                    config.animations.hungryTurn ?: requireNotNull(config.animations.turn)
-                }
-            }
-        }
-        BodyStatus.AnimationData.Action.EAT -> {
-            when (status) {
-                BodyStatus.AnimationData.Status.NORMAL -> {
-                    requireNotNull(config.animations.eat)
-                }
-                BodyStatus.AnimationData.Status.HUNGRY -> {
-                    config.animations.hungryEat ?: requireNotNull(config.animations.eat)
-                }
-            }
-        }
-        BodyStatus.AnimationData.Action.DIE -> {
-            requireNotNull(status == BodyStatus.AnimationData.Status.HUNGRY) // FIXME
-            return config.animations.die ?: config.animations.swim
-        }
-    }
 }
 
 fun BodyStatus.DisappearAct.canRemove(): Boolean {
