@@ -7,6 +7,7 @@ import com.badlogic.gdx.math.Rectangle
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
+import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.unitToMeter
 
@@ -73,6 +74,18 @@ data class BodyData(
             return BodyRelation.OVERLAP
         }
         return BodyRelation.DISJOINT
+    }
+
+    fun hit(touchPoint: Point): Boolean {
+        val hit = rectangle.contains(touchPoint.x, touchPoint.y)
+        if (hit) {
+            body.act(
+                input = BodyInput(
+                    damage = status.health ?: 0f,
+                ),
+            )
+        }
+        return hit
     }
 
     //*****************************************************************************************************************

@@ -27,7 +27,11 @@ class Tank : Group() {
 
         addListener(object : InputListener() {
             override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                touchPoint = Point(x, y)
+                val touchPoint = Point(x, y)
+                this@Tank.touchPoint = touchPoint
+                if (hitMoneyBodies(touchPoint)) {
+                    return true
+                }
                 devSelectedBodyType?.let {
                     addBody(
                         type = it,
@@ -58,6 +62,18 @@ class Tank : Group() {
 
     var touchPoint: Point? = null
         private set
+
+    private fun hitMoneyBodies(touchPoint: Point): Boolean {
+        moneyGroup.children
+            .filterIsInstance<Body>()
+            .reversed()
+            .forEach {
+                if (it.data.hit(touchPoint)) {
+                    return true
+                }
+            }
+        return false
+    }
 
     //*****************************************************************************************************************
 
