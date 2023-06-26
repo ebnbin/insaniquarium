@@ -296,12 +296,12 @@ object BodyStatusHelper {
             drivingTargetX = BodyStatus.DrivingTarget(
                 type = BodyStatus.DrivingTarget.Type.TOUCH,
                 position = touchPoint.x,
-                acceleration = configTouchAct.accelerationX,
+                acceleration = configTouchAct.drivingAccelerationX,
             ),
             drivingTargetY = BodyStatus.DrivingTarget(
                 type = BodyStatus.DrivingTarget.Type.TOUCH,
                 position = touchPoint.y,
-                acceleration = configTouchAct.accelerationY,
+                acceleration = configTouchAct.drivingAccelerationY,
             ),
         )
     }
@@ -334,7 +334,7 @@ object BodyStatusHelper {
                 drivingTarget = BodyStatus.DrivingTarget(
                     type = BodyStatus.DrivingTarget.Type.SWIM,
                     position = Random.nextFloat(0f, tankSize),
-                    acceleration = configSwimAct.acceleration,
+                    acceleration = configSwimAct.drivingAcceleration,
                 ),
                 remainingTime = Float.MAX_VALUE,
             )

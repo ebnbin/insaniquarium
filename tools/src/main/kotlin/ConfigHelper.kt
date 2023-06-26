@@ -33,10 +33,10 @@ object ConfigHelper {
             dragCoefficient = info.dragCoefficient,
             health = info.health,
             hunger = info.hunger,
-            animations = info.animations,
             touchAct = info.touchAct,
             swimActX = info.swimActX,
             swimActY = info.swimActY,
+            animations = info.animations,
         ).also {
             cache.clear()
         }

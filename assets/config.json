@@ -22,6 +22,9 @@
         "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
       "animations": {
         "swim": {
           "assetId": "star_potion",
@@ -35,10 +38,7 @@
         "hungryTurn": null,
         "hungryEat": null,
         "die": null
-      },
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null
+      }
     },
     "starcatcher": {
       "type": "starcatcher",
@@ -65,6 +65,13 @@
         "drivingAccelerationY": 0.0,
         "corpseDensity": 1020.0
       },
+      "touchAct": null,
+      "swimActX": {
+        "drivingAcceleration": 0.1,
+        "idlingTimeRandomStart": 2.0,
+        "idlingTimeRandomEnd": 8.0
+      },
+      "swimActY": null,
       "animations": {
         "swim": {
           "assetId": "starcatcher",
@@ -88,14 +95,7 @@
           "mode": "normal",
           "interpolation": "linear"
         }
-      },
-      "touchAct": null,
-      "swimActX": {
-        "acceleration": 0.1,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": null
+      }
     },
     "beetlemuncher": {
       "type": "beetlemuncher",
@@ -121,6 +121,17 @@
         "drivingAccelerationX": 0.4,
         "drivingAccelerationY": 0.25,
         "corpseDensity": 1020.0
+      },
+      "touchAct": null,
+      "swimActX": {
+        "drivingAcceleration": 0.2,
+        "idlingTimeRandomStart": 2.0,
+        "idlingTimeRandomEnd": 8.0
+      },
+      "swimActY": {
+        "drivingAcceleration": 0.125,
+        "idlingTimeRandomStart": 6.0,
+        "idlingTimeRandomEnd": 10.0
       },
       "animations": {
         "swim": {
@@ -165,17 +176,6 @@
           "mode": "normal",
           "interpolation": "linear"
         }
-      },
-      "touchAct": null,
-      "swimActX": {
-        "acceleration": 0.2,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": {
-        "acceleration": 0.125,
-        "idlingTimeRandomStart": 6.0,
-        "idlingTimeRandomEnd": 10.0
       }
     },
     "clyde": {
@@ -207,6 +207,17 @@
         "drivingAccelerationY": 0.3,
         "corpseDensity": null
       },
+      "touchAct": null,
+      "swimActX": {
+        "drivingAcceleration": 0.1,
+        "idlingTimeRandomStart": 2.0,
+        "idlingTimeRandomEnd": 8.0
+      },
+      "swimActY": {
+        "drivingAcceleration": 0.15,
+        "idlingTimeRandomStart": 2.0,
+        "idlingTimeRandomEnd": 8.0
+      },
       "animations": {
         "swim": {
           "assetId": "clyde",
@@ -220,17 +231,6 @@
         "hungryTurn": null,
         "hungryEat": null,
         "die": null
-      },
-      "touchAct": null,
-      "swimActX": {
-        "acceleration": 0.1,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": {
-        "acceleration": 0.15,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
       }
     },
     "gash": {
@@ -258,6 +258,17 @@
         "drivingAccelerationY": 0.5,
         "corpseDensity": null
       },
+      "touchAct": null,
+      "swimActX": {
+        "drivingAcceleration": 0.2,
+        "idlingTimeRandomStart": 2.0,
+        "idlingTimeRandomEnd": 8.0
+      },
+      "swimActY": {
+        "drivingAcceleration": 0.125,
+        "idlingTimeRandomStart": 6.0,
+        "idlingTimeRandomEnd": 10.0
+      },
       "animations": {
         "swim": {
           "assetId": "gash",
@@ -281,17 +292,6 @@
         "hungryTurn": null,
         "hungryEat": null,
         "die": null
-      },
-      "touchAct": null,
-      "swimActX": {
-        "acceleration": 0.2,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": {
-        "acceleration": 0.125,
-        "idlingTimeRandomStart": 6.0,
-        "idlingTimeRandomEnd": 10.0
       }
     },
     "presto": {
@@ -304,6 +304,20 @@
       "dragCoefficient": 1.0,
       "health": null,
       "hunger": null,
+      "touchAct": {
+        "drivingAccelerationX": 0.4,
+        "drivingAccelerationY": 0.25
+      },
+      "swimActX": {
+        "drivingAcceleration": 0.2,
+        "idlingTimeRandomStart": 2.0,
+        "idlingTimeRandomEnd": 8.0
+      },
+      "swimActY": {
+        "drivingAcceleration": 0.125,
+        "idlingTimeRandomStart": 6.0,
+        "idlingTimeRandomEnd": 10.0
+      },
       "animations": {
         "swim": {
           "assetId": "presto",
@@ -322,20 +336,6 @@
         "hungryTurn": null,
         "hungryEat": null,
         "die": null
-      },
-      "touchAct": {
-        "accelerationX": 0.4,
-        "accelerationY": 0.25
-      },
-      "swimActX": {
-        "acceleration": 0.2,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": {
-        "acceleration": 0.125,
-        "idlingTimeRandomStart": 6.0,
-        "idlingTimeRandomEnd": 10.0
       }
     },
     "silver_coin": {
@@ -360,6 +360,9 @@
         "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
       "animations": {
         "swim": {
           "assetId": "silver_coin",
@@ -373,10 +376,7 @@
         "hungryTurn": null,
         "hungryEat": null,
         "die": null
-      },
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null
+      }
     },
     "star": {
       "type": "star",
@@ -400,6 +400,9 @@
         "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
       "animations": {
         "swim": {
           "assetId": "star",
@@ -413,10 +416,7 @@
         "hungryTurn": null,
         "hungryEat": null,
         "die": null
-      },
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null
+      }
     },
     "beetle": {
       "type": "beetle",
@@ -440,6 +440,9 @@
         "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
       "animations": {
         "swim": {
           "assetId": "beetle",
@@ -453,10 +456,7 @@
         "hungryTurn": null,
         "hungryEat": null,
         "die": null
-      },
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null
+      }
     }
   }
 }

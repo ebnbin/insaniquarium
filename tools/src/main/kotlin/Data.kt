@@ -35,10 +35,10 @@ data class BodyConfigInfo(
     val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
     val health: BodyConfig.Health? = null,
     val hunger: BodyConfig.Hunger? = null,
-    val animations: BodyConfig.Animations,
     val touchAct: BodyConfig.TouchAct? = null,
     val swimActX: BodyConfig.SwimAct? = null,
     val swimActY: BodyConfig.SwimAct? = null,
+    val animations: BodyConfig.Animations,
 ) {
     data class Size(
         val textureName: String,

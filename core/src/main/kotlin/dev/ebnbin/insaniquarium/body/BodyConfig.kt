@@ -24,13 +24,13 @@ data class BodyConfig(
     @Expose
     val hunger: Hunger? = null,
     @Expose
-    val animations: Animations,
-    @Expose
     val touchAct: TouchAct? = null,
     @Expose
     val swimActX: SwimAct? = null,
     @Expose
     val swimActY: SwimAct? = null,
+    @Expose
+    val animations: Animations,
 ) {
     data class Health(
         /**
@@ -77,6 +77,29 @@ data class BodyConfig(
         val corpseDensity: Float? = null,
     )
 
+    data class Food(
+        @Expose
+        val damagePerSecond: Float = 0f,
+        @Expose
+        val hunger: Float = 0f,
+    )
+
+    data class TouchAct(
+        @Expose
+        val drivingAccelerationX: Float,
+        @Expose
+        val drivingAccelerationY: Float,
+    )
+
+    data class SwimAct(
+        @Expose
+        val drivingAcceleration: Float,
+        @Expose
+        val idlingTimeRandomStart: Float,
+        @Expose
+        val idlingTimeRandomEnd: Float,
+    )
+
     data class Animations(
         @Expose
         val swim: TextureRegionAnimation,
@@ -92,28 +115,5 @@ data class BodyConfig(
         val hungryEat: TextureRegionAnimation? = null,
         @Expose
         val die: TextureRegionAnimation? = null,
-    )
-
-    data class TouchAct(
-        @Expose
-        val accelerationX: Float,
-        @Expose
-        val accelerationY: Float,
-    )
-
-    data class SwimAct(
-        @Expose
-        val acceleration: Float,
-        @Expose
-        val idlingTimeRandomStart: Float,
-        @Expose
-        val idlingTimeRandomEnd: Float,
-    )
-
-    data class Food(
-        @Expose
-        val damagePerSecond: Float = 0f,
-        @Expose
-        val hunger: Float = 0f,
     )
 }

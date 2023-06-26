@@ -75,6 +75,11 @@ object ConfigInfo {
                 drivingAccelerationY = 0f,
                 corpseDensity = 1020f,
             ),
+            swimActX = BodyConfig.SwimAct(
+                drivingAcceleration = 0.1f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "starcatcher",
@@ -91,11 +96,6 @@ object ConfigInfo {
                     duration = 1f,
                     mode = AnimationMode.NORMAL,
                 ),
-            ),
-            swimActX = BodyConfig.SwimAct(
-                acceleration = 0.1f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
             ),
         ),
         BodyConfigInfo(
@@ -131,6 +131,16 @@ object ConfigInfo {
                 drivingAccelerationX = 0.4f,
                 drivingAccelerationY = 0.25f,
                 corpseDensity = 1020f,
+            ),
+            swimActX = BodyConfig.SwimAct(
+                drivingAcceleration = 0.2f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                drivingAcceleration = 0.125f,
+                idlingTimeRandomStart = 6f,
+                idlingTimeRandomEnd = 10f,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -169,16 +179,6 @@ object ConfigInfo {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
-            swimActX = BodyConfig.SwimAct(
-                acceleration = 0.2f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
-            ),
-            swimActY = BodyConfig.SwimAct(
-                acceleration = 0.125f,
-                idlingTimeRandomStart = 6f,
-                idlingTimeRandomEnd = 10f,
-            ),
         ),
         BodyConfigInfo(
             type = BodyType.CLYDE,
@@ -212,6 +212,16 @@ object ConfigInfo {
                 drivingAccelerationX = 0.2f,
                 drivingAccelerationY = 0.3f,
             ),
+            swimActX = BodyConfig.SwimAct(
+                drivingAcceleration = 0.1f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                drivingAcceleration = 0.15f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "clyde",
@@ -219,16 +229,6 @@ object ConfigInfo {
                     mode = AnimationMode.LOOP,
                     interpolation = Interpolation.POW2_IN,
                 ),
-            ),
-            swimActX = BodyConfig.SwimAct(
-                acceleration = 0.1f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
-            ),
-            swimActY = BodyConfig.SwimAct(
-                acceleration = 0.15f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
             ),
         ),
         BodyConfigInfo(
@@ -262,6 +262,16 @@ object ConfigInfo {
                 drivingAccelerationX = 0.8f,
                 drivingAccelerationY = 0.5f,
             ),
+            swimActX = BodyConfig.SwimAct(
+                drivingAcceleration = 0.2f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                drivingAcceleration = 0.125f,
+                idlingTimeRandomStart = 6f,
+                idlingTimeRandomEnd = 10f,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "gash",
@@ -278,16 +288,6 @@ object ConfigInfo {
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
-            ),
-            swimActX = BodyConfig.SwimAct(
-                acceleration = 0.2f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
-            ),
-            swimActY = BodyConfig.SwimAct(
-                acceleration = 0.125f,
-                idlingTimeRandomStart = 6f,
-                idlingTimeRandomEnd = 10f,
             ),
         ),
         BodyConfigInfo(
@@ -306,6 +306,20 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
+            touchAct = BodyConfig.TouchAct(
+                drivingAccelerationX = 0.4f,
+                drivingAccelerationY = 0.25f,
+            ),
+            swimActX = BodyConfig.SwimAct(
+                drivingAcceleration = 0.2f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                drivingAcceleration = 0.125f,
+                idlingTimeRandomStart = 6f,
+                idlingTimeRandomEnd = 10f,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "presto",
@@ -317,20 +331,6 @@ object ConfigInfo {
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
-            ),
-            touchAct = BodyConfig.TouchAct(
-                accelerationX = 0.4f,
-                accelerationY = 0.25f,
-            ),
-            swimActX = BodyConfig.SwimAct(
-                acceleration = 0.2f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
-            ),
-            swimActY = BodyConfig.SwimAct(
-                acceleration = 0.125f,
-                idlingTimeRandomStart = 6f,
-                idlingTimeRandomEnd = 10f,
             ),
         ),
         BodyConfigInfo(
