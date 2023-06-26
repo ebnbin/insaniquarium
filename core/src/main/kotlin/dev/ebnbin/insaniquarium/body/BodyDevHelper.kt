@@ -62,8 +62,11 @@ object BodyDevHelper {
         shapes.rect(data.left, data.bottom, data.width, data.height)
         shapes.line(data.left, data.bottom, data.right, data.top)
         shapes.line(data.left, data.top, data.right, data.bottom)
-        shapes.rect(data.depthLeft, data.bottom, data.depth, data.height)
-        shapes.rect(data.left, data.depthBottom, data.width, data.depth)
+        val halfDepth: Float = data.depth / 2f
+        val depthLeft: Float = data.status.x - halfDepth
+        val depthBottom: Float = data.status.y - halfDepth
+        shapes.rect(depthLeft, data.bottom, data.depth, data.height)
+        shapes.rect(data.left, depthBottom, data.width, data.depth)
         data.status.drivingTargetX?.let {
             shapes.line(it.position, 0f, it.position, data.body.tank.height)
         }

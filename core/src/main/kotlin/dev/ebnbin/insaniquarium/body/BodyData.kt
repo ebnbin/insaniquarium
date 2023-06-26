@@ -79,13 +79,6 @@ data class BodyData(
 
     val depth: Float = body.config.depth
 
-    val halfDepth: Float = depth / 2f
-
-    val depthLeft: Float = status.x - halfDepth
-    val depthRight: Float = depthLeft + depth
-    val depthBottom: Float = status.y - halfDepth
-    val depthTop: Float = depthBottom + depth
-
     val area: Float = width * height
 
     val areaX: Float = height * depth
@@ -103,8 +96,6 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val dragCoefficient: Float = body.config.dragCoefficient
-
     val gravityY: Float = BodyForceHelper.gravityY(
         mass = mass,
     )
@@ -115,12 +106,12 @@ data class BodyData(
     )
 
     val dragX: Float = BodyForceHelper.drag(
-        dragCoefficient = dragCoefficient,
+        dragCoefficient = body.config.dragCoefficient,
         velocity = status.velocityX,
         referenceArea = areaX,
     )
     val dragY: Float = BodyForceHelper.drag(
-        dragCoefficient = dragCoefficient,
+        dragCoefficient = body.config.dragCoefficient,
         velocity = status.velocityY,
         referenceArea = areaY,
     )
@@ -166,9 +157,7 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val hasTurnAnimation: Boolean = body.config.animations.turn != null
-
-    val animation: TextureRegionAnimation = status.animationData.getAnimation(body.config.animations)
+    val animation: TextureRegionAnimation = status.animationData.getAnimation(body.config)
 
     val isAnimationFinished: Boolean = status.animationData.action != BodyStatus.AnimationData.Action.SWIM &&
         status.animationData.stateTime >= animation.duration

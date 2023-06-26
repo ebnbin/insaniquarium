@@ -167,7 +167,8 @@ object BodyStatusHelper {
             nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
         }
 
-        val nextExpectedIsFacingRight = if (data.hasTurnAnimation) {
+        val hasTurnAnimation = data.body.config.animations.turn != null
+        val nextExpectedIsFacingRight = if (hasTurnAnimation) {
             when (data.drivingX.direction) {
                 Direction.ZERO -> when (status.velocityX.direction) {
                     Direction.ZERO -> status.expectedIsFacingRight
@@ -183,7 +184,7 @@ object BodyStatusHelper {
 
         val nextAnimationData = nextAnimationData(
             config = data.body.config,
-            hasTurnAnimation = data.hasTurnAnimation,
+            hasTurnAnimation = hasTurnAnimation,
             animationData = status.animationData,
             isAnimationFinished = data.isAnimationFinished,
             canAnimationActionChange = data.canAnimationActionChange,

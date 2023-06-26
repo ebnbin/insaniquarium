@@ -86,29 +86,41 @@ fun BodyConfig.Hunger.minMax(hunger: Float): Float {
     return hunger.minMax(0f, maxHunger)
 }
 
-fun BodyStatus.AnimationData.getAnimation(animations: BodyConfig.Animations): TextureRegionAnimation {
+fun BodyStatus.AnimationData.getAnimation(config: BodyConfig): TextureRegionAnimation {
     return when (action) {
         BodyStatus.AnimationData.Action.SWIM -> {
             when (status) {
-                BodyStatus.AnimationData.Status.NORMAL -> animations.swim
-                BodyStatus.AnimationData.Status.HUNGRY -> animations.hungry ?: animations.swim
+                BodyStatus.AnimationData.Status.NORMAL -> {
+                    config.animations.swim
+                }
+                BodyStatus.AnimationData.Status.HUNGRY -> {
+                    config.animations.hungry ?: config.animations.swim
+                }
             }
         }
         BodyStatus.AnimationData.Action.TURN -> {
             when (status) {
-                BodyStatus.AnimationData.Status.NORMAL -> requireNotNull(animations.turn)
-                BodyStatus.AnimationData.Status.HUNGRY -> animations.hungryTurn ?: requireNotNull(animations.turn)
+                BodyStatus.AnimationData.Status.NORMAL -> {
+                    requireNotNull(config.animations.turn)
+                }
+                BodyStatus.AnimationData.Status.HUNGRY -> {
+                    config.animations.hungryTurn ?: requireNotNull(config.animations.turn)
+                }
             }
         }
         BodyStatus.AnimationData.Action.EAT -> {
             when (status) {
-                BodyStatus.AnimationData.Status.NORMAL -> requireNotNull(animations.eat)
-                BodyStatus.AnimationData.Status.HUNGRY -> animations.hungryEat ?: requireNotNull(animations.eat)
+                BodyStatus.AnimationData.Status.NORMAL -> {
+                    requireNotNull(config.animations.eat)
+                }
+                BodyStatus.AnimationData.Status.HUNGRY -> {
+                    config.animations.hungryEat ?: requireNotNull(config.animations.eat)
+                }
             }
         }
         BodyStatus.AnimationData.Action.DIE -> {
             requireNotNull(status == BodyStatus.AnimationData.Status.HUNGRY) // FIXME
-            return animations.die ?: animations.swim
+            return config.animations.die ?: config.animations.swim
         }
     }
 }
