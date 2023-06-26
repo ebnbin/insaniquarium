@@ -127,6 +127,16 @@
       "extension": "png",
       "preload": false
     },
+    "fish_food": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "fish_food",
+      "extension": "png",
+      "preload": false
+    },
     "gash": {
       "region": {
         "row": 2,
@@ -154,6 +164,286 @@
         "startIndex": 0
       },
       "name": "gash_turn",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_king": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_king",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_king_die": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_king_die",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_king_eat": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_king_eat",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_king_hungry": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_king_hungry",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_king_hungry_eat": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_king_hungry_eat",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_king_hungry_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_king_hungry_turn",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_king_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_king_turn",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_large": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_large",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_large_die": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_large_die",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_large_eat": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_large_eat",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_large_hungry": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_large_hungry",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_large_hungry_eat": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_large_hungry_eat",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_large_hungry_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_large_hungry_turn",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_large_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_large_turn",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_medium": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_medium",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_medium_die": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_medium_die",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_medium_eat": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_medium_eat",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_medium_hungry": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_medium_hungry",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_medium_hungry_eat": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_medium_hungry_eat",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_medium_hungry_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_medium_hungry_turn",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_medium_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_medium_turn",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_small": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_small",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_small_die": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_small_die",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_small_eat": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_small_eat",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_small_hungry": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_small_hungry",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_small_hungry_eat": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_small_hungry_eat",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_small_hungry_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_small_hungry_turn",
+      "extension": "png",
+      "preload": false
+    },
+    "guppy_small_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "guppy_small_turn",
       "extension": "png",
       "preload": false
     },

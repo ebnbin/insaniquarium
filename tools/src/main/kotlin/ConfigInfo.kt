@@ -8,6 +8,39 @@ import dev.ebnbin.insaniquarium.body.BodyType
 object ConfigInfo {
     val bodyList: List<BodyConfigInfo> = listOf(
         BodyConfigInfo(
+            type = BodyType.FISH_FOOD,
+            group = BodyGroup.FOOD,
+            width = BodyConfigInfo.Size(
+                textureName = "fish_food",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "fish_food",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "fish_food",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1020f,
+            health = BodyConfig.Health(
+                full = 1f,
+            ),
+            hunger = BodyConfig.Hunger(
+                canDie = true,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "fish_food",
+                    duration = 1f,
+                    mode = AnimationMode.LOOP,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
             type = BodyType.STAR_POTION,
             group = BodyGroup.FOOD,
             width = BodyConfigInfo.Size(
@@ -37,6 +70,361 @@ object ConfigInfo {
                     assetId = "star_potion",
                     duration = 1f,
                     mode = AnimationMode.LOOP,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
+            type = BodyType.GUPPY_SMALL,
+            group = BodyGroup.FISH,
+            width = BodyConfigInfo.Size(
+                textureName = "guppy_small",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "guppy_small",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "guppy_small_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            health = BodyConfig.Health(
+                full = 1f,
+            ),
+            hunger = BodyConfig.Hunger(
+                full = 20f,
+                maxPercent = 1.5f,
+                hungryPercent = 0.5f,
+                exhaustionPerSecond = 1f,
+                canDie = true,
+                foods = mapOf(
+                    BodyType.FISH_FOOD to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 20f,
+                    ),
+                ),
+                drivingAccelerationX = 0.4f,
+                drivingAccelerationY = 0.25f,
+                corpseDensity = 1020f,
+            ),
+            swimActX = BodyConfig.SwimAct(
+                drivingAcceleration = 0.2f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                drivingAcceleration = 0.125f,
+                idlingTimeRandomStart = 6f,
+                idlingTimeRandomEnd = 10f,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "guppy_small",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "guppy_small_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                eat = TextureRegionAnimation(
+                    assetId = "guppy_small_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungry = TextureRegionAnimation(
+                    assetId = "guppy_small_hungry",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                hungryTurn = TextureRegionAnimation(
+                    assetId = "guppy_small_hungry_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungryEat = TextureRegionAnimation(
+                    assetId = "guppy_small_hungry_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                die = TextureRegionAnimation(
+                    assetId = "guppy_small_die",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
+            type = BodyType.GUPPY_MEDIUM,
+            group = BodyGroup.FISH,
+            width = BodyConfigInfo.Size(
+                textureName = "guppy_medium",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "guppy_medium",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "guppy_medium_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            health = BodyConfig.Health(
+                full = 1f,
+            ),
+            hunger = BodyConfig.Hunger(
+                full = 20f,
+                maxPercent = 1.5f,
+                hungryPercent = 0.5f,
+                exhaustionPerSecond = 1f,
+                canDie = true,
+                foods = mapOf(
+                    BodyType.FISH_FOOD to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 20f,
+                    ),
+                ),
+                drivingAccelerationX = 0.4f,
+                drivingAccelerationY = 0.25f,
+                corpseDensity = 1020f,
+            ),
+            prize = BodyConfig.Prize(
+                full = 20f,
+                incrementPerSecond = 3f,
+                product = BodyType.SILVER_COIN,
+            ),
+            swimActX = BodyConfig.SwimAct(
+                drivingAcceleration = 0.2f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                drivingAcceleration = 0.125f,
+                idlingTimeRandomStart = 6f,
+                idlingTimeRandomEnd = 10f,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "guppy_medium",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "guppy_medium_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                eat = TextureRegionAnimation(
+                    assetId = "guppy_medium_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungry = TextureRegionAnimation(
+                    assetId = "guppy_medium_hungry",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                hungryTurn = TextureRegionAnimation(
+                    assetId = "guppy_medium_hungry_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungryEat = TextureRegionAnimation(
+                    assetId = "guppy_medium_hungry_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                die = TextureRegionAnimation(
+                    assetId = "guppy_medium_die",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
+            type = BodyType.GUPPY_LARGE,
+            group = BodyGroup.FISH,
+            width = BodyConfigInfo.Size(
+                textureName = "guppy_large",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "guppy_large",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "guppy_large_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            health = BodyConfig.Health(
+                full = 1f,
+            ),
+            hunger = BodyConfig.Hunger(
+                full = 20f,
+                maxPercent = 1.5f,
+                hungryPercent = 0.5f,
+                exhaustionPerSecond = 1f,
+                canDie = true,
+                foods = mapOf(
+                    BodyType.FISH_FOOD to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 20f,
+                    ),
+                ),
+                drivingAccelerationX = 0.4f,
+                drivingAccelerationY = 0.25f,
+                corpseDensity = 1020f,
+            ),
+            prize = BodyConfig.Prize(
+                full = 20f,
+                incrementPerSecond = 3f,
+                product = BodyType.SILVER_COIN,
+            ),
+            swimActX = BodyConfig.SwimAct(
+                drivingAcceleration = 0.2f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                drivingAcceleration = 0.125f,
+                idlingTimeRandomStart = 6f,
+                idlingTimeRandomEnd = 10f,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "guppy_large",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "guppy_large_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                eat = TextureRegionAnimation(
+                    assetId = "guppy_large_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungry = TextureRegionAnimation(
+                    assetId = "guppy_large_hungry",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                hungryTurn = TextureRegionAnimation(
+                    assetId = "guppy_large_hungry_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungryEat = TextureRegionAnimation(
+                    assetId = "guppy_large_hungry_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                die = TextureRegionAnimation(
+                    assetId = "guppy_large_die",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
+            type = BodyType.GUPPY_KING,
+            group = BodyGroup.FISH,
+            width = BodyConfigInfo.Size(
+                textureName = "guppy_king",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "guppy_king",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "guppy_king_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            health = BodyConfig.Health(
+                full = 1f,
+            ),
+            hunger = BodyConfig.Hunger(
+                full = 20f,
+                maxPercent = 1.5f,
+                hungryPercent = 0.5f,
+                exhaustionPerSecond = 1f,
+                canDie = true,
+                foods = mapOf(
+                    BodyType.FISH_FOOD to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 20f,
+                    ),
+                ),
+                drivingAccelerationX = 0.4f,
+                drivingAccelerationY = 0.25f,
+                corpseDensity = 1020f,
+            ),
+            prize = BodyConfig.Prize(
+                full = 20f,
+                incrementPerSecond = 3f,
+                product = BodyType.SILVER_COIN,
+            ),
+            swimActX = BodyConfig.SwimAct(
+                drivingAcceleration = 0.2f,
+                idlingTimeRandomStart = 2f,
+                idlingTimeRandomEnd = 8f,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                drivingAcceleration = 0.125f,
+                idlingTimeRandomStart = 6f,
+                idlingTimeRandomEnd = 10f,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "guppy_king",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "guppy_king_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                eat = TextureRegionAnimation(
+                    assetId = "guppy_king_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungry = TextureRegionAnimation(
+                    assetId = "guppy_king_hungry",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                hungryTurn = TextureRegionAnimation(
+                    assetId = "guppy_king_hungry_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungryEat = TextureRegionAnimation(
+                    assetId = "guppy_king_hungry_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                die = TextureRegionAnimation(
+                    assetId = "guppy_king_die",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
                 ),
             ),
         ),

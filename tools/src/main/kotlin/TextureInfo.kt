@@ -55,7 +55,222 @@ object TextureInfo {
             column = 10,
             outputList = listOf(
                 BodyTextureInfo.Output(
+                    name = "fish_food",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
                     name = "star_potion",
+                    tileStart = 30,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_FISH,
+            srcFileName = "smallswim.gif",
+            srcMaskFileName = "smallswim_.gif",
+            scale = 1.5f,
+            row = 5,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "guppy_small",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_medium",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_large",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_king",
+                    tileStart = 30,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_FISH,
+            srcFileName = "smallturn.gif",
+            srcMaskFileName = "smallturn_.gif",
+            scale = 1.5f,
+            row = 5,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "guppy_small_turn",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_medium_turn",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_large_turn",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_king_turn",
+                    tileStart = 30,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_FISH,
+            srcFileName = "smalleat.gif",
+            srcMaskFileName = "smalleat_.gif",
+            scale = 1.5f,
+            row = 5,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "guppy_small_eat",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_medium_eat",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_large_eat",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_king_eat",
+                    tileStart = 30,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_FISH,
+            srcFileName = "hungryswim.gif",
+            srcMaskFileName = "_hungryswim.gif",
+            scale = 1.5f,
+            row = 5,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "guppy_small_hungry",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_medium_hungry",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_large_hungry",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_king_hungry",
+                    tileStart = 30,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_FISH,
+            srcFileName = "hungryturn.gif",
+            srcMaskFileName = "_hungryturn.gif",
+            scale = 1.5f,
+            row = 5,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "guppy_small_hungry_turn",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_medium_hungry_turn",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_large_hungry_turn",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_king_hungry_turn",
+                    tileStart = 30,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_FISH,
+            srcFileName = "hungryeat.gif",
+            srcMaskFileName = "hungryeat_.gif",
+            scale = 1.5f,
+            row = 5,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "guppy_small_hungry_eat",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_medium_hungry_eat",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_large_hungry_eat",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_king_hungry_eat",
+                    tileStart = 30,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_FISH,
+            srcFileName = "smalldie.gif",
+            srcMaskFileName = "_smalldie.gif",
+            scale = 1.5f,
+            row = 5,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "guppy_small_die",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_medium_die",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_large_die",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "guppy_king_die",
                     tileStart = 30,
                     tileCount = 10,
                 ),
