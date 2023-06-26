@@ -12,17 +12,17 @@ import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.minMax
 
 data class BodyBox(
-    val dragCoefficient: Float,
-    val tankWidth: Float,
-    val tankHeight: Float,
-    val width: Float,
-    val height: Float,
-    val depth: Float,
-    val density: Float,
-    val drivingTargetX: BodyStatus.DrivingTarget?,
-    val drivingTargetY: BodyStatus.DrivingTarget?,
-    val velocityX: Float,
-    val velocityY: Float,
+    private val dragCoefficient: Float,
+    private val tankWidth: Float,
+    private val tankHeight: Float,
+    private val width: Float,
+    private val height: Float,
+    private val depth: Float,
+    private val density: Float,
+    private val drivingTargetX: BodyStatus.DrivingTarget?,
+    private val drivingTargetY: BodyStatus.DrivingTarget?,
+    private val velocityX: Float,
+    private val velocityY: Float,
     val x: Float,
     val y: Float,
 ) {

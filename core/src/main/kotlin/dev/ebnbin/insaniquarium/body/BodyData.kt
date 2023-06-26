@@ -106,7 +106,7 @@ data class BodyData(
 
     fun act() {
         body.setSize(actorWidth, actorHeight)
-        body.setPosition(status.x, status.y, Align.center)
+        body.setPosition(box.x, box.y, Align.center)
     }
 
     fun draw(batch: Batch, parentAlpha: Float) {
