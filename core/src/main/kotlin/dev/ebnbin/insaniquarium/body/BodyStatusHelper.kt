@@ -13,6 +13,7 @@ object BodyStatusHelper {
         val drivingTargetY: BodyStatus.DrivingTarget?,
         val foodRelation: BodyRelation,
         val hungerDiff: Float,
+        val prizeDiff: Float,
     )
 
     private data class TouchAct(
@@ -146,6 +147,14 @@ object BodyStatusHelper {
             input = input,
         )
 
+        val nextPrize = nextPrize(
+            body = data.body,
+            configPrize = data.body.config.prize,
+            prize = status.prize,
+            eatAct = nextEatAct,
+            input = input,
+        )
+
         val nextHungerStatus = data.body.config.hunger?.status(nextHunger)
 
         val nextDisappearAct = nextDisappearAct(
@@ -204,6 +213,7 @@ object BodyStatusHelper {
             swimActY = nextStatusSwimActY,
             health = nextHealth,
             hunger = nextHunger,
+            prize = nextPrize,
             disappearAct = nextDisappearAct,
             drivingTargetX = nextDrivingTargetX,
             drivingTargetY = nextDrivingTargetY,
@@ -237,6 +247,7 @@ object BodyStatusHelper {
         }
 
         var hungerDiff = 0f
+        var prizeDiff = 0f
         val targetFood = targetFood()
         val foodRelation = data.relation(targetFood?.data)
 
@@ -250,6 +261,7 @@ object BodyStatusHelper {
             )
             if (foodBody.data.canRemove) {
                 hungerDiff = food.hunger
+                prizeDiff = food.prize
             }
         }
         return EatAct(
@@ -273,6 +285,7 @@ object BodyStatusHelper {
             },
             foodRelation = foodRelation,
             hungerDiff = hungerDiff,
+            prizeDiff = prizeDiff,
         )
     }
 
@@ -412,6 +425,39 @@ object BodyStatusHelper {
             nextHunger += eatAct.hungerDiff
         }
         return configHunger.minMax(nextHunger)
+    }
+
+    private fun nextPrize(
+        body: Body,
+        configPrize: BodyConfig.Prize?,
+        prize: Float?,
+        eatAct: EatAct?,
+        input: BodyInput,
+    ): Float? {
+        if (configPrize == null) {
+            return null
+        }
+        if (prize == null) {
+            return 0f
+        }
+
+        var nextPrize = prize + configPrize.incrementPerSecond * input.delta
+        if (eatAct != null) {
+            nextPrize += eatAct.prizeDiff
+        }
+        while (nextPrize >= configPrize.full) {
+            nextPrize -= configPrize.full
+            body.tank.addBody(
+                type = configPrize.product,
+                createStatus = {
+                    BodyStatus(
+                        x = body.data.status.x,
+                        y = body.data.status.y,
+                    )
+                },
+            )
+        }
+        return nextPrize
     }
 
     private fun nextDisappearAct(

@@ -24,6 +24,8 @@ data class BodyConfig(
     @Expose
     val hunger: Hunger? = null,
     @Expose
+    val prize: Prize? = null,
+    @Expose
     val touchAct: TouchAct? = null,
     @Expose
     val swimActX: SwimAct? = null,
@@ -82,6 +84,17 @@ data class BodyConfig(
         val damagePerSecond: Float = 0f,
         @Expose
         val hunger: Float = 0f,
+        @Expose
+        val prize: Float = 0f,
+    )
+
+    data class Prize(
+        @Expose
+        val full: Float,
+        @Expose
+        val incrementPerSecond: Float = 0f,
+        @Expose
+        val product: BodyType,
     )
 
     data class TouchAct(

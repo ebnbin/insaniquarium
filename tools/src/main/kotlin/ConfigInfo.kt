@@ -69,11 +69,16 @@ object ConfigInfo {
                     BodyType.STAR to BodyConfig.Food(
                         damagePerSecond = 10f,
                         hunger = 20f,
+                        prize = 1f,
                     ),
                 ),
                 drivingAccelerationX = 0.2f,
                 drivingAccelerationY = 0f,
                 corpseDensity = 1020f,
+            ),
+            prize = BodyConfig.Prize(
+                full = 1f,
+                product = BodyType.BEETLE,
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.1f,
