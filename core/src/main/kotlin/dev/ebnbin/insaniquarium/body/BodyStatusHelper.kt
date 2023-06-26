@@ -2,8 +2,6 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.Random
-import dev.ebnbin.gdx.utils.World
-import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.insaniquarium.tank.Tank
 import kotlin.math.max
 
@@ -34,14 +32,14 @@ object BodyStatusHelper {
     ): BodyStatus {
         val nextVelocityX = BodyForceHelper.nextVelocity(
             velocity = status.velocityX,
-            acceleration = data.accelerationX,
+            acceleration = data.force.accelerationX,
             isInsideLeftOrBottom = data.isInsideLeft,
             isInsideRightOrTop = data.isInsideRight,
             input = input,
         )
         val nextVelocityY = BodyForceHelper.nextVelocity(
             velocity = status.velocityY,
-            acceleration = data.accelerationY,
+            acceleration = data.force.accelerationY,
             isInsideLeftOrBottom = data.isInsideBottom,
             isInsideRightOrTop = true,
             input = input,
@@ -186,12 +184,8 @@ object BodyStatusHelper {
 
         val hasTurnAnimation = data.body.config.animations.turn != null
         val nextExpectedIsFacingRight = if (hasTurnAnimation) {
-            when (data.drivingX.direction) {
-                Direction.ZERO -> when (status.velocityX.direction) {
-                    Direction.ZERO -> status.expectedIsFacingRight
-                    Direction.POSITIVE -> true
-                    Direction.NEGATIVE -> false
-                }
+            when (data.force.expectedDirection) {
+                Direction.ZERO -> status.expectedIsFacingRight
                 Direction.POSITIVE -> true
                 Direction.NEGATIVE -> false
             }
@@ -505,14 +499,7 @@ object BodyStatusHelper {
             return null
         }
         return if (disappearAct == null) {
-            val isNotInsideTank = if (data.density == World.DENSITY_WATER) {
-                false
-            } else if (data.density > World.DENSITY_WATER) {
-                !data.isInsideBottom
-            } else {
-                data.insideTopPercent < 1f
-            }
-            if (isNotInsideTank) {
+            if (data.force.isSinkingOrFloatingOutsideWater) {
                 BodyStatus.DisappearAct()
             } else {
                 null

@@ -15,35 +15,12 @@ object BodyDevHelper {
             "${data.body.type.serializedName},${data.body.id}"
         }
         baseGame.putLog("size            ") {
-            "${data.width.devText()},${data.height.devText()},${data.depth.devText()}"
+            "${data.width.devText()},${data.height.devText()}"
         }
         baseGame.putLog("lrbt            ") {
             "${data.left.devText()},${data.right.devText()},${data.bottom.devText()},${data.top.devText()}"
         }
-        baseGame.putLog("density         ") {
-            data.density.devText()
-        }
-        baseGame.putLog("gravity,buoyancy") {
-            "${data.gravityY.devText(XY.Y)},${data.buoyancyY.devText(XY.Y)}"
-        }
-        baseGame.putLog("drag            ") {
-            "${data.dragX.devText(XY.X)},${data.dragY.devText(XY.Y)}"
-        }
-        baseGame.putLog("driving         ") {
-            "${data.drivingX.devText(XY.X)},${data.drivingY.devText(XY.Y)}"
-        }
-        baseGame.putLog("normalReaction  ") {
-            "${data.normalReactionX.devText(XY.X)},${data.normalReactionY.devText(XY.Y)}"
-        }
-        baseGame.putLog("normal          ") {
-            "${data.normalX.devText(XY.X)},${data.normalY.devText(XY.Y)}"
-        }
-        baseGame.putLog("force           ") {
-            "${data.forceX.devText(XY.X)},${data.forceY.devText(XY.Y)}"
-        }
-        baseGame.putLog("acceleration    ") {
-            "${data.accelerationX.devText(XY.X)},${data.accelerationY.devText(XY.Y)}"
-        }
+        data.force.devPutLogs()
         baseGame.putLog("velocity        ") {
             "${data.status.velocityX.devText(XY.X)},${data.status.velocityY.devText(XY.Y)}"
         }
@@ -68,11 +45,11 @@ object BodyDevHelper {
         shapes.rect(data.left, data.bottom, data.width, data.height)
         shapes.line(data.left, data.bottom, data.right, data.top)
         shapes.line(data.left, data.top, data.right, data.bottom)
-        val halfDepth: Float = data.depth / 2f
+        val halfDepth: Float = data.force.depth / 2f
         val depthLeft: Float = data.status.x - halfDepth
         val depthBottom: Float = data.status.y - halfDepth
-        shapes.rect(depthLeft, data.bottom, data.depth, data.height)
-        shapes.rect(data.left, depthBottom, data.width, data.depth)
+        shapes.rect(depthLeft, data.bottom, data.force.depth, data.height)
+        shapes.rect(data.left, depthBottom, data.width, data.force.depth)
         data.status.drivingTargetX?.let {
             shapes.line(it.position, 0f, it.position, data.body.tank.height)
         }
@@ -80,45 +57,45 @@ object BodyDevHelper {
             shapes.line(0f, it.position, data.body.tank.width, it.position)
         }
     }
+}
 
-    private fun Float.devText(xy: XY? = null): String {
-        val directionText = when (direction) {
-            Direction.ZERO -> " "
-            Direction.POSITIVE -> when (xy) {
-                XY.X -> "►"
-                XY.Y -> "▲"
-                null -> "+"
-            }.colorMarkup(Color.GREEN)
-            Direction.NEGATIVE -> when (xy) {
-                XY.X -> "◄"
-                XY.Y -> "▼"
-                null -> "-"
-            }.colorMarkup(Color.RED)
-        }
-        var nonZero = false
-        val magnitudeText = "%11.6f".format(magnitude)
-            .reversed()
-            .map {
-                if (nonZero) {
-                    "$it"
-                } else {
-                    when (it) {
-                        '0' -> {
-                            "$it".colorMarkup(Color.GRAY)
-                        }
-                        '.' -> {
-                            nonZero = true
-                            "$it".colorMarkup(Color.GRAY)
-                        }
-                        else -> {
-                            nonZero = true
-                            "$it"
-                        }
+fun Float.devText(xy: XY? = null): String {
+    val directionText = when (direction) {
+        Direction.ZERO -> " "
+        Direction.POSITIVE -> when (xy) {
+            XY.X -> "►"
+            XY.Y -> "▲"
+            null -> "+"
+        }.colorMarkup(Color.GREEN)
+        Direction.NEGATIVE -> when (xy) {
+            XY.X -> "◄"
+            XY.Y -> "▼"
+            null -> "-"
+        }.colorMarkup(Color.RED)
+    }
+    var nonZero = false
+    val magnitudeText = "%11.6f".format(magnitude)
+        .reversed()
+        .map {
+            if (nonZero) {
+                "$it"
+            } else {
+                when (it) {
+                    '0' -> {
+                        "$it".colorMarkup(Color.GRAY)
+                    }
+                    '.' -> {
+                        nonZero = true
+                        "$it".colorMarkup(Color.GRAY)
+                    }
+                    else -> {
+                        nonZero = true
+                        "$it"
                     }
                 }
             }
-            .reversed()
-            .joinToString("")
-        return "$directionText$magnitudeText"
-    }
+        }
+        .reversed()
+        .joinToString("")
+    return "$directionText$magnitudeText"
 }

@@ -41,11 +41,6 @@ data class BodyData(
     val isInsideRight: Boolean = right < body.tank.width
     val isInsideBottom: Boolean = bottom > 0f
 
-    /**
-     * Percent of body inside tank.
-     */
-    val insideTopPercent: Float = ((height + body.tank.height - top) / height).minMax(0f, 1f)
-
     //*****************************************************************************************************************
 
     val vector2: Vector2 = Vector2(status.x, status.y)
@@ -90,82 +85,24 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val depth: Float = body.config.depth
-
-    val area: Float = width * height
-
-    val areaX: Float = height * depth
-    val areaY: Float = width * depth
-
-    val volume: Float = area * depth
-
-    val density: Float = if (hungerStatus == BodyHungerStatus.DYING) {
-        body.config.hunger?.corpseDensity ?: body.config.density
-    } else {
-        body.config.density
-    }
-
-    val mass: Float = volume * density
-
-    //*****************************************************************************************************************
-
-    val gravityY: Float = BodyForceHelper.gravityY(
-        mass = mass,
-    )
-
-    val buoyancyY: Float = BodyForceHelper.buoyancyY(
-        volume = volume,
-        insideTopPercent = insideTopPercent,
-    )
-
-    val dragX: Float = BodyForceHelper.drag(
+    val force: BodyForce = BodyForce(
         dragCoefficient = body.config.dragCoefficient,
-        velocity = status.velocityX,
-        referenceArea = areaX,
-    )
-    val dragY: Float = BodyForceHelper.drag(
-        dragCoefficient = body.config.dragCoefficient,
-        velocity = status.velocityY,
-        referenceArea = areaY,
-    )
-
-    val drivingX: Float = BodyForceHelper.driving(
-        drivingTarget = status.drivingTargetX,
-        position = status.x,
-        velocity = status.velocityX,
-        mass = mass,
-    )
-    val drivingY: Float = BodyForceHelper.driving(
-        drivingTarget = status.drivingTargetY,
-        position = status.y,
-        velocity = status.velocityY,
-        mass = mass,
-    )
-
-    val normalReactionX: Float = dragX + drivingX
-    val normalReactionY: Float = gravityY + buoyancyY + dragY + drivingY
-
-    val normalX: Float = BodyForceHelper.normal(
-        isInsideLeftOrBottom = isInsideLeft,
-        isInsideRightOrTop = isInsideRight,
-        normalReaction = normalReactionX,
-    )
-    val normalY: Float = BodyForceHelper.normal(
-        isInsideLeftOrBottom = isInsideBottom,
-        isInsideRightOrTop = true,
-        normalReaction = normalReactionY,
-    )
-
-    val forceX: Float = normalReactionX + normalX
-    val forceY: Float = normalReactionY + normalY
-
-    val accelerationX: Float = BodyForceHelper.acceleration(
-        force = forceX,
-        mass = mass,
-    )
-    val accelerationY: Float = BodyForceHelper.acceleration(
-        force = forceY,
-        mass = mass,
+        tankWidth = body.tank.width,
+        tankHeight = body.tank.height,
+        width = width,
+        height = height,
+        depth = body.config.depth,
+        density = if (hungerStatus == BodyHungerStatus.DYING) {
+            body.config.hunger?.corpseDensity ?: body.config.density
+        } else {
+            body.config.density
+        },
+        drivingTargetX = status.drivingTargetX,
+        drivingTargetY = status.drivingTargetY,
+        velocityX = status.velocityX,
+        velocityY = status.velocityY,
+        x = status.x,
+        y = status.y,
     )
 
     //*****************************************************************************************************************
