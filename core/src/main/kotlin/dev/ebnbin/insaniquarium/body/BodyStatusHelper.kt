@@ -20,6 +20,11 @@ object BodyStatusHelper {
         val drivingTargetY: DrivingTarget,
     )
 
+    private data class SwimAct(
+        val drivingTarget: DrivingTarget?,
+        val remainingTime: Float,
+    )
+
     fun nextStatus(
         data: BodyData,
         status: BodyStatus,
@@ -77,7 +82,14 @@ object BodyStatusHelper {
         val nextSwimActX = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
             configSwimAct = data.body.config.swimActX,
-            swimAct = status.swimActX,
+            swimAct = if (status.swimActX == null) {
+                null
+            } else {
+                SwimAct(
+                    drivingTarget = data.status.drivingTargetX?.takeIf { it.type == DrivingTarget.Type.SWIM },
+                    remainingTime = status.swimActX.remainingTime,
+                )
+            },
             tankSize = data.body.tank.width,
             leftOrBottom = data.left,
             rightOrTop = data.right,
@@ -88,7 +100,14 @@ object BodyStatusHelper {
         val nextSwimActY = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
             configSwimAct = data.body.config.swimActY,
-            swimAct = status.swimActY,
+            swimAct = if (status.swimActY == null) {
+                null
+            } else {
+                SwimAct(
+                    drivingTarget = data.status.drivingTargetY?.takeIf { it.type == DrivingTarget.Type.SWIM },
+                    remainingTime = status.swimActY.remainingTime,
+                )
+            },
             tankSize = data.body.tank.height,
             leftOrBottom = data.bottom,
             rightOrTop = data.top,
@@ -96,6 +115,21 @@ object BodyStatusHelper {
             input = input,
             isDying = data.hungerStatus == HungerStatus.DYING,
         )
+
+        val nextStatusSwimActX = if (nextSwimActX == null) {
+            null
+        } else {
+            BodyStatus.SwimAct(
+                remainingTime = nextSwimActX.remainingTime,
+            )
+        }
+        val nextStatusSwimActY = if (nextSwimActY == null) {
+            null
+        } else {
+            BodyStatus.SwimAct(
+                remainingTime = nextSwimActY.remainingTime,
+            )
+        }
 
         val nextHealth = nextHealth(
             configHealth = data.body.config.health,
@@ -163,8 +197,8 @@ object BodyStatusHelper {
             velocityY = nextVelocityY,
             x = nextX,
             y = nextY,
-            swimActX = nextSwimActX,
-            swimActY = nextSwimActY,
+            swimActX = nextStatusSwimActX,
+            swimActY = nextStatusSwimActY,
             health = nextHealth,
             hunger = nextHunger,
             disappearAct = nextDisappearAct,
@@ -272,14 +306,14 @@ object BodyStatusHelper {
     private fun nextSwimAct(
         enabled: Boolean,
         configSwimAct: BodyConfig.SwimAct?,
-        swimAct: BodyStatus.SwimAct?,
+        swimAct: SwimAct?,
         tankSize: Float,
         leftOrBottom: Float,
         rightOrTop: Float,
         drivingTarget: DrivingTarget?,
         input: BodyInput,
         isDying: Boolean,
-    ): BodyStatus.SwimAct? {
+    ): SwimAct? {
         if (!enabled) {
             return null
         }
@@ -292,8 +326,8 @@ object BodyStatusHelper {
 
         val containDrivingTarget = drivingTarget?.position?.let { it in leftOrBottom..rightOrTop } ?: false
 
-        fun createTargetingSwimAct(): BodyStatus.SwimAct {
-            return BodyStatus.SwimAct(
+        fun createTargetingSwimAct(): SwimAct {
+            return SwimAct(
                 drivingTarget = DrivingTarget(
                     type = DrivingTarget.Type.SWIM,
                     position = Random.nextFloat(0f, tankSize),
@@ -303,8 +337,8 @@ object BodyStatusHelper {
             )
         }
 
-        fun createIdlingSwimAct(): BodyStatus.SwimAct {
-            return BodyStatus.SwimAct(
+        fun createIdlingSwimAct(): SwimAct {
+            return SwimAct(
                 drivingTarget = null,
                 remainingTime = Random.nextFloat(
                     configSwimAct.idlingTimeRandomStart,
@@ -313,7 +347,7 @@ object BodyStatusHelper {
             )
         }
 
-        fun updateSwimAct(swimAct: BodyStatus.SwimAct): BodyStatus.SwimAct {
+        fun updateSwimAct(swimAct: SwimAct): SwimAct {
             return swimAct.copy(
                 remainingTime = swimAct.remainingTime - input.delta,
             )

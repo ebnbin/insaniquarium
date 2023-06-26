@@ -65,7 +65,6 @@ data class BodyStatus(
     }
 
     data class SwimAct(
-        val drivingTarget: DrivingTarget?,
         val remainingTime: Float,
     )
 
