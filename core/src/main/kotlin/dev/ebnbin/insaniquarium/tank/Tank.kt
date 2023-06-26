@@ -8,7 +8,7 @@ import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.body.Body
-import dev.ebnbin.insaniquarium.body.BodyConfig
+import dev.ebnbin.insaniquarium.body.BodyGroup
 import dev.ebnbin.insaniquarium.body.BodyStatus
 import dev.ebnbin.insaniquarium.body.BodyType
 import java.util.UUID
@@ -83,12 +83,12 @@ class Tank : Group() {
         getGroup(body.config.group).removeActor(body)
     }
 
-    private fun getGroup(group: BodyConfig.Group): Group {
+    private fun getGroup(group: BodyGroup): Group {
         return when (group) {
-            BodyConfig.Group.FOOD -> foodGroup
-            BodyConfig.Group.FISH -> fishGroup
-            BodyConfig.Group.PET -> petGroup
-            BodyConfig.Group.MONEY -> moneyGroup
+            BodyGroup.FOOD -> foodGroup
+            BodyGroup.FISH -> fishGroup
+            BodyGroup.PET -> petGroup
+            BodyGroup.MONEY -> moneyGroup
         }
     }
 

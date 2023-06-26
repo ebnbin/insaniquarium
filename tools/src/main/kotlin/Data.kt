@@ -1,5 +1,6 @@
 import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.insaniquarium.body.BodyConfig
+import dev.ebnbin.insaniquarium.body.BodyGroup
 import dev.ebnbin.insaniquarium.body.BodyType
 
 data class AquariumTextureInfo(
@@ -26,7 +27,7 @@ data class BodyTextureInfo(
 
 data class BodyConfigInfo(
     val type: BodyType,
-    val group: BodyConfig.Group,
+    val group: BodyGroup,
     val width: Size,
     val height: Size,
     val depth: Size,

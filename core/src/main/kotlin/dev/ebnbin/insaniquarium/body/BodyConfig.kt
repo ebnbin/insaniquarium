@@ -2,14 +2,13 @@ package dev.ebnbin.insaniquarium.body
 
 import com.google.gson.annotations.Expose
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
-import dev.ebnbin.gdx.utils.SerializableEnum
 import dev.ebnbin.gdx.utils.World
 
 data class BodyConfig(
     @Expose
     val type: BodyType,
     @Expose
-    val group: Group,
+    val group: BodyGroup,
     @Expose
     val width: Float,
     @Expose
@@ -35,14 +34,6 @@ data class BodyConfig(
     @Expose
     val eatAct: EatAct? = null,
 ) {
-    enum class Group(override val serializedName: String) : SerializableEnum {
-        FOOD("food"),
-        FISH("fish"),
-        PET("pet"),
-        MONEY("money"),
-        ;
-    }
-
     data class Health(
         /**
          * > 0f.

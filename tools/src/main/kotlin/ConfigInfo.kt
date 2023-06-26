@@ -2,13 +2,14 @@ import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.animation.AnimationMode
 import dev.ebnbin.gdx.utils.Interpolation
 import dev.ebnbin.insaniquarium.body.BodyConfig
+import dev.ebnbin.insaniquarium.body.BodyGroup
 import dev.ebnbin.insaniquarium.body.BodyType
 
 object ConfigInfo {
     val bodyList: List<BodyConfigInfo> = listOf(
         BodyConfigInfo(
             type = BodyType.STAR_POTION,
-            group = BodyConfig.Group.FOOD,
+            group = BodyGroup.FOOD,
             width = BodyConfigInfo.Size(
                 textureName = "star_potion",
                 index = 0,
@@ -41,7 +42,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             type = BodyType.STARCATCHER,
-            group = BodyConfig.Group.FISH,
+            group = BodyGroup.FISH,
             width = BodyConfigInfo.Size(
                 textureName = "starcatcher",
                 index = 0,
@@ -101,7 +102,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             type = BodyType.BEETLEMUNCHER,
-            group = BodyConfig.Group.FISH,
+            group = BodyGroup.FISH,
             width = BodyConfigInfo.Size(
                 textureName = "beetlemuncher",
                 index = 0,
@@ -185,7 +186,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             type = BodyType.CLYDE,
-            group = BodyConfig.Group.PET,
+            group = BodyGroup.PET,
             width = BodyConfigInfo.Size(
                 textureName = "clyde",
                 index = 0,
@@ -236,7 +237,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             type = BodyType.GASH,
-            group = BodyConfig.Group.PET,
+            group = BodyGroup.PET,
             width = BodyConfigInfo.Size(
                 textureName = "gash",
                 index = 0,
@@ -297,7 +298,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             type = BodyType.PRESTO,
-            group = BodyConfig.Group.PET,
+            group = BodyGroup.PET,
             width = BodyConfigInfo.Size(
                 textureName = "presto",
                 wh = BodyConfigInfo.WH.WIDTH,
@@ -340,7 +341,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             type = BodyType.SILVER_COIN,
-            group = BodyConfig.Group.MONEY,
+            group = BodyGroup.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "silver_coin",
                 wh = BodyConfigInfo.WH.WIDTH,
@@ -371,7 +372,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             type = BodyType.STAR,
-            group = BodyConfig.Group.MONEY,
+            group = BodyGroup.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "star",
                 wh = BodyConfigInfo.WH.WIDTH,
@@ -402,7 +403,7 @@ object ConfigInfo {
         ),
         BodyConfigInfo(
             type = BodyType.BEETLE,
-            group = BodyConfig.Group.MONEY,
+            group = BodyGroup.MONEY,
             width = BodyConfigInfo.Size(
                 textureName = "beetle",
                 wh = BodyConfigInfo.WH.WIDTH,
