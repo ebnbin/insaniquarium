@@ -8,7 +8,7 @@ object BodyDrawHelper {
         isAnimationFinished: Boolean,
         canAnimationActionChange: Boolean,
         expectedIsFacingRight: Boolean,
-        eatAct: BodyStatus.EatAct?,
+        canPlayEatAnimation: Boolean,
         hungerStatus: HungerStatus?,
         input: BodyInput,
     ): BodyStatus.TextureRegionData {
@@ -72,8 +72,7 @@ object BodyDrawHelper {
         return if (canAnimationActionChange) {
             if (isDying) {
                 createDieTextureRegionData()
-            } else if (config.animations.eat != null && (eatAct?.foodRelation == BodyRelation.OVERLAP ||
-                    eatAct?.foodRelation == BodyRelation.CONTAIN_CENTER)) {
+            } else if (config.animations.eat != null && canPlayEatAnimation) {
                 createEatTextureRegionData()
             } else {
                 if (hasTurnAnimation && textureRegionData.isFacingRight != expectedIsFacingRight) {

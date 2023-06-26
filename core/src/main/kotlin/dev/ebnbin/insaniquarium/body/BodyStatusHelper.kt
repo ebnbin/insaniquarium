@@ -1,7 +1,11 @@
 package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.utils.Direction
+import dev.ebnbin.gdx.utils.Random
+import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.gdx.utils.direction
+import dev.ebnbin.insaniquarium.tank.Tank
+import kotlin.math.max
 
 object BodyStatusHelper {
     fun nextStatus(
@@ -39,7 +43,7 @@ object BodyStatusHelper {
             input = input,
         )
 
-        val nextEatAct = BodyActHelper.nextEatAct(
+        val nextEatAct = nextEatAct(
             tank = data.body.tank,
             configEatAct = data.body.config.eatAct,
             hungerStatus = data.hungerStatus,
@@ -49,7 +53,7 @@ object BodyStatusHelper {
 
         val hasEatDrivingTarget = nextEatAct?.drivingTargetX != null || nextEatAct?.drivingTargetY != null
 
-        val nextTouchAct = BodyActHelper.nextTouchAct(
+        val nextTouchAct = nextTouchAct(
             enabled = !hasEatDrivingTarget,
             tank = data.body.tank,
             configTouchAct = data.body.config.touchAct,
@@ -58,7 +62,7 @@ object BodyStatusHelper {
 
         val hasTouchDrivingTarget = nextTouchAct != null
 
-        val nextSwimActX = BodyActHelper.nextSwimAct(
+        val nextSwimActX = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
             configSwimAct = data.body.config.swimActX,
             swimAct = status.swimActX,
@@ -69,7 +73,7 @@ object BodyStatusHelper {
             input = input,
             isDying = data.hungerStatus == HungerStatus.DYING,
         )
-        val nextSwimActY = BodyActHelper.nextSwimAct(
+        val nextSwimActY = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
             configSwimAct = data.body.config.swimActY,
             swimAct = status.swimActY,
@@ -81,13 +85,13 @@ object BodyStatusHelper {
             isDying = data.hungerStatus == HungerStatus.DYING,
         )
 
-        val nextHealth = BodyActHelper.nextHealth(
+        val nextHealth = nextHealth(
             configHealth = data.body.config.health,
             health = status.health,
             input = input,
         )
 
-        val nextHunger = BodyActHelper.nextHunger(
+        val nextHunger = nextHunger(
             configHunger = data.body.config.hunger,
             hunger = status.hunger,
             eatAct = nextEatAct,
@@ -96,7 +100,7 @@ object BodyStatusHelper {
 
         val nextHungerStatus = data.body.config.hunger?.status(nextHunger)
 
-        val nextDisappearAct = BodyActHelper.nextDisappearAct(
+        val nextDisappearAct = nextDisappearAct(
             canDisappear = status.textureRegionData.animationAction == BodyConfig.AnimationAction.DIE &&
                 data.isAnimationFinished,
             disappearAct = status.disappearAct,
@@ -136,7 +140,8 @@ object BodyStatusHelper {
             isAnimationFinished = data.isAnimationFinished,
             canAnimationActionChange = data.canAnimationActionChange,
             expectedIsFacingRight = status.expectedIsFacingRight,
-            eatAct = nextEatAct,
+            canPlayEatAnimation = nextEatAct?.foodRelation == BodyRelation.OVERLAP ||
+                nextEatAct?.foodRelation == BodyRelation.CONTAIN_CENTER,
             hungerStatus = nextHungerStatus,
             input = input,
         )
@@ -156,5 +161,236 @@ object BodyStatusHelper {
             expectedIsFacingRight = nextExpectedIsFacingRight,
             textureRegionData = nextTextureRegionData,
         )
+    }
+
+    private fun nextEatAct(
+        tank: Tank,
+        configEatAct: BodyConfig.EatAct?,
+        hungerStatus: HungerStatus?,
+        data: BodyData,
+        input: BodyInput,
+    ): BodyStatus.EatAct? {
+        if (configEatAct == null) {
+            return null
+        }
+
+        fun targetFood(): Body? {
+            if (hungerStatus == HungerStatus.FULL || hungerStatus == HungerStatus.DYING) {
+                return null
+            }
+            val foodSet = tank.findBodyByType(configEatAct.foods.keys)
+            if (foodSet.isEmpty()) {
+                return null
+            }
+            return foodSet.minBy {
+                data.distance(it.data)
+            }
+        }
+
+        var hungerDiff = 0f
+        val targetFood = targetFood()
+        val foodRelation = data.relation(targetFood?.data)
+
+        val isTurning = data.status.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
+        if (targetFood != null && !isTurning && foodRelation == BodyRelation.CONTAIN_CENTER) {
+            val food = configEatAct.foods.getValue(targetFood.data.body.type)
+            val foodBody = targetFood.act(
+                input = BodyInput(
+                    damage = food.damagePerSecond * input.delta,
+                ),
+            )
+            if (foodBody.data.canRemove) {
+                hungerDiff = food.hunger
+            }
+        }
+        return BodyStatus.EatAct(
+            drivingTargetX = if (targetFood == null) {
+                null
+            } else {
+                DrivingTarget(
+                    type = DrivingTarget.Type.EAT,
+                    position = targetFood.data.status.x,
+                    acceleration = configEatAct.accelerationX,
+                )
+            },
+            drivingTargetY = if (targetFood == null) {
+                null
+            } else {
+                DrivingTarget(
+                    type = DrivingTarget.Type.EAT,
+                    position = targetFood.data.status.y,
+                    acceleration = configEatAct.accelerationY,
+                )
+            },
+            foodRelation = foodRelation,
+            hungerDiff = hungerDiff,
+        )
+    }
+
+    private fun nextTouchAct(
+        enabled: Boolean,
+        tank: Tank,
+        configTouchAct: BodyConfig.TouchAct?,
+        isDying: Boolean,
+    ): BodyStatus.TouchAct? {
+        if (!enabled) {
+            return null
+        }
+        if (configTouchAct == null) {
+            return null
+        }
+        if (isDying) {
+            return null
+        }
+        val touchPoint = tank.touchPoint ?: return null
+        return BodyStatus.TouchAct(
+            drivingTargetX = DrivingTarget(
+                type = DrivingTarget.Type.TOUCH,
+                position = touchPoint.x,
+                acceleration = configTouchAct.accelerationX,
+            ),
+            drivingTargetY = DrivingTarget(
+                type = DrivingTarget.Type.TOUCH,
+                position = touchPoint.y,
+                acceleration = configTouchAct.accelerationY,
+            ),
+        )
+    }
+
+    private fun nextSwimAct(
+        enabled: Boolean,
+        configSwimAct: BodyConfig.SwimAct?,
+        swimAct: BodyStatus.SwimAct?,
+        tankSize: Float,
+        leftOrBottom: Float,
+        rightOrTop: Float,
+        drivingTarget: DrivingTarget?,
+        input: BodyInput,
+        isDying: Boolean,
+    ): BodyStatus.SwimAct? {
+        if (!enabled) {
+            return null
+        }
+        if (configSwimAct == null) {
+            return null
+        }
+        if (isDying) {
+            return null
+        }
+
+        val containDrivingTarget = drivingTarget?.position?.let { it in leftOrBottom..rightOrTop } ?: false
+
+        fun createTargetingSwimAct(): BodyStatus.SwimAct {
+            return BodyStatus.SwimAct(
+                drivingTarget = DrivingTarget(
+                    type = DrivingTarget.Type.SWIM,
+                    position = Random.nextFloat(0f, tankSize),
+                    acceleration = configSwimAct.acceleration,
+                ),
+                remainingTime = Float.MAX_VALUE,
+            )
+        }
+
+        fun createIdlingSwimAct(): BodyStatus.SwimAct {
+            return BodyStatus.SwimAct(
+                drivingTarget = null,
+                remainingTime = Random.nextFloat(
+                    configSwimAct.idlingTimeRandomStart,
+                    configSwimAct.idlingTimeRandomEnd,
+                ),
+            )
+        }
+
+        fun updateSwimAct(swimAct: BodyStatus.SwimAct): BodyStatus.SwimAct {
+            return swimAct.copy(
+                remainingTime = swimAct.remainingTime - input.delta,
+            )
+        }
+
+        if (swimAct == null) {
+            return if (Random.nextBoolean()) {
+                createTargetingSwimAct()
+            } else {
+                createIdlingSwimAct()
+            }
+        }
+        val isRemainingTimeUp = swimAct.remainingTime - input.delta <= 0f
+        return if (swimAct.drivingTarget == null) {
+            if (isRemainingTimeUp) {
+                createTargetingSwimAct()
+            } else {
+                updateSwimAct(swimAct)
+            }
+        } else {
+            if (isRemainingTimeUp || containDrivingTarget) {
+                createIdlingSwimAct()
+            } else {
+                updateSwimAct(swimAct)
+            }
+        }
+    }
+
+    private fun nextHealth(
+        configHealth: BodyConfig.Health?,
+        health: Float?,
+        input: BodyInput,
+    ): Float? {
+        if (configHealth == null) {
+            return null
+        }
+        if (health == null) {
+            return configHealth.full
+        }
+        return max(0f, health - input.damage)
+    }
+
+    private fun nextHunger(
+        configHunger: BodyConfig.Hunger?,
+        hunger: Float?,
+        eatAct: BodyStatus.EatAct?,
+        input: BodyInput,
+    ): Float? {
+        if (configHunger == null) {
+            return null
+        }
+        if (hunger == null) {
+            return configHunger.full
+        }
+
+        var nextHunger = hunger - configHunger.exhaustionPerSecond * input.delta
+        nextHunger -= input.exhaustion
+        if (eatAct != null) {
+            nextHunger += eatAct.hungerDiff
+        }
+        return configHunger.minMax(nextHunger)
+    }
+
+    private fun nextDisappearAct(
+        canDisappear: Boolean,
+        disappearAct: BodyStatus.DisappearAct?,
+        data: BodyData,
+        input: BodyInput,
+    ): BodyStatus.DisappearAct? {
+        if (!canDisappear) {
+            return null
+        }
+        return if (disappearAct == null) {
+            val isNotInsideTank = if (data.density == World.DENSITY_WATER) {
+                false
+            } else if (data.density > World.DENSITY_WATER) {
+                !data.isInsideBottom
+            } else {
+                data.insideTopPercent < 1f
+            }
+            if (isNotInsideTank) {
+                BodyStatus.DisappearAct()
+            } else {
+                null
+            }
+        } else {
+            disappearAct.copy(
+                time = disappearAct.time - input.delta,
+            )
+        }
     }
 }
