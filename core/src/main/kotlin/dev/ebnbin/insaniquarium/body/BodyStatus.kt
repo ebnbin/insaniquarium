@@ -16,7 +16,7 @@ data class BodyStatus(
 
     val hunger: Float? = null,
 
-    val prize: Float? = null,
+    val drop: Float? = null,
 
     val disappearAct: DisappearAct? = null,
 

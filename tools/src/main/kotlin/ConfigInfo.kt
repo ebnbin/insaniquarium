@@ -195,7 +195,7 @@ object ConfigInfo {
                 drivingAccelerationY = 0.25f,
                 corpseDensity = 1020f,
             ),
-            prize = BodyConfig.Prize(
+            drop = BodyConfig.Drop(
                 full = 20f,
                 incrementPerSecond = 3f,
                 product = BodyType.SILVER_COIN,
@@ -285,7 +285,7 @@ object ConfigInfo {
                 drivingAccelerationY = 0.25f,
                 corpseDensity = 1020f,
             ),
-            prize = BodyConfig.Prize(
+            drop = BodyConfig.Drop(
                 full = 20f,
                 incrementPerSecond = 3f,
                 product = BodyType.GOLD_COIN,
@@ -375,7 +375,7 @@ object ConfigInfo {
                 drivingAccelerationY = 0.25f,
                 corpseDensity = 1020f,
             ),
-            prize = BodyConfig.Prize(
+            drop = BodyConfig.Drop(
                 full = 20f,
                 incrementPerSecond = 3f,
                 product = BodyType.DIAMOND,
@@ -457,14 +457,14 @@ object ConfigInfo {
                     BodyType.STAR to BodyConfig.Food(
                         damagePerSecond = 10f,
                         hunger = 20f,
-                        prize = 1f,
+                        drop = 1f,
                     ),
                 ),
                 drivingAccelerationX = 0.2f,
                 drivingAccelerationY = 0f,
                 corpseDensity = 1020f,
             ),
-            prize = BodyConfig.Prize(
+            drop = BodyConfig.Drop(
                 full = 1f,
                 product = BodyType.BEETLE,
             ),

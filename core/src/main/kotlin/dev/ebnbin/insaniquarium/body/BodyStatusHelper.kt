@@ -13,7 +13,7 @@ object BodyStatusHelper {
         val drivingTargetY: BodyStatus.DrivingTarget?,
         val foodRelation: BodyRelation,
         val hungerDiff: Float,
-        val prizeDiff: Float,
+        val dropDiff: Float,
     )
 
     private data class TouchAct(
@@ -147,10 +147,10 @@ object BodyStatusHelper {
             input = input,
         )
 
-        val nextPrize = nextPrize(
+        val nextDrop = nextDrop(
             body = data.body,
-            configPrize = data.body.config.prize,
-            prize = status.prize,
+            configDrop = data.body.config.drop,
+            drop = status.drop,
             eatAct = nextEatAct,
             input = input,
             isDying = data.hungerStatus == BodyHungerStatus.DYING,
@@ -214,7 +214,7 @@ object BodyStatusHelper {
             swimActY = nextStatusSwimActY,
             health = nextHealth,
             hunger = nextHunger,
-            prize = nextPrize,
+            drop = nextDrop,
             disappearAct = nextDisappearAct,
             drivingTargetX = nextDrivingTargetX,
             drivingTargetY = nextDrivingTargetY,
@@ -248,7 +248,7 @@ object BodyStatusHelper {
         }
 
         var hungerDiff = 0f
-        var prizeDiff = 0f
+        var dropDiff = 0f
         val targetFood = targetFood()
         val foodRelation = data.relation(targetFood?.data)
 
@@ -262,7 +262,7 @@ object BodyStatusHelper {
             )
             if (foodBody.data.canRemove) {
                 hungerDiff = food.hunger
-                prizeDiff = food.prize
+                dropDiff = food.drop
             }
         }
         return EatAct(
@@ -286,7 +286,7 @@ object BodyStatusHelper {
             },
             foodRelation = foodRelation,
             hungerDiff = hungerDiff,
-            prizeDiff = prizeDiff,
+            dropDiff = dropDiff,
         )
     }
 
@@ -428,32 +428,32 @@ object BodyStatusHelper {
         return configHunger.minMax(nextHunger)
     }
 
-    private fun nextPrize(
+    private fun nextDrop(
         body: Body,
-        configPrize: BodyConfig.Prize?,
-        prize: Float?,
+        configDrop: BodyConfig.Drop?,
+        drop: Float?,
         eatAct: EatAct?,
         input: BodyInput,
         isDying: Boolean,
     ): Float? {
-        if (configPrize == null) {
+        if (configDrop == null) {
             return null
         }
-        if (prize == null) {
+        if (drop == null) {
             return 0f
         }
         if (isDying) {
-            return prize
+            return drop
         }
 
-        var nextPrize = prize + configPrize.incrementPerSecond * input.delta
+        var nextDrop = drop + configDrop.incrementPerSecond * input.delta
         if (eatAct != null) {
-            nextPrize += eatAct.prizeDiff
+            nextDrop += eatAct.dropDiff
         }
-        while (nextPrize >= configPrize.full) {
-            nextPrize -= configPrize.full
+        while (nextDrop >= configDrop.full) {
+            nextDrop -= configDrop.full
             body.tank.addBody(
-                type = configPrize.product,
+                type = configDrop.product,
                 createStatus = {
                     BodyStatus(
                         x = body.data.status.x,
@@ -462,7 +462,7 @@ object BodyStatusHelper {
                 },
             )
         }
-        return nextPrize
+        return nextDrop
     }
 
     private fun nextDisappearAct(
@@ -513,7 +513,7 @@ object BodyStatusHelper {
             BodyStatus.AnimationData.Status.NORMAL
         }
 
-        fun createEatTextureRegionData(): BodyStatus.AnimationData {
+        fun createEat(): BodyStatus.AnimationData {
             return BodyStatus.AnimationData(
                 action = BodyStatus.AnimationData.Action.EAT,
                 status = animationStatus,
@@ -522,7 +522,7 @@ object BodyStatusHelper {
             )
         }
 
-        fun createTurnTextureRegionData(): BodyStatus.AnimationData {
+        fun createTurn(): BodyStatus.AnimationData {
             return BodyStatus.AnimationData(
                 action = BodyStatus.AnimationData.Action.TURN,
                 status = animationStatus,
@@ -531,7 +531,7 @@ object BodyStatusHelper {
             )
         }
 
-        fun createSwimTextureRegionData(): BodyStatus.AnimationData {
+        fun createSwim(): BodyStatus.AnimationData {
             return BodyStatus.AnimationData(
                 action = BodyStatus.AnimationData.Action.SWIM,
                 status = animationStatus,
@@ -540,7 +540,7 @@ object BodyStatusHelper {
             )
         }
 
-        fun createDieTextureRegionData(): BodyStatus.AnimationData {
+        fun createDie(): BodyStatus.AnimationData {
             return BodyStatus.AnimationData(
                 action = BodyStatus.AnimationData.Action.DIE,
                 status = BodyStatus.AnimationData.Status.HUNGRY,
@@ -549,7 +549,7 @@ object BodyStatusHelper {
             )
         }
 
-        fun updateTextureRegionData(): BodyStatus.AnimationData {
+        fun update(): BodyStatus.AnimationData {
             return BodyStatus.AnimationData(
                 action = animationData.action,
                 status = if (animationData.action == BodyStatus.AnimationData.Action.DIE) {
@@ -564,25 +564,25 @@ object BodyStatusHelper {
 
         return if (canAnimationActionChange) {
             if (isDying) {
-                createDieTextureRegionData()
+                createDie()
             } else if (config.animations.eat != null && canPlayEatAnimation) {
-                createEatTextureRegionData()
+                createEat()
             } else {
                 if (hasTurnAnimation && animationData.isFacingRight != expectedIsFacingRight) {
-                    createTurnTextureRegionData()
+                    createTurn()
                 } else {
-                    updateTextureRegionData()
+                    update()
                 }
             }
         } else {
             if (isAnimationFinished) {
                 if (isDying && animationData.action == BodyStatus.AnimationData.Action.DIE) {
-                    updateTextureRegionData()
+                    update()
                 } else {
-                    createSwimTextureRegionData()
+                    createSwim()
                 }
             } else {
-                updateTextureRegionData()
+                update()
             }
         }
     }

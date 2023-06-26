@@ -32,7 +32,7 @@ object ConfigHelper {
             dragCoefficient = info.dragCoefficient,
             health = info.health,
             hunger = info.hunger,
-            prize = info.prize,
+            drop = info.drop,
             touchAct = info.touchAct,
             swimActX = info.swimActX,
             swimActY = info.swimActY,

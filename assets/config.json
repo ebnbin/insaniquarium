@@ -21,7 +21,7 @@
         "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
-      "prize": null,
+      "drop": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
@@ -61,7 +61,7 @@
         "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
-      "prize": null,
+      "drop": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
@@ -100,14 +100,14 @@
           "fish_food": {
             "damagePerSecond": 10.0,
             "hunger": 20.0,
-            "prize": 0.0
+            "drop": 0.0
           }
         },
         "drivingAccelerationX": 0.4,
         "drivingAccelerationY": 0.25,
         "corpseDensity": 1020.0
       },
-      "prize": null,
+      "drop": null,
       "touchAct": null,
       "swimActX": {
         "drivingAcceleration": 0.2,
@@ -184,14 +184,14 @@
           "fish_food": {
             "damagePerSecond": 10.0,
             "hunger": 20.0,
-            "prize": 0.0
+            "drop": 0.0
           }
         },
         "drivingAccelerationX": 0.4,
         "drivingAccelerationY": 0.25,
         "corpseDensity": 1020.0
       },
-      "prize": {
+      "drop": {
         "full": 20.0,
         "incrementPerSecond": 3.0,
         "product": "silver_coin"
@@ -272,14 +272,14 @@
           "fish_food": {
             "damagePerSecond": 10.0,
             "hunger": 20.0,
-            "prize": 0.0
+            "drop": 0.0
           }
         },
         "drivingAccelerationX": 0.4,
         "drivingAccelerationY": 0.25,
         "corpseDensity": 1020.0
       },
-      "prize": {
+      "drop": {
         "full": 20.0,
         "incrementPerSecond": 3.0,
         "product": "gold_coin"
@@ -360,14 +360,14 @@
           "fish_food": {
             "damagePerSecond": 10.0,
             "hunger": 20.0,
-            "prize": 0.0
+            "drop": 0.0
           }
         },
         "drivingAccelerationX": 0.4,
         "drivingAccelerationY": 0.25,
         "corpseDensity": 1020.0
       },
-      "prize": {
+      "drop": {
         "full": 20.0,
         "incrementPerSecond": 3.0,
         "product": "diamond"
@@ -446,14 +446,14 @@
           "star": {
             "damagePerSecond": 10.0,
             "hunger": 20.0,
-            "prize": 1.0
+            "drop": 1.0
           }
         },
         "drivingAccelerationX": 0.2,
         "drivingAccelerationY": 0.0,
         "corpseDensity": 1020.0
       },
-      "prize": {
+      "drop": {
         "full": 1.0,
         "incrementPerSecond": 0.0,
         "product": "beetle"
@@ -508,14 +508,14 @@
           "star_potion": {
             "damagePerSecond": 10.0,
             "hunger": 20.0,
-            "prize": 0.0
+            "drop": 0.0
           }
         },
         "drivingAccelerationX": 0.4,
         "drivingAccelerationY": 0.25,
         "corpseDensity": 1020.0
       },
-      "prize": null,
+      "drop": null,
       "touchAct": null,
       "swimActX": {
         "drivingAcceleration": 0.2,
@@ -590,29 +590,29 @@
           "silver_coin": {
             "damagePerSecond": 10.0,
             "hunger": 0.0,
-            "prize": 0.0
+            "drop": 0.0
           },
           "gold_coin": {
             "damagePerSecond": 10.0,
             "hunger": 0.0,
-            "prize": 0.0
+            "drop": 0.0
           },
           "star": {
             "damagePerSecond": 10.0,
             "hunger": 0.0,
-            "prize": 0.0
+            "drop": 0.0
           },
           "diamond": {
             "damagePerSecond": 10.0,
             "hunger": 0.0,
-            "prize": 0.0
+            "drop": 0.0
           }
         },
         "drivingAccelerationX": 0.2,
         "drivingAccelerationY": 0.3,
         "corpseDensity": null
       },
-      "prize": null,
+      "drop": null,
       "touchAct": null,
       "swimActX": {
         "drivingAcceleration": 0.1,
@@ -657,14 +657,14 @@
           "beetle": {
             "damagePerSecond": 10.0,
             "hunger": 20.0,
-            "prize": 0.0
+            "drop": 0.0
           }
         },
         "drivingAccelerationX": 0.8,
         "drivingAccelerationY": 0.5,
         "corpseDensity": null
       },
-      "prize": null,
+      "drop": null,
       "touchAct": null,
       "swimActX": {
         "drivingAcceleration": 0.2,
@@ -710,7 +710,7 @@
       "dragCoefficient": 1.0,
       "health": null,
       "hunger": null,
-      "prize": null,
+      "drop": null,
       "touchAct": {
         "drivingAccelerationX": 0.4,
         "drivingAccelerationY": 0.25
@@ -766,7 +766,7 @@
         "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
-      "prize": null,
+      "drop": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
@@ -806,7 +806,7 @@
         "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
-      "prize": null,
+      "drop": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
@@ -846,7 +846,7 @@
         "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
-      "prize": null,
+      "drop": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
@@ -886,7 +886,7 @@
         "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
-      "prize": null,
+      "drop": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
@@ -926,7 +926,7 @@
         "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
-      "prize": null,
+      "drop": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,

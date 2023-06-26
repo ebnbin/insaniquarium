@@ -22,7 +22,7 @@ data class BodyConfig(
     @Expose
     val hunger: Hunger? = null,
     @Expose
-    val prize: Prize? = null,
+    val drop: Drop? = null,
     @Expose
     val touchAct: TouchAct? = null,
     @Expose
@@ -83,10 +83,10 @@ data class BodyConfig(
         @Expose
         val hunger: Float = 0f,
         @Expose
-        val prize: Float = 0f,
+        val drop: Float = 0f,
     )
 
-    data class Prize(
+    data class Drop(
         @Expose
         val full: Float,
         @Expose
