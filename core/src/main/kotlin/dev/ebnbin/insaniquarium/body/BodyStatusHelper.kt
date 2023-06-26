@@ -153,6 +153,7 @@ object BodyStatusHelper {
             prize = status.prize,
             eatAct = nextEatAct,
             input = input,
+            isDying = data.hungerStatus == BodyHungerStatus.DYING,
         )
 
         val nextHungerStatus = data.body.config.hunger?.status(nextHunger)
@@ -433,12 +434,16 @@ object BodyStatusHelper {
         prize: Float?,
         eatAct: EatAct?,
         input: BodyInput,
+        isDying: Boolean,
     ): Float? {
         if (configPrize == null) {
             return null
         }
         if (prize == null) {
             return 0f
+        }
+        if (isDying) {
+            return prize
         }
 
         var nextPrize = prize + configPrize.incrementPerSecond * input.delta
