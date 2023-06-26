@@ -170,6 +170,12 @@ data class BodyForce(
     //*****************************************************************************************************************
 
     fun devPutLogs() {
+        baseGame.putLog("size            ") {
+            "${width.devText()},${height.devText()}"
+        }
+        baseGame.putLog("lrbt            ") {
+            "${left.devText()},${right.devText()},${bottom.devText()},${top.devText()}"
+        }
         baseGame.putLog("depth           ") {
             depth.devText()
         }
@@ -196,6 +202,12 @@ data class BodyForce(
         }
         baseGame.putLog("acceleration    ") {
             "${accelerationX.devText(XY.X)},${accelerationY.devText(XY.Y)}"
+        }
+        baseGame.putLog("velocity        ") {
+            "${velocityX.devText(XY.X)},${velocityY.devText(XY.Y)}"
+        }
+        baseGame.putLog("position        ") {
+            "${x.devText()},${y.devText()}"
         }
     }
 }

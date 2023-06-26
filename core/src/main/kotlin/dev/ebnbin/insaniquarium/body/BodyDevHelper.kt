@@ -14,19 +14,7 @@ object BodyDevHelper {
         baseGame.putLog("type,id         ") {
             "${data.body.type.serializedName},${data.body.id}"
         }
-        baseGame.putLog("size            ") {
-            "${data.width.devText()},${data.height.devText()}"
-        }
-        baseGame.putLog("lrbt            ") {
-            "${data.left.devText()},${data.right.devText()},${data.bottom.devText()},${data.top.devText()}"
-        }
         data.force.devPutLogs()
-        baseGame.putLog("velocity        ") {
-            "${data.status.velocityX.devText(XY.X)},${data.status.velocityY.devText(XY.Y)}"
-        }
-        baseGame.putLog("position        ") {
-            "${data.status.x.devText()},${data.status.y.devText()}"
-        }
         baseGame.putLog("health          ") {
             "${data.status.health?.devText()}"
         }
