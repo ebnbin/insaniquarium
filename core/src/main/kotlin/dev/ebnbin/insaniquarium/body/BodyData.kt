@@ -3,8 +3,6 @@ package dev.ebnbin.insaniquarium.body
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.math.Rectangle
-import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.utils.Point
@@ -20,67 +18,12 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val width: Float = body.config.width
-    val height: Float = body.config.height
-
-    val halfWidth: Float = width / 2f
-    val halfHeight: Float = height / 2f
-
-    val left: Float = status.x - halfWidth
-    val right: Float = left + width
-    val bottom: Float = status.y - halfHeight
-    val top: Float = bottom + height
-
-    //*****************************************************************************************************************
-
-    val vector2: Vector2 = Vector2(status.x, status.y)
-    val rectangle: Rectangle = Rectangle(left, bottom, width, height)
-
-    fun distance(other: BodyData): Float {
-        return vector2.dst(other.vector2)
-    }
-
-    fun containsCenter(other: BodyData): Boolean {
-        return rectangle.contains(other.vector2)
-    }
-
-    fun overlaps(other: BodyData): Boolean {
-        return rectangle.overlaps(other.rectangle)
-    }
-
-    fun relation(other: BodyData?): BodyRelation {
-        if (other == null) {
-            return BodyRelation.DISJOINT
-        }
-        if (containsCenter(other)) {
-            return BodyRelation.CONTAIN_CENTER
-        }
-        if (overlaps(other)) {
-            return BodyRelation.OVERLAP
-        }
-        return BodyRelation.DISJOINT
-    }
-
-    fun hit(touchPoint: Point): Boolean {
-        val hit = rectangle.contains(touchPoint.x, touchPoint.y)
-        if (hit) {
-            body.act(
-                input = BodyInput(
-                    damage = status.health ?: 0f,
-                ),
-            )
-        }
-        return hit
-    }
-
-    //*****************************************************************************************************************
-
     val box: BodyBox = BodyBox(
         dragCoefficient = body.config.dragCoefficient,
         tankWidth = body.tank.width,
         tankHeight = body.tank.height,
-        width = width,
-        height = height,
+        width = body.config.width,
+        height = body.config.height,
         depth = body.config.depth,
         density = if (hungerStatus == BodyHungerStatus.DYING) {
             body.config.hunger?.corpseDensity ?: body.config.density
@@ -94,6 +37,20 @@ data class BodyData(
         x = status.x,
         y = status.y,
     )
+
+    //*****************************************************************************************************************
+
+    fun hit(touchPoint: Point): Boolean {
+        val hit = box.hit(touchPoint)
+        if (hit) {
+            body.act(
+                input = BodyInput(
+                    damage = status.health ?: 0f,
+                ),
+            )
+        }
+        return hit
+    }
 
     //*****************************************************************************************************************
 

@@ -68,9 +68,7 @@ object BodyStatusHelper {
                 )
             },
             tankSize = data.body.tank.width,
-            leftOrBottom = data.left,
-            rightOrTop = data.right,
-            drivingTarget = data.status.drivingTargetX,
+            reachDrivingTarget = data.box.reachDrivingTargetX,
             input = input,
             isDying = data.hungerStatus == BodyHungerStatus.DYING,
         )
@@ -87,9 +85,7 @@ object BodyStatusHelper {
                 )
             },
             tankSize = data.body.tank.height,
-            leftOrBottom = data.bottom,
-            rightOrTop = data.top,
-            drivingTarget = data.status.drivingTargetY,
+            reachDrivingTarget = data.box.reachDrivingTargetY,
             input = input,
             isDying = data.hungerStatus == BodyHungerStatus.DYING,
         )
@@ -221,7 +217,7 @@ object BodyStatusHelper {
                 return null
             }
             return foodSet.minBy {
-                data.distance(it.data)
+                data.box.distance(it.data.box)
             }
         }
 
@@ -229,7 +225,7 @@ object BodyStatusHelper {
         var growthDiff = 0f
         var dropDiff = 0f
         val targetFood = targetFood()
-        val foodRelation = data.relation(targetFood?.data)
+        val foodRelation = data.box.relation(targetFood?.data?.box)
 
         val isTurning = data.status.animationData.action == BodyStatus.AnimationData.Action.TURN
         if (targetFood != null && !isTurning && foodRelation == BodyRelation.CONTAIN_CENTER) {
@@ -306,9 +302,7 @@ object BodyStatusHelper {
         configSwimAct: BodyConfig.SwimAct?,
         swimAct: SwimAct?,
         tankSize: Float,
-        leftOrBottom: Float,
-        rightOrTop: Float,
-        drivingTarget: BodyStatus.DrivingTarget?,
+        reachDrivingTarget: Boolean,
         input: BodyInput,
         isDying: Boolean,
     ): SwimAct? {
@@ -321,8 +315,6 @@ object BodyStatusHelper {
         if (isDying) {
             return null
         }
-
-        val containDrivingTarget = drivingTarget?.position?.let { it in leftOrBottom..rightOrTop } ?: false
 
         fun createTargetingSwimAct(): SwimAct {
             return SwimAct(
@@ -366,7 +358,7 @@ object BodyStatusHelper {
                 updateSwimAct(swimAct)
             }
         } else {
-            if (isRemainingTimeUp || containDrivingTarget) {
+            if (isRemainingTimeUp || reachDrivingTarget) {
                 createIdlingSwimAct()
             } else {
                 updateSwimAct(swimAct)
