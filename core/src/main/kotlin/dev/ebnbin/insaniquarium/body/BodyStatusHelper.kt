@@ -30,11 +30,11 @@ object BodyStatusHelper {
         status: BodyStatus,
         input: BodyInput,
     ): BodyStatus {
-        val nextVelocityX = data.force.nextVelocityX(input.delta)
-        val nextVelocityY = data.force.nextVelocityY(input.delta)
+        val nextVelocityX = data.box.nextVelocityX(input.delta)
+        val nextVelocityY = data.box.nextVelocityY(input.delta)
 
-        val nextX = data.force.nextX(input.delta)
-        val nextY = data.force.nextY(input.delta)
+        val nextX = data.box.nextX(input.delta)
+        val nextY = data.box.nextY(input.delta)
 
         val nextEatAct = nextEatAct(
             tank = data.body.tank,
@@ -160,7 +160,7 @@ object BodyStatusHelper {
 
         val hasTurnAnimation = data.body.config.animations.turn != null
         val nextExpectedIsFacingRight = if (hasTurnAnimation) {
-            when (data.force.expectedDirection) {
+            when (data.box.expectedDirection) {
                 Direction.ZERO -> status.expectedIsFacingRight
                 Direction.POSITIVE -> true
                 Direction.NEGATIVE -> false
@@ -475,7 +475,7 @@ object BodyStatusHelper {
             return null
         }
         return if (disappearAct == null) {
-            if (data.force.isSinkingOrFloatingOutsideWater) {
+            if (data.box.isSinkingOrFloatingOutsideWater) {
                 BodyStatus.DisappearAct()
             } else {
                 null

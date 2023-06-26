@@ -14,7 +14,7 @@ object BodyDevHelper {
         baseGame.putLog("type,id         ") {
             "${data.body.type.serializedName},${data.body.id}"
         }
-        data.force.devPutLogs()
+        data.box.devPutLogs()
         baseGame.putLog("health          ") {
             "${data.status.health?.devText()}"
         }
@@ -33,11 +33,11 @@ object BodyDevHelper {
         shapes.rect(data.left, data.bottom, data.width, data.height)
         shapes.line(data.left, data.bottom, data.right, data.top)
         shapes.line(data.left, data.top, data.right, data.bottom)
-        val halfDepth: Float = data.force.depth / 2f
+        val halfDepth: Float = data.box.depth / 2f
         val depthLeft: Float = data.status.x - halfDepth
         val depthBottom: Float = data.status.y - halfDepth
-        shapes.rect(depthLeft, data.bottom, data.force.depth, data.height)
-        shapes.rect(data.left, depthBottom, data.width, data.force.depth)
+        shapes.rect(depthLeft, data.bottom, data.box.depth, data.height)
+        shapes.rect(data.left, depthBottom, data.width, data.box.depth)
         data.status.drivingTargetX?.let {
             shapes.line(it.position, 0f, it.position, data.body.tank.height)
         }

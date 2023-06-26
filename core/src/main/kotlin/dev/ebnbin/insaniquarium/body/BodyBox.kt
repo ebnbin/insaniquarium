@@ -7,7 +7,7 @@ import dev.ebnbin.gdx.utils.XY
 import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.minMax
 
-data class BodyForce(
+data class BodyBox(
     val dragCoefficient: Float,
     val tankWidth: Float,
     val tankHeight: Float,

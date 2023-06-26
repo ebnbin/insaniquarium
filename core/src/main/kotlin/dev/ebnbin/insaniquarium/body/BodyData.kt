@@ -75,7 +75,7 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val force: BodyForce = BodyForce(
+    val box: BodyBox = BodyBox(
         dragCoefficient = body.config.dragCoefficient,
         tankWidth = body.tank.width,
         tankHeight = body.tank.height,
