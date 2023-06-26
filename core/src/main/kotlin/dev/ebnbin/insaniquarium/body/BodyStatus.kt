@@ -9,18 +9,17 @@ data class BodyStatus(
     val x: Float = 0f,
     val y: Float = 0f,
 
-    val eatAct: EatAct? = null,
-
-    val touchAct: TouchAct? = null,
-
     val swimActX: SwimAct? = null,
     val swimActY: SwimAct? = null,
-
-    val disappearAct: DisappearAct? = null,
 
     val health: Float? = null,
 
     val hunger: Float? = null,
+
+    val disappearAct: DisappearAct? = null,
+
+    val drivingTargetX: DrivingTarget? = null,
+    val drivingTargetY: DrivingTarget? = null,
 
     val expectedIsFacingRight: Boolean = false,
 

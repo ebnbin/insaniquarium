@@ -113,7 +113,9 @@ object BodyActHelper {
         configSwimAct: BodyConfig.SwimAct?,
         swimAct: BodyStatus.SwimAct?,
         tankSize: Float,
-        containDrivingTarget: Boolean,
+        leftOrBottom: Float,
+        rightOrTop: Float,
+        drivingTarget: BodyStatus.DrivingTarget?,
         input: BodyInput,
         isDying: Boolean,
     ): BodyStatus.SwimAct? {
@@ -126,6 +128,8 @@ object BodyActHelper {
         if (isDying) {
             return null
         }
+
+        val containDrivingTarget = drivingTarget?.position?.let { it in leftOrBottom..rightOrTop } ?: false
 
         fun createTargetingSwimAct(): BodyStatus.SwimAct {
             return BodyStatus.SwimAct(

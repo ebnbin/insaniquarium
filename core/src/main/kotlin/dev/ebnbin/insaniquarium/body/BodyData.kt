@@ -90,22 +90,6 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val drivingTargetX: BodyStatus.DrivingTarget? = if (hungerStatus == HungerStatus.DYING) {
-        null
-    } else {
-        status.eatAct?.drivingTargetX ?: status.touchAct?.drivingTargetX ?: status.swimActX?.drivingTarget
-    }
-    val drivingTargetY: BodyStatus.DrivingTarget? = if (hungerStatus == HungerStatus.DYING) {
-        null
-    } else {
-        status.eatAct?.drivingTargetY ?: status.touchAct?.drivingTargetY ?: status.swimActY?.drivingTarget
-    }
-
-    val containDrivingTargetX: Boolean = drivingTargetX?.position?.let { it in left..right } ?: false
-    val containDrivingTargetY: Boolean = drivingTargetY?.position?.let { it in bottom..top } ?: false
-
-    //*****************************************************************************************************************
-
     val dragCoefficient: Float = body.config.dragCoefficient
 
     val gravityY: Float = BodyForceHelper.gravityY(
@@ -129,13 +113,13 @@ data class BodyData(
     )
 
     val drivingX: Float = BodyForceHelper.driving(
-        drivingTarget = drivingTargetX,
+        drivingTarget = status.drivingTargetX,
         position = status.x,
         velocity = status.velocityX,
         mass = mass,
     )
     val drivingY: Float = BodyForceHelper.driving(
-        drivingTarget = drivingTargetY,
+        drivingTarget = status.drivingTargetY,
         position = status.y,
         velocity = status.velocityY,
         mass = mass,

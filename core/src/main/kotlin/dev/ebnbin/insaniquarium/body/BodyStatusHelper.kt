@@ -63,7 +63,9 @@ object BodyStatusHelper {
             configSwimAct = data.body.config.swimActX,
             swimAct = status.swimActX,
             tankSize = data.body.tank.width,
-            containDrivingTarget = data.containDrivingTargetX,
+            leftOrBottom = data.left,
+            rightOrTop = data.right,
+            drivingTarget = data.status.drivingTargetX,
             input = input,
             isDying = data.hungerStatus == HungerStatus.DYING,
         )
@@ -72,10 +74,27 @@ object BodyStatusHelper {
             configSwimAct = data.body.config.swimActY,
             swimAct = status.swimActY,
             tankSize = data.body.tank.height,
-            containDrivingTarget = data.containDrivingTargetY,
+            leftOrBottom = data.bottom,
+            rightOrTop = data.top,
+            drivingTarget = data.status.drivingTargetY,
             input = input,
             isDying = data.hungerStatus == HungerStatus.DYING,
         )
+
+        val nextHealth = BodyActHelper.nextHealth(
+            configHealth = data.body.config.health,
+            health = status.health,
+            input = input,
+        )
+
+        val nextHunger = BodyActHelper.nextHunger(
+            configHunger = data.body.config.hunger,
+            hunger = status.hunger,
+            eatAct = nextEatAct,
+            input = input,
+        )
+
+        val nextHungerStatus = data.body.config.hunger?.status(nextHunger)
 
         val nextDisappearAct = BodyActHelper.nextDisappearAct(
             canDisappear = status.textureRegionData.animationAction == BodyConfig.AnimationAction.DIE &&
@@ -84,6 +103,17 @@ object BodyStatusHelper {
             data = data,
             input = input,
         )
+
+        val nextDrivingTargetX: BodyStatus.DrivingTarget? = if (nextHungerStatus == HungerStatus.DYING) {
+            null
+        } else {
+            nextEatAct?.drivingTargetX ?: nextTouchAct?.drivingTargetX ?: nextSwimActX?.drivingTarget
+        }
+        val nextDrivingTargetY: BodyStatus.DrivingTarget? = if (nextHungerStatus == HungerStatus.DYING) {
+            null
+        } else {
+            nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
+        }
 
         val nextExpectedIsFacingRight = if (data.hasTurnAnimation) {
             when (data.drivingX.direction) {
@@ -99,19 +129,6 @@ object BodyStatusHelper {
             false
         }
 
-        val nextHealth = BodyActHelper.nextHealth(
-            configHealth = data.body.config.health,
-            health = status.health,
-            input = input,
-        )
-
-        val nextHunger = BodyActHelper.nextHunger(
-            configHunger = data.body.config.hunger,
-            hunger = status.hunger,
-            eatAct = nextEatAct,
-            input = input,
-        )
-
         val nextTextureRegionData = BodyDrawHelper.nextTextureRegionData(
             config = data.body.config,
             hasTurnAnimation = data.hasTurnAnimation,
@@ -120,7 +137,7 @@ object BodyStatusHelper {
             canAnimationActionChange = data.canAnimationActionChange,
             expectedIsFacingRight = status.expectedIsFacingRight,
             eatAct = nextEatAct,
-            hungerStatus = data.hungerStatus,
+            hungerStatus = nextHungerStatus,
             input = input,
         )
 
@@ -129,13 +146,13 @@ object BodyStatusHelper {
             velocityY = nextVelocityY,
             x = nextX,
             y = nextY,
-            eatAct = nextEatAct,
-            touchAct = nextTouchAct,
             swimActX = nextSwimActX,
             swimActY = nextSwimActY,
-            disappearAct = nextDisappearAct,
             health = nextHealth,
             hunger = nextHunger,
+            disappearAct = nextDisappearAct,
+            drivingTargetX = nextDrivingTargetX,
+            drivingTargetY = nextDrivingTargetY,
             expectedIsFacingRight = nextExpectedIsFacingRight,
             textureRegionData = nextTextureRegionData,
         )

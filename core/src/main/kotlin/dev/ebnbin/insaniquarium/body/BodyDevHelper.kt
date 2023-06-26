@@ -64,10 +64,10 @@ object BodyDevHelper {
         shapes.line(data.left, data.top, data.right, data.bottom)
         shapes.rect(data.depthLeft, data.bottom, data.depth, data.height)
         shapes.rect(data.left, data.depthBottom, data.width, data.depth)
-        data.drivingTargetX?.let {
+        data.status.drivingTargetX?.let {
             shapes.line(it.position, 0f, it.position, data.body.tank.height)
         }
-        data.drivingTargetY?.let {
+        data.status.drivingTargetY?.let {
             shapes.line(0f, it.position, data.body.tank.width, it.position)
         }
     }
