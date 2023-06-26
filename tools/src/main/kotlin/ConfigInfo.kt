@@ -104,11 +104,16 @@ object ConfigInfo {
                     BodyType.FISH_FOOD to BodyConfig.Food(
                         damagePerSecond = 10f,
                         hunger = 20f,
+                        growth = 5f,
                     ),
                 ),
                 drivingAccelerationX = 0.4f,
                 drivingAccelerationY = 0.25f,
                 corpseDensity = 1020f,
+            ),
+            growth = BodyConfig.Growth(
+                full = 10f,
+                bodyType = BodyType.GUPPY_MEDIUM,
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
@@ -189,11 +194,16 @@ object ConfigInfo {
                     BodyType.FISH_FOOD to BodyConfig.Food(
                         damagePerSecond = 10f,
                         hunger = 20f,
+                        growth = 5f,
                     ),
                 ),
                 drivingAccelerationX = 0.4f,
                 drivingAccelerationY = 0.25f,
                 corpseDensity = 1020f,
+            ),
+            growth = BodyConfig.Growth(
+                full = 15f,
+                bodyType = BodyType.GUPPY_LARGE,
             ),
             drop = BodyConfig.Drop(
                 full = 20f,
@@ -279,11 +289,16 @@ object ConfigInfo {
                     BodyType.FISH_FOOD to BodyConfig.Food(
                         damagePerSecond = 10f,
                         hunger = 20f,
+                        growth = 5f,
                     ),
                 ),
                 drivingAccelerationX = 0.4f,
                 drivingAccelerationY = 0.25f,
                 corpseDensity = 1020f,
+            ),
+            growth = BodyConfig.Growth(
+                full = 25f,
+                bodyType = BodyType.GUPPY_KING,
             ),
             drop = BodyConfig.Drop(
                 full = 20f,

@@ -35,6 +35,7 @@ data class BodyConfigInfo(
     val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
     val health: BodyConfig.Health? = null,
     val hunger: BodyConfig.Hunger? = null,
+    val growth: BodyConfig.Growth? = null,
     val drop: BodyConfig.Drop? = null,
     val touchAct: BodyConfig.TouchAct? = null,
     val swimActX: BodyConfig.SwimAct? = null,

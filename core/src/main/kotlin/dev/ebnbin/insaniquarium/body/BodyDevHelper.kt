@@ -56,6 +56,12 @@ object BodyDevHelper {
         baseGame.putLog("hunger          ") {
             "${data.status.hunger?.devText()},${data.hungerStatus}"
         }
+        baseGame.putLog("growth          ") {
+            "${data.status.growth?.devText()}"
+        }
+        baseGame.putLog("drop            ") {
+            "${data.status.drop?.devText()}"
+        }
     }
 
     fun draw(data: BodyData, shapes: ShapeRenderer) {

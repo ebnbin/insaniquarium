@@ -29,6 +29,19 @@ class Body(
         data = data.update(input)
         if (data.canRemove) {
             tank.removeBody(this)
+            if (data.canGrowth) {
+                require(config.growth != null)
+                val growth = data.status.growth
+                require(growth != null)
+                tank.addBody(
+                    type = config.growth.bodyType,
+                    createStatus = {
+                        data.status.copy(
+                            growth = growth - config.growth.full,
+                        )
+                    },
+                )
+            }
             return this
         }
         data.act()

@@ -22,6 +22,8 @@ data class BodyConfig(
     @Expose
     val hunger: Hunger? = null,
     @Expose
+    val growth: Growth? = null,
+    @Expose
     val drop: Drop? = null,
     @Expose
     val touchAct: TouchAct? = null,
@@ -77,11 +79,20 @@ data class BodyConfig(
         val corpseDensity: Float? = null,
     )
 
+    data class Growth(
+        @Expose
+        val full: Float,
+        @Expose
+        val bodyType: BodyType,
+    )
+
     data class Food(
         @Expose
         val damagePerSecond: Float = 0f,
         @Expose
         val hunger: Float = 0f,
+        @Expose
+        val growth: Float = 0f,
         @Expose
         val drop: Float = 0f,
     )

@@ -197,7 +197,12 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val canRemove: Boolean = (status.disappearAct?.canRemove() == true) || (status.health == 0f)
+    val canGrowth: Boolean = body.config.growth != null && status.growth != null &&
+        status.growth >= body.config.growth.full
+
+    val canRemove: Boolean = (status.disappearAct?.canRemove() == true) ||
+        (status.health == 0f) ||
+        (canGrowth)
 
     //*****************************************************************************************************************
 

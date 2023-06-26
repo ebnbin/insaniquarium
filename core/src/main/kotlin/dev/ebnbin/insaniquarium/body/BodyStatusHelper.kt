@@ -13,6 +13,7 @@ object BodyStatusHelper {
         val drivingTargetY: BodyStatus.DrivingTarget?,
         val foodRelation: BodyRelation,
         val hungerDiff: Float,
+        val growthDiff: Float,
         val dropDiff: Float,
     )
 
@@ -147,6 +148,12 @@ object BodyStatusHelper {
             input = input,
         )
 
+        val nextGrowth = nextGrowth(
+            configGrowth = data.body.config.growth,
+            growth = status.growth,
+            eatAct = nextEatAct,
+        )
+
         val nextDrop = nextDrop(
             body = data.body,
             configDrop = data.body.config.drop,
@@ -214,6 +221,7 @@ object BodyStatusHelper {
             swimActY = nextStatusSwimActY,
             health = nextHealth,
             hunger = nextHunger,
+            growth = nextGrowth,
             drop = nextDrop,
             disappearAct = nextDisappearAct,
             drivingTargetX = nextDrivingTargetX,
@@ -248,6 +256,7 @@ object BodyStatusHelper {
         }
 
         var hungerDiff = 0f
+        var growthDiff = 0f
         var dropDiff = 0f
         val targetFood = targetFood()
         val foodRelation = data.relation(targetFood?.data)
@@ -262,6 +271,7 @@ object BodyStatusHelper {
             )
             if (foodBody.data.canRemove) {
                 hungerDiff = food.hunger
+                growthDiff = food.growth
                 dropDiff = food.drop
             }
         }
@@ -286,6 +296,7 @@ object BodyStatusHelper {
             },
             foodRelation = foodRelation,
             hungerDiff = hungerDiff,
+            growthDiff = growthDiff,
             dropDiff = dropDiff,
         )
     }
@@ -426,6 +437,25 @@ object BodyStatusHelper {
             nextHunger += eatAct.hungerDiff
         }
         return configHunger.minMax(nextHunger)
+    }
+
+    private fun nextGrowth(
+        configGrowth: BodyConfig.Growth?,
+        growth: Float?,
+        eatAct: EatAct?,
+    ): Float? {
+        if (configGrowth == null) {
+            return null
+        }
+        if (growth == null) {
+            return 0f
+        }
+
+        var nextGrowth = growth
+        if (eatAct != null) {
+            nextGrowth += eatAct.growthDiff
+        }
+        return nextGrowth
     }
 
     private fun nextDrop(
