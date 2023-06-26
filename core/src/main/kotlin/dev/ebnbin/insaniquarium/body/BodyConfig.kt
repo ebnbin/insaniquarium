@@ -99,20 +99,6 @@ data class BodyConfig(
         val die: TextureRegionAnimation? = null,
     )
 
-    enum class AnimationAction(override val serializedName: String) : SerializableEnum {
-        SWIM("swim"),
-        TURN("turn"),
-        EAT("eat"),
-        DIE("die"),
-        ;
-    }
-
-    enum class AnimationStatus(override val serializedName: String) : SerializableEnum {
-        NORMAL("normal"),
-        HUNGRY("hungry"),
-        ;
-    }
-
     data class TouchAct(
         @Expose
         val accelerationX: Float,

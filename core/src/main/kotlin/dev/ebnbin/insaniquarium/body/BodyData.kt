@@ -168,22 +168,22 @@ data class BodyData(
 
     val hasTurnAnimation: Boolean = body.config.animations.turn != null
 
-    val animation: TextureRegionAnimation = status.textureRegionData.getAnimation(body.config.animations)
+    val animation: TextureRegionAnimation = status.animationData.getAnimation(body.config.animations)
 
-    val isAnimationFinished: Boolean = status.textureRegionData.animationAction != BodyConfig.AnimationAction.SWIM &&
-        status.textureRegionData.stateTime >= animation.duration
+    val isAnimationFinished: Boolean = status.animationData.action != BodyStatus.AnimationData.Action.SWIM &&
+        status.animationData.stateTime >= animation.duration
 
-    val canAnimationActionChange: Boolean = status.textureRegionData.animationAction == BodyConfig.AnimationAction.SWIM
+    val canAnimationActionChange: Boolean = status.animationData.action == BodyStatus.AnimationData.Action.SWIM
 
-    val textureRegion: TextureRegion = animation.getTextureRegion(status.textureRegionData.stateTime)
+    val textureRegion: TextureRegion = animation.getTextureRegion(status.animationData.stateTime)
 
     val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
     val actorHeight: Float = textureRegion.regionHeight.toFloat().unitToMeter
 
-    val isFlipX: Boolean = if (status.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN) {
-        !status.textureRegionData.isFacingRight
+    val isFlipX: Boolean = if (status.animationData.action == BodyStatus.AnimationData.Action.TURN) {
+        !status.animationData.isFacingRight
     } else {
-        status.textureRegionData.isFacingRight
+        status.animationData.isFacingRight
     }
 
     val alpha: Float = if (status.disappearAct == null || status.disappearAct.time >= 0f) {
@@ -195,7 +195,7 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val canRemove: Boolean = (status.disappearAct?.canRemove == true) || (status.health == 0f)
+    val canRemove: Boolean = (status.disappearAct?.canRemove() == true) || (status.health == 0f)
 
     //*****************************************************************************************************************
 

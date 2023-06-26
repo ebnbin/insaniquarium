@@ -1,5 +1,6 @@
 package dev.ebnbin.insaniquarium.body
 
+import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.asset.Asset
 import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.minMax
@@ -17,27 +18,6 @@ fun BodyType.assets(): Set<Asset<*>> {
         config.animations.die,
     ).mapTo(mutableSetOf()) {
         baseGame.assets.texture.getValue(it.assetId)
-    }
-}
-
-data class DrivingTarget(
-    val type: Type,
-    val position: Float,
-    val acceleration: Float,
-    /**
-     * The acceleration multiplier when the direction of velocity is opposite to the direction of the target.
-     */
-    val oppositeAccelerationMultiplier: Float = DEFAULT_OPPOSITE_ACCELERATION_MULTIPLIER,
-) {
-    enum class Type {
-        EAT,
-        TOUCH,
-        SWIM,
-        ;
-    }
-
-    companion object {
-        private const val DEFAULT_OPPOSITE_ACCELERATION_MULTIPLIER = 1.5f
     }
 }
 
@@ -104,4 +84,35 @@ fun BodyConfig.Hunger?.status(hunger: Float?): HungerStatus? {
 fun BodyConfig.Hunger.minMax(hunger: Float): Float {
     val maxHunger = full * maxPercent
     return hunger.minMax(0f, maxHunger)
+}
+
+fun BodyStatus.AnimationData.getAnimation(animations: BodyConfig.Animations): TextureRegionAnimation {
+    return when (action) {
+        BodyStatus.AnimationData.Action.SWIM -> {
+            when (status) {
+                BodyStatus.AnimationData.Status.NORMAL -> animations.swim
+                BodyStatus.AnimationData.Status.HUNGRY -> animations.hungry ?: animations.swim
+            }
+        }
+        BodyStatus.AnimationData.Action.TURN -> {
+            when (status) {
+                BodyStatus.AnimationData.Status.NORMAL -> requireNotNull(animations.turn)
+                BodyStatus.AnimationData.Status.HUNGRY -> animations.hungryTurn ?: requireNotNull(animations.turn)
+            }
+        }
+        BodyStatus.AnimationData.Action.EAT -> {
+            when (status) {
+                BodyStatus.AnimationData.Status.NORMAL -> requireNotNull(animations.eat)
+                BodyStatus.AnimationData.Status.HUNGRY -> animations.hungryEat ?: requireNotNull(animations.eat)
+            }
+        }
+        BodyStatus.AnimationData.Action.DIE -> {
+            requireNotNull(status == BodyStatus.AnimationData.Status.HUNGRY) // FIXME
+            return animations.die ?: animations.swim
+        }
+    }
+}
+
+fun BodyStatus.DisappearAct.canRemove(): Boolean {
+    return time <= -BodyStatus.DisappearAct.DISAPPEAR_DURATION
 }

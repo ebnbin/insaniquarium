@@ -1,71 +1,71 @@
 package dev.ebnbin.insaniquarium.body
 
 object BodyDrawHelper {
-    fun nextTextureRegionData(
+    fun nextAnimationData(
         config: BodyConfig,
         hasTurnAnimation: Boolean,
-        textureRegionData: BodyStatus.TextureRegionData,
+        animationData: BodyStatus.AnimationData,
         isAnimationFinished: Boolean,
         canAnimationActionChange: Boolean,
         expectedIsFacingRight: Boolean,
         canPlayEatAnimation: Boolean,
         hungerStatus: HungerStatus?,
         input: BodyInput,
-    ): BodyStatus.TextureRegionData {
+    ): BodyStatus.AnimationData {
         val isDying = hungerStatus == HungerStatus.DYING
 
         val animationStatus = if (hungerStatus == HungerStatus.HUNGRY || isDying) {
-            BodyConfig.AnimationStatus.HUNGRY
+            BodyStatus.AnimationData.Status.HUNGRY
         } else {
-            BodyConfig.AnimationStatus.NORMAL
+            BodyStatus.AnimationData.Status.NORMAL
         }
 
-        fun createEatTextureRegionData(): BodyStatus.TextureRegionData {
-            return BodyStatus.TextureRegionData(
-                animationAction = BodyConfig.AnimationAction.EAT,
-                animationStatus = animationStatus,
+        fun createEatTextureRegionData(): BodyStatus.AnimationData {
+            return BodyStatus.AnimationData(
+                action = BodyStatus.AnimationData.Action.EAT,
+                status = animationStatus,
                 stateTime = 0f,
-                isFacingRight = textureRegionData.isFacingRight,
+                isFacingRight = animationData.isFacingRight,
             )
         }
 
-        fun createTurnTextureRegionData(): BodyStatus.TextureRegionData {
-            return BodyStatus.TextureRegionData(
-                animationAction = BodyConfig.AnimationAction.TURN,
-                animationStatus = animationStatus,
+        fun createTurnTextureRegionData(): BodyStatus.AnimationData {
+            return BodyStatus.AnimationData(
+                action = BodyStatus.AnimationData.Action.TURN,
+                status = animationStatus,
                 stateTime = 0f,
                 isFacingRight = expectedIsFacingRight,
             )
         }
 
-        fun createSwimTextureRegionData(): BodyStatus.TextureRegionData {
-            return BodyStatus.TextureRegionData(
-                animationAction = BodyConfig.AnimationAction.SWIM,
-                animationStatus = animationStatus,
+        fun createSwimTextureRegionData(): BodyStatus.AnimationData {
+            return BodyStatus.AnimationData(
+                action = BodyStatus.AnimationData.Action.SWIM,
+                status = animationStatus,
                 stateTime = 0f,
-                isFacingRight = textureRegionData.isFacingRight,
+                isFacingRight = animationData.isFacingRight,
             )
         }
 
-        fun createDieTextureRegionData(): BodyStatus.TextureRegionData {
-            return BodyStatus.TextureRegionData(
-                animationAction = BodyConfig.AnimationAction.DIE,
-                animationStatus = BodyConfig.AnimationStatus.HUNGRY,
+        fun createDieTextureRegionData(): BodyStatus.AnimationData {
+            return BodyStatus.AnimationData(
+                action = BodyStatus.AnimationData.Action.DIE,
+                status = BodyStatus.AnimationData.Status.HUNGRY,
                 stateTime = 0f,
-                isFacingRight = textureRegionData.isFacingRight,
+                isFacingRight = animationData.isFacingRight,
             )
         }
 
-        fun updateTextureRegionData(): BodyStatus.TextureRegionData {
-            return BodyStatus.TextureRegionData(
-                animationAction = textureRegionData.animationAction,
-                animationStatus = if (textureRegionData.animationAction == BodyConfig.AnimationAction.DIE) {
-                    BodyConfig.AnimationStatus.HUNGRY
+        fun updateTextureRegionData(): BodyStatus.AnimationData {
+            return BodyStatus.AnimationData(
+                action = animationData.action,
+                status = if (animationData.action == BodyStatus.AnimationData.Action.DIE) {
+                    BodyStatus.AnimationData.Status.HUNGRY
                 } else {
                     animationStatus
                 },
-                stateTime = textureRegionData.stateTime + input.delta,
-                isFacingRight = textureRegionData.isFacingRight,
+                stateTime = animationData.stateTime + input.delta,
+                isFacingRight = animationData.isFacingRight,
             )
         }
 
@@ -75,7 +75,7 @@ object BodyDrawHelper {
             } else if (config.animations.eat != null && canPlayEatAnimation) {
                 createEatTextureRegionData()
             } else {
-                if (hasTurnAnimation && textureRegionData.isFacingRight != expectedIsFacingRight) {
+                if (hasTurnAnimation && animationData.isFacingRight != expectedIsFacingRight) {
                     createTurnTextureRegionData()
                 } else {
                     updateTextureRegionData()
