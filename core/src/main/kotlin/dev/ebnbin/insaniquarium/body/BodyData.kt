@@ -15,7 +15,7 @@ data class BodyData(
     val status: BodyStatus,
     val input: BodyInput,
 ) {
-    val hungerStatus: HungerStatus? = body.config.hunger?.status(status.hunger)
+    val hungerStatus: BodyHungerStatus? = body.config.hunger?.status(status.hunger)
 
     //*****************************************************************************************************************
 
@@ -86,7 +86,7 @@ data class BodyData(
 
     val volume: Float = area * depth
 
-    val density: Float = if (hungerStatus == HungerStatus.DYING) {
+    val density: Float = if (hungerStatus == BodyHungerStatus.DYING) {
         body.config.hunger?.corpseDensity ?: body.config.density
     } else {
         body.config.density

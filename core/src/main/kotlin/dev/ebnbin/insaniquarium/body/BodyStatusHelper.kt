@@ -74,7 +74,7 @@ object BodyStatusHelper {
             enabled = !hasEatDrivingTarget,
             tank = data.body.tank,
             configTouchAct = data.body.config.touchAct,
-            isDying = data.hungerStatus == HungerStatus.DYING,
+            isDying = data.hungerStatus == BodyHungerStatus.DYING,
         )
 
         val hasTouchDrivingTarget = nextTouchAct != null
@@ -96,7 +96,7 @@ object BodyStatusHelper {
             rightOrTop = data.right,
             drivingTarget = data.status.drivingTargetX,
             input = input,
-            isDying = data.hungerStatus == HungerStatus.DYING,
+            isDying = data.hungerStatus == BodyHungerStatus.DYING,
         )
         val nextSwimActY = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
@@ -115,7 +115,7 @@ object BodyStatusHelper {
             rightOrTop = data.top,
             drivingTarget = data.status.drivingTargetY,
             input = input,
-            isDying = data.hungerStatus == HungerStatus.DYING,
+            isDying = data.hungerStatus == BodyHungerStatus.DYING,
         )
 
         val nextStatusSwimActX = if (nextSwimActX == null) {
@@ -156,12 +156,12 @@ object BodyStatusHelper {
             input = input,
         )
 
-        val nextDrivingTargetX: BodyStatus.DrivingTarget? = if (nextHungerStatus == HungerStatus.DYING) {
+        val nextDrivingTargetX: BodyStatus.DrivingTarget? = if (nextHungerStatus == BodyHungerStatus.DYING) {
             null
         } else {
             nextEatAct?.drivingTargetX ?: nextTouchAct?.drivingTargetX ?: nextSwimActX?.drivingTarget
         }
-        val nextDrivingTargetY: BodyStatus.DrivingTarget? = if (nextHungerStatus == HungerStatus.DYING) {
+        val nextDrivingTargetY: BodyStatus.DrivingTarget? = if (nextHungerStatus == BodyHungerStatus.DYING) {
             null
         } else {
             nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
@@ -215,7 +215,7 @@ object BodyStatusHelper {
     private fun nextEatAct(
         tank: Tank,
         configEatAct: BodyConfig.EatAct?,
-        hungerStatus: HungerStatus?,
+        hungerStatus: BodyHungerStatus?,
         data: BodyData,
         input: BodyInput,
     ): EatAct? {
@@ -224,7 +224,7 @@ object BodyStatusHelper {
         }
 
         fun targetFood(): Body? {
-            if (hungerStatus == HungerStatus.FULL || hungerStatus == HungerStatus.DYING) {
+            if (hungerStatus == BodyHungerStatus.FULL || hungerStatus == BodyHungerStatus.DYING) {
                 return null
             }
             val foodSet = tank.findBodyByType(configEatAct.foods.keys)
@@ -451,12 +451,12 @@ object BodyStatusHelper {
         canAnimationActionChange: Boolean,
         expectedIsFacingRight: Boolean,
         canPlayEatAnimation: Boolean,
-        hungerStatus: HungerStatus?,
+        hungerStatus: BodyHungerStatus?,
         input: BodyInput,
     ): BodyStatus.AnimationData {
-        val isDying = hungerStatus == HungerStatus.DYING
+        val isDying = hungerStatus == BodyHungerStatus.DYING
 
-        val animationStatus = if (hungerStatus == HungerStatus.HUNGRY || isDying) {
+        val animationStatus = if (hungerStatus == BodyHungerStatus.HUNGRY || isDying) {
             BodyStatus.AnimationData.Status.HUNGRY
         } else {
             BodyStatus.AnimationData.Status.NORMAL

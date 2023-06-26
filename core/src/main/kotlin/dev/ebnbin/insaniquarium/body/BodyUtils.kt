@@ -28,7 +28,7 @@ enum class BodyRelation {
     ;
 }
 
-enum class HungerStatus {
+enum class BodyHungerStatus {
     FULL,
     NOT_FULL,
     HUNGRY,
@@ -36,7 +36,7 @@ enum class HungerStatus {
     ;
 }
 
-fun BodyConfig.Hunger?.status(hunger: Float?): HungerStatus? {
+fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
     if (this == null || hunger == null) {
         return null
     }
@@ -44,13 +44,13 @@ fun BodyConfig.Hunger?.status(hunger: Float?): HungerStatus? {
         hunger == 0f -> {
             // NOT_FULL or HUNGRY or DYING.
             if (canDie) {
-                HungerStatus.DYING
+                BodyHungerStatus.DYING
             } else {
                 // NOT_FULL or HUNGRY.
                 if (hungryPercent == 0f) {
-                    HungerStatus.NOT_FULL
+                    BodyHungerStatus.NOT_FULL
                 } else {
-                    HungerStatus.HUNGRY
+                    BodyHungerStatus.HUNGRY
                 }
             }
         }
@@ -59,24 +59,24 @@ fun BodyConfig.Hunger?.status(hunger: Float?): HungerStatus? {
             if (maxPercent == 1f) {
                 // NOT_FULL or HUNGRY.
                 if (hungryPercent == 1f) {
-                    HungerStatus.HUNGRY
+                    BodyHungerStatus.HUNGRY
                 } else {
-                    HungerStatus.NOT_FULL
+                    BodyHungerStatus.NOT_FULL
                 }
             } else {
-                return HungerStatus.FULL
+                return BodyHungerStatus.FULL
             }
         }
         hunger >= full * hungryPercent -> {
             // NOT_FULL or HUNGRY.
             if (hungryPercent == 1f) {
-                HungerStatus.HUNGRY
+                BodyHungerStatus.HUNGRY
             } else {
-                HungerStatus.NOT_FULL
+                BodyHungerStatus.NOT_FULL
             }
         }
         else -> {
-            HungerStatus.HUNGRY
+            BodyHungerStatus.HUNGRY
         }
     }
 }
