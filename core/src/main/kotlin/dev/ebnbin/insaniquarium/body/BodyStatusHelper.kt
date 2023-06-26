@@ -30,35 +30,11 @@ object BodyStatusHelper {
         status: BodyStatus,
         input: BodyInput,
     ): BodyStatus {
-        val nextVelocityX = BodyForceHelper.nextVelocity(
-            velocity = status.velocityX,
-            acceleration = data.force.accelerationX,
-            isInsideLeftOrBottom = data.isInsideLeft,
-            isInsideRightOrTop = data.isInsideRight,
-            input = input,
-        )
-        val nextVelocityY = BodyForceHelper.nextVelocity(
-            velocity = status.velocityY,
-            acceleration = data.force.accelerationY,
-            isInsideLeftOrBottom = data.isInsideBottom,
-            isInsideRightOrTop = true,
-            input = input,
-        )
+        val nextVelocityX = data.force.nextVelocityX(input.delta)
+        val nextVelocityY = data.force.nextVelocityY(input.delta)
 
-        val nextX = BodyForceHelper.nextPosition(
-            position = status.x,
-            velocity = nextVelocityX,
-            minPosition = data.minX,
-            maxPosition = data.maxX,
-            input = input,
-        )
-        val nextY = BodyForceHelper.nextPosition(
-            position = status.y,
-            velocity = nextVelocityY,
-            minPosition = data.minY,
-            maxPosition = data.maxY,
-            input = input,
-        )
+        val nextX = data.force.nextX(input.delta)
+        val nextY = data.force.nextY(input.delta)
 
         val nextEatAct = nextEatAct(
             tank = data.body.tank,

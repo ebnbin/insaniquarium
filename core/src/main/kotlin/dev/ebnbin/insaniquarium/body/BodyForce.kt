@@ -25,6 +25,12 @@ data class BodyForce(
     private val halfWidth: Float = width / 2f
     private val halfHeight: Float = height / 2f
 
+    private val minX: Float = halfWidth
+    private val maxX: Float = tankWidth - halfWidth
+
+    private val minY: Float = halfHeight
+    private val maxY: Float = Float.MAX_VALUE
+
     private val left: Float = x - halfWidth
     private val right: Float = left + width
     private val bottom: Float = y - halfHeight
@@ -102,11 +108,11 @@ data class BodyForce(
     private val forceX: Float = normalReactionX + normalX
     private val forceY: Float = normalReactionY + normalY
 
-    val accelerationX: Float = BodyForceHelper.acceleration(
+    private val accelerationX: Float = BodyForceHelper.acceleration(
         force = forceX,
         mass = mass,
     )
-    val accelerationY: Float = BodyForceHelper.acceleration(
+    private val accelerationY: Float = BodyForceHelper.acceleration(
         force = forceY,
         mass = mass,
     )
@@ -120,6 +126,46 @@ data class BodyForce(
     }
 
     val expectedDirection: Direction = drivingX.direction.takeIf { it != Direction.ZERO } ?: velocityX.direction
+
+    fun nextVelocityX(delta: Float): Float {
+        return BodyForceHelper.nextVelocity(
+            velocity = velocityX,
+            acceleration = accelerationX,
+            isInsideLeftOrBottom = isInsideLeft,
+            isInsideRightOrTop = isInsideRight,
+            delta = delta,
+        )
+    }
+
+    fun nextVelocityY(delta: Float): Float {
+        return BodyForceHelper.nextVelocity(
+            velocity = velocityY,
+            acceleration = accelerationY,
+            isInsideLeftOrBottom = isInsideBottom,
+            isInsideRightOrTop = true,
+            delta = delta,
+        )
+    }
+
+    fun nextX(delta: Float): Float {
+        return BodyForceHelper.nextPosition(
+            position = x,
+            velocity = velocityX, // TODO nextVelocityX
+            minPosition = minX,
+            maxPosition = maxX,
+            delta = delta,
+        )
+    }
+
+    fun nextY(delta: Float): Float {
+        return BodyForceHelper.nextPosition(
+            position = y,
+            velocity = velocityY, // TODO nextVelocityY
+            minPosition = minY,
+            maxPosition = maxY,
+            delta = delta,
+        )
+    }
 
     //*****************************************************************************************************************
 

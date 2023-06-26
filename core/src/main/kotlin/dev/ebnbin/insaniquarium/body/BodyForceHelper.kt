@@ -69,9 +69,9 @@ object BodyForceHelper {
         acceleration: Float,
         isInsideLeftOrBottom: Boolean,
         isInsideRightOrTop: Boolean,
-        input: BodyInput,
+        delta: Float,
     ): Float {
-        val nextVelocity = velocity + acceleration * input.delta
+        val nextVelocity = velocity + acceleration * delta
         return if (!isInsideLeftOrBottom && nextVelocity < 0f || !isInsideRightOrTop && nextVelocity > 0f) {
             0f
         } else {
@@ -84,9 +84,9 @@ object BodyForceHelper {
         velocity: Float,
         minPosition: Float,
         maxPosition: Float,
-        input: BodyInput,
+        delta: Float,
     ): Float {
-        val nextPosition = position + velocity * input.delta
+        val nextPosition = position + velocity * delta
         return nextPosition.minMax(minPosition, maxPosition)
     }
 }

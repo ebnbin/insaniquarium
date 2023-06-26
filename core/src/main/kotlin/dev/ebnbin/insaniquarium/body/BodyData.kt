@@ -26,20 +26,10 @@ data class BodyData(
     val halfWidth: Float = width / 2f
     val halfHeight: Float = height / 2f
 
-    val minX: Float = halfWidth
-    val maxX: Float = body.tank.width - halfWidth
-
-    val minY: Float = halfHeight
-    val maxY: Float = Float.MAX_VALUE
-
     val left: Float = status.x - halfWidth
     val right: Float = left + width
     val bottom: Float = status.y - halfHeight
     val top: Float = bottom + height
-
-    val isInsideLeft: Boolean = left > 0f
-    val isInsideRight: Boolean = right < body.tank.width
-    val isInsideBottom: Boolean = bottom > 0f
 
     //*****************************************************************************************************************
 
