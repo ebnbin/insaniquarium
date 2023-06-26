@@ -62,6 +62,19 @@ data class BodyData(
         return rectangle.overlaps(other.rectangle)
     }
 
+    fun relation(other: BodyData?): BodyRelation {
+        if (other == null) {
+            return BodyRelation.DISJOINT
+        }
+        if (containsCenter(other)) {
+            return BodyRelation.CONTAIN_CENTER
+        }
+        if (overlaps(other)) {
+            return BodyRelation.OVERLAP
+        }
+        return BodyRelation.DISJOINT
+    }
+
     //*****************************************************************************************************************
 
     val depth: Float = body.config.depth

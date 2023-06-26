@@ -32,22 +32,10 @@ object BodyActHelper {
 
         var hungerDiff = 0f
         val targetFood = targetFood()
-        val foodRelation = if (targetFood == null) {
-            BodyStatus.Relation.DISJOINT
-        } else {
-            if (data.containsCenter(targetFood.data)) {
-                BodyStatus.Relation.CONTAIN_CENTER
-            } else {
-                if (data.overlaps(targetFood.data)) {
-                    BodyStatus.Relation.OVERLAP
-                } else {
-                    BodyStatus.Relation.DISJOINT
-                }
-            }
-        }
+        val foodRelation = data.relation(targetFood?.data)
 
         val isTurning = data.status.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
-        if (targetFood != null && !isTurning && foodRelation == BodyStatus.Relation.CONTAIN_CENTER) {
+        if (targetFood != null && !isTurning && foodRelation == BodyRelation.CONTAIN_CENTER) {
             val food = configEatAct.foods.getValue(targetFood.data.body.type)
             val foodBody = targetFood.act(
                 input = BodyInput(

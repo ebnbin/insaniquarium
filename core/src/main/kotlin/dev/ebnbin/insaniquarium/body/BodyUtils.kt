@@ -41,6 +41,13 @@ data class DrivingTarget(
     }
 }
 
+enum class BodyRelation {
+    DISJOINT,
+    OVERLAP,
+    CONTAIN_CENTER,
+    ;
+}
+
 enum class HungerStatus {
     FULL,
     NOT_FULL,
