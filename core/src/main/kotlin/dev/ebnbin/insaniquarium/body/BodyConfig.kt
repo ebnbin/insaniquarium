@@ -16,7 +16,13 @@ data class BodyConfig(
     @Expose
     val density: Float = World.DENSITY_WATER,
     @Expose
-    val dragCoefficient: Float = World.DEFAULT_DRAG_COEFFICIENT,
+    val dragCoefficient: Float = DEFAULT_DRAG_COEFFICIENT,
+    @Expose
+    val waterFrictionCoefficient: Float = DEFAULT_WATER_FRICTION_COEFFICIENT,
+    @Expose
+    val bottomFrictionCoefficient: Float = DEFAULT_BOTTOM_FRICTION_COEFFICIENT,
+    @Expose
+    val leftRightFrictionCoefficient: Float = DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT,
     @Expose
     val health: Health? = null,
     @Expose
@@ -138,4 +144,11 @@ data class BodyConfig(
         @Expose
         val die: TextureRegionAnimation? = null,
     )
+
+    companion object {
+        const val DEFAULT_DRAG_COEFFICIENT = 1f
+        const val DEFAULT_WATER_FRICTION_COEFFICIENT = 0.001f
+        const val DEFAULT_BOTTOM_FRICTION_COEFFICIENT = 1f
+        const val DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT = 0f
+    }
 }

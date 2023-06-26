@@ -2,8 +2,10 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.gdx.utils.direction
+import dev.ebnbin.gdx.utils.magnitude
 import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.trim
+import kotlin.math.min
 import kotlin.math.pow
 
 object BodyForceHelper {
@@ -57,6 +59,28 @@ object BodyForceHelper {
         }
     }
 
+    fun staticFrictionMagnitude(
+        frictionCoefficient: Float,
+        normalMagnitude: Float,
+        isNormalValid: Boolean,
+    ): Float {
+        if (!isNormalValid) {
+            return 0f
+        }
+        return frictionCoefficient * normalMagnitude
+    }
+
+    fun friction(
+        velocity: Float,
+        staticFrictionMagnitude: Float,
+        frictionReaction: Float,
+    ): Float {
+        if (velocity == 0f) {
+            return -frictionReaction.direction * min(staticFrictionMagnitude, frictionReaction.magnitude)
+        }
+        return -velocity.direction * staticFrictionMagnitude
+    }
+
     fun acceleration(
         force: Float,
         mass: Float,
@@ -69,14 +93,17 @@ object BodyForceHelper {
         acceleration: Float,
         isInsideLeftOrBottom: Boolean,
         isInsideRightOrTop: Boolean,
+        friction: Float,
         delta: Float,
     ): Float {
-        val nextVelocity = velocity + acceleration * delta
-        return if (!isInsideLeftOrBottom && nextVelocity < 0f || !isInsideRightOrTop && nextVelocity > 0f) {
-            0f
-        } else {
-            nextVelocity
+        var nextVelocity = velocity + acceleration * delta
+        if (!isInsideLeftOrBottom && nextVelocity < 0f || !isInsideRightOrTop && nextVelocity > 0f) {
+            nextVelocity = 0f
         }
+        if (nextVelocity.direction == friction.direction) {
+            nextVelocity = 0f
+        }
+        return nextVelocity
     }
 
     fun nextPosition(

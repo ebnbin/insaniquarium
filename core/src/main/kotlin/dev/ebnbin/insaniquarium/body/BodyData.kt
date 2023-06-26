@@ -20,6 +20,9 @@ data class BodyData(
 
     val box: BodyBox = BodyBox(
         dragCoefficient = body.config.dragCoefficient,
+        waterFrictionCoefficient = body.config.waterFrictionCoefficient,
+        leftRightFrictionCoefficient = body.config.leftRightFrictionCoefficient,
+        bottomFrictionCoefficient = body.config.bottomFrictionCoefficient,
         tankWidth = body.tank.width,
         tankHeight = body.tank.height,
         width = body.config.width,

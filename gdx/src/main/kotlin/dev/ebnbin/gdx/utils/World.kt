@@ -5,8 +5,6 @@ object World {
 
     const val G = 10f
 
-    const val DEFAULT_DRAG_COEFFICIENT = 1f
-
     var unitWidth: Float = 0f
         internal set
     var unitHeight: Float = 0f

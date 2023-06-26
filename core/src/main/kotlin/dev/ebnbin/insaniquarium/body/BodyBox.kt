@@ -9,10 +9,14 @@ import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.gdx.utils.XY
 import dev.ebnbin.gdx.utils.direction
+import dev.ebnbin.gdx.utils.magnitude
 import dev.ebnbin.gdx.utils.minMax
 
 data class BodyBox(
     private val dragCoefficient: Float,
+    private val waterFrictionCoefficient: Float,
+    private val bottomFrictionCoefficient: Float,
+    private val leftRightFrictionCoefficient: Float,
     private val tankWidth: Float,
     private val tankHeight: Float,
     private val width: Float,
@@ -100,8 +104,54 @@ data class BodyBox(
         mass = mass,
     )
 
-    private val normalReactionX: Float = dragX + drivingX
-    private val normalReactionY: Float = gravityY + buoyancyY + dragY + drivingY
+    private val frictionReactionX: Float = dragX + drivingX
+    private val frictionReactionY: Float = gravityY + buoyancyY + dragY + drivingY
+
+    private val normalForFrictionX: Float = BodyForceHelper.normal(
+        isInsideLeftOrBottom = isInsideLeft,
+        isInsideRightOrTop = isInsideRight,
+        normalReaction = frictionReactionX,
+    )
+    private val normalForFrictionY: Float = BodyForceHelper.normal(
+        isInsideLeftOrBottom = isInsideBottom,
+        isInsideRightOrTop = true,
+        normalReaction = frictionReactionY,
+    )
+
+    private val waterStaticFrictionMagnitude: Float = BodyForceHelper.staticFrictionMagnitude(
+        frictionCoefficient = waterFrictionCoefficient,
+        normalMagnitude = buoyancyY.magnitude,
+        isNormalValid = true,
+    )
+
+    private val bottomStaticFrictionMagnitude: Float = BodyForceHelper.staticFrictionMagnitude(
+        frictionCoefficient = bottomFrictionCoefficient,
+        normalMagnitude = normalForFrictionY.magnitude,
+        isNormalValid = !isInsideBottom && normalForFrictionY > 0f,
+    )
+
+    private val leftRightStaticFrictionMagnitude: Float = BodyForceHelper.staticFrictionMagnitude(
+        frictionCoefficient = leftRightFrictionCoefficient,
+        normalMagnitude = normalForFrictionX.magnitude,
+        isNormalValid = !isInsideLeft && normalForFrictionX > 0f || !isInsideRight && normalForFrictionX < 0f,
+    )
+
+    private val staticFrictionMagnitudeX: Float = waterStaticFrictionMagnitude + bottomStaticFrictionMagnitude
+    private val staticFrictionMagnitudeY: Float = waterStaticFrictionMagnitude + leftRightStaticFrictionMagnitude
+
+    private val frictionX: Float = BodyForceHelper.friction(
+        velocity = velocityX,
+        staticFrictionMagnitude = staticFrictionMagnitudeX,
+        frictionReaction = frictionReactionX,
+    )
+    private val frictionY: Float = BodyForceHelper.friction(
+        velocity = velocityY,
+        staticFrictionMagnitude = staticFrictionMagnitudeY,
+        frictionReaction = frictionReactionY,
+    )
+
+    private val normalReactionX: Float = frictionReactionX + frictionX
+    private val normalReactionY: Float = frictionReactionY + frictionY
 
     private val normalX: Float = BodyForceHelper.normal(
         isInsideLeftOrBottom = isInsideLeft,
@@ -142,6 +192,7 @@ data class BodyBox(
             acceleration = accelerationX,
             isInsideLeftOrBottom = isInsideLeft,
             isInsideRightOrTop = isInsideRight,
+            friction = frictionX,
             delta = delta,
         )
     }
@@ -152,6 +203,7 @@ data class BodyBox(
             acceleration = accelerationY,
             isInsideLeftOrBottom = isInsideBottom,
             isInsideRightOrTop = true,
+            friction = frictionY,
             delta = delta,
         )
     }
@@ -228,6 +280,27 @@ data class BodyBox(
         }
         baseGame.putLog("driving         ") {
             "${drivingX.devText(XY.X)},${drivingY.devText(XY.Y)}"
+        }
+        baseGame.putLog("frictionReaction") {
+            "${frictionReactionX.devText(XY.X)},${frictionReactionY.devText(XY.Y)}"
+        }
+        baseGame.putLog("normalForFriction") {
+            "${normalForFrictionX.devText(XY.X)},${normalForFrictionY.devText(XY.Y)}"
+        }
+        baseGame.putLog("waterStaticFrictionMagnitude") {
+            waterStaticFrictionMagnitude.devText()
+        }
+        baseGame.putLog("bottomStaticFrictionMagnitude") {
+            bottomStaticFrictionMagnitude.devText()
+        }
+        baseGame.putLog("leftRightStaticFrictionMagnitude") {
+            leftRightStaticFrictionMagnitude.devText()
+        }
+        baseGame.putLog("staticFrictionMagnitude") {
+            "${staticFrictionMagnitudeX.devText(XY.X)},${staticFrictionMagnitudeY.devText(XY.Y)}"
+        }
+        baseGame.putLog("friction        ") {
+            "${frictionX.devText(XY.X)},${frictionY.devText(XY.Y)}"
         }
         baseGame.putLog("normalReaction  ") {
             "${normalReactionX.devText(XY.X)},${normalReactionY.devText(XY.Y)}"
