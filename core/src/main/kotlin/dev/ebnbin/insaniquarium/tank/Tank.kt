@@ -15,7 +15,7 @@ import java.util.UUID
 
 class Tank : Group() {
     private val groupMap: Map<BodyGroup, Group> = BodyGroup.values().associateWith { Group().also { addActor(it) } }
-    private val bodyMap: MutableMap<String, Body> = mutableMapOf()
+    private val idMap: MutableMap<String, Body> = mutableMapOf()
     private val typeMap: MutableMap<BodyType, MutableList<Body>> = BodyType.values().associateWithTo(mutableMapOf()) {
         mutableListOf()
     }
@@ -85,14 +85,14 @@ class Tank : Group() {
             createStatus = createStatus,
         )
         groupMap.getValue(body.config.group).addActor(body)
-        bodyMap[body.id] = body
+        idMap[body.id] = body
         typeMap.getValue(type).add(body)
         return body
     }
 
     fun removeBody(body: Body) {
         typeMap.getValue(body.type).remove(body)
-        bodyMap.remove(body.id)
+        idMap.remove(body.id)
         groupMap.getValue(body.config.group).removeActor(body)
     }
 
@@ -101,7 +101,7 @@ class Tank : Group() {
     }
 
     fun findBodyById(id: String): Body? {
-        return bodyMap[id]
+        return idMap[id]
     }
 
     //*****************************************************************************************************************
@@ -123,7 +123,7 @@ class Tank : Group() {
 
     fun devClearBodies() {
         typeMap.values.reversed().forEach { it.clear() }
-        bodyMap.clear()
+        idMap.clear()
         groupMap.values.reversed().forEach { it.clearChildren() }
     }
 
