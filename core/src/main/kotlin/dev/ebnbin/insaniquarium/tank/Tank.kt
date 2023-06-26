@@ -105,7 +105,8 @@ class Tank : Group() {
 
     var devSelectedBodyType: BodyType? = null
 
-    fun devAddBody(type: BodyType = BodyType.values().random()) {
+    fun devAddBody() {
+        val type = devSelectedBodyType ?: BodyType.values().random()
         addBody(
             type = type,
             createStatus = {
@@ -133,6 +134,9 @@ class Tank : Group() {
                     "fish:${fishGroup.children.size}," +
                     "pet:${petGroup.children.size}," +
                     "money:${moneyGroup.children.size}"
+            }
+            baseGame.putLog("selectedBodyType") {
+                "$devSelectedBodyType"
             }
         }
     }

@@ -21,4 +21,29 @@ enum class BodyType(override val serializedName: String) : SerializableEnum {
     STAR("star"),
     BEETLE("beetle"),
     ;
+
+    companion object {
+        val FOOD_LIST: List<BodyType> = listOf(
+            FISH_FOOD,
+            STAR_POTION,
+        )
+        val FISH_LIST: List<BodyType> = listOf(
+            GUPPY_SMALL,
+            GUPPY_MEDIUM,
+            GUPPY_LARGE,
+            GUPPY_KING,
+            STARCATCHER,
+            BEETLEMUNCHER,
+        )
+        val PET_LIST: List<BodyType> = listOf(
+            CLYDE,
+            GASH,
+            PRESTO,
+        )
+        val MONEY_LIST: List<BodyType> = listOf(
+            SILVER_COIN,
+            STAR,
+            BEETLE,
+        )
+    }
 }

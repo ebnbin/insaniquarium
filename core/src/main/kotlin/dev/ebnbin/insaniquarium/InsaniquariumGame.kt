@@ -43,27 +43,50 @@ class InsaniquariumGame : BaseGame() {
             createDevMenu = { stageList ->
                 val menu = Menu("aquarium")
                 val tankStage = stageList.filterIsInstance<TankStage>().single()
+                menu.createMenuItem("reset bodyType") {
+                    tankStage.tank.devSelectedBodyType = null
+                }
                 menu.createListMenuItem(
-                    title = "body",
-                    dataList = listOf(null) + BodyType.values().toList(),
-                    dataToString = { it?.serializedName ?: "" },
-                    property = tankStage.tank::devSelectedBodyType,
+                    title = "food",
+                    dataList = BodyType.FOOD_LIST,
+                    dataToString = { it.serializedName },
+                    clicked = { _, bodyType ->
+                        tankStage.tank.devSelectedBodyType = bodyType
+                    },
                 )
-                menu.createMenuItem("add 10 bodies") {
-                    repeat(10) {
-                        tankStage.tank.devAddBody()
-                    }
-                }
-                menu.createMenuItem("add 100 bodies") {
-                    repeat(100) {
-                        tankStage.tank.devAddBody()
-                    }
-                }
-                menu.createMenuItem("add 1000 bodies") {
-                    repeat(1000) {
-                        tankStage.tank.devAddBody()
-                    }
-                }
+                menu.createListMenuItem(
+                    title = "fish",
+                    dataList = BodyType.FISH_LIST,
+                    dataToString = { it.serializedName },
+                    clicked = { _, bodyType ->
+                        tankStage.tank.devSelectedBodyType = bodyType
+                    },
+                )
+                menu.createListMenuItem(
+                    title = "pet",
+                    dataList = BodyType.PET_LIST,
+                    dataToString = { it.serializedName },
+                    clicked = { _, bodyType ->
+                        tankStage.tank.devSelectedBodyType = bodyType
+                    },
+                )
+                menu.createListMenuItem(
+                    title = "money",
+                    dataList = BodyType.MONEY_LIST,
+                    dataToString = { it.serializedName },
+                    clicked = { _, bodyType ->
+                        tankStage.tank.devSelectedBodyType = bodyType
+                    },
+                )
+                menu.createListMenuItem(
+                    title = "add bodies",
+                    dataList = listOf(1, 10, 100, 1000),
+                    clicked = { _, count ->
+                        repeat(count) {
+                            tankStage.tank.devAddBody()
+                        }
+                    },
+                )
                 menu.createMenuItem("clear bodies") {
                     tankStage.tank.devClearBodies()
                 }
