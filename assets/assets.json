@@ -127,6 +127,16 @@
       "extension": "png",
       "preload": false
     },
+    "diamond": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "diamond",
+      "extension": "png",
+      "preload": false
+    },
     "fish_food": {
       "region": {
         "row": 2,
@@ -164,6 +174,16 @@
         "startIndex": 0
       },
       "name": "gash_turn",
+      "extension": "png",
+      "preload": false
+    },
+    "gold_coin": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "gold_coin",
       "extension": "png",
       "preload": false
     },

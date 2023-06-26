@@ -282,7 +282,7 @@
       "prize": {
         "full": 20.0,
         "incrementPerSecond": 3.0,
-        "product": "silver_coin"
+        "product": "gold_coin"
       },
       "touchAct": null,
       "swimActX": {
@@ -370,7 +370,7 @@
       "prize": {
         "full": 20.0,
         "incrementPerSecond": 3.0,
-        "product": "silver_coin"
+        "product": "diamond"
       },
       "touchAct": null,
       "swimActX": {
@@ -592,7 +592,17 @@
             "hunger": 0.0,
             "prize": 0.0
           },
+          "gold_coin": {
+            "damagePerSecond": 10.0,
+            "hunger": 0.0,
+            "prize": 0.0
+          },
           "star": {
+            "damagePerSecond": 10.0,
+            "hunger": 0.0,
+            "prize": 0.0
+          },
+          "diamond": {
             "damagePerSecond": 10.0,
             "hunger": 0.0,
             "prize": 0.0
@@ -775,6 +785,46 @@
         "die": null
       }
     },
+    "gold_coin": {
+      "group": "money",
+      "width": 0.075,
+      "height": 0.075,
+      "depth": 0.011666667,
+      "density": 1020.0,
+      "dragCoefficient": 1.0,
+      "health": {
+        "full": 1.0
+      },
+      "hunger": {
+        "full": 0.0,
+        "maxPercent": 1.0,
+        "hungryPercent": 0.0,
+        "exhaustionPerSecond": 0.0,
+        "canDie": true,
+        "foods": {},
+        "drivingAccelerationX": 0.0,
+        "drivingAccelerationY": 0.0,
+        "corpseDensity": null
+      },
+      "prize": null,
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "animations": {
+        "swim": {
+          "assetId": "gold_coin",
+          "duration": 0.6,
+          "mode": "loop",
+          "interpolation": "linear"
+        },
+        "turn": null,
+        "eat": null,
+        "hungry": null,
+        "hungryTurn": null,
+        "hungryEat": null,
+        "die": null
+      }
+    },
     "star": {
       "group": "money",
       "width": 0.11,
@@ -803,6 +853,46 @@
       "animations": {
         "swim": {
           "assetId": "star",
+          "duration": 0.6,
+          "mode": "loop",
+          "interpolation": "linear"
+        },
+        "turn": null,
+        "eat": null,
+        "hungry": null,
+        "hungryTurn": null,
+        "hungryEat": null,
+        "die": null
+      }
+    },
+    "diamond": {
+      "group": "money",
+      "width": 0.08,
+      "height": 0.07,
+      "depth": 0.08,
+      "density": 1020.0,
+      "dragCoefficient": 1.0,
+      "health": {
+        "full": 1.0
+      },
+      "hunger": {
+        "full": 0.0,
+        "maxPercent": 1.0,
+        "hungryPercent": 0.0,
+        "exhaustionPerSecond": 0.0,
+        "canDie": true,
+        "foods": {},
+        "drivingAccelerationX": 0.0,
+        "drivingAccelerationY": 0.0,
+        "corpseDensity": null
+      },
+      "prize": null,
+      "touchAct": null,
+      "swimActX": null,
+      "swimActY": null,
+      "animations": {
+        "swim": {
+          "assetId": "diamond",
           "duration": 0.6,
           "mode": "loop",
           "interpolation": "linear"

@@ -288,7 +288,7 @@ object ConfigInfo {
             prize = BodyConfig.Prize(
                 full = 20f,
                 incrementPerSecond = 3f,
-                product = BodyType.SILVER_COIN,
+                product = BodyType.GOLD_COIN,
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
@@ -378,7 +378,7 @@ object ConfigInfo {
             prize = BodyConfig.Prize(
                 full = 20f,
                 incrementPerSecond = 3f,
-                product = BodyType.SILVER_COIN,
+                product = BodyType.DIAMOND,
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
@@ -597,7 +597,15 @@ object ConfigInfo {
                         damagePerSecond = 10f,
                         hunger = 0f,
                     ),
+                    BodyType.GOLD_COIN to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 0f,
+                    ),
                     BodyType.STAR to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 0f,
+                    ),
+                    BodyType.DIAMOND to BodyConfig.Food(
                         damagePerSecond = 10f,
                         hunger = 0f,
                     ),
@@ -758,6 +766,37 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
+            type = BodyType.GOLD_COIN,
+            group = BodyGroup.MONEY,
+            width = BodyConfigInfo.Size(
+                textureName = "gold_coin",
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "gold_coin",
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "gold_coin",
+                index = 5,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            density = 1020f,
+            health = BodyConfig.Health(
+                full = 1f,
+            ),
+            hunger = BodyConfig.Hunger(
+                canDie = true,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "gold_coin",
+                    duration = 0.6f,
+                    mode = AnimationMode.LOOP,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
             type = BodyType.STAR,
             group = BodyGroup.MONEY,
             width = BodyConfigInfo.Size(
@@ -783,6 +822,37 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "star",
+                    duration = 0.6f,
+                    mode = AnimationMode.LOOP,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
+            type = BodyType.DIAMOND,
+            group = BodyGroup.MONEY,
+            width = BodyConfigInfo.Size(
+                textureName = "diamond",
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "diamond",
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "diamond",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1020f,
+            health = BodyConfig.Health(
+                full = 1f,
+            ),
+            hunger = BodyConfig.Hunger(
+                canDie = true,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "diamond",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
                 ),

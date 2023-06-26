@@ -421,8 +421,18 @@ object TextureInfo {
                     tileCount = 10,
                 ),
                 BodyTextureInfo.Output(
+                    name = "gold_coin",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
                     name = "star",
                     tileStart = 20,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "diamond",
+                    tileStart = 30,
                     tileCount = 10,
                 ),
                 BodyTextureInfo.Output(
