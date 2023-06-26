@@ -14,17 +14,13 @@ import dev.ebnbin.insaniquarium.body.BodyType
 import java.util.UUID
 
 class Tank : Group() {
-    private val foodGroup: Group = Group()
-    private val fishGroup: Group = Group()
-    private val petGroup: Group = Group()
-    private val moneyGroup: Group = Group()
+    private val groupMap: Map<BodyGroup, Group> = BodyGroup.values().associateWith { Group().also { addActor(it) } }
+    private val bodyMap: MutableMap<String, Body> = mutableMapOf()
+    private val typeMap: MutableMap<BodyType, MutableList<Body>> = BodyType.values().associateWithTo(mutableMapOf()) {
+        mutableListOf()
+    }
 
     init {
-        addActor(foodGroup)
-        addActor(fishGroup)
-        addActor(petGroup)
-        addActor(moneyGroup)
-
         addListener(object : InputListener() {
             override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 val touchPoint = Point(x, y)
@@ -64,10 +60,11 @@ class Tank : Group() {
         private set
 
     private fun hitMoneyBodies(touchPoint: Point): Boolean {
+        val moneyGroup = groupMap.getValue(BodyGroup.MONEY)
         moneyGroup.children
-            .filterIsInstance<Body>()
             .reversed()
             .forEach {
+                require(it is Body)
                 if (it.data.hit(touchPoint)) {
                     return true
                 }
@@ -76,8 +73,6 @@ class Tank : Group() {
     }
 
     //*****************************************************************************************************************
-
-    private val bodyMap: MutableMap<String, Body> = mutableMapOf()
 
     fun addBody(
         type: BodyType,
@@ -89,28 +84,20 @@ class Tank : Group() {
             id = "${UUID.randomUUID()}",
             createStatus = createStatus,
         )
-        getGroup(body.config.group).addActor(body)
+        groupMap.getValue(body.config.group).addActor(body)
         bodyMap[body.id] = body
+        typeMap.getValue(type).add(body)
         return body
     }
 
     fun removeBody(body: Body) {
+        typeMap.getValue(body.type).remove(body)
         bodyMap.remove(body.id)
-        getGroup(body.config.group).removeActor(body)
-    }
-
-    private fun getGroup(group: BodyGroup): Group {
-        return when (group) {
-            BodyGroup.FOOD -> foodGroup
-            BodyGroup.FISH -> fishGroup
-            BodyGroup.PET -> petGroup
-            BodyGroup.MONEY -> moneyGroup
-        }
+        groupMap.getValue(body.config.group).removeActor(body)
     }
 
     fun findBodyByType(typeSet: Set<BodyType>): List<Body> {
-        return bodyMap.values
-            .filter { typeSet.contains(it.type) }
+        return typeSet.flatMap { typeMap.getValue(it) }
     }
 
     fun findBodyById(id: String): Body? {
@@ -135,25 +122,20 @@ class Tank : Group() {
     }
 
     fun devClearBodies() {
+        typeMap.values.reversed().forEach { it.clear() }
         bodyMap.clear()
-        moneyGroup.clearChildren()
-        petGroup.clearChildren()
-        fishGroup.clearChildren()
-        foodGroup.clearChildren()
+        groupMap.values.reversed().forEach { it.clearChildren() }
     }
 
     override fun act(delta: Float) {
         super.act(delta)
-        if (debug) {
-            baseGame.putLog("tank") {
-                "food:${foodGroup.children.size}," +
-                    "fish:${fishGroup.children.size}," +
-                    "pet:${petGroup.children.size}," +
-                    "money:${moneyGroup.children.size}"
+        baseGame.putLog("tank") {
+            groupMap.entries.joinToString(separator = ",") { (group, groupActor) ->
+                "${group.serializedName}:${groupActor.children.size}"
             }
-            baseGame.putLog("selectedBodyType") {
-                "$devSelectedBodyType"
-            }
+        }
+        baseGame.putLog("selectedBodyType") {
+            "$devSelectedBodyType"
         }
     }
 }
