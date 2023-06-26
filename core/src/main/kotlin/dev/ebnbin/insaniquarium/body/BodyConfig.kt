@@ -31,8 +31,6 @@ data class BodyConfig(
     val swimActX: SwimAct? = null,
     @Expose
     val swimActY: SwimAct? = null,
-    @Expose
-    val eatAct: EatAct? = null,
 ) {
     data class Health(
         /**
@@ -70,6 +68,12 @@ data class BodyConfig(
         @Expose
         val canDie: Boolean = false,
         @Expose
+        val foods: Map<BodyType, Food> = emptyMap(),
+        @Expose
+        val drivingAccelerationX: Float = 0f,
+        @Expose
+        val drivingAccelerationY: Float = 0f,
+        @Expose
         val corpseDensity: Float? = null,
     )
 
@@ -104,15 +108,6 @@ data class BodyConfig(
         val idlingTimeRandomStart: Float,
         @Expose
         val idlingTimeRandomEnd: Float,
-    )
-
-    data class EatAct(
-        @Expose
-        val foods: Map<BodyType, Food>,
-        @Expose
-        val accelerationX: Float,
-        @Expose
-        val accelerationY: Float,
     )
 
     data class Food(

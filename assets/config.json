@@ -17,6 +17,9 @@
         "hungryPercent": 0.0,
         "exhaustionPerSecond": 0.0,
         "canDie": true,
+        "foods": {},
+        "drivingAccelerationX": 0.0,
+        "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
       "animations": {
@@ -35,8 +38,7 @@
       },
       "touchAct": null,
       "swimActX": null,
-      "swimActY": null,
-      "eatAct": null
+      "swimActY": null
     },
     "starcatcher": {
       "type": "starcatcher",
@@ -53,6 +55,14 @@
         "hungryPercent": 0.5,
         "exhaustionPerSecond": 1.0,
         "canDie": true,
+        "foods": {
+          "star": {
+            "damagePerSecond": 10.0,
+            "hunger": 20.0
+          }
+        },
+        "drivingAccelerationX": 0.2,
+        "drivingAccelerationY": 0.0,
         "corpseDensity": 1020.0
       },
       "animations": {
@@ -85,17 +95,7 @@
         "idlingTimeRandomStart": 2.0,
         "idlingTimeRandomEnd": 8.0
       },
-      "swimActY": null,
-      "eatAct": {
-        "foods": {
-          "star": {
-            "damagePerSecond": 10.0,
-            "hunger": 20.0
-          }
-        },
-        "accelerationX": 0.2,
-        "accelerationY": 0.0
-      }
+      "swimActY": null
     },
     "beetlemuncher": {
       "type": "beetlemuncher",
@@ -112,6 +112,14 @@
         "hungryPercent": 0.5,
         "exhaustionPerSecond": 1.0,
         "canDie": true,
+        "foods": {
+          "star_potion": {
+            "damagePerSecond": 10.0,
+            "hunger": 20.0
+          }
+        },
+        "drivingAccelerationX": 0.4,
+        "drivingAccelerationY": 0.25,
         "corpseDensity": 1020.0
       },
       "animations": {
@@ -168,16 +176,6 @@
         "acceleration": 0.125,
         "idlingTimeRandomStart": 6.0,
         "idlingTimeRandomEnd": 10.0
-      },
-      "eatAct": {
-        "foods": {
-          "star_potion": {
-            "damagePerSecond": 10.0,
-            "hunger": 20.0
-          }
-        },
-        "accelerationX": 0.4,
-        "accelerationY": 0.25
       }
     },
     "clyde": {
@@ -189,7 +187,26 @@
       "density": 1000.0,
       "dragCoefficient": 1.0,
       "health": null,
-      "hunger": null,
+      "hunger": {
+        "full": 0.0,
+        "maxPercent": 1.0,
+        "hungryPercent": 0.0,
+        "exhaustionPerSecond": 0.0,
+        "canDie": false,
+        "foods": {
+          "silver_coin": {
+            "damagePerSecond": 10.0,
+            "hunger": 0.0
+          },
+          "star": {
+            "damagePerSecond": 10.0,
+            "hunger": 0.0
+          }
+        },
+        "drivingAccelerationX": 0.2,
+        "drivingAccelerationY": 0.3,
+        "corpseDensity": null
+      },
       "animations": {
         "swim": {
           "assetId": "clyde",
@@ -214,20 +231,6 @@
         "acceleration": 0.15,
         "idlingTimeRandomStart": 2.0,
         "idlingTimeRandomEnd": 8.0
-      },
-      "eatAct": {
-        "foods": {
-          "silver_coin": {
-            "damagePerSecond": 10.0,
-            "hunger": 0.0
-          },
-          "star": {
-            "damagePerSecond": 10.0,
-            "hunger": 0.0
-          }
-        },
-        "accelerationX": 0.2,
-        "accelerationY": 0.3
       }
     },
     "gash": {
@@ -245,6 +248,14 @@
         "hungryPercent": 0.0,
         "exhaustionPerSecond": 1.0,
         "canDie": false,
+        "foods": {
+          "beetle": {
+            "damagePerSecond": 10.0,
+            "hunger": 20.0
+          }
+        },
+        "drivingAccelerationX": 0.8,
+        "drivingAccelerationY": 0.5,
         "corpseDensity": null
       },
       "animations": {
@@ -281,16 +292,6 @@
         "acceleration": 0.125,
         "idlingTimeRandomStart": 6.0,
         "idlingTimeRandomEnd": 10.0
-      },
-      "eatAct": {
-        "foods": {
-          "beetle": {
-            "damagePerSecond": 10.0,
-            "hunger": 20.0
-          }
-        },
-        "accelerationX": 0.8,
-        "accelerationY": 0.5
       }
     },
     "presto": {
@@ -335,8 +336,7 @@
         "acceleration": 0.125,
         "idlingTimeRandomStart": 6.0,
         "idlingTimeRandomEnd": 10.0
-      },
-      "eatAct": null
+      }
     },
     "silver_coin": {
       "type": "silver_coin",
@@ -355,6 +355,9 @@
         "hungryPercent": 0.0,
         "exhaustionPerSecond": 0.0,
         "canDie": true,
+        "foods": {},
+        "drivingAccelerationX": 0.0,
+        "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
       "animations": {
@@ -373,8 +376,7 @@
       },
       "touchAct": null,
       "swimActX": null,
-      "swimActY": null,
-      "eatAct": null
+      "swimActY": null
     },
     "star": {
       "type": "star",
@@ -393,6 +395,9 @@
         "hungryPercent": 0.0,
         "exhaustionPerSecond": 0.0,
         "canDie": true,
+        "foods": {},
+        "drivingAccelerationX": 0.0,
+        "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
       "animations": {
@@ -411,8 +416,7 @@
       },
       "touchAct": null,
       "swimActX": null,
-      "swimActY": null,
-      "eatAct": null
+      "swimActY": null
     },
     "beetle": {
       "type": "beetle",
@@ -431,6 +435,9 @@
         "hungryPercent": 0.0,
         "exhaustionPerSecond": 0.0,
         "canDie": true,
+        "foods": {},
+        "drivingAccelerationX": 0.0,
+        "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
       "animations": {
@@ -449,8 +456,7 @@
       },
       "touchAct": null,
       "swimActX": null,
-      "swimActY": null,
-      "eatAct": null
+      "swimActY": null
     }
   }
 }

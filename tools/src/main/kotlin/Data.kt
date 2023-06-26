@@ -39,7 +39,6 @@ data class BodyConfigInfo(
     val touchAct: BodyConfig.TouchAct? = null,
     val swimActX: BodyConfig.SwimAct? = null,
     val swimActY: BodyConfig.SwimAct? = null,
-    val eatAct: BodyConfig.EatAct? = null,
 ) {
     data class Size(
         val textureName: String,

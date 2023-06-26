@@ -65,6 +65,14 @@ object ConfigInfo {
                 hungryPercent = 0.5f,
                 exhaustionPerSecond = 1f,
                 canDie = true,
+                foods = mapOf(
+                    BodyType.STAR to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 20f,
+                    ),
+                ),
+                drivingAccelerationX = 0.2f,
+                drivingAccelerationY = 0f,
                 corpseDensity = 1020f,
             ),
             animations = BodyConfig.Animations(
@@ -88,16 +96,6 @@ object ConfigInfo {
                 acceleration = 0.1f,
                 idlingTimeRandomStart = 2f,
                 idlingTimeRandomEnd = 8f,
-            ),
-            eatAct = BodyConfig.EatAct(
-                foods = mapOf(
-                    BodyType.STAR to BodyConfig.Food(
-                        damagePerSecond = 10f,
-                        hunger = 20f,
-                    ),
-                ),
-                accelerationX = 0.2f,
-                accelerationY = 0f,
             ),
         ),
         BodyConfigInfo(
@@ -124,6 +122,14 @@ object ConfigInfo {
                 hungryPercent = 0.5f,
                 exhaustionPerSecond = 1f,
                 canDie = true,
+                foods = mapOf(
+                    BodyType.STAR_POTION to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 20f,
+                    ),
+                ),
+                drivingAccelerationX = 0.4f,
+                drivingAccelerationY = 0.25f,
                 corpseDensity = 1020f,
             ),
             animations = BodyConfig.Animations(
@@ -173,16 +179,6 @@ object ConfigInfo {
                 idlingTimeRandomStart = 6f,
                 idlingTimeRandomEnd = 10f,
             ),
-            eatAct = BodyConfig.EatAct(
-                foods = mapOf(
-                    BodyType.STAR_POTION to BodyConfig.Food(
-                        damagePerSecond = 10f,
-                        hunger = 20f,
-                    ),
-                ),
-                accelerationX = 0.4f,
-                accelerationY = 0.25f,
-            ),
         ),
         BodyConfigInfo(
             type = BodyType.CLYDE,
@@ -202,6 +198,20 @@ object ConfigInfo {
                 index = 0,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
+            hunger = BodyConfig.Hunger(
+                foods = mapOf(
+                    BodyType.SILVER_COIN to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 0f,
+                    ),
+                    BodyType.STAR to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 0f,
+                    ),
+                ),
+                drivingAccelerationX = 0.2f,
+                drivingAccelerationY = 0.3f,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "clyde",
@@ -219,20 +229,6 @@ object ConfigInfo {
                 acceleration = 0.15f,
                 idlingTimeRandomStart = 2f,
                 idlingTimeRandomEnd = 8f,
-            ),
-            eatAct = BodyConfig.EatAct(
-                foods = mapOf(
-                    BodyType.SILVER_COIN to BodyConfig.Food(
-                        damagePerSecond = 10f,
-                        hunger = 0f,
-                    ),
-                    BodyType.STAR to BodyConfig.Food(
-                        damagePerSecond = 10f,
-                        hunger = 0f,
-                    ),
-                ),
-                accelerationX = 0.2f,
-                accelerationY = 0.3f,
             ),
         ),
         BodyConfigInfo(
@@ -257,6 +253,14 @@ object ConfigInfo {
                 full = 10f,
                 maxPercent = 3f,
                 exhaustionPerSecond = 1f,
+                foods = mapOf(
+                    BodyType.BEETLE to BodyConfig.Food(
+                        damagePerSecond = 10f,
+                        hunger = 20f,
+                    ),
+                ),
+                drivingAccelerationX = 0.8f,
+                drivingAccelerationY = 0.5f,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -284,16 +288,6 @@ object ConfigInfo {
                 acceleration = 0.125f,
                 idlingTimeRandomStart = 6f,
                 idlingTimeRandomEnd = 10f,
-            ),
-            eatAct = BodyConfig.EatAct(
-                foods = mapOf(
-                    BodyType.BEETLE to BodyConfig.Food(
-                        damagePerSecond = 10f,
-                        hunger = 20f,
-                    ),
-                ),
-                accelerationX = 0.8f,
-                accelerationY = 0.5f,
             ),
         ),
         BodyConfigInfo(
