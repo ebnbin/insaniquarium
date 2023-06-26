@@ -1,7 +1,6 @@
 {
   "body": {
     "star_potion": {
-      "type": "star_potion",
       "group": "food",
       "width": 0.085,
       "height": 0.08166666,
@@ -42,7 +41,6 @@
       }
     },
     "starcatcher": {
-      "type": "starcatcher",
       "group": "fish",
       "width": 0.135,
       "height": 0.165,
@@ -105,7 +103,6 @@
       }
     },
     "beetlemuncher": {
-      "type": "beetlemuncher",
       "group": "fish",
       "width": 0.165,
       "height": 0.18833333,
@@ -188,7 +185,6 @@
       }
     },
     "clyde": {
-      "type": "clyde",
       "group": "pet",
       "width": 0.135,
       "height": 0.14,
@@ -246,7 +242,6 @@
       }
     },
     "gash": {
-      "type": "gash",
       "group": "pet",
       "width": 0.175,
       "height": 0.17833333,
@@ -309,7 +304,6 @@
       }
     },
     "presto": {
-      "type": "presto",
       "group": "pet",
       "width": 0.14166667,
       "height": 0.095,
@@ -354,7 +348,6 @@
       }
     },
     "silver_coin": {
-      "type": "silver_coin",
       "group": "money",
       "width": 0.075,
       "height": 0.075,
@@ -395,7 +388,6 @@
       }
     },
     "star": {
-      "type": "star",
       "group": "money",
       "width": 0.11,
       "height": 0.105,
@@ -436,7 +428,6 @@
       }
     },
     "beetle": {
-      "type": "beetle",
       "group": "money",
       "width": 0.08833333,
       "height": 0.08166666,

@@ -6,8 +6,6 @@ import dev.ebnbin.gdx.utils.World
 
 data class BodyConfig(
     @Expose
-    val type: BodyType,
-    @Expose
     val group: BodyGroup,
     @Expose
     val width: Float,
