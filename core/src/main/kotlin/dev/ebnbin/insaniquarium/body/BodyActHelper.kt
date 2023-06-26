@@ -62,7 +62,8 @@ object BodyActHelper {
             drivingTargetX = if (targetFood == null) {
                 null
             } else {
-                BodyStatus.DrivingTarget(
+                DrivingTarget(
+                    type = DrivingTarget.Type.EAT,
                     position = targetFood.data.status.x,
                     acceleration = configEatAct.accelerationX,
                 )
@@ -70,7 +71,8 @@ object BodyActHelper {
             drivingTargetY = if (targetFood == null) {
                 null
             } else {
-                BodyStatus.DrivingTarget(
+                DrivingTarget(
+                    type = DrivingTarget.Type.EAT,
                     position = targetFood.data.status.y,
                     acceleration = configEatAct.accelerationY,
                 )
@@ -97,11 +99,13 @@ object BodyActHelper {
         }
         val touchPoint = tank.touchPoint ?: return null
         return BodyStatus.TouchAct(
-            drivingTargetX = BodyStatus.DrivingTarget(
+            drivingTargetX = DrivingTarget(
+                type = DrivingTarget.Type.TOUCH,
                 position = touchPoint.x,
                 acceleration = configTouchAct.accelerationX,
             ),
-            drivingTargetY = BodyStatus.DrivingTarget(
+            drivingTargetY = DrivingTarget(
+                type = DrivingTarget.Type.TOUCH,
                 position = touchPoint.y,
                 acceleration = configTouchAct.accelerationY,
             ),
@@ -115,7 +119,7 @@ object BodyActHelper {
         tankSize: Float,
         leftOrBottom: Float,
         rightOrTop: Float,
-        drivingTarget: BodyStatus.DrivingTarget?,
+        drivingTarget: DrivingTarget?,
         input: BodyInput,
         isDying: Boolean,
     ): BodyStatus.SwimAct? {
@@ -133,7 +137,8 @@ object BodyActHelper {
 
         fun createTargetingSwimAct(): BodyStatus.SwimAct {
             return BodyStatus.SwimAct(
-                drivingTarget = BodyStatus.DrivingTarget(
+                drivingTarget = DrivingTarget(
+                    type = DrivingTarget.Type.SWIM,
                     position = Random.nextFloat(0f, tankSize),
                     acceleration = configSwimAct.acceleration,
                 ),

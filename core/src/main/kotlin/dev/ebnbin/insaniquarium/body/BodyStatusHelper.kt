@@ -104,12 +104,12 @@ object BodyStatusHelper {
             input = input,
         )
 
-        val nextDrivingTargetX: BodyStatus.DrivingTarget? = if (nextHungerStatus == HungerStatus.DYING) {
+        val nextDrivingTargetX: DrivingTarget? = if (nextHungerStatus == HungerStatus.DYING) {
             null
         } else {
             nextEatAct?.drivingTargetX ?: nextTouchAct?.drivingTargetX ?: nextSwimActX?.drivingTarget
         }
-        val nextDrivingTargetY: BodyStatus.DrivingTarget? = if (nextHungerStatus == HungerStatus.DYING) {
+        val nextDrivingTargetY: DrivingTarget? = if (nextHungerStatus == HungerStatus.DYING) {
             null
         } else {
             nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget

@@ -30,19 +30,6 @@ data class BodyStatus(
         isFacingRight = false,
     ),
 ) {
-    data class DrivingTarget(
-        val position: Float,
-        val acceleration: Float,
-        /**
-         * The acceleration multiplier when the direction of velocity is opposite to the direction of the target.
-         */
-        val oppositeAccelerationMultiplier: Float = DEFAULT_OPPOSITE_ACCELERATION_MULTIPLIER,
-    ) {
-        companion object {
-            private const val DEFAULT_OPPOSITE_ACCELERATION_MULTIPLIER = 1.5f
-        }
-    }
-
     enum class Relation {
         DISJOINT,
         OVERLAP,

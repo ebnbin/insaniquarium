@@ -29,7 +29,7 @@ object BodyForceHelper {
     }
 
     fun driving(
-        drivingTarget: BodyStatus.DrivingTarget?,
+        drivingTarget: DrivingTarget?,
         position: Float,
         velocity: Float,
         mass: Float,
