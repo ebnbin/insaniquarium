@@ -32,18 +32,30 @@ object BodyActHelper {
 
         var hungerDiff = 0f
         val targetFood = targetFood()
-        val isTurning = data.status.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
-        if (targetFood != null) {
-            if (!isTurning && data.containsCenter(targetFood.data)) {
-                val food = configEatAct.foods.getValue(targetFood.data.body.type)
-                val foodBody = targetFood.act(
-                    input = BodyInput(
-                        damage = food.damagePerSecond * input.delta,
-                    ),
-                )
-                if (foodBody.data.canRemove) {
-                    hungerDiff = food.hunger
+        val foodRelation = if (targetFood == null) {
+            BodyStatus.Relation.DISJOINT
+        } else {
+            if (data.containsCenter(targetFood.data)) {
+                BodyStatus.Relation.CONTAIN_CENTER
+            } else {
+                if (data.overlaps(targetFood.data)) {
+                    BodyStatus.Relation.OVERLAP
+                } else {
+                    BodyStatus.Relation.DISJOINT
                 }
+            }
+        }
+
+        val isTurning = data.status.textureRegionData.animationAction == BodyConfig.AnimationAction.TURN
+        if (targetFood != null && !isTurning && foodRelation == BodyStatus.Relation.CONTAIN_CENTER) {
+            val food = configEatAct.foods.getValue(targetFood.data.body.type)
+            val foodBody = targetFood.act(
+                input = BodyInput(
+                    damage = food.damagePerSecond * input.delta,
+                ),
+            )
+            if (foodBody.data.canRemove) {
+                hungerDiff = food.hunger
             }
         }
         return BodyStatus.EatAct(
@@ -63,7 +75,7 @@ object BodyActHelper {
                     acceleration = configEatAct.accelerationY,
                 )
             },
-            canPlayEatAnimation = !isTurning && targetFood != null && data.overlaps(targetFood.data),
+            foodRelation = foodRelation,
             hungerDiff = hungerDiff,
         )
     }

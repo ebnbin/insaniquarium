@@ -72,7 +72,8 @@ object BodyDrawHelper {
         return if (canAnimationActionChange) {
             if (isDying) {
                 createDieTextureRegionData()
-            } else if (config.animations.eat != null && eatAct?.canPlayEatAnimation == true) {
+            } else if (config.animations.eat != null && (eatAct?.foodRelation == BodyStatus.Relation.OVERLAP ||
+                    eatAct?.foodRelation == BodyStatus.Relation.CONTAIN_CENTER)) {
                 createEatTextureRegionData()
             } else {
                 if (hasTurnAnimation && textureRegionData.isFacingRight != expectedIsFacingRight) {

@@ -44,10 +44,17 @@ data class BodyStatus(
         }
     }
 
+    enum class Relation {
+        DISJOINT,
+        OVERLAP,
+        CONTAIN_CENTER,
+        ;
+    }
+
     data class EatAct(
         val drivingTargetX: DrivingTarget?,
         val drivingTargetY: DrivingTarget?,
-        val canPlayEatAnimation: Boolean,
+        val foodRelation: Relation,
         val hungerDiff: Float,
     )
 
