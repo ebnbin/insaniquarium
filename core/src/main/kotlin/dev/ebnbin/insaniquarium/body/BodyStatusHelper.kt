@@ -8,6 +8,18 @@ import dev.ebnbin.insaniquarium.tank.Tank
 import kotlin.math.max
 
 object BodyStatusHelper {
+    private data class EatAct(
+        val drivingTargetX: DrivingTarget?,
+        val drivingTargetY: DrivingTarget?,
+        val foodRelation: BodyRelation,
+        val hungerDiff: Float,
+    )
+
+    private data class TouchAct(
+        val drivingTargetX: DrivingTarget,
+        val drivingTargetY: DrivingTarget,
+    )
+
     fun nextStatus(
         data: BodyData,
         status: BodyStatus,
@@ -169,7 +181,7 @@ object BodyStatusHelper {
         hungerStatus: HungerStatus?,
         data: BodyData,
         input: BodyInput,
-    ): BodyStatus.EatAct? {
+    ): EatAct? {
         if (configEatAct == null) {
             return null
         }
@@ -203,7 +215,7 @@ object BodyStatusHelper {
                 hungerDiff = food.hunger
             }
         }
-        return BodyStatus.EatAct(
+        return EatAct(
             drivingTargetX = if (targetFood == null) {
                 null
             } else {
@@ -232,7 +244,7 @@ object BodyStatusHelper {
         tank: Tank,
         configTouchAct: BodyConfig.TouchAct?,
         isDying: Boolean,
-    ): BodyStatus.TouchAct? {
+    ): TouchAct? {
         if (!enabled) {
             return null
         }
@@ -243,7 +255,7 @@ object BodyStatusHelper {
             return null
         }
         val touchPoint = tank.touchPoint ?: return null
-        return BodyStatus.TouchAct(
+        return TouchAct(
             drivingTargetX = DrivingTarget(
                 type = DrivingTarget.Type.TOUCH,
                 position = touchPoint.x,
@@ -347,7 +359,7 @@ object BodyStatusHelper {
     private fun nextHunger(
         configHunger: BodyConfig.Hunger?,
         hunger: Float?,
-        eatAct: BodyStatus.EatAct?,
+        eatAct: EatAct?,
         input: BodyInput,
     ): Float? {
         if (configHunger == null) {

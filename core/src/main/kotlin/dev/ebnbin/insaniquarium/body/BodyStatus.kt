@@ -30,13 +30,6 @@ data class BodyStatus(
         isFacingRight = false,
     ),
 ) {
-    data class EatAct(
-        val drivingTargetX: DrivingTarget?,
-        val drivingTargetY: DrivingTarget?,
-        val foodRelation: BodyRelation,
-        val hungerDiff: Float,
-    )
-
     data class TextureRegionData(
         val animationAction: BodyConfig.AnimationAction,
         val animationStatus: BodyConfig.AnimationStatus,
@@ -70,11 +63,6 @@ data class BodyStatus(
             }
         }
     }
-
-    data class TouchAct(
-        val drivingTargetX: DrivingTarget,
-        val drivingTargetY: DrivingTarget,
-    )
 
     data class SwimAct(
         val drivingTarget: DrivingTarget?,
