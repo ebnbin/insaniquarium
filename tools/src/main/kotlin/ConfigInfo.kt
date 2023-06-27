@@ -26,11 +26,9 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1020f,
+            isDead = true,
             health = BodyConfig.Health(
                 full = 1f,
-            ),
-            hunger = BodyConfig.Hunger(
-                canDie = true,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -59,11 +57,9 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1020f,
+            isDead = true,
             health = BodyConfig.Health(
                 full = 1f,
-            ),
-            hunger = BodyConfig.Hunger(
-                canDie = true,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -780,11 +776,9 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.HEIGHT,
             ),
             density = 1020f,
+            isDead = true,
             health = BodyConfig.Health(
                 full = 1f,
-            ),
-            hunger = BodyConfig.Hunger(
-                canDie = true,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -811,11 +805,9 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.HEIGHT,
             ),
             density = 1020f,
+            isDead = true,
             health = BodyConfig.Health(
                 full = 1f,
-            ),
-            hunger = BodyConfig.Hunger(
-                canDie = true,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -842,11 +834,9 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1010f,
+            isDead = true,
             health = BodyConfig.Health(
                 full = 1f,
-            ),
-            hunger = BodyConfig.Hunger(
-                canDie = true,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -873,11 +863,9 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1020f,
+            isDead = true,
             health = BodyConfig.Health(
                 full = 1f,
-            ),
-            hunger = BodyConfig.Hunger(
-                canDie = true,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -904,11 +892,9 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 990f,
+            isDead = true,
             health = BodyConfig.Health(
                 full = 10f,
-            ),
-            hunger = BodyConfig.Hunger(
-                canDie = true,
             ),
             animations = BodyConfig.Animations(
                 swim =  TextureRegionAnimation(

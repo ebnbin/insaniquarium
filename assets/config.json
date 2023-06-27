@@ -10,18 +10,12 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": true,
       "health": {
         "full": 1.0,
         "diffPerSecond": 0.0
       },
-      "hunger": {
-        "full": 0.0,
-        "maxThreshold": 1.0,
-        "hungryThreshold": 0.0,
-        "diffPerSecond": 0.0,
-        "canDie": true,
-        "corpseDensity": null
-      },
+      "hunger": null,
       "growth": null,
       "drop": null,
       "eatAct": null,
@@ -53,18 +47,12 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": true,
       "health": {
         "full": 1.0,
         "diffPerSecond": 0.0
       },
-      "hunger": {
-        "full": 0.0,
-        "maxThreshold": 1.0,
-        "hungryThreshold": 0.0,
-        "diffPerSecond": 0.0,
-        "canDie": true,
-        "corpseDensity": null
-      },
+      "hunger": null,
       "growth": null,
       "drop": null,
       "eatAct": null,
@@ -96,6 +84,7 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": false,
       "health": {
         "full": 1.0,
         "diffPerSecond": 0.0
@@ -196,6 +185,7 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": false,
       "health": {
         "full": 1.0,
         "diffPerSecond": 0.0
@@ -300,6 +290,7 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": false,
       "health": {
         "full": 1.0,
         "diffPerSecond": 0.0
@@ -404,6 +395,7 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": false,
       "health": {
         "full": 1.0,
         "diffPerSecond": 0.0
@@ -504,6 +496,7 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": false,
       "health": null,
       "hunger": {
         "full": 20.0,
@@ -577,6 +570,7 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": false,
       "health": null,
       "hunger": {
         "full": 20.0,
@@ -670,6 +664,7 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": false,
       "health": null,
       "hunger": null,
       "growth": null,
@@ -756,6 +751,7 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": false,
       "health": null,
       "hunger": {
         "full": 10.0,
@@ -829,6 +825,7 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": false,
       "health": null,
       "hunger": null,
       "growth": null,
@@ -878,18 +875,12 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": true,
       "health": {
         "full": 1.0,
         "diffPerSecond": 0.0
       },
-      "hunger": {
-        "full": 0.0,
-        "maxThreshold": 1.0,
-        "hungryThreshold": 0.0,
-        "diffPerSecond": 0.0,
-        "canDie": true,
-        "corpseDensity": null
-      },
+      "hunger": null,
       "growth": null,
       "drop": null,
       "eatAct": null,
@@ -921,18 +912,12 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": true,
       "health": {
         "full": 1.0,
         "diffPerSecond": 0.0
       },
-      "hunger": {
-        "full": 0.0,
-        "maxThreshold": 1.0,
-        "hungryThreshold": 0.0,
-        "diffPerSecond": 0.0,
-        "canDie": true,
-        "corpseDensity": null
-      },
+      "hunger": null,
       "growth": null,
       "drop": null,
       "eatAct": null,
@@ -964,18 +949,12 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": true,
       "health": {
         "full": 1.0,
         "diffPerSecond": 0.0
       },
-      "hunger": {
-        "full": 0.0,
-        "maxThreshold": 1.0,
-        "hungryThreshold": 0.0,
-        "diffPerSecond": 0.0,
-        "canDie": true,
-        "corpseDensity": null
-      },
+      "hunger": null,
       "growth": null,
       "drop": null,
       "eatAct": null,
@@ -1007,18 +986,12 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": true,
       "health": {
         "full": 1.0,
         "diffPerSecond": 0.0
       },
-      "hunger": {
-        "full": 0.0,
-        "maxThreshold": 1.0,
-        "hungryThreshold": 0.0,
-        "diffPerSecond": 0.0,
-        "canDie": true,
-        "corpseDensity": null
-      },
+      "hunger": null,
       "growth": null,
       "drop": null,
       "eatAct": null,
@@ -1050,18 +1023,12 @@
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
+      "isDead": true,
       "health": {
         "full": 10.0,
         "diffPerSecond": 0.0
       },
-      "hunger": {
-        "full": 0.0,
-        "maxThreshold": 1.0,
-        "hungryThreshold": 0.0,
-        "diffPerSecond": 0.0,
-        "canDie": true,
-        "corpseDensity": null
-      },
+      "hunger": null,
       "growth": null,
       "drop": null,
       "eatAct": null,

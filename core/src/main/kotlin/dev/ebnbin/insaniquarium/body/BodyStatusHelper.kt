@@ -136,8 +136,8 @@ object BodyStatusHelper {
         val nextHungerStatus = data.body.config.hunger?.status(nextHunger)
 
         val nextDisappearAct = nextDisappearAct(
-            canDisappear = status.animationData.action == BodyAnimationData.Action.DIE &&
-                data.isAnimationFinished,
+            canDisappear = data.body.config.isDead || (status.animationData.action == BodyAnimationData.Action.DIE &&
+                data.isAnimationFinished),
             disappearAct = status.disappearAct,
             data = data,
             input = input,

@@ -36,6 +36,7 @@ data class BodyConfigInfo(
     val waterFrictionCoefficient: Float = BodyConfig.DEFAULT_WATER_FRICTION_COEFFICIENT,
     val bottomFrictionCoefficient: Float = BodyConfig.DEFAULT_BOTTOM_FRICTION_COEFFICIENT,
     val leftRightFrictionCoefficient: Float = BodyConfig.DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT,
+    val isDead: Boolean = false,
     val health: BodyConfig.Health? = null,
     val hunger: BodyConfig.Hunger? = null,
     val growth: BodyConfig.Growth? = null,

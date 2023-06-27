@@ -23,6 +23,11 @@ data class BodyConfig(
     val bottomFrictionCoefficient: Float = DEFAULT_BOTTOM_FRICTION_COEFFICIENT,
     @Expose
     val leftRightFrictionCoefficient: Float = DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT,
+    /**
+     * If true, the body will disappear when sinking or floating outside water.
+     */
+    @Expose
+    val isDead: Boolean = false,
     @Expose
     val health: Health? = null,
     @Expose

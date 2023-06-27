@@ -33,6 +33,7 @@ object ConfigHelper {
             waterFrictionCoefficient = info.waterFrictionCoefficient,
             leftRightFrictionCoefficient = info.leftRightFrictionCoefficient,
             bottomFrictionCoefficient = info.bottomFrictionCoefficient,
+            isDead = info.isDead,
             health = info.health,
             hunger = info.hunger,
             growth = info.growth,
