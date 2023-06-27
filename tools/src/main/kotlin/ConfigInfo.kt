@@ -96,15 +96,15 @@ object ConfigInfo {
             ),
             hunger = BodyConfig.Hunger(
                 full = 20f,
-                maxPercent = 1.5f,
-                hungryPercent = 0.5f,
+                maxThreshold = 1.5f,
+                hungryThreshold = 0.5f,
                 diffPerSecond = -1f,
                 canDie = true,
                 corpseDensity = 1020f,
             ),
             growth = BodyConfig.Growth(
                 full = 10f,
-                bodyType = BodyType.GUPPY_MEDIUM,
+                transformation = BodyType.GUPPY_MEDIUM,
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
@@ -188,20 +188,20 @@ object ConfigInfo {
             ),
             hunger = BodyConfig.Hunger(
                 full = 20f,
-                maxPercent = 1.5f,
-                hungryPercent = 0.5f,
+                maxThreshold = 1.5f,
+                hungryThreshold = 0.5f,
                 diffPerSecond = -1f,
                 canDie = true,
                 corpseDensity = 1020f,
             ),
             growth = BodyConfig.Growth(
                 full = 15f,
-                bodyType = BodyType.GUPPY_LARGE,
+                transformation = BodyType.GUPPY_LARGE,
             ),
             drop = BodyConfig.Drop(
                 full = 20f,
-                incrementPerSecond = 3f,
-                product = BodyType.SILVER_COIN,
+                diffPerSecond = 3f,
+                production = BodyType.SILVER_COIN,
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
@@ -285,20 +285,20 @@ object ConfigInfo {
             ),
             hunger = BodyConfig.Hunger(
                 full = 20f,
-                maxPercent = 1.5f,
-                hungryPercent = 0.5f,
+                maxThreshold = 1.5f,
+                hungryThreshold = 0.5f,
                 diffPerSecond = -1f,
                 canDie = true,
                 corpseDensity = 1020f,
             ),
             growth = BodyConfig.Growth(
                 full = 25f,
-                bodyType = BodyType.GUPPY_KING,
+                transformation = BodyType.GUPPY_KING,
             ),
             drop = BodyConfig.Drop(
                 full = 20f,
-                incrementPerSecond = 3f,
-                product = BodyType.GOLD_COIN,
+                diffPerSecond = 3f,
+                production = BodyType.GOLD_COIN,
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
@@ -382,16 +382,16 @@ object ConfigInfo {
             ),
             hunger = BodyConfig.Hunger(
                 full = 20f,
-                maxPercent = 1.5f,
-                hungryPercent = 0.5f,
+                maxThreshold = 1.5f,
+                hungryThreshold = 0.5f,
                 diffPerSecond = -1f,
                 canDie = true,
                 corpseDensity = 1020f,
             ),
             drop = BodyConfig.Drop(
                 full = 20f,
-                incrementPerSecond = 3f,
-                product = BodyType.DIAMOND,
+                diffPerSecond = 3f,
+                production = BodyType.DIAMOND,
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
@@ -472,15 +472,15 @@ object ConfigInfo {
             density = 1080f,
             hunger = BodyConfig.Hunger(
                 full = 20f,
-                maxPercent = 1.5f,
-                hungryPercent = 0.5f,
+                maxThreshold = 1.5f,
+                hungryThreshold = 0.5f,
                 diffPerSecond = -1f,
                 canDie = true,
                 corpseDensity = 1020f,
             ),
             drop = BodyConfig.Drop(
                 full = 1f,
-                product = BodyType.BEETLE,
+                production = BodyType.BEETLE,
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
@@ -536,8 +536,8 @@ object ConfigInfo {
             ),
             hunger = BodyConfig.Hunger(
                 full = 20f,
-                maxPercent = 1.5f,
-                hungryPercent = 0.5f,
+                maxThreshold = 1.5f,
+                hungryThreshold = 0.5f,
                 diffPerSecond = -1f,
                 canDie = true,
                 corpseDensity = 1020f,
@@ -679,7 +679,7 @@ object ConfigInfo {
             ),
             hunger = BodyConfig.Hunger(
                 full = 10f,
-                maxPercent = 3f,
+                maxThreshold = 3f,
                 diffPerSecond = -1f,
             ),
             eatAct = BodyConfig.EatAct(

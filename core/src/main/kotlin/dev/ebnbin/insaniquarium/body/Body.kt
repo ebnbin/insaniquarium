@@ -34,7 +34,7 @@ class Body(
                 val growth = data.status.growth
                 require(growth != null)
                 tank.addBody(
-                    type = config.growth.bodyType,
+                    type = config.growth.transformation,
                     createStatus = {
                         data.status.copy(
                             growth = growth - config.growth.full,

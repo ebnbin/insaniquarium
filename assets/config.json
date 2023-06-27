@@ -11,12 +11,13 @@
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
       "health": {
-        "full": 1.0
+        "full": 1.0,
+        "diffPerSecond": 0.0
       },
       "hunger": {
         "full": 0.0,
-        "maxPercent": 1.0,
-        "hungryPercent": 0.0,
+        "maxThreshold": 1.0,
+        "hungryThreshold": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
         "corpseDensity": null
@@ -53,12 +54,13 @@
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
       "health": {
-        "full": 1.0
+        "full": 1.0,
+        "diffPerSecond": 0.0
       },
       "hunger": {
         "full": 0.0,
-        "maxPercent": 1.0,
-        "hungryPercent": 0.0,
+        "maxThreshold": 1.0,
+        "hungryThreshold": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
         "corpseDensity": null
@@ -95,19 +97,21 @@
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
       "health": {
-        "full": 1.0
+        "full": 1.0,
+        "diffPerSecond": 0.0
       },
       "hunger": {
         "full": 20.0,
-        "maxPercent": 1.5,
-        "hungryPercent": 0.5,
+        "maxThreshold": 1.5,
+        "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
         "corpseDensity": 1020.0
       },
       "growth": {
         "full": 10.0,
-        "bodyType": "guppy_medium"
+        "diffPerSecond": 0.0,
+        "transformation": "guppy_medium"
       },
       "drop": null,
       "eatAct": {
@@ -193,24 +197,26 @@
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
       "health": {
-        "full": 1.0
+        "full": 1.0,
+        "diffPerSecond": 0.0
       },
       "hunger": {
         "full": 20.0,
-        "maxPercent": 1.5,
-        "hungryPercent": 0.5,
+        "maxThreshold": 1.5,
+        "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
         "corpseDensity": 1020.0
       },
       "growth": {
         "full": 15.0,
-        "bodyType": "guppy_large"
+        "diffPerSecond": 0.0,
+        "transformation": "guppy_large"
       },
       "drop": {
         "full": 20.0,
-        "incrementPerSecond": 3.0,
-        "product": "silver_coin"
+        "diffPerSecond": 3.0,
+        "production": "silver_coin"
       },
       "eatAct": {
         "foods": {
@@ -295,24 +301,26 @@
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
       "health": {
-        "full": 1.0
+        "full": 1.0,
+        "diffPerSecond": 0.0
       },
       "hunger": {
         "full": 20.0,
-        "maxPercent": 1.5,
-        "hungryPercent": 0.5,
+        "maxThreshold": 1.5,
+        "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
         "corpseDensity": 1020.0
       },
       "growth": {
         "full": 25.0,
-        "bodyType": "guppy_king"
+        "diffPerSecond": 0.0,
+        "transformation": "guppy_king"
       },
       "drop": {
         "full": 20.0,
-        "incrementPerSecond": 3.0,
-        "product": "gold_coin"
+        "diffPerSecond": 3.0,
+        "production": "gold_coin"
       },
       "eatAct": {
         "foods": {
@@ -397,12 +405,13 @@
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
       "health": {
-        "full": 1.0
+        "full": 1.0,
+        "diffPerSecond": 0.0
       },
       "hunger": {
         "full": 20.0,
-        "maxPercent": 1.5,
-        "hungryPercent": 0.5,
+        "maxThreshold": 1.5,
+        "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
         "corpseDensity": 1020.0
@@ -410,8 +419,8 @@
       "growth": null,
       "drop": {
         "full": 20.0,
-        "incrementPerSecond": 3.0,
-        "product": "diamond"
+        "diffPerSecond": 3.0,
+        "production": "diamond"
       },
       "eatAct": {
         "foods": {
@@ -498,8 +507,8 @@
       "health": null,
       "hunger": {
         "full": 20.0,
-        "maxPercent": 1.5,
-        "hungryPercent": 0.5,
+        "maxThreshold": 1.5,
+        "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
         "corpseDensity": 1020.0
@@ -507,8 +516,8 @@
       "growth": null,
       "drop": {
         "full": 1.0,
-        "incrementPerSecond": 0.0,
-        "product": "beetle"
+        "diffPerSecond": 0.0,
+        "production": "beetle"
       },
       "eatAct": {
         "foods": {
@@ -571,8 +580,8 @@
       "health": null,
       "hunger": {
         "full": 20.0,
-        "maxPercent": 1.5,
-        "hungryPercent": 0.5,
+        "maxThreshold": 1.5,
+        "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
         "corpseDensity": 1020.0
@@ -750,8 +759,8 @@
       "health": null,
       "hunger": {
         "full": 10.0,
-        "maxPercent": 3.0,
-        "hungryPercent": 0.0,
+        "maxThreshold": 3.0,
+        "hungryThreshold": 0.0,
         "diffPerSecond": -1.0,
         "canDie": false,
         "corpseDensity": null
@@ -870,12 +879,13 @@
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
       "health": {
-        "full": 1.0
+        "full": 1.0,
+        "diffPerSecond": 0.0
       },
       "hunger": {
         "full": 0.0,
-        "maxPercent": 1.0,
-        "hungryPercent": 0.0,
+        "maxThreshold": 1.0,
+        "hungryThreshold": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
         "corpseDensity": null
@@ -912,12 +922,13 @@
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
       "health": {
-        "full": 1.0
+        "full": 1.0,
+        "diffPerSecond": 0.0
       },
       "hunger": {
         "full": 0.0,
-        "maxPercent": 1.0,
-        "hungryPercent": 0.0,
+        "maxThreshold": 1.0,
+        "hungryThreshold": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
         "corpseDensity": null
@@ -954,12 +965,13 @@
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
       "health": {
-        "full": 1.0
+        "full": 1.0,
+        "diffPerSecond": 0.0
       },
       "hunger": {
         "full": 0.0,
-        "maxPercent": 1.0,
-        "hungryPercent": 0.0,
+        "maxThreshold": 1.0,
+        "hungryThreshold": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
         "corpseDensity": null
@@ -996,12 +1008,13 @@
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
       "health": {
-        "full": 1.0
+        "full": 1.0,
+        "diffPerSecond": 0.0
       },
       "hunger": {
         "full": 0.0,
-        "maxPercent": 1.0,
-        "hungryPercent": 0.0,
+        "maxThreshold": 1.0,
+        "hungryThreshold": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
         "corpseDensity": null
@@ -1038,12 +1051,13 @@
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
       "health": {
-        "full": 10.0
+        "full": 10.0,
+        "diffPerSecond": 0.0
       },
       "hunger": {
         "full": 0.0,
-        "maxPercent": 1.0,
-        "hungryPercent": 0.0,
+        "maxThreshold": 1.0,
+        "hungryThreshold": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
         "corpseDensity": null

@@ -52,7 +52,7 @@ fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
                 BodyHungerStatus.DYING
             } else {
                 // NOT_FULL or HUNGRY.
-                if (hungryPercent == 0f) {
+                if (hungryThreshold == 0f) {
                     BodyHungerStatus.NOT_FULL
                 } else {
                     BodyHungerStatus.HUNGRY
@@ -61,9 +61,9 @@ fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
         }
         hunger >= full -> {
             // FULL or NOT_FULL or HUNGRY.
-            if (maxPercent == 1f) {
+            if (maxThreshold == 1f) {
                 // NOT_FULL or HUNGRY.
-                if (hungryPercent == 1f) {
+                if (hungryThreshold == 1f) {
                     BodyHungerStatus.HUNGRY
                 } else {
                     BodyHungerStatus.NOT_FULL
@@ -72,9 +72,9 @@ fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
                 return BodyHungerStatus.FULL
             }
         }
-        hunger >= full * hungryPercent -> {
+        hunger >= full * hungryThreshold -> {
             // NOT_FULL or HUNGRY.
-            if (hungryPercent == 1f) {
+            if (hungryThreshold == 1f) {
                 BodyHungerStatus.HUNGRY
             } else {
                 BodyHungerStatus.NOT_FULL
@@ -87,7 +87,7 @@ fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
 }
 
 fun BodyConfig.Hunger.minMax(hunger: Float): Float {
-    val maxHunger = full * maxPercent
+    val maxHunger = full * maxThreshold
     return hunger.minMax(0f, maxHunger)
 }
 

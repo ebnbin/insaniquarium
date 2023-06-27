@@ -375,7 +375,9 @@ object BodyStatusHelper {
         if (health == null) {
             return configHealth.full
         }
-        return max(0f, health + input.healthDiff)
+        var nextHealth = health + configHealth.diffPerSecond * input.delta
+        nextHealth += input.healthDiff
+        return max(0f, nextHealth)
     }
 
     private fun nextHunger(
@@ -412,7 +414,7 @@ object BodyStatusHelper {
             return 0f
         }
 
-        var nextGrowth = growth
+        var nextGrowth = growth + configGrowth.diffPerSecond * input.delta
         nextGrowth += input.growthDiff
         if (eatAct != null) {
             nextGrowth += eatAct.growthDiff
@@ -438,7 +440,7 @@ object BodyStatusHelper {
             return drop
         }
 
-        var nextDrop = drop + configDrop.incrementPerSecond * input.delta
+        var nextDrop = drop + configDrop.diffPerSecond * input.delta
         nextDrop += input.dropDiff
         if (eatAct != null) {
             nextDrop += eatAct.dropDiff
@@ -446,7 +448,7 @@ object BodyStatusHelper {
         while (nextDrop >= configDrop.full) {
             nextDrop -= configDrop.full
             body.tank.addBody(
-                type = configDrop.product,
+                type = configDrop.production,
                 createStatus = {
                     BodyStatus(
                         x = body.data.status.x,

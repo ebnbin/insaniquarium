@@ -48,6 +48,8 @@ data class BodyConfig(
          */
         @Expose
         val full: Float,
+        @Expose
+        val diffPerSecond: Float = 0f,
     )
 
     data class Hunger(
@@ -62,14 +64,14 @@ data class BodyConfig(
          * 1f: Never full.
          */
         @Expose
-        val maxPercent: Float = 1f,
+        val maxThreshold: Float = 1f,
         /**
          * >= 0f && <= 1f.
          * 0f: Never hungry.
          * 1f: Always hungry.
          */
         @Expose
-        val hungryPercent: Float = 0f,
+        val hungryThreshold: Float = 0f,
         @Expose
         val diffPerSecond: Float = 0f,
         /**
@@ -82,19 +84,27 @@ data class BodyConfig(
     )
 
     data class Growth(
+        /**
+         * > 0f.
+         */
         @Expose
         val full: Float,
         @Expose
-        val bodyType: BodyType,
+        val diffPerSecond: Float = 0f,
+        @Expose
+        val transformation: BodyType,
     )
 
     data class Drop(
+        /**
+         * > 0f.
+         */
         @Expose
         val full: Float,
         @Expose
-        val incrementPerSecond: Float = 0f,
+        val diffPerSecond: Float = 0f,
         @Expose
-        val product: BodyType,
+        val production: BodyType,
     )
 
     data class EatAct(
