@@ -27,9 +27,7 @@ object ConfigInfo {
             ),
             density = 1020f,
             isDead = true,
-            health = BodyConfig.Health(
-                full = 1f,
-            ),
+            health = BodyConfig.Health(),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "fish_food",
@@ -58,9 +56,7 @@ object ConfigInfo {
             ),
             density = 1020f,
             isDead = true,
-            health = BodyConfig.Health(
-                full = 1f,
-            ),
+            health = BodyConfig.Health(),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "star_potion",
@@ -87,9 +83,7 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            health = BodyConfig.Health(
-                full = 1f,
-            ),
+            health = BodyConfig.Health(),
             hunger = BodyConfig.Hunger(
                 full = 20f,
                 maxThreshold = 1.5f,
@@ -173,9 +167,7 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            health = BodyConfig.Health(
-                full = 1f,
-            ),
+            health = BodyConfig.Health(),
             hunger = BodyConfig.Hunger(
                 full = 20f,
                 maxThreshold = 1.5f,
@@ -264,9 +256,7 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            health = BodyConfig.Health(
-                full = 1f,
-            ),
+            health = BodyConfig.Health(),
             hunger = BodyConfig.Hunger(
                 full = 20f,
                 maxThreshold = 1.5f,
@@ -355,9 +345,7 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            health = BodyConfig.Health(
-                full = 1f,
-            ),
+            health = BodyConfig.Health(),
             hunger = BodyConfig.Hunger(
                 full = 20f,
                 maxThreshold = 1.5f,
@@ -813,7 +801,7 @@ object ConfigInfo {
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.BEETLE to BodyConfig.Food(
-                        healthDiffPerSecond = -10f,
+                        healthDiffPerSecond = -1f,
                         hunger = 20f,
                     ),
                 ),
@@ -909,9 +897,7 @@ object ConfigInfo {
             ),
             density = 1020f,
             isDead = true,
-            health = BodyConfig.Health(
-                full = 1f,
-            ),
+            health = BodyConfig.Health(),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "silver_coin",
@@ -938,9 +924,7 @@ object ConfigInfo {
             ),
             density = 1020f,
             isDead = true,
-            health = BodyConfig.Health(
-                full = 1f,
-            ),
+            health = BodyConfig.Health(),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "gold_coin",
@@ -967,9 +951,7 @@ object ConfigInfo {
             ),
             density = 1010f,
             isDead = true,
-            health = BodyConfig.Health(
-                full = 1f,
-            ),
+            health = BodyConfig.Health(),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "star",
@@ -996,9 +978,7 @@ object ConfigInfo {
             ),
             density = 1020f,
             isDead = true,
-            health = BodyConfig.Health(
-                full = 1f,
-            ),
+            health = BodyConfig.Health(),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "diamond",
@@ -1025,9 +1005,7 @@ object ConfigInfo {
             ),
             density = 990f,
             isDead = true,
-            health = BodyConfig.Health(
-                full = 10f,
-            ),
+            health = BodyConfig.Health(),
             animations = BodyConfig.Animations(
                 swim =  TextureRegionAnimation(
                     assetId = "beetle",

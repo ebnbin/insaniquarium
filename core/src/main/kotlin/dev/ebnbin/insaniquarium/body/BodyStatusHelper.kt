@@ -354,7 +354,7 @@ object BodyStatusHelper {
             return null
         }
         if (health == null) {
-            return configHealth.full
+            return configHealth.initialThreshold
         }
         var nextHealth = health + configHealth.diffPerSecond * input.delta
         nextHealth += input.healthDiff

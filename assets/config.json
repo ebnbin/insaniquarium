@@ -12,7 +12,7 @@
       "leftRightFrictionCoefficient": 0.0,
       "isDead": true,
       "health": {
-        "full": 1.0,
+        "initialThreshold": 1.0,
         "diffPerSecond": 0.0
       },
       "hunger": null,
@@ -48,7 +48,7 @@
       "leftRightFrictionCoefficient": 0.0,
       "isDead": true,
       "health": {
-        "full": 1.0,
+        "initialThreshold": 1.0,
         "diffPerSecond": 0.0
       },
       "hunger": null,
@@ -84,7 +84,7 @@
       "leftRightFrictionCoefficient": 0.0,
       "isDead": false,
       "health": {
-        "full": 1.0,
+        "initialThreshold": 1.0,
         "diffPerSecond": 0.0
       },
       "hunger": {
@@ -178,7 +178,7 @@
       "leftRightFrictionCoefficient": 0.0,
       "isDead": false,
       "health": {
-        "full": 1.0,
+        "initialThreshold": 1.0,
         "diffPerSecond": 0.0
       },
       "hunger": {
@@ -276,7 +276,7 @@
       "leftRightFrictionCoefficient": 0.0,
       "isDead": false,
       "health": {
-        "full": 1.0,
+        "initialThreshold": 1.0,
         "diffPerSecond": 0.0
       },
       "hunger": {
@@ -374,7 +374,7 @@
       "leftRightFrictionCoefficient": 0.0,
       "isDead": false,
       "health": {
-        "full": 1.0,
+        "initialThreshold": 1.0,
         "diffPerSecond": 0.0
       },
       "hunger": {
@@ -918,7 +918,7 @@
       "eatAct": {
         "foods": {
           "beetle": {
-            "healthDiffPerSecond": -10.0,
+            "healthDiffPerSecond": -1.0,
             "hungerDiffPerSecond": 0.0,
             "growthDiffPerSecond": 0.0,
             "dropDiffPerSecond": 0.0,
@@ -1027,7 +1027,7 @@
       "leftRightFrictionCoefficient": 0.0,
       "isDead": true,
       "health": {
-        "full": 1.0,
+        "initialThreshold": 1.0,
         "diffPerSecond": 0.0
       },
       "hunger": null,
@@ -1063,7 +1063,7 @@
       "leftRightFrictionCoefficient": 0.0,
       "isDead": true,
       "health": {
-        "full": 1.0,
+        "initialThreshold": 1.0,
         "diffPerSecond": 0.0
       },
       "hunger": null,
@@ -1099,7 +1099,7 @@
       "leftRightFrictionCoefficient": 0.0,
       "isDead": true,
       "health": {
-        "full": 1.0,
+        "initialThreshold": 1.0,
         "diffPerSecond": 0.0
       },
       "hunger": null,
@@ -1135,7 +1135,7 @@
       "leftRightFrictionCoefficient": 0.0,
       "isDead": true,
       "health": {
-        "full": 1.0,
+        "initialThreshold": 1.0,
         "diffPerSecond": 0.0
       },
       "hunger": null,
@@ -1171,7 +1171,7 @@
       "leftRightFrictionCoefficient": 0.0,
       "isDead": true,
       "health": {
-        "full": 10.0,
+        "initialThreshold": 1.0,
         "diffPerSecond": 0.0
       },
       "hunger": null,
