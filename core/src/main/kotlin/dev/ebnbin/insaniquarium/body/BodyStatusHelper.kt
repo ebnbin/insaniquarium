@@ -129,24 +129,12 @@ object BodyStatusHelper {
         val nextDrivingTargetY: BodyDrivingTarget? =
             nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
 
-        val hasTurnAnimation = data.body.config.animations.turn != null
-        val nextExpectedIsFacingRight = if (hasTurnAnimation) {
-            when (data.box.expectedDirection) {
-                Direction.ZERO -> status.expectedIsFacingRight
-                Direction.POSITIVE -> true
-                Direction.NEGATIVE -> false
-            }
-        } else {
-            false
-        }
-
         val nextAnimationData = nextAnimationData(
-            config = data.body.config,
-            hasTurnAnimation = hasTurnAnimation,
+            box = data.box,
+            configAnimations = data.body.config.animations,
             animationData = status.animationData,
             isAnimationFinished = data.isAnimationFinished,
             canAnimationActionChange = data.canAnimationActionChange,
-            expectedIsFacingRight = status.expectedIsFacingRight,
             canPlayEatAnimation = nextEatAct?.foodRelation == BodyRelation.OVERLAP ||
                 nextEatAct?.foodRelation == BodyRelation.CONTAIN_CENTER,
             hungerStatus = nextHungerStatus,
@@ -167,7 +155,6 @@ object BodyStatusHelper {
             disappearAct = nextDisappearAct,
             drivingTargetX = nextDrivingTargetX,
             drivingTargetY = nextDrivingTargetY,
-            expectedIsFacingRight = nextExpectedIsFacingRight,
             animationData = nextAnimationData,
         )
     }
@@ -351,12 +338,11 @@ object BodyStatusHelper {
     }
 
     private fun nextAnimationData(
-        config: BodyConfig,
-        hasTurnAnimation: Boolean,
+        box: BodyBox,
+        configAnimations: BodyConfig.Animations,
         animationData: BodyAnimationData,
         isAnimationFinished: Boolean,
         canAnimationActionChange: Boolean,
-        expectedIsFacingRight: Boolean,
         canPlayEatAnimation: Boolean,
         hungerStatus: BodyHungerStatus?,
         input: BodyInput,
@@ -381,7 +367,7 @@ object BodyStatusHelper {
                 action = BodyAnimationData.Action.TURN,
                 status = animationStatus,
                 stateTime = 0f,
-                isFacingRight = expectedIsFacingRight,
+                isFacingRight = !animationData.isFacingRight,
             )
         }
 
@@ -404,10 +390,12 @@ object BodyStatusHelper {
         }
 
         return if (canAnimationActionChange) {
-            if (config.animations.eat != null && canPlayEatAnimation) {
+            if (configAnimations.eat != null && canPlayEatAnimation) {
                 createEat()
             } else {
-                if (hasTurnAnimation && animationData.isFacingRight != expectedIsFacingRight) {
+                if (configAnimations.turn != null &&
+                    (animationData.isFacingRight && box.expectedDirection == Direction.NEGATIVE ||
+                        !animationData.isFacingRight && box.expectedDirection == Direction.POSITIVE)) {
                     createTurn()
                 } else {
                     update()

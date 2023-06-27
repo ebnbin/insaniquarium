@@ -23,8 +23,6 @@ data class BodyStatus(
     val drivingTargetX: BodyDrivingTarget? = null,
     val drivingTargetY: BodyDrivingTarget? = null,
 
-    val expectedIsFacingRight: Boolean = false,
-
     val animationData: BodyAnimationData = BodyAnimationData(),
 ) {
     data class SwimAct(
