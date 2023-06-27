@@ -464,7 +464,7 @@
       "density": 1080.0,
       "dragCoefficient": 1.0,
       "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
+      "bottomFrictionCoefficient": 0.01,
       "leftRightFrictionCoefficient": 0.0,
       "isDead": false,
       "health": null,
@@ -494,12 +494,12 @@
             "drop": -1.0
           }
         },
-        "drivingAccelerationX": 0.2,
+        "drivingAccelerationX": 0.3,
         "drivingAccelerationY": 0.0
       },
       "touchAct": null,
       "swimActX": {
-        "drivingAcceleration": 0.1,
+        "drivingAcceleration": 0.15,
         "idlingTimeRandomStart": 2.0,
         "idlingTimeRandomEnd": 8.0
       },

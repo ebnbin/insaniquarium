@@ -420,6 +420,7 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             density = 1080f,
+            bottomFrictionCoefficient = 0.01f,
             hunger = BodyConfig.Hunger(
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
@@ -437,11 +438,11 @@ object ConfigInfo {
                         drop = -1f,
                     ),
                 ),
-                drivingAccelerationX = 0.2f,
+                drivingAccelerationX = 0.3f,
                 drivingAccelerationY = 0f,
             ),
             swimActX = BodyConfig.SwimAct(
-                drivingAcceleration = 0.1f,
+                drivingAcceleration = 0.15f,
                 idlingTimeRandomStart = 2f,
                 idlingTimeRandomEnd = 8f,
             ),
