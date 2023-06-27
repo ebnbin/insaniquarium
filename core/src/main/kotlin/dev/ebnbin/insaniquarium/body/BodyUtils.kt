@@ -8,7 +8,6 @@ import dev.ebnbin.gdx.utils.XY
 import dev.ebnbin.gdx.utils.colorMarkup
 import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.magnitude
-import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.insaniquarium.game
 
 fun BodyType.assets(): Set<Asset<*>> {
@@ -72,10 +71,6 @@ fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
             BodyHungerStatus.HUNGRY
         }
     }
-}
-
-fun BodyStatus.DisappearAct.canRemove(): Boolean {
-    return time <= -BodyStatus.DisappearAct.DISAPPEAR_DURATION
 }
 
 fun Float.devText(xy: XY? = null): String {

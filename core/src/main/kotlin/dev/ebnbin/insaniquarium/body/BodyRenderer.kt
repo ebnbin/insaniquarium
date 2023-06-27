@@ -7,10 +7,17 @@ import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.unitToMeter
 
 data class BodyRenderer(
+    val isDead: Boolean,
     val configAnimations: BodyConfig.Animations,
+    val isSinkingOrFloatingOutsideWater: Boolean,
     val animationData: BodyAnimationData,
     val expectedDirection: Direction,
     val isHungry: Boolean,
+    /**
+     * >= 0f: Delaying.
+     * < 0f: Changing alpha.
+     */
+    val alphaTime: Float?,
 ) {
     private val animation: TextureRegionAnimation = animationData.getAnimation(configAnimations)
 
@@ -24,6 +31,14 @@ data class BodyRenderer(
     } else {
         animationData.isFacingRight
     }
+
+    private val alpha: Float = if (alphaTime == null || alphaTime >= 0f) {
+        1f
+    } else {
+        ((ALPHA_DURATION + alphaTime) / ALPHA_DURATION).coerceIn(0f, 1f)
+    }
+
+    val canRemove: Boolean = alphaTime != null && alphaTime <= -ALPHA_DURATION
 
     fun nextAnimationData(
         delta: Float,
@@ -95,7 +110,22 @@ data class BodyRenderer(
         }
     }
 
-    fun draw(body: Body, alpha: Float, batch: Batch, parentAlpha: Float) {
+    fun nextAlphaTime(delta: Float): Float? {
+        if (!isDead) {
+            return null
+        }
+        return if (alphaTime == null) {
+            if (isSinkingOrFloatingOutsideWater) {
+                ALPHA_DELAY_DURATION
+            } else {
+                null
+            }
+        } else {
+            alphaTime - delta
+        }
+    }
+
+    fun draw(body: Body, batch: Batch, parentAlpha: Float) {
         val oldColor = batch.color.cpy()
         batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
         batch.draw(
@@ -117,5 +147,10 @@ data class BodyRenderer(
             false,
         )
         batch.color = oldColor
+    }
+
+    companion object {
+        private const val ALPHA_DELAY_DURATION = 0f
+        private const val ALPHA_DURATION = 1f
     }
 }

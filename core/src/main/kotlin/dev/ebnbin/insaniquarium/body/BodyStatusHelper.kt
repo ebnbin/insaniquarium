@@ -114,11 +114,8 @@ object BodyStatusHelper {
             food = nextEatAct?.eatenFood,
         )
 
-        val nextDisappearAct = nextDisappearAct(
-            canDisappear = data.body.config.isDead,
-            disappearAct = status.disappearAct,
-            data = data,
-            input = input,
+        val nextAlphaTime = data.renderer.nextAlphaTime(
+            delta = input.delta,
         )
 
         val nextDrivingTargetX: BodyDrivingTarget? =
@@ -142,7 +139,7 @@ object BodyStatusHelper {
             hunger = nextHunger,
             growth = nextGrowth,
             drop = nextDrop,
-            disappearAct = nextDisappearAct,
+            alphaTime = nextAlphaTime,
             drivingTargetX = nextDrivingTargetX,
             drivingTargetY = nextDrivingTargetY,
             animationData = nextAnimationData,
@@ -302,28 +299,6 @@ object BodyStatusHelper {
             } else {
                 updateSwimAct(swimAct)
             }
-        }
-    }
-
-    private fun nextDisappearAct(
-        canDisappear: Boolean,
-        disappearAct: BodyStatus.DisappearAct?,
-        data: BodyData,
-        input: BodyInput,
-    ): BodyStatus.DisappearAct? {
-        if (!canDisappear) {
-            return null
-        }
-        return if (disappearAct == null) {
-            if (data.box.isSinkingOrFloatingOutsideWater) {
-                BodyStatus.DisappearAct()
-            } else {
-                null
-            }
-        } else {
-            disappearAct.copy(
-                time = disappearAct.time - input.delta,
-            )
         }
     }
 }

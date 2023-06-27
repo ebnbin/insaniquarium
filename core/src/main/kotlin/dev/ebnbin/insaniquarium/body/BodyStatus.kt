@@ -18,7 +18,7 @@ data class BodyStatus(
 
     val drop: Float? = null,
 
-    val disappearAct: DisappearAct? = null,
+    val alphaTime: Float? = null,
 
     val drivingTargetX: BodyDrivingTarget? = null,
     val drivingTargetY: BodyDrivingTarget? = null,
@@ -28,17 +28,4 @@ data class BodyStatus(
     data class SwimAct(
         val remainingTime: Float,
     )
-
-    data class DisappearAct(
-        /**
-         * >= 0f: Delaying.
-         * < 0f: Disappearing.
-         */
-        val time: Float = DELAY_DURATION,
-    ) {
-        companion object {
-            const val DELAY_DURATION = 0f
-            const val DISAPPEAR_DURATION = 1f
-        }
-    }
 }

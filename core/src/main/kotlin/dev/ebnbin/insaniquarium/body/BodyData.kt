@@ -1,13 +1,9 @@
 package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.g2d.Batch
-import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.utils.Align
-import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.utils.Point
-import dev.ebnbin.gdx.utils.minMax
-import dev.ebnbin.gdx.utils.unitToMeter
 
 data class BodyData(
     val body: Body,
@@ -49,10 +45,13 @@ data class BodyData(
     //*****************************************************************************************************************
 
     val renderer: BodyRenderer = BodyRenderer(
+        isDead = body.config.isDead,
         configAnimations = body.config.animations,
+        isSinkingOrFloatingOutsideWater = box.isSinkingOrFloatingOutsideWater,
         animationData = status.animationData,
         expectedDirection = box.expectedDirection,
         isHungry = life.hungerStatus == BodyHungerStatus.HUNGRY,
+        alphaTime = status.alphaTime,
     )
 
     //*****************************************************************************************************************
@@ -71,16 +70,7 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val alpha: Float = if (status.disappearAct == null || status.disappearAct.time >= 0f) {
-        1f
-    } else {
-        ((BodyStatus.DisappearAct.DISAPPEAR_DURATION + status.disappearAct.time) /
-            BodyStatus.DisappearAct.DISAPPEAR_DURATION).minMax(0f, 1f)
-    }
-
-    //*****************************************************************************************************************
-
-    val canRemove: Boolean = (status.disappearAct?.canRemove() == true) ||
+    val canRemove: Boolean = (renderer.canRemove) ||
         life.isDeadFromHealth ||
         (life.transformationFromHunger != null && status.animationData.action == BodyAnimationData.Action.SWIM) ||
         life.transformationFromGrowth != null
@@ -102,7 +92,7 @@ data class BodyData(
                         hunger = null,
                         growth = null,
                         drop = null,
-                        disappearAct = null,
+                        alphaTime = null,
                         drivingTargetX = null,
                         drivingTargetY = null,
                         animationData = status.animationData.copy(
@@ -182,7 +172,7 @@ data class BodyData(
     }
 
     fun draw(batch: Batch, parentAlpha: Float) {
-        renderer.draw(body, alpha, batch, parentAlpha)
+        renderer.draw(body, batch, parentAlpha)
     }
 
     //*****************************************************************************************************************
