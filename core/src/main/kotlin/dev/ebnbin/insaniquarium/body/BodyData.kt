@@ -21,18 +21,29 @@ data class BodyData(
         height = body.config.height,
         depth = body.config.depth,
         density = body.config.density,
-        drivingTargetX = status.drivingTargetX,
-        drivingTargetY = status.drivingTargetY,
+        drivingTargetX = status.life.drivingTargetX,
+        drivingTargetY = status.life.drivingTargetY,
         status = status.box,
     )
 
     //*****************************************************************************************************************
 
     val life: BodyLife = BodyLife(
+        configEatAct = body.config.eatAct,
+        configTouchAct = body.config.touchAct,
+        configSwimActX = body.config.swimActX,
+        configSwimActY = body.config.swimActY,
         configHealth = body.config.health,
         configHunger = body.config.hunger,
         configGrowth = body.config.growth,
         configDrop = body.config.drop,
+        tankWidth = body.tank.width,
+        tankHeight = body.tank.height,
+        reachDrivingTargetX = box.reachDrivingTargetX,
+        reachDrivingTargetY = box.reachDrivingTargetY,
+        boxRelation = box::relation,
+        canEat = status.renderer.animationData.action == BodyAnimationData.Action.SWIM ||
+            status.renderer.animationData.action == BodyAnimationData.Action.EAT,
         status = status.life,
     )
 
@@ -89,9 +100,8 @@ data class BodyData(
         return copy(
             status = BodyStatusHelper.nextStatus(
                 data = this,
-                status = status,
-                input = input,
                 bodyManager = BodyManager(body),
+                input = input,
                 touchPoint = body.tank.touchPoint,
             ),
             input = input,

@@ -1,19 +1,61 @@
 package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.lifecycle.baseGame
+import dev.ebnbin.gdx.utils.Point
+import dev.ebnbin.gdx.utils.Random
 
 data class BodyLife(
+    private val configEatAct: BodyConfig.EatAct?,
+    private val configTouchAct: BodyConfig.TouchAct?,
+    private val configSwimActX: BodyConfig.SwimAct?,
+    private val configSwimActY: BodyConfig.SwimAct?,
     private val configHealth: BodyConfig.Health?,
     private val configHunger: BodyConfig.Hunger?,
     private val configGrowth: BodyConfig.Growth?,
     private val configDrop: BodyConfig.Drop?,
+    private val tankWidth: Float,
+    private val tankHeight: Float,
+    private val reachDrivingTargetX: Boolean,
+    private val reachDrivingTargetY: Boolean,
+    private val boxRelation: (other: BodyBox?) -> BodyRelation,
+    private val canEat: Boolean,
     private val status: Status,
 ) {
     data class Status(
+        /**
+         * null: Neither targeting nor idling.
+         * 0f: Targeting or finish idling.
+         * > 0f: Idling.
+         */
+        val swimTimeX: Float? = null,
+        val swimTimeY: Float? = null,
+
+        val drivingTargetX: BodyDrivingTarget? = null,
+        val drivingTargetY: BodyDrivingTarget? = null,
+
         val health: Float? = null,
         val hunger: Float? = null,
         val growth: Float? = null,
         val drop: Float? = null,
+
+        val foodRelation: BodyRelation = BodyRelation.DISJOINT,
+    )
+
+    private data class EatAct(
+        val drivingTargetX: BodyDrivingTarget?,
+        val drivingTargetY: BodyDrivingTarget?,
+        val foodRelation: BodyRelation,
+        val eatenFood: BodyConfig.Food?,
+    )
+
+    private data class TouchAct(
+        val drivingTargetX: BodyDrivingTarget,
+        val drivingTargetY: BodyDrivingTarget,
+    )
+
+    private data class SwimAct(
+        val drivingTarget: BodyDrivingTarget?,
+        val time: Float,
     )
 
     val health: Float? = status.health
@@ -42,19 +84,222 @@ data class BodyLife(
     }
 
     fun nextStatus(
+        bodyManager: BodyManager,
         input: BodyInput,
-        food: BodyConfig.Food?,
+        touchPoint: Point?,
     ): Status {
-        val nextHealth = nextHealth(input, food)
-        val nextHunger = nextHunger(input, food)
-        val nextGrowth = nextGrowth(input, food)
-        val nextDrop = nextDrop(input, food)
+        val nextEatAct = nextEatAct(
+            bodyManager = bodyManager,
+            delta = input.delta,
+        )
+
+        val hasEatDrivingTarget = nextEatAct?.drivingTargetX != null || nextEatAct?.drivingTargetY != null
+
+        val nextTouchAct = nextTouchAct(
+            enabled = !hasEatDrivingTarget,
+            touchPoint = touchPoint,
+        )
+
+        val hasTouchDrivingTarget = nextTouchAct != null
+
+        val nextSwimActX = nextSwimAct(
+            enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
+            configSwimAct = configSwimActX,
+            swimAct = if (status.swimTimeX == null) {
+                null
+            } else {
+                SwimAct(
+                    drivingTarget = status.drivingTargetX?.takeIf { it.type == BodyDrivingTarget.Type.SWIM },
+                    time = status.swimTimeX,
+                )
+            },
+            tankSize = tankWidth,
+            reachDrivingTarget = reachDrivingTargetX,
+            delta = input.delta,
+        )
+        val nextSwimActY = nextSwimAct(
+            enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
+            configSwimAct = configSwimActY,
+            swimAct = if (status.swimTimeY == null) {
+                null
+            } else {
+                SwimAct(
+                    drivingTarget = status.drivingTargetY?.takeIf { it.type == BodyDrivingTarget.Type.SWIM },
+                    time = status.swimTimeY,
+                )
+            },
+            tankSize = tankHeight,
+            reachDrivingTarget = reachDrivingTargetY,
+            delta = input.delta,
+        )
+
+        val nextDrivingTargetX: BodyDrivingTarget? =
+            nextEatAct?.drivingTargetX ?: nextTouchAct?.drivingTargetX ?: nextSwimActX?.drivingTarget
+        val nextDrivingTargetY: BodyDrivingTarget? =
+            nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
+
+        val nextHealth = nextHealth(input, nextEatAct?.eatenFood)
+        val nextHunger = nextHunger(input, nextEatAct?.eatenFood)
+        val nextGrowth = nextGrowth(input, nextEatAct?.eatenFood)
+        val nextDrop = nextDrop(input, nextEatAct?.eatenFood)
         return Status(
+            swimTimeX = nextSwimActX?.time,
+            swimTimeY = nextSwimActY?.time,
+            drivingTargetX = nextDrivingTargetX,
+            drivingTargetY = nextDrivingTargetY,
             health = nextHealth,
             hunger = nextHunger,
             growth = nextGrowth,
             drop = nextDrop,
+            foodRelation = nextEatAct?.foodRelation ?: BodyRelation.DISJOINT,
         )
+    }
+
+    private fun nextEatAct(
+        bodyManager: BodyManager,
+        delta: Float,
+    ): EatAct? {
+        if (configEatAct == null) {
+            return null
+        }
+
+        fun targetFood(): Body? {
+            if (hungerStatus == BodyHungerStatus.FULL) {
+                return null
+            }
+            require(configEatAct.foods.isNotEmpty())
+            return bodyManager.findNearestBodyByType(configEatAct.foods.keys)
+        }
+
+        var eatenFood: BodyConfig.Food? = null
+        val targetFood = targetFood()
+        val foodRelation = boxRelation(targetFood?.data?.box)
+
+        if (targetFood != null && canEat && foodRelation == BodyRelation.CONTAIN_CENTER) {
+            val food = configEatAct.foods.getValue(targetFood.data.body.type)
+            val foodBody = targetFood.act(
+                input = BodyInput(
+                    healthDiff = food.healthDiffPerSecond * delta,
+                ),
+            )
+            if (foodBody.data.canRemove) {
+                eatenFood = food
+            }
+        }
+        return EatAct(
+            drivingTargetX = if (targetFood == null) {
+                null
+            } else {
+                BodyDrivingTarget(
+                    type = BodyDrivingTarget.Type.EAT,
+                    position = targetFood.data.box.x,
+                    acceleration = configEatAct.drivingAccelerationX,
+                )
+            },
+            drivingTargetY = if (targetFood == null) {
+                null
+            } else {
+                BodyDrivingTarget(
+                    type = BodyDrivingTarget.Type.EAT,
+                    position = targetFood.data.box.y,
+                    acceleration = configEatAct.drivingAccelerationY,
+                )
+            },
+            foodRelation = foodRelation,
+            eatenFood = eatenFood,
+        )
+    }
+
+    private fun nextTouchAct(
+        enabled: Boolean,
+        touchPoint: Point?,
+    ): TouchAct? {
+        if (!enabled) {
+            return null
+        }
+        if (configTouchAct == null) {
+            return null
+        }
+        touchPoint ?: return null
+        return TouchAct(
+            drivingTargetX = BodyDrivingTarget(
+                type = BodyDrivingTarget.Type.TOUCH,
+                position = touchPoint.x,
+                acceleration = configTouchAct.drivingAccelerationX,
+            ),
+            drivingTargetY = BodyDrivingTarget(
+                type = BodyDrivingTarget.Type.TOUCH,
+                position = touchPoint.y,
+                acceleration = configTouchAct.drivingAccelerationY,
+            ),
+        )
+    }
+
+    private fun nextSwimAct(
+        enabled: Boolean,
+        configSwimAct: BodyConfig.SwimAct?,
+        swimAct: SwimAct?,
+        tankSize: Float,
+        reachDrivingTarget: Boolean,
+        delta: Float,
+    ): SwimAct? {
+        if (!enabled) {
+            return null
+        }
+        if (configSwimAct == null) {
+            return null
+        }
+
+        fun createTargeting(): SwimAct {
+            return SwimAct(
+                drivingTarget = BodyDrivingTarget(
+                    type = BodyDrivingTarget.Type.SWIM,
+                    position = Random.nextFloat(0f, tankSize),
+                    acceleration = configSwimAct.drivingAcceleration,
+                ),
+                time = 0f,
+            )
+        }
+
+        fun createIdling(): SwimAct {
+            return SwimAct(
+                drivingTarget = null,
+                time = Random.nextFloat(
+                    configSwimAct.idlingTimeRandomStart,
+                    configSwimAct.idlingTimeRandomEnd,
+                ),
+            )
+        }
+
+        fun updateIdling(swimAct: SwimAct): SwimAct {
+            return swimAct.copy(
+                time = swimAct.time - delta,
+            )
+        }
+
+        if (swimAct == null) {
+            return if (Random.nextBoolean()) {
+                createTargeting()
+            } else {
+                createIdling()
+            }
+        }
+        return if (swimAct.drivingTarget == null) {
+            // Idling
+            val isRemainingTimeUp = swimAct.time - delta <= 0f
+            if (isRemainingTimeUp) {
+                createTargeting()
+            } else {
+                updateIdling(swimAct)
+            }
+        } else {
+            // Targeting
+            if (reachDrivingTarget) {
+                createIdling()
+            } else {
+                swimAct
+            }
+        }
     }
 
     private fun nextHealth(
@@ -150,11 +395,7 @@ data class BodyLife(
                 type = transformationFromHunger,
                 createStatus = {
                     status.copy(
-                        swimTimeX = null,
-                        swimTimeY = null,
                         life = Status(),
-                        drivingTargetX = null,
-                        drivingTargetY = null,
                         renderer = status.renderer.copy(
                             animationData = status.renderer.animationData.copy(
                                 stateTime = 0f,
