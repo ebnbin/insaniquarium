@@ -48,7 +48,7 @@ data class BodyData(
         if (hit) {
             body.act(
                 input = BodyInput(
-                    damage = status.health ?: 0f,
+                    healthDiff = -(status.health ?: 0f),
                 ),
             )
         }

@@ -69,7 +69,7 @@ data class BodyConfig(
         @Expose
         val hungryPercent: Float = 0f,
         @Expose
-        val exhaustionPerSecond: Float = 0f,
+        val diffPerSecond: Float = 0f,
         /**
          * Whether die when hunger == 0f.
          */
@@ -94,7 +94,15 @@ data class BodyConfig(
 
     data class Food(
         @Expose
-        val damagePerSecond: Float = 0f,
+        val healthDiffPerSecond: Float = 0f,
+        @Expose
+        val hungerDiffPerSecond: Float = 0f,
+        @Expose
+        val growthDiffPerSecond: Float = 0f,
+        @Expose
+        val dropDiffPerSecond: Float = 0f,
+        @Expose
+        val health: Float = 0f,
         @Expose
         val hunger: Float = 0f,
         @Expose

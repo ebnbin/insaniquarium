@@ -98,11 +98,11 @@ object ConfigInfo {
                 full = 20f,
                 maxPercent = 1.5f,
                 hungryPercent = 0.5f,
-                exhaustionPerSecond = 1f,
+                diffPerSecond = -1f,
                 canDie = true,
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
-                        damagePerSecond = 10f,
+                        healthDiffPerSecond = -10f,
                         hunger = 20f,
                         growth = 5f,
                     ),
@@ -188,11 +188,11 @@ object ConfigInfo {
                 full = 20f,
                 maxPercent = 1.5f,
                 hungryPercent = 0.5f,
-                exhaustionPerSecond = 1f,
+                diffPerSecond = -1f,
                 canDie = true,
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
-                        damagePerSecond = 10f,
+                        healthDiffPerSecond = -10f,
                         hunger = 20f,
                         growth = 5f,
                     ),
@@ -283,11 +283,11 @@ object ConfigInfo {
                 full = 20f,
                 maxPercent = 1.5f,
                 hungryPercent = 0.5f,
-                exhaustionPerSecond = 1f,
+                diffPerSecond = -1f,
                 canDie = true,
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
-                        damagePerSecond = 10f,
+                        healthDiffPerSecond = -10f,
                         hunger = 20f,
                         growth = 5f,
                     ),
@@ -378,11 +378,11 @@ object ConfigInfo {
                 full = 20f,
                 maxPercent = 1.5f,
                 hungryPercent = 0.5f,
-                exhaustionPerSecond = 1f,
+                diffPerSecond = -1f,
                 canDie = true,
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
-                        damagePerSecond = 10f,
+                        healthDiffPerSecond = -10f,
                         hunger = 20f,
                     ),
                 ),
@@ -466,11 +466,11 @@ object ConfigInfo {
                 full = 20f,
                 maxPercent = 1.5f,
                 hungryPercent = 0.5f,
-                exhaustionPerSecond = 1f,
+                diffPerSecond = -1f,
                 canDie = true,
                 foods = mapOf(
                     BodyType.STAR to BodyConfig.Food(
-                        damagePerSecond = 10f,
+                        healthDiffPerSecond = -10f,
                         hunger = 20f,
                         drop = 1f,
                     ),
@@ -528,11 +528,11 @@ object ConfigInfo {
                 full = 20f,
                 maxPercent = 1.5f,
                 hungryPercent = 0.5f,
-                exhaustionPerSecond = 1f,
+                diffPerSecond = -1f,
                 canDie = true,
                 foods = mapOf(
                     BodyType.STAR_POTION to BodyConfig.Food(
-                        damagePerSecond = 10f,
+                        healthDiffPerSecond = -10f,
                         hunger = 20f,
                     ),
                 ),
@@ -609,19 +609,19 @@ object ConfigInfo {
             hunger = BodyConfig.Hunger(
                 foods = mapOf(
                     BodyType.SILVER_COIN to BodyConfig.Food(
-                        damagePerSecond = 10f,
+                        healthDiffPerSecond = -10f,
                         hunger = 0f,
                     ),
                     BodyType.GOLD_COIN to BodyConfig.Food(
-                        damagePerSecond = 10f,
+                        healthDiffPerSecond = -10f,
                         hunger = 0f,
                     ),
                     BodyType.STAR to BodyConfig.Food(
-                        damagePerSecond = 10f,
+                        healthDiffPerSecond = -10f,
                         hunger = 0f,
                     ),
                     BodyType.DIAMOND to BodyConfig.Food(
-                        damagePerSecond = 10f,
+                        healthDiffPerSecond = -10f,
                         hunger = 0f,
                     ),
                 ),
@@ -668,10 +668,10 @@ object ConfigInfo {
             hunger = BodyConfig.Hunger(
                 full = 10f,
                 maxPercent = 3f,
-                exhaustionPerSecond = 1f,
+                diffPerSecond = -1f,
                 foods = mapOf(
                     BodyType.BEETLE to BodyConfig.Food(
-                        damagePerSecond = 10f,
+                        healthDiffPerSecond = -10f,
                         hunger = 20f,
                     ),
                 ),

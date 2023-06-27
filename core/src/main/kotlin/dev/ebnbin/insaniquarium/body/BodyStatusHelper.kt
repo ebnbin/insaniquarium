@@ -10,6 +10,7 @@ object BodyStatusHelper {
         val drivingTargetX: BodyDrivingTarget?,
         val drivingTargetY: BodyDrivingTarget?,
         val foodRelation: BodyRelation,
+        val healthDiff: Float,
         val hungerDiff: Float,
         val growthDiff: Float,
         val dropDiff: Float,
@@ -120,6 +121,7 @@ object BodyStatusHelper {
             configGrowth = data.body.config.growth,
             growth = status.growth,
             eatAct = nextEatAct,
+            input = input,
         )
 
         val nextDrop = nextDrop(
@@ -219,9 +221,7 @@ object BodyStatusHelper {
             }
         }
 
-        var hungerDiff = 0f
-        var growthDiff = 0f
-        var dropDiff = 0f
+        var eatenFood: BodyConfig.Food? = null
         val targetFood = targetFood()
         val foodRelation = data.box.relation(targetFood?.data?.box)
 
@@ -230,13 +230,11 @@ object BodyStatusHelper {
             val food = configHunger.foods.getValue(targetFood.data.body.type)
             val foodBody = targetFood.act(
                 input = BodyInput(
-                    damage = food.damagePerSecond * input.delta,
+                    healthDiff = food.healthDiffPerSecond * input.delta,
                 ),
             )
             if (foodBody.data.canRemove) {
-                hungerDiff = food.hunger
-                growthDiff = food.growth
-                dropDiff = food.drop
+                eatenFood = food
             }
         }
         return EatAct(
@@ -259,9 +257,10 @@ object BodyStatusHelper {
                 )
             },
             foodRelation = foodRelation,
-            hungerDiff = hungerDiff,
-            growthDiff = growthDiff,
-            dropDiff = dropDiff,
+            healthDiff = eatenFood?.health ?: 0f,
+            hungerDiff = eatenFood?.hunger ?: 0f,
+            growthDiff = eatenFood?.growth ?: 0f,
+            dropDiff = eatenFood?.drop ?: 0f,
         )
     }
 
@@ -375,7 +374,7 @@ object BodyStatusHelper {
         if (health == null) {
             return configHealth.full
         }
-        return max(0f, health - input.damage)
+        return max(0f, health + input.healthDiff)
     }
 
     private fun nextHunger(
@@ -391,8 +390,8 @@ object BodyStatusHelper {
             return configHunger.full
         }
 
-        var nextHunger = hunger - configHunger.exhaustionPerSecond * input.delta
-        nextHunger -= input.exhaustion
+        var nextHunger = hunger + configHunger.diffPerSecond * input.delta
+        nextHunger += input.hungerDiff
         if (eatAct != null) {
             nextHunger += eatAct.hungerDiff
         }
@@ -403,6 +402,7 @@ object BodyStatusHelper {
         configGrowth: BodyConfig.Growth?,
         growth: Float?,
         eatAct: EatAct?,
+        input: BodyInput,
     ): Float? {
         if (configGrowth == null) {
             return null
@@ -412,6 +412,7 @@ object BodyStatusHelper {
         }
 
         var nextGrowth = growth
+        nextGrowth += input.growthDiff
         if (eatAct != null) {
             nextGrowth += eatAct.growthDiff
         }
@@ -437,6 +438,7 @@ object BodyStatusHelper {
         }
 
         var nextDrop = drop + configDrop.incrementPerSecond * input.delta
+        nextDrop += input.dropDiff
         if (eatAct != null) {
             nextDrop += eatAct.dropDiff
         }
