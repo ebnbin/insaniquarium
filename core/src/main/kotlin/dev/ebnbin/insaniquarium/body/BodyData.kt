@@ -42,10 +42,9 @@ data class BodyData(
         isDead = body.config.isDead,
         configAnimations = body.config.animations,
         isSinkingOrFloatingOutsideWater = box.isSinkingOrFloatingOutsideWater,
-        animationData = status.animationData,
         expectedDirection = box.expectedDirection,
         isHungry = life.hungerStatus == BodyHungerStatus.HUNGRY,
-        alphaTime = status.alphaTime,
+        status = status.renderer,
     )
 
     //*****************************************************************************************************************
@@ -65,7 +64,7 @@ data class BodyData(
     //*****************************************************************************************************************
 
     val canRemove: Boolean = (renderer.canRemove) ||
-        (life.canRemove(isSwimming = status.animationData.action == BodyAnimationData.Action.SWIM))
+        (life.canRemove(isSwimming = status.renderer.animationData.action == BodyAnimationData.Action.SWIM))
 
     fun postUpdate(): Boolean {
         val bodyManager = BodyManager(body)

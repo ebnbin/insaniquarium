@@ -99,16 +99,12 @@ object BodyStatusHelper {
             food = nextEatAct?.eatenFood,
         )
 
-        val nextAlphaTime = data.renderer.nextAlphaTime(
-            delta = input.delta,
-        )
-
         val nextDrivingTargetX: BodyDrivingTarget? =
             nextEatAct?.drivingTargetX ?: nextTouchAct?.drivingTargetX ?: nextSwimActX?.drivingTarget
         val nextDrivingTargetY: BodyDrivingTarget? =
             nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
 
-        val nextAnimationData = data.renderer.nextAnimationData(
+        val nextRenderer = data.renderer.nextStatus(
             delta = input.delta,
             eatenFoodRelation = nextEatAct?.foodRelation,
         )
@@ -118,10 +114,9 @@ object BodyStatusHelper {
             swimActX = nextStatusSwimActX,
             swimActY = nextStatusSwimActY,
             life = nextLife,
-            alphaTime = nextAlphaTime,
             drivingTargetX = nextDrivingTargetX,
             drivingTargetY = nextDrivingTargetY,
-            animationData = nextAnimationData,
+            renderer = nextRenderer,
         )
     }
 
@@ -149,9 +144,7 @@ object BodyStatusHelper {
         val targetFood = targetFood()
         val foodRelation = box.relation(targetFood?.data?.box)
 
-        val isEating = renderer.animationData.action == BodyAnimationData.Action.SWIM ||
-            renderer.animationData.action == BodyAnimationData.Action.EAT
-        if (targetFood != null && isEating && foodRelation == BodyRelation.CONTAIN_CENTER) {
+        if (targetFood != null && renderer.canEat && foodRelation == BodyRelation.CONTAIN_CENTER) {
             val food = configEatAct.foods.getValue(targetFood.data.body.type)
             val foodBody = targetFood.act(
                 input = BodyInput(

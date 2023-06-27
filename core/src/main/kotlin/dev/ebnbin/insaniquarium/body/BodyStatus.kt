@@ -8,12 +8,10 @@ data class BodyStatus(
 
     val life: BodyLife.Status = BodyLife.Status(),
 
-    val alphaTime: Float? = null,
-
     val drivingTargetX: BodyDrivingTarget? = null,
     val drivingTargetY: BodyDrivingTarget? = null,
 
-    val animationData: BodyAnimationData = BodyAnimationData(),
+    val renderer: BodyRenderer.Status = BodyRenderer.Status(),
 ) {
     data class SwimAct(
         val remainingTime: Float,

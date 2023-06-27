@@ -7,18 +7,29 @@ import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.unitToMeter
 
 data class BodyRenderer(
-    val isDead: Boolean,
-    val configAnimations: BodyConfig.Animations,
-    val isSinkingOrFloatingOutsideWater: Boolean,
-    val animationData: BodyAnimationData,
-    val expectedDirection: Direction,
-    val isHungry: Boolean,
-    /**
-     * >= 0f: Delaying.
-     * < 0f: Changing alpha.
-     */
-    val alphaTime: Float?,
+    private val isDead: Boolean,
+    private val configAnimations: BodyConfig.Animations,
+    private val isSinkingOrFloatingOutsideWater: Boolean,
+    private val expectedDirection: Direction,
+    private val isHungry: Boolean,
+    private val status: Status,
 ) {
+    data class Status(
+        val animationData: BodyAnimationData = BodyAnimationData(),
+        /**
+         * >= 0f: Delaying.
+         * < 0f: Changing alpha.
+         */
+        val alphaTime: Float? = null,
+    )
+
+    private val animationData: BodyAnimationData = status.animationData
+    private val alphaTime: Float? = status.alphaTime
+
+    val isSwimming: Boolean = animationData.action == BodyAnimationData.Action.SWIM
+    val canEat: Boolean = animationData.action == BodyAnimationData.Action.SWIM ||
+        animationData.action == BodyAnimationData.Action.EAT
+
     private val animation: TextureRegionAnimation = animationData.getAnimation(configAnimations)
 
     private val textureRegion: TextureRegion = animation.getTextureRegion(animationData.stateTime)
@@ -40,7 +51,19 @@ data class BodyRenderer(
 
     val canRemove: Boolean = alphaTime != null && alphaTime <= -ALPHA_DURATION
 
-    fun nextAnimationData(
+    fun nextStatus(
+        delta: Float,
+        eatenFoodRelation: BodyRelation?,
+    ): Status {
+        val nextAnimationData = nextAnimationData(delta, eatenFoodRelation)
+        val nextAlphaTime = nextAlphaTime(delta)
+        return Status(
+            animationData = nextAnimationData,
+            alphaTime = nextAlphaTime,
+        )
+    }
+
+    private fun nextAnimationData(
         delta: Float,
         eatenFoodRelation: BodyRelation?,
     ): BodyAnimationData {
@@ -110,7 +133,7 @@ data class BodyRenderer(
         }
     }
 
-    fun nextAlphaTime(delta: Float): Float? {
+    private fun nextAlphaTime(delta: Float): Float? {
         if (!isDead) {
             return null
         }

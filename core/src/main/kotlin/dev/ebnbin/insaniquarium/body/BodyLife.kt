@@ -144,7 +144,8 @@ data class BodyLife(
             bodyManager.removeSelf()
             return true
         }
-        if (transformationFromHunger != null && status.animationData.action == BodyAnimationData.Action.SWIM) {
+        if (transformationFromHunger != null &&
+            status.renderer.animationData.action == BodyAnimationData.Action.SWIM) {
             bodyManager.replaceBody(
                 type = transformationFromHunger,
                 createStatus = {
@@ -152,11 +153,13 @@ data class BodyLife(
                         swimActX = null,
                         swimActY = null,
                         life = Status(),
-                        alphaTime = null,
                         drivingTargetX = null,
                         drivingTargetY = null,
-                        animationData = status.animationData.copy(
-                            stateTime = 0f,
+                        renderer = status.renderer.copy(
+                            animationData = status.renderer.animationData.copy(
+                                stateTime = 0f,
+                            ),
+                            alphaTime = null,
                         ),
                     )
                 },
