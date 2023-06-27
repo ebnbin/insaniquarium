@@ -20,7 +20,6 @@ fun BodyType.assets(): Set<Asset<*>> {
         config.animations.hungry,
         config.animations.hungryTurn,
         config.animations.hungryEat,
-        config.animations.die,
     ).mapTo(mutableSetOf()) {
         baseGame.assets.texture.getValue(it.assetId)
     }
@@ -37,7 +36,6 @@ enum class BodyHungerStatus {
     FULL,
     NOT_FULL,
     HUNGRY,
-    DYING,
     ;
 }
 
@@ -47,16 +45,11 @@ fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
     }
     return when {
         hunger == 0f -> {
-            // NOT_FULL or HUNGRY or DYING.
-            if (canDie) {
-                BodyHungerStatus.DYING
+            // NOT_FULL or HUNGRY.
+            if (hungryThreshold == 0f) {
+                BodyHungerStatus.NOT_FULL
             } else {
-                // NOT_FULL or HUNGRY.
-                if (hungryThreshold == 0f) {
-                    BodyHungerStatus.NOT_FULL
-                } else {
-                    BodyHungerStatus.HUNGRY
-                }
+                BodyHungerStatus.HUNGRY
             }
         }
         hunger >= full -> {

@@ -33,8 +33,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "star_potion": {
@@ -70,8 +69,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "guppy_small": {
@@ -94,8 +92,6 @@
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
-        "canDie": false,
-        "corpseDensity": null,
         "transformation": "guppy_small_corpse"
       },
       "growth": {
@@ -167,12 +163,6 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
-        },
-        "die": {
-          "assetId": "guppy_small_die",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
         }
       }
     },
@@ -196,9 +186,7 @@
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
-        "canDie": true,
-        "corpseDensity": 1020.0,
-        "transformation": null
+        "transformation": "guppy_medium_corpse"
       },
       "growth": {
         "full": 15.0,
@@ -273,12 +261,6 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
-        },
-        "die": {
-          "assetId": "guppy_medium_die",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
         }
       }
     },
@@ -302,9 +284,7 @@
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
-        "canDie": true,
-        "corpseDensity": 1020.0,
-        "transformation": null
+        "transformation": "guppy_large_corpse"
       },
       "growth": {
         "full": 25.0,
@@ -379,12 +359,6 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
-        },
-        "die": {
-          "assetId": "guppy_large_die",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
         }
       }
     },
@@ -408,9 +382,7 @@
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
-        "canDie": true,
-        "corpseDensity": 1020.0,
-        "transformation": null
+        "transformation": "guppy_king_corpse"
       },
       "growth": null,
       "drop": {
@@ -481,12 +453,6 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
-        },
-        "die": {
-          "assetId": "guppy_king_die",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
         }
       }
     },
@@ -507,9 +473,7 @@
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
-        "canDie": true,
-        "corpseDensity": 1020.0,
-        "transformation": null
+        "transformation": "starcatcher_corpse"
       },
       "growth": null,
       "drop": {
@@ -556,13 +520,7 @@
           "interpolation": "linear"
         },
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": {
-          "assetId": "starcatcher_die",
-          "duration": 1.0,
-          "mode": "normal",
-          "interpolation": "linear"
-        }
+        "hungryEat": null
       }
     },
     "beetlemuncher": {
@@ -582,9 +540,7 @@
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
-        "canDie": true,
-        "corpseDensity": 1020.0,
-        "transformation": null
+        "transformation": "beetlemuncher_corpse"
       },
       "growth": null,
       "drop": null,
@@ -651,12 +607,6 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
-        },
-        "die": {
-          "assetId": "beetlemuncher_die",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
         }
       }
     },
@@ -690,8 +640,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "guppy_medium_corpse": {
@@ -724,8 +673,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "guppy_large_corpse": {
@@ -758,8 +706,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "guppy_king_corpse": {
@@ -792,8 +739,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "starcatcher_corpse": {
@@ -826,8 +772,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "beetlemuncher_corpse": {
@@ -860,8 +805,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "clyde": {
@@ -947,8 +891,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "gash": {
@@ -968,8 +911,6 @@
         "maxThreshold": 3.0,
         "hungryThreshold": 0.0,
         "diffPerSecond": -1.0,
-        "canDie": false,
-        "corpseDensity": null,
         "transformation": null
       },
       "growth": null,
@@ -1022,8 +963,7 @@
         },
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "presto": {
@@ -1072,8 +1012,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "silver_coin": {
@@ -1109,8 +1048,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "gold_coin": {
@@ -1146,8 +1084,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "star": {
@@ -1183,8 +1120,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "diamond": {
@@ -1220,8 +1156,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     },
     "beetle": {
@@ -1257,8 +1192,7 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null,
-        "die": null
+        "hungryEat": null
       }
     }
   }

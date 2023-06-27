@@ -28,11 +28,7 @@ data class BodyData(
         width = body.config.width,
         height = body.config.height,
         depth = body.config.depth,
-        density = if (hungerStatus == BodyHungerStatus.DYING) {
-            body.config.hunger?.corpseDensity ?: body.config.density
-        } else {
-            body.config.density
-        },
+        density = body.config.density,
         drivingTargetX = status.drivingTargetX,
         drivingTargetY = status.drivingTargetY,
         velocityX = status.velocityX,

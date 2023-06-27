@@ -79,13 +79,6 @@ data class BodyConfig(
         val hungryThreshold: Float = 0f,
         @Expose
         val diffPerSecond: Float = 0f,
-        /**
-         * Whether die when hunger == 0f.
-         */
-        @Expose
-        val canDie: Boolean = false,
-        @Expose
-        val corpseDensity: Float? = null,
         @Expose
         val transformation: BodyType? = null,
     )
@@ -171,8 +164,6 @@ data class BodyConfig(
         val hungryTurn: TextureRegionAnimation? = null,
         @Expose
         val hungryEat: TextureRegionAnimation? = null,
-        @Expose
-        val die: TextureRegionAnimation? = null,
     )
 
     companion object {

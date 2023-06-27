@@ -153,11 +153,6 @@ object ConfigInfo {
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
-                die = TextureRegionAnimation(
-                    assetId = "guppy_small_die",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
             ),
         ),
         BodyConfigInfo(
@@ -186,8 +181,7 @@ object ConfigInfo {
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
                 diffPerSecond = -1f,
-                canDie = true,
-                corpseDensity = 1020f,
+                transformation = BodyType.GUPPY_MEDIUM_CORPSE,
             ),
             growth = BodyConfig.Growth(
                 full = 15f,
@@ -250,11 +244,6 @@ object ConfigInfo {
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
-                die = TextureRegionAnimation(
-                    assetId = "guppy_medium_die",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
             ),
         ),
         BodyConfigInfo(
@@ -283,8 +272,7 @@ object ConfigInfo {
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
                 diffPerSecond = -1f,
-                canDie = true,
-                corpseDensity = 1020f,
+                transformation = BodyType.GUPPY_LARGE_CORPSE,
             ),
             growth = BodyConfig.Growth(
                 full = 25f,
@@ -347,11 +335,6 @@ object ConfigInfo {
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
-                die = TextureRegionAnimation(
-                    assetId = "guppy_large_die",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
             ),
         ),
         BodyConfigInfo(
@@ -380,8 +363,7 @@ object ConfigInfo {
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
                 diffPerSecond = -1f,
-                canDie = true,
-                corpseDensity = 1020f,
+                transformation = BodyType.GUPPY_KING_CORPSE,
             ),
             drop = BodyConfig.Drop(
                 full = 20f,
@@ -439,11 +421,6 @@ object ConfigInfo {
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),
-                die = TextureRegionAnimation(
-                    assetId = "guppy_king_die",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
             ),
         ),
         BodyConfigInfo(
@@ -470,8 +447,7 @@ object ConfigInfo {
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
                 diffPerSecond = -1f,
-                canDie = true,
-                corpseDensity = 1020f,
+                transformation = BodyType.STARCATCHER_CORPSE,
             ),
             drop = BodyConfig.Drop(
                 full = 1f,
@@ -504,11 +480,6 @@ object ConfigInfo {
                     duration = 1f,
                     mode = AnimationMode.LOOP,
                 ),
-                die = TextureRegionAnimation(
-                    assetId = "starcatcher_die",
-                    duration = 1f,
-                    mode = AnimationMode.NORMAL,
-                ),
             ),
         ),
         BodyConfigInfo(
@@ -534,8 +505,7 @@ object ConfigInfo {
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
                 diffPerSecond = -1f,
-                canDie = true,
-                corpseDensity = 1020f,
+                transformation = BodyType.BEETLEMUNCHER_CORPSE,
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
@@ -585,11 +555,6 @@ object ConfigInfo {
                 ),
                 hungryEat = TextureRegionAnimation(
                     assetId = "beetlemuncher_hungry_eat",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                die = TextureRegionAnimation(
-                    assetId = "beetlemuncher_die",
                     duration = 0.5f,
                     mode = AnimationMode.NORMAL,
                 ),

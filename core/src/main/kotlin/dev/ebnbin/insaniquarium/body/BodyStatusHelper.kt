@@ -51,7 +51,6 @@ object BodyStatusHelper {
             enabled = !hasEatDrivingTarget,
             tank = data.body.tank,
             configTouchAct = data.body.config.touchAct,
-            isDying = data.hungerStatus == BodyHungerStatus.DYING,
         )
 
         val hasTouchDrivingTarget = nextTouchAct != null
@@ -70,7 +69,6 @@ object BodyStatusHelper {
             tankSize = data.body.tank.width,
             reachDrivingTarget = data.box.reachDrivingTargetX,
             input = input,
-            isDying = data.hungerStatus == BodyHungerStatus.DYING,
         )
         val nextSwimActY = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
@@ -86,7 +84,6 @@ object BodyStatusHelper {
             tankSize = data.body.tank.height,
             reachDrivingTarget = data.box.reachDrivingTargetY,
             input = input,
-            isDying = data.hungerStatus == BodyHungerStatus.DYING,
         )
 
         val nextStatusSwimActX = if (nextSwimActX == null) {
@@ -130,29 +127,21 @@ object BodyStatusHelper {
             drop = status.drop,
             eatAct = nextEatAct,
             input = input,
-            isDying = data.hungerStatus == BodyHungerStatus.DYING,
         )
 
         val nextHungerStatus = data.body.config.hunger?.status(nextHunger)
 
         val nextDisappearAct = nextDisappearAct(
-            canDisappear = data.body.config.isDead || (status.animationData.action == BodyAnimationData.Action.DIE &&
-                data.isAnimationFinished),
+            canDisappear = data.body.config.isDead,
             disappearAct = status.disappearAct,
             data = data,
             input = input,
         )
 
-        val nextDrivingTargetX: BodyDrivingTarget? = if (nextHungerStatus == BodyHungerStatus.DYING) {
-            null
-        } else {
+        val nextDrivingTargetX: BodyDrivingTarget? =
             nextEatAct?.drivingTargetX ?: nextTouchAct?.drivingTargetX ?: nextSwimActX?.drivingTarget
-        }
-        val nextDrivingTargetY: BodyDrivingTarget? = if (nextHungerStatus == BodyHungerStatus.DYING) {
-            null
-        } else {
+        val nextDrivingTargetY: BodyDrivingTarget? =
             nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
-        }
 
         val hasTurnAnimation = data.body.config.animations.turn != null
         val nextExpectedIsFacingRight = if (hasTurnAnimation) {
@@ -209,7 +198,7 @@ object BodyStatusHelper {
         }
 
         fun targetFood(): Body? {
-            if (hungerStatus == BodyHungerStatus.FULL || hungerStatus == BodyHungerStatus.DYING) {
+            if (hungerStatus == BodyHungerStatus.FULL) {
                 return null
             }
             require(configEatAct.foods.isNotEmpty())
@@ -269,15 +258,11 @@ object BodyStatusHelper {
         enabled: Boolean,
         tank: Tank,
         configTouchAct: BodyConfig.TouchAct?,
-        isDying: Boolean,
     ): TouchAct? {
         if (!enabled) {
             return null
         }
         if (configTouchAct == null) {
-            return null
-        }
-        if (isDying) {
             return null
         }
         val touchPoint = tank.touchPoint ?: return null
@@ -302,15 +287,11 @@ object BodyStatusHelper {
         tankSize: Float,
         reachDrivingTarget: Boolean,
         input: BodyInput,
-        isDying: Boolean,
     ): SwimAct? {
         if (!enabled) {
             return null
         }
         if (configSwimAct == null) {
-            return null
-        }
-        if (isDying) {
             return null
         }
 
@@ -428,16 +409,12 @@ object BodyStatusHelper {
         drop: Float?,
         eatAct: EatAct?,
         input: BodyInput,
-        isDying: Boolean,
     ): Float? {
         if (configDrop == null) {
             return null
         }
         if (drop == null) {
             return 0f
-        }
-        if (isDying) {
-            return drop
         }
 
         var nextDrop = drop + configDrop.diffPerSecond * input.delta
@@ -493,9 +470,7 @@ object BodyStatusHelper {
         hungerStatus: BodyHungerStatus?,
         input: BodyInput,
     ): BodyAnimationData {
-        val isDying = hungerStatus == BodyHungerStatus.DYING
-
-        val animationStatus = if (hungerStatus == BodyHungerStatus.HUNGRY || isDying) {
+        val animationStatus = if (hungerStatus == BodyHungerStatus.HUNGRY) {
             BodyAnimationData.Status.HUNGRY
         } else {
             BodyAnimationData.Status.NORMAL
@@ -528,32 +503,17 @@ object BodyStatusHelper {
             )
         }
 
-        fun createDie(): BodyAnimationData {
-            return BodyAnimationData(
-                action = BodyAnimationData.Action.DIE,
-                status = BodyAnimationData.Status.HUNGRY,
-                stateTime = 0f,
-                isFacingRight = animationData.isFacingRight,
-            )
-        }
-
         fun update(): BodyAnimationData {
             return BodyAnimationData(
                 action = animationData.action,
-                status = if (animationData.action == BodyAnimationData.Action.DIE) {
-                    BodyAnimationData.Status.HUNGRY
-                } else {
-                    animationStatus
-                },
+                status = animationStatus,
                 stateTime = animationData.stateTime + input.delta,
                 isFacingRight = animationData.isFacingRight,
             )
         }
 
         return if (canAnimationActionChange) {
-            if (isDying) {
-                createDie()
-            } else if (config.animations.eat != null && canPlayEatAnimation) {
+            if (config.animations.eat != null && canPlayEatAnimation) {
                 createEat()
             } else {
                 if (hasTurnAnimation && animationData.isFacingRight != expectedIsFacingRight) {
@@ -564,11 +524,7 @@ object BodyStatusHelper {
             }
         } else {
             if (isAnimationFinished) {
-                if (isDying && animationData.action == BodyAnimationData.Action.DIE) {
-                    update()
-                } else {
-                    createSwim()
-                }
+                createSwim()
             } else {
                 update()
             }

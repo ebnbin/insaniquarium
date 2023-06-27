@@ -13,7 +13,6 @@ data class BodyAnimationData(
         SWIM("swim"),
         TURN("turn"),
         EAT("eat"),
-        DIE("die"),
         ;
     }
 
@@ -54,10 +53,6 @@ data class BodyAnimationData(
                         config.animations.hungryEat ?: requireNotNull(config.animations.eat)
                     }
                 }
-            }
-            Action.DIE -> {
-                requireNotNull(status == Status.HUNGRY) // FIXME
-                return config.animations.die ?: config.animations.swim
             }
         }
     }
