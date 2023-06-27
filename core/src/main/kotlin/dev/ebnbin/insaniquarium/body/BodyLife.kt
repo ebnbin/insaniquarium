@@ -150,8 +150,8 @@ data class BodyLife(
                 type = transformationFromHunger,
                 createStatus = {
                     status.copy(
-                        swimActX = null,
-                        swimActY = null,
+                        swimTimeX = null,
+                        swimTimeY = null,
                         life = Status(),
                         drivingTargetX = null,
                         drivingTargetY = null,

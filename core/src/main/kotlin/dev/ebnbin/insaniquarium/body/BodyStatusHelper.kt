@@ -1,7 +1,7 @@
 package dev.ebnbin.insaniquarium.body
 
+import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
-import dev.ebnbin.insaniquarium.tank.Tank
 
 object BodyStatusHelper {
     private data class EatAct(
@@ -18,7 +18,7 @@ object BodyStatusHelper {
 
     private data class SwimAct(
         val drivingTarget: BodyDrivingTarget?,
-        val remainingTime: Float,
+        val time: Float,
     )
 
     fun nextStatus(
@@ -26,6 +26,7 @@ object BodyStatusHelper {
         status: BodyStatus,
         input: BodyInput,
         bodyManager: BodyManager,
+        touchPoint: Point?,
     ): BodyStatus {
         val nextBox = data.box.nextStatus(input.delta)
 
@@ -42,7 +43,7 @@ object BodyStatusHelper {
 
         val nextTouchAct = nextTouchAct(
             enabled = !hasEatDrivingTarget,
-            tank = data.body.tank,
+            touchPoint = touchPoint,
             configTouchAct = data.body.config.touchAct,
         )
 
@@ -51,48 +52,33 @@ object BodyStatusHelper {
         val nextSwimActX = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
             configSwimAct = data.body.config.swimActX,
-            swimAct = if (status.swimActX == null) {
+            swimAct = if (status.swimTimeX == null) {
                 null
             } else {
                 SwimAct(
                     drivingTarget = data.status.drivingTargetX?.takeIf { it.type == BodyDrivingTarget.Type.SWIM },
-                    remainingTime = status.swimActX.remainingTime,
+                    time = status.swimTimeX,
                 )
             },
             tankSize = data.body.tank.width,
             reachDrivingTarget = data.box.reachDrivingTargetX,
-            input = input,
+            delta = input.delta,
         )
         val nextSwimActY = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
             configSwimAct = data.body.config.swimActY,
-            swimAct = if (status.swimActY == null) {
+            swimAct = if (status.swimTimeY == null) {
                 null
             } else {
                 SwimAct(
                     drivingTarget = data.status.drivingTargetY?.takeIf { it.type == BodyDrivingTarget.Type.SWIM },
-                    remainingTime = status.swimActY.remainingTime,
+                    time = status.swimTimeY,
                 )
             },
             tankSize = data.body.tank.height,
             reachDrivingTarget = data.box.reachDrivingTargetY,
-            input = input,
+            delta = input.delta,
         )
-
-        val nextStatusSwimActX = if (nextSwimActX == null) {
-            null
-        } else {
-            BodyStatus.SwimAct(
-                remainingTime = nextSwimActX.remainingTime,
-            )
-        }
-        val nextStatusSwimActY = if (nextSwimActY == null) {
-            null
-        } else {
-            BodyStatus.SwimAct(
-                remainingTime = nextSwimActY.remainingTime,
-            )
-        }
 
         val nextLife = data.life.nextStatus(
             input = input,
@@ -111,8 +97,8 @@ object BodyStatusHelper {
 
         return BodyStatus(
             box = nextBox,
-            swimActX = nextStatusSwimActX,
-            swimActY = nextStatusSwimActY,
+            swimTimeX = nextSwimActX?.time,
+            swimTimeY = nextSwimActY?.time,
             life = nextLife,
             drivingTargetX = nextDrivingTargetX,
             drivingTargetY = nextDrivingTargetY,
@@ -181,7 +167,7 @@ object BodyStatusHelper {
 
     private fun nextTouchAct(
         enabled: Boolean,
-        tank: Tank,
+        touchPoint: Point?,
         configTouchAct: BodyConfig.TouchAct?,
     ): TouchAct? {
         if (!enabled) {
@@ -190,7 +176,7 @@ object BodyStatusHelper {
         if (configTouchAct == null) {
             return null
         }
-        val touchPoint = tank.touchPoint ?: return null
+        touchPoint ?: return null
         return TouchAct(
             drivingTargetX = BodyDrivingTarget(
                 type = BodyDrivingTarget.Type.TOUCH,
@@ -211,7 +197,7 @@ object BodyStatusHelper {
         swimAct: SwimAct?,
         tankSize: Float,
         reachDrivingTarget: Boolean,
-        input: BodyInput,
+        delta: Float,
     ): SwimAct? {
         if (!enabled) {
             return null
@@ -220,52 +206,54 @@ object BodyStatusHelper {
             return null
         }
 
-        fun createTargetingSwimAct(): SwimAct {
+        fun createTargeting(): SwimAct {
             return SwimAct(
                 drivingTarget = BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.SWIM,
                     position = Random.nextFloat(0f, tankSize),
                     acceleration = configSwimAct.drivingAcceleration,
                 ),
-                remainingTime = Float.MAX_VALUE,
+                time = 0f,
             )
         }
 
-        fun createIdlingSwimAct(): SwimAct {
+        fun createIdling(): SwimAct {
             return SwimAct(
                 drivingTarget = null,
-                remainingTime = Random.nextFloat(
+                time = Random.nextFloat(
                     configSwimAct.idlingTimeRandomStart,
                     configSwimAct.idlingTimeRandomEnd,
                 ),
             )
         }
 
-        fun updateSwimAct(swimAct: SwimAct): SwimAct {
+        fun updateIdling(swimAct: SwimAct): SwimAct {
             return swimAct.copy(
-                remainingTime = swimAct.remainingTime - input.delta,
+                time = swimAct.time - delta,
             )
         }
 
         if (swimAct == null) {
             return if (Random.nextBoolean()) {
-                createTargetingSwimAct()
+                createTargeting()
             } else {
-                createIdlingSwimAct()
+                createIdling()
             }
         }
-        val isRemainingTimeUp = swimAct.remainingTime - input.delta <= 0f
         return if (swimAct.drivingTarget == null) {
+            // Idling
+            val isRemainingTimeUp = swimAct.time - delta <= 0f
             if (isRemainingTimeUp) {
-                createTargetingSwimAct()
+                createTargeting()
             } else {
-                updateSwimAct(swimAct)
+                updateIdling(swimAct)
             }
         } else {
-            if (isRemainingTimeUp || reachDrivingTarget) {
-                createIdlingSwimAct()
+            // Targeting
+            if (reachDrivingTarget) {
+                createIdling()
             } else {
-                updateSwimAct(swimAct)
+                swimAct
             }
         }
     }

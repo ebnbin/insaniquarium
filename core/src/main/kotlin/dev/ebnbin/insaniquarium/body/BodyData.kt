@@ -92,6 +92,7 @@ data class BodyData(
                 status = status,
                 input = input,
                 bodyManager = BodyManager(body),
+                touchPoint = body.tank.touchPoint,
             ),
             input = input,
         )
