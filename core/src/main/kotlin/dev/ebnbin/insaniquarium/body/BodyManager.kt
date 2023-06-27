@@ -7,6 +7,11 @@ class BodyManager(
         return body.tank.findBodyByType(typeSet)
     }
 
+    fun findNearestBodyByType(typeSet: Set<BodyType>): Body? {
+        val bodies = body.tank.findBodyByType(typeSet)
+        return bodies.minByOrNull { body.data.box.distance(it.data.box) }
+    }
+
     fun removeSelf() {
         body.tank.removeBody(body)
     }

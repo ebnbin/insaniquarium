@@ -37,8 +37,9 @@ object BodyStatusHelper {
             bodyManager = bodyManager,
             configEatAct = data.body.config.eatAct,
             hungerStatus = data.life.hungerStatus,
-            data = data,
-            input = input,
+            box = data.box,
+            renderer = data.renderer,
+            delta = input.delta,
         )
 
         val hasEatDrivingTarget = nextEatAct?.drivingTargetX != null || nextEatAct?.drivingTargetY != null
@@ -150,8 +151,9 @@ object BodyStatusHelper {
         bodyManager: BodyManager,
         configEatAct: BodyConfig.EatAct?,
         hungerStatus: BodyHungerStatus?,
-        data: BodyData,
-        input: BodyInput,
+        box: BodyBox,
+        renderer: BodyRenderer,
+        delta: Float,
     ): EatAct? {
         if (configEatAct == null) {
             return null
@@ -162,25 +164,20 @@ object BodyStatusHelper {
                 return null
             }
             require(configEatAct.foods.isNotEmpty())
-            val foodSet = bodyManager.findBodyByType(configEatAct.foods.keys)
-            if (foodSet.isEmpty()) {
-                return null
-            }
-            return foodSet.minBy {
-                data.box.distance(it.data.box)
-            }
+            return bodyManager.findNearestBodyByType(configEatAct.foods.keys)
         }
 
         var eatenFood: BodyConfig.Food? = null
         val targetFood = targetFood()
-        val foodRelation = data.box.relation(targetFood?.data?.box)
+        val foodRelation = box.relation(targetFood?.data?.box)
 
-        val isTurning = data.status.animationData.action == BodyAnimationData.Action.TURN
-        if (targetFood != null && !isTurning && foodRelation == BodyRelation.CONTAIN_CENTER) {
+        val isEating = renderer.animationData.action == BodyAnimationData.Action.SWIM ||
+            renderer.animationData.action == BodyAnimationData.Action.EAT
+        if (targetFood != null && isEating && foodRelation == BodyRelation.CONTAIN_CENTER) {
             val food = configEatAct.foods.getValue(targetFood.data.body.type)
             val foodBody = targetFood.act(
                 input = BodyInput(
-                    healthDiff = food.healthDiffPerSecond * input.delta,
+                    healthDiff = food.healthDiffPerSecond * delta,
                 ),
             )
             if (foodBody.data.canRemove) {
