@@ -6,13 +6,7 @@ data class BodyStatus(
     val swimActX: SwimAct? = null,
     val swimActY: SwimAct? = null,
 
-    val health: Float? = null,
-
-    val hunger: Float? = null,
-
-    val growth: Float? = null,
-
-    val drop: Float? = null,
+    val life: BodyLife.Status = BodyLife.Status(),
 
     val alphaTime: Float? = null,
 

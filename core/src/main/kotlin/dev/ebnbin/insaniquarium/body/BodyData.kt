@@ -33,10 +33,7 @@ data class BodyData(
         configHunger = body.config.hunger,
         configGrowth = body.config.growth,
         configDrop = body.config.drop,
-        health = status.health,
-        hunger = status.hunger,
-        growth = status.growth,
-        drop = status.drop,
+        status = status.life,
     )
 
     //*****************************************************************************************************************
@@ -58,7 +55,7 @@ data class BodyData(
         if (hit) {
             body.act(
                 input = BodyInput(
-                    healthDiff = -(status.health ?: 0f),
+                    healthDiff = -(life.health ?: 0f),
                 ),
             )
         }

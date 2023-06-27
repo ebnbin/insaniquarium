@@ -7,11 +7,20 @@ data class BodyLife(
     private val configHunger: BodyConfig.Hunger?,
     private val configGrowth: BodyConfig.Growth?,
     private val configDrop: BodyConfig.Drop?,
-    private val health: Float?,
-    private val hunger: Float?,
-    private val growth: Float?,
-    private val drop: Float?,
+    private val status: Status,
 ) {
+    data class Status(
+        val health: Float? = null,
+        val hunger: Float? = null,
+        val growth: Float? = null,
+        val drop: Float? = null,
+    )
+
+    val health: Float? = status.health
+    private val hunger: Float? = status.hunger
+    private val growth: Float? = status.growth
+    private val drop: Float? = status.drop
+
     private val isDeadFromHealth: Boolean = configHealth != null && health == 0f
 
     val hungerStatus: BodyHungerStatus? = configHunger?.status(hunger)
@@ -32,7 +41,23 @@ data class BodyLife(
         return isDeadFromHealth || (transformationFromHunger != null && isSwimming) || transformationFromGrowth != null
     }
 
-    fun nextHealth(
+    fun nextStatus(
+        input: BodyInput,
+        food: BodyConfig.Food?,
+    ): Status {
+        val nextHealth = nextHealth(input, food)
+        val nextHunger = nextHunger(input, food)
+        val nextGrowth = nextGrowth(input, food)
+        val nextDrop = nextDrop(input, food)
+        return Status(
+            health = nextHealth,
+            hunger = nextHunger,
+            growth = nextGrowth,
+            drop = nextDrop,
+        )
+    }
+
+    private fun nextHealth(
         input: BodyInput,
         food: BodyConfig.Food?,
     ): Float? {
@@ -47,7 +72,7 @@ data class BodyLife(
         ).coerceIn(0f, 1f)
     }
 
-    fun nextHunger(
+    private fun nextHunger(
         input: BodyInput,
         food: BodyConfig.Food?,
     ): Float? {
@@ -62,7 +87,7 @@ data class BodyLife(
         ).coerceIn(0f, configHunger.maxThreshold)
     }
 
-    fun nextGrowth(
+    private fun nextGrowth(
         input: BodyInput,
         food: BodyConfig.Food?
     ): Float? {
@@ -77,7 +102,7 @@ data class BodyLife(
         )
     }
 
-    fun nextDrop(
+    private fun nextDrop(
         input: BodyInput,
         food: BodyConfig.Food?,
     ): Float? {
@@ -126,10 +151,7 @@ data class BodyLife(
                     status.copy(
                         swimActX = null,
                         swimActY = null,
-                        health = null,
-                        hunger = null,
-                        growth = null,
-                        drop = null,
+                        life = Status(),
                         alphaTime = null,
                         drivingTargetX = null,
                         drivingTargetY = null,
@@ -143,17 +165,19 @@ data class BodyLife(
             return true
         }
         if (transformationFromGrowth != null) {
-            val growth = status.growth
+            val growth = status.life.growth
             require(growth != null)
             bodyManager.replaceBody(
                 type = transformationFromGrowth,
                 createStatus = {
                     status.copy(
-                        growth = if (it.config.growth == null) {
-                            null
-                        } else {
-                            growth + it.config.growth.initialThreshold
-                        },
+                        life = status.life.copy(
+                            growth = if (it.config.growth == null) {
+                                null
+                            } else {
+                                growth + it.config.growth.initialThreshold
+                            },
+                        ),
                     )
                 },
                 delta = delta,

@@ -94,19 +94,7 @@ object BodyStatusHelper {
             )
         }
 
-        val nextHealth = data.life.nextHealth(
-            input = input,
-            food = nextEatAct?.eatenFood,
-        )
-        val nextHunger = data.life.nextHunger(
-            input = input,
-            food = nextEatAct?.eatenFood,
-        )
-        val nextGrowth = data.life.nextGrowth(
-            input = input,
-            food = nextEatAct?.eatenFood,
-        )
-        val nextDrop = data.life.nextDrop(
+        val nextLife = data.life.nextStatus(
             input = input,
             food = nextEatAct?.eatenFood,
         )
@@ -129,10 +117,7 @@ object BodyStatusHelper {
             box = nextBox,
             swimActX = nextStatusSwimActX,
             swimActY = nextStatusSwimActY,
-            health = nextHealth,
-            hunger = nextHunger,
-            growth = nextGrowth,
-            drop = nextDrop,
+            life = nextLife,
             alphaTime = nextAlphaTime,
             drivingTargetX = nextDrivingTargetX,
             drivingTargetY = nextDrivingTargetY,
