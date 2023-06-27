@@ -27,48 +27,7 @@ class Body(
 
     fun act(input: BodyInput): Body {
         data = data.update(input)
-        if (data.canRemove) {
-            if (data.canTransformByHunger) {
-                require(config.hunger != null)
-                require(config.hunger.transformation != null)
-                val newBody = tank.replaceBody(
-                    oldBody = this,
-                    type = config.hunger.transformation,
-                    createStatus = {
-                        data.status.copy(
-                            swimActX = null,
-                            swimActY = null,
-                            health = null,
-                            hunger = null,
-                            growth = null,
-                            drop = null,
-                            disappearAct = null,
-                            drivingTargetX = null,
-                            drivingTargetY = null,
-                            animationData = data.status.animationData.copy(
-                                stateTime = 0f,
-                            ),
-                        )
-                    },
-                )
-                newBody.act(delta = input.delta)
-            } else if (data.canTransformByGrowth) {
-                require(config.growth != null)
-                val growth = data.status.growth
-                require(growth != null)
-                val newBody = tank.replaceBody(
-                    oldBody = this,
-                    type = config.growth.transformation,
-                    createStatus = {
-                        data.status.copy(
-                            growth = growth + config.growth.initialThreshold,
-                        )
-                    },
-                )
-                newBody.act(delta = input.delta)
-            } else {
-                tank.removeBody(this)
-            }
+        if (data.validate()) {
             return this
         }
         data.act()

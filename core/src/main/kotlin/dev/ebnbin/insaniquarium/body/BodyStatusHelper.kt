@@ -3,17 +3,13 @@ package dev.ebnbin.insaniquarium.body
 import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.insaniquarium.tank.Tank
-import kotlin.math.max
 
 object BodyStatusHelper {
     private data class EatAct(
         val drivingTargetX: BodyDrivingTarget?,
         val drivingTargetY: BodyDrivingTarget?,
         val foodRelation: BodyRelation,
-        val healthDiff: Float,
-        val hungerDiff: Float,
-        val growthDiff: Float,
-        val dropDiff: Float,
+        val eatenFood: BodyConfig.Food?,
     )
 
     private data class TouchAct(
@@ -101,32 +97,21 @@ object BodyStatusHelper {
             )
         }
 
-        val nextHealth = nextHealth(
-            configHealth = data.body.config.health,
-            health = status.health,
+        val nextHealth = data.life.nextHealth(
             input = input,
+            food = nextEatAct?.eatenFood,
         )
-
-        val nextHunger = nextHunger(
-            configHunger = data.body.config.hunger,
-            hunger = status.hunger,
-            eatAct = nextEatAct,
+        val nextHunger = data.life.nextHunger(
             input = input,
+            food = nextEatAct?.eatenFood,
         )
-
-        val nextGrowth = nextGrowth(
-            configGrowth = data.body.config.growth,
-            growth = status.growth,
-            eatAct = nextEatAct,
+        val nextGrowth = data.life.nextGrowth(
             input = input,
+            food = nextEatAct?.eatenFood,
         )
-
-        val nextDrop = nextDrop(
-            body = data.body,
-            configDrop = data.body.config.drop,
-            drop = status.drop,
-            eatAct = nextEatAct,
+        val nextDrop = data.life.nextDrop(
             input = input,
+            food = nextEatAct?.eatenFood,
         )
 
         val nextHungerStatus = data.body.config.hunger?.status(nextHunger)
@@ -247,10 +232,7 @@ object BodyStatusHelper {
                 )
             },
             foodRelation = foodRelation,
-            healthDiff = eatenFood?.health ?: 0f,
-            hungerDiff = eatenFood?.hunger ?: 0f,
-            growthDiff = eatenFood?.growth ?: 0f,
-            dropDiff = eatenFood?.drop ?: 0f,
+            eatenFood = eatenFood,
         )
     }
 
@@ -343,98 +325,6 @@ object BodyStatusHelper {
                 updateSwimAct(swimAct)
             }
         }
-    }
-
-    private fun nextHealth(
-        configHealth: BodyConfig.Health?,
-        health: Float?,
-        input: BodyInput,
-    ): Float? {
-        if (configHealth == null) {
-            return null
-        }
-        if (health == null) {
-            return configHealth.initialThreshold
-        }
-        var nextHealth = health + configHealth.diffPerSecond * input.delta
-        nextHealth += input.healthDiff
-        return max(0f, nextHealth)
-    }
-
-    private fun nextHunger(
-        configHunger: BodyConfig.Hunger?,
-        hunger: Float?,
-        eatAct: EatAct?,
-        input: BodyInput,
-    ): Float? {
-        if (configHunger == null) {
-            return null
-        }
-        if (hunger == null) {
-            return configHunger.initialThreshold
-        }
-
-        var nextHunger = hunger + configHunger.diffPerSecond * input.delta
-        nextHunger += input.hungerDiff
-        if (eatAct != null) {
-            nextHunger += eatAct.hungerDiff
-        }
-        return configHunger.minMax(nextHunger)
-    }
-
-    private fun nextGrowth(
-        configGrowth: BodyConfig.Growth?,
-        growth: Float?,
-        eatAct: EatAct?,
-        input: BodyInput,
-    ): Float? {
-        if (configGrowth == null) {
-            return null
-        }
-        if (growth == null) {
-            return configGrowth.initialThreshold
-        }
-
-        var nextGrowth = growth + configGrowth.diffPerSecond * input.delta
-        nextGrowth += input.growthDiff
-        if (eatAct != null) {
-            nextGrowth += eatAct.growthDiff
-        }
-        return nextGrowth
-    }
-
-    private fun nextDrop(
-        body: Body,
-        configDrop: BodyConfig.Drop?,
-        drop: Float?,
-        eatAct: EatAct?,
-        input: BodyInput,
-    ): Float? {
-        if (configDrop == null) {
-            return null
-        }
-        if (drop == null) {
-            return configDrop.initialThreshold
-        }
-
-        var nextDrop = drop + configDrop.diffPerSecond * input.delta
-        nextDrop += input.dropDiff
-        if (eatAct != null) {
-            nextDrop += eatAct.dropDiff
-        }
-        while (nextDrop <= 0f) {
-            nextDrop += 1f
-            body.tank.addBody(
-                type = configDrop.production,
-                createStatus = {
-                    BodyStatus(
-                        x = body.data.status.x,
-                        y = body.data.status.y,
-                    )
-                },
-            )
-        }
-        return nextDrop
     }
 
     private fun nextDisappearAct(

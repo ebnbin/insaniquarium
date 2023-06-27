@@ -39,6 +39,19 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
+    val life: BodyLife = BodyLife(
+        configHealth = body.config.health,
+        configHunger = body.config.hunger,
+        configGrowth = body.config.growth,
+        configDrop = body.config.drop,
+        health = status.health,
+        hunger = status.hunger,
+        growth = status.growth,
+        drop = status.drop,
+    )
+
+    //*****************************************************************************************************************
+
     fun hit(touchPoint: Point): Boolean {
         val hit = box.hit(touchPoint)
         if (hit) {
@@ -80,17 +93,76 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val canTransformByHunger: Boolean = body.config.hunger != null && status.hunger != null &&
-        status.hunger == 0f && body.config.hunger.transformation != null &&
-        status.animationData.action == BodyAnimationData.Action.SWIM
-
-    val canTransformByGrowth: Boolean = body.config.growth != null && status.growth != null &&
-        status.growth <= 0f
-
     val canRemove: Boolean = (status.disappearAct?.canRemove() == true) ||
-        (status.health == 0f) ||
-        canTransformByHunger ||
-        canTransformByGrowth
+        life.isDeadFromHealth ||
+        (life.transformationFromHunger != null && status.animationData.action == BodyAnimationData.Action.SWIM) ||
+        life.transformationFromGrowth != null
+
+    fun validate(): Boolean {
+        if (life.isDeadFromHealth) {
+            body.tank.removeBody(body)
+            return true
+        }
+        if (life.transformationFromHunger != null && status.animationData.action == BodyAnimationData.Action.SWIM) {
+            val newBody = body.tank.replaceBody(
+                oldBody = body,
+                type = life.transformationFromHunger,
+                createStatus = {
+                    status.copy(
+                        swimActX = null,
+                        swimActY = null,
+                        health = null,
+                        hunger = null,
+                        growth = null,
+                        drop = null,
+                        disappearAct = null,
+                        drivingTargetX = null,
+                        drivingTargetY = null,
+                        animationData = status.animationData.copy(
+                            stateTime = 0f,
+                        ),
+                    )
+                },
+            )
+            newBody.act(delta = input.delta)
+            return true
+        }
+        if (life.transformationFromGrowth != null) {
+            val growth = status.growth
+            require(growth != null)
+            val newBody = body.tank.replaceBody(
+                oldBody = body,
+                type = life.transformationFromGrowth,
+                createStatus = {
+                    status.copy(
+                        growth = growth + (it.config.growth?.initialThreshold ?: 0f),
+                    )
+                },
+            )
+            newBody.act(delta = input.delta)
+            return true
+        }
+        if (life.productionFromDrop != null) {
+            repeat(life.dropCount) {
+                body.tank.addBody(
+                    type = life.productionFromDrop,
+                    createStatus = {
+                        BodyStatus(
+                            x = status.x,
+                            y = status.y,
+                        )
+                    },
+                )
+            }
+            body.act(
+                input = BodyInput(
+                    dropDiff = life.dropCount.toFloat(),
+                )
+            )
+            return false
+        }
+        return false
+    }
 
     //*****************************************************************************************************************
 

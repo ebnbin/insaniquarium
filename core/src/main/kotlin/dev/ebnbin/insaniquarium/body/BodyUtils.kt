@@ -74,11 +74,6 @@ fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
     }
 }
 
-fun BodyConfig.Hunger.minMax(hunger: Float): Float {
-    val maxHunger = maxThreshold
-    return hunger.minMax(0f, maxHunger)
-}
-
 fun BodyStatus.DisappearAct.canRemove(): Boolean {
     return time <= -BodyStatus.DisappearAct.DISAPPEAR_DURATION
 }
