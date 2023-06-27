@@ -100,6 +100,13 @@ object ConfigInfo {
                 hungryPercent = 0.5f,
                 diffPerSecond = -1f,
                 canDie = true,
+                corpseDensity = 1020f,
+            ),
+            growth = BodyConfig.Growth(
+                full = 10f,
+                bodyType = BodyType.GUPPY_MEDIUM,
+            ),
+            eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
@@ -109,11 +116,6 @@ object ConfigInfo {
                 ),
                 drivingAccelerationX = 0.4f,
                 drivingAccelerationY = 0.25f,
-                corpseDensity = 1020f,
-            ),
-            growth = BodyConfig.Growth(
-                full = 10f,
-                bodyType = BodyType.GUPPY_MEDIUM,
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
@@ -190,15 +192,6 @@ object ConfigInfo {
                 hungryPercent = 0.5f,
                 diffPerSecond = -1f,
                 canDie = true,
-                foods = mapOf(
-                    BodyType.FISH_FOOD to BodyConfig.Food(
-                        healthDiffPerSecond = -10f,
-                        hunger = 20f,
-                        growth = 5f,
-                    ),
-                ),
-                drivingAccelerationX = 0.4f,
-                drivingAccelerationY = 0.25f,
                 corpseDensity = 1020f,
             ),
             growth = BodyConfig.Growth(
@@ -209,6 +202,17 @@ object ConfigInfo {
                 full = 20f,
                 incrementPerSecond = 3f,
                 product = BodyType.SILVER_COIN,
+            ),
+            eatAct = BodyConfig.EatAct(
+                foods = mapOf(
+                    BodyType.FISH_FOOD to BodyConfig.Food(
+                        healthDiffPerSecond = -10f,
+                        hunger = 20f,
+                        growth = 5f,
+                    ),
+                ),
+                drivingAccelerationX = 0.4f,
+                drivingAccelerationY = 0.25f,
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
@@ -285,15 +289,6 @@ object ConfigInfo {
                 hungryPercent = 0.5f,
                 diffPerSecond = -1f,
                 canDie = true,
-                foods = mapOf(
-                    BodyType.FISH_FOOD to BodyConfig.Food(
-                        healthDiffPerSecond = -10f,
-                        hunger = 20f,
-                        growth = 5f,
-                    ),
-                ),
-                drivingAccelerationX = 0.4f,
-                drivingAccelerationY = 0.25f,
                 corpseDensity = 1020f,
             ),
             growth = BodyConfig.Growth(
@@ -304,6 +299,17 @@ object ConfigInfo {
                 full = 20f,
                 incrementPerSecond = 3f,
                 product = BodyType.GOLD_COIN,
+            ),
+            eatAct = BodyConfig.EatAct(
+                foods = mapOf(
+                    BodyType.FISH_FOOD to BodyConfig.Food(
+                        healthDiffPerSecond = -10f,
+                        hunger = 20f,
+                        growth = 5f,
+                    ),
+                ),
+                drivingAccelerationX = 0.4f,
+                drivingAccelerationY = 0.25f,
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
@@ -380,6 +386,14 @@ object ConfigInfo {
                 hungryPercent = 0.5f,
                 diffPerSecond = -1f,
                 canDie = true,
+                corpseDensity = 1020f,
+            ),
+            drop = BodyConfig.Drop(
+                full = 20f,
+                incrementPerSecond = 3f,
+                product = BodyType.DIAMOND,
+            ),
+            eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
@@ -388,12 +402,6 @@ object ConfigInfo {
                 ),
                 drivingAccelerationX = 0.4f,
                 drivingAccelerationY = 0.25f,
-                corpseDensity = 1020f,
-            ),
-            drop = BodyConfig.Drop(
-                full = 20f,
-                incrementPerSecond = 3f,
-                product = BodyType.DIAMOND,
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
@@ -468,6 +476,13 @@ object ConfigInfo {
                 hungryPercent = 0.5f,
                 diffPerSecond = -1f,
                 canDie = true,
+                corpseDensity = 1020f,
+            ),
+            drop = BodyConfig.Drop(
+                full = 1f,
+                product = BodyType.BEETLE,
+            ),
+            eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.STAR to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
@@ -477,11 +492,6 @@ object ConfigInfo {
                 ),
                 drivingAccelerationX = 0.2f,
                 drivingAccelerationY = 0f,
-                corpseDensity = 1020f,
-            ),
-            drop = BodyConfig.Drop(
-                full = 1f,
-                product = BodyType.BEETLE,
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.1f,
@@ -530,6 +540,9 @@ object ConfigInfo {
                 hungryPercent = 0.5f,
                 diffPerSecond = -1f,
                 canDie = true,
+                corpseDensity = 1020f,
+            ),
+            eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.STAR_POTION to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
@@ -538,7 +551,6 @@ object ConfigInfo {
                 ),
                 drivingAccelerationX = 0.4f,
                 drivingAccelerationY = 0.25f,
-                corpseDensity = 1020f,
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
@@ -606,7 +618,7 @@ object ConfigInfo {
                 index = 0,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            hunger = BodyConfig.Hunger(
+            eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.SILVER_COIN to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
@@ -669,6 +681,8 @@ object ConfigInfo {
                 full = 10f,
                 maxPercent = 3f,
                 diffPerSecond = -1f,
+            ),
+            eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.BEETLE to BodyConfig.Food(
                         healthDiffPerSecond = -10f,

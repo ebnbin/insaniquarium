@@ -39,7 +39,7 @@ object BodyStatusHelper {
 
         val nextEatAct = nextEatAct(
             tank = data.body.tank,
-            configHunger = data.body.config.hunger,
+            configEatAct = data.body.config.eatAct,
             hungerStatus = data.hungerStatus,
             data = data,
             input = input,
@@ -199,12 +199,12 @@ object BodyStatusHelper {
 
     private fun nextEatAct(
         tank: Tank,
-        configHunger: BodyConfig.Hunger?,
+        configEatAct: BodyConfig.EatAct?,
         hungerStatus: BodyHungerStatus?,
         data: BodyData,
         input: BodyInput,
     ): EatAct? {
-        if (configHunger == null) {
+        if (configEatAct == null) {
             return null
         }
 
@@ -212,7 +212,8 @@ object BodyStatusHelper {
             if (hungerStatus == BodyHungerStatus.FULL || hungerStatus == BodyHungerStatus.DYING) {
                 return null
             }
-            val foodSet = tank.findBodyByType(configHunger.foods.keys)
+            require(configEatAct.foods.isNotEmpty())
+            val foodSet = tank.findBodyByType(configEatAct.foods.keys)
             if (foodSet.isEmpty()) {
                 return null
             }
@@ -227,7 +228,7 @@ object BodyStatusHelper {
 
         val isTurning = data.status.animationData.action == BodyAnimationData.Action.TURN
         if (targetFood != null && !isTurning && foodRelation == BodyRelation.CONTAIN_CENTER) {
-            val food = configHunger.foods.getValue(targetFood.data.body.type)
+            val food = configEatAct.foods.getValue(targetFood.data.body.type)
             val foodBody = targetFood.act(
                 input = BodyInput(
                     healthDiff = food.healthDiffPerSecond * input.delta,
@@ -244,7 +245,7 @@ object BodyStatusHelper {
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
                     position = targetFood.data.status.x,
-                    acceleration = configHunger.drivingAccelerationX,
+                    acceleration = configEatAct.drivingAccelerationX,
                 )
             },
             drivingTargetY = if (targetFood == null) {
@@ -253,7 +254,7 @@ object BodyStatusHelper {
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
                     position = targetFood.data.status.y,
-                    acceleration = configHunger.drivingAccelerationY,
+                    acceleration = configEatAct.drivingAccelerationY,
                 )
             },
             foodRelation = foodRelation,

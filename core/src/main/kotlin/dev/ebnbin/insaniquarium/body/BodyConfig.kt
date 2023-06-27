@@ -32,6 +32,8 @@ data class BodyConfig(
     @Expose
     val drop: Drop? = null,
     @Expose
+    val eatAct: EatAct? = null,
+    @Expose
     val touchAct: TouchAct? = null,
     @Expose
     val swimActX: SwimAct? = null,
@@ -76,12 +78,6 @@ data class BodyConfig(
         @Expose
         val canDie: Boolean = false,
         @Expose
-        val foods: Map<BodyType, Food> = emptyMap(),
-        @Expose
-        val drivingAccelerationX: Float = 0f,
-        @Expose
-        val drivingAccelerationY: Float = 0f,
-        @Expose
         val corpseDensity: Float? = null,
     )
 
@@ -90,6 +86,24 @@ data class BodyConfig(
         val full: Float,
         @Expose
         val bodyType: BodyType,
+    )
+
+    data class Drop(
+        @Expose
+        val full: Float,
+        @Expose
+        val incrementPerSecond: Float = 0f,
+        @Expose
+        val product: BodyType,
+    )
+
+    data class EatAct(
+        @Expose
+        val foods: Map<BodyType, Food>,
+        @Expose
+        val drivingAccelerationX: Float = 0f,
+        @Expose
+        val drivingAccelerationY: Float = 0f,
     )
 
     data class Food(
@@ -109,15 +123,6 @@ data class BodyConfig(
         val growth: Float = 0f,
         @Expose
         val drop: Float = 0f,
-    )
-
-    data class Drop(
-        @Expose
-        val full: Float,
-        @Expose
-        val incrementPerSecond: Float = 0f,
-        @Expose
-        val product: BodyType,
     )
 
     data class TouchAct(

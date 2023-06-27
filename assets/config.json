@@ -19,13 +19,11 @@
         "hungryPercent": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
-        "foods": {},
-        "drivingAccelerationX": 0.0,
-        "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
       "growth": null,
       "drop": null,
+      "eatAct": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
@@ -63,13 +61,11 @@
         "hungryPercent": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
-        "foods": {},
-        "drivingAccelerationX": 0.0,
-        "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
       "growth": null,
       "drop": null,
+      "eatAct": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
@@ -107,6 +103,14 @@
         "hungryPercent": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
+        "corpseDensity": 1020.0
+      },
+      "growth": {
+        "full": 10.0,
+        "bodyType": "guppy_medium"
+      },
+      "drop": null,
+      "eatAct": {
         "foods": {
           "fish_food": {
             "healthDiffPerSecond": -10.0,
@@ -120,14 +124,8 @@
           }
         },
         "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25,
-        "corpseDensity": 1020.0
+        "drivingAccelerationY": 0.25
       },
-      "growth": {
-        "full": 10.0,
-        "bodyType": "guppy_medium"
-      },
-      "drop": null,
       "touchAct": null,
       "swimActX": {
         "drivingAcceleration": 0.2,
@@ -203,6 +201,18 @@
         "hungryPercent": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
+        "corpseDensity": 1020.0
+      },
+      "growth": {
+        "full": 15.0,
+        "bodyType": "guppy_large"
+      },
+      "drop": {
+        "full": 20.0,
+        "incrementPerSecond": 3.0,
+        "product": "silver_coin"
+      },
+      "eatAct": {
         "foods": {
           "fish_food": {
             "healthDiffPerSecond": -10.0,
@@ -216,17 +226,7 @@
           }
         },
         "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25,
-        "corpseDensity": 1020.0
-      },
-      "growth": {
-        "full": 15.0,
-        "bodyType": "guppy_large"
-      },
-      "drop": {
-        "full": 20.0,
-        "incrementPerSecond": 3.0,
-        "product": "silver_coin"
+        "drivingAccelerationY": 0.25
       },
       "touchAct": null,
       "swimActX": {
@@ -303,6 +303,18 @@
         "hungryPercent": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
+        "corpseDensity": 1020.0
+      },
+      "growth": {
+        "full": 25.0,
+        "bodyType": "guppy_king"
+      },
+      "drop": {
+        "full": 20.0,
+        "incrementPerSecond": 3.0,
+        "product": "gold_coin"
+      },
+      "eatAct": {
         "foods": {
           "fish_food": {
             "healthDiffPerSecond": -10.0,
@@ -316,17 +328,7 @@
           }
         },
         "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25,
-        "corpseDensity": 1020.0
-      },
-      "growth": {
-        "full": 25.0,
-        "bodyType": "guppy_king"
-      },
-      "drop": {
-        "full": 20.0,
-        "incrementPerSecond": 3.0,
-        "product": "gold_coin"
+        "drivingAccelerationY": 0.25
       },
       "touchAct": null,
       "swimActX": {
@@ -403,6 +405,15 @@
         "hungryPercent": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
+        "corpseDensity": 1020.0
+      },
+      "growth": null,
+      "drop": {
+        "full": 20.0,
+        "incrementPerSecond": 3.0,
+        "product": "diamond"
+      },
+      "eatAct": {
         "foods": {
           "fish_food": {
             "healthDiffPerSecond": -10.0,
@@ -416,14 +427,7 @@
           }
         },
         "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25,
-        "corpseDensity": 1020.0
-      },
-      "growth": null,
-      "drop": {
-        "full": 20.0,
-        "incrementPerSecond": 3.0,
-        "product": "diamond"
+        "drivingAccelerationY": 0.25
       },
       "touchAct": null,
       "swimActX": {
@@ -498,6 +502,15 @@
         "hungryPercent": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
+        "corpseDensity": 1020.0
+      },
+      "growth": null,
+      "drop": {
+        "full": 1.0,
+        "incrementPerSecond": 0.0,
+        "product": "beetle"
+      },
+      "eatAct": {
         "foods": {
           "star": {
             "healthDiffPerSecond": -10.0,
@@ -511,14 +524,7 @@
           }
         },
         "drivingAccelerationX": 0.2,
-        "drivingAccelerationY": 0.0,
-        "corpseDensity": 1020.0
-      },
-      "growth": null,
-      "drop": {
-        "full": 1.0,
-        "incrementPerSecond": 0.0,
-        "product": "beetle"
+        "drivingAccelerationY": 0.0
       },
       "touchAct": null,
       "swimActX": {
@@ -569,6 +575,11 @@
         "hungryPercent": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
+        "corpseDensity": 1020.0
+      },
+      "growth": null,
+      "drop": null,
+      "eatAct": {
         "foods": {
           "star_potion": {
             "healthDiffPerSecond": -10.0,
@@ -582,11 +593,8 @@
           }
         },
         "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25,
-        "corpseDensity": 1020.0
+        "drivingAccelerationY": 0.25
       },
-      "growth": null,
-      "drop": null,
       "touchAct": null,
       "swimActX": {
         "drivingAcceleration": 0.2,
@@ -654,12 +662,10 @@
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
       "health": null,
-      "hunger": {
-        "full": 0.0,
-        "maxPercent": 1.0,
-        "hungryPercent": 0.0,
-        "diffPerSecond": 0.0,
-        "canDie": false,
+      "hunger": null,
+      "growth": null,
+      "drop": null,
+      "eatAct": {
         "foods": {
           "silver_coin": {
             "healthDiffPerSecond": -10.0,
@@ -703,11 +709,8 @@
           }
         },
         "drivingAccelerationX": 0.2,
-        "drivingAccelerationY": 0.3,
-        "corpseDensity": null
+        "drivingAccelerationY": 0.3
       },
-      "growth": null,
-      "drop": null,
       "touchAct": null,
       "swimActX": {
         "drivingAcceleration": 0.1,
@@ -751,6 +754,11 @@
         "hungryPercent": 0.0,
         "diffPerSecond": -1.0,
         "canDie": false,
+        "corpseDensity": null
+      },
+      "growth": null,
+      "drop": null,
+      "eatAct": {
         "foods": {
           "beetle": {
             "healthDiffPerSecond": -10.0,
@@ -764,11 +772,8 @@
           }
         },
         "drivingAccelerationX": 0.8,
-        "drivingAccelerationY": 0.5,
-        "corpseDensity": null
+        "drivingAccelerationY": 0.5
       },
-      "growth": null,
-      "drop": null,
       "touchAct": null,
       "swimActX": {
         "drivingAcceleration": 0.2,
@@ -819,6 +824,7 @@
       "hunger": null,
       "growth": null,
       "drop": null,
+      "eatAct": null,
       "touchAct": {
         "drivingAccelerationX": 0.4,
         "drivingAccelerationY": 0.25
@@ -872,13 +878,11 @@
         "hungryPercent": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
-        "foods": {},
-        "drivingAccelerationX": 0.0,
-        "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
       "growth": null,
       "drop": null,
+      "eatAct": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
@@ -916,13 +920,11 @@
         "hungryPercent": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
-        "foods": {},
-        "drivingAccelerationX": 0.0,
-        "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
       "growth": null,
       "drop": null,
+      "eatAct": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
@@ -960,13 +962,11 @@
         "hungryPercent": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
-        "foods": {},
-        "drivingAccelerationX": 0.0,
-        "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
       "growth": null,
       "drop": null,
+      "eatAct": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
@@ -1004,13 +1004,11 @@
         "hungryPercent": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
-        "foods": {},
-        "drivingAccelerationX": 0.0,
-        "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
       "growth": null,
       "drop": null,
+      "eatAct": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,
@@ -1048,13 +1046,11 @@
         "hungryPercent": 0.0,
         "diffPerSecond": 0.0,
         "canDie": true,
-        "foods": {},
-        "drivingAccelerationX": 0.0,
-        "drivingAccelerationY": 0.0,
         "corpseDensity": null
       },
       "growth": null,
       "drop": null,
+      "eatAct": null,
       "touchAct": null,
       "swimActX": null,
       "swimActY": null,

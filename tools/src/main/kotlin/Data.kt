@@ -40,6 +40,7 @@ data class BodyConfigInfo(
     val hunger: BodyConfig.Hunger? = null,
     val growth: BodyConfig.Growth? = null,
     val drop: BodyConfig.Drop? = null,
+    val eatAct: BodyConfig.EatAct? = null,
     val touchAct: BodyConfig.TouchAct? = null,
     val swimActX: BodyConfig.SwimAct? = null,
     val swimActY: BodyConfig.SwimAct? = null,

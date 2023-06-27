@@ -37,6 +37,7 @@ object ConfigHelper {
             hunger = info.hunger,
             growth = info.growth,
             drop = info.drop,
+            eatAct = info.eatAct,
             touchAct = info.touchAct,
             swimActX = info.swimActX,
             swimActY = info.swimActY,
