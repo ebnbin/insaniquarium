@@ -1,6 +1,5 @@
 package dev.ebnbin.insaniquarium.body
 
-import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.insaniquarium.tank.Tank
 
@@ -115,8 +114,6 @@ object BodyStatusHelper {
             food = nextEatAct?.eatenFood,
         )
 
-        val nextHungerStatus = data.body.config.hunger?.status(nextHunger)
-
         val nextDisappearAct = nextDisappearAct(
             canDisappear = data.body.config.isDead,
             disappearAct = status.disappearAct,
@@ -129,16 +126,9 @@ object BodyStatusHelper {
         val nextDrivingTargetY: BodyDrivingTarget? =
             nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
 
-        val nextAnimationData = nextAnimationData(
-            box = data.box,
-            configAnimations = data.body.config.animations,
-            animationData = status.animationData,
-            isAnimationFinished = data.isAnimationFinished,
-            canAnimationActionChange = data.canAnimationActionChange,
-            canPlayEatAnimation = nextEatAct?.foodRelation == BodyRelation.OVERLAP ||
-                nextEatAct?.foodRelation == BodyRelation.CONTAIN_CENTER,
-            hungerStatus = nextHungerStatus,
-            input = input,
+        val nextAnimationData = data.renderer.nextAnimationData(
+            delta = input.delta,
+            eatenFoodRelation = nextEatAct?.foodRelation,
         )
 
         return BodyStatus(
@@ -334,79 +324,6 @@ object BodyStatusHelper {
             disappearAct.copy(
                 time = disappearAct.time - input.delta,
             )
-        }
-    }
-
-    private fun nextAnimationData(
-        box: BodyBox,
-        configAnimations: BodyConfig.Animations,
-        animationData: BodyAnimationData,
-        isAnimationFinished: Boolean,
-        canAnimationActionChange: Boolean,
-        canPlayEatAnimation: Boolean,
-        hungerStatus: BodyHungerStatus?,
-        input: BodyInput,
-    ): BodyAnimationData {
-        val animationStatus = if (hungerStatus == BodyHungerStatus.HUNGRY) {
-            BodyAnimationData.Status.HUNGRY
-        } else {
-            BodyAnimationData.Status.NORMAL
-        }
-
-        fun createEat(): BodyAnimationData {
-            return BodyAnimationData(
-                action = BodyAnimationData.Action.EAT,
-                status = animationStatus,
-                stateTime = 0f,
-                isFacingRight = animationData.isFacingRight,
-            )
-        }
-
-        fun createTurn(): BodyAnimationData {
-            return BodyAnimationData(
-                action = BodyAnimationData.Action.TURN,
-                status = animationStatus,
-                stateTime = 0f,
-                isFacingRight = !animationData.isFacingRight,
-            )
-        }
-
-        fun createSwim(): BodyAnimationData {
-            return BodyAnimationData(
-                action = BodyAnimationData.Action.SWIM,
-                status = animationStatus,
-                stateTime = 0f,
-                isFacingRight = animationData.isFacingRight,
-            )
-        }
-
-        fun update(): BodyAnimationData {
-            return BodyAnimationData(
-                action = animationData.action,
-                status = animationStatus,
-                stateTime = animationData.stateTime + input.delta,
-                isFacingRight = animationData.isFacingRight,
-            )
-        }
-
-        return if (canAnimationActionChange) {
-            if (configAnimations.eat != null && canPlayEatAnimation) {
-                createEat()
-            } else {
-                if (configAnimations.turn != null &&
-                    (animationData.isFacingRight && box.expectedDirection == Direction.NEGATIVE ||
-                        !animationData.isFacingRight && box.expectedDirection == Direction.POSITIVE)) {
-                    createTurn()
-                } else {
-                    update()
-                }
-            }
-        } else {
-            if (isAnimationFinished) {
-                createSwim()
-            } else {
-                update()
-            }
         }
     }
 }

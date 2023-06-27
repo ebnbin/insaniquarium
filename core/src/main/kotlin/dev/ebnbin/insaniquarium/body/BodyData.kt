@@ -48,6 +48,15 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
+    val renderer: BodyRenderer = BodyRenderer(
+        configAnimations = body.config.animations,
+        animationData = status.animationData,
+        expectedDirection = box.expectedDirection,
+        isHungry = life.hungerStatus == BodyHungerStatus.HUNGRY,
+    )
+
+    //*****************************************************************************************************************
+
     fun hit(touchPoint: Point): Boolean {
         val hit = box.hit(touchPoint)
         if (hit) {
@@ -61,24 +70,6 @@ data class BodyData(
     }
 
     //*****************************************************************************************************************
-
-    val animation: TextureRegionAnimation = status.animationData.getAnimation(body.config)
-
-    val isAnimationFinished: Boolean = status.animationData.action != BodyAnimationData.Action.SWIM &&
-        status.animationData.stateTime >= animation.duration
-
-    val canAnimationActionChange: Boolean = status.animationData.action == BodyAnimationData.Action.SWIM
-
-    val textureRegion: TextureRegion = animation.getTextureRegion(status.animationData.stateTime)
-
-    val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
-    val actorHeight: Float = textureRegion.regionHeight.toFloat().unitToMeter
-
-    val isFlipX: Boolean = if (status.animationData.action == BodyAnimationData.Action.TURN) {
-        !status.animationData.isFacingRight
-    } else {
-        status.animationData.isFacingRight
-    }
 
     val alpha: Float = if (status.disappearAct == null || status.disappearAct.time >= 0f) {
         1f
@@ -178,32 +169,12 @@ data class BodyData(
     }
 
     fun act() {
-        body.setSize(actorWidth, actorHeight)
+        body.setSize(renderer.actorWidth, renderer.actorHeight)
         body.setPosition(box.x, box.y, Align.center)
     }
 
     fun draw(batch: Batch, parentAlpha: Float) {
-        val oldColor = batch.color.cpy()
-        batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
-        batch.draw(
-            textureRegion.texture,
-            body.x,
-            body.y,
-            body.originX,
-            body.originY,
-            body.width,
-            body.height,
-            body.scaleX,
-            body.scaleY,
-            body.rotation,
-            textureRegion.regionX,
-            textureRegion.regionY,
-            textureRegion.regionWidth,
-            textureRegion.regionHeight,
-            isFlipX,
-            false,
-        )
-        batch.color = oldColor
+        renderer.draw(body, alpha, batch, parentAlpha)
     }
 
     //*****************************************************************************************************************

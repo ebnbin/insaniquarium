@@ -22,35 +22,35 @@ data class BodyAnimationData(
         ;
     }
 
-    fun getAnimation(config: BodyConfig): TextureRegionAnimation {
+    fun getAnimation(configAnimations: BodyConfig.Animations): TextureRegionAnimation {
         return when (action) {
             Action.SWIM -> {
                 when (status) {
                     Status.NORMAL -> {
-                        config.animations.swim
+                        configAnimations.swim
                     }
                     Status.HUNGRY -> {
-                        config.animations.hungry ?: config.animations.swim
+                        configAnimations.hungry ?: configAnimations.swim
                     }
                 }
             }
             Action.TURN -> {
                 when (status) {
                     Status.NORMAL -> {
-                        requireNotNull(config.animations.turn)
+                        requireNotNull(configAnimations.turn)
                     }
                     Status.HUNGRY -> {
-                        config.animations.hungryTurn ?: requireNotNull(config.animations.turn)
+                        configAnimations.hungryTurn ?: requireNotNull(configAnimations.turn)
                     }
                 }
             }
             Action.EAT -> {
                 when (status) {
                     Status.NORMAL -> {
-                        requireNotNull(config.animations.eat)
+                        requireNotNull(configAnimations.eat)
                     }
                     Status.HUNGRY -> {
-                        config.animations.hungryEat ?: requireNotNull(config.animations.eat)
+                        configAnimations.hungryEat ?: requireNotNull(configAnimations.eat)
                     }
                 }
             }
