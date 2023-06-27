@@ -171,6 +171,7 @@ data class BodyData(
                 data = this,
                 status = status,
                 input = input,
+                bodyManager = BodyManager(body),
             ),
             input = input,
         )

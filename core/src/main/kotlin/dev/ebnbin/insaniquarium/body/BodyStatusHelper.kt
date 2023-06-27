@@ -26,6 +26,7 @@ object BodyStatusHelper {
         data: BodyData,
         status: BodyStatus,
         input: BodyInput,
+        bodyManager: BodyManager,
     ): BodyStatus {
         val nextVelocityX = data.box.nextVelocityX(input.delta)
         val nextVelocityY = data.box.nextVelocityY(input.delta)
@@ -34,7 +35,7 @@ object BodyStatusHelper {
         val nextY = data.box.nextY(input.delta)
 
         val nextEatAct = nextEatAct(
-            tank = data.body.tank,
+            bodyManager = bodyManager,
             configEatAct = data.body.config.eatAct,
             hungerStatus = data.life.hungerStatus,
             data = data,
@@ -172,7 +173,7 @@ object BodyStatusHelper {
     }
 
     private fun nextEatAct(
-        tank: Tank,
+        bodyManager: BodyManager,
         configEatAct: BodyConfig.EatAct?,
         hungerStatus: BodyHungerStatus?,
         data: BodyData,
@@ -187,7 +188,7 @@ object BodyStatusHelper {
                 return null
             }
             require(configEatAct.foods.isNotEmpty())
-            val foodSet = tank.findBodyByType(configEatAct.foods.keys)
+            val foodSet = bodyManager.findBodyByType(configEatAct.foods.keys)
             if (foodSet.isEmpty()) {
                 return null
             }
