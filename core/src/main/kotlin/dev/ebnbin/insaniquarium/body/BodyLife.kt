@@ -1,7 +1,6 @@
 package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.lifecycle.baseGame
-import dev.ebnbin.gdx.utils.minMax
 
 data class BodyLife(
     private val configHealth: BodyConfig.Health?,
@@ -41,7 +40,7 @@ data class BodyLife(
             inputDelta = input.delta,
             inputDiff = input.healthDiff,
             foodDiff = food?.health,
-        ).minMax(0f, 1f)
+        ).coerceIn(0f, 1f)
     }
 
     fun nextHunger(
@@ -56,7 +55,7 @@ data class BodyLife(
             inputDelta = input.delta,
             inputDiff = input.hungerDiff,
             foodDiff = food?.hunger,
-        ).minMax(0f, configHunger.maxThreshold)
+        ).coerceIn(0f, configHunger.maxThreshold)
     }
 
     fun nextGrowth(

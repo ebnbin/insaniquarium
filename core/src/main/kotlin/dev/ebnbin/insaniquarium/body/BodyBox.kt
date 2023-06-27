@@ -10,7 +10,6 @@ import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.gdx.utils.XY
 import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.magnitude
-import dev.ebnbin.gdx.utils.minMax
 
 data class BodyBox(
     private val dragCoefficient: Float,
@@ -51,7 +50,7 @@ data class BodyBox(
     /**
      * Percent of body inside water.
      */
-    private val insideTopPercent: Float = ((height + tankHeight - top) / height).minMax(0f, 1f)
+    private val insideTopPercent: Float = ((height + tankHeight - top) / height).coerceIn(0f, 1f)
 
     private val area: Float = width * height
 

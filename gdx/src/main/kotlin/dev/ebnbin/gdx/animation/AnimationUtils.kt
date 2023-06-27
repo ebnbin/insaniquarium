@@ -1,7 +1,6 @@
 package dev.ebnbin.gdx.animation
 
 import dev.ebnbin.gdx.utils.Interpolation
-import dev.ebnbin.gdx.utils.minMax
 
 fun <T> List<T>.animFrame(
     duration: Float,
@@ -18,10 +17,10 @@ fun <T> List<T>.animFrame(
 
     val alpha = when (mode) {
         AnimationMode.NORMAL -> {
-            (stateTime / duration).minMax(0f, 1f)
+            (stateTime / duration).coerceIn(0f, 1f)
         }
         AnimationMode.REVERSED -> {
-            1f - (stateTime / duration).minMax(0f, 1f)
+            1f - (stateTime / duration).coerceIn(0f, 1f)
         }
         AnimationMode.LOOP -> {
             (stateTime % duration) / duration
@@ -31,6 +30,6 @@ fun <T> List<T>.animFrame(
         }
     }
     val value = interpolation.apply(alpha)
-    val index = (size * value).toInt().minMax(0, size - 1)
+    val index = (size * value).toInt().coerceIn(0, size - 1)
     return get(index)
 }

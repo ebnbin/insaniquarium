@@ -3,7 +3,6 @@ package dev.ebnbin.insaniquarium.body
 import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.magnitude
-import dev.ebnbin.gdx.utils.minMax
 import dev.ebnbin.gdx.utils.trim
 import kotlin.math.min
 import kotlin.math.pow
@@ -114,6 +113,6 @@ object BodyForceHelper {
         delta: Float,
     ): Float {
         val nextPosition = position + velocity * delta
-        return nextPosition.minMax(minPosition, maxPosition)
+        return nextPosition.coerceIn(minPosition, maxPosition)
     }
 }
