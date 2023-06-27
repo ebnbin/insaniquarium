@@ -165,8 +165,10 @@ data class BodyLife(
                     type = productionFromDrop,
                     createStatus = {
                         BodyStatus(
-                            x = status.x,
-                            y = status.y,
+                            box = BodyBox.Status(
+                                x = status.box.x,
+                                y = status.box.y,
+                            ),
                         )
                     },
                     delta = delta,

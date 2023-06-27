@@ -27,11 +27,7 @@ object BodyStatusHelper {
         input: BodyInput,
         bodyManager: BodyManager,
     ): BodyStatus {
-        val nextVelocityX = data.box.nextVelocityX(input.delta)
-        val nextVelocityY = data.box.nextVelocityY(input.delta)
-
-        val nextX = data.box.nextX(input.delta)
-        val nextY = data.box.nextY(input.delta)
+        val nextBox = data.box.nextStatus(input.delta)
 
         val nextEatAct = nextEatAct(
             bodyManager = bodyManager,
@@ -130,10 +126,7 @@ object BodyStatusHelper {
         )
 
         return BodyStatus(
-            velocityX = nextVelocityX,
-            velocityY = nextVelocityY,
-            x = nextX,
-            y = nextY,
+            box = nextBox,
             swimActX = nextStatusSwimActX,
             swimActY = nextStatusSwimActY,
             health = nextHealth,
@@ -190,7 +183,7 @@ object BodyStatusHelper {
             } else {
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
-                    position = targetFood.data.status.x,
+                    position = targetFood.data.box.x,
                     acceleration = configEatAct.drivingAccelerationX,
                 )
             },
@@ -199,7 +192,7 @@ object BodyStatusHelper {
             } else {
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
-                    position = targetFood.data.status.y,
+                    position = targetFood.data.box.y,
                     acceleration = configEatAct.drivingAccelerationY,
                 )
             },

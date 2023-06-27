@@ -23,10 +23,7 @@ data class BodyData(
         density = body.config.density,
         drivingTargetX = status.drivingTargetX,
         drivingTargetY = status.drivingTargetY,
-        velocityX = status.velocityX,
-        velocityY = status.velocityY,
-        x = status.x,
-        y = status.y,
+        status = status.box,
     )
 
     //*****************************************************************************************************************

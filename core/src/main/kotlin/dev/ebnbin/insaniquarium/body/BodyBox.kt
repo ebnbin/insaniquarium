@@ -24,11 +24,21 @@ data class BodyBox(
     private val density: Float,
     private val drivingTargetX: BodyDrivingTarget?,
     private val drivingTargetY: BodyDrivingTarget?,
-    private val velocityX: Float,
-    private val velocityY: Float,
-    val x: Float,
-    val y: Float,
+    private val status: Status,
 ) {
+    data class Status(
+        val velocityX: Float = 0f,
+        val velocityY: Float = 0f,
+        val x: Float = 0f,
+        val y: Float = 0f,
+    )
+
+    private val velocityX: Float = status.velocityX
+    private val velocityY: Float = status.velocityY
+
+    val x: Float = status.x
+    val y: Float = status.y
+
     private val halfWidth: Float = width / 2f
     private val halfHeight: Float = height / 2f
 
@@ -185,7 +195,20 @@ data class BodyBox(
 
     val expectedDirection: Direction = drivingX.direction.takeIf { it != Direction.ZERO } ?: velocityX.direction
 
-    fun nextVelocityX(delta: Float): Float {
+    fun nextStatus(delta: Float): Status {
+        val nextVelocityX = nextVelocityX(delta)
+        val nextVelocityY = nextVelocityY(delta)
+        val nextX = nextX(delta)
+        val nextY = nextY(delta)
+        return Status(
+            velocityX = nextVelocityX,
+            velocityY = nextVelocityY,
+            x = nextX,
+            y = nextY,
+        )
+    }
+
+    private fun nextVelocityX(delta: Float): Float {
         return BodyForceHelper.nextVelocity(
             velocity = velocityX,
             acceleration = accelerationX,
@@ -196,7 +219,7 @@ data class BodyBox(
         )
     }
 
-    fun nextVelocityY(delta: Float): Float {
+    private fun nextVelocityY(delta: Float): Float {
         return BodyForceHelper.nextVelocity(
             velocity = velocityY,
             acceleration = accelerationY,
@@ -207,7 +230,7 @@ data class BodyBox(
         )
     }
 
-    fun nextX(delta: Float): Float {
+    private fun nextX(delta: Float): Float {
         return BodyForceHelper.nextPosition(
             position = x,
             velocity = velocityX, // TODO nextVelocityX
@@ -217,7 +240,7 @@ data class BodyBox(
         )
     }
 
-    fun nextY(delta: Float): Float {
+    private fun nextY(delta: Float): Float {
         return BodyForceHelper.nextPosition(
             position = y,
             velocity = velocityY, // TODO nextVelocityY

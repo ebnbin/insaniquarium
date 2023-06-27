@@ -8,6 +8,7 @@ import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.body.Body
+import dev.ebnbin.insaniquarium.body.BodyBox
 import dev.ebnbin.insaniquarium.body.BodyGroup
 import dev.ebnbin.insaniquarium.body.BodyStatus
 import dev.ebnbin.insaniquarium.body.BodyType
@@ -33,8 +34,10 @@ class Tank : Group() {
                         type = it,
                         createStatus = {
                             BodyStatus(
-                                x = x,
-                                y = y,
+                                box = BodyBox.Status(
+                                    x = x,
+                                    y = y,
+                                ),
                             )
                         },
                     )
@@ -140,8 +143,10 @@ class Tank : Group() {
             type = type,
             createStatus = {
                 BodyStatus(
-                    x = Random.nextFloat(0f, width),
-                    y = Random.nextFloat(0f, height),
+                    box = BodyBox.Status(
+                        x = Random.nextFloat(0f, width),
+                        y = Random.nextFloat(0f, height),
+                    ),
                 )
             },
         )

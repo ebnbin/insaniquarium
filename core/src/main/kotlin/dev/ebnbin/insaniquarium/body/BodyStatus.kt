@@ -1,11 +1,7 @@
 package dev.ebnbin.insaniquarium.body
 
 data class BodyStatus(
-    val velocityX: Float = 0f,
-    val velocityY: Float = 0f,
-
-    val x: Float = 0f,
-    val y: Float = 0f,
+    val box: BodyBox.Status = BodyBox.Status(),
 
     val swimActX: SwimAct? = null,
     val swimActY: SwimAct? = null,
