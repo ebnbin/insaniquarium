@@ -176,8 +176,7 @@ object ConfigInfo {
                 transformation = BodyType.GUPPY_LARGE,
             ),
             drop = BodyConfig.Drop(
-                full = 20f,
-                diffPerSecond = 3f,
+                diffPerSecond = -3f / 20f,
                 production = BodyType.SILVER_COIN,
             ),
             eatAct = BodyConfig.EatAct(
@@ -263,8 +262,7 @@ object ConfigInfo {
                 transformation = BodyType.GUPPY_KING,
             ),
             drop = BodyConfig.Drop(
-                full = 20f,
-                diffPerSecond = 3f,
+                diffPerSecond = -3f / 20f,
                 production = BodyType.GOLD_COIN,
             ),
             eatAct = BodyConfig.EatAct(
@@ -347,8 +345,7 @@ object ConfigInfo {
                 transformation = BodyType.GUPPY_KING_CORPSE,
             ),
             drop = BodyConfig.Drop(
-                full = 20f,
-                diffPerSecond = 3f,
+                diffPerSecond = -3f / 20f,
                 production = BodyType.DIAMOND,
             ),
             eatAct = BodyConfig.EatAct(
@@ -430,7 +427,6 @@ object ConfigInfo {
                 transformation = BodyType.STARCATCHER_CORPSE,
             ),
             drop = BodyConfig.Drop(
-                full = 1f,
                 production = BodyType.BEETLE,
             ),
             eatAct = BodyConfig.EatAct(
@@ -438,7 +434,7 @@ object ConfigInfo {
                     BodyType.STAR to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
                         hunger = 1f,
-                        drop = 1f,
+                        drop = -1f,
                     ),
                 ),
                 drivingAccelerationX = 0.2f,

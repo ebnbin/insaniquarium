@@ -194,8 +194,8 @@
         "transformation": "guppy_large"
       },
       "drop": {
-        "full": 20.0,
-        "diffPerSecond": 3.0,
+        "initialThreshold": 1.0,
+        "diffPerSecond": -0.15,
         "production": "silver_coin"
       },
       "eatAct": {
@@ -292,8 +292,8 @@
         "transformation": "guppy_king"
       },
       "drop": {
-        "full": 20.0,
-        "diffPerSecond": 3.0,
+        "initialThreshold": 1.0,
+        "diffPerSecond": -0.15,
         "production": "gold_coin"
       },
       "eatAct": {
@@ -386,8 +386,8 @@
       },
       "growth": null,
       "drop": {
-        "full": 20.0,
-        "diffPerSecond": 3.0,
+        "initialThreshold": 1.0,
+        "diffPerSecond": -0.15,
         "production": "diamond"
       },
       "eatAct": {
@@ -477,7 +477,7 @@
       },
       "growth": null,
       "drop": {
-        "full": 1.0,
+        "initialThreshold": 1.0,
         "diffPerSecond": 0.0,
         "production": "beetle"
       },
@@ -491,7 +491,7 @@
             "health": 0.0,
             "hunger": 1.0,
             "growth": 0.0,
-            "drop": 1.0
+            "drop": -1.0
           }
         },
         "drivingAccelerationX": 0.2,

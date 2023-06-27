@@ -86,11 +86,8 @@ data class BodyConfig(
     )
 
     data class Drop(
-        /**
-         * > 0f.
-         */
         @Expose
-        val full: Float,
+        val initialThreshold: Float = 1f,
         @Expose
         val diffPerSecond: Float = 0f,
         @Expose

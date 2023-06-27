@@ -414,7 +414,7 @@ object BodyStatusHelper {
             return null
         }
         if (drop == null) {
-            return 0f
+            return configDrop.initialThreshold
         }
 
         var nextDrop = drop + configDrop.diffPerSecond * input.delta
@@ -422,8 +422,8 @@ object BodyStatusHelper {
         if (eatAct != null) {
             nextDrop += eatAct.dropDiff
         }
-        while (nextDrop >= configDrop.full) {
-            nextDrop -= configDrop.full
+        while (nextDrop <= 0f) {
+            nextDrop += 1f
             body.tank.addBody(
                 type = configDrop.production,
                 createStatus = {
