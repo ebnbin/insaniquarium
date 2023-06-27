@@ -13,7 +13,7 @@ object BodyStatusHelper {
             delta = input.delta
         )
 
-        val nextLife = data.life.nextStatus(
+        val (nextLife, lifeTmp) = data.life.nextStatus(
             bodyManager = bodyManager,
             input = input,
             touchPoint = touchPoint,
@@ -21,7 +21,7 @@ object BodyStatusHelper {
 
         val nextRenderer = data.renderer.nextStatus(
             delta = input.delta,
-            eatenFoodRelation = nextLife.foodRelation,
+            eatenFoodRelation = lifeTmp.foodRelation,
         )
 
         return BodyStatus(

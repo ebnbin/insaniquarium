@@ -37,8 +37,10 @@ data class BodyLife(
         val hunger: Float? = null,
         val growth: Float? = null,
         val drop: Float? = null,
+    )
 
-        val foodRelation: BodyRelation = BodyRelation.DISJOINT,
+    data class TmpStatus(
+        val foodRelation: BodyRelation,
     )
 
     private data class EatAct(
@@ -87,7 +89,7 @@ data class BodyLife(
         bodyManager: BodyManager,
         input: BodyInput,
         touchPoint: Point?,
-    ): Status {
+    ): Pair<Status, TmpStatus> {
         val nextEatAct = nextEatAct(
             bodyManager = bodyManager,
             delta = input.delta,
@@ -151,6 +153,7 @@ data class BodyLife(
             hunger = nextHunger,
             growth = nextGrowth,
             drop = nextDrop,
+        ) to TmpStatus(
             foodRelation = nextEatAct?.foodRelation ?: BodyRelation.DISJOINT,
         )
     }
