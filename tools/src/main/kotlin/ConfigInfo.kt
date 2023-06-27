@@ -85,10 +85,9 @@ object ConfigInfo {
             ),
             health = BodyConfig.Health(),
             hunger = BodyConfig.Hunger(
-                full = 20f,
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
-                diffPerSecond = -1f,
+                diffPerSecond = -1f / 20f,
                 transformation = BodyType.GUPPY_SMALL_CORPSE,
             ),
             growth = BodyConfig.Growth(
@@ -99,7 +98,7 @@ object ConfigInfo {
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
-                        hunger = 20f,
+                        hunger = 1f,
                         growth = 5f,
                     ),
                 ),
@@ -169,10 +168,9 @@ object ConfigInfo {
             ),
             health = BodyConfig.Health(),
             hunger = BodyConfig.Hunger(
-                full = 20f,
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
-                diffPerSecond = -1f,
+                diffPerSecond = -1f / 20f,
                 transformation = BodyType.GUPPY_MEDIUM_CORPSE,
             ),
             growth = BodyConfig.Growth(
@@ -188,7 +186,7 @@ object ConfigInfo {
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
-                        hunger = 20f,
+                        hunger = 1f,
                         growth = 5f,
                     ),
                 ),
@@ -258,10 +256,9 @@ object ConfigInfo {
             ),
             health = BodyConfig.Health(),
             hunger = BodyConfig.Hunger(
-                full = 20f,
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
-                diffPerSecond = -1f,
+                diffPerSecond = -1f / 20f,
                 transformation = BodyType.GUPPY_LARGE_CORPSE,
             ),
             growth = BodyConfig.Growth(
@@ -277,7 +274,7 @@ object ConfigInfo {
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
-                        hunger = 20f,
+                        hunger = 1f,
                         growth = 5f,
                     ),
                 ),
@@ -347,10 +344,9 @@ object ConfigInfo {
             ),
             health = BodyConfig.Health(),
             hunger = BodyConfig.Hunger(
-                full = 20f,
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
-                diffPerSecond = -1f,
+                diffPerSecond = -1f / 20f,
                 transformation = BodyType.GUPPY_KING_CORPSE,
             ),
             drop = BodyConfig.Drop(
@@ -362,7 +358,7 @@ object ConfigInfo {
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
-                        hunger = 20f,
+                        hunger = 1f,
                     ),
                 ),
                 drivingAccelerationX = 0.4f,
@@ -431,10 +427,9 @@ object ConfigInfo {
             ),
             density = 1080f,
             hunger = BodyConfig.Hunger(
-                full = 20f,
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
-                diffPerSecond = -1f,
+                diffPerSecond = -1f / 20f,
                 transformation = BodyType.STARCATCHER_CORPSE,
             ),
             drop = BodyConfig.Drop(
@@ -445,7 +440,7 @@ object ConfigInfo {
                 foods = mapOf(
                     BodyType.STAR to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
-                        hunger = 20f,
+                        hunger = 1f,
                         drop = 1f,
                     ),
                 ),
@@ -489,17 +484,16 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             hunger = BodyConfig.Hunger(
-                full = 20f,
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
-                diffPerSecond = -1f,
+                diffPerSecond = -1f / 20f,
                 transformation = BodyType.BEETLEMUNCHER_CORPSE,
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.STAR_POTION to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
-                        hunger = 20f,
+                        hunger = 1f,
                     ),
                 ),
                 drivingAccelerationX = 0.4f,
@@ -794,15 +788,14 @@ object ConfigInfo {
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
             hunger = BodyConfig.Hunger(
-                full = 10f,
                 maxThreshold = 3f,
-                diffPerSecond = -1f,
+                diffPerSecond = -1f / 20f,
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.BEETLE to BodyConfig.Food(
                         healthDiffPerSecond = -1f,
-                        hunger = 20f,
+                        hunger = 2f,
                     ),
                 ),
                 drivingAccelerationX = 0.8f,

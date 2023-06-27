@@ -56,11 +56,7 @@ data class BodyConfig(
 
     data class Hunger(
         @Expose
-        /**
-         * >= 0f.
-         * 0f: Never full.
-         */
-        val full: Float = 0f,
+        val initialThreshold: Float = 1f,
         /**
          * >= 1f.
          * 1f: Never full.

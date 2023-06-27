@@ -88,10 +88,10 @@
         "diffPerSecond": 0.0
       },
       "hunger": {
-        "full": 20.0,
+        "initialThreshold": 1.0,
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
-        "diffPerSecond": -1.0,
+        "diffPerSecond": -0.05,
         "transformation": "guppy_small_corpse"
       },
       "growth": {
@@ -108,7 +108,7 @@
             "growthDiffPerSecond": 0.0,
             "dropDiffPerSecond": 0.0,
             "health": 0.0,
-            "hunger": 20.0,
+            "hunger": 1.0,
             "growth": 5.0,
             "drop": 0.0
           }
@@ -182,10 +182,10 @@
         "diffPerSecond": 0.0
       },
       "hunger": {
-        "full": 20.0,
+        "initialThreshold": 1.0,
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
-        "diffPerSecond": -1.0,
+        "diffPerSecond": -0.05,
         "transformation": "guppy_medium_corpse"
       },
       "growth": {
@@ -206,7 +206,7 @@
             "growthDiffPerSecond": 0.0,
             "dropDiffPerSecond": 0.0,
             "health": 0.0,
-            "hunger": 20.0,
+            "hunger": 1.0,
             "growth": 5.0,
             "drop": 0.0
           }
@@ -280,10 +280,10 @@
         "diffPerSecond": 0.0
       },
       "hunger": {
-        "full": 20.0,
+        "initialThreshold": 1.0,
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
-        "diffPerSecond": -1.0,
+        "diffPerSecond": -0.05,
         "transformation": "guppy_large_corpse"
       },
       "growth": {
@@ -304,7 +304,7 @@
             "growthDiffPerSecond": 0.0,
             "dropDiffPerSecond": 0.0,
             "health": 0.0,
-            "hunger": 20.0,
+            "hunger": 1.0,
             "growth": 5.0,
             "drop": 0.0
           }
@@ -378,10 +378,10 @@
         "diffPerSecond": 0.0
       },
       "hunger": {
-        "full": 20.0,
+        "initialThreshold": 1.0,
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
-        "diffPerSecond": -1.0,
+        "diffPerSecond": -0.05,
         "transformation": "guppy_king_corpse"
       },
       "growth": null,
@@ -398,7 +398,7 @@
             "growthDiffPerSecond": 0.0,
             "dropDiffPerSecond": 0.0,
             "health": 0.0,
-            "hunger": 20.0,
+            "hunger": 1.0,
             "growth": 0.0,
             "drop": 0.0
           }
@@ -469,10 +469,10 @@
       "isDead": false,
       "health": null,
       "hunger": {
-        "full": 20.0,
+        "initialThreshold": 1.0,
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
-        "diffPerSecond": -1.0,
+        "diffPerSecond": -0.05,
         "transformation": "starcatcher_corpse"
       },
       "growth": null,
@@ -489,7 +489,7 @@
             "growthDiffPerSecond": 0.0,
             "dropDiffPerSecond": 0.0,
             "health": 0.0,
-            "hunger": 20.0,
+            "hunger": 1.0,
             "growth": 0.0,
             "drop": 1.0
           }
@@ -536,10 +536,10 @@
       "isDead": false,
       "health": null,
       "hunger": {
-        "full": 20.0,
+        "initialThreshold": 1.0,
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
-        "diffPerSecond": -1.0,
+        "diffPerSecond": -0.05,
         "transformation": "beetlemuncher_corpse"
       },
       "growth": null,
@@ -552,7 +552,7 @@
             "growthDiffPerSecond": 0.0,
             "dropDiffPerSecond": 0.0,
             "health": 0.0,
-            "hunger": 20.0,
+            "hunger": 1.0,
             "growth": 0.0,
             "drop": 0.0
           }
@@ -907,10 +907,10 @@
       "isDead": false,
       "health": null,
       "hunger": {
-        "full": 10.0,
+        "initialThreshold": 1.0,
         "maxThreshold": 3.0,
         "hungryThreshold": 0.0,
-        "diffPerSecond": -1.0,
+        "diffPerSecond": -0.05,
         "transformation": null
       },
       "growth": null,
@@ -923,7 +923,7 @@
             "growthDiffPerSecond": 0.0,
             "dropDiffPerSecond": 0.0,
             "health": 0.0,
-            "hunger": 20.0,
+            "hunger": 2.0,
             "growth": 0.0,
             "drop": 0.0
           }

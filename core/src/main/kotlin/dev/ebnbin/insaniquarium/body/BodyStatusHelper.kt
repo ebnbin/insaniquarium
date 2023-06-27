@@ -371,7 +371,7 @@ object BodyStatusHelper {
             return null
         }
         if (hunger == null) {
-            return configHunger.full
+            return configHunger.initialThreshold
         }
 
         var nextHunger = hunger + configHunger.diffPerSecond * input.delta

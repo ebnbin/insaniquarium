@@ -52,7 +52,7 @@ fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
                 BodyHungerStatus.HUNGRY
             }
         }
-        hunger >= full -> {
+        hunger >= 1f -> {
             // FULL or NOT_FULL or HUNGRY.
             if (maxThreshold == 1f) {
                 // NOT_FULL or HUNGRY.
@@ -65,13 +65,8 @@ fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
                 return BodyHungerStatus.FULL
             }
         }
-        hunger >= full * hungryThreshold -> {
-            // NOT_FULL or HUNGRY.
-            if (hungryThreshold == 1f) {
-                BodyHungerStatus.HUNGRY
-            } else {
-                BodyHungerStatus.NOT_FULL
-            }
+        hunger >= hungryThreshold -> {
+            BodyHungerStatus.NOT_FULL
         }
         else -> {
             BodyHungerStatus.HUNGRY
@@ -80,7 +75,7 @@ fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
 }
 
 fun BodyConfig.Hunger.minMax(hunger: Float): Float {
-    val maxHunger = full * maxThreshold
+    val maxHunger = maxThreshold
     return hunger.minMax(0f, maxHunger)
 }
 
