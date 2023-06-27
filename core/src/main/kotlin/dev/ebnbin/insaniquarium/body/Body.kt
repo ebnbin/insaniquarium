@@ -27,7 +27,7 @@ class Body(
 
     fun act(input: BodyInput): Body {
         data = data.update(input)
-        if (data.validate()) {
+        if (data.postUpdate()) {
             return this
         }
         data.act()

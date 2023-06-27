@@ -12,20 +12,24 @@ data class BodyLife(
     private val growth: Float?,
     private val drop: Float?,
 ) {
-    val isDeadFromHealth: Boolean = configHealth != null && health == 0f
+    private val isDeadFromHealth: Boolean = configHealth != null && health == 0f
 
     val hungerStatus: BodyHungerStatus? = configHunger?.status(hunger)
 
-    val transformationFromHunger: BodyType? = configHunger?.transformation?.takeIf { hunger == 0f }
+    private val transformationFromHunger: BodyType? = configHunger?.transformation?.takeIf { hunger == 0f }
 
-    val transformationFromGrowth: BodyType? = configGrowth?.transformation?.takeIf { growth != null && growth <= 0f }
+    private val transformationFromGrowth: BodyType? = configGrowth?.transformation?.takeIf { growth != null && growth <= 0f }
 
-    val productionFromDrop: BodyType? = configDrop?.production?.takeIf { drop != null && drop <= 0f }
+    private val productionFromDrop: BodyType? = configDrop?.production?.takeIf { drop != null && drop <= 0f }
 
-    val dropCount: Int = if (drop == null || drop > 0f) {
+    private val dropCount: Int = if (drop == null || drop > 0f) {
         0
     } else {
         -drop.toInt() + 1
+    }
+
+    fun canRemove(isSwimming: Boolean): Boolean {
+        return isDeadFromHealth || (transformationFromHunger != null && isSwimming) || transformationFromGrowth != null
     }
 
     fun nextHealth(
@@ -101,6 +105,81 @@ data class BodyLife(
         nextValue += inputDiff
         nextValue += (foodDiff ?: 0f)
         return nextValue
+    }
+
+    /**
+     * @return True if removed.
+     */
+    fun postUpdate(
+        bodyManager: BodyManager,
+        status: BodyStatus,
+        delta: Float,
+    ): Boolean {
+        if (isDeadFromHealth) {
+            bodyManager.removeSelf()
+            return true
+        }
+        if (transformationFromHunger != null && status.animationData.action == BodyAnimationData.Action.SWIM) {
+            bodyManager.replaceBody(
+                type = transformationFromHunger,
+                createStatus = {
+                    status.copy(
+                        swimActX = null,
+                        swimActY = null,
+                        health = null,
+                        hunger = null,
+                        growth = null,
+                        drop = null,
+                        alphaTime = null,
+                        drivingTargetX = null,
+                        drivingTargetY = null,
+                        animationData = status.animationData.copy(
+                            stateTime = 0f,
+                        ),
+                    )
+                },
+                delta = delta,
+            )
+            return true
+        }
+        if (transformationFromGrowth != null) {
+            val growth = status.growth
+            require(growth != null)
+            bodyManager.replaceBody(
+                type = transformationFromGrowth,
+                createStatus = {
+                    status.copy(
+                        growth = if (it.config.growth == null) {
+                            null
+                        } else {
+                            growth + it.config.growth.initialThreshold
+                        },
+                    )
+                },
+                delta = delta,
+            )
+        }
+        if (productionFromDrop != null) {
+            repeat(dropCount) {
+                bodyManager.addBody(
+                    type = productionFromDrop,
+                    createStatus = {
+                        BodyStatus(
+                            x = status.x,
+                            y = status.y,
+                        )
+                    },
+                    delta = delta,
+                )
+            }
+            bodyManager.actSelf(
+                input = BodyInput(
+                    dropDiff = dropCount.toFloat(),
+                ),
+            )
+            return false
+        }
+        return false
     }
 
     fun devPutLogs() {

@@ -71,82 +71,20 @@ data class BodyData(
     //*****************************************************************************************************************
 
     val canRemove: Boolean = (renderer.canRemove) ||
-        life.isDeadFromHealth ||
-        (life.transformationFromHunger != null && status.animationData.action == BodyAnimationData.Action.SWIM) ||
-        life.transformationFromGrowth != null
+        (life.canRemove(isSwimming = status.animationData.action == BodyAnimationData.Action.SWIM))
 
-    fun validate(): Boolean {
-        if (life.isDeadFromHealth) {
-            body.tank.removeBody(body)
+    fun postUpdate(): Boolean {
+        val bodyManager = BodyManager(body)
+        if (life.postUpdate(
+            bodyManager = bodyManager,
+            status = status,
+            delta = input.delta,
+        )) {
             return true
         }
-        if (life.transformationFromHunger != null && status.animationData.action == BodyAnimationData.Action.SWIM) {
-            val newBody = body.tank.replaceBody(
-                oldBody = body,
-                type = life.transformationFromHunger,
-                createStatus = {
-                    status.copy(
-                        swimActX = null,
-                        swimActY = null,
-                        health = null,
-                        hunger = null,
-                        growth = null,
-                        drop = null,
-                        alphaTime = null,
-                        drivingTargetX = null,
-                        drivingTargetY = null,
-                        animationData = status.animationData.copy(
-                            stateTime = 0f,
-                        ),
-                    )
-                },
-            )
-            newBody.act(delta = input.delta)
-            return true
-        }
-        if (life.transformationFromGrowth != null) {
-            val growth = status.growth
-            require(growth != null)
-            val newBody = body.tank.replaceBody(
-                oldBody = body,
-                type = life.transformationFromGrowth,
-                createStatus = {
-                    status.copy(
-                        growth = growth + (it.config.growth?.initialThreshold ?: 0f),
-                    )
-                },
-            )
-            newBody.act(delta = input.delta)
-            return true
-        }
-        if (life.productionFromDrop != null) {
-            repeat(life.dropCount) {
-                body.tank.addBody(
-                    type = life.productionFromDrop,
-                    createStatus = {
-                        BodyStatus(
-                            x = status.x,
-                            y = status.y,
-                        )
-                    },
-                )
-            }
-            body.act(
-                input = BodyInput(
-                    dropDiff = life.dropCount.toFloat(),
-                )
-            )
-            if (canRemove) {
-                body.tank.removeBody(body)
-                return true
-            }
-            return false
-        }
-        if (canRemove) {
-            body.tank.removeBody(body)
-            return true
-        }
-        return false
+        return renderer.postUpdate(
+            bodyManager = bodyManager,
+        )
     }
 
     //*****************************************************************************************************************

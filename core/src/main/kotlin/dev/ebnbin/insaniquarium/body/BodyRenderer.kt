@@ -149,6 +149,16 @@ data class BodyRenderer(
         batch.color = oldColor
     }
 
+    fun postUpdate(
+        bodyManager: BodyManager,
+    ): Boolean {
+        if (canRemove) {
+            bodyManager.removeSelf()
+            return true
+        }
+        return false
+    }
+
     companion object {
         private const val ALPHA_DELAY_DURATION = 0f
         private const val ALPHA_DURATION = 1f
