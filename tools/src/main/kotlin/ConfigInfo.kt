@@ -597,6 +597,174 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
+            type = BodyType.GUPPY_SMALL_CORPSE,
+            group = BodyGroup.FISH,
+            width = BodyConfigInfo.Size(
+                textureName = "guppy_small",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "guppy_small",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "guppy_small_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1020f,
+            isDead = true,
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "guppy_small_die",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
+            type = BodyType.GUPPY_MEDIUM_CORPSE,
+            group = BodyGroup.FISH,
+            width = BodyConfigInfo.Size(
+                textureName = "guppy_medium",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "guppy_medium",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "guppy_medium_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1020f,
+            isDead = true,
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "guppy_medium_die",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
+            type = BodyType.GUPPY_LARGE_CORPSE,
+            group = BodyGroup.FISH,
+            width = BodyConfigInfo.Size(
+                textureName = "guppy_large",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "guppy_large",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "guppy_large_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1020f,
+            isDead = true,
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "guppy_large_die",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
+            type = BodyType.GUPPY_KING_CORPSE,
+            group = BodyGroup.FISH,
+            width = BodyConfigInfo.Size(
+                textureName = "guppy_king",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "guppy_king",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "guppy_king_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1020f,
+            isDead = true,
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "guppy_king_die",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
+            type = BodyType.STARCATCHER_CORPSE,
+            group = BodyGroup.FISH,
+            width = BodyConfigInfo.Size(
+                textureName = "starcatcher",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "starcatcher",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "starcatcher",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1020f,
+            isDead = true,
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "starcatcher_die",
+                    duration = 1f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
+            type = BodyType.BEETLEMUNCHER_CORPSE,
+            group = BodyGroup.FISH,
+            width = BodyConfigInfo.Size(
+                textureName = "beetlemuncher",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "beetlemuncher",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "beetlemuncher_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            density = 1020f,
+            isDead = true,
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "beetlemuncher_die",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
             type = BodyType.CLYDE,
             group = BodyGroup.PET,
             width = BodyConfigInfo.Size(

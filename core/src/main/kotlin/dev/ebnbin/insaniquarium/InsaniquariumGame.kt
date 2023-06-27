@@ -63,6 +63,14 @@ class InsaniquariumGame : BaseGame() {
                     },
                 )
                 menu.createListMenuItem(
+                    title = "fish_corpse",
+                    dataList = BodyType.FISH_CORPSE_LIST,
+                    dataToString = { it.serializedName },
+                    clicked = { _, bodyType ->
+                        tankStage.tank.devSelectedBodyType = bodyType
+                    },
+                )
+                menu.createListMenuItem(
                     title = "pet",
                     dataList = BodyType.PET_LIST,
                     dataToString = { it.serializedName },

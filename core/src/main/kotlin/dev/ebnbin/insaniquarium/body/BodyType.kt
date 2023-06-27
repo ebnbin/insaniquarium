@@ -12,6 +12,12 @@ enum class BodyType(override val serializedName: String) : SerializableEnum {
     GUPPY_KING("guppy_king"),
     STARCATCHER("starcatcher"),
     BEETLEMUNCHER("beetlemuncher"),
+    GUPPY_SMALL_CORPSE("guppy_small_corpse"),
+    GUPPY_MEDIUM_CORPSE("guppy_medium_corpse"),
+    GUPPY_LARGE_CORPSE("guppy_large_corpse"),
+    GUPPY_KING_CORPSE("guppy_king_corpse"),
+    STARCATCHER_CORPSE("starcatcher_corpse"),
+    BEETLEMUNCHER_CORPSE("beetlemuncher_corpse"),
 
     CLYDE("clyde"),
     GASH("gash"),
@@ -36,6 +42,14 @@ enum class BodyType(override val serializedName: String) : SerializableEnum {
             GUPPY_KING,
             STARCATCHER,
             BEETLEMUNCHER,
+        )
+        val FISH_CORPSE_LIST: List<BodyType> = listOf(
+            GUPPY_SMALL_CORPSE,
+            GUPPY_MEDIUM_CORPSE,
+            GUPPY_LARGE_CORPSE,
+            GUPPY_KING_CORPSE,
+            STARCATCHER_CORPSE,
+            BEETLEMUNCHER_CORPSE,
         )
         val PET_LIST: List<BodyType> = listOf(
             CLYDE,
