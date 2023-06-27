@@ -8,45 +8,67 @@ data class BodyConfig(
     @Expose
     val group: BodyGroup,
     @Expose
-    val width: Float,
+    val box: Box,
     @Expose
-    val height: Float,
+    val life: Life,
     @Expose
-    val depth: Float,
-    @Expose
-    val density: Float = World.DENSITY_WATER,
-    @Expose
-    val dragCoefficient: Float = DEFAULT_DRAG_COEFFICIENT,
-    @Expose
-    val waterFrictionCoefficient: Float = DEFAULT_WATER_FRICTION_COEFFICIENT,
-    @Expose
-    val bottomFrictionCoefficient: Float = DEFAULT_BOTTOM_FRICTION_COEFFICIENT,
-    @Expose
-    val leftRightFrictionCoefficient: Float = DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT,
-    /**
-     * If true, the body will disappear when sinking or floating outside water.
-     */
-    @Expose
-    val isDead: Boolean = false,
-    @Expose
-    val health: Health? = null,
-    @Expose
-    val hunger: Hunger? = null,
-    @Expose
-    val growth: Growth? = null,
-    @Expose
-    val drop: Drop? = null,
-    @Expose
-    val eatAct: EatAct? = null,
-    @Expose
-    val touchAct: TouchAct? = null,
-    @Expose
-    val swimActX: SwimAct? = null,
-    @Expose
-    val swimActY: SwimAct? = null,
-    @Expose
-    val animations: Animations,
+    val renderer: Renderer,
 ) {
+    data class Box(
+        @Expose
+        val width: Float,
+        @Expose
+        val height: Float,
+        @Expose
+        val depth: Float,
+        @Expose
+        val density: Float = World.DENSITY_WATER,
+        @Expose
+        val dragCoefficient: Float = DEFAULT_DRAG_COEFFICIENT,
+        @Expose
+        val waterFrictionCoefficient: Float = DEFAULT_WATER_FRICTION_COEFFICIENT,
+        @Expose
+        val bottomFrictionCoefficient: Float = DEFAULT_BOTTOM_FRICTION_COEFFICIENT,
+        @Expose
+        val leftRightFrictionCoefficient: Float = DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT,
+    ) {
+        companion object {
+            const val DEFAULT_DRAG_COEFFICIENT = 1f
+            const val DEFAULT_WATER_FRICTION_COEFFICIENT = 0.001f
+            const val DEFAULT_BOTTOM_FRICTION_COEFFICIENT = 1f
+            const val DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT = 0f
+        }
+    }
+
+    data class Life(
+        /**
+         * If true, the body will disappear when sinking or floating outside water.
+         */
+        @Expose
+        val isDead: Boolean = false,
+        @Expose
+        val health: Health? = null,
+        @Expose
+        val hunger: Hunger? = null,
+        @Expose
+        val growth: Growth? = null,
+        @Expose
+        val drop: Drop? = null,
+        @Expose
+        val eatAct: EatAct? = null,
+        @Expose
+        val touchAct: TouchAct? = null,
+        @Expose
+        val swimActX: SwimAct? = null,
+        @Expose
+        val swimActY: SwimAct? = null,
+    )
+
+    data class Renderer(
+        @Expose
+        val animations: Animations,
+    )
+
     data class Health(
         @Expose
         val initialThreshold: Float = 1f,
@@ -152,11 +174,4 @@ data class BodyConfig(
         @Expose
         val hungryEat: TextureRegionAnimation? = null,
     )
-
-    companion object {
-        const val DEFAULT_DRAG_COEFFICIENT = 1f
-        const val DEFAULT_WATER_FRICTION_COEFFICIENT = 0.001f
-        const val DEFAULT_BOTTOM_FRICTION_COEFFICIENT = 1f
-        const val DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT = 0f
-    }
 }

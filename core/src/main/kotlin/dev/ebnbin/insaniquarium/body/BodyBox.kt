@@ -12,16 +12,9 @@ import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.magnitude
 
 data class BodyBox(
-    private val dragCoefficient: Float,
-    private val waterFrictionCoefficient: Float,
-    private val bottomFrictionCoefficient: Float,
-    private val leftRightFrictionCoefficient: Float,
+    private val config: BodyConfig.Box,
     private val tankWidth: Float,
     private val tankHeight: Float,
-    private val width: Float,
-    private val height: Float,
-    private val depth: Float,
-    private val density: Float,
     private val drivingTargetX: BodyDrivingTarget?,
     private val drivingTargetY: BodyDrivingTarget?,
     private val status: Status,
@@ -39,8 +32,8 @@ data class BodyBox(
     val x: Float = status.x
     val y: Float = status.y
 
-    private val halfWidth: Float = width / 2f
-    private val halfHeight: Float = height / 2f
+    private val halfWidth: Float = config.width / 2f
+    private val halfHeight: Float = config.height / 2f
 
     private val minX: Float = halfWidth
     private val maxX: Float = tankWidth - halfWidth
@@ -49,9 +42,9 @@ data class BodyBox(
     private val maxY: Float = Float.MAX_VALUE
 
     private val left: Float = x - halfWidth
-    private val right: Float = left + width
+    private val right: Float = left + config.width
     private val bottom: Float = y - halfHeight
-    private val top: Float = bottom + height
+    private val top: Float = bottom + config.height
 
     private val isInsideLeft: Boolean = left > 0f
     private val isInsideRight: Boolean = right < tankWidth
@@ -60,23 +53,23 @@ data class BodyBox(
     /**
      * Percent of body inside water.
      */
-    private val insideTopPercent: Float = ((height + tankHeight - top) / height).coerceIn(0f, 1f)
+    private val insideTopPercent: Float = ((config.height + tankHeight - top) / config.height).coerceIn(0f, 1f)
 
-    private val area: Float = width * height
+    private val area: Float = config.width * config.height
 
     //*****************************************************************************************************************
 
-    private val halfDepth: Float = depth / 2f
+    private val halfDepth: Float = config.depth / 2f
 
     private val depthLeft: Float = x - halfDepth
     private val depthBottom: Float = y - halfDepth
 
-    private val areaX: Float = height * depth
-    private val areaY: Float = width * depth
+    private val areaX: Float = config.height * config.depth
+    private val areaY: Float = config.width * config.depth
 
-    private val volume: Float = area * depth
+    private val volume: Float = area * config.depth
 
-    private val mass: Float = volume * density
+    private val mass: Float = volume * config.density
 
     //*****************************************************************************************************************
 
@@ -90,12 +83,12 @@ data class BodyBox(
     )
 
     private val dragX: Float = BodyForceHelper.drag(
-        dragCoefficient = dragCoefficient,
+        dragCoefficient = config.dragCoefficient,
         velocity = velocityX,
         referenceArea = areaX,
     )
     private val dragY: Float = BodyForceHelper.drag(
-        dragCoefficient = dragCoefficient,
+        dragCoefficient = config.dragCoefficient,
         velocity = velocityY,
         referenceArea = areaY,
     )
@@ -128,19 +121,19 @@ data class BodyBox(
     )
 
     private val waterStaticFrictionMagnitude: Float = BodyForceHelper.staticFrictionMagnitude(
-        frictionCoefficient = waterFrictionCoefficient,
+        frictionCoefficient = config.waterFrictionCoefficient,
         normalMagnitude = buoyancyY.magnitude,
         isNormalValid = true,
     )
 
     private val bottomStaticFrictionMagnitude: Float = BodyForceHelper.staticFrictionMagnitude(
-        frictionCoefficient = bottomFrictionCoefficient,
+        frictionCoefficient = config.bottomFrictionCoefficient,
         normalMagnitude = normalForFrictionY.magnitude,
         isNormalValid = !isInsideBottom && normalForFrictionY > 0f,
     )
 
     private val leftRightStaticFrictionMagnitude: Float = BodyForceHelper.staticFrictionMagnitude(
-        frictionCoefficient = leftRightFrictionCoefficient,
+        frictionCoefficient = config.leftRightFrictionCoefficient,
         normalMagnitude = normalForFrictionX.magnitude,
         isNormalValid = !isInsideLeft && normalForFrictionX > 0f || !isInsideRight && normalForFrictionX < 0f,
     )
@@ -188,8 +181,8 @@ data class BodyBox(
     //*****************************************************************************************************************
 
     val isSinkingOrFloatingOutsideWater: Boolean = when {
-        density == World.DENSITY_WATER -> false
-        density > World.DENSITY_WATER -> !isInsideBottom
+        config.density == World.DENSITY_WATER -> false
+        config.density > World.DENSITY_WATER -> !isInsideBottom
         else -> insideTopPercent < 1f
     }
 
@@ -253,7 +246,7 @@ data class BodyBox(
     //*****************************************************************************************************************
 
     private val vector2: Vector2 = Vector2(x, y)
-    private val rectangle: Rectangle = Rectangle(left, bottom, width, height)
+    private val rectangle: Rectangle = Rectangle(left, bottom, config.width, config.height)
 
     fun distance(other: BodyBox): Float {
         return vector2.dst(other.vector2)
@@ -283,16 +276,16 @@ data class BodyBox(
 
     fun devPutLogs() {
         baseGame.putLog("size            ") {
-            "${width.devText()},${height.devText()}"
+            "${config.width.devText()},${config.height.devText()}"
         }
         baseGame.putLog("lrbt            ") {
             "${left.devText()},${right.devText()},${bottom.devText()},${top.devText()}"
         }
         baseGame.putLog("depth           ") {
-            depth.devText()
+            config.depth.devText()
         }
         baseGame.putLog("density         ") {
-            density.devText()
+            config.density.devText()
         }
         baseGame.putLog("gravity,buoyancy") {
             "${gravityY.devText(XY.Y)},${buoyancyY.devText(XY.Y)}"
@@ -345,11 +338,11 @@ data class BodyBox(
     }
 
     fun devDraw(shapes: ShapeRenderer) {
-        shapes.rect(left, bottom, width, height)
+        shapes.rect(left, bottom, config.width, config.height)
         shapes.line(left, bottom, right, top)
         shapes.line(left, top, right, bottom)
-        shapes.rect(depthLeft, bottom, depth, height)
-        shapes.rect(left, depthBottom, width, depth)
+        shapes.rect(depthLeft, bottom, config.depth, config.height)
+        shapes.rect(left, depthBottom, config.width, config.depth)
         drivingTargetX?.let {
             shapes.line(it.position, 0f, it.position, tankHeight)
         }

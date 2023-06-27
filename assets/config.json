@@ -2,1197 +2,1329 @@
   "body": {
     "fish_food": {
       "group": "food",
-      "width": 0.051666666,
-      "height": 0.026666667,
-      "depth": 0.051666666,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0
+      "box": {
+        "width": 0.051666666,
+        "height": 0.026666667,
+        "depth": 0.051666666,
+        "density": 1020.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "fish_food",
-          "duration": 1.0,
-          "mode": "loop",
-          "interpolation": "linear"
+      "life": {
+        "isDead": true,
+        "health": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0
         },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "fish_food",
+            "duration": 1.0,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "star_potion": {
       "group": "food",
-      "width": 0.085,
-      "height": 0.08166666,
-      "depth": 0.085,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0
+      "box": {
+        "width": 0.085,
+        "height": 0.08166666,
+        "depth": 0.085,
+        "density": 1020.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "star_potion",
-          "duration": 1.0,
-          "mode": "loop",
-          "interpolation": "linear"
+      "life": {
+        "isDead": true,
+        "health": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0
         },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "star_potion",
+            "duration": 1.0,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "guppy_small": {
       "group": "fish",
-      "width": 0.085,
-      "height": 0.08,
-      "depth": 0.06,
-      "density": 1000.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": false,
-      "health": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0
+      "box": {
+        "width": 0.085,
+        "height": 0.08,
+        "depth": 0.06,
+        "density": 1000.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "hunger": {
-        "initialThreshold": 1.0,
-        "maxThreshold": 1.5,
-        "hungryThreshold": 0.5,
-        "diffPerSecond": -0.05,
-        "transformation": "guppy_small_corpse"
+      "life": {
+        "isDead": false,
+        "health": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0
+        },
+        "hunger": {
+          "initialThreshold": 1.0,
+          "maxThreshold": 1.5,
+          "hungryThreshold": 0.5,
+          "diffPerSecond": -0.05,
+          "transformation": "guppy_small_corpse"
+        },
+        "growth": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0,
+          "transformation": "guppy_medium"
+        },
+        "drop": null,
+        "eatAct": {
+          "foods": {
+            "fish_food": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 1.0,
+              "growth": -0.5,
+              "drop": 0.0
+            }
+          },
+          "drivingAccelerationX": 0.4,
+          "drivingAccelerationY": 0.25
+        },
+        "touchAct": null,
+        "swimActX": {
+          "drivingAcceleration": 0.2,
+          "idlingTimeRandomStart": 2.0,
+          "idlingTimeRandomEnd": 8.0
+        },
+        "swimActY": {
+          "drivingAcceleration": 0.125,
+          "idlingTimeRandomStart": 6.0,
+          "idlingTimeRandomEnd": 10.0
+        }
       },
-      "growth": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0,
-        "transformation": "guppy_medium"
-      },
-      "drop": null,
-      "eatAct": {
-        "foods": {
-          "fish_food": {
-            "healthDiffPerSecond": -10.0,
-            "hungerDiffPerSecond": 0.0,
-            "growthDiffPerSecond": 0.0,
-            "dropDiffPerSecond": 0.0,
-            "health": 0.0,
-            "hunger": 1.0,
-            "growth": -0.5,
-            "drop": 0.0
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "guppy_small",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": {
+            "assetId": "guppy_small_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "eat": {
+            "assetId": "guppy_small_eat",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "hungry": {
+            "assetId": "guppy_small_hungry",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "hungryTurn": {
+            "assetId": "guppy_small_hungry_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "hungryEat": {
+            "assetId": "guppy_small_hungry_eat",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
           }
-        },
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
-      },
-      "touchAct": null,
-      "swimActX": {
-        "drivingAcceleration": 0.2,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": {
-        "drivingAcceleration": 0.125,
-        "idlingTimeRandomStart": 6.0,
-        "idlingTimeRandomEnd": 10.0
-      },
-      "animations": {
-        "swim": {
-          "assetId": "guppy_small",
-          "duration": 0.5,
-          "mode": "loop",
-          "interpolation": "linear"
-        },
-        "turn": {
-          "assetId": "guppy_small_turn",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "eat": {
-          "assetId": "guppy_small_eat",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "hungry": {
-          "assetId": "guppy_small_hungry",
-          "duration": 0.5,
-          "mode": "loop",
-          "interpolation": "linear"
-        },
-        "hungryTurn": {
-          "assetId": "guppy_small_hungry_turn",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "hungryEat": {
-          "assetId": "guppy_small_hungry_eat",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
         }
       }
     },
     "guppy_medium": {
       "group": "fish",
-      "width": 0.123333335,
-      "height": 0.12,
-      "depth": 0.083333336,
-      "density": 1000.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": false,
-      "health": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0
+      "box": {
+        "width": 0.123333335,
+        "height": 0.12,
+        "depth": 0.083333336,
+        "density": 1000.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "hunger": {
-        "initialThreshold": 1.0,
-        "maxThreshold": 1.5,
-        "hungryThreshold": 0.5,
-        "diffPerSecond": -0.05,
-        "transformation": "guppy_medium_corpse"
+      "life": {
+        "isDead": false,
+        "health": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0
+        },
+        "hunger": {
+          "initialThreshold": 1.0,
+          "maxThreshold": 1.5,
+          "hungryThreshold": 0.5,
+          "diffPerSecond": -0.05,
+          "transformation": "guppy_medium_corpse"
+        },
+        "growth": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0,
+          "transformation": "guppy_large"
+        },
+        "drop": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": -0.15,
+          "production": "silver_coin"
+        },
+        "eatAct": {
+          "foods": {
+            "fish_food": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 1.0,
+              "growth": -0.33333334,
+              "drop": 0.0
+            }
+          },
+          "drivingAccelerationX": 0.4,
+          "drivingAccelerationY": 0.25
+        },
+        "touchAct": null,
+        "swimActX": {
+          "drivingAcceleration": 0.2,
+          "idlingTimeRandomStart": 2.0,
+          "idlingTimeRandomEnd": 8.0
+        },
+        "swimActY": {
+          "drivingAcceleration": 0.125,
+          "idlingTimeRandomStart": 6.0,
+          "idlingTimeRandomEnd": 10.0
+        }
       },
-      "growth": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0,
-        "transformation": "guppy_large"
-      },
-      "drop": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": -0.15,
-        "production": "silver_coin"
-      },
-      "eatAct": {
-        "foods": {
-          "fish_food": {
-            "healthDiffPerSecond": -10.0,
-            "hungerDiffPerSecond": 0.0,
-            "growthDiffPerSecond": 0.0,
-            "dropDiffPerSecond": 0.0,
-            "health": 0.0,
-            "hunger": 1.0,
-            "growth": -0.33333334,
-            "drop": 0.0
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "guppy_medium",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": {
+            "assetId": "guppy_medium_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "eat": {
+            "assetId": "guppy_medium_eat",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "hungry": {
+            "assetId": "guppy_medium_hungry",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "hungryTurn": {
+            "assetId": "guppy_medium_hungry_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "hungryEat": {
+            "assetId": "guppy_medium_hungry_eat",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
           }
-        },
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
-      },
-      "touchAct": null,
-      "swimActX": {
-        "drivingAcceleration": 0.2,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": {
-        "drivingAcceleration": 0.125,
-        "idlingTimeRandomStart": 6.0,
-        "idlingTimeRandomEnd": 10.0
-      },
-      "animations": {
-        "swim": {
-          "assetId": "guppy_medium",
-          "duration": 0.5,
-          "mode": "loop",
-          "interpolation": "linear"
-        },
-        "turn": {
-          "assetId": "guppy_medium_turn",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "eat": {
-          "assetId": "guppy_medium_eat",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "hungry": {
-          "assetId": "guppy_medium_hungry",
-          "duration": 0.5,
-          "mode": "loop",
-          "interpolation": "linear"
-        },
-        "hungryTurn": {
-          "assetId": "guppy_medium_hungry_turn",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "hungryEat": {
-          "assetId": "guppy_medium_hungry_eat",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
         }
       }
     },
     "guppy_large": {
       "group": "fish",
-      "width": 0.165,
-      "height": 0.15666667,
-      "depth": 0.10166667,
-      "density": 1000.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": false,
-      "health": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0
+      "box": {
+        "width": 0.165,
+        "height": 0.15666667,
+        "depth": 0.10166667,
+        "density": 1000.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "hunger": {
-        "initialThreshold": 1.0,
-        "maxThreshold": 1.5,
-        "hungryThreshold": 0.5,
-        "diffPerSecond": -0.05,
-        "transformation": "guppy_large_corpse"
+      "life": {
+        "isDead": false,
+        "health": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0
+        },
+        "hunger": {
+          "initialThreshold": 1.0,
+          "maxThreshold": 1.5,
+          "hungryThreshold": 0.5,
+          "diffPerSecond": -0.05,
+          "transformation": "guppy_large_corpse"
+        },
+        "growth": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0,
+          "transformation": "guppy_king"
+        },
+        "drop": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": -0.15,
+          "production": "gold_coin"
+        },
+        "eatAct": {
+          "foods": {
+            "fish_food": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 1.0,
+              "growth": -0.2,
+              "drop": 0.0
+            }
+          },
+          "drivingAccelerationX": 0.4,
+          "drivingAccelerationY": 0.25
+        },
+        "touchAct": null,
+        "swimActX": {
+          "drivingAcceleration": 0.2,
+          "idlingTimeRandomStart": 2.0,
+          "idlingTimeRandomEnd": 8.0
+        },
+        "swimActY": {
+          "drivingAcceleration": 0.125,
+          "idlingTimeRandomStart": 6.0,
+          "idlingTimeRandomEnd": 10.0
+        }
       },
-      "growth": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0,
-        "transformation": "guppy_king"
-      },
-      "drop": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": -0.15,
-        "production": "gold_coin"
-      },
-      "eatAct": {
-        "foods": {
-          "fish_food": {
-            "healthDiffPerSecond": -10.0,
-            "hungerDiffPerSecond": 0.0,
-            "growthDiffPerSecond": 0.0,
-            "dropDiffPerSecond": 0.0,
-            "health": 0.0,
-            "hunger": 1.0,
-            "growth": -0.2,
-            "drop": 0.0
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "guppy_large",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": {
+            "assetId": "guppy_large_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "eat": {
+            "assetId": "guppy_large_eat",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "hungry": {
+            "assetId": "guppy_large_hungry",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "hungryTurn": {
+            "assetId": "guppy_large_hungry_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "hungryEat": {
+            "assetId": "guppy_large_hungry_eat",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
           }
-        },
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
-      },
-      "touchAct": null,
-      "swimActX": {
-        "drivingAcceleration": 0.2,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": {
-        "drivingAcceleration": 0.125,
-        "idlingTimeRandomStart": 6.0,
-        "idlingTimeRandomEnd": 10.0
-      },
-      "animations": {
-        "swim": {
-          "assetId": "guppy_large",
-          "duration": 0.5,
-          "mode": "loop",
-          "interpolation": "linear"
-        },
-        "turn": {
-          "assetId": "guppy_large_turn",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "eat": {
-          "assetId": "guppy_large_eat",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "hungry": {
-          "assetId": "guppy_large_hungry",
-          "duration": 0.5,
-          "mode": "loop",
-          "interpolation": "linear"
-        },
-        "hungryTurn": {
-          "assetId": "guppy_large_hungry_turn",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "hungryEat": {
-          "assetId": "guppy_large_hungry_eat",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
         }
       }
     },
     "guppy_king": {
       "group": "fish",
-      "width": 0.17333333,
-      "height": 0.15666667,
-      "depth": 0.10166667,
-      "density": 1000.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": false,
-      "health": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0
+      "box": {
+        "width": 0.17333333,
+        "height": 0.15666667,
+        "depth": 0.10166667,
+        "density": 1000.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "hunger": {
-        "initialThreshold": 1.0,
-        "maxThreshold": 1.5,
-        "hungryThreshold": 0.5,
-        "diffPerSecond": -0.05,
-        "transformation": "guppy_king_corpse"
+      "life": {
+        "isDead": false,
+        "health": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0
+        },
+        "hunger": {
+          "initialThreshold": 1.0,
+          "maxThreshold": 1.5,
+          "hungryThreshold": 0.5,
+          "diffPerSecond": -0.05,
+          "transformation": "guppy_king_corpse"
+        },
+        "growth": null,
+        "drop": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": -0.15,
+          "production": "diamond"
+        },
+        "eatAct": {
+          "foods": {
+            "fish_food": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 1.0,
+              "growth": 0.0,
+              "drop": 0.0
+            }
+          },
+          "drivingAccelerationX": 0.4,
+          "drivingAccelerationY": 0.25
+        },
+        "touchAct": null,
+        "swimActX": {
+          "drivingAcceleration": 0.2,
+          "idlingTimeRandomStart": 2.0,
+          "idlingTimeRandomEnd": 8.0
+        },
+        "swimActY": {
+          "drivingAcceleration": 0.125,
+          "idlingTimeRandomStart": 6.0,
+          "idlingTimeRandomEnd": 10.0
+        }
       },
-      "growth": null,
-      "drop": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": -0.15,
-        "production": "diamond"
-      },
-      "eatAct": {
-        "foods": {
-          "fish_food": {
-            "healthDiffPerSecond": -10.0,
-            "hungerDiffPerSecond": 0.0,
-            "growthDiffPerSecond": 0.0,
-            "dropDiffPerSecond": 0.0,
-            "health": 0.0,
-            "hunger": 1.0,
-            "growth": 0.0,
-            "drop": 0.0
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "guppy_king",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": {
+            "assetId": "guppy_king_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "eat": {
+            "assetId": "guppy_king_eat",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "hungry": {
+            "assetId": "guppy_king_hungry",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "hungryTurn": {
+            "assetId": "guppy_king_hungry_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "hungryEat": {
+            "assetId": "guppy_king_hungry_eat",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
           }
-        },
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
-      },
-      "touchAct": null,
-      "swimActX": {
-        "drivingAcceleration": 0.2,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": {
-        "drivingAcceleration": 0.125,
-        "idlingTimeRandomStart": 6.0,
-        "idlingTimeRandomEnd": 10.0
-      },
-      "animations": {
-        "swim": {
-          "assetId": "guppy_king",
-          "duration": 0.5,
-          "mode": "loop",
-          "interpolation": "linear"
-        },
-        "turn": {
-          "assetId": "guppy_king_turn",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "eat": {
-          "assetId": "guppy_king_eat",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "hungry": {
-          "assetId": "guppy_king_hungry",
-          "duration": 0.5,
-          "mode": "loop",
-          "interpolation": "linear"
-        },
-        "hungryTurn": {
-          "assetId": "guppy_king_hungry_turn",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "hungryEat": {
-          "assetId": "guppy_king_hungry_eat",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
         }
       }
     },
     "starcatcher": {
       "group": "fish",
-      "width": 0.135,
-      "height": 0.165,
-      "depth": 0.135,
-      "density": 1080.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 0.01,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": false,
-      "health": null,
-      "hunger": {
-        "initialThreshold": 1.0,
-        "maxThreshold": 1.5,
-        "hungryThreshold": 0.5,
-        "diffPerSecond": -0.05,
-        "transformation": "starcatcher_corpse"
+      "box": {
+        "width": 0.135,
+        "height": 0.165,
+        "depth": 0.135,
+        "density": 1080.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 0.01,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "growth": null,
-      "drop": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0,
-        "production": "beetle"
-      },
-      "eatAct": {
-        "foods": {
-          "star": {
-            "healthDiffPerSecond": -10.0,
-            "hungerDiffPerSecond": 0.0,
-            "growthDiffPerSecond": 0.0,
-            "dropDiffPerSecond": 0.0,
-            "health": 0.0,
-            "hunger": 1.0,
-            "growth": 0.0,
-            "drop": -1.0
-          }
+      "life": {
+        "isDead": false,
+        "health": null,
+        "hunger": {
+          "initialThreshold": 1.0,
+          "maxThreshold": 1.5,
+          "hungryThreshold": 0.5,
+          "diffPerSecond": -0.05,
+          "transformation": "starcatcher_corpse"
         },
-        "drivingAccelerationX": 0.3,
-        "drivingAccelerationY": 0.0
-      },
-      "touchAct": null,
-      "swimActX": {
-        "drivingAcceleration": 0.15,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "starcatcher",
-          "duration": 1.0,
-          "mode": "loop",
-          "interpolation": "linear"
+        "growth": null,
+        "drop": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0,
+          "production": "beetle"
         },
-        "turn": null,
-        "eat": null,
-        "hungry": {
-          "assetId": "starcatcher_hungry",
-          "duration": 1.0,
-          "mode": "loop",
-          "interpolation": "linear"
+        "eatAct": {
+          "foods": {
+            "star": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 1.0,
+              "growth": 0.0,
+              "drop": -1.0
+            }
+          },
+          "drivingAccelerationX": 0.3,
+          "drivingAccelerationY": 0.0
         },
-        "hungryTurn": null,
-        "hungryEat": null
+        "touchAct": null,
+        "swimActX": {
+          "drivingAcceleration": 0.15,
+          "idlingTimeRandomStart": 2.0,
+          "idlingTimeRandomEnd": 8.0
+        },
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "starcatcher",
+            "duration": 1.0,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": {
+            "assetId": "starcatcher_hungry",
+            "duration": 1.0,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "beetlemuncher": {
       "group": "fish",
-      "width": 0.165,
-      "height": 0.18833333,
-      "depth": 0.135,
-      "density": 1000.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": false,
-      "health": null,
-      "hunger": {
-        "initialThreshold": 1.0,
-        "maxThreshold": 1.5,
-        "hungryThreshold": 0.5,
-        "diffPerSecond": -0.05,
-        "transformation": "beetlemuncher_corpse"
+      "box": {
+        "width": 0.165,
+        "height": 0.18833333,
+        "depth": 0.135,
+        "density": 1000.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "growth": null,
-      "drop": null,
-      "eatAct": {
-        "foods": {
-          "star_potion": {
-            "healthDiffPerSecond": -10.0,
-            "hungerDiffPerSecond": 0.0,
-            "growthDiffPerSecond": 0.0,
-            "dropDiffPerSecond": 0.0,
-            "health": 0.0,
-            "hunger": 1.0,
-            "growth": 0.0,
-            "drop": 0.0
+      "life": {
+        "isDead": false,
+        "health": null,
+        "hunger": {
+          "initialThreshold": 1.0,
+          "maxThreshold": 1.5,
+          "hungryThreshold": 0.5,
+          "diffPerSecond": -0.05,
+          "transformation": "beetlemuncher_corpse"
+        },
+        "growth": null,
+        "drop": null,
+        "eatAct": {
+          "foods": {
+            "star_potion": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 1.0,
+              "growth": 0.0,
+              "drop": 0.0
+            }
+          },
+          "drivingAccelerationX": 0.4,
+          "drivingAccelerationY": 0.25
+        },
+        "touchAct": null,
+        "swimActX": {
+          "drivingAcceleration": 0.2,
+          "idlingTimeRandomStart": 2.0,
+          "idlingTimeRandomEnd": 8.0
+        },
+        "swimActY": {
+          "drivingAcceleration": 0.125,
+          "idlingTimeRandomStart": 6.0,
+          "idlingTimeRandomEnd": 10.0
+        }
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "beetlemuncher",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": {
+            "assetId": "beetlemuncher_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "eat": {
+            "assetId": "beetlemuncher_eat",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "hungry": {
+            "assetId": "beetlemuncher_hungry",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "hungryTurn": {
+            "assetId": "beetlemuncher_hungry_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "hungryEat": {
+            "assetId": "beetlemuncher_hungry_eat",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
           }
-        },
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
-      },
-      "touchAct": null,
-      "swimActX": {
-        "drivingAcceleration": 0.2,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": {
-        "drivingAcceleration": 0.125,
-        "idlingTimeRandomStart": 6.0,
-        "idlingTimeRandomEnd": 10.0
-      },
-      "animations": {
-        "swim": {
-          "assetId": "beetlemuncher",
-          "duration": 0.5,
-          "mode": "loop",
-          "interpolation": "linear"
-        },
-        "turn": {
-          "assetId": "beetlemuncher_turn",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "eat": {
-          "assetId": "beetlemuncher_eat",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "hungry": {
-          "assetId": "beetlemuncher_hungry",
-          "duration": 0.5,
-          "mode": "loop",
-          "interpolation": "linear"
-        },
-        "hungryTurn": {
-          "assetId": "beetlemuncher_hungry_turn",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "hungryEat": {
-          "assetId": "beetlemuncher_hungry_eat",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
         }
       }
     },
     "guppy_small_corpse": {
       "group": "fish",
-      "width": 0.085,
-      "height": 0.08,
-      "depth": 0.06,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": null,
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "guppy_small_die",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+      "box": {
+        "width": 0.085,
+        "height": 0.08,
+        "depth": 0.06,
+        "density": 1020.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
+      },
+      "life": {
+        "isDead": true,
+        "health": null,
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "guppy_small_die",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "guppy_medium_corpse": {
       "group": "fish",
-      "width": 0.123333335,
-      "height": 0.12,
-      "depth": 0.083333336,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": null,
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "guppy_medium_die",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+      "box": {
+        "width": 0.123333335,
+        "height": 0.12,
+        "depth": 0.083333336,
+        "density": 1020.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
+      },
+      "life": {
+        "isDead": true,
+        "health": null,
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "guppy_medium_die",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "guppy_large_corpse": {
       "group": "fish",
-      "width": 0.165,
-      "height": 0.15666667,
-      "depth": 0.10166667,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": null,
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "guppy_large_die",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+      "box": {
+        "width": 0.165,
+        "height": 0.15666667,
+        "depth": 0.10166667,
+        "density": 1020.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
+      },
+      "life": {
+        "isDead": true,
+        "health": null,
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "guppy_large_die",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "guppy_king_corpse": {
       "group": "fish",
-      "width": 0.17333333,
-      "height": 0.15666667,
-      "depth": 0.10166667,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": null,
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "guppy_king_die",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+      "box": {
+        "width": 0.17333333,
+        "height": 0.15666667,
+        "depth": 0.10166667,
+        "density": 1020.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
+      },
+      "life": {
+        "isDead": true,
+        "health": null,
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "guppy_king_die",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "starcatcher_corpse": {
       "group": "fish",
-      "width": 0.135,
-      "height": 0.165,
-      "depth": 0.135,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": null,
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "starcatcher_die",
-          "duration": 1.0,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+      "box": {
+        "width": 0.135,
+        "height": 0.165,
+        "depth": 0.135,
+        "density": 1020.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
+      },
+      "life": {
+        "isDead": true,
+        "health": null,
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "starcatcher_die",
+            "duration": 1.0,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "beetlemuncher_corpse": {
       "group": "fish",
-      "width": 0.165,
-      "height": 0.18833333,
-      "depth": 0.135,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": null,
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "beetlemuncher_die",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+      "box": {
+        "width": 0.165,
+        "height": 0.18833333,
+        "depth": 0.135,
+        "density": 1020.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
+      },
+      "life": {
+        "isDead": true,
+        "health": null,
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "beetlemuncher_die",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "clyde": {
       "group": "pet",
-      "width": 0.135,
-      "height": 0.14,
-      "depth": 0.135,
-      "density": 1000.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": false,
-      "health": null,
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": {
-        "foods": {
-          "silver_coin": {
-            "healthDiffPerSecond": -10.0,
-            "hungerDiffPerSecond": 0.0,
-            "growthDiffPerSecond": 0.0,
-            "dropDiffPerSecond": 0.0,
-            "health": 0.0,
-            "hunger": 0.0,
-            "growth": 0.0,
-            "drop": 0.0
+      "box": {
+        "width": 0.135,
+        "height": 0.14,
+        "depth": 0.135,
+        "density": 1000.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
+      },
+      "life": {
+        "isDead": false,
+        "health": null,
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": {
+          "foods": {
+            "silver_coin": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 0.0,
+              "growth": 0.0,
+              "drop": 0.0
+            },
+            "gold_coin": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 0.0,
+              "growth": 0.0,
+              "drop": 0.0
+            },
+            "star": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 0.0,
+              "growth": 0.0,
+              "drop": 0.0
+            },
+            "diamond": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 0.0,
+              "growth": 0.0,
+              "drop": 0.0
+            }
           },
-          "gold_coin": {
-            "healthDiffPerSecond": -10.0,
-            "hungerDiffPerSecond": 0.0,
-            "growthDiffPerSecond": 0.0,
-            "dropDiffPerSecond": 0.0,
-            "health": 0.0,
-            "hunger": 0.0,
-            "growth": 0.0,
-            "drop": 0.0
-          },
-          "star": {
-            "healthDiffPerSecond": -10.0,
-            "hungerDiffPerSecond": 0.0,
-            "growthDiffPerSecond": 0.0,
-            "dropDiffPerSecond": 0.0,
-            "health": 0.0,
-            "hunger": 0.0,
-            "growth": 0.0,
-            "drop": 0.0
-          },
-          "diamond": {
-            "healthDiffPerSecond": -10.0,
-            "hungerDiffPerSecond": 0.0,
-            "growthDiffPerSecond": 0.0,
-            "dropDiffPerSecond": 0.0,
-            "health": 0.0,
-            "hunger": 0.0,
-            "growth": 0.0,
-            "drop": 0.0
-          }
+          "drivingAccelerationX": 0.2,
+          "drivingAccelerationY": 0.3
         },
-        "drivingAccelerationX": 0.2,
-        "drivingAccelerationY": 0.3
-      },
-      "touchAct": null,
-      "swimActX": {
-        "drivingAcceleration": 0.1,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": {
-        "drivingAcceleration": 0.15,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "animations": {
-        "swim": {
-          "assetId": "clyde",
-          "duration": 1.125,
-          "mode": "loop",
-          "interpolation": "pow2_in"
+        "touchAct": null,
+        "swimActX": {
+          "drivingAcceleration": 0.1,
+          "idlingTimeRandomStart": 2.0,
+          "idlingTimeRandomEnd": 8.0
         },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+        "swimActY": {
+          "drivingAcceleration": 0.15,
+          "idlingTimeRandomStart": 2.0,
+          "idlingTimeRandomEnd": 8.0
+        }
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "clyde",
+            "duration": 1.125,
+            "mode": "loop",
+            "interpolation": "pow2_in"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "gash": {
       "group": "pet",
-      "width": 0.175,
-      "height": 0.17833333,
-      "depth": 0.1,
-      "density": 1000.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": false,
-      "health": null,
-      "hunger": {
-        "initialThreshold": 1.0,
-        "maxThreshold": 3.0,
-        "hungryThreshold": 0.0,
-        "diffPerSecond": -0.05,
-        "transformation": null
+      "box": {
+        "width": 0.175,
+        "height": 0.17833333,
+        "depth": 0.1,
+        "density": 1000.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "growth": null,
-      "drop": null,
-      "eatAct": {
-        "foods": {
-          "beetle": {
-            "healthDiffPerSecond": -1.0,
-            "hungerDiffPerSecond": 0.0,
-            "growthDiffPerSecond": 0.0,
-            "dropDiffPerSecond": 0.0,
-            "health": 0.0,
-            "hunger": 2.0,
-            "growth": 0.0,
-            "drop": 0.0
-          }
+      "life": {
+        "isDead": false,
+        "health": null,
+        "hunger": {
+          "initialThreshold": 1.0,
+          "maxThreshold": 3.0,
+          "hungryThreshold": 0.0,
+          "diffPerSecond": -0.05,
+          "transformation": null
         },
-        "drivingAccelerationX": 0.8,
-        "drivingAccelerationY": 0.5
+        "growth": null,
+        "drop": null,
+        "eatAct": {
+          "foods": {
+            "beetle": {
+              "healthDiffPerSecond": -1.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 2.0,
+              "growth": 0.0,
+              "drop": 0.0
+            }
+          },
+          "drivingAccelerationX": 0.8,
+          "drivingAccelerationY": 0.5
+        },
+        "touchAct": null,
+        "swimActX": {
+          "drivingAcceleration": 0.2,
+          "idlingTimeRandomStart": 2.0,
+          "idlingTimeRandomEnd": 8.0
+        },
+        "swimActY": {
+          "drivingAcceleration": 0.125,
+          "idlingTimeRandomStart": 6.0,
+          "idlingTimeRandomEnd": 10.0
+        }
       },
-      "touchAct": null,
-      "swimActX": {
-        "drivingAcceleration": 0.2,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": {
-        "drivingAcceleration": 0.125,
-        "idlingTimeRandomStart": 6.0,
-        "idlingTimeRandomEnd": 10.0
-      },
-      "animations": {
-        "swim": {
-          "assetId": "gash",
-          "duration": 0.5,
-          "mode": "loop",
-          "interpolation": "linear"
-        },
-        "turn": {
-          "assetId": "gash_turn",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "eat": {
-          "assetId": "gash_eat",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
-        },
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "gash",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": {
+            "assetId": "gash_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "eat": {
+            "assetId": "gash_eat",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "presto": {
       "group": "pet",
-      "width": 0.14166667,
-      "height": 0.095,
-      "depth": 0.09833334,
-      "density": 1000.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": false,
-      "health": null,
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": {
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
+      "box": {
+        "width": 0.14166667,
+        "height": 0.095,
+        "depth": 0.09833334,
+        "density": 1000.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "swimActX": {
-        "drivingAcceleration": 0.2,
-        "idlingTimeRandomStart": 2.0,
-        "idlingTimeRandomEnd": 8.0
-      },
-      "swimActY": {
-        "drivingAcceleration": 0.125,
-        "idlingTimeRandomStart": 6.0,
-        "idlingTimeRandomEnd": 10.0
-      },
-      "animations": {
-        "swim": {
-          "assetId": "presto",
-          "duration": 0.5,
-          "mode": "loop",
-          "interpolation": "linear"
+      "life": {
+        "isDead": false,
+        "health": null,
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": {
+          "drivingAccelerationX": 0.4,
+          "drivingAccelerationY": 0.25
         },
-        "turn": {
-          "assetId": "presto_turn",
-          "duration": 0.5,
-          "mode": "normal",
-          "interpolation": "linear"
+        "swimActX": {
+          "drivingAcceleration": 0.2,
+          "idlingTimeRandomStart": 2.0,
+          "idlingTimeRandomEnd": 8.0
         },
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+        "swimActY": {
+          "drivingAcceleration": 0.125,
+          "idlingTimeRandomStart": 6.0,
+          "idlingTimeRandomEnd": 10.0
+        }
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "presto",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": {
+            "assetId": "presto_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "silver_coin": {
       "group": "money",
-      "width": 0.075,
-      "height": 0.075,
-      "depth": 0.011666667,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0
+      "box": {
+        "width": 0.075,
+        "height": 0.075,
+        "depth": 0.011666667,
+        "density": 1020.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "silver_coin",
-          "duration": 0.6,
-          "mode": "loop",
-          "interpolation": "linear"
+      "life": {
+        "isDead": true,
+        "health": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0
         },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "silver_coin",
+            "duration": 0.6,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "gold_coin": {
       "group": "money",
-      "width": 0.075,
-      "height": 0.075,
-      "depth": 0.011666667,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0
+      "box": {
+        "width": 0.075,
+        "height": 0.075,
+        "depth": 0.011666667,
+        "density": 1020.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "gold_coin",
-          "duration": 0.6,
-          "mode": "loop",
-          "interpolation": "linear"
+      "life": {
+        "isDead": true,
+        "health": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0
         },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "gold_coin",
+            "duration": 0.6,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "star": {
       "group": "money",
-      "width": 0.11,
-      "height": 0.105,
-      "depth": 0.025,
-      "density": 1010.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0
+      "box": {
+        "width": 0.11,
+        "height": 0.105,
+        "depth": 0.025,
+        "density": 1010.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "star",
-          "duration": 0.6,
-          "mode": "loop",
-          "interpolation": "linear"
+      "life": {
+        "isDead": true,
+        "health": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0
         },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "star",
+            "duration": 0.6,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "diamond": {
       "group": "money",
-      "width": 0.08,
-      "height": 0.07,
-      "depth": 0.08,
-      "density": 1020.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0
+      "box": {
+        "width": 0.08,
+        "height": 0.07,
+        "depth": 0.08,
+        "density": 1020.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "diamond",
-          "duration": 0.6,
-          "mode": "loop",
-          "interpolation": "linear"
+      "life": {
+        "isDead": true,
+        "health": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0
         },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "diamond",
+            "duration": 0.6,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     },
     "beetle": {
       "group": "money",
-      "width": 0.08833333,
-      "height": 0.08166666,
-      "depth": 0.085,
-      "density": 990.0,
-      "dragCoefficient": 1.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "isDead": true,
-      "health": {
-        "initialThreshold": 1.0,
-        "diffPerSecond": 0.0
+      "box": {
+        "width": 0.08833333,
+        "height": 0.08166666,
+        "depth": 0.085,
+        "density": 990.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
       },
-      "hunger": null,
-      "growth": null,
-      "drop": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null,
-      "animations": {
-        "swim": {
-          "assetId": "beetle",
-          "duration": 0.3,
-          "mode": "loop",
-          "interpolation": "linear"
+      "life": {
+        "isDead": true,
+        "health": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0
         },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null
+        "hunger": null,
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "beetle",
+            "duration": 0.3,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
       }
     }
   }

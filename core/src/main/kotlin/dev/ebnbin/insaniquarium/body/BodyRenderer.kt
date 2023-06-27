@@ -7,8 +7,8 @@ import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.unitToMeter
 
 data class BodyRenderer(
+    private val config: BodyConfig.Renderer,
     private val isDead: Boolean,
-    private val configAnimations: BodyConfig.Animations,
     private val isSinkingOrFloatingOutsideWater: Boolean,
     private val expectedDirection: Direction,
     private val isHungry: Boolean,
@@ -30,7 +30,7 @@ data class BodyRenderer(
     val canEat: Boolean = animationData.action == BodyAnimationData.Action.SWIM ||
         animationData.action == BodyAnimationData.Action.EAT
 
-    private val animation: TextureRegionAnimation = animationData.getAnimation(configAnimations)
+    private val animation: TextureRegionAnimation = animationData.getAnimation(config.animations)
 
     private val textureRegion: TextureRegion = animation.getTextureRegion(animationData.stateTime)
 
@@ -109,12 +109,12 @@ data class BodyRenderer(
 
         val canAnimationActionChange = animationData.action == BodyAnimationData.Action.SWIM
         return if (canAnimationActionChange) {
-            val canCreateEat = configAnimations.eat != null &&
+            val canCreateEat = config.animations.eat != null &&
                 (eatenFoodRelation == BodyRelation.OVERLAP || eatenFoodRelation == BodyRelation.CONTAIN_CENTER)
             if (canCreateEat) {
                 createEat()
             } else {
-                val canCreateTurn = configAnimations.turn != null &&
+                val canCreateTurn = config.animations.turn != null &&
                     (animationData.isFacingRight && expectedDirection == Direction.NEGATIVE ||
                         !animationData.isFacingRight && expectedDirection == Direction.POSITIVE)
                 if (canCreateTurn) {

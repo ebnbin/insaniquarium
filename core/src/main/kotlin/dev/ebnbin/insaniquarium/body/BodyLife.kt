@@ -5,14 +5,7 @@ import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
 
 data class BodyLife(
-    private val configEatAct: BodyConfig.EatAct?,
-    private val configTouchAct: BodyConfig.TouchAct?,
-    private val configSwimActX: BodyConfig.SwimAct?,
-    private val configSwimActY: BodyConfig.SwimAct?,
-    private val configHealth: BodyConfig.Health?,
-    private val configHunger: BodyConfig.Hunger?,
-    private val configGrowth: BodyConfig.Growth?,
-    private val configDrop: BodyConfig.Drop?,
+    private val config: BodyConfig.Life,
     private val tankWidth: Float,
     private val tankHeight: Float,
     private val reachDrivingTargetX: Boolean,
@@ -60,20 +53,22 @@ data class BodyLife(
         val time: Float,
     )
 
+    val isDead: Boolean = config.isDead
+
     val health: Float? = status.health
     private val hunger: Float? = status.hunger
     private val growth: Float? = status.growth
     private val drop: Float? = status.drop
 
-    private val isDeadFromHealth: Boolean = configHealth != null && health == 0f
+    private val isDeadFromHealth: Boolean = config.health != null && health == 0f
 
-    val hungerStatus: BodyHungerStatus? = configHunger?.status(hunger)
+    val hungerStatus: BodyHungerStatus? = config.hunger?.status(hunger)
 
-    private val transformationFromHunger: BodyType? = configHunger?.transformation?.takeIf { hunger == 0f }
+    private val transformationFromHunger: BodyType? = config.hunger?.transformation?.takeIf { hunger == 0f }
 
-    private val transformationFromGrowth: BodyType? = configGrowth?.transformation?.takeIf { growth != null && growth <= 0f }
+    private val transformationFromGrowth: BodyType? = config.growth?.transformation?.takeIf { growth != null && growth <= 0f }
 
-    private val productionFromDrop: BodyType? = configDrop?.production?.takeIf { drop != null && drop <= 0f }
+    private val productionFromDrop: BodyType? = config.drop?.production?.takeIf { drop != null && drop <= 0f }
 
     private val dropCount: Int = if (drop == null || drop > 0f) {
         0
@@ -106,7 +101,7 @@ data class BodyLife(
 
         val nextSwimActX = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
-            configSwimAct = configSwimActX,
+            configSwimAct = config.swimActX,
             swimAct = if (status.swimTimeX == null) {
                 null
             } else {
@@ -121,7 +116,7 @@ data class BodyLife(
         )
         val nextSwimActY = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
-            configSwimAct = configSwimActY,
+            configSwimAct = config.swimActY,
             swimAct = if (status.swimTimeY == null) {
                 null
             } else {
@@ -162,7 +157,7 @@ data class BodyLife(
         bodyManager: BodyManager,
         delta: Float,
     ): EatAct? {
-        if (configEatAct == null) {
+        if (config.eatAct == null) {
             return null
         }
 
@@ -170,8 +165,8 @@ data class BodyLife(
             if (hungerStatus == BodyHungerStatus.FULL) {
                 return null
             }
-            require(configEatAct.foods.isNotEmpty())
-            return bodyManager.findNearestBodyByType(configEatAct.foods.keys)
+            require(config.eatAct.foods.isNotEmpty())
+            return bodyManager.findNearestBodyByType(config.eatAct.foods.keys)
         }
 
         var eatenFood: BodyConfig.Food? = null
@@ -179,7 +174,7 @@ data class BodyLife(
         val foodRelation = boxRelation(targetFood?.data?.box)
 
         if (targetFood != null && canEat && foodRelation == BodyRelation.CONTAIN_CENTER) {
-            val food = configEatAct.foods.getValue(targetFood.data.body.type)
+            val food = config.eatAct.foods.getValue(targetFood.data.body.type)
             val foodBody = targetFood.act(
                 input = BodyInput(
                     healthDiff = food.healthDiffPerSecond * delta,
@@ -196,7 +191,7 @@ data class BodyLife(
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
                     position = targetFood.data.box.x,
-                    acceleration = configEatAct.drivingAccelerationX,
+                    acceleration = config.eatAct.drivingAccelerationX,
                 )
             },
             drivingTargetY = if (targetFood == null) {
@@ -205,7 +200,7 @@ data class BodyLife(
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
                     position = targetFood.data.box.y,
-                    acceleration = configEatAct.drivingAccelerationY,
+                    acceleration = config.eatAct.drivingAccelerationY,
                 )
             },
             foodRelation = foodRelation,
@@ -220,7 +215,7 @@ data class BodyLife(
         if (!enabled) {
             return null
         }
-        if (configTouchAct == null) {
+        if (config.touchAct == null) {
             return null
         }
         touchPoint ?: return null
@@ -228,12 +223,12 @@ data class BodyLife(
             drivingTargetX = BodyDrivingTarget(
                 type = BodyDrivingTarget.Type.TOUCH,
                 position = touchPoint.x,
-                acceleration = configTouchAct.drivingAccelerationX,
+                acceleration = config.touchAct.drivingAccelerationX,
             ),
             drivingTargetY = BodyDrivingTarget(
                 type = BodyDrivingTarget.Type.TOUCH,
                 position = touchPoint.y,
-                acceleration = configTouchAct.drivingAccelerationY,
+                acceleration = config.touchAct.drivingAccelerationY,
             ),
         )
     }
@@ -309,11 +304,11 @@ data class BodyLife(
         input: BodyInput,
         food: BodyConfig.Food?,
     ): Float? {
-        configHealth ?: return null
+        config.health ?: return null
         return nextValue(
             value = health,
-            initialThreshold = configHealth.initialThreshold,
-            diffPerSecond = configHealth.diffPerSecond,
+            initialThreshold = config.health.initialThreshold,
+            diffPerSecond = config.health.diffPerSecond,
             inputDelta = input.delta,
             inputDiff = input.healthDiff,
             foodDiff = food?.health,
@@ -324,26 +319,26 @@ data class BodyLife(
         input: BodyInput,
         food: BodyConfig.Food?,
     ): Float? {
-        configHunger ?: return null
+        config.hunger ?: return null
         return nextValue(
             value = hunger,
-            initialThreshold = configHunger.initialThreshold,
-            diffPerSecond = configHunger.diffPerSecond,
+            initialThreshold = config.hunger.initialThreshold,
+            diffPerSecond = config.hunger.diffPerSecond,
             inputDelta = input.delta,
             inputDiff = input.hungerDiff,
             foodDiff = food?.hunger,
-        ).coerceIn(0f, configHunger.maxThreshold)
+        ).coerceIn(0f, config.hunger.maxThreshold)
     }
 
     private fun nextGrowth(
         input: BodyInput,
         food: BodyConfig.Food?
     ): Float? {
-        configGrowth ?: return null
+        config.growth ?: return null
         return nextValue(
             value = growth,
-            initialThreshold = configGrowth.initialThreshold,
-            diffPerSecond = configGrowth.diffPerSecond,
+            initialThreshold = config.growth.initialThreshold,
+            diffPerSecond = config.growth.diffPerSecond,
             inputDelta = input.delta,
             inputDiff = input.growthDiff,
             foodDiff = food?.growth,
@@ -354,11 +349,11 @@ data class BodyLife(
         input: BodyInput,
         food: BodyConfig.Food?,
     ): Float? {
-        configDrop ?: return null
+        config.drop ?: return null
         return nextValue(
             value = drop,
-            initialThreshold = configDrop.initialThreshold,
-            diffPerSecond = configDrop.diffPerSecond,
+            initialThreshold = config.drop.initialThreshold,
+            diffPerSecond = config.drop.diffPerSecond,
             inputDelta = input.delta,
             inputDiff = input.dropDiff,
             foodDiff = food?.drop,
@@ -419,10 +414,10 @@ data class BodyLife(
                 createStatus = {
                     status.copy(
                         life = status.life.copy(
-                            growth = if (it.config.growth == null) {
+                            growth = if (it.config.life.growth == null) {
                                 null
                             } else {
-                                growth + it.config.growth.initialThreshold
+                                growth + it.config.life.growth.initialThreshold
                             },
                         ),
                     )

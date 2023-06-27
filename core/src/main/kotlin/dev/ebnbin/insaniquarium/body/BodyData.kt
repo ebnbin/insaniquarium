@@ -11,16 +11,9 @@ data class BodyData(
     val input: BodyInput,
 ) {
     val box: BodyBox = BodyBox(
-        dragCoefficient = body.config.dragCoefficient,
-        waterFrictionCoefficient = body.config.waterFrictionCoefficient,
-        leftRightFrictionCoefficient = body.config.leftRightFrictionCoefficient,
-        bottomFrictionCoefficient = body.config.bottomFrictionCoefficient,
+        config = body.config.box,
         tankWidth = body.tank.width,
         tankHeight = body.tank.height,
-        width = body.config.width,
-        height = body.config.height,
-        depth = body.config.depth,
-        density = body.config.density,
         drivingTargetX = status.life.drivingTargetX,
         drivingTargetY = status.life.drivingTargetY,
         status = status.box,
@@ -29,14 +22,7 @@ data class BodyData(
     //*****************************************************************************************************************
 
     val life: BodyLife = BodyLife(
-        configEatAct = body.config.eatAct,
-        configTouchAct = body.config.touchAct,
-        configSwimActX = body.config.swimActX,
-        configSwimActY = body.config.swimActY,
-        configHealth = body.config.health,
-        configHunger = body.config.hunger,
-        configGrowth = body.config.growth,
-        configDrop = body.config.drop,
+        config = body.config.life,
         tankWidth = body.tank.width,
         tankHeight = body.tank.height,
         reachDrivingTargetX = box.reachDrivingTargetX,
@@ -50,8 +36,8 @@ data class BodyData(
     //*****************************************************************************************************************
 
     val renderer: BodyRenderer = BodyRenderer(
-        isDead = body.config.isDead,
-        configAnimations = body.config.animations,
+        config = body.config.renderer,
+        isDead = life.isDead,
         isSinkingOrFloatingOutsideWater = box.isSinkingOrFloatingOutsideWater,
         expectedDirection = box.expectedDirection,
         isHungry = life.hungerStatus == BodyHungerStatus.HUNGRY,
