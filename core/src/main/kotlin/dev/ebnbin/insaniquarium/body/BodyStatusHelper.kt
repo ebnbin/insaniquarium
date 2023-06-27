@@ -392,7 +392,7 @@ object BodyStatusHelper {
             return null
         }
         if (growth == null) {
-            return 0f
+            return configGrowth.initialThreshold
         }
 
         var nextGrowth = growth + configGrowth.diffPerSecond * input.delta

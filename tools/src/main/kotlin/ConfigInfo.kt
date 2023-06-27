@@ -91,7 +91,6 @@ object ConfigInfo {
                 transformation = BodyType.GUPPY_SMALL_CORPSE,
             ),
             growth = BodyConfig.Growth(
-                full = 10f,
                 transformation = BodyType.GUPPY_MEDIUM,
             ),
             eatAct = BodyConfig.EatAct(
@@ -99,7 +98,7 @@ object ConfigInfo {
                     BodyType.FISH_FOOD to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
                         hunger = 1f,
-                        growth = 5f,
+                        growth = -1f / 2f,
                     ),
                 ),
                 drivingAccelerationX = 0.4f,
@@ -174,7 +173,6 @@ object ConfigInfo {
                 transformation = BodyType.GUPPY_MEDIUM_CORPSE,
             ),
             growth = BodyConfig.Growth(
-                full = 15f,
                 transformation = BodyType.GUPPY_LARGE,
             ),
             drop = BodyConfig.Drop(
@@ -187,7 +185,7 @@ object ConfigInfo {
                     BodyType.FISH_FOOD to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
                         hunger = 1f,
-                        growth = 5f,
+                        growth = -1f / 3f,
                     ),
                 ),
                 drivingAccelerationX = 0.4f,
@@ -262,7 +260,6 @@ object ConfigInfo {
                 transformation = BodyType.GUPPY_LARGE_CORPSE,
             ),
             growth = BodyConfig.Growth(
-                full = 25f,
                 transformation = BodyType.GUPPY_KING,
             ),
             drop = BodyConfig.Drop(
@@ -275,7 +272,7 @@ object ConfigInfo {
                     BodyType.FISH_FOOD to BodyConfig.Food(
                         healthDiffPerSecond = -10f,
                         hunger = 1f,
-                        growth = 5f,
+                        growth = -1f / 5f,
                     ),
                 ),
                 drivingAccelerationX = 0.4f,

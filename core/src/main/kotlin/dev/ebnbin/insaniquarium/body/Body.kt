@@ -61,7 +61,7 @@ class Body(
                     type = config.growth.transformation,
                     createStatus = {
                         data.status.copy(
-                            growth = growth - config.growth.full,
+                            growth = growth + config.growth.initialThreshold,
                         )
                     },
                 )

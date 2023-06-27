@@ -77,11 +77,8 @@ data class BodyConfig(
     )
 
     data class Growth(
-        /**
-         * > 0f.
-         */
         @Expose
-        val full: Float,
+        val initialThreshold: Float = 1f,
         @Expose
         val diffPerSecond: Float = 0f,
         @Expose
