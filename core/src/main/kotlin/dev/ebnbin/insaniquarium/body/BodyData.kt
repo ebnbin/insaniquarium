@@ -146,7 +146,15 @@ data class BodyData(
                     dropDiff = life.dropCount.toFloat(),
                 )
             )
+            if (canRemove) {
+                body.tank.removeBody(body)
+                return true
+            }
             return false
+        }
+        if (canRemove) {
+            body.tank.removeBody(body)
+            return true
         }
         return false
     }
