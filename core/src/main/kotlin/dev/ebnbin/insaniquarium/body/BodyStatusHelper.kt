@@ -36,7 +36,7 @@ object BodyStatusHelper {
         val nextEatAct = nextEatAct(
             tank = data.body.tank,
             configEatAct = data.body.config.eatAct,
-            hungerStatus = data.hungerStatus,
+            hungerStatus = data.life.hungerStatus,
             data = data,
             input = input,
         )

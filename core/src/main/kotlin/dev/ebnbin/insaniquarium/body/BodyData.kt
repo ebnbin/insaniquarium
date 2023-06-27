@@ -14,10 +14,6 @@ data class BodyData(
     val status: BodyStatus,
     val input: BodyInput,
 ) {
-    val hungerStatus: BodyHungerStatus? = body.config.hunger?.status(status.hunger)
-
-    //*****************************************************************************************************************
-
     val box: BodyBox = BodyBox(
         dragCoefficient = body.config.dragCoefficient,
         waterFrictionCoefficient = body.config.waterFrictionCoefficient,

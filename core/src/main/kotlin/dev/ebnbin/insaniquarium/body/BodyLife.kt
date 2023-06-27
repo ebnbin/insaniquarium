@@ -1,18 +1,21 @@
 package dev.ebnbin.insaniquarium.body
 
+import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.minMax
 
 data class BodyLife(
-    val configHealth: BodyConfig.Health?,
-    val configHunger: BodyConfig.Hunger?,
-    val configGrowth: BodyConfig.Growth?,
-    val configDrop: BodyConfig.Drop?,
-    val health: Float?,
-    val hunger: Float?,
-    val growth: Float?,
-    val drop: Float?,
+    private val configHealth: BodyConfig.Health?,
+    private val configHunger: BodyConfig.Hunger?,
+    private val configGrowth: BodyConfig.Growth?,
+    private val configDrop: BodyConfig.Drop?,
+    private val health: Float?,
+    private val hunger: Float?,
+    private val growth: Float?,
+    private val drop: Float?,
 ) {
     val isDeadFromHealth: Boolean = configHealth != null && health == 0f
+
+    val hungerStatus: BodyHungerStatus? = configHunger?.status(hunger)
 
     val transformationFromHunger: BodyType? = configHunger?.transformation?.takeIf { hunger == 0f }
 
@@ -99,5 +102,20 @@ data class BodyLife(
         nextValue += inputDiff
         nextValue += (foodDiff ?: 0f)
         return nextValue
+    }
+
+    fun devPutLogs() {
+        baseGame.putLog("health") {
+            if (health == null) "null" else "%.3f".format(health)
+        }
+        baseGame.putLog("hunger") {
+            if (hunger == null) "null" else "%.3f,%s".format(hunger, hungerStatus)
+        }
+        baseGame.putLog("growth") {
+            if (growth == null) "null" else "%.3f".format(growth)
+        }
+        baseGame.putLog("drop  ") {
+            if (drop == null) "null" else "%.3f".format(drop)
+        }
     }
 }
