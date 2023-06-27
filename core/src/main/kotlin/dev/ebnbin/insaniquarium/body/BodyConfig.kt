@@ -86,6 +86,8 @@ data class BodyConfig(
         val canDie: Boolean = false,
         @Expose
         val corpseDensity: Float? = null,
+        @Expose
+        val transformation: BodyType? = null,
     )
 
     data class Growth(

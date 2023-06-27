@@ -94,8 +94,9 @@
         "maxThreshold": 1.5,
         "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
-        "canDie": true,
-        "corpseDensity": 1020.0
+        "canDie": false,
+        "corpseDensity": null,
+        "transformation": "guppy_small_corpse"
       },
       "growth": {
         "full": 10.0,
@@ -196,7 +197,8 @@
         "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
-        "corpseDensity": 1020.0
+        "corpseDensity": 1020.0,
+        "transformation": null
       },
       "growth": {
         "full": 15.0,
@@ -301,7 +303,8 @@
         "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
-        "corpseDensity": 1020.0
+        "corpseDensity": 1020.0,
+        "transformation": null
       },
       "growth": {
         "full": 25.0,
@@ -406,7 +409,8 @@
         "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
-        "corpseDensity": 1020.0
+        "corpseDensity": 1020.0,
+        "transformation": null
       },
       "growth": null,
       "drop": {
@@ -504,7 +508,8 @@
         "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
-        "corpseDensity": 1020.0
+        "corpseDensity": 1020.0,
+        "transformation": null
       },
       "growth": null,
       "drop": {
@@ -578,7 +583,8 @@
         "hungryThreshold": 0.5,
         "diffPerSecond": -1.0,
         "canDie": true,
-        "corpseDensity": 1020.0
+        "corpseDensity": 1020.0,
+        "transformation": null
       },
       "growth": null,
       "drop": null,
@@ -963,7 +969,8 @@
         "hungryThreshold": 0.0,
         "diffPerSecond": -1.0,
         "canDie": false,
-        "corpseDensity": null
+        "corpseDensity": null,
+        "transformation": null
       },
       "growth": null,
       "drop": null,

@@ -95,8 +95,7 @@ object ConfigInfo {
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
                 diffPerSecond = -1f,
-                canDie = true,
-                corpseDensity = 1020f,
+                transformation = BodyType.GUPPY_SMALL_CORPSE,
             ),
             growth = BodyConfig.Growth(
                 full = 10f,

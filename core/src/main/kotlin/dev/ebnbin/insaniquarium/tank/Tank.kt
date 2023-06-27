@@ -76,24 +76,50 @@ class Tank : Group() {
 
     fun addBody(
         type: BodyType,
+        id: String = "${UUID.randomUUID()}",
         createStatus: (body: Body) -> BodyStatus,
+        index: Int? = null,
     ): Body {
         val body = Body(
             tank = this,
             type = type,
-            id = "${UUID.randomUUID()}",
+            id = id,
             createStatus = createStatus,
         )
-        groupMap.getValue(body.config.group).addActor(body)
+        val group = groupMap.getValue(body.config.group)
+        if (index == null) {
+            group.addActor(body)
+        } else {
+            group.addActorAt(index, body)
+        }
         idMap[body.id] = body
         typeMap.getValue(type).add(body)
         return body
     }
 
-    fun removeBody(body: Body) {
+    fun removeBody(body: Body): Int {
         typeMap.getValue(body.type).remove(body)
         idMap.remove(body.id)
-        groupMap.getValue(body.config.group).removeActor(body)
+        val group = groupMap.getValue(body.config.group)
+        val index = group.children.indexOf(body, true)
+        if (index != -1) {
+            group.removeActorAt(index, true)
+        }
+        return index
+    }
+
+    fun replaceBody(
+        oldBody: Body,
+        type: BodyType,
+        createStatus: (body: Body) -> BodyStatus,
+    ): Body {
+        val index = removeBody(oldBody)
+        return addBody(
+            type = type,
+            id = oldBody.id,
+            createStatus = createStatus,
+            index = index
+        )
     }
 
     fun findBodyByType(typeSet: Set<BodyType>): List<Body> {

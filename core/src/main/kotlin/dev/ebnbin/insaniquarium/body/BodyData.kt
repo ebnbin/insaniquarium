@@ -84,12 +84,17 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val canGrowth: Boolean = body.config.growth != null && status.growth != null &&
+    val canTransformByHunger: Boolean = body.config.hunger != null && status.hunger != null &&
+        status.hunger == 0f && body.config.hunger.transformation != null &&
+        status.animationData.action == BodyAnimationData.Action.SWIM
+
+    val canTransformByGrowth: Boolean = body.config.growth != null && status.growth != null &&
         status.growth >= body.config.growth.full
 
     val canRemove: Boolean = (status.disappearAct?.canRemove() == true) ||
         (status.health == 0f) ||
-        (canGrowth)
+        canTransformByHunger ||
+        canTransformByGrowth
 
     //*****************************************************************************************************************
 
