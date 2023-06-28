@@ -6,14 +6,19 @@ import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.utils.Point
 
 data class BodyData(
-    val body: Body,
+    val type: BodyType,
+    val id: String,
+    val config: BodyConfig,
+    val bodyManager: BodyManager,
+    val tankWidth: Float,
+    val tankHeight: Float,
     val status: BodyStatus,
     val input: BodyInput,
 ) {
     val box: BodyBox = BodyBox(
-        config = body.config.box,
-        tankWidth = body.tank.width,
-        tankHeight = body.tank.height,
+        config = config.box,
+        tankWidth = tankWidth,
+        tankHeight = tankHeight,
         drivingTargetX = status.life.drivingTargetX,
         drivingTargetY = status.life.drivingTargetY,
         status = status.box,
@@ -22,9 +27,9 @@ data class BodyData(
     //*****************************************************************************************************************
 
     val life: BodyLife = BodyLife(
-        config = body.config.life,
-        tankWidth = body.tank.width,
-        tankHeight = body.tank.height,
+        config = config.life,
+        tankWidth = tankWidth,
+        tankHeight = tankHeight,
         reachDrivingTargetX = box.reachDrivingTargetX,
         reachDrivingTargetY = box.reachDrivingTargetY,
         boxRelation = box::relation,
@@ -36,7 +41,7 @@ data class BodyData(
     //*****************************************************************************************************************
 
     val renderer: BodyRenderer = BodyRenderer(
-        config = body.config.renderer,
+        config = config.renderer,
         isDead = life.isDead,
         isSinkingOrFloatingOutsideWater = box.isSinkingOrFloatingOutsideWater,
         expectedDirection = box.expectedDirection,
@@ -49,7 +54,7 @@ data class BodyData(
     fun hit(touchPoint: Point): Boolean {
         val hit = box.hit(touchPoint)
         if (hit) {
-            body.act(
+            bodyManager.actSelf(
                 input = BodyInput(
                     healthDiff = -(life.health ?: 0f),
                 ),
@@ -64,7 +69,6 @@ data class BodyData(
         (life.canRemove(isSwimming = status.renderer.animationData.action == BodyAnimationData.Action.SWIM))
 
     fun postUpdate(): Boolean {
-        val bodyManager = BodyManager(body)
         if (life.postUpdate(
             bodyManager = bodyManager,
             status = status,
@@ -79,14 +83,14 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    fun update(input: BodyInput): BodyData {
+    fun update(body: Body, input: BodyInput): BodyData {
         if (input.skipUpdate) {
             return this
         }
         return copy(
             status = BodyStatusHelper.nextStatus(
                 data = this,
-                bodyManager = BodyManager(body),
+                bodyManager = bodyManager,
                 input = input,
                 touchPoint = body.tank.touchPoint,
             ),
@@ -94,12 +98,12 @@ data class BodyData(
         )
     }
 
-    fun act() {
+    fun act(body: Body) {
         body.setSize(renderer.actorWidth, renderer.actorHeight)
         body.setPosition(box.x, box.y, Align.center)
     }
 
-    fun draw(batch: Batch, parentAlpha: Float) {
+    fun draw(body: Body, batch: Batch, parentAlpha: Float) {
         renderer.draw(body, batch, parentAlpha)
     }
 
@@ -121,7 +125,12 @@ data class BodyData(
             createStatus: (body: Body) -> BodyStatus,
         ): BodyData {
             return BodyData(
-                body = body,
+                type = body.type,
+                id = body.id,
+                config = body.config,
+                bodyManager = BodyManager(body),
+                tankWidth = body.tank.width,
+                tankHeight = body.tank.height,
                 status = createStatus(body),
                 input = BodyInput(),
             )

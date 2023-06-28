@@ -174,7 +174,7 @@ data class BodyLife(
         val foodRelation = boxRelation(targetFood?.data?.box)
 
         if (targetFood != null && canEat && foodRelation == BodyRelation.CONTAIN_CENTER) {
-            val food = config.eatAct.foods.getValue(targetFood.data.body.type)
+            val food = config.eatAct.foods.getValue(targetFood.data.type)
             val foodBody = targetFood.act(
                 input = BodyInput(
                     healthDiff = food.healthDiffPerSecond * delta,

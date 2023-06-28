@@ -6,7 +6,7 @@ import dev.ebnbin.gdx.lifecycle.baseGame
 object BodyDevHelper {
     fun act(data: BodyData) {
         baseGame.putLog("type,id         ") {
-            "${data.body.type.serializedName},${data.body.id}"
+            "${data.type.serializedName},${data.id}"
         }
         data.box.devPutLogs()
         data.life.devPutLogs()

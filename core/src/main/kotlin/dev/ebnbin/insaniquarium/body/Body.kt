@@ -26,11 +26,11 @@ class Body(
     }
 
     fun act(input: BodyInput): Body {
-        data = data.update(input)
+        data = data.update(this, input)
         if (data.postUpdate()) {
             return this
         }
-        data.act()
+        data.act(this)
         if (debug) {
             data.actDebug()
         }
@@ -39,7 +39,7 @@ class Body(
 
     override fun draw(batch: Batch, parentAlpha: Float) {
         super.draw(batch, parentAlpha)
-        data.draw(batch, parentAlpha)
+        data.draw(this, batch, parentAlpha)
     }
 
     override fun drawDebug(shapes: ShapeRenderer) {
