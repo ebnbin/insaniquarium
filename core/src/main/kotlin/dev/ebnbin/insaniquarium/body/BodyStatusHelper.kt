@@ -20,7 +20,7 @@ object BodyStatusHelper {
         )
 
         val nextRenderer = data.renderer.nextStatus(
-            delta = input.delta,
+            input = input,
             eatenFoodRelation = lifeTmp.foodRelation,
         )
 

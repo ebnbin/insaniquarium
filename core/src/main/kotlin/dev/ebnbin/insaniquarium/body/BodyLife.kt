@@ -3,8 +3,10 @@ package dev.ebnbin.insaniquarium.body
 import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
+import dev.ebnbin.insaniquarium.game
 
 data class BodyLife(
+    private val boxConfig: BodyConfig.Box,
     private val config: BodyConfig.Life,
     private val tankWidth: Float,
     private val tankHeight: Float,
@@ -409,6 +411,7 @@ data class BodyLife(
         if (transformationFromGrowth != null) {
             val growth = status.life.growth
             require(growth != null)
+            val newConfig = game.config.body.getValue(transformationFromGrowth)
             delegate.replaceBody(
                 type = transformationFromGrowth,
                 status = status.copy(
@@ -419,6 +422,11 @@ data class BodyLife(
                 input = BodyInput(
                     delta = delta,
                     growthDiff = growth,
+                    scaleTransform = BodyRenderer.ScaleTransform(
+                        duration = 0.25f,
+                        startScale = boxConfig.width / newConfig.box.width,
+                        endScale = 1f,
+                    ),
                 ),
             )
         }

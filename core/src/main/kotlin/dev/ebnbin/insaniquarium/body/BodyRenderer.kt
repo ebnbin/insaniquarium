@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.unitToMeter
+import kotlin.math.min
 
 data class BodyRenderer(
     private val config: BodyConfig.Renderer,
@@ -22,6 +23,14 @@ data class BodyRenderer(
          * < 0f: Changing alpha.
          */
         val alphaTime: Float? = null,
+        val scaleTransform: ScaleTransform? = null,
+    )
+
+    data class ScaleTransform(
+        val duration: Float,
+        val time: Float = 0f,
+        val startScale: Float,
+        val endScale: Float,
     )
 
     private val animationData: BodyAnimationData = status.animationData
@@ -52,14 +61,16 @@ data class BodyRenderer(
     val canRemove: Boolean = alphaTime != null && alphaTime <= -ALPHA_DURATION
 
     fun nextStatus(
-        delta: Float,
+        input: BodyInput,
         eatenFoodRelation: BodyRelation?,
     ): Status {
-        val nextAnimationData = nextAnimationData(delta, eatenFoodRelation)
-        val nextAlphaTime = nextAlphaTime(delta)
+        val nextAnimationData = nextAnimationData(input.delta, eatenFoodRelation)
+        val nextAlphaTime = nextAlphaTime(input.delta)
+        val nextScaleTransform = nextScaleTransform(input)
         return Status(
             animationData = nextAnimationData,
             alphaTime = nextAlphaTime,
+            scaleTransform = nextScaleTransform,
         )
     }
 
@@ -148,19 +159,33 @@ data class BodyRenderer(
         }
     }
 
+    private fun nextScaleTransform(input: BodyInput): ScaleTransform? {
+        val nextScaleTransform = input.scaleTransform ?: status.scaleTransform ?: return null
+        if (nextScaleTransform.time == nextScaleTransform.duration) {
+            return null
+        }
+        return nextScaleTransform.copy(
+            time = min(nextScaleTransform.duration, nextScaleTransform.time + input.delta),
+        )
+    }
+
     fun draw(batch: Batch, parentAlpha: Float) {
         val oldColor = batch.color.cpy()
         batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
+        val scale = status.scaleTransform?.let {
+            val progress = it.time / it.duration
+            it.startScale + (it.endScale - it.startScale) * progress
+        } ?: 1f
         batch.draw(
             textureRegion.texture,
             delegate.x,
             delegate.y,
-            delegate.originX,
-            delegate.originY,
+            delegate.width / 2f,
+            delegate.height / 2f,
             delegate.width,
             delegate.height,
-            delegate.scaleX,
-            delegate.scaleY,
+            scale,
+            scale,
             delegate.rotation,
             textureRegion.regionX,
             textureRegion.regionY,

@@ -24,6 +24,7 @@ data class BodyData(
     //*****************************************************************************************************************
 
     val life: BodyLife = BodyLife(
+        boxConfig = config.box,
         config = config.life,
         tankWidth = delegate.tankWidth,
         tankHeight = delegate.tankHeight,
