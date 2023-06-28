@@ -15,5 +15,8 @@ enum class AnimationMode(override val serializedName: String) : SerializableEnum
     LOOP_REVERSED(
         serializedName = "loop_reversed",
     ),
+    LOOP_PINGPONG(
+        serializedName = "loop_pingpong",
+    ),
     ;
 }

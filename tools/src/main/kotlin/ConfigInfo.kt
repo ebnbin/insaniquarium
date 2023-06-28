@@ -796,8 +796,8 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "niko",
-                    duration = 0.5f,
-                    mode = AnimationMode.LOOP,
+                    duration = 0.3f,
+                    mode = AnimationMode.LOOP_PINGPONG,
                 ),
             ),
         ),
@@ -826,7 +826,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "niko_open",
-                    duration = 0.5f,
+                    duration = 0.3f,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -856,7 +856,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "niko_close",
-                    duration = 0.5f,
+                    duration = 0.3f,
                     mode = AnimationMode.REVERSED,
                 ),
             ),

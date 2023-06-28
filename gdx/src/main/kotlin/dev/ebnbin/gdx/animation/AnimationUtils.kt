@@ -28,6 +28,15 @@ fun <T> List<T>.animFrame(
         AnimationMode.LOOP_REVERSED -> {
             1f - (stateTime % duration) / duration
         }
+        AnimationMode.LOOP_PINGPONG -> {
+            // TODO
+            val t = (stateTime % (duration * 2f)) / duration
+            if (t <= 1f) {
+                t
+            } else {
+                2f - t
+            }
+        }
     }
     val value = interpolation.apply(alpha)
     val index = (size * value).toInt().coerceIn(0, size - 1)

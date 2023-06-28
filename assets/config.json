@@ -1051,8 +1051,8 @@
         "animations": {
           "swim": {
             "assetId": "niko",
-            "duration": 0.5,
-            "mode": "loop",
+            "duration": 0.3,
+            "mode": "loop_pingpong",
             "interpolation": "linear"
           },
           "turn": null,
@@ -1096,7 +1096,7 @@
         "animations": {
           "swim": {
             "assetId": "niko_open",
-            "duration": 0.5,
+            "duration": 0.3,
             "mode": "normal",
             "interpolation": "linear"
           },
@@ -1141,7 +1141,7 @@
         "animations": {
           "swim": {
             "assetId": "niko_close",
-            "duration": 0.5,
+            "duration": 0.3,
             "mode": "reversed",
             "interpolation": "linear"
           },
