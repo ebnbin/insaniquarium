@@ -10,6 +10,7 @@ import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.gdx.utils.XY
 import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.magnitude
+import kotlin.math.abs
 
 data class BodyBox(
     private val config: BodyConfig.Box,
@@ -271,6 +272,9 @@ data class BodyBox(
 
     val reachDrivingTargetX: Boolean = drivingTargetX?.position?.let { it in left..right } ?: false
     val reachDrivingTargetY: Boolean = drivingTargetY?.position?.let { it in bottom..top } ?: false
+
+    val awayFromDrivingTargetX: Boolean = drivingTargetX != null &&
+        abs(drivingTargetX.position - x) >= config.width / 12f
 
     //*****************************************************************************************************************
 

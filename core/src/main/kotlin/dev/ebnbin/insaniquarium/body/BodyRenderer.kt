@@ -14,6 +14,7 @@ data class BodyRenderer(
     private val isSinkingOrFloatingOutsideWater: Boolean,
     private val expectedDirection: Direction,
     private val isHungry: Boolean,
+    private val awayFromDrivingTargetX: Boolean,
     private val status: Status,
 ) {
     data class Status(
@@ -120,18 +121,22 @@ data class BodyRenderer(
 
         val canAnimationActionChange = animationData.action == BodyAnimationData.Action.SWIM
         return if (canAnimationActionChange) {
-            val canCreateEat = config.animations.eat != null &&
-                (eatenFoodRelation == BodyRelation.OVERLAP || eatenFoodRelation == BodyRelation.CONTAIN_CENTER)
-            if (canCreateEat) {
-                createEat()
+            val canCreateTurn = config.animations.turn != null &&
+                (animationData.isFacingRight && expectedDirection == Direction.NEGATIVE ||
+                    !animationData.isFacingRight && expectedDirection == Direction.POSITIVE)
+            if (canCreateTurn && awayFromDrivingTargetX) {
+                createTurn()
             } else {
-                val canCreateTurn = config.animations.turn != null &&
-                    (animationData.isFacingRight && expectedDirection == Direction.NEGATIVE ||
-                        !animationData.isFacingRight && expectedDirection == Direction.POSITIVE)
-                if (canCreateTurn) {
-                    createTurn()
+                val canCreateEat = config.animations.eat != null &&
+                    (eatenFoodRelation == BodyRelation.OVERLAP || eatenFoodRelation == BodyRelation.CONTAIN_CENTER)
+                if (canCreateEat) {
+                    createEat()
                 } else {
-                    update()
+                    if (canCreateTurn) {
+                        createTurn()
+                    } else {
+                        update()
+                    }
                 }
             }
         } else {

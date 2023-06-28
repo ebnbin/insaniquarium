@@ -44,6 +44,7 @@ data class BodyData(
         isSinkingOrFloatingOutsideWater = box.isSinkingOrFloatingOutsideWater,
         expectedDirection = box.expectedDirection,
         isHungry = life.hungerStatus == BodyHungerStatus.HUNGRY,
+        awayFromDrivingTargetX = box.awayFromDrivingTargetX,
         status = status.renderer,
     )
 
