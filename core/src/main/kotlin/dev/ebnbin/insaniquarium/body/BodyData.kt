@@ -9,15 +9,13 @@ data class BodyData(
     val id: String,
     val config: BodyConfig,
     val delegate: BodyDelegate,
-    val tankWidth: Float,
-    val tankHeight: Float,
     val status: BodyStatus,
     val input: BodyInput,
 ) {
     val box: BodyBox = BodyBox(
         config = config.box,
-        tankWidth = tankWidth,
-        tankHeight = tankHeight,
+        tankWidth = delegate.tankWidth,
+        tankHeight = delegate.tankHeight,
         drivingTargetX = status.life.drivingTargetX,
         drivingTargetY = status.life.drivingTargetY,
         status = status.box,
@@ -27,8 +25,8 @@ data class BodyData(
 
     val life: BodyLife = BodyLife(
         config = config.life,
-        tankWidth = tankWidth,
-        tankHeight = tankHeight,
+        tankWidth = delegate.tankWidth,
+        tankHeight = delegate.tankHeight,
         reachDrivingTargetX = box.reachDrivingTargetX,
         reachDrivingTargetY = box.reachDrivingTargetY,
         boxRelation = box::relation,
@@ -41,6 +39,7 @@ data class BodyData(
 
     val renderer: BodyRenderer = BodyRenderer(
         config = config.renderer,
+        delegate = delegate,
         isDead = life.isDead,
         isSinkingOrFloatingOutsideWater = box.isSinkingOrFloatingOutsideWater,
         expectedDirection = box.expectedDirection,
@@ -103,7 +102,7 @@ data class BodyData(
     }
 
     fun draw(batch: Batch, parentAlpha: Float) {
-        renderer.draw(delegate, batch, parentAlpha)
+        renderer.draw(batch, parentAlpha)
     }
 
     //*****************************************************************************************************************
@@ -128,8 +127,6 @@ data class BodyData(
                 id = body.id,
                 config = body.config,
                 delegate = BodyDelegate(body),
-                tankWidth = body.tank.width,
-                tankHeight = body.tank.height,
                 status = createStatus(body),
                 input = BodyInput(),
             )

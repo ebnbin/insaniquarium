@@ -25,16 +25,16 @@ class Body(
         act(input)
     }
 
-    fun act(input: BodyInput): Body {
+    fun act(input: BodyInput): BodyData {
         data = data.update(input)
         if (data.postUpdate()) {
-            return this
+            return data
         }
         data.act()
         if (debug) {
             data.actDebug()
         }
-        return this
+        return data
     }
 
     override fun draw(batch: Batch, parentAlpha: Float) {

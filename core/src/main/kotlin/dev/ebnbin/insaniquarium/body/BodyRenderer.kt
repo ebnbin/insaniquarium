@@ -8,6 +8,7 @@ import dev.ebnbin.gdx.utils.unitToMeter
 
 data class BodyRenderer(
     private val config: BodyConfig.Renderer,
+    private val delegate: BodyDelegate,
     private val isDead: Boolean,
     private val isSinkingOrFloatingOutsideWater: Boolean,
     private val expectedDirection: Direction,
@@ -148,7 +149,7 @@ data class BodyRenderer(
         }
     }
 
-    fun draw(delegate: BodyDelegate, batch: Batch, parentAlpha: Float) {
+    fun draw(batch: Batch, parentAlpha: Float) {
         val oldColor = batch.color.cpy()
         batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
         batch.draw(

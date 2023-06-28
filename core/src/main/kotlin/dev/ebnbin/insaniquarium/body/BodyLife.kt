@@ -161,7 +161,7 @@ data class BodyLife(
             return null
         }
 
-        fun targetFood(): Body? {
+        fun targetFood(): BodyData? {
             if (hungerStatus == BodyHungerStatus.FULL) {
                 return null
             }
@@ -171,16 +171,16 @@ data class BodyLife(
 
         var eatenFood: BodyConfig.Food? = null
         val targetFood = targetFood()
-        val foodRelation = boxRelation(targetFood?.data?.box)
+        val foodRelation = boxRelation(targetFood?.box)
 
         if (targetFood != null && canEat && foodRelation == BodyRelation.CONTAIN_CENTER) {
-            val food = config.eatAct.foods.getValue(targetFood.data.type)
-            val foodBody = targetFood.act(
+            val food = config.eatAct.foods.getValue(targetFood.type)
+            val foodBody = targetFood.delegate.act(
                 input = BodyInput(
                     healthDiff = food.healthDiffPerSecond * delta,
                 ),
             )
-            if (foodBody.data.canRemove) {
+            if (foodBody.canRemove) {
                 eatenFood = food
             }
         }
@@ -190,7 +190,7 @@ data class BodyLife(
             } else {
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
-                    position = targetFood.data.box.x,
+                    position = targetFood.box.x,
                     acceleration = config.eatAct.drivingAccelerationX,
                 )
             },
@@ -199,7 +199,7 @@ data class BodyLife(
             } else {
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
-                    position = targetFood.data.box.y,
+                    position = targetFood.box.y,
                     acceleration = config.eatAct.drivingAccelerationY,
                 )
             },

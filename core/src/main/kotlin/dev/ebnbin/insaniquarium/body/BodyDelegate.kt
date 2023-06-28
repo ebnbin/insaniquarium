@@ -6,29 +6,29 @@ import dev.ebnbin.gdx.utils.Point
 class BodyDelegate(
     private val body: Body,
 ) {
-    fun findBodyByType(typeSet: Set<BodyType>): List<Body> {
-        return body.tank.findBodyByType(typeSet)
-    }
-
-    fun findNearestBodyByType(typeSet: Set<BodyType>): Body? {
+    fun findNearestBodyByType(typeSet: Set<BodyType>): BodyData? {
         val bodies = body.tank.findBodyByType(typeSet)
-        return bodies.minByOrNull { body.data.box.distance(it.data.box) }
+        return bodies.minByOrNull { body.data.box.distance(it.box) }
     }
 
     fun removeFromTank() {
-        body.tank.removeBody(body)
+        body.tank.removeBody(body.data)
     }
 
     fun addBody(
         type: BodyType,
         createStatus: (body: Body) -> BodyStatus,
         delta: Float,
-    ): Body {
+    ): BodyData {
         val newBody = body.tank.addBody(
             type = type,
             createStatus = createStatus,
         )
-        newBody.act(delta = delta)
+        newBody.delegate.act(
+            input = BodyInput(
+                delta = delta,
+            ),
+        )
         return newBody
     }
 
@@ -36,13 +36,17 @@ class BodyDelegate(
         type: BodyType,
         createStatus: (body: Body) -> BodyStatus,
         delta: Float,
-    ): Body {
-        val newBody = body.tank.replaceBody(body, type, createStatus)
-        newBody.act(delta = delta)
+    ): BodyData {
+        val newBody = body.tank.replaceBody(body.data, type, createStatus)
+        newBody.delegate.act(
+            input = BodyInput(
+                delta = delta,
+            ),
+        )
         return newBody
     }
 
-    fun act(input: BodyInput): Body {
+    fun act(input: BodyInput): BodyData {
         return body.act(input)
     }
 
@@ -79,4 +83,9 @@ class BodyDelegate(
 
     val touchPoint: Point?
         get() = body.tank.touchPoint
+
+    val tankWidth: Float
+        get() = body.tank.width
+    val tankHeight: Float
+        get() = body.tank.height
 }

@@ -9,6 +9,7 @@ import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.body.Body
 import dev.ebnbin.insaniquarium.body.BodyBox
+import dev.ebnbin.insaniquarium.body.BodyData
 import dev.ebnbin.insaniquarium.body.BodyGroup
 import dev.ebnbin.insaniquarium.body.BodyStatus
 import dev.ebnbin.insaniquarium.body.BodyType
@@ -82,7 +83,7 @@ class Tank : Group() {
         id: String = "${UUID.randomUUID()}",
         createStatus: (body: Body) -> BodyStatus,
         index: Int? = null,
-    ): Body {
+    ): BodyData {
         val body = Body(
             tank = this,
             type = type,
@@ -97,10 +98,11 @@ class Tank : Group() {
         }
         idMap[body.id] = body
         typeMap.getValue(type).add(body)
-        return body
+        return body.data
     }
 
-    fun removeBody(body: Body): Int {
+    fun removeBody(bodyData: BodyData): Int {
+        val body = idMap.getValue(bodyData.id)
         typeMap.getValue(body.type).remove(body)
         idMap.remove(body.id)
         val group = groupMap.getValue(body.config.group)
@@ -112,10 +114,10 @@ class Tank : Group() {
     }
 
     fun replaceBody(
-        oldBody: Body,
+        oldBody: BodyData,
         type: BodyType,
         createStatus: (body: Body) -> BodyStatus,
-    ): Body {
+    ): BodyData {
         val index = removeBody(oldBody)
         return addBody(
             type = type,
@@ -125,12 +127,8 @@ class Tank : Group() {
         )
     }
 
-    fun findBodyByType(typeSet: Set<BodyType>): List<Body> {
-        return typeSet.flatMap { typeMap.getValue(it) }
-    }
-
-    fun findBodyById(id: String): Body? {
-        return idMap[id]
+    fun findBodyByType(typeSet: Set<BodyType>): List<BodyData> {
+        return typeSet.flatMap { typeMap.getValue(it) }.map { it.data }
     }
 
     //*****************************************************************************************************************
