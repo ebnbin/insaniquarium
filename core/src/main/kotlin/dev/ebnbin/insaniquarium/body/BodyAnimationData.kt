@@ -22,6 +22,9 @@ data class BodyAnimationData(
         ;
     }
 
+    val isSwimming: Boolean = action == Action.SWIM
+    val canEat: Boolean = action == Action.SWIM || action == Action.EAT
+
     fun getAnimation(configAnimations: BodyConfig.Animations): TextureRegionAnimation {
         return when (action) {
             Action.SWIM -> {

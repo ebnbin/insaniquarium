@@ -26,6 +26,9 @@ class Body(
     }
 
     fun act(input: BodyInput): BodyData {
+        if (input.skipUpdate) {
+            return data
+        }
         data = data.update(input)
         if (data.postUpdate()) {
             return data

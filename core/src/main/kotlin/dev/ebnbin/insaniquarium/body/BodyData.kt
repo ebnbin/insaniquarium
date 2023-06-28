@@ -30,8 +30,7 @@ data class BodyData(
         reachDrivingTargetX = box.reachDrivingTargetX,
         reachDrivingTargetY = box.reachDrivingTargetY,
         boxRelation = box::relation,
-        canEat = status.renderer.animationData.action == BodyAnimationData.Action.SWIM ||
-            status.renderer.animationData.action == BodyAnimationData.Action.EAT,
+        canEat = status.renderer.animationData.canEat,
         status = status.life,
     )
 
@@ -64,7 +63,7 @@ data class BodyData(
     //*****************************************************************************************************************
 
     val canRemove: Boolean = (renderer.canRemove) ||
-        (life.canRemove(isSwimming = status.renderer.animationData.action == BodyAnimationData.Action.SWIM))
+        (life.canRemove(isSwimming = status.renderer.animationData.isSwimming))
 
     fun postUpdate(): Boolean {
         if (life.postUpdate(
@@ -82,9 +81,6 @@ data class BodyData(
     //*****************************************************************************************************************
 
     fun update(input: BodyInput): BodyData {
-        if (input.skipUpdate) {
-            return this
-        }
         return copy(
             status = BodyStatusHelper.nextStatus(
                 data = this,
@@ -97,7 +93,7 @@ data class BodyData(
     }
 
     fun act() {
-        delegate.setSize(renderer.actorWidth, renderer.actorHeight)
+        delegate.setSize(renderer.width, renderer.height)
         delegate.setPosition(box.x, box.y)
     }
 

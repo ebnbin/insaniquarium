@@ -27,16 +27,15 @@ data class BodyRenderer(
     private val animationData: BodyAnimationData = status.animationData
     private val alphaTime: Float? = status.alphaTime
 
-    val isSwimming: Boolean = animationData.action == BodyAnimationData.Action.SWIM
-    val canEat: Boolean = animationData.action == BodyAnimationData.Action.SWIM ||
-        animationData.action == BodyAnimationData.Action.EAT
-
     private val animation: TextureRegionAnimation = animationData.getAnimation(config.animations)
 
     private val textureRegion: TextureRegion = animation.getTextureRegion(animationData.stateTime)
 
-    val actorWidth: Float = textureRegion.regionWidth.toFloat().unitToMeter
-    val actorHeight: Float = textureRegion.regionHeight.toFloat().unitToMeter
+    /**
+     * Actor's width and height.
+     */
+    val width: Float = textureRegion.regionWidth.toFloat().unitToMeter
+    val height: Float = textureRegion.regionHeight.toFloat().unitToMeter
 
     private val isFlipX: Boolean = if (animationData.action == BodyAnimationData.Action.TURN) {
         !animationData.isFacingRight
