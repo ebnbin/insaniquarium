@@ -772,6 +772,96 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
+            type = BodyType.NIKO,
+            group = BodyGroup.PET,
+            width = BodyConfigInfo.Size(
+                textureName = "niko",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "niko",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "niko",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            hunger = BodyConfig.Hunger(
+                diffPerSecond = -1f / 20f,
+                transformation = BodyType.NIKO_OPEN,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "niko",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
+            type = BodyType.NIKO_OPEN,
+            group = BodyGroup.PET,
+            width = BodyConfigInfo.Size(
+                textureName = "niko",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "niko",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "niko",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            hunger = BodyConfig.Hunger(
+                diffPerSecond = -1f / 5f,
+                transformation = BodyType.NIKO_CLOSE,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "niko_open",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
+            type = BodyType.NIKO_CLOSE,
+            group = BodyGroup.PET,
+            width = BodyConfigInfo.Size(
+                textureName = "niko",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "niko",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "niko",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            hunger = BodyConfig.Hunger(
+                diffPerSecond = -2f,
+                transformation = BodyType.NIKO,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "niko_close",
+                    duration = 0.5f,
+                    mode = AnimationMode.REVERSED,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
             type = BodyType.CLYDE,
             group = BodyGroup.PET,
             width = BodyConfigInfo.Size(

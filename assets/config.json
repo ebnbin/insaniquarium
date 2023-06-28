@@ -1018,6 +1018,141 @@
         }
       }
     },
+    "niko": {
+      "group": "pet",
+      "box": {
+        "width": 0.185,
+        "height": 0.11666667,
+        "depth": 0.185,
+        "density": 1000.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
+      },
+      "life": {
+        "isDead": false,
+        "health": null,
+        "hunger": {
+          "initialThreshold": 1.0,
+          "maxThreshold": 1.0,
+          "hungryThreshold": 0.0,
+          "diffPerSecond": -0.05,
+          "transformation": "niko_open"
+        },
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "niko",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
+      }
+    },
+    "niko_open": {
+      "group": "pet",
+      "box": {
+        "width": 0.185,
+        "height": 0.11666667,
+        "depth": 0.185,
+        "density": 1000.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
+      },
+      "life": {
+        "isDead": false,
+        "health": null,
+        "hunger": {
+          "initialThreshold": 1.0,
+          "maxThreshold": 1.0,
+          "hungryThreshold": 0.0,
+          "diffPerSecond": -0.2,
+          "transformation": "niko_close"
+        },
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "niko_open",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
+      }
+    },
+    "niko_close": {
+      "group": "pet",
+      "box": {
+        "width": 0.185,
+        "height": 0.11666667,
+        "depth": 0.185,
+        "density": 1000.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
+      },
+      "life": {
+        "isDead": false,
+        "health": null,
+        "hunger": {
+          "initialThreshold": 1.0,
+          "maxThreshold": 1.0,
+          "hungryThreshold": 0.0,
+          "diffPerSecond": -2.0,
+          "transformation": "niko"
+        },
+        "growth": null,
+        "drop": null,
+        "eatAct": null,
+        "touchAct": null,
+        "swimActX": null,
+        "swimActY": null
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "niko_close",
+            "duration": 0.5,
+            "mode": "reversed",
+            "interpolation": "linear"
+          },
+          "turn": null,
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
+      }
+    },
     "clyde": {
       "group": "pet",
       "box": {

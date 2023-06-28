@@ -369,6 +369,31 @@ object TextureInfo {
         ),
         BodyTextureInfo(
             group = GROUP_PET,
+            srcFileName = "niko.gif",
+            srcMaskFileName = "_niko.gif",
+            scale = 1.5f,
+            row = 3,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "niko",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "niko_open",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "niko_close",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_PET,
             srcFileName = "clyde.gif",
             srcMaskFileName = "_clyde.gif",
             scale = 1.5f,
