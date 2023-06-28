@@ -391,17 +391,15 @@ data class BodyLife(
             status.renderer.animationData.action == BodyAnimationData.Action.SWIM) {
             delegate.replaceBody(
                 type = transformationFromHunger,
-                createStatus = {
-                    status.copy(
-                        life = Status(),
-                        renderer = status.renderer.copy(
-                            animationData = status.renderer.animationData.copy(
-                                stateTime = 0f,
-                            ),
-                            alphaTime = null,
+                status = status.copy(
+                    life = Status(),
+                    renderer = status.renderer.copy(
+                        animationData = status.renderer.animationData.copy(
+                            stateTime = 0f,
                         ),
-                    )
-                },
+                        alphaTime = null,
+                    ),
+                ),
                 input = BodyInput(
                     delta = delta,
                 ),
@@ -413,13 +411,11 @@ data class BodyLife(
             require(growth != null)
             delegate.replaceBody(
                 type = transformationFromGrowth,
-                createStatus = {
-                    status.copy(
-                        life = status.life.copy(
-                            growth = null,
-                        ),
-                    )
-                },
+                status = status.copy(
+                    life = status.life.copy(
+                        growth = null,
+                    ),
+                ),
                 input = BodyInput(
                     delta = delta,
                     growthDiff = growth,
@@ -430,14 +426,12 @@ data class BodyLife(
             repeat(dropCount) {
                 delegate.addBody(
                     type = productionFromDrop,
-                    createStatus = {
-                        BodyStatus(
-                            box = BodyBox.Status(
-                                x = status.box.x,
-                                y = status.box.y,
-                            ),
-                        )
-                    },
+                    status = BodyStatus(
+                        box = BodyBox.Status(
+                            x = status.box.x,
+                            y = status.box.y,
+                        ),
+                    ),
                     input = BodyInput(
                         delta = delta,
                     ),

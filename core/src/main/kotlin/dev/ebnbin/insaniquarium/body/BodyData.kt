@@ -120,14 +120,14 @@ data class BodyData(
     companion object {
         fun create(
             body: Body,
-            createStatus: (body: Body) -> BodyStatus,
+            status: BodyStatus
         ): BodyData {
             return BodyData(
                 type = body.type,
                 id = body.id,
                 config = body.config,
                 delegate = BodyDelegate(body),
-                status = createStatus(body),
+                status = status,
                 input = BodyInput(),
             )
         }

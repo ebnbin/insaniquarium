@@ -17,12 +17,12 @@ class BodyDelegate(
 
     fun addBody(
         type: BodyType,
-        createStatus: (body: Body) -> BodyStatus,
+        status: BodyStatus,
         input: BodyInput? = null,
     ): BodyData {
         val newBody = body.tank.addBody(
             type = type,
-            createStatus = createStatus,
+            status = status
         )
         if (input != null) {
             newBody.delegate.act(input)
@@ -32,10 +32,10 @@ class BodyDelegate(
 
     fun replaceBody(
         type: BodyType,
-        createStatus: (body: Body) -> BodyStatus,
+        status: BodyStatus,
         input: BodyInput? = null,
     ): BodyData {
-        val newBody = body.tank.replaceBody(body.data, type, createStatus)
+        val newBody = body.tank.replaceBody(body.data, type, status)
         if (input != null) {
             newBody.delegate.act(input)
         }

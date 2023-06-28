@@ -10,11 +10,11 @@ class Body(
     val tank: Tank,
     val type: BodyType,
     val id: String,
-    createStatus: (body: Body) -> BodyStatus,
+    status: BodyStatus,
 ) : Actor() {
     val config: BodyConfig = game.config.body.getValue(type)
 
-    var data: BodyData = BodyData.create(this, createStatus)
+    var data: BodyData = BodyData.create(this, status)
         private set
 
     override fun act(delta: Float) {

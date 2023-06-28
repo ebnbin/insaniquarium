@@ -33,14 +33,12 @@ class Tank : Group() {
                 devSelectedBodyType?.let {
                     addBody(
                         type = it,
-                        createStatus = {
-                            BodyStatus(
-                                box = BodyBox.Status(
-                                    x = x,
-                                    y = y,
-                                ),
-                            )
-                        },
+                        status = BodyStatus(
+                            box = BodyBox.Status(
+                                x = x,
+                                y = y,
+                            ),
+                        ),
                     )
                 }
                 return true
@@ -81,14 +79,14 @@ class Tank : Group() {
     fun addBody(
         type: BodyType,
         id: String = "${UUID.randomUUID()}",
-        createStatus: (body: Body) -> BodyStatus,
+        status: BodyStatus,
         index: Int? = null,
     ): BodyData {
         val body = Body(
             tank = this,
             type = type,
             id = id,
-            createStatus = createStatus,
+            status = status,
         )
         val group = groupMap.getValue(body.config.group)
         if (index == null) {
@@ -116,13 +114,13 @@ class Tank : Group() {
     fun replaceBody(
         oldBody: BodyData,
         type: BodyType,
-        createStatus: (body: Body) -> BodyStatus,
+        status: BodyStatus,
     ): BodyData {
         val index = removeBody(oldBody)
         return addBody(
             type = type,
             id = oldBody.id,
-            createStatus = createStatus,
+            status = status,
             index = index
         )
     }
@@ -139,14 +137,12 @@ class Tank : Group() {
         val type = devSelectedBodyType ?: BodyType.values().random()
         addBody(
             type = type,
-            createStatus = {
-                BodyStatus(
-                    box = BodyBox.Status(
-                        x = Random.nextFloat(0f, width),
-                        y = Random.nextFloat(0f, height),
-                    ),
-                )
-            },
+            status = BodyStatus(
+                box = BodyBox.Status(
+                    x = Random.nextFloat(0f, width),
+                    y = Random.nextFloat(0f, height),
+                ),
+            ),
         )
     }
 
