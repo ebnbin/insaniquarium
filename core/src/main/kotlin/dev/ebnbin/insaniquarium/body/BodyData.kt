@@ -2,14 +2,13 @@ package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.utils.Point
 
 data class BodyData(
     val type: BodyType,
     val id: String,
     val config: BodyConfig,
-    val bodyManager: BodyManager,
+    val delegate: BodyDelegate,
     val tankWidth: Float,
     val tankHeight: Float,
     val status: BodyStatus,
@@ -54,7 +53,7 @@ data class BodyData(
     fun hit(touchPoint: Point): Boolean {
         val hit = box.hit(touchPoint)
         if (hit) {
-            bodyManager.actSelf(
+            delegate.act(
                 input = BodyInput(
                     healthDiff = -(life.health ?: 0f),
                 ),
@@ -70,41 +69,41 @@ data class BodyData(
 
     fun postUpdate(): Boolean {
         if (life.postUpdate(
-            bodyManager = bodyManager,
+            delegate = delegate,
             status = status,
             delta = input.delta,
         )) {
             return true
         }
         return renderer.postUpdate(
-            bodyManager = bodyManager,
+            delegate = delegate,
         )
     }
 
     //*****************************************************************************************************************
 
-    fun update(body: Body, input: BodyInput): BodyData {
+    fun update(input: BodyInput): BodyData {
         if (input.skipUpdate) {
             return this
         }
         return copy(
             status = BodyStatusHelper.nextStatus(
                 data = this,
-                bodyManager = bodyManager,
+                delegate = delegate,
                 input = input,
-                touchPoint = body.tank.touchPoint,
+                touchPoint = delegate.touchPoint,
             ),
             input = input,
         )
     }
 
-    fun act(body: Body) {
-        body.setSize(renderer.actorWidth, renderer.actorHeight)
-        body.setPosition(box.x, box.y, Align.center)
+    fun act() {
+        delegate.setSize(renderer.actorWidth, renderer.actorHeight)
+        delegate.setPosition(box.x, box.y)
     }
 
-    fun draw(body: Body, batch: Batch, parentAlpha: Float) {
-        renderer.draw(body, batch, parentAlpha)
+    fun draw(batch: Batch, parentAlpha: Float) {
+        renderer.draw(delegate, batch, parentAlpha)
     }
 
     //*****************************************************************************************************************
@@ -128,7 +127,7 @@ data class BodyData(
                 type = body.type,
                 id = body.id,
                 config = body.config,
-                bodyManager = BodyManager(body),
+                delegate = BodyDelegate(body),
                 tankWidth = body.tank.width,
                 tankHeight = body.tank.height,
                 status = createStatus(body),

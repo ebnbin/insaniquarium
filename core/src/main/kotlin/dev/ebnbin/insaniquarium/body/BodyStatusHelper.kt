@@ -5,7 +5,7 @@ import dev.ebnbin.gdx.utils.Point
 object BodyStatusHelper {
     fun nextStatus(
         data: BodyData,
-        bodyManager: BodyManager,
+        delegate: BodyDelegate,
         input: BodyInput,
         touchPoint: Point?,
     ): BodyStatus {
@@ -14,7 +14,7 @@ object BodyStatusHelper {
         )
 
         val (nextLife, lifeTmp) = data.life.nextStatus(
-            bodyManager = bodyManager,
+            delegate = delegate,
             input = input,
             touchPoint = touchPoint,
         )

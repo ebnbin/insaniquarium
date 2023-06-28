@@ -1,6 +1,9 @@
 package dev.ebnbin.insaniquarium.body
 
-class BodyManager(
+import com.badlogic.gdx.utils.Align
+import dev.ebnbin.gdx.utils.Point
+
+class BodyDelegate(
     private val body: Body,
 ) {
     fun findBodyByType(typeSet: Set<BodyType>): List<Body> {
@@ -12,7 +15,7 @@ class BodyManager(
         return bodies.minByOrNull { body.data.box.distance(it.data.box) }
     }
 
-    fun removeSelf() {
+    fun removeFromTank() {
         body.tank.removeBody(body)
     }
 
@@ -39,7 +42,41 @@ class BodyManager(
         return newBody
     }
 
-    fun actSelf(input: BodyInput): Body {
+    fun act(input: BodyInput): Body {
         return body.act(input)
     }
+
+    fun setSize(width: Float, height: Float) {
+        body.setSize(width, height)
+    }
+
+    fun setPosition(x: Float, y: Float) {
+        body.setPosition(x, y, Align.center)
+    }
+
+    val x: Float
+        get() = body.x
+    val y: Float
+        get() = body.y
+
+    val originX: Float
+        get() = body.originX
+    val originY: Float
+        get() = body.originY
+
+    val width: Float
+        get() = body.width
+    val height: Float
+        get() = body.height
+
+    val scaleX: Float
+        get() = body.scaleX
+    val scaleY: Float
+        get() = body.scaleY
+
+    val rotation: Float
+        get() = body.rotation
+
+    val touchPoint: Point?
+        get() = body.tank.touchPoint
 }

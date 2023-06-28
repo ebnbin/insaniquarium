@@ -148,20 +148,20 @@ data class BodyRenderer(
         }
     }
 
-    fun draw(body: Body, batch: Batch, parentAlpha: Float) {
+    fun draw(delegate: BodyDelegate, batch: Batch, parentAlpha: Float) {
         val oldColor = batch.color.cpy()
         batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
         batch.draw(
             textureRegion.texture,
-            body.x,
-            body.y,
-            body.originX,
-            body.originY,
-            body.width,
-            body.height,
-            body.scaleX,
-            body.scaleY,
-            body.rotation,
+            delegate.x,
+            delegate.y,
+            delegate.originX,
+            delegate.originY,
+            delegate.width,
+            delegate.height,
+            delegate.scaleX,
+            delegate.scaleY,
+            delegate.rotation,
             textureRegion.regionX,
             textureRegion.regionY,
             textureRegion.regionWidth,
@@ -173,10 +173,10 @@ data class BodyRenderer(
     }
 
     fun postUpdate(
-        bodyManager: BodyManager,
+        delegate: BodyDelegate,
     ): Boolean {
         if (canRemove) {
-            bodyManager.removeSelf()
+            delegate.removeFromTank()
             return true
         }
         return false

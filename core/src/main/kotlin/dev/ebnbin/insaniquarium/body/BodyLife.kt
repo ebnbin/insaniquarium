@@ -81,12 +81,12 @@ data class BodyLife(
     }
 
     fun nextStatus(
-        bodyManager: BodyManager,
+        delegate: BodyDelegate,
         input: BodyInput,
         touchPoint: Point?,
     ): Pair<Status, TmpStatus> {
         val nextEatAct = nextEatAct(
-            bodyManager = bodyManager,
+            delegate = delegate,
             delta = input.delta,
         )
 
@@ -154,7 +154,7 @@ data class BodyLife(
     }
 
     private fun nextEatAct(
-        bodyManager: BodyManager,
+        delegate: BodyDelegate,
         delta: Float,
     ): EatAct? {
         if (config.eatAct == null) {
@@ -166,7 +166,7 @@ data class BodyLife(
                 return null
             }
             require(config.eatAct.foods.isNotEmpty())
-            return bodyManager.findNearestBodyByType(config.eatAct.foods.keys)
+            return delegate.findNearestBodyByType(config.eatAct.foods.keys)
         }
 
         var eatenFood: BodyConfig.Food? = null
@@ -379,17 +379,17 @@ data class BodyLife(
      * @return True if removed.
      */
     fun postUpdate(
-        bodyManager: BodyManager,
+        delegate: BodyDelegate,
         status: BodyStatus,
         delta: Float,
     ): Boolean {
         if (isDeadFromHealth) {
-            bodyManager.removeSelf()
+            delegate.removeFromTank()
             return true
         }
         if (transformationFromHunger != null &&
             status.renderer.animationData.action == BodyAnimationData.Action.SWIM) {
-            bodyManager.replaceBody(
+            delegate.replaceBody(
                 type = transformationFromHunger,
                 createStatus = {
                     status.copy(
@@ -409,7 +409,7 @@ data class BodyLife(
         if (transformationFromGrowth != null) {
             val growth = status.life.growth
             require(growth != null)
-            bodyManager.replaceBody(
+            delegate.replaceBody(
                 type = transformationFromGrowth,
                 createStatus = {
                     status.copy(
@@ -427,7 +427,7 @@ data class BodyLife(
         }
         if (productionFromDrop != null) {
             repeat(dropCount) {
-                bodyManager.addBody(
+                delegate.addBody(
                     type = productionFromDrop,
                     createStatus = {
                         BodyStatus(
@@ -440,7 +440,7 @@ data class BodyLife(
                     delta = delta,
                 )
             }
-            bodyManager.actSelf(
+            delegate.act(
                 input = BodyInput(
                     dropDiff = dropCount.toFloat(),
                 ),
