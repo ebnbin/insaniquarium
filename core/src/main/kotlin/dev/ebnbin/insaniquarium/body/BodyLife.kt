@@ -402,7 +402,9 @@ data class BodyLife(
                         ),
                     )
                 },
-                delta = delta,
+                input = BodyInput(
+                    delta = delta,
+                ),
             )
             return true
         }
@@ -414,15 +416,14 @@ data class BodyLife(
                 createStatus = {
                     status.copy(
                         life = status.life.copy(
-                            growth = if (it.config.life.growth == null) {
-                                null
-                            } else {
-                                growth + it.config.life.growth.initialThreshold
-                            },
+                            growth = null,
                         ),
                     )
                 },
-                delta = delta,
+                input = BodyInput(
+                    delta = delta,
+                    growthDiff = growth,
+                ),
             )
         }
         if (productionFromDrop != null) {
@@ -437,7 +438,9 @@ data class BodyLife(
                             ),
                         )
                     },
-                    delta = delta,
+                    input = BodyInput(
+                        delta = delta,
+                    ),
                 )
             }
             delegate.act(
