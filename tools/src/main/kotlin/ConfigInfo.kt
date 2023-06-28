@@ -705,6 +705,73 @@ object ConfigInfo {
             ),
         ),
         BodyConfigInfo(
+            type = BodyType.SYLVESTER,
+            group = BodyGroup.ALIEN,
+            width = BodyConfigInfo.Size(
+                textureName = "sylvester",
+                index = 0,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            height = BodyConfigInfo.Size(
+                textureName = "sylvester",
+                index = 0,
+                wh = BodyConfigInfo.WH.HEIGHT,
+            ),
+            depth = BodyConfigInfo.Size(
+                textureName = "sylvester_turn",
+                index = 5,
+                wh = BodyConfigInfo.WH.WIDTH,
+            ),
+            health = BodyConfig.Health(),
+            hunger = BodyConfig.Hunger(),
+            eatAct = BodyConfig.EatAct(
+                foods = mapOf(
+                    BodyType.GUPPY_SMALL to BodyConfig.Food(
+                        healthDiffPerSecond = -10f,
+                    ),
+                    BodyType.GUPPY_MEDIUM to BodyConfig.Food(
+                        healthDiffPerSecond = -10f,
+                    ),
+                    BodyType.GUPPY_LARGE to BodyConfig.Food(
+                        healthDiffPerSecond = -10f,
+                    ),
+                    BodyType.GUPPY_KING to BodyConfig.Food(
+                        healthDiffPerSecond = -10f,
+                    ),
+                    BodyType.STARCATCHER to BodyConfig.Food(
+                        healthDiffPerSecond = -10f,
+                    ),
+                    BodyType.BEETLEMUNCHER to BodyConfig.Food(
+                        healthDiffPerSecond = -10f,
+                    ),
+                ),
+                drivingAccelerationX = 0.4f,
+                drivingAccelerationY = 0.25f,
+            ),
+            swimActX = BodyConfig.SwimAct(
+                drivingAcceleration = 0.2f,
+                idlingTimeRandomStart = 0f,
+                idlingTimeRandomEnd = 0f,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                drivingAcceleration = 0.125f,
+                idlingTimeRandomStart = 0f,
+                idlingTimeRandomEnd = 0f,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "sylvester",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "sylvester_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+        ),
+        BodyConfigInfo(
             type = BodyType.CLYDE,
             group = BodyGroup.PET,
             width = BodyConfigInfo.Size(
@@ -781,15 +848,11 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            hunger = BodyConfig.Hunger(
-                maxThreshold = 3f,
-                diffPerSecond = -1f / 20f,
-            ),
+            hunger = BodyConfig.Hunger(),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
-                    BodyType.BEETLE to BodyConfig.Food(
-                        healthDiffPerSecond = -1f,
-                        hunger = 2f,
+                    BodyType.SYLVESTER to BodyConfig.Food(
+                        healthDiffPerSecond = -0.1f,
                     ),
                 ),
                 drivingAccelerationX = 0.8f,

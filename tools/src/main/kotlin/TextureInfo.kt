@@ -42,6 +42,7 @@ object TextureInfo {
 
     private const val GROUP_FOOD = "food"
     private const val GROUP_FISH = "fish"
+    private const val GROUP_ALIEN = "alien"
     private const val GROUP_PET = "pet"
     private const val GROUP_MONEY = "money"
 
@@ -342,6 +343,26 @@ object TextureInfo {
                 BodyTextureInfo.Output(
                     name = "beetlemuncher_die",
                     tileStart = 50,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_ALIEN,
+            srcFileName = "sylv.gif",
+            srcMaskFileName = "_sylv.gif",
+            scale = 1.5f,
+            row = 2,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "sylvester",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "sylvester_turn",
+                    tileStart = 10,
                     tileCount = 10,
                 ),
             ),

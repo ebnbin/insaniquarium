@@ -546,6 +546,26 @@
       "name": "starcatcher_hungry",
       "extension": "png",
       "preload": false
+    },
+    "sylvester": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "sylvester",
+      "extension": "png",
+      "preload": false
+    },
+    "sylvester_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "sylvester_turn",
+      "extension": "png",
+      "preload": false
     }
   }
 }

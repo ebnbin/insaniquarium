@@ -892,6 +892,132 @@
         }
       }
     },
+    "sylvester": {
+      "group": "alien",
+      "box": {
+        "width": 0.23666666,
+        "height": 0.345,
+        "depth": 0.26333332,
+        "density": 1000.0,
+        "dragCoefficient": 1.0,
+        "waterFrictionCoefficient": 0.001,
+        "bottomFrictionCoefficient": 1.0,
+        "leftRightFrictionCoefficient": 0.0
+      },
+      "life": {
+        "isDead": false,
+        "health": {
+          "initialThreshold": 1.0,
+          "diffPerSecond": 0.0
+        },
+        "hunger": {
+          "initialThreshold": 1.0,
+          "maxThreshold": 1.0,
+          "hungryThreshold": 0.0,
+          "diffPerSecond": 0.0,
+          "transformation": null
+        },
+        "growth": null,
+        "drop": null,
+        "eatAct": {
+          "foods": {
+            "guppy_small": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 0.0,
+              "growth": 0.0,
+              "drop": 0.0
+            },
+            "guppy_medium": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 0.0,
+              "growth": 0.0,
+              "drop": 0.0
+            },
+            "guppy_large": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 0.0,
+              "growth": 0.0,
+              "drop": 0.0
+            },
+            "guppy_king": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 0.0,
+              "growth": 0.0,
+              "drop": 0.0
+            },
+            "starcatcher": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 0.0,
+              "growth": 0.0,
+              "drop": 0.0
+            },
+            "beetlemuncher": {
+              "healthDiffPerSecond": -10.0,
+              "hungerDiffPerSecond": 0.0,
+              "growthDiffPerSecond": 0.0,
+              "dropDiffPerSecond": 0.0,
+              "health": 0.0,
+              "hunger": 0.0,
+              "growth": 0.0,
+              "drop": 0.0
+            }
+          },
+          "drivingAccelerationX": 0.4,
+          "drivingAccelerationY": 0.25
+        },
+        "touchAct": null,
+        "swimActX": {
+          "drivingAcceleration": 0.2,
+          "idlingTimeRandomStart": 0.0,
+          "idlingTimeRandomEnd": 0.0
+        },
+        "swimActY": {
+          "drivingAcceleration": 0.125,
+          "idlingTimeRandomStart": 0.0,
+          "idlingTimeRandomEnd": 0.0
+        }
+      },
+      "renderer": {
+        "animations": {
+          "swim": {
+            "assetId": "sylvester",
+            "duration": 0.5,
+            "mode": "loop",
+            "interpolation": "linear"
+          },
+          "turn": {
+            "assetId": "sylvester_turn",
+            "duration": 0.5,
+            "mode": "normal",
+            "interpolation": "linear"
+          },
+          "eat": null,
+          "hungry": null,
+          "hungryTurn": null,
+          "hungryEat": null
+        }
+      }
+    },
     "clyde": {
       "group": "pet",
       "box": {
@@ -1001,22 +1127,22 @@
         "health": null,
         "hunger": {
           "initialThreshold": 1.0,
-          "maxThreshold": 3.0,
+          "maxThreshold": 1.0,
           "hungryThreshold": 0.0,
-          "diffPerSecond": -0.05,
+          "diffPerSecond": 0.0,
           "transformation": null
         },
         "growth": null,
         "drop": null,
         "eatAct": {
           "foods": {
-            "beetle": {
-              "healthDiffPerSecond": -1.0,
+            "sylvester": {
+              "healthDiffPerSecond": -0.1,
               "hungerDiffPerSecond": 0.0,
               "growthDiffPerSecond": 0.0,
               "dropDiffPerSecond": 0.0,
               "health": 0.0,
-              "hunger": 2.0,
+              "hunger": 0.0,
               "growth": 0.0,
               "drop": 0.0
             }
