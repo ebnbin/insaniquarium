@@ -18,7 +18,7 @@ data class BodyBox(
     private val tankHeight: Float,
     private val drivingTargetX: BodyDrivingTarget?,
     private val drivingTargetY: BodyDrivingTarget?,
-    private val status: Status,
+    val status: Status,
 ) {
     data class Status(
         val velocityX: Float = 0f,

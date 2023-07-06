@@ -73,7 +73,7 @@ data class BodyConfig(
         @Expose
         val initialThreshold: Float = 1f,
         @Expose
-        val diffPerSecond: Float = 0f,
+        val diffPerTick: Float = 0f,
     )
 
     data class Hunger(
@@ -93,7 +93,7 @@ data class BodyConfig(
         @Expose
         val hungryThreshold: Float = 0f,
         @Expose
-        val diffPerSecond: Float = 0f,
+        val diffPerTick: Float = 0f,
         @Expose
         val transformation: BodyType? = null,
     )
@@ -102,7 +102,7 @@ data class BodyConfig(
         @Expose
         val initialThreshold: Float = 1f,
         @Expose
-        val diffPerSecond: Float = 0f,
+        val diffPerTick: Float = 0f,
         @Expose
         val transformation: BodyType,
     )
@@ -111,7 +111,7 @@ data class BodyConfig(
         @Expose
         val initialThreshold: Float = 1f,
         @Expose
-        val diffPerSecond: Float = 0f,
+        val diffPerTick: Float = 0f,
         @Expose
         val production: BodyType,
     )
@@ -127,13 +127,13 @@ data class BodyConfig(
 
     data class Food(
         @Expose
-        val healthDiffPerSecond: Float = 0f,
+        val healthDiffPerTick: Float = 0f,
         @Expose
-        val hungerDiffPerSecond: Float = 0f,
+        val hungerDiffPerTick: Float = 0f,
         @Expose
-        val growthDiffPerSecond: Float = 0f,
+        val growthDiffPerTick: Float = 0f,
         @Expose
-        val dropDiffPerSecond: Float = 0f,
+        val dropDiffPerTick: Float = 0f,
         @Expose
         val health: Float = 0f,
         @Expose

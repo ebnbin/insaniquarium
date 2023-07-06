@@ -258,7 +258,7 @@ abstract class BaseGame : ApplicationListener {
     }
 
     companion object {
-        private const val TICK = 1f / 10f
+        const val TICK = 1f / 20f
         private const val DELTA_MAX = 1f / 20f
         private const val DELTA_FIXED = 1f / 60f
     }

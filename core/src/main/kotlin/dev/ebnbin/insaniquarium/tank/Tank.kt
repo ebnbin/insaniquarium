@@ -152,6 +152,16 @@ class Tank : Group() {
         groupMap.values.reversed().forEach { it.clearChildren() }
     }
 
+    fun tick() {
+        children.forEach { group ->
+            group as Group
+            group.children.forEach { body ->
+                body as Body
+                body.tick()
+            }
+        }
+    }
+
     override fun act(delta: Float) {
         super.act(delta)
         baseGame.putLog("tank") {

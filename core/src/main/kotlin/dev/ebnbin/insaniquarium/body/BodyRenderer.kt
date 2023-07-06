@@ -3,6 +3,7 @@ package dev.ebnbin.insaniquarium.body
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
+import dev.ebnbin.gdx.lifecycle.BaseGame
 import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.unitToMeter
 import kotlin.math.min
@@ -15,7 +16,7 @@ data class BodyRenderer(
     private val expectedDirection: Direction,
     private val isHungry: Boolean,
     private val awayFromDrivingTargetX: Boolean,
-    private val status: Status,
+    val status: Status,
 ) {
     data class Status(
         val animationData: BodyAnimationData = BodyAnimationData(),
@@ -62,13 +63,12 @@ data class BodyRenderer(
     val canRemove: Boolean = alphaTime != null && alphaTime <= -ALPHA_DURATION
 
     fun nextStatus(
-        delta: Float,
         input: BodyInput,
         eatenFoodRelation: BodyRelation?,
     ): Status {
-        val nextAnimationData = nextAnimationData(delta, eatenFoodRelation)
-        val nextAlphaTime = nextAlphaTime(delta)
-        val nextScaleTransform = nextScaleTransform(delta, input)
+        val nextAnimationData = nextAnimationData(eatenFoodRelation)
+        val nextAlphaTime = nextAlphaTime()
+        val nextScaleTransform = nextScaleTransform(input)
         return Status(
             animationData = nextAnimationData,
             alphaTime = nextAlphaTime,
@@ -77,7 +77,6 @@ data class BodyRenderer(
     }
 
     private fun nextAnimationData(
-        delta: Float,
         eatenFoodRelation: BodyRelation?,
     ): BodyAnimationData {
         val animationStatus = if (isHungry) {
@@ -116,7 +115,7 @@ data class BodyRenderer(
         fun update(): BodyAnimationData {
             return animationData.copy(
                 status = animationStatus,
-                stateTime = animationData.stateTime + delta,
+                stateTime = animationData.stateTime + BaseGame.TICK,
             )
         }
 
@@ -150,7 +149,7 @@ data class BodyRenderer(
         }
     }
 
-    private fun nextAlphaTime(delta: Float): Float? {
+    private fun nextAlphaTime(): Float? {
         if (!isDead) {
             return null
         }
@@ -161,12 +160,11 @@ data class BodyRenderer(
                 null
             }
         } else {
-            alphaTime - delta
+            alphaTime - BaseGame.TICK
         }
     }
 
     private fun nextScaleTransform(
-        delta: Float,
         input: BodyInput,
     ): ScaleTransform? {
         val nextScaleTransform = input.scaleTransform ?: status.scaleTransform ?: return null
@@ -174,7 +172,7 @@ data class BodyRenderer(
             return null
         }
         return nextScaleTransform.copy(
-            time = min(nextScaleTransform.duration, nextScaleTransform.time + delta),
+            time = min(nextScaleTransform.duration, nextScaleTransform.time + BaseGame.TICK),
         )
     }
 

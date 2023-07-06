@@ -6,10 +6,4 @@ data class BodyInput(
     val growthDiff: Float = 0f,
     val dropDiff: Float = 0f,
     val scaleTransform: BodyRenderer.ScaleTransform? = null,
-) {
-    val skipUpdate: Boolean = healthDiff == 0f &&
-        hungerDiff == 0f &&
-        growthDiff == 0f &&
-        dropDiff == 0f &&
-        scaleTransform == null
-}
+)

@@ -17,20 +17,22 @@ class Body(
     var data: BodyData = BodyData.create(this, status)
         private set
 
-    override fun act(delta: Float) {
-        super.act(delta)
-        val input = BodyInput()
-        act(delta, input)
+    fun tick() {
+        performTick()
     }
 
-    fun act(
-        delta: Float,
-        input: BodyInput,
-    ): BodyData {
-        if (delta == 0f && input.skipUpdate) {
-            return data
-        }
-        data = data.update(delta, input)
+    fun performTick(input: BodyInput = BodyInput()): BodyData {
+        data = data.tick(input)
+        return data
+    }
+
+    override fun act(delta: Float) {
+        super.act(delta)
+        performAct(delta)
+    }
+
+    fun performAct(delta: Float): BodyData {
+        data = data.update(delta)
         if (data.postUpdate(delta)) {
             return data
         }

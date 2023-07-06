@@ -16,7 +16,7 @@
         "isDead": true,
         "health": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0
+          "diffPerTick": 0.0
         },
         "hunger": null,
         "growth": null,
@@ -58,7 +58,7 @@
         "isDead": true,
         "health": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0
+          "diffPerTick": 0.0
         },
         "hunger": null,
         "growth": null,
@@ -100,28 +100,28 @@
         "isDead": false,
         "health": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0
+          "diffPerTick": 0.0
         },
         "hunger": {
           "initialThreshold": 1.0,
           "maxThreshold": 1.5,
           "hungryThreshold": 0.5,
-          "diffPerSecond": -0.05,
+          "diffPerTick": -0.0025,
           "transformation": "guppy_small_corpse"
         },
         "growth": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0,
+          "diffPerTick": 0.0,
           "transformation": "guppy_medium"
         },
         "drop": null,
         "eatAct": {
           "foods": {
             "fish_food": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 1.0,
               "growth": -0.5,
@@ -200,32 +200,32 @@
         "isDead": false,
         "health": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0
+          "diffPerTick": 0.0
         },
         "hunger": {
           "initialThreshold": 1.0,
           "maxThreshold": 1.5,
           "hungryThreshold": 0.5,
-          "diffPerSecond": -0.05,
+          "diffPerTick": -0.0025,
           "transformation": "guppy_medium_corpse"
         },
         "growth": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0,
+          "diffPerTick": 0.0,
           "transformation": "guppy_large"
         },
         "drop": {
           "initialThreshold": 1.0,
-          "diffPerSecond": -0.15,
+          "diffPerTick": -0.0075000003,
           "production": "silver_coin"
         },
         "eatAct": {
           "foods": {
             "fish_food": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 1.0,
               "growth": -0.33333334,
@@ -304,32 +304,32 @@
         "isDead": false,
         "health": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0
+          "diffPerTick": 0.0
         },
         "hunger": {
           "initialThreshold": 1.0,
           "maxThreshold": 1.5,
           "hungryThreshold": 0.5,
-          "diffPerSecond": -0.05,
+          "diffPerTick": -0.0025,
           "transformation": "guppy_large_corpse"
         },
         "growth": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0,
+          "diffPerTick": 0.0,
           "transformation": "guppy_king"
         },
         "drop": {
           "initialThreshold": 1.0,
-          "diffPerSecond": -0.15,
+          "diffPerTick": -0.0075000003,
           "production": "gold_coin"
         },
         "eatAct": {
           "foods": {
             "fish_food": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 1.0,
               "growth": -0.2,
@@ -408,28 +408,28 @@
         "isDead": false,
         "health": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0
+          "diffPerTick": 0.0
         },
         "hunger": {
           "initialThreshold": 1.0,
           "maxThreshold": 1.5,
           "hungryThreshold": 0.5,
-          "diffPerSecond": -0.05,
+          "diffPerTick": -0.0025,
           "transformation": "guppy_king_corpse"
         },
         "growth": null,
         "drop": {
           "initialThreshold": 1.0,
-          "diffPerSecond": -0.15,
+          "diffPerTick": -0.0075000003,
           "production": "diamond"
         },
         "eatAct": {
           "foods": {
             "fish_food": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 1.0,
               "growth": 0.0,
@@ -511,22 +511,22 @@
           "initialThreshold": 1.0,
           "maxThreshold": 1.5,
           "hungryThreshold": 0.5,
-          "diffPerSecond": -0.05,
+          "diffPerTick": -0.0025,
           "transformation": "starcatcher_corpse"
         },
         "growth": null,
         "drop": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0,
+          "diffPerTick": 0.0,
           "production": "beetle"
         },
         "eatAct": {
           "foods": {
             "star": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 1.0,
               "growth": 0.0,
@@ -584,7 +584,7 @@
           "initialThreshold": 1.0,
           "maxThreshold": 1.5,
           "hungryThreshold": 0.5,
-          "diffPerSecond": -0.05,
+          "diffPerTick": -0.0025,
           "transformation": "beetlemuncher_corpse"
         },
         "growth": null,
@@ -592,10 +592,10 @@
         "eatAct": {
           "foods": {
             "star_potion": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 1.0,
               "growth": 0.0,
@@ -908,13 +908,13 @@
         "isDead": false,
         "health": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0
+          "diffPerTick": 0.0
         },
         "hunger": {
           "initialThreshold": 1.0,
           "maxThreshold": 1.0,
           "hungryThreshold": 0.0,
-          "diffPerSecond": 0.0,
+          "diffPerTick": 0.0,
           "transformation": null
         },
         "growth": null,
@@ -922,60 +922,60 @@
         "eatAct": {
           "foods": {
             "guppy_small": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 0.0,
               "growth": 0.0,
               "drop": 0.0
             },
             "guppy_medium": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 0.0,
               "growth": 0.0,
               "drop": 0.0
             },
             "guppy_large": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 0.0,
               "growth": 0.0,
               "drop": 0.0
             },
             "guppy_king": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 0.0,
               "growth": 0.0,
               "drop": 0.0
             },
             "starcatcher": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 0.0,
               "growth": 0.0,
               "drop": 0.0
             },
             "beetlemuncher": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 0.0,
               "growth": 0.0,
@@ -1037,7 +1037,7 @@
           "initialThreshold": 1.0,
           "maxThreshold": 1.0,
           "hungryThreshold": 0.0,
-          "diffPerSecond": -0.05,
+          "diffPerTick": -0.0025,
           "transformation": "niko_open"
         },
         "growth": null,
@@ -1082,7 +1082,7 @@
           "initialThreshold": 1.0,
           "maxThreshold": 1.0,
           "hungryThreshold": 0.0,
-          "diffPerSecond": -0.2,
+          "diffPerTick": -0.01,
           "transformation": "niko_close"
         },
         "growth": null,
@@ -1127,7 +1127,7 @@
           "initialThreshold": 1.0,
           "maxThreshold": 1.0,
           "hungryThreshold": 0.0,
-          "diffPerSecond": -2.0,
+          "diffPerTick": -0.1,
           "transformation": "niko"
         },
         "growth": null,
@@ -1174,40 +1174,40 @@
         "eatAct": {
           "foods": {
             "silver_coin": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 0.0,
               "growth": 0.0,
               "drop": 0.0
             },
             "gold_coin": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 0.0,
               "growth": 0.0,
               "drop": 0.0
             },
             "star": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 0.0,
               "growth": 0.0,
               "drop": 0.0
             },
             "diamond": {
-              "healthDiffPerSecond": -10.0,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.5,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 0.0,
               "growth": 0.0,
@@ -1264,7 +1264,7 @@
           "initialThreshold": 1.0,
           "maxThreshold": 1.0,
           "hungryThreshold": 0.0,
-          "diffPerSecond": 0.0,
+          "diffPerTick": 0.0,
           "transformation": null
         },
         "growth": null,
@@ -1272,10 +1272,10 @@
         "eatAct": {
           "foods": {
             "sylvester": {
-              "healthDiffPerSecond": -0.1,
-              "hungerDiffPerSecond": 0.0,
-              "growthDiffPerSecond": 0.0,
-              "dropDiffPerSecond": 0.0,
+              "healthDiffPerTick": -0.005,
+              "hungerDiffPerTick": 0.0,
+              "growthDiffPerTick": 0.0,
+              "dropDiffPerTick": 0.0,
               "health": 0.0,
               "hunger": 0.0,
               "growth": 0.0,
@@ -1394,7 +1394,7 @@
         "isDead": true,
         "health": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0
+          "diffPerTick": 0.0
         },
         "hunger": null,
         "growth": null,
@@ -1436,7 +1436,7 @@
         "isDead": true,
         "health": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0
+          "diffPerTick": 0.0
         },
         "hunger": null,
         "growth": null,
@@ -1478,7 +1478,7 @@
         "isDead": true,
         "health": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0
+          "diffPerTick": 0.0
         },
         "hunger": null,
         "growth": null,
@@ -1520,7 +1520,7 @@
         "isDead": true,
         "health": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0
+          "diffPerTick": 0.0
         },
         "hunger": null,
         "growth": null,
@@ -1562,7 +1562,7 @@
         "isDead": true,
         "health": {
           "initialThreshold": 1.0,
-          "diffPerSecond": 0.0
+          "diffPerTick": 0.0
         },
         "hunger": null,
         "growth": null,

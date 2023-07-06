@@ -26,7 +26,8 @@ class BodyDelegate(
             status = status
         )
         if (delta != 0f || input != null) {
-            newBody.delegate.act(delta, input ?: BodyInput())
+            newBody.delegate.tick(input ?: BodyInput())
+            newBody.delegate.act(delta)
         }
         return newBody
     }
@@ -38,17 +39,23 @@ class BodyDelegate(
         input: BodyInput? = null,
     ): BodyData {
         val newBody = body.tank.replaceBody(body.data, type, status)
-        if (input != null) {
-            newBody.delegate.act(delta, input)
+        if (delta != 0f || input != null) {
+            newBody.delegate.tick(input ?: BodyInput())
+            newBody.delegate.act(delta)
         }
         return newBody
     }
 
-    fun act(
-        delta: Float,
+    fun tick(
         input: BodyInput,
     ): BodyData {
-        return body.act(delta, input)
+        return body.performTick(input)
+    }
+
+    fun act(
+        delta: Float,
+    ): BodyData {
+        return body.performAct(delta)
     }
 
     fun setSize(width: Float, height: Float) {

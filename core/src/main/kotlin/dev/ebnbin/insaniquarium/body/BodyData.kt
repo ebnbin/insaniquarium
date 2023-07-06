@@ -52,8 +52,7 @@ data class BodyData(
     fun hit(touchPoint: Point): Boolean {
         val hit = box.hit(touchPoint)
         if (hit) {
-            delegate.act(
-                delta = 0f,
+            delegate.tick(
                 input = BodyInput(
                     healthDiff = -(life.health ?: 0f),
                 ),
@@ -82,14 +81,22 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    fun update(delta: Float, input: BodyInput): BodyData {
+    fun tick(input: BodyInput): BodyData {
+        return copy(
+            status = BodyStatusHelper.nextTick(
+                data = this,
+                delegate = delegate,
+                input = input,
+                touchPoint = delegate.touchPoint,
+            ),
+        )
+    }
+
+    fun update(delta: Float): BodyData {
         return copy(
             status = BodyStatusHelper.nextStatus(
                 data = this,
-                delegate = delegate,
                 delta = delta,
-                input = input,
-                touchPoint = delegate.touchPoint,
             ),
         )
     }

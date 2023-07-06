@@ -9,4 +9,9 @@ class TankStage : BaseStage(viewport = MeterFitViewport()) {
         it.setPosition(width / 2f, height / 2f, Align.center)
         addActor(it)
     }
+
+    override fun tick() {
+        super.tick()
+        tank.tick()
+    }
 }
