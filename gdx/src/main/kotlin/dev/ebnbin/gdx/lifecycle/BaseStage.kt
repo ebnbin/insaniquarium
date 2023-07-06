@@ -17,6 +17,12 @@ abstract class BaseStage(viewport: Viewport = UnitScreenViewport()) : Stage(view
     open fun resume() {
     }
 
+    /**
+     * Called before [act]. Called 10 times per second.
+     */
+    open fun tick() {
+    }
+
     open fun pause() {
     }
 

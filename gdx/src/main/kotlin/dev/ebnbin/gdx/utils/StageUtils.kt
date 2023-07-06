@@ -18,10 +18,16 @@ fun List<BaseStage>.resume() {
     }
 }
 
+fun List<BaseStage>.tick() {
+    filter { it.isEnabled }.forEach {
+        it.tick()
+    }
+}
+
 fun List<BaseStage>.act(delta: Float) {
     filter { it.isEnabled }.forEach {
-        it.isDebugAll = GdxPrefManager.is_debug_all.data
         it.act(delta)
+        it.isDebugAll = GdxPrefManager.is_debug_all.data
     }
 }
 

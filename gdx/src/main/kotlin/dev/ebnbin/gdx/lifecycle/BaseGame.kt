@@ -22,6 +22,7 @@ import dev.ebnbin.gdx.utils.fromJson
 import dev.ebnbin.gdx.utils.pause
 import dev.ebnbin.gdx.utils.resize
 import dev.ebnbin.gdx.utils.resume
+import dev.ebnbin.gdx.utils.tick
 import kotlin.math.max
 import kotlin.math.min
 
@@ -99,6 +100,8 @@ abstract class BaseGame : ApplicationListener {
 
     private var frameStartTime: Long = 0L
 
+    private var tickAccumulator: Float = 0f
+
     private var deltaAccumulator: Float = 0f
 
     override fun render() {
@@ -108,16 +111,26 @@ abstract class BaseGame : ApplicationListener {
         val currentTime = System.nanoTime()
         if (currentTime - frameStartTime >= 1_000_000_000L) {
             frameStartTime = currentTime
+            ticksPerSecond = tickCount
             actsPerSecond = actCount
             drawsPerSecond = drawCount
+            tickAverageTime = tickTime / max(1, tickCount) / 1_000_000f
             actAverageTime = actTime / max(1, actCount) / 1_000_000f
             clearAverageTime = clearTime / max(1, drawCount) / 1_000_000f
             drawAverageTime = drawTime / max(1, drawCount) / 1_000_000f
+            tickCount = 0
             actCount = 0
+            tickTime = 0L
             actTime = 0L
             clearTime = 0L
             drawCount = 0
             drawTime = 0L
+        }
+        val tick = min(TICK, Gdx.graphics.deltaTime)
+        tickAccumulator += tick
+        while (tickAccumulator >= TICK) {
+            tick()
+            tickAccumulator -= TICK
         }
         if (GdxPrefManager.use_fixed_delta.data) {
             val delta = min(DELTA_MAX, Gdx.graphics.deltaTime)
@@ -132,17 +145,31 @@ abstract class BaseGame : ApplicationListener {
         draw()
     }
 
+    internal var ticksPerSecond: Int = 0
+        private set
     internal var actsPerSecond: Int = 0
         private set
     internal var drawsPerSecond: Int = 0
         private set
 
+    internal var tickAverageTime: Float = 0f // ms
+        private set
     internal var actAverageTime: Float = 0f // ms
         private set
     internal var clearAverageTime: Float = 0f // ms
         private set
     internal var drawAverageTime: Float = 0f // ms
         private set
+
+    private var tickCount: Int = 0
+    private var tickTime: Long = 0L // ns
+
+    private fun tick() {
+        ++tickCount
+        tickTime += actionTime {
+            stageList().tick()
+        }
+    }
 
     private var actCount: Int = 0
     private var actTime: Long = 0L // ns
@@ -231,6 +258,7 @@ abstract class BaseGame : ApplicationListener {
     }
 
     companion object {
+        private const val TICK = 1f / 10f
         private const val DELTA_MAX = 1f / 20f
         private const val DELTA_FIXED = 1f / 60f
     }

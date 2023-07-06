@@ -53,17 +53,21 @@ class DevGdxLogStage : BaseStage(viewport = UnitFitViewport()) {
                         it * 1000f,
                     )
                 },
-                "acts/draws/framesPerSecond" to {
+                "ticks/acts/draws/framesPerSecond" to {
                     val fps = Gdx.graphics.framesPerSecond
                     val color = when {
                         fps >= 60 -> Color.GREEN
                         fps >= 20 -> Color.ORANGE
                         else -> Color.RED
                     }
-                    "${baseGame.actsPerSecond},${baseGame.drawsPerSecond},${"$fps".colorMarkup(color)}"
+                    "${baseGame.ticksPerSecond}" +
+                        ",${baseGame.actsPerSecond}" +
+                        ",${baseGame.drawsPerSecond}" +
+                        ",${"$fps".colorMarkup(color)}"
                 },
-                "act/clear/drawAverageTime(ms)" to {
-                    "%6.3f,%6.3f,%6.3f".format(
+                "tick/act/clear/drawAverageTime(ms)" to {
+                    "%6.3f,%6.3f,%6.3f,%6.3f".format(
+                        baseGame.tickAverageTime,
                         baseGame.actAverageTime,
                         baseGame.clearAverageTime,
                         baseGame.drawAverageTime,

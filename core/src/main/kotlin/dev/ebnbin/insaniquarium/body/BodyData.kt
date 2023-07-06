@@ -10,8 +10,6 @@ data class BodyData(
     val config: BodyConfig,
     val delegate: BodyDelegate,
     val status: BodyStatus,
-    val delta: Float,
-    val input: BodyInput,
 ) {
     val box: BodyBox = BodyBox(
         config = config.box,
@@ -69,7 +67,7 @@ data class BodyData(
     val canRemove: Boolean = (renderer.canRemove) ||
         (life.canRemove(isSwimming = status.renderer.animationData.isSwimming))
 
-    fun postUpdate(): Boolean {
+    fun postUpdate(delta: Float): Boolean {
         if (life.postUpdate(
             delegate = delegate,
             status = status,
@@ -93,8 +91,6 @@ data class BodyData(
                 input = input,
                 touchPoint = delegate.touchPoint,
             ),
-            delta = delta,
-            input = input,
         )
     }
 
@@ -130,8 +126,6 @@ data class BodyData(
                 config = body.config,
                 delegate = BodyDelegate(body),
                 status = status,
-                delta = 0f,
-                input = BodyInput(),
             )
         }
     }

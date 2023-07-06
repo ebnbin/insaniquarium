@@ -23,12 +23,15 @@ class Body(
         act(delta, input)
     }
 
-    fun act(delta: Float, input: BodyInput): BodyData {
+    fun act(
+        delta: Float,
+        input: BodyInput,
+    ): BodyData {
         if (delta == 0f && input.skipUpdate) {
             return data
         }
         data = data.update(delta, input)
-        if (data.postUpdate()) {
+        if (data.postUpdate(delta)) {
             return data
         }
         data.act()
