@@ -19,17 +19,15 @@ class Body(
 
     override fun act(delta: Float) {
         super.act(delta)
-        val input = BodyInput(
-            delta = delta,
-        )
-        act(input)
+        val input = BodyInput()
+        act(delta, input)
     }
 
-    fun act(input: BodyInput): BodyData {
-        if (input.skipUpdate) {
+    fun act(delta: Float, input: BodyInput): BodyData {
+        if (delta == 0f && input.skipUpdate) {
             return data
         }
-        data = data.update(input)
+        data = data.update(delta, input)
         if (data.postUpdate()) {
             return data
         }

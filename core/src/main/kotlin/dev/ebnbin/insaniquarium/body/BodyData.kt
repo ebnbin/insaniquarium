@@ -10,6 +10,7 @@ data class BodyData(
     val config: BodyConfig,
     val delegate: BodyDelegate,
     val status: BodyStatus,
+    val delta: Float,
     val input: BodyInput,
 ) {
     val box: BodyBox = BodyBox(
@@ -54,6 +55,7 @@ data class BodyData(
         val hit = box.hit(touchPoint)
         if (hit) {
             delegate.act(
+                delta = 0f,
                 input = BodyInput(
                     healthDiff = -(life.health ?: 0f),
                 ),
@@ -71,7 +73,7 @@ data class BodyData(
         if (life.postUpdate(
             delegate = delegate,
             status = status,
-            delta = input.delta,
+            delta = delta,
         )) {
             return true
         }
@@ -82,14 +84,16 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    fun update(input: BodyInput): BodyData {
+    fun update(delta: Float, input: BodyInput): BodyData {
         return copy(
             status = BodyStatusHelper.nextStatus(
                 data = this,
                 delegate = delegate,
+                delta = delta,
                 input = input,
                 touchPoint = delegate.touchPoint,
             ),
+            delta = delta,
             input = input,
         )
     }
@@ -126,6 +130,7 @@ data class BodyData(
                 config = body.config,
                 delegate = BodyDelegate(body),
                 status = status,
+                delta = 0f,
                 input = BodyInput(),
             )
         }

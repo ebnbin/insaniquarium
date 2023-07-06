@@ -18,14 +18,15 @@ class BodyDelegate(
     fun addBody(
         type: BodyType,
         status: BodyStatus,
+        delta: Float = 0f,
         input: BodyInput? = null,
     ): BodyData {
         val newBody = body.tank.addBody(
             type = type,
             status = status
         )
-        if (input != null) {
-            newBody.delegate.act(input)
+        if (delta != 0f || input != null) {
+            newBody.delegate.act(delta, input ?: BodyInput())
         }
         return newBody
     }
@@ -33,17 +34,21 @@ class BodyDelegate(
     fun replaceBody(
         type: BodyType,
         status: BodyStatus,
+        delta: Float = 0f,
         input: BodyInput? = null,
     ): BodyData {
         val newBody = body.tank.replaceBody(body.data, type, status)
         if (input != null) {
-            newBody.delegate.act(input)
+            newBody.delegate.act(delta, input)
         }
         return newBody
     }
 
-    fun act(input: BodyInput): BodyData {
-        return body.act(input)
+    fun act(
+        delta: Float,
+        input: BodyInput,
+    ): BodyData {
+        return body.act(delta, input)
     }
 
     fun setSize(width: Float, height: Float) {

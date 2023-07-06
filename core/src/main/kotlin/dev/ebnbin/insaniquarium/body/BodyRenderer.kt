@@ -62,12 +62,13 @@ data class BodyRenderer(
     val canRemove: Boolean = alphaTime != null && alphaTime <= -ALPHA_DURATION
 
     fun nextStatus(
+        delta: Float,
         input: BodyInput,
         eatenFoodRelation: BodyRelation?,
     ): Status {
-        val nextAnimationData = nextAnimationData(input.delta, eatenFoodRelation)
-        val nextAlphaTime = nextAlphaTime(input.delta)
-        val nextScaleTransform = nextScaleTransform(input)
+        val nextAnimationData = nextAnimationData(delta, eatenFoodRelation)
+        val nextAlphaTime = nextAlphaTime(delta)
+        val nextScaleTransform = nextScaleTransform(delta, input)
         return Status(
             animationData = nextAnimationData,
             alphaTime = nextAlphaTime,
@@ -164,13 +165,16 @@ data class BodyRenderer(
         }
     }
 
-    private fun nextScaleTransform(input: BodyInput): ScaleTransform? {
+    private fun nextScaleTransform(
+        delta: Float,
+        input: BodyInput,
+    ): ScaleTransform? {
         val nextScaleTransform = input.scaleTransform ?: status.scaleTransform ?: return null
         if (nextScaleTransform.time == nextScaleTransform.duration) {
             return null
         }
         return nextScaleTransform.copy(
-            time = min(nextScaleTransform.duration, nextScaleTransform.time + input.delta),
+            time = min(nextScaleTransform.duration, nextScaleTransform.time + delta),
         )
     }
 

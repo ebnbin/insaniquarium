@@ -84,12 +84,13 @@ data class BodyLife(
 
     fun nextStatus(
         delegate: BodyDelegate,
+        delta: Float,
         input: BodyInput,
         touchPoint: Point?,
     ): Pair<Status, TmpStatus> {
         val nextEatAct = nextEatAct(
             delegate = delegate,
-            delta = input.delta,
+            delta = delta,
         )
 
         val hasEatDrivingTarget = nextEatAct?.drivingTargetX != null || nextEatAct?.drivingTargetY != null
@@ -114,7 +115,7 @@ data class BodyLife(
             },
             tankSize = tankWidth,
             reachDrivingTarget = reachDrivingTargetX,
-            delta = input.delta,
+            delta = delta,
         )
         val nextSwimActY = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
@@ -129,7 +130,7 @@ data class BodyLife(
             },
             tankSize = tankHeight,
             reachDrivingTarget = reachDrivingTargetY,
-            delta = input.delta,
+            delta = delta,
         )
 
         val nextDrivingTargetX: BodyDrivingTarget? =
@@ -137,10 +138,10 @@ data class BodyLife(
         val nextDrivingTargetY: BodyDrivingTarget? =
             nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
 
-        val nextHealth = nextHealth(input, nextEatAct?.eatenFood)
-        val nextHunger = nextHunger(input, nextEatAct?.eatenFood)
-        val nextGrowth = nextGrowth(input, nextEatAct?.eatenFood)
-        val nextDrop = nextDrop(input, nextEatAct?.eatenFood)
+        val nextHealth = nextHealth(delta, input, nextEatAct?.eatenFood)
+        val nextHunger = nextHunger(delta, input, nextEatAct?.eatenFood)
+        val nextGrowth = nextGrowth(delta, input, nextEatAct?.eatenFood)
+        val nextDrop = nextDrop(delta, input, nextEatAct?.eatenFood)
         return Status(
             swimTimeX = nextSwimActX?.time,
             swimTimeY = nextSwimActY?.time,
@@ -178,6 +179,7 @@ data class BodyLife(
         if (targetFood != null && canEat && foodRelation == BodyRelation.CONTAIN_CENTER) {
             val food = config.eatAct.foods.getValue(targetFood.type)
             val foodBody = targetFood.delegate.act(
+                delta = 0f,
                 input = BodyInput(
                     healthDiff = food.healthDiffPerSecond * delta,
                 ),
@@ -303,6 +305,7 @@ data class BodyLife(
     }
 
     private fun nextHealth(
+        delta: Float,
         input: BodyInput,
         food: BodyConfig.Food?,
     ): Float? {
@@ -311,13 +314,14 @@ data class BodyLife(
             value = health,
             initialThreshold = config.health.initialThreshold,
             diffPerSecond = config.health.diffPerSecond,
-            inputDelta = input.delta,
+            delta = delta,
             inputDiff = input.healthDiff,
             foodDiff = food?.health,
         ).coerceIn(0f, 1f)
     }
 
     private fun nextHunger(
+        delta: Float,
         input: BodyInput,
         food: BodyConfig.Food?,
     ): Float? {
@@ -326,13 +330,14 @@ data class BodyLife(
             value = hunger,
             initialThreshold = config.hunger.initialThreshold,
             diffPerSecond = config.hunger.diffPerSecond,
-            inputDelta = input.delta,
+            delta = delta,
             inputDiff = input.hungerDiff,
             foodDiff = food?.hunger,
         ).coerceIn(0f, config.hunger.maxThreshold)
     }
 
     private fun nextGrowth(
+        delta: Float,
         input: BodyInput,
         food: BodyConfig.Food?
     ): Float? {
@@ -341,13 +346,14 @@ data class BodyLife(
             value = growth,
             initialThreshold = config.growth.initialThreshold,
             diffPerSecond = config.growth.diffPerSecond,
-            inputDelta = input.delta,
+            delta = delta,
             inputDiff = input.growthDiff,
             foodDiff = food?.growth,
         )
     }
 
     private fun nextDrop(
+        delta: Float,
         input: BodyInput,
         food: BodyConfig.Food?,
     ): Float? {
@@ -356,7 +362,7 @@ data class BodyLife(
             value = drop,
             initialThreshold = config.drop.initialThreshold,
             diffPerSecond = config.drop.diffPerSecond,
-            inputDelta = input.delta,
+            delta = delta,
             inputDiff = input.dropDiff,
             foodDiff = food?.drop,
         )
@@ -366,12 +372,12 @@ data class BodyLife(
         value: Float?,
         initialThreshold: Float,
         diffPerSecond: Float,
-        inputDelta: Float,
+        delta: Float,
         inputDiff: Float,
         foodDiff: Float?,
     ): Float {
         var nextValue = value ?: initialThreshold
-        nextValue += diffPerSecond * inputDelta
+        nextValue += diffPerSecond * delta
         nextValue += inputDiff
         nextValue += (foodDiff ?: 0f)
         return nextValue
@@ -402,9 +408,7 @@ data class BodyLife(
                         alphaTime = null,
                     ),
                 ),
-                input = BodyInput(
-                    delta = delta,
-                ),
+                delta = delta,
             )
             return true
         }
@@ -419,8 +423,8 @@ data class BodyLife(
                         growth = null,
                     ),
                 ),
+                delta = delta,
                 input = BodyInput(
-                    delta = delta,
                     growthDiff = growth,
                     scaleTransform = BodyRenderer.ScaleTransform(
                         duration = 0.25f,
@@ -440,12 +444,11 @@ data class BodyLife(
                             y = status.box.y,
                         ),
                     ),
-                    input = BodyInput(
-                        delta = delta,
-                    ),
+                    delta = delta,
                 )
             }
             delegate.act(
+                delta = 0f,
                 input = BodyInput(
                     dropDiff = dropCount.toFloat(),
                 ),
