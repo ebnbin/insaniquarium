@@ -24,28 +24,9 @@ data class BodyData(
     //*****************************************************************************************************************
 
     val life: BodyLife = BodyLife(
-        boxConfig = config.box,
-        config = config.life,
-        tankWidth = delegate.tankWidth,
-        tankHeight = delegate.tankHeight,
-        reachDrivingTargetX = box.reachDrivingTargetX,
-        reachDrivingTargetY = box.reachDrivingTargetY,
-        boxRelation = box::relation,
-        canEat = status.renderer.animationData.canEat,
+        config = config,
+        box = box,
         status = status.life,
-    )
-
-    //*****************************************************************************************************************
-
-    val renderer: BodyRenderer = BodyRenderer(
-        config = config.renderer,
-        delegate = delegate,
-        isDead = life.isDead,
-        isSinkingOrFloatingOutsideWater = box.isSinkingOrFloatingOutsideWater,
-        expectedDirection = box.expectedDirection,
-        isHungry = life.hungerStatus == BodyHungerStatus.HUNGRY,
-        awayFromDrivingTargetX = box.awayFromDrivingTargetX,
-        status = status.renderer,
     )
 
     //*****************************************************************************************************************
@@ -64,11 +45,6 @@ data class BodyData(
 
     //*****************************************************************************************************************
 
-    val canRemove: Boolean = (renderer.canRemove) ||
-        (life.canRemove(isSwimming = status.renderer.animationData.isSwimming))
-
-    //*****************************************************************************************************************
-
     fun tick(input: BodyInput): BodyData {
         return copy(
             status = BodyStatusHelper.nextTick(
@@ -81,14 +57,9 @@ data class BodyData(
     }
 
     fun postTick(): Boolean {
-        if (life.postTick(
-                delegate = delegate,
-                status = status,
-            )) {
-            return true
-        }
-        return renderer.postTick(
+        return life.postTick(
             delegate = delegate,
+            status = status,
         )
     }
 
@@ -111,7 +82,7 @@ data class BodyData(
     }
 
     fun draw(batch: Batch, parentAlpha: Float) {
-        renderer.draw(batch, parentAlpha)
+        life.draw(delegate, batch, parentAlpha)
     }
 
     //*****************************************************************************************************************

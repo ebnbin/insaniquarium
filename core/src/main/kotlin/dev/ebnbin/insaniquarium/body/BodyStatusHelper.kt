@@ -9,21 +9,15 @@ object BodyStatusHelper {
         input: BodyInput,
         touchPoint: Point?,
     ): BodyStatus {
-        val (nextLife, lifeTmp) = data.life.nextStatus(
+        val nextLife = data.life.nextStatus(
             delegate = delegate,
             input = input,
             touchPoint = touchPoint,
         )
 
-        val nextRenderer = data.renderer.nextStatus(
-            input = input,
-            eatenFoodRelation = lifeTmp.foodRelation,
-        )
-
         return BodyStatus(
             box = data.box.status,
             life = nextLife,
-            renderer = nextRenderer,
         )
     }
 
@@ -38,7 +32,6 @@ object BodyStatusHelper {
         return BodyStatus(
             box = nextBox,
             life = data.life.status,
-            renderer = data.renderer.status,
         )
     }
 }

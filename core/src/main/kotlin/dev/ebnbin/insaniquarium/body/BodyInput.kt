@@ -5,5 +5,5 @@ data class BodyInput(
     val hungerDiff: Float = 0f,
     val growthDiff: Float = 0f,
     val dropDiff: Float = 0f,
-    val scaleTransform: BodyRenderer.ScaleTransform? = null,
+    val scaleTransform: BodyLife.ScaleTransform? = null,
 )

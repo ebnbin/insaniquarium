@@ -1,20 +1,19 @@
 package dev.ebnbin.insaniquarium.body
 
+import com.badlogic.gdx.graphics.g2d.Batch
+import com.badlogic.gdx.graphics.g2d.TextureRegion
+import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.lifecycle.BaseGame
 import dev.ebnbin.gdx.lifecycle.baseGame
+import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.insaniquarium.game
+import kotlin.math.min
 
 data class BodyLife(
-    private val boxConfig: BodyConfig.Box,
-    private val config: BodyConfig.Life,
-    private val tankWidth: Float,
-    private val tankHeight: Float,
-    private val reachDrivingTargetX: Boolean,
-    private val reachDrivingTargetY: Boolean,
-    private val boxRelation: (other: BodyBox?) -> BodyRelation,
-    private val canEat: Boolean,
+    private val config: BodyConfig,
+    private val box: BodyBox,
     val status: Status,
 ) {
     data class Status(
@@ -33,10 +32,14 @@ data class BodyLife(
         val hunger: Float? = null,
         val growth: Float? = null,
         val drop: Float? = null,
-    )
 
-    data class TmpStatus(
-        val foodRelation: BodyRelation,
+        val animationData: BodyAnimationData = BodyAnimationData(),
+        /**
+         * >= 0f: Delaying.
+         * < 0f: Changing alpha.
+         */
+        val alphaTime: Float? = null,
+        val scaleTransform: ScaleTransform? = null,
     )
 
     private data class EatAct(
@@ -56,22 +59,31 @@ data class BodyLife(
         val time: Float,
     )
 
-    val isDead: Boolean = config.isDead
+    data class ScaleTransform(
+        val duration: Float,
+        val time: Float = 0f,
+        val startScale: Float,
+        val endScale: Float,
+    )
+
+    val isDead: Boolean = config.life.isDead
 
     val health: Float? = status.health
     private val hunger: Float? = status.hunger
     private val growth: Float? = status.growth
     private val drop: Float? = status.drop
 
-    private val isDeadFromHealth: Boolean = config.health != null && health == 0f
+    private val isDeadFromHealth: Boolean = config.life.health != null && health == 0f
 
-    val hungerStatus: BodyHungerStatus? = config.hunger?.status(hunger)
+    val hungerStatus: BodyHungerStatus? = config.life.hunger?.status(hunger)
 
-    private val transformationFromHunger: BodyType? = config.hunger?.transformation?.takeIf { hunger == 0f }
+    val isHungry: Boolean = hungerStatus == BodyHungerStatus.HUNGRY
 
-    private val transformationFromGrowth: BodyType? = config.growth?.transformation?.takeIf { growth != null && growth <= 0f }
+    private val transformationFromHunger: BodyType? = config.life.hunger?.transformation?.takeIf { hunger == 0f }
 
-    private val productionFromDrop: BodyType? = config.drop?.production?.takeIf { drop != null && drop <= 0f }
+    private val transformationFromGrowth: BodyType? = config.life.growth?.transformation?.takeIf { growth != null && growth <= 0f }
+
+    private val productionFromDrop: BodyType? = config.life.drop?.production?.takeIf { drop != null && drop <= 0f }
 
     private val dropCount: Int = if (drop == null || drop > 0f) {
         0
@@ -79,15 +91,40 @@ data class BodyLife(
         -drop.toInt() + 1
     }
 
-    fun canRemove(isSwimming: Boolean): Boolean {
-        return isDeadFromHealth || (transformationFromHunger != null && isSwimming) || transformationFromGrowth != null
+    private val animationData: BodyAnimationData = status.animationData
+    private val alphaTime: Float? = status.alphaTime
+
+    private val animation: TextureRegionAnimation = animationData.getAnimation(config.renderer.animations)
+
+    private val textureRegion: TextureRegion = animation.getTextureRegion(animationData.stateTime)
+
+    private val isFlipX: Boolean = if (animationData.action == BodyAnimationData.Action.TURN) {
+        !animationData.isFacingRight
+    } else {
+        animationData.isFacingRight
     }
+
+    private val alpha: Float = if (alphaTime == null || alphaTime >= 0f) {
+        1f
+    } else {
+        ((ALPHA_DURATION + alphaTime) / ALPHA_DURATION).coerceIn(0f, 1f)
+    }
+
+    private val canEat = status.animationData.canEat
+
+    private val rendererCanRemove: Boolean = alphaTime != null && alphaTime <= -ALPHA_DURATION
+
+    private val lifeCanRemove: Boolean = isDeadFromHealth ||
+        (transformationFromHunger != null && animationData.isSwimming) ||
+        transformationFromGrowth != null
+
+    val canRemove: Boolean = lifeCanRemove || rendererCanRemove
 
     fun nextStatus(
         delegate: BodyDelegate,
         input: BodyInput,
         touchPoint: Point?,
-    ): Pair<Status, TmpStatus> {
+    ): Status {
         val nextEatAct = nextEatAct(
             delegate = delegate,
         )
@@ -103,7 +140,7 @@ data class BodyLife(
 
         val nextSwimActX = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
-            configSwimAct = config.swimActX,
+            configSwimAct = config.life.swimActX,
             swimAct = if (status.swimTimeX == null) {
                 null
             } else {
@@ -112,12 +149,12 @@ data class BodyLife(
                     time = status.swimTimeX,
                 )
             },
-            tankSize = tankWidth,
-            reachDrivingTarget = reachDrivingTargetX,
+            tankSize = delegate.tankWidth,
+            reachDrivingTarget = box.reachDrivingTargetX,
         )
         val nextSwimActY = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
-            configSwimAct = config.swimActY,
+            configSwimAct = config.life.swimActY,
             swimAct = if (status.swimTimeY == null) {
                 null
             } else {
@@ -126,8 +163,8 @@ data class BodyLife(
                     time = status.swimTimeY,
                 )
             },
-            tankSize = tankHeight,
-            reachDrivingTarget = reachDrivingTargetY,
+            tankSize = delegate.tankHeight,
+            reachDrivingTarget = box.reachDrivingTargetY,
         )
 
         val nextDrivingTargetX: BodyDrivingTarget? =
@@ -139,6 +176,13 @@ data class BodyLife(
         val nextHunger = nextHunger(input, nextEatAct?.eatenFood)
         val nextGrowth = nextGrowth(input, nextEatAct?.eatenFood)
         val nextDrop = nextDrop(input, nextEatAct?.eatenFood)
+
+        val eatenFoodRelation = nextEatAct?.foodRelation ?: BodyRelation.DISJOINT
+
+        val nextAnimationData = nextAnimationData(eatenFoodRelation)
+        val nextAlphaTime = nextAlphaTime()
+        val nextScaleTransform = nextScaleTransform(input)
+
         return Status(
             swimTimeX = nextSwimActX?.time,
             swimTimeY = nextSwimActY?.time,
@@ -148,15 +192,16 @@ data class BodyLife(
             hunger = nextHunger,
             growth = nextGrowth,
             drop = nextDrop,
-        ) to TmpStatus(
-            foodRelation = nextEatAct?.foodRelation ?: BodyRelation.DISJOINT,
+            animationData = nextAnimationData,
+            alphaTime = nextAlphaTime,
+            scaleTransform = nextScaleTransform,
         )
     }
 
     private fun nextEatAct(
         delegate: BodyDelegate,
     ): EatAct? {
-        if (config.eatAct == null) {
+        if (config.life.eatAct == null) {
             return null
         }
 
@@ -164,22 +209,22 @@ data class BodyLife(
             if (hungerStatus == BodyHungerStatus.FULL) {
                 return null
             }
-            require(config.eatAct.foods.isNotEmpty())
-            return delegate.findNearestBodyByType(config.eatAct.foods.keys)
+            require(config.life.eatAct.foods.isNotEmpty())
+            return delegate.findNearestBodyByType(config.life.eatAct.foods.keys)
         }
 
         var eatenFood: BodyConfig.Food? = null
         val targetFood = targetFood()
-        val foodRelation = boxRelation(targetFood?.box)
+        val foodRelation = box.relation(targetFood?.box)
 
         if (targetFood != null && canEat && foodRelation == BodyRelation.CONTAIN_CENTER) {
-            val food = config.eatAct.foods.getValue(targetFood.type)
+            val food = config.life.eatAct.foods.getValue(targetFood.type)
             val foodBody = targetFood.delegate.tick(
                 input = BodyInput(
                     healthDiff = food.healthDiffPerTick,
                 ),
             )
-            if (foodBody.canRemove) {
+            if (foodBody.life.canRemove) {
                 eatenFood = food
             }
         }
@@ -190,7 +235,7 @@ data class BodyLife(
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
                     position = targetFood.box.x,
-                    acceleration = config.eatAct.drivingAccelerationX,
+                    acceleration = config.life.eatAct.drivingAccelerationX,
                 )
             },
             drivingTargetY = if (targetFood == null) {
@@ -199,7 +244,7 @@ data class BodyLife(
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
                     position = targetFood.box.y,
-                    acceleration = config.eatAct.drivingAccelerationY,
+                    acceleration = config.life.eatAct.drivingAccelerationY,
                 )
             },
             foodRelation = foodRelation,
@@ -214,7 +259,7 @@ data class BodyLife(
         if (!enabled) {
             return null
         }
-        if (config.touchAct == null) {
+        if (config.life.touchAct == null) {
             return null
         }
         touchPoint ?: return null
@@ -222,12 +267,12 @@ data class BodyLife(
             drivingTargetX = BodyDrivingTarget(
                 type = BodyDrivingTarget.Type.TOUCH,
                 position = touchPoint.x,
-                acceleration = config.touchAct.drivingAccelerationX,
+                acceleration = config.life.touchAct.drivingAccelerationX,
             ),
             drivingTargetY = BodyDrivingTarget(
                 type = BodyDrivingTarget.Type.TOUCH,
                 position = touchPoint.y,
-                acceleration = config.touchAct.drivingAccelerationY,
+                acceleration = config.life.touchAct.drivingAccelerationY,
             ),
         )
     }
@@ -302,11 +347,11 @@ data class BodyLife(
         input: BodyInput,
         food: BodyConfig.Food?,
     ): Float? {
-        config.health ?: return null
+        config.life.health ?: return null
         return nextValue(
             value = health,
-            initialThreshold = config.health.initialThreshold,
-            diffPerTick = config.health.diffPerTick,
+            initialThreshold = config.life.health.initialThreshold,
+            diffPerTick = config.life.health.diffPerTick,
             inputDiff = input.healthDiff,
             foodDiff = food?.health,
         ).coerceIn(0f, 1f)
@@ -316,25 +361,25 @@ data class BodyLife(
         input: BodyInput,
         food: BodyConfig.Food?,
     ): Float? {
-        config.hunger ?: return null
+        config.life.hunger ?: return null
         return nextValue(
             value = hunger,
-            initialThreshold = config.hunger.initialThreshold,
-            diffPerTick = config.hunger.diffPerTick,
+            initialThreshold = config.life.hunger.initialThreshold,
+            diffPerTick = config.life.hunger.diffPerTick,
             inputDiff = input.hungerDiff,
             foodDiff = food?.hunger,
-        ).coerceIn(0f, config.hunger.maxThreshold)
+        ).coerceIn(0f, config.life.hunger.maxThreshold)
     }
 
     private fun nextGrowth(
         input: BodyInput,
         food: BodyConfig.Food?
     ): Float? {
-        config.growth ?: return null
+        config.life.growth ?: return null
         return nextValue(
             value = growth,
-            initialThreshold = config.growth.initialThreshold,
-            diffPerTick = config.growth.diffPerTick,
+            initialThreshold = config.life.growth.initialThreshold,
+            diffPerTick = config.life.growth.diffPerTick,
             inputDiff = input.growthDiff,
             foodDiff = food?.growth,
         )
@@ -344,11 +389,11 @@ data class BodyLife(
         input: BodyInput,
         food: BodyConfig.Food?,
     ): Float? {
-        config.drop ?: return null
+        config.life.drop ?: return null
         return nextValue(
             value = drop,
-            initialThreshold = config.drop.initialThreshold,
-            diffPerTick = config.drop.diffPerTick,
+            initialThreshold = config.life.drop.initialThreshold,
+            diffPerTick = config.life.drop.diffPerTick,
             inputDiff = input.dropDiff,
             foodDiff = food?.drop,
         )
@@ -368,6 +413,134 @@ data class BodyLife(
         return nextValue
     }
 
+    private fun nextAnimationData(
+        eatenFoodRelation: BodyRelation?,
+    ): BodyAnimationData {
+        val animationStatus = if (isHungry) {
+            BodyAnimationData.Status.HUNGRY
+        } else {
+            BodyAnimationData.Status.NORMAL
+        }
+
+        fun createEat(): BodyAnimationData {
+            return BodyAnimationData(
+                action = BodyAnimationData.Action.EAT,
+                status = animationStatus,
+                stateTime = 0f,
+                isFacingRight = animationData.isFacingRight,
+            )
+        }
+
+        fun createTurn(): BodyAnimationData {
+            return BodyAnimationData(
+                action = BodyAnimationData.Action.TURN,
+                status = animationStatus,
+                stateTime = 0f,
+                isFacingRight = !animationData.isFacingRight,
+            )
+        }
+
+        fun createSwim(): BodyAnimationData {
+            return BodyAnimationData(
+                action = BodyAnimationData.Action.SWIM,
+                status = animationStatus,
+                stateTime = 0f,
+                isFacingRight = animationData.isFacingRight,
+            )
+        }
+
+        fun update(): BodyAnimationData {
+            return animationData.copy(
+                status = animationStatus,
+                stateTime = animationData.stateTime + BaseGame.TICK,
+            )
+        }
+
+        val canAnimationActionChange = animationData.action == BodyAnimationData.Action.SWIM
+        return if (canAnimationActionChange) {
+            val canCreateTurn = config.renderer.animations.turn != null &&
+                (animationData.isFacingRight && box.expectedDirection == Direction.NEGATIVE ||
+                    !animationData.isFacingRight && box.expectedDirection == Direction.POSITIVE)
+            if (canCreateTurn && box.awayFromDrivingTargetX) {
+                createTurn()
+            } else {
+                val canCreateEat = config.renderer.animations.eat != null &&
+                    (eatenFoodRelation == BodyRelation.OVERLAP || eatenFoodRelation == BodyRelation.CONTAIN_CENTER)
+                if (canCreateEat) {
+                    createEat()
+                } else {
+                    if (canCreateTurn) {
+                        createTurn()
+                    } else {
+                        update()
+                    }
+                }
+            }
+        } else {
+            val isAnimationActionFinished = animationData.stateTime >= animation.duration
+            if (isAnimationActionFinished) {
+                createSwim()
+            } else {
+                update()
+            }
+        }
+    }
+
+    private fun nextAlphaTime(): Float? {
+        if (!isDead) {
+            return null
+        }
+        return if (alphaTime == null) {
+            if (box.isSinkingOrFloatingOutsideWater) {
+                ALPHA_DELAY_DURATION
+            } else {
+                null
+            }
+        } else {
+            alphaTime - BaseGame.TICK
+        }
+    }
+
+    private fun nextScaleTransform(
+        input: BodyInput,
+    ): ScaleTransform? {
+        val nextScaleTransform = input.scaleTransform ?: status.scaleTransform ?: return null
+        if (nextScaleTransform.time == nextScaleTransform.duration) {
+            return null
+        }
+        return nextScaleTransform.copy(
+            time = min(nextScaleTransform.duration, nextScaleTransform.time + BaseGame.TICK),
+        )
+    }
+
+    fun draw(delegate: BodyDelegate, batch: Batch, parentAlpha: Float) {
+        val oldColor = batch.color.cpy()
+        batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
+        val scale = status.scaleTransform?.let {
+            val progress = it.time / it.duration
+            it.startScale + (it.endScale - it.startScale) * progress
+        } ?: 1f
+        batch.draw(
+            textureRegion.texture,
+            delegate.x,
+            delegate.y,
+            delegate.width / 2f,
+            delegate.height / 2f,
+            delegate.width,
+            delegate.height,
+            scale,
+            scale,
+            delegate.rotation,
+            textureRegion.regionX,
+            textureRegion.regionY,
+            textureRegion.regionWidth,
+            textureRegion.regionHeight,
+            isFlipX,
+            false,
+        )
+        batch.color = oldColor
+    }
+
     /**
      * @return True if removed.
      */
@@ -382,16 +555,14 @@ data class BodyLife(
             return true
         }
         if (transformationFromHunger != null &&
-            status.renderer.animationData.action == BodyAnimationData.Action.SWIM) {
+            status.life.animationData.action == BodyAnimationData.Action.SWIM) {
             val newBody = delegate.replaceBody(
                 type = transformationFromHunger,
                 status = status.copy(
-                    life = Status(),
-                    renderer = status.renderer.copy(
-                        animationData = status.renderer.animationData.copy(
+                    life = Status(
+                        animationData = status.life.animationData.copy(
                             stateTime = 0f,
                         ),
-                        alphaTime = null,
                     ),
                 ),
             )
@@ -413,9 +584,9 @@ data class BodyLife(
             newBody.delegate.tick(
                 input = BodyInput(
                     growthDiff = growth,
-                    scaleTransform = BodyRenderer.ScaleTransform(
+                    scaleTransform = ScaleTransform(
                         duration = 0.25f,
-                        startScale = boxConfig.width / newConfig.box.width,
+                        startScale = config.box.width / newConfig.box.width,
                         endScale = 1f,
                     ),
                 ),
@@ -440,7 +611,17 @@ data class BodyLife(
                     dropDiff = dropCount.toFloat(),
                 ),
             )
+
+            if (rendererCanRemove) {
+                delegate.removeFromTank()
+                return true
+            }
             return false
+        }
+
+        if (rendererCanRemove) {
+            delegate.removeFromTank()
+            return true
         }
         return false
     }
@@ -458,5 +639,10 @@ data class BodyLife(
         baseGame.putLog("drop  ") {
             if (drop == null) "null" else "%.3f".format(drop)
         }
+    }
+
+    companion object {
+        private const val ALPHA_DELAY_DURATION = 0f
+        private const val ALPHA_DURATION = 1f
     }
 }
