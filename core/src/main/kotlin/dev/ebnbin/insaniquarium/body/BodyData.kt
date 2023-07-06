@@ -3,6 +3,7 @@ package dev.ebnbin.insaniquarium.body
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import dev.ebnbin.gdx.utils.Point
+import dev.ebnbin.gdx.utils.unitToMeter
 
 data class BodyData(
     val type: BodyType,
@@ -101,7 +102,11 @@ data class BodyData(
     }
 
     fun act() {
-        delegate.setSize(renderer.width, renderer.height)
+        val textureRegion = config.renderer.animations.swim.getTextureRegion(0f)
+        delegate.setSize(
+            textureRegion.regionWidth.toFloat().unitToMeter,
+            textureRegion.regionHeight.toFloat().unitToMeter,
+        )
         delegate.setPosition(box.x, box.y)
     }
 

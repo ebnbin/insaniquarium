@@ -42,12 +42,6 @@ data class BodyRenderer(
 
     private val textureRegion: TextureRegion = animation.getTextureRegion(animationData.stateTime)
 
-    /**
-     * Actor's width and height.
-     */
-    val width: Float = textureRegion.regionWidth.toFloat().unitToMeter
-    val height: Float = textureRegion.regionHeight.toFloat().unitToMeter
-
     private val isFlipX: Boolean = if (animationData.action == BodyAnimationData.Action.TURN) {
         !animationData.isFacingRight
     } else {
