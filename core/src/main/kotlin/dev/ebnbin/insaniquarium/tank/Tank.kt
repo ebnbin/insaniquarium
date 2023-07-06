@@ -11,7 +11,7 @@ import dev.ebnbin.insaniquarium.body.Body
 import dev.ebnbin.insaniquarium.body.BodyBox
 import dev.ebnbin.insaniquarium.body.BodyData
 import dev.ebnbin.insaniquarium.body.BodyGroup
-import dev.ebnbin.insaniquarium.body.BodyStatus
+import dev.ebnbin.insaniquarium.body.BodyLife
 import dev.ebnbin.insaniquarium.body.BodyType
 import java.util.UUID
 
@@ -33,11 +33,9 @@ class Tank : Group() {
                 devSelectedBodyType?.let {
                     addBody(
                         type = it,
-                        status = BodyStatus(
-                            box = BodyBox.Status(
-                                x = x,
-                                y = y,
-                            ),
+                        boxStatus = BodyBox.Status(
+                            x = x,
+                            y = y,
                         ),
                     )
                 }
@@ -79,14 +77,16 @@ class Tank : Group() {
     fun addBody(
         type: BodyType,
         id: String = "${UUID.randomUUID()}",
-        status: BodyStatus,
+        boxStatus: BodyBox.Status = BodyBox.Status(),
+        lifeStatus: BodyLife.Status = BodyLife.Status(),
         index: Int? = null,
     ): BodyData {
         val body = Body(
             tank = this,
             type = type,
             id = id,
-            status = status,
+            boxStatus = boxStatus,
+            lifeStatus = lifeStatus,
         )
         val group = groupMap.getValue(body.config.group)
         if (index == null) {
@@ -114,13 +114,15 @@ class Tank : Group() {
     fun replaceBody(
         oldBody: BodyData,
         type: BodyType,
-        status: BodyStatus,
+        boxStatus: BodyBox.Status,
+        lifeStatus: BodyLife.Status,
     ): BodyData {
         val index = removeBody(oldBody)
         return addBody(
             type = type,
             id = oldBody.id,
-            status = status,
+            boxStatus = boxStatus,
+            lifeStatus = lifeStatus,
             index = index
         )
     }
@@ -137,11 +139,9 @@ class Tank : Group() {
         val type = devSelectedBodyType ?: BodyType.values().random()
         addBody(
             type = type,
-            status = BodyStatus(
-                box = BodyBox.Status(
-                    x = Random.nextFloat(0f, width),
-                    y = Random.nextFloat(0f, height),
-                ),
+            boxStatus = BodyBox.Status(
+                x = Random.nextFloat(0f, width),
+                y = Random.nextFloat(0f, height),
             ),
         )
     }

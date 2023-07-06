@@ -17,19 +17,22 @@ class BodyDelegate(
 
     fun addBody(
         type: BodyType,
-        status: BodyStatus,
+        boxStatus: BodyBox.Status = BodyBox.Status(),
+        lifeStatus: BodyLife.Status = BodyLife.Status(),
     ): BodyData {
         return body.tank.addBody(
             type = type,
-            status = status
+            boxStatus = boxStatus,
+            lifeStatus = lifeStatus,
         )
     }
 
     fun replaceBody(
         type: BodyType,
-        status: BodyStatus,
+        boxStatus: BodyBox.Status = BodyBox.Status(),
+        lifeStatus: BodyLife.Status = BodyLife.Status(),
     ): BodyData {
-        return body.tank.replaceBody(body.data, type, status)
+        return body.tank.replaceBody(body.data, type, boxStatus, lifeStatus)
     }
 
     fun tick(

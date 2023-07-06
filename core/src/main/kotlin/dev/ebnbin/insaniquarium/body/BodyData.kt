@@ -10,15 +10,16 @@ data class BodyData(
     val id: String,
     val config: BodyConfig,
     val delegate: BodyDelegate,
-    val status: BodyStatus,
+    val boxStatus: BodyBox.Status,
+    val lifeStatus: BodyLife.Status,
 ) {
     val box: BodyBox = BodyBox(
         config = config.box,
         tankWidth = delegate.tankWidth,
         tankHeight = delegate.tankHeight,
-        drivingTargetX = status.life.drivingTargetX,
-        drivingTargetY = status.life.drivingTargetY,
-        status = status.box,
+        drivingTargetX = lifeStatus.drivingTargetX,
+        drivingTargetY = lifeStatus.drivingTargetY,
+        status = boxStatus,
     )
 
     //*****************************************************************************************************************
@@ -26,7 +27,7 @@ data class BodyData(
     val life: BodyLife = BodyLife(
         config = config,
         box = box,
-        status = status.life,
+        status = lifeStatus,
     )
 
     //*****************************************************************************************************************
@@ -47,11 +48,9 @@ data class BodyData(
 
     fun tick(input: BodyInput): BodyData {
         return copy(
-            status = BodyStatusHelper.nextTick(
-                data = this,
+            lifeStatus = life.nextStatus(
                 delegate = delegate,
                 input = input,
-                touchPoint = delegate.touchPoint,
             ),
         )
     }
@@ -59,16 +58,14 @@ data class BodyData(
     fun postTick(): Boolean {
         return life.postTick(
             delegate = delegate,
-            status = status,
         )
     }
 
     fun update(delta: Float): BodyData {
         return copy(
-            status = BodyStatusHelper.nextStatus(
-                data = this,
+            boxStatus = box.nextStatus(
                 delta = delta,
-            ),
+            )
         )
     }
 
@@ -100,14 +97,16 @@ data class BodyData(
     companion object {
         fun create(
             body: Body,
-            status: BodyStatus
+            boxStatus: BodyBox.Status,
+            lifeStatus: BodyLife.Status,
         ): BodyData {
             return BodyData(
                 type = body.type,
                 id = body.id,
                 config = body.config,
                 delegate = BodyDelegate(body),
-                status = status,
+                boxStatus = boxStatus,
+                lifeStatus = lifeStatus,
             )
         }
     }

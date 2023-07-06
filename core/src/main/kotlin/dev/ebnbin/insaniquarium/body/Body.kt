@@ -10,11 +10,12 @@ class Body(
     val tank: Tank,
     val type: BodyType,
     val id: String,
-    status: BodyStatus,
+    boxStatus: BodyBox.Status,
+    lifeStatus: BodyLife.Status,
 ) : Actor() {
     val config: BodyConfig = game.config.body.getValue(type)
 
-    var data: BodyData = BodyData.create(this, status)
+    var data: BodyData = BodyData.create(this, boxStatus, lifeStatus)
         private set
 
     fun tick() {

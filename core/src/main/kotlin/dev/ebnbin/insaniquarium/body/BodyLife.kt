@@ -123,7 +123,6 @@ data class BodyLife(
     fun nextStatus(
         delegate: BodyDelegate,
         input: BodyInput,
-        touchPoint: Point?,
     ): Status {
         val nextEatAct = nextEatAct(
             delegate = delegate,
@@ -133,7 +132,7 @@ data class BodyLife(
 
         val nextTouchAct = nextTouchAct(
             enabled = !hasEatDrivingTarget,
-            touchPoint = touchPoint,
+            touchPoint = delegate.touchPoint,
         )
 
         val hasTouchDrivingTarget = nextTouchAct != null
@@ -544,10 +543,7 @@ data class BodyLife(
     /**
      * @return True if removed.
      */
-    fun postTick(
-        delegate: BodyDelegate,
-        status: BodyStatus,
-    ): Boolean {
+    fun postTick(delegate: BodyDelegate): Boolean {
         val delta = 0f
 
         if (isDeadFromHealth) {
@@ -555,14 +551,12 @@ data class BodyLife(
             return true
         }
         if (transformationFromHunger != null &&
-            status.life.animationData.action == BodyAnimationData.Action.SWIM) {
+            animationData.action == BodyAnimationData.Action.SWIM) {
             val newBody = delegate.replaceBody(
                 type = transformationFromHunger,
-                status = status.copy(
-                    life = Status(
-                        animationData = status.life.animationData.copy(
-                            stateTime = 0f,
-                        ),
+                lifeStatus = Status(
+                    animationData = animationData.copy(
+                        stateTime = 0f,
                     ),
                 ),
             )
@@ -570,15 +564,12 @@ data class BodyLife(
             return true
         }
         if (transformationFromGrowth != null) {
-            val growth = status.life.growth
             require(growth != null)
             val newConfig = game.config.body.getValue(transformationFromGrowth)
             val newBody = delegate.replaceBody(
                 type = transformationFromGrowth,
-                status = status.copy(
-                    life = status.life.copy(
-                        growth = null,
-                    ),
+                lifeStatus = status.copy(
+                    growth = null,
                 ),
             )
             newBody.delegate.tick(
@@ -597,11 +588,9 @@ data class BodyLife(
             repeat(dropCount) {
                 val newBody = delegate.addBody(
                     type = productionFromDrop,
-                    status = BodyStatus(
-                        box = BodyBox.Status(
-                            x = status.box.x,
-                            y = status.box.y,
-                        ),
+                    boxStatus = BodyBox.Status(
+                        x = box.x,
+                        y = box.y,
                     ),
                 )
                 newBody.delegate.act(delta)
