@@ -371,18 +371,19 @@ data class BodyLife(
     /**
      * @return True if removed.
      */
-    fun postUpdate(
+    fun postTick(
         delegate: BodyDelegate,
         status: BodyStatus,
-        delta: Float,
     ): Boolean {
+        val delta = 0f
+
         if (isDeadFromHealth) {
             delegate.removeFromTank()
             return true
         }
         if (transformationFromHunger != null &&
             status.renderer.animationData.action == BodyAnimationData.Action.SWIM) {
-            delegate.replaceBody(
+            val newBody = delegate.replaceBody(
                 type = transformationFromHunger,
                 status = status.copy(
                     life = Status(),
@@ -393,22 +394,23 @@ data class BodyLife(
                         alphaTime = null,
                     ),
                 ),
-                delta = delta,
             )
+            newBody.delegate.act(delta)
             return true
         }
         if (transformationFromGrowth != null) {
             val growth = status.life.growth
             require(growth != null)
             val newConfig = game.config.body.getValue(transformationFromGrowth)
-            delegate.replaceBody(
+            val newBody = delegate.replaceBody(
                 type = transformationFromGrowth,
                 status = status.copy(
                     life = status.life.copy(
                         growth = null,
                     ),
                 ),
-                delta = delta,
+            )
+            newBody.delegate.tick(
                 input = BodyInput(
                     growthDiff = growth,
                     scaleTransform = BodyRenderer.ScaleTransform(
@@ -418,10 +420,11 @@ data class BodyLife(
                     ),
                 ),
             )
+            newBody.delegate.act(delta)
         }
         if (productionFromDrop != null) {
             repeat(dropCount) {
-                delegate.addBody(
+                val newBody = delegate.addBody(
                     type = productionFromDrop,
                     status = BodyStatus(
                         box = BodyBox.Status(
@@ -429,8 +432,8 @@ data class BodyLife(
                             y = status.box.y,
                         ),
                     ),
-                    delta = delta,
                 )
+                newBody.delegate.act(delta)
             }
             delegate.tick(
                 input = BodyInput(

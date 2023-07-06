@@ -66,19 +66,6 @@ data class BodyData(
     val canRemove: Boolean = (renderer.canRemove) ||
         (life.canRemove(isSwimming = status.renderer.animationData.isSwimming))
 
-    fun postUpdate(delta: Float): Boolean {
-        if (life.postUpdate(
-            delegate = delegate,
-            status = status,
-            delta = delta,
-        )) {
-            return true
-        }
-        return renderer.postUpdate(
-            delegate = delegate,
-        )
-    }
-
     //*****************************************************************************************************************
 
     fun tick(input: BodyInput): BodyData {
@@ -89,6 +76,18 @@ data class BodyData(
                 input = input,
                 touchPoint = delegate.touchPoint,
             ),
+        )
+    }
+
+    fun postTick(): Boolean {
+        if (life.postTick(
+                delegate = delegate,
+                status = status,
+            )) {
+            return true
+        }
+        return renderer.postTick(
+            delegate = delegate,
         )
     }
 

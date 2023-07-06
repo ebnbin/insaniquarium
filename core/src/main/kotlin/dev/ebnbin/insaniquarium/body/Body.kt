@@ -23,6 +23,7 @@ class Body(
 
     fun performTick(input: BodyInput = BodyInput()): BodyData {
         data = data.tick(input)
+        data.postTick()
         return data
     }
 
@@ -33,9 +34,6 @@ class Body(
 
     fun performAct(delta: Float): BodyData {
         data = data.update(delta)
-        if (data.postUpdate(delta)) {
-            return data
-        }
         data.act()
         if (debug) {
             data.actDebug()

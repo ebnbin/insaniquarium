@@ -204,7 +204,7 @@ data class BodyRenderer(
         batch.color = oldColor
     }
 
-    fun postUpdate(
+    fun postTick(
         delegate: BodyDelegate,
     ): Boolean {
         if (canRemove) {
