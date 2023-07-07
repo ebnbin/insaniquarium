@@ -38,24 +38,24 @@ enum class BodyHungerStatus {
     ;
 }
 
-fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
+fun BodyConfig.Hunger?.status(hunger: Int?): BodyHungerStatus? {
     if (this == null || hunger == null) {
         return null
     }
     return when {
-        hunger == 0f -> {
+        hunger == 0 -> {
             // NOT_FULL or HUNGRY.
-            if (hungryThreshold == 0f) {
+            if (hungry == 0) {
                 BodyHungerStatus.NOT_FULL
             } else {
                 BodyHungerStatus.HUNGRY
             }
         }
-        hunger >= 1f -> {
+        hunger >= full -> {
             // FULL or NOT_FULL or HUNGRY.
-            if (maxThreshold == 1f) {
+            if (max == full) {
                 // NOT_FULL or HUNGRY.
-                if (hungryThreshold == 1f) {
+                if (hungry == 1) {
                     BodyHungerStatus.HUNGRY
                 } else {
                     BodyHungerStatus.NOT_FULL
@@ -64,7 +64,7 @@ fun BodyConfig.Hunger?.status(hunger: Float?): BodyHungerStatus? {
                 return BodyHungerStatus.FULL
             }
         }
-        hunger >= hungryThreshold -> {
+        hunger >= hungry -> {
             BodyHungerStatus.NOT_FULL
         }
         else -> {

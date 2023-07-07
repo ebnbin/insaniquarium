@@ -80,22 +80,27 @@ data class BodyConfig(
 
     data class Hunger(
         @Expose
-        val initialThreshold: Float = 1f,
+        val full: Int,
         /**
-         * >= 1f.
-         * 1f: Never full.
+         * Range: >= full.
+         * == full: Never full.
          */
         @Expose
-        val maxThreshold: Float = 1f,
+        val max: Int = full,
         /**
-         * >= 0f && <= 1f.
-         * 0f: Never hungry.
-         * 1f: Always hungry.
+         * Range: >= 0 && <= max.
          */
         @Expose
-        val hungryThreshold: Float = 0f,
+        val init: Int = full,
+        /**
+         * Range: >= 0 && <= full.
+         * == 0: Never hungry.
+         * == full: Always hungry.
+         */
         @Expose
-        val diffPerTick: Float = 0f,
+        val hungry: Int = 0,
+        @Expose
+        val diffPerTick: Int = 0,
         @Expose
         val transformation: BodyType? = null,
     )
@@ -131,7 +136,7 @@ data class BodyConfig(
         @Expose
         val healthDiffPerTick: Int = 0,
         @Expose
-        val hungerDiffPerTick: Float = 0f,
+        val hungerDiffPerTick: Int = 0,
         @Expose
         val growthDiffPerTick: Float = 0f,
         @Expose
@@ -139,7 +144,7 @@ data class BodyConfig(
         @Expose
         val health: Int = 0,
         @Expose
-        val hunger: Float = 0f,
+        val hunger: Int = 0,
         @Expose
         val growth: Float = 0f,
         @Expose

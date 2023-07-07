@@ -32,7 +32,7 @@ data class BodyLife(
         val drivingTargetY: BodyDrivingTarget? = null,
 
         val health: Int? = null,
-        val hunger: Float? = null,
+        val hunger: Int? = null,
         val growth: Float? = null,
         val drop: Float? = null,
 
@@ -72,7 +72,7 @@ data class BodyLife(
     val isDead: Boolean = body.config.life.isDead
 
     val health: Int? = status.health
-    private val hunger: Float? = status.hunger
+    private val hunger: Int? = status.hunger
     private val growth: Float? = status.growth
     private val drop: Float? = status.drop
 
@@ -82,7 +82,7 @@ data class BodyLife(
 
     val isHungry: Boolean = hungerStatus == BodyHungerStatus.HUNGRY
 
-    private val transformationFromHunger: BodyType? = body.config.life.hunger?.transformation?.takeIf { hunger == 0f }
+    private val transformationFromHunger: BodyType? = body.config.life.hunger?.transformation?.takeIf { hunger == 0 }
 
     private val transformationFromGrowth: BodyType? = body.config.life.growth?.transformation?.takeIf { growth != null && growth <= 0f }
 
@@ -185,7 +185,7 @@ data class BodyLife(
             nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
 
         val nextHealth = nextHealth(delta, input, nextEatAct?.eatenFood)
-        val nextHunger = nextHunger(input, nextEatAct?.eatenFood)
+        val nextHunger = nextHunger(delta, input, nextEatAct?.eatenFood)
         val nextGrowth = nextGrowth(input, nextEatAct?.eatenFood)
         val nextDrop = nextDrop(input, nextEatAct?.eatenFood)
 
@@ -379,17 +379,18 @@ data class BodyLife(
     }
 
     private fun nextHunger(
+        tickDelta: Float,
         input: BodyInput,
         food: BodyConfig.Food?,
-    ): Float? {
+    ): Int? {
         body.config.life.hunger ?: return null
         return nextValue(
             value = hunger,
-            initialThreshold = body.config.life.hunger.initialThreshold,
-            diffPerTick = body.config.life.hunger.diffPerTick,
+            init = body.config.life.hunger.init,
+            tickDiff = if (tickDelta == 0f) 0 else body.config.life.hunger.diffPerTick,
             inputDiff = input.hungerDiff,
             foodDiff = food?.hunger,
-        ).coerceIn(0f, body.config.life.hunger.maxThreshold)
+        ).coerceIn(0, body.config.life.hunger.max)
     }
 
     private fun nextGrowth(
@@ -671,7 +672,7 @@ data class BodyLife(
             "$health/${body.config.life.health?.full}"
         }
         baseGame.putLog("hunger") {
-            if (hunger == null) "null" else "%.3f,%s".format(hunger, hungerStatus)
+            "$hunger/${body.config.life.hunger?.full}"
         }
         baseGame.putLog("growth") {
             if (growth == null) "null" else "%.3f".format(growth)
