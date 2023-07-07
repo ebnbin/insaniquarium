@@ -107,9 +107,11 @@ data class BodyConfig(
 
     data class Growth(
         @Expose
-        val initialThreshold: Float = 1f,
+        val full: Int,
         @Expose
-        val diffPerTick: Float = 0f,
+        val init: Int = 0,
+        @Expose
+        val diffPerTick: Int = 0,
         @Expose
         val transformation: BodyType,
     )
@@ -138,7 +140,7 @@ data class BodyConfig(
         @Expose
         val hungerDiffPerTick: Int = 0,
         @Expose
-        val growthDiffPerTick: Float = 0f,
+        val growthDiffPerTick: Int = 0,
         @Expose
         val dropDiffPerTick: Float = 0f,
         @Expose
@@ -146,7 +148,7 @@ data class BodyConfig(
         @Expose
         val hunger: Int = 0,
         @Expose
-        val growth: Float = 0f,
+        val growth: Int = 0,
         @Expose
         val drop: Float = 0f,
     )

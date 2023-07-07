@@ -33,7 +33,7 @@ data class BodyLife(
 
         val health: Int? = null,
         val hunger: Int? = null,
-        val growth: Float? = null,
+        val growth: Int? = null,
         val drop: Float? = null,
 
         val animationData: BodyAnimationData = BodyAnimationData(),
@@ -73,7 +73,7 @@ data class BodyLife(
 
     val health: Int? = status.health
     private val hunger: Int? = status.hunger
-    private val growth: Float? = status.growth
+    private val growth: Int? = status.growth
     private val drop: Float? = status.drop
 
     private val isDeadFromHealth: Boolean = body.config.life.health != null && health == 0
@@ -84,7 +84,9 @@ data class BodyLife(
 
     private val transformationFromHunger: BodyType? = body.config.life.hunger?.transformation?.takeIf { hunger == 0 }
 
-    private val transformationFromGrowth: BodyType? = body.config.life.growth?.transformation?.takeIf { growth != null && growth <= 0f }
+    private val transformationFromGrowth: BodyType? = body.config.life.growth?.transformation?.takeIf {
+        growth != null && growth >= body.config.life.growth.full
+    }
 
     private val productionFromDrop: BodyType? = body.config.life.drop?.production?.takeIf { drop != null && drop <= 0f }
 
@@ -186,7 +188,7 @@ data class BodyLife(
 
         val nextHealth = nextHealth(delta, input, nextEatAct?.eatenFood)
         val nextHunger = nextHunger(delta, input, nextEatAct?.eatenFood)
-        val nextGrowth = nextGrowth(input, nextEatAct?.eatenFood)
+        val nextGrowth = nextGrowth(delta, input, nextEatAct?.eatenFood)
         val nextDrop = nextDrop(input, nextEatAct?.eatenFood)
 
         val eatenFoodRelation = nextEatAct?.foodRelation ?: BodyRelation.DISJOINT
@@ -394,14 +396,15 @@ data class BodyLife(
     }
 
     private fun nextGrowth(
+        tickDelta: Float,
         input: BodyInput,
         food: BodyConfig.Food?
-    ): Float? {
+    ): Int? {
         body.config.life.growth ?: return null
         return nextValue(
             value = growth,
-            initialThreshold = body.config.life.growth.initialThreshold,
-            diffPerTick = body.config.life.growth.diffPerTick,
+            init = body.config.life.growth.init,
+            tickDiff = if (tickDelta == 0f) 0 else body.config.life.growth.diffPerTick,
             inputDiff = input.growthDiff,
             foodDiff = food?.growth,
         )
@@ -600,7 +603,8 @@ data class BodyLife(
             return true
         }
         if (transformationFromGrowth != null) {
-            require(growth != null)
+            requireNotNull(growth)
+            requireNotNull(body.config.life.growth)
             val newConfig = game.config.body.getValue(transformationFromGrowth)
             val newBody = body.delegate.replaceBody(
                 type = transformationFromGrowth,
@@ -611,7 +615,7 @@ data class BodyLife(
             )
             newBody.tick(
                 input = BodyInput(
-                    growthDiff = growth,
+                    growthDiff = growth - body.config.life.growth.full,
                     scaleTransform = ScaleTransform(
                         duration = 0.25f,
                         startScale = body.config.box.width / newConfig.box.width,
@@ -675,7 +679,7 @@ data class BodyLife(
             "$hunger/${body.config.life.hunger?.full}"
         }
         baseGame.putLog("growth") {
-            if (growth == null) "null" else "%.3f".format(growth)
+            "$growth/${body.config.life.growth?.full}"
         }
         baseGame.putLog("drop  ") {
             if (drop == null) "null" else "%.3f".format(drop)

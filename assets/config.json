@@ -114,8 +114,9 @@
           "transformation": "guppy_small_corpse"
         },
         "growth": {
-          "initialThreshold": 1.0,
-          "diffPerTick": 0.0,
+          "full": 10,
+          "init": 0,
+          "diffPerTick": 0,
           "transformation": "guppy_medium"
         },
         "drop": null,
@@ -124,11 +125,11 @@
             "fish_food": {
               "healthDiffPerTick": -1,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 2000,
-              "growth": -0.5,
+              "growth": 5,
               "drop": 0.0
             }
           },
@@ -216,8 +217,9 @@
           "transformation": "guppy_medium_corpse"
         },
         "growth": {
-          "initialThreshold": 1.0,
-          "diffPerTick": 0.0,
+          "full": 12,
+          "init": 0,
+          "diffPerTick": 0,
           "transformation": "guppy_large"
         },
         "drop": {
@@ -230,11 +232,11 @@
             "fish_food": {
               "healthDiffPerTick": -1,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 2000,
-              "growth": -0.33333334,
+              "growth": 5,
               "drop": 0.0
             }
           },
@@ -322,8 +324,9 @@
           "transformation": "guppy_large_corpse"
         },
         "growth": {
-          "initialThreshold": 1.0,
-          "diffPerTick": 0.0,
+          "full": 18,
+          "init": 0,
+          "diffPerTick": 0,
           "transformation": "guppy_king"
         },
         "drop": {
@@ -336,11 +339,11 @@
             "fish_food": {
               "healthDiffPerTick": -1,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 2000,
-              "growth": -0.2,
+              "growth": 5,
               "drop": 0.0
             }
           },
@@ -438,11 +441,11 @@
             "fish_food": {
               "healthDiffPerTick": -1,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 2000,
-              "growth": 0.0,
+              "growth": 0,
               "drop": 0.0
             }
           },
@@ -536,11 +539,11 @@
             "star": {
               "healthDiffPerTick": -1,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 2000,
-              "growth": 0.0,
+              "growth": 0,
               "drop": -1.0
             }
           },
@@ -606,11 +609,11 @@
             "star_potion": {
               "healthDiffPerTick": -1,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 2000,
-              "growth": 0.0,
+              "growth": 0,
               "drop": 0.0
             }
           },
@@ -938,41 +941,41 @@
             "guppy_small": {
               "healthDiffPerTick": -10,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 0,
-              "growth": 0.0,
+              "growth": 0,
               "drop": 0.0
             },
             "guppy_medium": {
               "healthDiffPerTick": -10,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 0,
-              "growth": 0.0,
+              "growth": 0,
               "drop": 0.0
             },
             "guppy_large": {
               "healthDiffPerTick": -10,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 0,
-              "growth": 0.0,
+              "growth": 0,
               "drop": 0.0
             },
             "guppy_king": {
               "healthDiffPerTick": -10,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 0,
-              "growth": 0.0,
+              "growth": 0,
               "drop": 0.0
             }
           },
@@ -1173,41 +1176,41 @@
             "silver_coin": {
               "healthDiffPerTick": -1,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 0,
-              "growth": 0.0,
+              "growth": 0,
               "drop": 0.0
             },
             "gold_coin": {
               "healthDiffPerTick": -1,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 0,
-              "growth": 0.0,
+              "growth": 0,
               "drop": 0.0
             },
             "star": {
               "healthDiffPerTick": -1,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 0,
-              "growth": 0.0,
+              "growth": 0,
               "drop": 0.0
             },
             "diamond": {
               "healthDiffPerTick": -1,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 0,
-              "growth": 0.0,
+              "growth": 0,
               "drop": 0.0
             }
           },
@@ -1272,11 +1275,11 @@
             "sylvester": {
               "healthDiffPerTick": -5,
               "hungerDiffPerTick": 0,
-              "growthDiffPerTick": 0.0,
+              "growthDiffPerTick": 0,
               "dropDiffPerTick": 0.0,
               "health": 0,
               "hunger": 0,
-              "growth": 0.0,
+              "growth": 0,
               "drop": 0.0
             }
           },
