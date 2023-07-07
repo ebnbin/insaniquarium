@@ -27,7 +27,9 @@ object ConfigInfo {
             ),
             density = 1020f,
             isDead = true,
-            health = BodyConfig.Health(),
+            health = BodyConfig.Health(
+                full = 2,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "fish_food",
@@ -56,7 +58,9 @@ object ConfigInfo {
             ),
             density = 1020f,
             isDead = true,
-            health = BodyConfig.Health(),
+            health = BodyConfig.Health(
+                full = 2,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "star_potion",
@@ -83,7 +87,9 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            health = BodyConfig.Health(),
+            health = BodyConfig.Health(
+                full = 40,
+            ),
             hunger = BodyConfig.Hunger(
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
@@ -96,7 +102,7 @@ object ConfigInfo {
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -1,
                         hunger = 1f,
                         growth = -1f / 2f,
                     ),
@@ -165,7 +171,9 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            health = BodyConfig.Health(),
+            health = BodyConfig.Health(
+                full = 40,
+            ),
             hunger = BodyConfig.Hunger(
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
@@ -182,7 +190,7 @@ object ConfigInfo {
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -1,
                         hunger = 1f,
                         growth = -1f / 3f,
                     ),
@@ -251,7 +259,9 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            health = BodyConfig.Health(),
+            health = BodyConfig.Health(
+                full = 40,
+            ),
             hunger = BodyConfig.Hunger(
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
@@ -268,7 +278,7 @@ object ConfigInfo {
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -1,
                         hunger = 1f,
                         growth = -1f / 5f,
                     ),
@@ -337,7 +347,9 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            health = BodyConfig.Health(),
+            health = BodyConfig.Health(
+                full = 40,
+            ),
             hunger = BodyConfig.Hunger(
                 maxThreshold = 1.5f,
                 hungryThreshold = 0.5f,
@@ -351,7 +363,7 @@ object ConfigInfo {
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -1,
                         hunger = 1f,
                     ),
                 ),
@@ -433,7 +445,7 @@ object ConfigInfo {
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.STAR to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -1,
                         hunger = 1f,
                         drop = -1f,
                     ),
@@ -486,7 +498,7 @@ object ConfigInfo {
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.STAR_POTION to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -1,
                         hunger = 1f,
                     ),
                 ),
@@ -722,27 +734,23 @@ object ConfigInfo {
                 index = 5,
                 wh = BodyConfigInfo.WH.WIDTH,
             ),
-            health = BodyConfig.Health(),
+            health = BodyConfig.Health(
+                full = 800,
+            ),
             hunger = BodyConfig.Hunger(),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.GUPPY_SMALL to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -10,
                     ),
                     BodyType.GUPPY_MEDIUM to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -10,
                     ),
                     BodyType.GUPPY_LARGE to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -10,
                     ),
                     BodyType.GUPPY_KING to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
-                    ),
-                    BodyType.STARCATCHER to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
-                    ),
-                    BodyType.BEETLEMUNCHER to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -10,
                     ),
                 ),
                 drivingAccelerationX = 0.4f,
@@ -882,19 +890,19 @@ object ConfigInfo {
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.SILVER_COIN to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -1,
                         hunger = 0f,
                     ),
                     BodyType.GOLD_COIN to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -1,
                         hunger = 0f,
                     ),
                     BodyType.STAR to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -1,
                         hunger = 0f,
                     ),
                     BodyType.DIAMOND to BodyConfig.Food(
-                        healthDiffPerTick = -10f / 20f,
+                        healthDiffPerTick = -1,
                         hunger = 0f,
                     ),
                 ),
@@ -942,7 +950,7 @@ object ConfigInfo {
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.SYLVESTER to BodyConfig.Food(
-                        healthDiffPerTick = -0.1f / 20f,
+                        healthDiffPerTick = -5,
                     ),
                 ),
                 drivingAccelerationX = 0.8f,
@@ -1037,7 +1045,9 @@ object ConfigInfo {
             ),
             density = 1020f,
             isDead = true,
-            health = BodyConfig.Health(),
+            health = BodyConfig.Health(
+                full = 2,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "silver_coin",
@@ -1064,7 +1074,9 @@ object ConfigInfo {
             ),
             density = 1020f,
             isDead = true,
-            health = BodyConfig.Health(),
+            health = BodyConfig.Health(
+                full = 2,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "gold_coin",
@@ -1091,7 +1103,9 @@ object ConfigInfo {
             ),
             density = 1010f,
             isDead = true,
-            health = BodyConfig.Health(),
+            health = BodyConfig.Health(
+                full = 2,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "star",
@@ -1118,7 +1132,9 @@ object ConfigInfo {
             ),
             density = 1020f,
             isDead = true,
-            health = BodyConfig.Health(),
+            health = BodyConfig.Health(
+                full = 2,
+            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "diamond",
@@ -1145,7 +1161,9 @@ object ConfigInfo {
             ),
             density = 990f,
             isDead = true,
-            health = BodyConfig.Health(),
+            health = BodyConfig.Health(
+                full = 2,
+            ),
             animations = BodyConfig.Animations(
                 swim =  TextureRegionAnimation(
                     assetId = "beetle",

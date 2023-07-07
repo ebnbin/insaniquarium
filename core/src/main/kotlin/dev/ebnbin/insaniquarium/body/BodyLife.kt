@@ -31,7 +31,7 @@ data class BodyLife(
         val drivingTargetX: BodyDrivingTarget? = null,
         val drivingTargetY: BodyDrivingTarget? = null,
 
-        val health: Float? = null,
+        val health: Int? = null,
         val hunger: Float? = null,
         val growth: Float? = null,
         val drop: Float? = null,
@@ -71,12 +71,12 @@ data class BodyLife(
 
     val isDead: Boolean = body.config.life.isDead
 
-    val health: Float? = status.health
+    val health: Int? = status.health
     private val hunger: Float? = status.hunger
     private val growth: Float? = status.growth
     private val drop: Float? = status.drop
 
-    private val isDeadFromHealth: Boolean = body.config.life.health != null && health == 0f
+    private val isDeadFromHealth: Boolean = body.config.life.health != null && health == 0
 
     val hungerStatus: BodyHungerStatus? = body.config.life.hunger?.status(hunger)
 
@@ -184,7 +184,7 @@ data class BodyLife(
         val nextDrivingTargetY: BodyDrivingTarget? =
             nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
 
-        val nextHealth = nextHealth(input, nextEatAct?.eatenFood)
+        val nextHealth = nextHealth(delta, input, nextEatAct?.eatenFood)
         val nextHunger = nextHunger(input, nextEatAct?.eatenFood)
         val nextGrowth = nextGrowth(input, nextEatAct?.eatenFood)
         val nextDrop = nextDrop(input, nextEatAct?.eatenFood)
@@ -364,17 +364,18 @@ data class BodyLife(
     }
 
     private fun nextHealth(
+        tickDelta: Float,
         input: BodyInput,
         food: BodyConfig.Food?,
-    ): Float? {
+    ): Int? {
         body.config.life.health ?: return null
         return nextValue(
             value = health,
-            initialThreshold = body.config.life.health.initialThreshold,
-            diffPerTick = body.config.life.health.diffPerTick,
+            init = body.config.life.health.init,
+            tickDiff = if (tickDelta == 0f) 0 else body.config.life.health.diffPerTick,
             inputDiff = input.healthDiff,
             foodDiff = food?.health,
-        ).coerceIn(0f, 1f)
+        ).coerceAtLeast(0)
     }
 
     private fun nextHunger(
@@ -417,6 +418,16 @@ data class BodyLife(
             inputDiff = input.dropDiff,
             foodDiff = food?.drop,
         )
+    }
+
+    private fun nextValue(
+        value: Int?,
+        init: Int,
+        tickDiff: Int,
+        inputDiff: Int,
+        foodDiff: Int?,
+    ): Int {
+        return (value ?: init) + tickDiff + inputDiff + (foodDiff ?: 0)
     }
 
     private fun nextValue(
@@ -645,7 +656,7 @@ data class BodyLife(
         if (hit) {
             body.tick(
                 input = BodyInput(
-                    healthDiff = -(health ?: 0f),
+                    healthDiff = -(health ?: 0),
                 ),
             )
         }
@@ -657,7 +668,7 @@ data class BodyLife(
             "${status.swimTicksX},${status.swimTicksY}"
         }
         baseGame.putLog("health") {
-            if (health == null) "null" else "%.3f".format(health)
+            "$health/${body.config.life.health?.full}"
         }
         baseGame.putLog("hunger") {
             if (hunger == null) "null" else "%.3f,%s".format(hunger, hungerStatus)

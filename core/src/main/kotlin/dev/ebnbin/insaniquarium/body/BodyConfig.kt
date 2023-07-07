@@ -71,9 +71,11 @@ data class BodyConfig(
 
     data class Health(
         @Expose
-        val initialThreshold: Float = 1f,
+        val full: Int,
         @Expose
-        val diffPerTick: Float = 0f,
+        val init: Int = full,
+        @Expose
+        val diffPerTick: Int = 0,
     )
 
     data class Hunger(
@@ -127,7 +129,7 @@ data class BodyConfig(
 
     data class Food(
         @Expose
-        val healthDiffPerTick: Float = 0f,
+        val healthDiffPerTick: Int = 0,
         @Expose
         val hungerDiffPerTick: Float = 0f,
         @Expose
@@ -135,7 +137,7 @@ data class BodyConfig(
         @Expose
         val dropDiffPerTick: Float = 0f,
         @Expose
-        val health: Float = 0f,
+        val health: Int = 0,
         @Expose
         val hunger: Float = 0f,
         @Expose
