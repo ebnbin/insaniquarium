@@ -130,7 +130,7 @@
               "health": 0,
               "hunger": 2000,
               "growth": 5,
-              "drop": 0.0
+              "drop": 0
             }
           },
           "drivingAccelerationX": 0.4,
@@ -223,8 +223,9 @@
           "transformation": "guppy_large"
         },
         "drop": {
-          "initialThreshold": 1.0,
-          "diffPerTick": -0.0075000003,
+          "full": 160,
+          "init": 0,
+          "diffPerTick": 1,
           "production": "silver_coin"
         },
         "eatAct": {
@@ -237,7 +238,7 @@
               "health": 0,
               "hunger": 2000,
               "growth": 5,
-              "drop": 0.0
+              "drop": 0
             }
           },
           "drivingAccelerationX": 0.4,
@@ -330,8 +331,9 @@
           "transformation": "guppy_king"
         },
         "drop": {
-          "initialThreshold": 1.0,
-          "diffPerTick": -0.0075000003,
+          "full": 160,
+          "init": 0,
+          "diffPerTick": 1,
           "production": "gold_coin"
         },
         "eatAct": {
@@ -344,7 +346,7 @@
               "health": 0,
               "hunger": 2000,
               "growth": 5,
-              "drop": 0.0
+              "drop": 0
             }
           },
           "drivingAccelerationX": 0.4,
@@ -432,8 +434,9 @@
         },
         "growth": null,
         "drop": {
-          "initialThreshold": 1.0,
-          "diffPerTick": -0.0075000003,
+          "full": 160,
+          "init": 0,
+          "diffPerTick": 1,
           "production": "diamond"
         },
         "eatAct": {
@@ -446,7 +449,7 @@
               "health": 0,
               "hunger": 2000,
               "growth": 0,
-              "drop": 0.0
+              "drop": 0
             }
           },
           "drivingAccelerationX": 0.4,
@@ -530,8 +533,9 @@
         },
         "growth": null,
         "drop": {
-          "initialThreshold": 1.0,
-          "diffPerTick": 0.0,
+          "full": 160,
+          "init": 0,
+          "diffPerTick": 0,
           "production": "beetle"
         },
         "eatAct": {
@@ -544,7 +548,7 @@
               "health": 0,
               "hunger": 2000,
               "growth": 0,
-              "drop": -1.0
+              "drop": 160
             }
           },
           "drivingAccelerationX": 0.3,
@@ -614,7 +618,7 @@
               "health": 0,
               "hunger": 2000,
               "growth": 0,
-              "drop": 0.0
+              "drop": 0
             }
           },
           "drivingAccelerationX": 0.4,
@@ -946,7 +950,7 @@
               "health": 0,
               "hunger": 0,
               "growth": 0,
-              "drop": 0.0
+              "drop": 0
             },
             "guppy_medium": {
               "healthDiffPerTick": -10,
@@ -956,7 +960,7 @@
               "health": 0,
               "hunger": 0,
               "growth": 0,
-              "drop": 0.0
+              "drop": 0
             },
             "guppy_large": {
               "healthDiffPerTick": -10,
@@ -966,7 +970,7 @@
               "health": 0,
               "hunger": 0,
               "growth": 0,
-              "drop": 0.0
+              "drop": 0
             },
             "guppy_king": {
               "healthDiffPerTick": -10,
@@ -976,7 +980,7 @@
               "health": 0,
               "hunger": 0,
               "growth": 0,
-              "drop": 0.0
+              "drop": 0
             }
           },
           "drivingAccelerationX": 0.4,
@@ -1181,7 +1185,7 @@
               "health": 0,
               "hunger": 0,
               "growth": 0,
-              "drop": 0.0
+              "drop": 0
             },
             "gold_coin": {
               "healthDiffPerTick": -1,
@@ -1191,7 +1195,7 @@
               "health": 0,
               "hunger": 0,
               "growth": 0,
-              "drop": 0.0
+              "drop": 0
             },
             "star": {
               "healthDiffPerTick": -1,
@@ -1201,7 +1205,7 @@
               "health": 0,
               "hunger": 0,
               "growth": 0,
-              "drop": 0.0
+              "drop": 0
             },
             "diamond": {
               "healthDiffPerTick": -1,
@@ -1211,7 +1215,7 @@
               "health": 0,
               "hunger": 0,
               "growth": 0,
-              "drop": 0.0
+              "drop": 0
             }
           },
           "drivingAccelerationX": 0.2,
@@ -1280,7 +1284,7 @@
               "health": 0,
               "hunger": 0,
               "growth": 0,
-              "drop": 0.0
+              "drop": 0
             }
           },
           "drivingAccelerationX": 0.8,

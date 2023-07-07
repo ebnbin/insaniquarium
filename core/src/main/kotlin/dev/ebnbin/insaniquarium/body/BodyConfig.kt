@@ -118,9 +118,11 @@ data class BodyConfig(
 
     data class Drop(
         @Expose
-        val initialThreshold: Float = 1f,
+        val full: Int,
         @Expose
-        val diffPerTick: Float = 0f,
+        val init: Int = 0,
+        @Expose
+        val diffPerTick: Int = 0,
         @Expose
         val production: BodyType,
     )
@@ -150,7 +152,7 @@ data class BodyConfig(
         @Expose
         val growth: Int = 0,
         @Expose
-        val drop: Float = 0f,
+        val drop: Int = 0,
     )
 
     data class TouchAct(
