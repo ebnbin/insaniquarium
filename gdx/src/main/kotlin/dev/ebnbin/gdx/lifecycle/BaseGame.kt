@@ -126,21 +126,21 @@ abstract class BaseGame : ApplicationListener {
             drawCount = 0
             drawTime = 0L
         }
-        val tick = min(TICK, Gdx.graphics.deltaTime)
-        tickAccumulator += tick
-        while (tickAccumulator >= TICK) {
-            tick(TICK)
-            tickAccumulator -= TICK
+        val tickDelta = min(DELTA_TICK, Gdx.graphics.deltaTime)
+        tickAccumulator += tickDelta
+        while (tickAccumulator >= DELTA_TICK) {
+            tick(DELTA_TICK)
+            tickAccumulator -= DELTA_TICK
         }
+        val delta = min(DELTA_MAX, Gdx.graphics.deltaTime)
         if (GdxPrefManager.use_fixed_delta.data) {
-            val delta = min(DELTA_MAX, Gdx.graphics.deltaTime)
             deltaAccumulator += delta
             while (deltaAccumulator >= DELTA_FIXED) {
                 act(DELTA_FIXED)
                 deltaAccumulator -= DELTA_FIXED
             }
         } else {
-            act(Gdx.graphics.deltaTime)
+            act(delta)
         }
         draw()
     }
@@ -258,7 +258,7 @@ abstract class BaseGame : ApplicationListener {
     }
 
     companion object {
-        const val TICK = 1f / 20f
+        internal const val DELTA_TICK = 1f / 20f
         private const val DELTA_MAX = 1f / 20f
         private const val DELTA_FIXED = 1f / 60f
     }
