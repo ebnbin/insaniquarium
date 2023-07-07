@@ -18,9 +18,9 @@ fun List<BaseStage>.resume() {
     }
 }
 
-fun List<BaseStage>.tick() {
+fun List<BaseStage>.tick(delta: Float) {
     filter { it.isEnabled }.forEach {
-        it.tick()
+        it.tick(delta)
     }
 }
 

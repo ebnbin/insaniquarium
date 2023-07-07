@@ -129,7 +129,7 @@ abstract class BaseGame : ApplicationListener {
         val tick = min(TICK, Gdx.graphics.deltaTime)
         tickAccumulator += tick
         while (tickAccumulator >= TICK) {
-            tick()
+            tick(TICK)
             tickAccumulator -= TICK
         }
         if (GdxPrefManager.use_fixed_delta.data) {
@@ -164,10 +164,10 @@ abstract class BaseGame : ApplicationListener {
     private var tickCount: Int = 0
     private var tickTime: Long = 0L // ns
 
-    private fun tick() {
+    private fun tick(delta: Float) {
         ++tickCount
         tickTime += actionTime {
-            stageList().tick()
+            stageList().tick(delta)
         }
     }
 

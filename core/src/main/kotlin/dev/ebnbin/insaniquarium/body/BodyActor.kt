@@ -20,8 +20,8 @@ class BodyActor(
         initLifeStatus = lifeStatus,
     )
 
-    fun tick() {
-        body.tick()
+    fun tick(delta: Float) {
+        body.tick(delta)
     }
 
     override fun act(delta: Float) {

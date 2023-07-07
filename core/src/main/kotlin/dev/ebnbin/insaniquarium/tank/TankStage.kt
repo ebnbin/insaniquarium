@@ -10,8 +10,8 @@ class TankStage : BaseStage(viewport = MeterFitViewport()) {
         addActor(it)
     }
 
-    override fun tick() {
-        super.tick()
-        tank.tick()
+    override fun tick(delta: Float) {
+        super.tick(delta)
+        tank.tick(delta)
     }
 }

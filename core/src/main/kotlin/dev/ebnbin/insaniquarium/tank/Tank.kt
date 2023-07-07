@@ -152,12 +152,12 @@ class Tank : Group() {
         groupMap.values.reversed().forEach { it.clearChildren() }
     }
 
-    fun tick() {
+    fun tick(delta: Float) {
         children.forEach { group ->
             group as Group
             group.children.forEach { body ->
                 body as BodyActor
-                body.tick()
+                body.tick(delta)
             }
         }
     }

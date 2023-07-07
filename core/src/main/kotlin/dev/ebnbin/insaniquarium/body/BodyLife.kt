@@ -123,8 +123,8 @@ data class BodyLife(
 
     val canRemove: Boolean = lifeCanRemove || rendererCanRemove
 
-    fun tick(input: BodyInput, params: Params): BodyLife {
-        val nextStatus = nextStatus(input)
+    fun tick(delta: Float, input: BodyInput, params: Params): BodyLife {
+        val nextStatus = nextStatus(delta, input)
         return copy(
             params = params,
             status = nextStatus,
@@ -132,6 +132,7 @@ data class BodyLife(
     }
 
     fun nextStatus(
+        delta: Float,
         input: BodyInput,
     ): Status {
         val nextEatAct = nextEatAct(
@@ -149,7 +150,7 @@ data class BodyLife(
 
         val nextSwimActX = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
-            tickDelta = input.tickDelta,
+            tickDelta = delta,
             configSwimAct = body.config.life.swimActX,
             swimAct = if (status.swimTimeX == null) {
                 null
@@ -164,7 +165,7 @@ data class BodyLife(
         )
         val nextSwimActY = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
-            tickDelta = input.tickDelta,
+            tickDelta = delta,
             configSwimAct = body.config.life.swimActY,
             swimAct = if (status.swimTimeY == null) {
                 null
@@ -190,9 +191,9 @@ data class BodyLife(
 
         val eatenFoodRelation = nextEatAct?.foodRelation ?: BodyRelation.DISJOINT
 
-        val nextAnimationData = nextAnimationData(input.tickDelta, eatenFoodRelation)
-        val nextAlphaTime = nextAlphaTime(input.tickDelta)
-        val nextScaleTransform = nextScaleTransform(input)
+        val nextAnimationData = nextAnimationData(delta, eatenFoodRelation)
+        val nextAlphaTime = nextAlphaTime(delta)
+        val nextScaleTransform = nextScaleTransform(delta, input)
 
         return Status(
             swimTimeX = nextSwimActX?.time,
@@ -230,12 +231,12 @@ data class BodyLife(
 
         if (targetFood != null && canEat && foodRelation == BodyRelation.CONTAIN_CENTER) {
             val food = body.config.life.eatAct.foods.getValue(targetFood.type)
-            val foodBody = targetFood.tick(
+            targetFood.tick(
                 input = BodyInput(
                     healthDiff = food.healthDiffPerTick,
                 ),
             )
-            if (foodBody.canRemove) {
+            if (targetFood.life.canRemove) {
                 eatenFood = food
             }
         }
@@ -515,6 +516,7 @@ data class BodyLife(
     }
 
     private fun nextScaleTransform(
+        tickDelta: Float,
         input: BodyInput,
     ): ScaleTransform? {
         val nextScaleTransform = input.scaleTransform ?: status.scaleTransform ?: return null
@@ -522,7 +524,7 @@ data class BodyLife(
             return null
         }
         return nextScaleTransform.copy(
-            time = min(nextScaleTransform.duration, nextScaleTransform.time + input.tickDelta),
+            time = min(nextScaleTransform.duration, nextScaleTransform.time + tickDelta),
         )
     }
 

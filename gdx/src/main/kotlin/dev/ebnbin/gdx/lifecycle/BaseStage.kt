@@ -20,7 +20,7 @@ abstract class BaseStage(viewport: Viewport = UnitScreenViewport()) : Stage(view
     /**
      * Called before [act]. Called 10 times per second.
      */
-    open fun tick() {
+    open fun tick(delta: Float) {
     }
 
     open fun pause() {

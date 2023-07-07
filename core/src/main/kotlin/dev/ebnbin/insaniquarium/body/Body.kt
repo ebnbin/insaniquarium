@@ -2,7 +2,6 @@ package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
-import dev.ebnbin.gdx.lifecycle.BaseGame
 import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.insaniquarium.game
@@ -35,22 +34,35 @@ class Body(
     )
         private set
 
-    fun tick(
-        input: BodyInput = BodyInput(
-            tickDelta = BaseGame.TICK,
-        ),
-    ): BodyLife {
+    fun tick(delta: Float) {
+        tick(
+            delta = delta,
+            input = BodyInput(),
+        )
+    }
+
+    fun tick(input: BodyInput) {
+        tick(
+            delta = 0f,
+            input = input,
+        )
+    }
+
+    private fun tick(
+        delta: Float,
+        input: BodyInput,
+    ) {
         life = life.tick(
+            delta = delta,
             input = input,
             params = BodyLife.Params(
                 box = box,
             ),
         )
         life.postTick()
-        return life
     }
 
-    fun act(delta: Float): BodyBox {
+    fun act(delta: Float) {
         box = box.act(
             delta = delta,
             params = BodyBox.Params(
@@ -62,7 +74,6 @@ class Body(
         if (delegate.debug) {
             actDebug()
         }
-        return box
     }
 
     private fun actDebug() {
