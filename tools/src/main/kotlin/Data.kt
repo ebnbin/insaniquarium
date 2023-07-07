@@ -1,8 +1,3 @@
-import dev.ebnbin.gdx.utils.World
-import dev.ebnbin.insaniquarium.body.BodyConfig
-import dev.ebnbin.insaniquarium.body.BodyGroup
-import dev.ebnbin.insaniquarium.body.BodyType
-
 data class AquariumTextureInfo(
     val name: String,
     val srcFileName: String,
@@ -23,41 +18,4 @@ data class BodyTextureInfo(
         val tileCount: Int,
         val startIndex: Int = 0,
     )
-}
-
-data class BodyConfigInfo(
-    val type: BodyType,
-    val group: BodyGroup,
-
-    val width: Size,
-    val height: Size,
-    val depth: Size,
-    val density: Float = World.DENSITY_WATER,
-    val dragCoefficient: Float = BodyConfig.DEFAULT_DRAG_COEFFICIENT,
-    val waterFrictionCoefficient: Float = BodyConfig.DEFAULT_WATER_FRICTION_COEFFICIENT,
-    val bottomFrictionCoefficient: Float = BodyConfig.DEFAULT_BOTTOM_FRICTION_COEFFICIENT,
-    val leftRightFrictionCoefficient: Float = BodyConfig.DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT,
-
-    val animations: BodyConfig.Animations,
-    val isDead: Boolean = false,
-    val health: BodyConfig.Health? = null,
-    val hunger: BodyConfig.Hunger? = null,
-    val growth: BodyConfig.Growth? = null,
-    val drop: BodyConfig.Drop? = null,
-    val eatAct: BodyConfig.EatAct? = null,
-    val touchAct: BodyConfig.TouchAct? = null,
-    val swimActX: BodyConfig.SwimAct? = null,
-    val swimActY: BodyConfig.SwimAct? = null,
-) {
-    data class Size(
-        val textureName: String,
-        val index: Int? = null,
-        val wh: WH,
-    )
-
-    enum class WH {
-        WIDTH,
-        HEIGHT,
-        ;
-    }
 }

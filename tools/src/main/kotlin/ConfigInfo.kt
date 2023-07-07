@@ -1,29 +1,62 @@
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.animation.AnimationMode
+import dev.ebnbin.gdx.asset.Assets
 import dev.ebnbin.gdx.utils.Interpolation
+import dev.ebnbin.gdx.utils.fromJson
+import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.body.BodyConfig
 import dev.ebnbin.insaniquarium.body.BodyGroup
 import dev.ebnbin.insaniquarium.body.BodyType
+import java.awt.image.BufferedImage
+import java.io.File
 
 object ConfigInfo {
-    val bodyList: List<BodyConfigInfo> = listOf(
-        BodyConfigInfo(
-            type = BodyType.FISH_FOOD,
+    private enum class WH {
+        WIDTH,
+        HEIGHT,
+        ;
+    }
+    
+    private val assets: Assets = File("../assets/assets.json").readText().fromJson()
+
+    private val imageCache: MutableMap<String, BufferedImage> = mutableMapOf()
+    
+    private fun size(
+        textureName: String,
+        index: Int? = null,
+        wh: WH,
+    ): Float {
+        val image = imageCache.getOrPut(textureName) {
+            File(TextureInfo.dstDir, "${textureName}.png").readImage()
+        }
+        val region = assets.texture.getValue(textureName).region
+        require(region != null)
+        val split = image.split(region.row, region.column)
+        val nonTransparentSize = split[index ?: region.startIndex].nonTransparentSize()
+        return if (wh == WH.WIDTH) {
+            nonTransparentSize.first.toFloat().unitToMeter
+        } else {
+            nonTransparentSize.second.toFloat().unitToMeter
+        }
+    }
+    
+    val bodyMap: Map<BodyType, BodyConfig> = mapOf(
+        BodyType.FISH_FOOD to BodyConfig(
             group = BodyGroup.FOOD,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "fish_food",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "fish_food",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "fish_food",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             density = 1020f,
             isDead = true,
@@ -38,23 +71,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.STAR_POTION,
+        BodyType.STAR_POTION to BodyConfig(
             group = BodyGroup.FOOD,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "star_potion",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "star_potion",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "star_potion",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             density = 1020f,
             isDead = true,
@@ -69,23 +101,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.GUPPY_SMALL,
+        BodyType.GUPPY_SMALL to BodyConfig(
             group = BodyGroup.FISH,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "guppy_small",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "guppy_small",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "guppy_small_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             health = BodyConfig.Health(
                 full = 40,
@@ -155,23 +186,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.GUPPY_MEDIUM,
+        BodyType.GUPPY_MEDIUM to BodyConfig(
             group = BodyGroup.FISH,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "guppy_medium",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "guppy_medium",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "guppy_medium_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             health = BodyConfig.Health(
                 full = 40,
@@ -246,23 +276,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.GUPPY_LARGE,
+        BodyType.GUPPY_LARGE to BodyConfig(
             group = BodyGroup.FISH,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "guppy_large",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "guppy_large",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "guppy_large_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             health = BodyConfig.Health(
                 full = 40,
@@ -337,23 +366,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.GUPPY_KING,
+        BodyType.GUPPY_KING to BodyConfig(
             group = BodyGroup.FISH,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "guppy_king",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "guppy_king",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "guppy_king_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             health = BodyConfig.Health(
                 full = 40,
@@ -423,23 +451,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.STARCATCHER,
+        BodyType.STARCATCHER to BodyConfig(
             group = BodyGroup.FISH,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "starcatcher",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "starcatcher",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "starcatcher",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             density = 1080f,
             bottomFrictionCoefficient = 0.01f,
@@ -483,23 +510,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.BEETLEMUNCHER,
+        BodyType.BEETLEMUNCHER to BodyConfig(
             group = BodyGroup.FISH,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "beetlemuncher",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "beetlemuncher",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "beetlemuncher_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             hunger = BodyConfig.Hunger(
                 full = 2000,
@@ -561,23 +587,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.GUPPY_SMALL_CORPSE,
+        BodyType.GUPPY_SMALL_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "guppy_small",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "guppy_small",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "guppy_small_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             density = 1020f,
             isDead = true,
@@ -589,23 +614,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.GUPPY_MEDIUM_CORPSE,
+        BodyType.GUPPY_MEDIUM_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "guppy_medium",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "guppy_medium",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "guppy_medium_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             density = 1020f,
             isDead = true,
@@ -617,23 +641,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.GUPPY_LARGE_CORPSE,
+        BodyType.GUPPY_LARGE_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "guppy_large",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "guppy_large",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "guppy_large_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             density = 1020f,
             isDead = true,
@@ -645,23 +668,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.GUPPY_KING_CORPSE,
+        BodyType.GUPPY_KING_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "guppy_king",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "guppy_king",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "guppy_king_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             density = 1020f,
             isDead = true,
@@ -673,23 +695,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.STARCATCHER_CORPSE,
+        BodyType.STARCATCHER_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "starcatcher",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "starcatcher",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "starcatcher",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             density = 1020f,
             isDead = true,
@@ -701,23 +722,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.BEETLEMUNCHER_CORPSE,
+        BodyType.BEETLEMUNCHER_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "beetlemuncher",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "beetlemuncher",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "beetlemuncher_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             density = 1020f,
             isDead = true,
@@ -729,23 +749,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.SYLVESTER,
+        BodyType.SYLVESTER to BodyConfig(
             group = BodyGroup.ALIEN,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "sylvester",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "sylvester",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "sylvester_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             health = BodyConfig.Health(
                 full = 800,
@@ -794,23 +813,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.NIKO,
+        BodyType.NIKO to BodyConfig(
             group = BodyGroup.PET,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "niko",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "niko",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "niko",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             hunger = BodyConfig.Hunger(
                 full = 400,
@@ -825,23 +843,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.NIKO_OPEN,
+        BodyType.NIKO_OPEN to BodyConfig(
             group = BodyGroup.PET,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "niko",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "niko",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "niko",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             hunger = BodyConfig.Hunger(
                 full = 400,
@@ -856,23 +873,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.NIKO_CLOSE,
+        BodyType.NIKO_CLOSE to BodyConfig(
             group = BodyGroup.PET,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "niko",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "niko",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "niko",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             hunger = BodyConfig.Hunger(
                 full = 400,
@@ -887,23 +903,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.CLYDE,
+        BodyType.CLYDE to BodyConfig(
             group = BodyGroup.PET,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "clyde",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "clyde",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "clyde",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
@@ -942,23 +957,22 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.GASH,
+        BodyType.GASH to BodyConfig(
             group = BodyGroup.PET,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "gash",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "gash",
                 index = 0,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "gash_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             hunger = BodyConfig.Hunger(
                 full = 2000,
@@ -1000,21 +1014,20 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.PRESTO,
+        BodyType.PRESTO to BodyConfig(
             group = BodyGroup.PET,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "presto",
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "presto",
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "presto_turn",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             touchAct = BodyConfig.TouchAct(
                 drivingAccelerationX = 0.4f,
@@ -1043,21 +1056,20 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.SILVER_COIN,
+        BodyType.SILVER_COIN to BodyConfig(
             group = BodyGroup.MONEY,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "silver_coin",
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "silver_coin",
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "silver_coin",
                 index = 5,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
             density = 1020f,
             isDead = true,
@@ -1072,21 +1084,20 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.GOLD_COIN,
+        BodyType.GOLD_COIN to BodyConfig(
             group = BodyGroup.MONEY,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "gold_coin",
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "gold_coin",
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "gold_coin",
                 index = 5,
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
             density = 1020f,
             isDead = true,
@@ -1101,21 +1112,20 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.STAR,
+        BodyType.STAR to BodyConfig(
             group = BodyGroup.MONEY,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "star",
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "star",
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "star",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             density = 1010f,
             isDead = true,
@@ -1130,21 +1140,20 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.DIAMOND,
+        BodyType.DIAMOND to BodyConfig(
             group = BodyGroup.MONEY,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "diamond",
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "diamond",
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "diamond",
                 index = 0,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             density = 1020f,
             isDead = true,
@@ -1159,21 +1168,20 @@ object ConfigInfo {
                 ),
             ),
         ),
-        BodyConfigInfo(
-            type = BodyType.BEETLE,
+        BodyType.BEETLE to BodyConfig(
             group = BodyGroup.MONEY,
-            width = BodyConfigInfo.Size(
+            width = size(
                 textureName = "beetle",
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
-            height = BodyConfigInfo.Size(
+            height = size(
                 textureName = "beetle",
-                wh = BodyConfigInfo.WH.HEIGHT,
+                wh = WH.HEIGHT,
             ),
-            depth = BodyConfigInfo.Size(
+            depth = size(
                 textureName = "beetle",
                 index = 5,
-                wh = BodyConfigInfo.WH.WIDTH,
+                wh = WH.WIDTH,
             ),
             density = 990f,
             isDead = true,
@@ -1188,5 +1196,7 @@ object ConfigInfo {
                 ),
             ),
         ),
-    )
+    ).also {
+        imageCache.clear()
+    }
 }

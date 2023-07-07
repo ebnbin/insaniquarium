@@ -4,8 +4,6 @@ import dev.ebnbin.gdx.asset.TextureAsset
 import dev.ebnbin.gdx.utils.toJson
 import dev.ebnbin.insaniquarium.Config
 import dev.ebnbin.insaniquarium.InsaniquariumGame
-import dev.ebnbin.insaniquarium.body.BodyConfig
-import dev.ebnbin.insaniquarium.body.BodyType
 import java.io.File
 
 fun main() {
@@ -41,12 +39,8 @@ fun main() {
     )
     File("../assets/assets.json").writeText(assets.toJson())
 
-    val bodyConfigMap = mutableMapOf<BodyType, BodyConfig>()
-    ConfigInfo.bodyList.forEach {
-        bodyConfigMap[it.type] = ConfigHelper.body(assets, it)
-    }
     val config = Config(
-        body = bodyConfigMap.toSortedMap(),
+        body = ConfigInfo.bodyMap.toSortedMap(),
     )
     File("../assets/config.json").writeText(config.toJson())
 }
