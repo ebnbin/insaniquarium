@@ -13,12 +13,12 @@ import dev.ebnbin.insaniquarium.game
 fun BodyType.assets(): Set<Asset<*>> {
     val config = game.config.body.getValue(this)
     return listOfNotNull(
-        config.renderer.animations.swim,
-        config.renderer.animations.turn,
-        config.renderer.animations.eat,
-        config.renderer.animations.hungry,
-        config.renderer.animations.hungryTurn,
-        config.renderer.animations.hungryEat,
+        config.animations.swim,
+        config.animations.turn,
+        config.animations.eat,
+        config.animations.hungry,
+        config.animations.hungryTurn,
+        config.animations.hungryEat,
     ).mapTo(mutableSetOf()) {
         baseGame.assets.texture.getValue(it.assetId)
     }

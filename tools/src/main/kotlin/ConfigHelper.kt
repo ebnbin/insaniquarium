@@ -25,30 +25,26 @@ object ConfigHelper {
 
         return BodyConfig(
             group = info.group,
-            box = BodyConfig.Box(
-                width = size(info.width),
-                height = size(info.height),
-                depth = size(info.depth),
-                density = info.density,
-                dragCoefficient = info.dragCoefficient,
-                waterFrictionCoefficient = info.waterFrictionCoefficient,
-                leftRightFrictionCoefficient = info.leftRightFrictionCoefficient,
-                bottomFrictionCoefficient = info.bottomFrictionCoefficient,
-            ),
-            life = BodyConfig.Life(
-                isDead = info.isDead,
-                health = info.health,
-                hunger = info.hunger,
-                growth = info.growth,
-                drop = info.drop,
-                eatAct = info.eatAct,
-                touchAct = info.touchAct,
-                swimActX = info.swimActX,
-                swimActY = info.swimActY,
-            ),
-            renderer = BodyConfig.Renderer(
-                animations = info.animations,
-            ),
+
+            width = size(info.width),
+            height = size(info.height),
+            depth = size(info.depth),
+            density = info.density,
+            dragCoefficient = info.dragCoefficient,
+            waterFrictionCoefficient = info.waterFrictionCoefficient,
+            leftRightFrictionCoefficient = info.leftRightFrictionCoefficient,
+            bottomFrictionCoefficient = info.bottomFrictionCoefficient,
+
+            animations = info.animations,
+            isDead = info.isDead,
+            health = info.health,
+            hunger = info.hunger,
+            growth = info.growth,
+            drop = info.drop,
+            eatAct = info.eatAct,
+            touchAct = info.touchAct,
+            swimActX = info.swimActX,
+            swimActY = info.swimActY,
         ).also {
             cache.clear()
         }

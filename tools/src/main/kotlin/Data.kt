@@ -28,14 +28,17 @@ data class BodyTextureInfo(
 data class BodyConfigInfo(
     val type: BodyType,
     val group: BodyGroup,
+
     val width: Size,
     val height: Size,
     val depth: Size,
     val density: Float = World.DENSITY_WATER,
-    val dragCoefficient: Float = BodyConfig.Box.DEFAULT_DRAG_COEFFICIENT,
-    val waterFrictionCoefficient: Float = BodyConfig.Box.DEFAULT_WATER_FRICTION_COEFFICIENT,
-    val bottomFrictionCoefficient: Float = BodyConfig.Box.DEFAULT_BOTTOM_FRICTION_COEFFICIENT,
-    val leftRightFrictionCoefficient: Float = BodyConfig.Box.DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT,
+    val dragCoefficient: Float = BodyConfig.DEFAULT_DRAG_COEFFICIENT,
+    val waterFrictionCoefficient: Float = BodyConfig.DEFAULT_WATER_FRICTION_COEFFICIENT,
+    val bottomFrictionCoefficient: Float = BodyConfig.DEFAULT_BOTTOM_FRICTION_COEFFICIENT,
+    val leftRightFrictionCoefficient: Float = BodyConfig.DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT,
+
+    val animations: BodyConfig.Animations,
     val isDead: Boolean = false,
     val health: BodyConfig.Health? = null,
     val hunger: BodyConfig.Hunger? = null,
@@ -45,7 +48,6 @@ data class BodyConfigInfo(
     val touchAct: BodyConfig.TouchAct? = null,
     val swimActX: BodyConfig.SwimAct? = null,
     val swimActY: BodyConfig.SwimAct? = null,
-    val animations: BodyConfig.Animations,
 ) {
     data class Size(
         val textureName: String,
