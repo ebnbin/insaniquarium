@@ -65,7 +65,7 @@ class Tank : Group() {
             .reversed()
             .forEach {
                 require(it is BodyActor)
-                if (it.data.hit(touchPoint)) {
+                if (it.data.touch(touchPoint)) {
                     return true
                 }
             }

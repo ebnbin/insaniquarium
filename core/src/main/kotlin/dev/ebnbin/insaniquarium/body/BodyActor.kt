@@ -3,6 +3,7 @@ package dev.ebnbin.insaniquarium.body
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.Actor
+import dev.ebnbin.gdx.lifecycle.BaseGame
 import dev.ebnbin.insaniquarium.game
 import dev.ebnbin.insaniquarium.tank.Tank
 
@@ -19,10 +20,13 @@ class BodyActor(
         private set
 
     fun tick() {
-        performTick()
+        val input = BodyInput(
+            tickDelta = BaseGame.TICK,
+        )
+        performTick(input)
     }
 
-    fun performTick(input: BodyInput = BodyInput()): BodyData {
+    fun performTick(input: BodyInput): BodyData {
         data = data.tick(input)
         data.postTick()
         return data
@@ -34,8 +38,8 @@ class BodyActor(
     }
 
     fun performAct(delta: Float): BodyData {
-        data = data.update(delta)
-        data.act()
+        data = data.act(delta)
+        data.postAct()
         if (debug) {
             data.actDebug()
         }

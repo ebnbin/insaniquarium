@@ -2,8 +2,8 @@ package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Point
-import dev.ebnbin.gdx.utils.unitToMeter
 
 data class BodyData(
     val type: BodyType,
@@ -14,11 +14,12 @@ data class BodyData(
     val lifeStatus: BodyLife.Status,
 ) {
     val box: BodyBox = BodyBox(
-        config = config.box,
-        tankWidth = delegate.tankWidth,
-        tankHeight = delegate.tankHeight,
-        drivingTargetX = lifeStatus.drivingTargetX,
-        drivingTargetY = lifeStatus.drivingTargetY,
+        config = config,
+        delegate = delegate,
+        params = BodyBox.Params(
+            drivingTargetX = lifeStatus.drivingTargetX,
+            drivingTargetY = lifeStatus.drivingTargetY,
+        ),
         status = boxStatus,
     )
 
@@ -26,22 +27,15 @@ data class BodyData(
 
     val life: BodyLife = BodyLife(
         config = config,
+        delegate = delegate,
         box = box,
         status = lifeStatus,
     )
 
     //*****************************************************************************************************************
 
-    fun hit(touchPoint: Point): Boolean {
-        val hit = box.hit(touchPoint)
-        if (hit) {
-            delegate.tick(
-                input = BodyInput(
-                    healthDiff = -(life.health ?: 0f),
-                ),
-            )
-        }
-        return hit
+    fun touch(point: Point): Boolean {
+        return life.touch(point)
     }
 
     //*****************************************************************************************************************
@@ -49,19 +43,16 @@ data class BodyData(
     fun tick(input: BodyInput): BodyData {
         return copy(
             lifeStatus = life.nextStatus(
-                delegate = delegate,
                 input = input,
             ),
         )
     }
 
     fun postTick(): Boolean {
-        return life.postTick(
-            delegate = delegate,
-        )
+        return life.postTick()
     }
 
-    fun update(delta: Float): BodyData {
+    fun act(delta: Float): BodyData {
         return copy(
             boxStatus = box.nextStatus(
                 delta = delta,
@@ -69,27 +60,26 @@ data class BodyData(
         )
     }
 
-    fun act() {
-        val textureRegion = config.renderer.animations.swim.getTextureRegion(0f)
-        delegate.setSize(
-            textureRegion.regionWidth.toFloat().unitToMeter,
-            textureRegion.regionHeight.toFloat().unitToMeter,
-        )
-        delegate.setPosition(box.x, box.y)
+    fun postAct() {
+        box.postAct()
     }
 
     fun draw(batch: Batch, parentAlpha: Float) {
-        life.draw(delegate, batch, parentAlpha)
+        life.draw(batch, parentAlpha)
     }
 
     //*****************************************************************************************************************
 
     fun actDebug() {
-        BodyDevHelper.act(this)
+        baseGame.putLog("type,id         ") {
+            "${type.serializedName},${id}"
+        }
+        box.actDebug()
+        life.actDebug()
     }
 
     fun drawDebug(shapes: ShapeRenderer) {
-        BodyDevHelper.draw(this, shapes)
+        box.drawDebug(shapes)
     }
 
     //*****************************************************************************************************************

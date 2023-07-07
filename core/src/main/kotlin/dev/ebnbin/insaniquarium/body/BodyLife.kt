@@ -3,7 +3,6 @@ package dev.ebnbin.insaniquarium.body
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
-import dev.ebnbin.gdx.lifecycle.BaseGame
 import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.Point
@@ -13,6 +12,7 @@ import kotlin.math.min
 
 data class BodyLife(
     private val config: BodyConfig,
+    private val delegate: BodyActorDelegate,
     private val box: BodyBox,
     val status: Status,
 ) {
@@ -121,7 +121,6 @@ data class BodyLife(
     val canRemove: Boolean = lifeCanRemove || rendererCanRemove
 
     fun nextStatus(
-        delegate: BodyActorDelegate,
         input: BodyInput,
     ): Status {
         val nextEatAct = nextEatAct(
@@ -139,6 +138,7 @@ data class BodyLife(
 
         val nextSwimActX = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
+            tickDelta = input.tickDelta,
             configSwimAct = config.life.swimActX,
             swimAct = if (status.swimTimeX == null) {
                 null
@@ -153,6 +153,7 @@ data class BodyLife(
         )
         val nextSwimActY = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
+            tickDelta = input.tickDelta,
             configSwimAct = config.life.swimActY,
             swimAct = if (status.swimTimeY == null) {
                 null
@@ -178,8 +179,8 @@ data class BodyLife(
 
         val eatenFoodRelation = nextEatAct?.foodRelation ?: BodyRelation.DISJOINT
 
-        val nextAnimationData = nextAnimationData(eatenFoodRelation)
-        val nextAlphaTime = nextAlphaTime()
+        val nextAnimationData = nextAnimationData(input.tickDelta, eatenFoodRelation)
+        val nextAlphaTime = nextAlphaTime(input.tickDelta)
         val nextScaleTransform = nextScaleTransform(input)
 
         return Status(
@@ -278,6 +279,7 @@ data class BodyLife(
 
     private fun nextSwimAct(
         enabled: Boolean,
+        tickDelta: Float,
         configSwimAct: BodyConfig.SwimAct?,
         swimAct: SwimAct?,
         tankSize: Float,
@@ -313,7 +315,7 @@ data class BodyLife(
 
         fun updateIdling(swimAct: SwimAct): SwimAct {
             return swimAct.copy(
-                time = swimAct.time - BaseGame.TICK,
+                time = swimAct.time - tickDelta,
             )
         }
 
@@ -326,7 +328,7 @@ data class BodyLife(
         }
         return if (swimAct.drivingTarget == null) {
             // Idling
-            val isRemainingTimeUp = swimAct.time - BaseGame.TICK <= 0f
+            val isRemainingTimeUp = swimAct.time - tickDelta <= 0f
             if (isRemainingTimeUp) {
                 createTargeting()
             } else {
@@ -413,6 +415,7 @@ data class BodyLife(
     }
 
     private fun nextAnimationData(
+        tickDelta: Float,
         eatenFoodRelation: BodyRelation?,
     ): BodyAnimationData {
         val animationStatus = if (isHungry) {
@@ -451,7 +454,7 @@ data class BodyLife(
         fun update(): BodyAnimationData {
             return animationData.copy(
                 status = animationStatus,
-                stateTime = animationData.stateTime + BaseGame.TICK,
+                stateTime = animationData.stateTime + tickDelta,
             )
         }
 
@@ -485,7 +488,7 @@ data class BodyLife(
         }
     }
 
-    private fun nextAlphaTime(): Float? {
+    private fun nextAlphaTime(tickDelta: Float): Float? {
         if (!isDead) {
             return null
         }
@@ -496,7 +499,7 @@ data class BodyLife(
                 null
             }
         } else {
-            alphaTime - BaseGame.TICK
+            alphaTime - tickDelta
         }
     }
 
@@ -508,11 +511,11 @@ data class BodyLife(
             return null
         }
         return nextScaleTransform.copy(
-            time = min(nextScaleTransform.duration, nextScaleTransform.time + BaseGame.TICK),
+            time = min(nextScaleTransform.duration, nextScaleTransform.time + input.tickDelta),
         )
     }
 
-    fun draw(delegate: BodyActorDelegate, batch: Batch, parentAlpha: Float) {
+    fun draw(batch: Batch, parentAlpha: Float) {
         val oldColor = batch.color.cpy()
         batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
         val scale = status.scaleTransform?.let {
@@ -543,7 +546,7 @@ data class BodyLife(
     /**
      * @return True if removed.
      */
-    fun postTick(delegate: BodyActorDelegate): Boolean {
+    fun postTick(): Boolean {
         val delta = 0f
 
         if (isDeadFromHealth) {
@@ -554,6 +557,7 @@ data class BodyLife(
             animationData.action == BodyAnimationData.Action.SWIM) {
             val newBody = delegate.replaceBody(
                 type = transformationFromHunger,
+                boxStatus = box.status,
                 lifeStatus = Status(
                     animationData = animationData.copy(
                         stateTime = 0f,
@@ -568,6 +572,7 @@ data class BodyLife(
             val newConfig = game.config.body.getValue(transformationFromGrowth)
             val newBody = delegate.replaceBody(
                 type = transformationFromGrowth,
+                boxStatus = box.status,
                 lifeStatus = status.copy(
                     growth = null,
                 ),
@@ -615,7 +620,19 @@ data class BodyLife(
         return false
     }
 
-    fun devPutLogs() {
+    fun touch(point: Point): Boolean {
+        val hit = box.hit(point)
+        if (hit) {
+            delegate.tick(
+                input = BodyInput(
+                    healthDiff = -(health ?: 0f),
+                ),
+            )
+        }
+        return hit
+    }
+
+    fun actDebug() {
         baseGame.putLog("health") {
             if (health == null) "null" else "%.3f".format(health)
         }

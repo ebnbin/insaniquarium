@@ -10,16 +10,20 @@ import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.gdx.utils.XY
 import dev.ebnbin.gdx.utils.direction
 import dev.ebnbin.gdx.utils.magnitude
+import dev.ebnbin.gdx.utils.unitToMeter
 import kotlin.math.abs
 
 data class BodyBox(
-    private val config: BodyConfig.Box,
-    private val tankWidth: Float,
-    private val tankHeight: Float,
-    private val drivingTargetX: BodyDrivingTarget?,
-    private val drivingTargetY: BodyDrivingTarget?,
+    private val config: BodyConfig,
+    private val delegate: BodyActorDelegate,
+    private val params: Params,
     val status: Status,
 ) {
+    data class Params(
+        val drivingTargetX: BodyDrivingTarget?,
+        val drivingTargetY: BodyDrivingTarget?,
+    )
+
     data class Status(
         val velocityX: Float = 0f,
         val velocityY: Float = 0f,
@@ -33,44 +37,45 @@ data class BodyBox(
     val x: Float = status.x
     val y: Float = status.y
 
-    private val halfWidth: Float = config.width / 2f
-    private val halfHeight: Float = config.height / 2f
+    private val halfWidth: Float = config.box.width / 2f
+    private val halfHeight: Float = config.box.height / 2f
 
     private val minX: Float = halfWidth
-    private val maxX: Float = tankWidth - halfWidth
+    private val maxX: Float = delegate.tankWidth - halfWidth
 
     private val minY: Float = halfHeight
     private val maxY: Float = Float.MAX_VALUE
 
     private val left: Float = x - halfWidth
-    private val right: Float = left + config.width
+    private val right: Float = left + config.box.width
     private val bottom: Float = y - halfHeight
-    private val top: Float = bottom + config.height
+    private val top: Float = bottom + config.box.height
 
     private val isInsideLeft: Boolean = left > 0f
-    private val isInsideRight: Boolean = right < tankWidth
+    private val isInsideRight: Boolean = right < delegate.tankWidth
     private val isInsideBottom: Boolean = bottom > 0f
 
     /**
      * Percent of body inside water.
      */
-    private val insideTopPercent: Float = ((config.height + tankHeight - top) / config.height).coerceIn(0f, 1f)
+    private val insideTopPercent: Float = ((config.box.height + delegate.tankHeight - top) / config.box.height)
+        .coerceIn(0f, 1f)
 
-    private val area: Float = config.width * config.height
+    private val area: Float = config.box.width * config.box.height
 
     //*****************************************************************************************************************
 
-    private val halfDepth: Float = config.depth / 2f
+    private val halfDepth: Float = config.box.depth / 2f
 
     private val depthLeft: Float = x - halfDepth
     private val depthBottom: Float = y - halfDepth
 
-    private val areaX: Float = config.height * config.depth
-    private val areaY: Float = config.width * config.depth
+    private val areaX: Float = config.box.height * config.box.depth
+    private val areaY: Float = config.box.width * config.box.depth
 
-    private val volume: Float = area * config.depth
+    private val volume: Float = area * config.box.depth
 
-    private val mass: Float = volume * config.density
+    private val mass: Float = volume * config.box.density
 
     //*****************************************************************************************************************
 
@@ -84,24 +89,24 @@ data class BodyBox(
     )
 
     private val dragX: Float = BodyForceHelper.drag(
-        dragCoefficient = config.dragCoefficient,
+        dragCoefficient = config.box.dragCoefficient,
         velocity = velocityX,
         referenceArea = areaX,
     )
     private val dragY: Float = BodyForceHelper.drag(
-        dragCoefficient = config.dragCoefficient,
+        dragCoefficient = config.box.dragCoefficient,
         velocity = velocityY,
         referenceArea = areaY,
     )
 
     private val drivingX: Float = BodyForceHelper.driving(
-        drivingTarget = drivingTargetX,
+        drivingTarget = params.drivingTargetX,
         position = x,
         velocity = velocityX,
         mass = mass,
     )
     private val drivingY: Float = BodyForceHelper.driving(
-        drivingTarget = drivingTargetY,
+        drivingTarget = params.drivingTargetY,
         position = y,
         velocity = velocityY,
         mass = mass,
@@ -122,19 +127,19 @@ data class BodyBox(
     )
 
     private val waterStaticFrictionMagnitude: Float = BodyForceHelper.staticFrictionMagnitude(
-        frictionCoefficient = config.waterFrictionCoefficient,
+        frictionCoefficient = config.box.waterFrictionCoefficient,
         normalMagnitude = buoyancyY.magnitude,
         isNormalValid = true,
     )
 
     private val bottomStaticFrictionMagnitude: Float = BodyForceHelper.staticFrictionMagnitude(
-        frictionCoefficient = config.bottomFrictionCoefficient,
+        frictionCoefficient = config.box.bottomFrictionCoefficient,
         normalMagnitude = normalForFrictionY.magnitude,
         isNormalValid = !isInsideBottom && normalForFrictionY > 0f,
     )
 
     private val leftRightStaticFrictionMagnitude: Float = BodyForceHelper.staticFrictionMagnitude(
-        frictionCoefficient = config.leftRightFrictionCoefficient,
+        frictionCoefficient = config.box.leftRightFrictionCoefficient,
         normalMagnitude = normalForFrictionX.magnitude,
         isNormalValid = !isInsideLeft && normalForFrictionX > 0f || !isInsideRight && normalForFrictionX < 0f,
     )
@@ -182,8 +187,8 @@ data class BodyBox(
     //*****************************************************************************************************************
 
     val isSinkingOrFloatingOutsideWater: Boolean = when {
-        config.density == World.DENSITY_WATER -> false
-        config.density > World.DENSITY_WATER -> !isInsideBottom
+        config.box.density == World.DENSITY_WATER -> false
+        config.box.density > World.DENSITY_WATER -> !isInsideBottom
         else -> insideTopPercent < 1f
     }
 
@@ -247,7 +252,7 @@ data class BodyBox(
     //*****************************************************************************************************************
 
     private val vector2: Vector2 = Vector2(x, y)
-    private val rectangle: Rectangle = Rectangle(left, bottom, config.width, config.height)
+    private val rectangle: Rectangle = Rectangle(left, bottom, config.box.width, config.box.height)
 
     fun distance(other: BodyBox): Float {
         return vector2.dst(other.vector2)
@@ -270,26 +275,37 @@ data class BodyBox(
         return BodyRelation.DISJOINT
     }
 
-    val reachDrivingTargetX: Boolean = drivingTargetX?.position?.let { it in left..right } ?: false
-    val reachDrivingTargetY: Boolean = drivingTargetY?.position?.let { it in bottom..top } ?: false
+    val reachDrivingTargetX: Boolean = params.drivingTargetX?.position?.let { it in left..right } ?: false
+    val reachDrivingTargetY: Boolean = params.drivingTargetY?.position?.let { it in bottom..top } ?: false
 
-    val awayFromDrivingTargetX: Boolean = drivingTargetX != null &&
-        abs(drivingTargetX.position - x) >= config.width / 12f
+    val awayFromDrivingTargetX: Boolean = params.drivingTargetX != null &&
+        abs(params.drivingTargetX.position - x) >= config.box.width / 12f
 
     //*****************************************************************************************************************
 
-    fun devPutLogs() {
+    fun postAct() {
+        val textureRegion = config.renderer.animations.swim.getTextureRegion(0f)
+        delegate.setSize(
+            textureRegion.regionWidth.toFloat().unitToMeter,
+            textureRegion.regionHeight.toFloat().unitToMeter,
+        )
+        delegate.setPosition(x, y)
+    }
+
+    //*****************************************************************************************************************
+
+    fun actDebug() {
         baseGame.putLog("size            ") {
-            "${config.width.devText()},${config.height.devText()}"
+            "${config.box.width.devText()},${config.box.height.devText()}"
         }
         baseGame.putLog("lrbt            ") {
             "${left.devText()},${right.devText()},${bottom.devText()},${top.devText()}"
         }
         baseGame.putLog("depth           ") {
-            config.depth.devText()
+            config.box.depth.devText()
         }
         baseGame.putLog("density         ") {
-            config.density.devText()
+            config.box.density.devText()
         }
         baseGame.putLog("gravity,buoyancy") {
             "${gravityY.devText(XY.Y)},${buoyancyY.devText(XY.Y)}"
@@ -341,17 +357,17 @@ data class BodyBox(
         }
     }
 
-    fun devDraw(shapes: ShapeRenderer) {
-        shapes.rect(left, bottom, config.width, config.height)
+    fun drawDebug(shapes: ShapeRenderer) {
+        shapes.rect(left, bottom, config.box.width, config.box.height)
         shapes.line(left, bottom, right, top)
         shapes.line(left, top, right, bottom)
-        shapes.rect(depthLeft, bottom, config.depth, config.height)
-        shapes.rect(left, depthBottom, config.width, config.depth)
-        drivingTargetX?.let {
-            shapes.line(it.position, 0f, it.position, tankHeight)
+        shapes.rect(depthLeft, bottom, config.box.depth, config.box.height)
+        shapes.rect(left, depthBottom, config.box.width, config.box.depth)
+        params.drivingTargetX?.let {
+            shapes.line(it.position, 0f, it.position, delegate.tankHeight)
         }
-        drivingTargetY?.let {
-            shapes.line(0f, it.position, tankWidth, it.position)
+        params.drivingTargetY?.let {
+            shapes.line(0f, it.position, delegate.tankWidth, it.position)
         }
     }
 }
