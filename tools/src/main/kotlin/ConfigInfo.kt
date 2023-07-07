@@ -106,13 +106,13 @@ object ConfigInfo {
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
                 drivingAcceleration = 0.125f,
-                idlingTimeRandomStart = 6f,
-                idlingTimeRandomEnd = 10f,
+                idlingTicksMin = 120,
+                idlingTicksMax = 200,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -192,13 +192,13 @@ object ConfigInfo {
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
                 drivingAcceleration = 0.125f,
-                idlingTimeRandomStart = 6f,
-                idlingTimeRandomEnd = 10f,
+                idlingTicksMin = 120,
+                idlingTicksMax = 200,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -278,13 +278,13 @@ object ConfigInfo {
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
                 drivingAcceleration = 0.125f,
-                idlingTimeRandomStart = 6f,
-                idlingTimeRandomEnd = 10f,
+                idlingTicksMin = 120,
+                idlingTicksMax = 200,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -360,13 +360,13 @@ object ConfigInfo {
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
                 drivingAcceleration = 0.125f,
-                idlingTimeRandomStart = 6f,
-                idlingTimeRandomEnd = 10f,
+                idlingTicksMin = 120,
+                idlingTicksMax = 200,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -443,8 +443,8 @@ object ConfigInfo {
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.15f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -495,13 +495,13 @@ object ConfigInfo {
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
                 drivingAcceleration = 0.125f,
-                idlingTimeRandomStart = 6f,
-                idlingTimeRandomEnd = 10f,
+                idlingTicksMin = 120,
+                idlingTicksMax = 200,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -750,13 +750,13 @@ object ConfigInfo {
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
-                idlingTimeRandomStart = 0f,
-                idlingTimeRandomEnd = 0f,
+                idlingTicksMin = 0,
+                idlingTicksMax = 0,
             ),
             swimActY = BodyConfig.SwimAct(
                 drivingAcceleration = 0.125f,
-                idlingTimeRandomStart = 0f,
-                idlingTimeRandomEnd = 0f,
+                idlingTicksMin = 0,
+                idlingTicksMax = 0,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -903,13 +903,13 @@ object ConfigInfo {
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.1f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
                 drivingAcceleration = 0.15f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -950,13 +950,13 @@ object ConfigInfo {
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
                 drivingAcceleration = 0.125f,
-                idlingTimeRandomStart = 6f,
-                idlingTimeRandomEnd = 10f,
+                idlingTicksMin = 120,
+                idlingTicksMax = 200,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -998,13 +998,13 @@ object ConfigInfo {
             ),
             swimActX = BodyConfig.SwimAct(
                 drivingAcceleration = 0.2f,
-                idlingTimeRandomStart = 2f,
-                idlingTimeRandomEnd = 8f,
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
                 drivingAcceleration = 0.125f,
-                idlingTimeRandomStart = 6f,
-                idlingTimeRandomEnd = 10f,
+                idlingTicksMin = 120,
+                idlingTicksMax = 200,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(

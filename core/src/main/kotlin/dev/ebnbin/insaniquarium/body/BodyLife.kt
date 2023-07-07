@@ -22,11 +22,11 @@ data class BodyLife(
     data class Status(
         /**
          * null: Neither targeting nor idling.
-         * 0f: Targeting or finish idling.
-         * > 0f: Idling.
+         * 0: Targeting.
+         * > 0: Idling.
          */
-        val swimTimeX: Float? = null,
-        val swimTimeY: Float? = null,
+        val swimTicksX: Int? = null,
+        val swimTicksY: Int? = null,
 
         val drivingTargetX: BodyDrivingTarget? = null,
         val drivingTargetY: BodyDrivingTarget? = null,
@@ -59,7 +59,7 @@ data class BodyLife(
 
     private data class SwimAct(
         val drivingTarget: BodyDrivingTarget?,
-        val time: Float,
+        val ticks: Int,
     )
 
     data class ScaleTransform(
@@ -152,12 +152,12 @@ data class BodyLife(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
             tickDelta = delta,
             configSwimAct = body.config.life.swimActX,
-            swimAct = if (status.swimTimeX == null) {
+            swimAct = if (status.swimTicksX == null) {
                 null
             } else {
                 SwimAct(
                     drivingTarget = status.drivingTargetX?.takeIf { it.type == BodyDrivingTarget.Type.SWIM },
-                    time = status.swimTimeX,
+                    ticks = status.swimTicksX,
                 )
             },
             tankSize = body.delegate.tankWidth,
@@ -167,12 +167,12 @@ data class BodyLife(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
             tickDelta = delta,
             configSwimAct = body.config.life.swimActY,
-            swimAct = if (status.swimTimeY == null) {
+            swimAct = if (status.swimTicksY == null) {
                 null
             } else {
                 SwimAct(
                     drivingTarget = status.drivingTargetY?.takeIf { it.type == BodyDrivingTarget.Type.SWIM },
-                    time = status.swimTimeY,
+                    ticks = status.swimTicksY,
                 )
             },
             tankSize = body.delegate.tankHeight,
@@ -196,8 +196,8 @@ data class BodyLife(
         val nextScaleTransform = nextScaleTransform(delta, input)
 
         return Status(
-            swimTimeX = nextSwimActX?.time,
-            swimTimeY = nextSwimActY?.time,
+            swimTicksX = nextSwimActX?.ticks,
+            swimTicksY = nextSwimActY?.ticks,
             drivingTargetX = nextDrivingTargetX,
             drivingTargetY = nextDrivingTargetY,
             health = nextHealth,
@@ -297,6 +297,8 @@ data class BodyLife(
         tankSize: Float,
         reachDrivingTarget: Boolean,
     ): SwimAct? {
+        val ticks = if (tickDelta == 0f) 0 else 1
+
         if (!enabled) {
             return null
         }
@@ -311,23 +313,28 @@ data class BodyLife(
                     position = Random.nextFloat(0f, tankSize),
                     acceleration = configSwimAct.drivingAcceleration,
                 ),
-                time = 0f,
+                ticks = 0,
             )
         }
 
         fun createIdling(): SwimAct {
-            return SwimAct(
-                drivingTarget = null,
-                time = Random.nextFloat(
-                    configSwimAct.idlingTimeRandomStart,
-                    configSwimAct.idlingTimeRandomEnd,
-                ),
+            val newTicks = Random.nextInt(
+                from = configSwimAct.idlingTicksMin,
+                until = configSwimAct.idlingTicksMax + 1,
             )
+            return if (newTicks == 0) {
+                createTargeting()
+            } else {
+                SwimAct(
+                    drivingTarget = null,
+                    ticks = newTicks,
+                )
+            }
         }
 
         fun updateIdling(swimAct: SwimAct): SwimAct {
             return swimAct.copy(
-                time = swimAct.time - tickDelta,
+                ticks = swimAct.ticks - ticks,
             )
         }
 
@@ -340,7 +347,7 @@ data class BodyLife(
         }
         return if (swimAct.drivingTarget == null) {
             // Idling
-            val isRemainingTimeUp = swimAct.time - tickDelta <= 0f
+            val isRemainingTimeUp = swimAct.ticks - ticks <= 0
             if (isRemainingTimeUp) {
                 createTargeting()
             } else {
@@ -646,6 +653,9 @@ data class BodyLife(
     }
 
     fun actDebug() {
+        baseGame.putLog("swimTicks") {
+            "${status.swimTicksX},${status.swimTicksY}"
+        }
         baseGame.putLog("health") {
             if (health == null) "null" else "%.3f".format(health)
         }

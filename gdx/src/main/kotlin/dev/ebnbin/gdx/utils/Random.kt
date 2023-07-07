@@ -13,4 +13,8 @@ object Random {
         require(end >= start)
         return start + random.nextFloat() * (end - start)
     }
+
+    fun nextInt(from: Int, until: Int): Int {
+        return random.nextInt(from, until)
+    }
 }

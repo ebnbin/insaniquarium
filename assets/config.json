@@ -134,13 +134,13 @@
         "touchAct": null,
         "swimActX": {
           "drivingAcceleration": 0.2,
-          "idlingTimeRandomStart": 2.0,
-          "idlingTimeRandomEnd": 8.0
+          "idlingTicksMin": 40,
+          "idlingTicksMax": 160
         },
         "swimActY": {
           "drivingAcceleration": 0.125,
-          "idlingTimeRandomStart": 6.0,
-          "idlingTimeRandomEnd": 10.0
+          "idlingTicksMin": 120,
+          "idlingTicksMax": 200
         }
       },
       "renderer": {
@@ -238,13 +238,13 @@
         "touchAct": null,
         "swimActX": {
           "drivingAcceleration": 0.2,
-          "idlingTimeRandomStart": 2.0,
-          "idlingTimeRandomEnd": 8.0
+          "idlingTicksMin": 40,
+          "idlingTicksMax": 160
         },
         "swimActY": {
           "drivingAcceleration": 0.125,
-          "idlingTimeRandomStart": 6.0,
-          "idlingTimeRandomEnd": 10.0
+          "idlingTicksMin": 120,
+          "idlingTicksMax": 200
         }
       },
       "renderer": {
@@ -342,13 +342,13 @@
         "touchAct": null,
         "swimActX": {
           "drivingAcceleration": 0.2,
-          "idlingTimeRandomStart": 2.0,
-          "idlingTimeRandomEnd": 8.0
+          "idlingTicksMin": 40,
+          "idlingTicksMax": 160
         },
         "swimActY": {
           "drivingAcceleration": 0.125,
-          "idlingTimeRandomStart": 6.0,
-          "idlingTimeRandomEnd": 10.0
+          "idlingTicksMin": 120,
+          "idlingTicksMax": 200
         }
       },
       "renderer": {
@@ -442,13 +442,13 @@
         "touchAct": null,
         "swimActX": {
           "drivingAcceleration": 0.2,
-          "idlingTimeRandomStart": 2.0,
-          "idlingTimeRandomEnd": 8.0
+          "idlingTicksMin": 40,
+          "idlingTicksMax": 160
         },
         "swimActY": {
           "drivingAcceleration": 0.125,
-          "idlingTimeRandomStart": 6.0,
-          "idlingTimeRandomEnd": 10.0
+          "idlingTicksMin": 120,
+          "idlingTicksMax": 200
         }
       },
       "renderer": {
@@ -539,8 +539,8 @@
         "touchAct": null,
         "swimActX": {
           "drivingAcceleration": 0.15,
-          "idlingTimeRandomStart": 2.0,
-          "idlingTimeRandomEnd": 8.0
+          "idlingTicksMin": 40,
+          "idlingTicksMax": 160
         },
         "swimActY": null
       },
@@ -608,13 +608,13 @@
         "touchAct": null,
         "swimActX": {
           "drivingAcceleration": 0.2,
-          "idlingTimeRandomStart": 2.0,
-          "idlingTimeRandomEnd": 8.0
+          "idlingTicksMin": 40,
+          "idlingTicksMax": 160
         },
         "swimActY": {
           "drivingAcceleration": 0.125,
-          "idlingTimeRandomStart": 6.0,
-          "idlingTimeRandomEnd": 10.0
+          "idlingTicksMin": 120,
+          "idlingTicksMax": 200
         }
       },
       "renderer": {
@@ -988,13 +988,13 @@
         "touchAct": null,
         "swimActX": {
           "drivingAcceleration": 0.2,
-          "idlingTimeRandomStart": 0.0,
-          "idlingTimeRandomEnd": 0.0
+          "idlingTicksMin": 0,
+          "idlingTicksMax": 0
         },
         "swimActY": {
           "drivingAcceleration": 0.125,
-          "idlingTimeRandomStart": 0.0,
-          "idlingTimeRandomEnd": 0.0
+          "idlingTicksMin": 0,
+          "idlingTicksMax": 0
         }
       },
       "renderer": {
@@ -1220,13 +1220,13 @@
         "touchAct": null,
         "swimActX": {
           "drivingAcceleration": 0.1,
-          "idlingTimeRandomStart": 2.0,
-          "idlingTimeRandomEnd": 8.0
+          "idlingTicksMin": 40,
+          "idlingTicksMax": 160
         },
         "swimActY": {
           "drivingAcceleration": 0.15,
-          "idlingTimeRandomStart": 2.0,
-          "idlingTimeRandomEnd": 8.0
+          "idlingTicksMin": 40,
+          "idlingTicksMax": 160
         }
       },
       "renderer": {
@@ -1288,13 +1288,13 @@
         "touchAct": null,
         "swimActX": {
           "drivingAcceleration": 0.2,
-          "idlingTimeRandomStart": 2.0,
-          "idlingTimeRandomEnd": 8.0
+          "idlingTicksMin": 40,
+          "idlingTicksMax": 160
         },
         "swimActY": {
           "drivingAcceleration": 0.125,
-          "idlingTimeRandomStart": 6.0,
-          "idlingTimeRandomEnd": 10.0
+          "idlingTicksMin": 120,
+          "idlingTicksMax": 200
         }
       },
       "renderer": {
@@ -1348,13 +1348,13 @@
         },
         "swimActX": {
           "drivingAcceleration": 0.2,
-          "idlingTimeRandomStart": 2.0,
-          "idlingTimeRandomEnd": 8.0
+          "idlingTicksMin": 40,
+          "idlingTicksMax": 160
         },
         "swimActY": {
           "drivingAcceleration": 0.125,
-          "idlingTimeRandomStart": 6.0,
-          "idlingTimeRandomEnd": 10.0
+          "idlingTicksMin": 120,
+          "idlingTicksMax": 200
         }
       },
       "renderer": {

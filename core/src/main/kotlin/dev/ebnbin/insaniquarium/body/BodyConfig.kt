@@ -155,9 +155,9 @@ data class BodyConfig(
         @Expose
         val drivingAcceleration: Float,
         @Expose
-        val idlingTimeRandomStart: Float,
+        val idlingTicksMin: Int,
         @Expose
-        val idlingTimeRandomEnd: Float,
+        val idlingTicksMax: Int,
     )
 
     data class Animations(
