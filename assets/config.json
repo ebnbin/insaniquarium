@@ -21,7 +21,9 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": {
@@ -32,6 +34,7 @@
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -58,7 +61,9 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": {
@@ -69,6 +74,7 @@
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -120,7 +126,9 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
-        }
+        },
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": {
@@ -143,17 +151,20 @@
         "transformation": "guppy_medium"
       },
       "drop": null,
+      "energy": null,
       "eatAct": {
         "foods": {
           "fish_food": {
             "healthDiffPerTick": -1,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 2000,
             "growth": 5,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           }
         },
         "drivingAccelerationX": 0.4,
@@ -217,7 +228,9 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
-        }
+        },
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": {
@@ -245,17 +258,20 @@
         "diffPerTick": 1,
         "production": "silver_coin"
       },
+      "energy": null,
       "eatAct": {
         "foods": {
           "fish_food": {
             "healthDiffPerTick": -1,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 2000,
             "growth": 5,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           }
         },
         "drivingAccelerationX": 0.4,
@@ -319,7 +335,9 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
-        }
+        },
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": {
@@ -347,17 +365,20 @@
         "diffPerTick": 1,
         "production": "gold_coin"
       },
+      "energy": null,
       "eatAct": {
         "foods": {
           "fish_food": {
             "healthDiffPerTick": -1,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 2000,
             "growth": 5,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           }
         },
         "drivingAccelerationX": 0.4,
@@ -421,7 +442,9 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
-        }
+        },
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": {
@@ -444,17 +467,20 @@
         "diffPerTick": 1,
         "production": "diamond"
       },
+      "energy": null,
       "eatAct": {
         "foods": {
           "fish_food": {
             "healthDiffPerTick": -1,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 2000,
             "growth": 0,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           }
         },
         "drivingAccelerationX": 0.4,
@@ -498,7 +524,9 @@
           "interpolation": "linear"
         },
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": null,
@@ -517,17 +545,20 @@
         "diffPerTick": 0,
         "production": "beetle"
       },
+      "energy": null,
       "eatAct": {
         "foods": {
           "star": {
             "healthDiffPerTick": -1,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 2000,
             "growth": 0,
-            "drop": 160
+            "drop": 160,
+            "energy": 0
           }
         },
         "drivingAccelerationX": 0.3,
@@ -587,7 +618,9 @@
           "duration": 0.5,
           "mode": "normal",
           "interpolation": "linear"
-        }
+        },
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": null,
@@ -601,17 +634,20 @@
       },
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": {
         "foods": {
           "star_potion": {
             "healthDiffPerTick": -1,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 2000,
             "growth": 0,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           }
         },
         "drivingAccelerationX": 0.4,
@@ -650,13 +686,16 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": null,
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -683,13 +722,16 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": null,
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -716,13 +758,16 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": null,
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -749,13 +794,16 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": null,
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -782,13 +830,16 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": null,
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -815,13 +866,16 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": null,
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -853,7 +907,9 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": {
@@ -871,47 +927,56 @@
       },
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": {
         "foods": {
           "guppy_small": {
             "healthDiffPerTick": -10,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 0,
             "growth": 0,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           },
           "guppy_medium": {
             "healthDiffPerTick": -10,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 0,
             "growth": 0,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           },
           "guppy_large": {
             "healthDiffPerTick": -10,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 0,
             "growth": 0,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           },
           "guppy_king": {
             "healthDiffPerTick": -10,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 0,
             "growth": 0,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           }
         },
         "drivingAccelerationX": 0.4,
@@ -950,7 +1015,9 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": null,
@@ -964,6 +1031,7 @@
       },
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -990,7 +1058,9 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": null,
@@ -1004,6 +1074,7 @@
       },
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -1030,7 +1101,9 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": null,
@@ -1044,6 +1117,7 @@
       },
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -1070,54 +1144,65 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": null,
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": {
         "foods": {
           "silver_coin": {
             "healthDiffPerTick": -1,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 0,
             "growth": 0,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           },
           "gold_coin": {
             "healthDiffPerTick": -1,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 0,
             "growth": 0,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           },
           "star": {
             "healthDiffPerTick": -1,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 0,
             "growth": 0,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           },
           "diamond": {
             "healthDiffPerTick": -1,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 0,
             "growth": 0,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           }
         },
         "drivingAccelerationX": 0.2,
@@ -1166,7 +1251,9 @@
         },
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": null,
@@ -1180,17 +1267,20 @@
       },
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": {
         "foods": {
           "sylvester": {
             "healthDiffPerTick": -5,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
-            "dropDiffPerTick": 0.0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
             "health": 0,
             "hunger": 0,
             "growth": 0,
-            "drop": 0
+            "drop": 0,
+            "energy": 0
           }
         },
         "drivingAccelerationX": 0.8,
@@ -1234,13 +1324,16 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": false,
       "health": null,
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": {
         "drivingAccelerationX": 0.4,
@@ -1278,7 +1371,9 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": {
@@ -1289,6 +1384,7 @@
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -1315,7 +1411,9 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": {
@@ -1326,6 +1424,7 @@
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -1352,7 +1451,9 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": {
@@ -1363,6 +1464,7 @@
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -1389,7 +1491,9 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": {
@@ -1400,6 +1504,7 @@
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,
@@ -1426,7 +1531,9 @@
         "eat": null,
         "hungry": null,
         "hungryTurn": null,
-        "hungryEat": null
+        "hungryEat": null,
+        "actionA": null,
+        "actionB": null
       },
       "isDead": true,
       "health": {
@@ -1437,6 +1544,7 @@
       "hunger": null,
       "growth": null,
       "drop": null,
+      "energy": null,
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,

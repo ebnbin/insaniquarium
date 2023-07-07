@@ -2,6 +2,7 @@ package dev.ebnbin.insaniquarium.body
 
 import com.google.gson.annotations.Expose
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
+import dev.ebnbin.gdx.utils.SerializableEnum
 import dev.ebnbin.gdx.utils.World
 
 data class BodyConfig(
@@ -40,6 +41,8 @@ data class BodyConfig(
     val growth: Growth? = null,
     @Expose
     val drop: Drop? = null,
+    @Expose
+    val energy: Energy? = null,
     @Expose
     val eatAct: EatAct? = null,
     @Expose
@@ -107,6 +110,24 @@ data class BodyConfig(
         val production: BodyType,
     )
 
+    data class Energy(
+        @Expose
+        val full: Int,
+        @Expose
+        val init: Int = 0,
+        @Expose
+        val diffPerTick: Int = 0,
+        @Expose
+        val action: Action? = null,
+    )
+
+    data class Action(
+        @Expose
+        val beginAnimation: AnimationAction,
+        @Expose
+        val endAnimation: AnimationAction,
+    )
+
     data class EatAct(
         @Expose
         val foods: Map<BodyType, Food>,
@@ -124,7 +145,9 @@ data class BodyConfig(
         @Expose
         val growthDiffPerTick: Int = 0,
         @Expose
-        val dropDiffPerTick: Float = 0f,
+        val dropDiffPerTick: Int = 0,
+        @Expose
+        val energyDiffPerTick: Int = 0,
         @Expose
         val health: Int = 0,
         @Expose
@@ -133,6 +156,8 @@ data class BodyConfig(
         val growth: Int = 0,
         @Expose
         val drop: Int = 0,
+        @Expose
+        val energy: Int = 0,
     )
 
     data class TouchAct(
@@ -151,6 +176,12 @@ data class BodyConfig(
         val idlingTicksMax: Int,
     )
 
+    enum class AnimationAction(override val serializedName: String) : SerializableEnum {
+        A("a"),
+        B("b"),
+        ;
+    }
+
     data class Animations(
         @Expose
         val swim: TextureRegionAnimation,
@@ -164,6 +195,10 @@ data class BodyConfig(
         val hungryTurn: TextureRegionAnimation? = null,
         @Expose
         val hungryEat: TextureRegionAnimation? = null,
+        @Expose
+        val actionA: TextureRegionAnimation? = null,
+        @Expose
+        val actionB: TextureRegionAnimation? = null,
     )
 
     companion object {

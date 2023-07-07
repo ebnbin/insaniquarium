@@ -13,6 +13,8 @@ data class BodyAnimationData(
         SWIM("swim"),
         TURN("turn"),
         EAT("eat"),
+        A("a"),
+        B("b"),
         ;
     }
 
@@ -56,6 +58,12 @@ data class BodyAnimationData(
                         configAnimations.hungryEat ?: requireNotNull(configAnimations.eat)
                     }
                 }
+            }
+            Action.A -> {
+                requireNotNull(configAnimations.actionA)
+            }
+            Action.B -> {
+                requireNotNull(configAnimations.actionB)
             }
         }
     }

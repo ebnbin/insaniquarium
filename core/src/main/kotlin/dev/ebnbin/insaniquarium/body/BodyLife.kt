@@ -35,6 +35,7 @@ data class BodyLife(
         val hunger: Int? = null,
         val growth: Int? = null,
         val drop: Int? = null,
+        val energy: Int? = null,
 
         val animationData: BodyAnimationData = BodyAnimationData(),
         /**
@@ -192,6 +193,7 @@ data class BodyLife(
         val nextHunger = nextHunger(delta, input, nextEatAct?.eatenFood)
         val nextGrowth = nextGrowth(delta, input, nextEatAct?.eatenFood)
         val nextDrop = nextDrop(delta, input, nextEatAct?.eatenFood)
+        val nextEnergy = nextEnergy(delta, input, nextEatAct?.eatenFood)
 
         val eatenFoodRelation = nextEatAct?.foodRelation ?: BodyRelation.DISJOINT
 
@@ -208,6 +210,7 @@ data class BodyLife(
             hunger = nextHunger,
             growth = nextGrowth,
             drop = nextDrop,
+            energy = nextEnergy,
             animationData = nextAnimationData,
             alphaTime = nextAlphaTime,
             scaleTransform = nextScaleTransform,
@@ -427,6 +430,21 @@ data class BodyLife(
         )
     }
 
+    private fun nextEnergy(
+        tickDelta: Float,
+        input: BodyInput,
+        food: BodyConfig.Food?,
+    ): Int? {
+        body.config.energy ?: return null
+        return nextValue(
+            value = status.energy,
+            init = body.config.energy.init,
+            tickDiff = if (tickDelta == 0f) 0 else body.config.energy.diffPerTick,
+            inputDiff = input.energyDiff,
+            foodDiff = food?.energy,
+        )
+    }
+
     private fun nextValue(
         value: Int?,
         init: Int,
@@ -437,20 +455,6 @@ data class BodyLife(
         return (value ?: init) + tickDiff + inputDiff + (foodDiff ?: 0)
     }
 
-    private fun nextValue(
-        value: Float?,
-        initialThreshold: Float,
-        diffPerTick: Float,
-        inputDiff: Float,
-        foodDiff: Float?,
-    ): Float {
-        var nextValue = value ?: initialThreshold
-        nextValue += diffPerTick
-        nextValue += inputDiff
-        nextValue += (foodDiff ?: 0f)
-        return nextValue
-    }
-
     private fun nextAnimationData(
         tickDelta: Float,
         eatenFoodRelation: BodyRelation?,
@@ -459,6 +463,24 @@ data class BodyLife(
             BodyAnimationData.Status.HUNGRY
         } else {
             BodyAnimationData.Status.NORMAL
+        }
+
+        fun createA(): BodyAnimationData {
+            return BodyAnimationData(
+                action = BodyAnimationData.Action.A,
+                status = animationStatus,
+                stateTime = 0f,
+                isFacingRight = animationData.isFacingRight,
+            )
+        }
+
+        fun createB(): BodyAnimationData {
+            return BodyAnimationData(
+                action = BodyAnimationData.Action.B,
+                status = animationStatus,
+                stateTime = 0f,
+                isFacingRight = animationData.isFacingRight,
+            )
         }
 
         fun createEat(): BodyAnimationData {
