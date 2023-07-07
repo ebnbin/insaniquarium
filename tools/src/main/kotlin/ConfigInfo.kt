@@ -59,16 +59,16 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            isDead = true,
-            health = BodyConfig.Health(
-                full = 2,
-            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "fish_food",
                     duration = 1f,
                     mode = AnimationMode.LOOP,
                 ),
+            ),
+            isDead = true,
+            health = BodyConfig.Health(
+                full = 2,
             ),
         ),
         BodyType.STAR_POTION to BodyConfig(
@@ -89,16 +89,16 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            isDead = true,
-            health = BodyConfig.Health(
-                full = 2,
-            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "star_potion",
                     duration = 1f,
                     mode = AnimationMode.LOOP,
                 ),
+            ),
+            isDead = true,
+            health = BodyConfig.Health(
+                full = 2,
             ),
         ),
         BodyType.GUPPY_SMALL to BodyConfig(
@@ -117,6 +117,38 @@ object ConfigInfo {
                 textureName = "guppy_small_turn",
                 index = 5,
                 wh = WH.WIDTH,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "guppy_small",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "guppy_small_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                eat = TextureRegionAnimation(
+                    assetId = "guppy_small_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungry = TextureRegionAnimation(
+                    assetId = "guppy_small_hungry",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                hungryTurn = TextureRegionAnimation(
+                    assetId = "guppy_small_hungry_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungryEat = TextureRegionAnimation(
+                    assetId = "guppy_small_hungry_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
             ),
             health = BodyConfig.Health(
                 full = 40,
@@ -153,38 +185,6 @@ object ConfigInfo {
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),
-            animations = BodyConfig.Animations(
-                swim = TextureRegionAnimation(
-                    assetId = "guppy_small",
-                    duration = 0.5f,
-                    mode = AnimationMode.LOOP,
-                ),
-                turn = TextureRegionAnimation(
-                    assetId = "guppy_small_turn",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                eat = TextureRegionAnimation(
-                    assetId = "guppy_small_eat",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                hungry = TextureRegionAnimation(
-                    assetId = "guppy_small_hungry",
-                    duration = 0.5f,
-                    mode = AnimationMode.LOOP,
-                ),
-                hungryTurn = TextureRegionAnimation(
-                    assetId = "guppy_small_hungry_turn",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                hungryEat = TextureRegionAnimation(
-                    assetId = "guppy_small_hungry_eat",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-            ),
         ),
         BodyType.GUPPY_MEDIUM to BodyConfig(
             group = BodyGroup.FISH,
@@ -202,6 +202,38 @@ object ConfigInfo {
                 textureName = "guppy_medium_turn",
                 index = 5,
                 wh = WH.WIDTH,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "guppy_medium",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "guppy_medium_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                eat = TextureRegionAnimation(
+                    assetId = "guppy_medium_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungry = TextureRegionAnimation(
+                    assetId = "guppy_medium_hungry",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                hungryTurn = TextureRegionAnimation(
+                    assetId = "guppy_medium_hungry_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungryEat = TextureRegionAnimation(
+                    assetId = "guppy_medium_hungry_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
             ),
             health = BodyConfig.Health(
                 full = 40,
@@ -243,38 +275,6 @@ object ConfigInfo {
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),
-            animations = BodyConfig.Animations(
-                swim = TextureRegionAnimation(
-                    assetId = "guppy_medium",
-                    duration = 0.5f,
-                    mode = AnimationMode.LOOP,
-                ),
-                turn = TextureRegionAnimation(
-                    assetId = "guppy_medium_turn",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                eat = TextureRegionAnimation(
-                    assetId = "guppy_medium_eat",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                hungry = TextureRegionAnimation(
-                    assetId = "guppy_medium_hungry",
-                    duration = 0.5f,
-                    mode = AnimationMode.LOOP,
-                ),
-                hungryTurn = TextureRegionAnimation(
-                    assetId = "guppy_medium_hungry_turn",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                hungryEat = TextureRegionAnimation(
-                    assetId = "guppy_medium_hungry_eat",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-            ),
         ),
         BodyType.GUPPY_LARGE to BodyConfig(
             group = BodyGroup.FISH,
@@ -292,6 +292,38 @@ object ConfigInfo {
                 textureName = "guppy_large_turn",
                 index = 5,
                 wh = WH.WIDTH,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "guppy_large",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "guppy_large_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                eat = TextureRegionAnimation(
+                    assetId = "guppy_large_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungry = TextureRegionAnimation(
+                    assetId = "guppy_large_hungry",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                hungryTurn = TextureRegionAnimation(
+                    assetId = "guppy_large_hungry_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungryEat = TextureRegionAnimation(
+                    assetId = "guppy_large_hungry_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
             ),
             health = BodyConfig.Health(
                 full = 40,
@@ -333,38 +365,6 @@ object ConfigInfo {
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),
-            animations = BodyConfig.Animations(
-                swim = TextureRegionAnimation(
-                    assetId = "guppy_large",
-                    duration = 0.5f,
-                    mode = AnimationMode.LOOP,
-                ),
-                turn = TextureRegionAnimation(
-                    assetId = "guppy_large_turn",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                eat = TextureRegionAnimation(
-                    assetId = "guppy_large_eat",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                hungry = TextureRegionAnimation(
-                    assetId = "guppy_large_hungry",
-                    duration = 0.5f,
-                    mode = AnimationMode.LOOP,
-                ),
-                hungryTurn = TextureRegionAnimation(
-                    assetId = "guppy_large_hungry_turn",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                hungryEat = TextureRegionAnimation(
-                    assetId = "guppy_large_hungry_eat",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-            ),
         ),
         BodyType.GUPPY_KING to BodyConfig(
             group = BodyGroup.FISH,
@@ -382,6 +382,38 @@ object ConfigInfo {
                 textureName = "guppy_king_turn",
                 index = 5,
                 wh = WH.WIDTH,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "guppy_king",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "guppy_king_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                eat = TextureRegionAnimation(
+                    assetId = "guppy_king_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungry = TextureRegionAnimation(
+                    assetId = "guppy_king_hungry",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                hungryTurn = TextureRegionAnimation(
+                    assetId = "guppy_king_hungry_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungryEat = TextureRegionAnimation(
+                    assetId = "guppy_king_hungry_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
             ),
             health = BodyConfig.Health(
                 full = 40,
@@ -418,38 +450,6 @@ object ConfigInfo {
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),
-            animations = BodyConfig.Animations(
-                swim = TextureRegionAnimation(
-                    assetId = "guppy_king",
-                    duration = 0.5f,
-                    mode = AnimationMode.LOOP,
-                ),
-                turn = TextureRegionAnimation(
-                    assetId = "guppy_king_turn",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                eat = TextureRegionAnimation(
-                    assetId = "guppy_king_eat",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                hungry = TextureRegionAnimation(
-                    assetId = "guppy_king_hungry",
-                    duration = 0.5f,
-                    mode = AnimationMode.LOOP,
-                ),
-                hungryTurn = TextureRegionAnimation(
-                    assetId = "guppy_king_hungry_turn",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                hungryEat = TextureRegionAnimation(
-                    assetId = "guppy_king_hungry_eat",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-            ),
         ),
         BodyType.STARCATCHER to BodyConfig(
             group = BodyGroup.FISH,
@@ -470,6 +470,18 @@ object ConfigInfo {
             ),
             density = 1080f,
             bottomFrictionCoefficient = 0.01f,
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "starcatcher",
+                    duration = 1f,
+                    mode = AnimationMode.LOOP,
+                ),
+                hungry = TextureRegionAnimation(
+                    assetId = "starcatcher_hungry",
+                    duration = 1f,
+                    mode = AnimationMode.LOOP,
+                ),
+            ),
             hunger = BodyConfig.Hunger(
                 full = 2000,
                 max = 3000,
@@ -497,18 +509,6 @@ object ConfigInfo {
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
             ),
-            animations = BodyConfig.Animations(
-                swim = TextureRegionAnimation(
-                    assetId = "starcatcher",
-                    duration = 1f,
-                    mode = AnimationMode.LOOP,
-                ),
-                hungry = TextureRegionAnimation(
-                    assetId = "starcatcher_hungry",
-                    duration = 1f,
-                    mode = AnimationMode.LOOP,
-                ),
-            ),
         ),
         BodyType.BEETLEMUNCHER to BodyConfig(
             group = BodyGroup.FISH,
@@ -526,33 +526,6 @@ object ConfigInfo {
                 textureName = "beetlemuncher_turn",
                 index = 5,
                 wh = WH.WIDTH,
-            ),
-            hunger = BodyConfig.Hunger(
-                full = 2000,
-                max = 3000,
-                hungry = 1000,
-                diffPerTick = -5,
-                transformation = BodyType.BEETLEMUNCHER_CORPSE,
-            ),
-            eatAct = BodyConfig.EatAct(
-                foods = mapOf(
-                    BodyType.STAR_POTION to BodyConfig.Food(
-                        healthDiffPerTick = -1,
-                        hunger = 2000,
-                    ),
-                ),
-                drivingAccelerationX = 0.4f,
-                drivingAccelerationY = 0.25f,
-            ),
-            swimActX = BodyConfig.SwimAct(
-                drivingAcceleration = 0.2f,
-                idlingTicksMin = 40,
-                idlingTicksMax = 160,
-            ),
-            swimActY = BodyConfig.SwimAct(
-                drivingAcceleration = 0.125f,
-                idlingTicksMin = 120,
-                idlingTicksMax = 200,
             ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -586,6 +559,33 @@ object ConfigInfo {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
+            hunger = BodyConfig.Hunger(
+                full = 2000,
+                max = 3000,
+                hungry = 1000,
+                diffPerTick = -5,
+                transformation = BodyType.BEETLEMUNCHER_CORPSE,
+            ),
+            eatAct = BodyConfig.EatAct(
+                foods = mapOf(
+                    BodyType.STAR_POTION to BodyConfig.Food(
+                        healthDiffPerTick = -1,
+                        hunger = 2000,
+                    ),
+                ),
+                drivingAccelerationX = 0.4f,
+                drivingAccelerationY = 0.25f,
+            ),
+            swimActX = BodyConfig.SwimAct(
+                drivingAcceleration = 0.2f,
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                drivingAcceleration = 0.125f,
+                idlingTicksMin = 120,
+                idlingTicksMax = 200,
+            ),
         ),
         BodyType.GUPPY_SMALL_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
@@ -605,7 +605,6 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            isDead = true,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_small_die",
@@ -613,6 +612,7 @@ object ConfigInfo {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
+            isDead = true,
         ),
         BodyType.GUPPY_MEDIUM_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
@@ -632,7 +632,6 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            isDead = true,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_medium_die",
@@ -640,6 +639,7 @@ object ConfigInfo {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
+            isDead = true,
         ),
         BodyType.GUPPY_LARGE_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
@@ -659,7 +659,6 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            isDead = true,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_large_die",
@@ -667,6 +666,7 @@ object ConfigInfo {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
+            isDead = true,
         ),
         BodyType.GUPPY_KING_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
@@ -686,7 +686,6 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            isDead = true,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_king_die",
@@ -694,6 +693,7 @@ object ConfigInfo {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
+            isDead = true,
         ),
         BodyType.STARCATCHER_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
@@ -713,7 +713,6 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            isDead = true,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "starcatcher_die",
@@ -721,6 +720,7 @@ object ConfigInfo {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
+            isDead = true,
         ),
         BodyType.BEETLEMUNCHER_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
@@ -740,7 +740,6 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            isDead = true,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "beetlemuncher_die",
@@ -748,6 +747,7 @@ object ConfigInfo {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
+            isDead = true,
         ),
         BodyType.SYLVESTER to BodyConfig(
             group = BodyGroup.ALIEN,
@@ -765,6 +765,18 @@ object ConfigInfo {
                 textureName = "sylvester_turn",
                 index = 5,
                 wh = WH.WIDTH,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "sylvester",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "sylvester_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
             ),
             health = BodyConfig.Health(
                 full = 800,
@@ -800,18 +812,6 @@ object ConfigInfo {
                 idlingTicksMin = 0,
                 idlingTicksMax = 0,
             ),
-            animations = BodyConfig.Animations(
-                swim = TextureRegionAnimation(
-                    assetId = "sylvester",
-                    duration = 0.5f,
-                    mode = AnimationMode.LOOP,
-                ),
-                turn = TextureRegionAnimation(
-                    assetId = "sylvester_turn",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-            ),
         ),
         BodyType.NIKO to BodyConfig(
             group = BodyGroup.PET,
@@ -830,17 +830,17 @@ object ConfigInfo {
                 index = 0,
                 wh = WH.WIDTH,
             ),
-            hunger = BodyConfig.Hunger(
-                full = 400,
-                diffPerTick = -1,
-                transformation = BodyType.NIKO_OPEN,
-            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "niko",
                     duration = 0.3f,
                     mode = AnimationMode.LOOP_PINGPONG,
                 ),
+            ),
+            hunger = BodyConfig.Hunger(
+                full = 400,
+                diffPerTick = -1,
+                transformation = BodyType.NIKO_OPEN,
             ),
         ),
         BodyType.NIKO_OPEN to BodyConfig(
@@ -860,17 +860,17 @@ object ConfigInfo {
                 index = 0,
                 wh = WH.WIDTH,
             ),
-            hunger = BodyConfig.Hunger(
-                full = 400,
-                diffPerTick = -4,
-                transformation = BodyType.NIKO_CLOSE,
-            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "niko_open",
                     duration = 0.3f,
                     mode = AnimationMode.NORMAL,
                 ),
+            ),
+            hunger = BodyConfig.Hunger(
+                full = 400,
+                diffPerTick = -4,
+                transformation = BodyType.NIKO_CLOSE,
             ),
         ),
         BodyType.NIKO_CLOSE to BodyConfig(
@@ -890,17 +890,17 @@ object ConfigInfo {
                 index = 0,
                 wh = WH.WIDTH,
             ),
-            hunger = BodyConfig.Hunger(
-                full = 400,
-                diffPerTick = -40,
-                transformation = BodyType.NIKO,
-            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "niko_close",
                     duration = 0.3f,
                     mode = AnimationMode.REVERSED,
                 ),
+            ),
+            hunger = BodyConfig.Hunger(
+                full = 400,
+                diffPerTick = -40,
+                transformation = BodyType.NIKO,
             ),
         ),
         BodyType.CLYDE to BodyConfig(
@@ -919,6 +919,14 @@ object ConfigInfo {
                 textureName = "clyde",
                 index = 0,
                 wh = WH.WIDTH,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "clyde",
+                    duration = 1.125f,
+                    mode = AnimationMode.LOOP,
+                    interpolation = Interpolation.POW2_IN,
+                ),
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
@@ -948,14 +956,6 @@ object ConfigInfo {
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
             ),
-            animations = BodyConfig.Animations(
-                swim = TextureRegionAnimation(
-                    assetId = "clyde",
-                    duration = 1.125f,
-                    mode = AnimationMode.LOOP,
-                    interpolation = Interpolation.POW2_IN,
-                ),
-            ),
         ),
         BodyType.GASH to BodyConfig(
             group = BodyGroup.PET,
@@ -973,6 +973,23 @@ object ConfigInfo {
                 textureName = "gash_turn",
                 index = 5,
                 wh = WH.WIDTH,
+            ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "gash",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "gash_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+                eat = TextureRegionAnimation(
+                    assetId = "gash_eat",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
             ),
             hunger = BodyConfig.Hunger(
                 full = 2000,
@@ -996,23 +1013,6 @@ object ConfigInfo {
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),
-            animations = BodyConfig.Animations(
-                swim = TextureRegionAnimation(
-                    assetId = "gash",
-                    duration = 0.5f,
-                    mode = AnimationMode.LOOP,
-                ),
-                turn = TextureRegionAnimation(
-                    assetId = "gash_turn",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-                eat = TextureRegionAnimation(
-                    assetId = "gash_eat",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
-            ),
         ),
         BodyType.PRESTO to BodyConfig(
             group = BodyGroup.PET,
@@ -1029,6 +1029,18 @@ object ConfigInfo {
                 index = 5,
                 wh = WH.WIDTH,
             ),
+            animations = BodyConfig.Animations(
+                swim = TextureRegionAnimation(
+                    assetId = "presto",
+                    duration = 0.5f,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "presto_turn",
+                    duration = 0.5f,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
             touchAct = BodyConfig.TouchAct(
                 drivingAccelerationX = 0.4f,
                 drivingAccelerationY = 0.25f,
@@ -1042,18 +1054,6 @@ object ConfigInfo {
                 drivingAcceleration = 0.125f,
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
-            ),
-            animations = BodyConfig.Animations(
-                swim = TextureRegionAnimation(
-                    assetId = "presto",
-                    duration = 0.5f,
-                    mode = AnimationMode.LOOP,
-                ),
-                turn = TextureRegionAnimation(
-                    assetId = "presto_turn",
-                    duration = 0.5f,
-                    mode = AnimationMode.NORMAL,
-                ),
             ),
         ),
         BodyType.SILVER_COIN to BodyConfig(
@@ -1072,16 +1072,16 @@ object ConfigInfo {
                 wh = WH.HEIGHT,
             ),
             density = 1020f,
-            isDead = true,
-            health = BodyConfig.Health(
-                full = 2,
-            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "silver_coin",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
                 ),
+            ),
+            isDead = true,
+            health = BodyConfig.Health(
+                full = 2,
             ),
         ),
         BodyType.GOLD_COIN to BodyConfig(
@@ -1100,16 +1100,16 @@ object ConfigInfo {
                 wh = WH.HEIGHT,
             ),
             density = 1020f,
-            isDead = true,
-            health = BodyConfig.Health(
-                full = 2,
-            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "gold_coin",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
                 ),
+            ),
+            isDead = true,
+            health = BodyConfig.Health(
+                full = 2,
             ),
         ),
         BodyType.STAR to BodyConfig(
@@ -1128,16 +1128,16 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1010f,
-            isDead = true,
-            health = BodyConfig.Health(
-                full = 2,
-            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "star",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
                 ),
+            ),
+            isDead = true,
+            health = BodyConfig.Health(
+                full = 2,
             ),
         ),
         BodyType.DIAMOND to BodyConfig(
@@ -1156,16 +1156,16 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            isDead = true,
-            health = BodyConfig.Health(
-                full = 2,
-            ),
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "diamond",
                     duration = 0.6f,
                     mode = AnimationMode.LOOP,
                 ),
+            ),
+            isDead = true,
+            health = BodyConfig.Health(
+                full = 2,
             ),
         ),
         BodyType.BEETLE to BodyConfig(
@@ -1184,16 +1184,16 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 990f,
-            isDead = true,
-            health = BodyConfig.Health(
-                full = 2,
-            ),
             animations = BodyConfig.Animations(
                 swim =  TextureRegionAnimation(
                     assetId = "beetle",
                     duration = 0.3f,
                     mode = AnimationMode.LOOP,
                 ),
+            ),
+            isDead = true,
+            health = BodyConfig.Health(
+                full = 2,
             ),
         ),
     ).also {
