@@ -3,16 +3,16 @@ package dev.ebnbin.insaniquarium.body
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.utils.Point
 
-class BodyDelegate(
-    private val body: Body,
+class BodyActorDelegate(
+    private val bodyActor: BodyActor,
 ) {
     fun findNearestBodyByType(typeSet: Set<BodyType>): BodyData? {
-        val bodies = body.tank.findBodyByType(typeSet)
-        return bodies.minByOrNull { body.data.box.distance(it.box) }
+        val bodies = bodyActor.tank.findBodyByType(typeSet)
+        return bodies.minByOrNull { bodyActor.data.box.distance(it.box) }
     }
 
     fun removeFromTank() {
-        body.tank.removeBody(body.data)
+        bodyActor.tank.removeBody(bodyActor.data)
     }
 
     fun addBody(
@@ -20,7 +20,7 @@ class BodyDelegate(
         boxStatus: BodyBox.Status = BodyBox.Status(),
         lifeStatus: BodyLife.Status = BodyLife.Status(),
     ): BodyData {
-        return body.tank.addBody(
+        return bodyActor.tank.addBody(
             type = type,
             boxStatus = boxStatus,
             lifeStatus = lifeStatus,
@@ -32,57 +32,57 @@ class BodyDelegate(
         boxStatus: BodyBox.Status = BodyBox.Status(),
         lifeStatus: BodyLife.Status = BodyLife.Status(),
     ): BodyData {
-        return body.tank.replaceBody(body.data, type, boxStatus, lifeStatus)
+        return bodyActor.tank.replaceBody(bodyActor.data, type, boxStatus, lifeStatus)
     }
 
     fun tick(
         input: BodyInput,
     ): BodyData {
-        return body.performTick(input)
+        return bodyActor.performTick(input)
     }
 
     fun act(
         delta: Float,
     ): BodyData {
-        return body.performAct(delta)
+        return bodyActor.performAct(delta)
     }
 
     fun setSize(width: Float, height: Float) {
-        body.setSize(width, height)
+        bodyActor.setSize(width, height)
     }
 
     fun setPosition(x: Float, y: Float) {
-        body.setPosition(x, y, Align.center)
+        bodyActor.setPosition(x, y, Align.center)
     }
 
     val x: Float
-        get() = body.x
+        get() = bodyActor.x
     val y: Float
-        get() = body.y
+        get() = bodyActor.y
 
     val originX: Float
-        get() = body.originX
+        get() = bodyActor.originX
     val originY: Float
-        get() = body.originY
+        get() = bodyActor.originY
 
     val width: Float
-        get() = body.width
+        get() = bodyActor.width
     val height: Float
-        get() = body.height
+        get() = bodyActor.height
 
     val scaleX: Float
-        get() = body.scaleX
+        get() = bodyActor.scaleX
     val scaleY: Float
-        get() = body.scaleY
+        get() = bodyActor.scaleY
 
     val rotation: Float
-        get() = body.rotation
+        get() = bodyActor.rotation
 
     val touchPoint: Point?
-        get() = body.tank.touchPoint
+        get() = bodyActor.tank.touchPoint
 
     val tankWidth: Float
-        get() = body.tank.width
+        get() = bodyActor.tank.width
     val tankHeight: Float
-        get() = body.tank.height
+        get() = bodyActor.tank.height
 }

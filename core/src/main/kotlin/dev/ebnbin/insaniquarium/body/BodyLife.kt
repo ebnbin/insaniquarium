@@ -121,7 +121,7 @@ data class BodyLife(
     val canRemove: Boolean = lifeCanRemove || rendererCanRemove
 
     fun nextStatus(
-        delegate: BodyDelegate,
+        delegate: BodyActorDelegate,
         input: BodyInput,
     ): Status {
         val nextEatAct = nextEatAct(
@@ -198,7 +198,7 @@ data class BodyLife(
     }
 
     private fun nextEatAct(
-        delegate: BodyDelegate,
+        delegate: BodyActorDelegate,
     ): EatAct? {
         if (config.life.eatAct == null) {
             return null
@@ -512,7 +512,7 @@ data class BodyLife(
         )
     }
 
-    fun draw(delegate: BodyDelegate, batch: Batch, parentAlpha: Float) {
+    fun draw(delegate: BodyActorDelegate, batch: Batch, parentAlpha: Float) {
         val oldColor = batch.color.cpy()
         batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
         val scale = status.scaleTransform?.let {
@@ -543,7 +543,7 @@ data class BodyLife(
     /**
      * @return True if removed.
      */
-    fun postTick(delegate: BodyDelegate): Boolean {
+    fun postTick(delegate: BodyActorDelegate): Boolean {
         val delta = 0f
 
         if (isDeadFromHealth) {

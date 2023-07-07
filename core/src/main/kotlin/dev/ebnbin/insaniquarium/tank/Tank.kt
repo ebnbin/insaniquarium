@@ -7,7 +7,7 @@ import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.unitToMeter
-import dev.ebnbin.insaniquarium.body.Body
+import dev.ebnbin.insaniquarium.body.BodyActor
 import dev.ebnbin.insaniquarium.body.BodyBox
 import dev.ebnbin.insaniquarium.body.BodyData
 import dev.ebnbin.insaniquarium.body.BodyGroup
@@ -17,8 +17,8 @@ import java.util.UUID
 
 class Tank : Group() {
     private val groupMap: Map<BodyGroup, Group> = BodyGroup.values().associateWith { Group().also { addActor(it) } }
-    private val idMap: MutableMap<String, Body> = mutableMapOf()
-    private val typeMap: MutableMap<BodyType, MutableList<Body>> = BodyType.values().associateWithTo(mutableMapOf()) {
+    private val idMap: MutableMap<String, BodyActor> = mutableMapOf()
+    private val typeMap: MutableMap<BodyType, MutableList<BodyActor>> = BodyType.values().associateWithTo(mutableMapOf()) {
         mutableListOf()
     }
 
@@ -64,7 +64,7 @@ class Tank : Group() {
         moneyGroup.children
             .reversed()
             .forEach {
-                require(it is Body)
+                require(it is BodyActor)
                 if (it.data.hit(touchPoint)) {
                     return true
                 }
@@ -81,22 +81,22 @@ class Tank : Group() {
         lifeStatus: BodyLife.Status = BodyLife.Status(),
         index: Int? = null,
     ): BodyData {
-        val body = Body(
+        val bodyActor = BodyActor(
             tank = this,
             type = type,
             id = id,
             boxStatus = boxStatus,
             lifeStatus = lifeStatus,
         )
-        val group = groupMap.getValue(body.config.group)
+        val group = groupMap.getValue(bodyActor.config.group)
         if (index == null) {
-            group.addActor(body)
+            group.addActor(bodyActor)
         } else {
-            group.addActorAt(index, body)
+            group.addActorAt(index, bodyActor)
         }
-        idMap[body.id] = body
-        typeMap.getValue(type).add(body)
-        return body.data
+        idMap[bodyActor.id] = bodyActor
+        typeMap.getValue(type).add(bodyActor)
+        return bodyActor.data
     }
 
     fun removeBody(bodyData: BodyData): Int {
@@ -156,7 +156,7 @@ class Tank : Group() {
         children.forEach { group ->
             group as Group
             group.children.forEach { body ->
-                body as Body
+                body as BodyActor
                 body.tick()
             }
         }

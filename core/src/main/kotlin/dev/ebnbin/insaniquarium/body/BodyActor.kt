@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Actor
 import dev.ebnbin.insaniquarium.game
 import dev.ebnbin.insaniquarium.tank.Tank
 
-class Body(
+class BodyActor(
     val tank: Tank,
     val type: BodyType,
     val id: String,

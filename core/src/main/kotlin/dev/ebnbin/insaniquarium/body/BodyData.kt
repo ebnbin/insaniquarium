@@ -9,7 +9,7 @@ data class BodyData(
     val type: BodyType,
     val id: String,
     val config: BodyConfig,
-    val delegate: BodyDelegate,
+    val delegate: BodyActorDelegate,
     val boxStatus: BodyBox.Status,
     val lifeStatus: BodyLife.Status,
 ) {
@@ -96,15 +96,15 @@ data class BodyData(
 
     companion object {
         fun create(
-            body: Body,
+            bodyActor: BodyActor,
             boxStatus: BodyBox.Status,
             lifeStatus: BodyLife.Status,
         ): BodyData {
             return BodyData(
-                type = body.type,
-                id = body.id,
-                config = body.config,
-                delegate = BodyDelegate(body),
+                type = bodyActor.type,
+                id = bodyActor.id,
+                config = bodyActor.config,
+                delegate = BodyActorDelegate(bodyActor),
                 boxStatus = boxStatus,
                 lifeStatus = lifeStatus,
             )
