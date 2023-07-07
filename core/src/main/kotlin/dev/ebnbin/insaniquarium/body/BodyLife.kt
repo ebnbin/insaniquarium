@@ -63,8 +63,8 @@ data class BodyLife(
     )
 
     data class ScaleTransform(
-        val duration: Float,
-        val time: Float = 0f,
+        val totalTicks: Int,
+        val tick: Int = 0,
         val startScale: Float,
         val endScale: Float,
     )
@@ -545,11 +545,11 @@ data class BodyLife(
         input: BodyInput,
     ): ScaleTransform? {
         val nextScaleTransform = input.scaleTransform ?: status.scaleTransform ?: return null
-        if (nextScaleTransform.time == nextScaleTransform.duration) {
+        if (nextScaleTransform.tick == nextScaleTransform.totalTicks) {
             return null
         }
         return nextScaleTransform.copy(
-            time = min(nextScaleTransform.duration, nextScaleTransform.time + tickDelta),
+            tick = min(nextScaleTransform.totalTicks, nextScaleTransform.tick + (if (tickDelta == 0f) 0 else 1)),
         )
     }
 
@@ -557,7 +557,7 @@ data class BodyLife(
         val oldColor = batch.color.cpy()
         batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
         val scale = status.scaleTransform?.let {
-            val progress = it.time / it.duration
+            val progress = it.tick.toFloat() / it.totalTicks
             it.startScale + (it.endScale - it.startScale) * progress
         } ?: 1f
         batch.draw(
@@ -620,7 +620,7 @@ data class BodyLife(
                 input = BodyInput(
                     growthDiff = growth - body.config.life.growth.full,
                     scaleTransform = ScaleTransform(
-                        duration = 0.25f,
+                        totalTicks = 5,
                         startScale = body.config.box.width / newConfig.box.width,
                         endScale = 1f,
                     ),
