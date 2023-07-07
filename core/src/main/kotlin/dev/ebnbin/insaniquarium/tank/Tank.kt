@@ -7,9 +7,9 @@ import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Point
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.unitToMeter
+import dev.ebnbin.insaniquarium.body.Body
 import dev.ebnbin.insaniquarium.body.BodyActor
 import dev.ebnbin.insaniquarium.body.BodyBox
-import dev.ebnbin.insaniquarium.body.BodyData
 import dev.ebnbin.insaniquarium.body.BodyGroup
 import dev.ebnbin.insaniquarium.body.BodyLife
 import dev.ebnbin.insaniquarium.body.BodyType
@@ -65,7 +65,7 @@ class Tank : Group() {
             .reversed()
             .forEach {
                 require(it is BodyActor)
-                if (it.data.touch(touchPoint)) {
+                if (it.body.touch(touchPoint)) {
                     return true
                 }
             }
@@ -80,7 +80,7 @@ class Tank : Group() {
         boxStatus: BodyBox.Status = BodyBox.Status(),
         lifeStatus: BodyLife.Status = BodyLife.Status(),
         index: Int? = null,
-    ): BodyData {
+    ): Body {
         val bodyActor = BodyActor(
             tank = this,
             type = type,
@@ -88,7 +88,7 @@ class Tank : Group() {
             boxStatus = boxStatus,
             lifeStatus = lifeStatus,
         )
-        val group = groupMap.getValue(bodyActor.config.group)
+        val group = groupMap.getValue(bodyActor.body.config.group)
         if (index == null) {
             group.addActor(bodyActor)
         } else {
@@ -96,15 +96,15 @@ class Tank : Group() {
         }
         idMap[bodyActor.id] = bodyActor
         typeMap.getValue(type).add(bodyActor)
-        return bodyActor.data
+        return bodyActor.body
     }
 
-    fun removeBody(bodyData: BodyData): Int {
-        val body = idMap.getValue(bodyData.id)
-        typeMap.getValue(body.type).remove(body)
-        idMap.remove(body.id)
-        val group = groupMap.getValue(body.config.group)
-        val index = group.children.indexOf(body, true)
+    fun removeBody(body: Body): Int {
+        val bodyActor = idMap.getValue(body.id)
+        typeMap.getValue(bodyActor.type).remove(bodyActor)
+        idMap.remove(bodyActor.id)
+        val group = groupMap.getValue(bodyActor.body.config.group)
+        val index = group.children.indexOf(bodyActor, true)
         if (index != -1) {
             group.removeActorAt(index, true)
         }
@@ -112,11 +112,11 @@ class Tank : Group() {
     }
 
     fun replaceBody(
-        oldBody: BodyData,
+        oldBody: Body,
         type: BodyType,
         boxStatus: BodyBox.Status,
         lifeStatus: BodyLife.Status,
-    ): BodyData {
+    ): Body {
         val index = removeBody(oldBody)
         return addBody(
             type = type,
@@ -127,8 +127,8 @@ class Tank : Group() {
         )
     }
 
-    fun findBodyByType(typeSet: Set<BodyType>): List<BodyData> {
-        return typeSet.flatMap { typeMap.getValue(it) }.map { it.data }
+    fun findBodyByType(typeSet: Set<BodyType>): List<Body> {
+        return typeSet.flatMap { typeMap.getValue(it) }.map { it.body }
     }
 
     //*****************************************************************************************************************

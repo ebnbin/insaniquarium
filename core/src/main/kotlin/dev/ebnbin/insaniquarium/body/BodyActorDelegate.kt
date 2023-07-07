@@ -6,20 +6,20 @@ import dev.ebnbin.gdx.utils.Point
 class BodyActorDelegate(
     private val bodyActor: BodyActor,
 ) {
-    fun findNearestBodyByType(typeSet: Set<BodyType>): BodyData? {
+    fun findNearestBodyByType(typeSet: Set<BodyType>): Body? {
         val bodies = bodyActor.tank.findBodyByType(typeSet)
-        return bodies.minByOrNull { bodyActor.data.box.distance(it.box) }
+        return bodies.minByOrNull { bodyActor.body.box.distance(it.box) }
     }
 
     fun removeFromTank() {
-        bodyActor.tank.removeBody(bodyActor.data)
+        bodyActor.tank.removeBody(bodyActor.body)
     }
 
     fun addBody(
         type: BodyType,
         boxStatus: BodyBox.Status = BodyBox.Status(),
         lifeStatus: BodyLife.Status = BodyLife.Status(),
-    ): BodyData {
+    ): Body {
         return bodyActor.tank.addBody(
             type = type,
             boxStatus = boxStatus,
@@ -31,20 +31,8 @@ class BodyActorDelegate(
         type: BodyType,
         boxStatus: BodyBox.Status = BodyBox.Status(),
         lifeStatus: BodyLife.Status = BodyLife.Status(),
-    ): BodyData {
-        return bodyActor.tank.replaceBody(bodyActor.data, type, boxStatus, lifeStatus)
-    }
-
-    fun tick(
-        input: BodyInput,
-    ): BodyData {
-        return bodyActor.performTick(input)
-    }
-
-    fun act(
-        delta: Float,
-    ): BodyData {
-        return bodyActor.performAct(delta)
+    ): Body {
+        return bodyActor.tank.replaceBody(bodyActor.body, type, boxStatus, lifeStatus)
     }
 
     fun setSize(width: Float, height: Float) {
@@ -85,4 +73,7 @@ class BodyActorDelegate(
         get() = bodyActor.tank.width
     val tankHeight: Float
         get() = bodyActor.tank.height
+
+    val debug: Boolean
+        get() = bodyActor.debug
 }

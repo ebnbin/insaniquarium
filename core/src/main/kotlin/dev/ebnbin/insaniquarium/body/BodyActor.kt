@@ -3,8 +3,6 @@ package dev.ebnbin.insaniquarium.body
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.Actor
-import dev.ebnbin.gdx.lifecycle.BaseGame
-import dev.ebnbin.insaniquarium.game
 import dev.ebnbin.insaniquarium.tank.Tank
 
 class BodyActor(
@@ -14,45 +12,30 @@ class BodyActor(
     boxStatus: BodyBox.Status,
     lifeStatus: BodyLife.Status,
 ) : Actor() {
-    val config: BodyConfig = game.config.body.getValue(type)
-
-    var data: BodyData = BodyData.create(this, boxStatus, lifeStatus)
-        private set
+    val body: Body = Body(
+        type = type,
+        id = id,
+        delegate = BodyActorDelegate(this),
+        initBoxStatus = boxStatus,
+        initLifeStatus = lifeStatus,
+    )
 
     fun tick() {
-        val input = BodyInput(
-            tickDelta = BaseGame.TICK,
-        )
-        performTick(input)
-    }
-
-    fun performTick(input: BodyInput): BodyData {
-        data = data.tick(input)
-        data.postTick()
-        return data
+        body.tick()
     }
 
     override fun act(delta: Float) {
         super.act(delta)
-        performAct(delta)
-    }
-
-    fun performAct(delta: Float): BodyData {
-        data = data.act(delta)
-        data.postAct()
-        if (debug) {
-            data.actDebug()
-        }
-        return data
+        body.act(delta)
     }
 
     override fun draw(batch: Batch, parentAlpha: Float) {
         super.draw(batch, parentAlpha)
-        data.draw(batch, parentAlpha)
+        body.draw(batch, parentAlpha)
     }
 
     override fun drawDebug(shapes: ShapeRenderer) {
         super.drawDebug(shapes)
-        data.drawDebug(shapes)
+        body.drawDebug(shapes)
     }
 }
