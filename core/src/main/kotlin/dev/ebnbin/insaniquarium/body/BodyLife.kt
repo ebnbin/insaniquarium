@@ -104,7 +104,7 @@ data class BodyLife(
 
     private val animation: TextureRegionAnimation = animationData.getAnimation(body.config.animations)
 
-    private val textureRegion: TextureRegion = animation.getTextureRegion(animationData.stateTime)
+    private val textureRegion: TextureRegion = animation.getTextureRegion(animationData.stateTick)
 
     private val isFlipX: Boolean = if (animationData.action == BodyAnimationData.Action.TURN) {
         !animationData.isFacingRight
@@ -469,7 +469,7 @@ data class BodyLife(
             return BodyAnimationData(
                 action = BodyAnimationData.Action.A,
                 status = animationStatus,
-                stateTime = 0f,
+                stateTick = 0,
                 isFacingRight = animationData.isFacingRight,
             )
         }
@@ -478,7 +478,7 @@ data class BodyLife(
             return BodyAnimationData(
                 action = BodyAnimationData.Action.B,
                 status = animationStatus,
-                stateTime = 0f,
+                stateTick = 0,
                 isFacingRight = animationData.isFacingRight,
             )
         }
@@ -487,7 +487,7 @@ data class BodyLife(
             return BodyAnimationData(
                 action = BodyAnimationData.Action.EAT,
                 status = animationStatus,
-                stateTime = 0f,
+                stateTick = 0,
                 isFacingRight = animationData.isFacingRight,
             )
         }
@@ -496,7 +496,7 @@ data class BodyLife(
             return BodyAnimationData(
                 action = BodyAnimationData.Action.TURN,
                 status = animationStatus,
-                stateTime = 0f,
+                stateTick = 0,
                 isFacingRight = !animationData.isFacingRight,
             )
         }
@@ -505,7 +505,7 @@ data class BodyLife(
             return BodyAnimationData(
                 action = BodyAnimationData.Action.SWIM,
                 status = animationStatus,
-                stateTime = 0f,
+                stateTick = 0,
                 isFacingRight = animationData.isFacingRight,
             )
         }
@@ -513,7 +513,7 @@ data class BodyLife(
         fun update(): BodyAnimationData {
             return animationData.copy(
                 status = animationStatus,
-                stateTime = animationData.stateTime + tickDelta,
+                stateTick = animationData.stateTick + (if (tickDelta == 0f) 0 else 1),
             )
         }
 
@@ -538,7 +538,7 @@ data class BodyLife(
                 }
             }
         } else {
-            val isAnimationActionFinished = animationData.stateTime >= animation.duration
+            val isAnimationActionFinished = animationData.stateTick >= animation.ticks
             if (isAnimationActionFinished) {
                 createSwim()
             } else {
@@ -620,7 +620,7 @@ data class BodyLife(
                 boxStatus = params.box.status,
                 lifeStatus = Status(
                     animationData = animationData.copy(
-                        stateTime = 0f,
+                        stateTick = 0,
                     ),
                 ),
             )

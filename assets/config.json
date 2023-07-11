@@ -13,7 +13,7 @@
       "animations": {
         "swim": {
           "assetId": "fish_food",
-          "duration": 1.0,
+          "ticks": 20,
           "mode": "loop",
           "interpolation": "linear"
         },
@@ -53,7 +53,7 @@
       "animations": {
         "swim": {
           "assetId": "star_potion",
-          "duration": 1.0,
+          "ticks": 20,
           "mode": "loop",
           "interpolation": "linear"
         },
@@ -93,37 +93,37 @@
       "animations": {
         "swim": {
           "assetId": "guppy_small",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "turn": {
           "assetId": "guppy_small_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "eat": {
           "assetId": "guppy_small_eat",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "hungry": {
           "assetId": "guppy_small_hungry",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "hungryTurn": {
           "assetId": "guppy_small_hungry_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "hungryEat": {
           "assetId": "guppy_small_hungry_eat",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -195,37 +195,37 @@
       "animations": {
         "swim": {
           "assetId": "guppy_medium",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "turn": {
           "assetId": "guppy_medium_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "eat": {
           "assetId": "guppy_medium_eat",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "hungry": {
           "assetId": "guppy_medium_hungry",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "hungryTurn": {
           "assetId": "guppy_medium_hungry_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "hungryEat": {
           "assetId": "guppy_medium_hungry_eat",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -302,37 +302,37 @@
       "animations": {
         "swim": {
           "assetId": "guppy_large",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "turn": {
           "assetId": "guppy_large_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "eat": {
           "assetId": "guppy_large_eat",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "hungry": {
           "assetId": "guppy_large_hungry",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "hungryTurn": {
           "assetId": "guppy_large_hungry_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "hungryEat": {
           "assetId": "guppy_large_hungry_eat",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -409,37 +409,37 @@
       "animations": {
         "swim": {
           "assetId": "guppy_king",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "turn": {
           "assetId": "guppy_king_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "eat": {
           "assetId": "guppy_king_eat",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "hungry": {
           "assetId": "guppy_king_hungry",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "hungryTurn": {
           "assetId": "guppy_king_hungry_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "hungryEat": {
           "assetId": "guppy_king_hungry_eat",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -511,7 +511,7 @@
       "animations": {
         "swim": {
           "assetId": "starcatcher",
-          "duration": 1.0,
+          "ticks": 20,
           "mode": "loop",
           "interpolation": "linear"
         },
@@ -519,7 +519,7 @@
         "eat": null,
         "hungry": {
           "assetId": "starcatcher_hungry",
-          "duration": 1.0,
+          "ticks": 20,
           "mode": "loop",
           "interpolation": "linear"
         },
@@ -585,37 +585,37 @@
       "animations": {
         "swim": {
           "assetId": "beetlemuncher",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "turn": {
           "assetId": "beetlemuncher_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "eat": {
           "assetId": "beetlemuncher_eat",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "hungry": {
           "assetId": "beetlemuncher_hungry",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "hungryTurn": {
           "assetId": "beetlemuncher_hungry_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "hungryEat": {
           "assetId": "beetlemuncher_hungry_eat",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -678,7 +678,7 @@
       "animations": {
         "swim": {
           "assetId": "guppy_small_die",
-          "duration": 0.5,
+          "ticks": 20,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -714,7 +714,7 @@
       "animations": {
         "swim": {
           "assetId": "guppy_medium_die",
-          "duration": 0.5,
+          "ticks": 20,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -750,7 +750,7 @@
       "animations": {
         "swim": {
           "assetId": "guppy_large_die",
-          "duration": 0.5,
+          "ticks": 20,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -786,7 +786,7 @@
       "animations": {
         "swim": {
           "assetId": "guppy_king_die",
-          "duration": 0.5,
+          "ticks": 20,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -822,7 +822,7 @@
       "animations": {
         "swim": {
           "assetId": "starcatcher_die",
-          "duration": 1.0,
+          "ticks": 20,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -858,7 +858,7 @@
       "animations": {
         "swim": {
           "assetId": "beetlemuncher_die",
-          "duration": 0.5,
+          "ticks": 20,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -894,13 +894,13 @@
       "animations": {
         "swim": {
           "assetId": "sylvester",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "turn": {
           "assetId": "sylvester_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -1007,7 +1007,7 @@
       "animations": {
         "swim": {
           "assetId": "niko",
-          "duration": 0.3,
+          "ticks": 10,
           "mode": "loop_pingpong",
           "interpolation": "linear"
         },
@@ -1050,7 +1050,7 @@
       "animations": {
         "swim": {
           "assetId": "niko_open",
-          "duration": 0.3,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -1093,7 +1093,7 @@
       "animations": {
         "swim": {
           "assetId": "niko_close",
-          "duration": 0.3,
+          "ticks": 10,
           "mode": "reversed",
           "interpolation": "linear"
         },
@@ -1136,7 +1136,7 @@
       "animations": {
         "swim": {
           "assetId": "clyde",
-          "duration": 1.125,
+          "ticks": 25,
           "mode": "loop",
           "interpolation": "pow2_in"
         },
@@ -1233,19 +1233,19 @@
       "animations": {
         "swim": {
           "assetId": "gash",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "turn": {
           "assetId": "gash_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
         "eat": {
           "assetId": "gash_eat",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -1311,13 +1311,13 @@
       "animations": {
         "swim": {
           "assetId": "presto",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },
         "turn": {
           "assetId": "presto_turn",
-          "duration": 0.5,
+          "ticks": 10,
           "mode": "normal",
           "interpolation": "linear"
         },
@@ -1363,7 +1363,7 @@
       "animations": {
         "swim": {
           "assetId": "silver_coin",
-          "duration": 0.6,
+          "ticks": 12,
           "mode": "loop",
           "interpolation": "linear"
         },
@@ -1403,7 +1403,7 @@
       "animations": {
         "swim": {
           "assetId": "gold_coin",
-          "duration": 0.6,
+          "ticks": 12,
           "mode": "loop",
           "interpolation": "linear"
         },
@@ -1443,7 +1443,7 @@
       "animations": {
         "swim": {
           "assetId": "star",
-          "duration": 0.6,
+          "ticks": 12,
           "mode": "loop",
           "interpolation": "linear"
         },
@@ -1483,7 +1483,7 @@
       "animations": {
         "swim": {
           "assetId": "diamond",
-          "duration": 0.6,
+          "ticks": 12,
           "mode": "loop",
           "interpolation": "linear"
         },
@@ -1523,7 +1523,7 @@
       "animations": {
         "swim": {
           "assetId": "beetle",
-          "duration": 0.3,
+          "ticks": 10,
           "mode": "loop",
           "interpolation": "linear"
         },

@@ -6,7 +6,7 @@ import dev.ebnbin.gdx.utils.SerializableEnum
 data class BodyAnimationData(
     val action: Action = Action.SWIM,
     val status: Status = Status.NORMAL,
-    val stateTime: Float = 0f,
+    val stateTick: Int = 0,
     val isFacingRight: Boolean = false,
 ) {
     enum class Action(override val serializedName: String) : SerializableEnum {

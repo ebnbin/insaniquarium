@@ -291,7 +291,7 @@ data class BodyBox(
     //*****************************************************************************************************************
 
     fun postAct() {
-        val textureRegion = body.config.animations.swim.getTextureRegion(0f)
+        val textureRegion = body.config.animations.swim.getTextureRegion(0)
         body.delegate.setSize(
             textureRegion.regionWidth.toFloat().unitToMeter,
             textureRegion.regionHeight.toFloat().unitToMeter,

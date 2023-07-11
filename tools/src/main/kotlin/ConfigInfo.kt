@@ -62,7 +62,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "fish_food",
-                    duration = 1f,
+                    ticks = 20,
                     mode = AnimationMode.LOOP,
                 ),
             ),
@@ -92,7 +92,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "star_potion",
-                    duration = 1f,
+                    ticks = 20,
                     mode = AnimationMode.LOOP,
                 ),
             ),
@@ -121,32 +121,32 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_small",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 turn = TextureRegionAnimation(
                     assetId = "guppy_small_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 eat = TextureRegionAnimation(
                     assetId = "guppy_small_eat",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 hungry = TextureRegionAnimation(
                     assetId = "guppy_small_hungry",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 hungryTurn = TextureRegionAnimation(
                     assetId = "guppy_small_hungry_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 hungryEat = TextureRegionAnimation(
                     assetId = "guppy_small_hungry_eat",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -206,32 +206,32 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_medium",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 turn = TextureRegionAnimation(
                     assetId = "guppy_medium_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 eat = TextureRegionAnimation(
                     assetId = "guppy_medium_eat",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 hungry = TextureRegionAnimation(
                     assetId = "guppy_medium_hungry",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 hungryTurn = TextureRegionAnimation(
                     assetId = "guppy_medium_hungry_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 hungryEat = TextureRegionAnimation(
                     assetId = "guppy_medium_hungry_eat",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -296,32 +296,32 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_large",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 turn = TextureRegionAnimation(
                     assetId = "guppy_large_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 eat = TextureRegionAnimation(
                     assetId = "guppy_large_eat",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 hungry = TextureRegionAnimation(
                     assetId = "guppy_large_hungry",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 hungryTurn = TextureRegionAnimation(
                     assetId = "guppy_large_hungry_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 hungryEat = TextureRegionAnimation(
                     assetId = "guppy_large_hungry_eat",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -386,32 +386,32 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_king",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 turn = TextureRegionAnimation(
                     assetId = "guppy_king_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 eat = TextureRegionAnimation(
                     assetId = "guppy_king_eat",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 hungry = TextureRegionAnimation(
                     assetId = "guppy_king_hungry",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 hungryTurn = TextureRegionAnimation(
                     assetId = "guppy_king_hungry_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 hungryEat = TextureRegionAnimation(
                     assetId = "guppy_king_hungry_eat",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -473,12 +473,12 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "starcatcher",
-                    duration = 1f,
+                    ticks = 20,
                     mode = AnimationMode.LOOP,
                 ),
                 hungry = TextureRegionAnimation(
                     assetId = "starcatcher_hungry",
-                    duration = 1f,
+                    ticks = 20,
                     mode = AnimationMode.LOOP,
                 ),
             ),
@@ -530,32 +530,32 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "beetlemuncher",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 turn = TextureRegionAnimation(
                     assetId = "beetlemuncher_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 eat = TextureRegionAnimation(
                     assetId = "beetlemuncher_eat",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 hungry = TextureRegionAnimation(
                     assetId = "beetlemuncher_hungry",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 hungryTurn = TextureRegionAnimation(
                     assetId = "beetlemuncher_hungry_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 hungryEat = TextureRegionAnimation(
                     assetId = "beetlemuncher_hungry_eat",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -608,7 +608,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_small_die",
-                    duration = 0.5f,
+                    ticks = 20,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -635,7 +635,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_medium_die",
-                    duration = 0.5f,
+                    ticks = 20,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -662,7 +662,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_large_die",
-                    duration = 0.5f,
+                    ticks = 20,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -689,7 +689,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_king_die",
-                    duration = 0.5f,
+                    ticks = 20,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -716,7 +716,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "starcatcher_die",
-                    duration = 1f,
+                    ticks = 20,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -743,7 +743,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "beetlemuncher_die",
-                    duration = 0.5f,
+                    ticks = 20,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -769,12 +769,12 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "sylvester",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 turn = TextureRegionAnimation(
                     assetId = "sylvester_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -833,7 +833,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "niko",
-                    duration = 0.3f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP_PINGPONG,
                 ),
             ),
@@ -863,7 +863,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "niko_open",
-                    duration = 0.3f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -893,7 +893,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "niko_close",
-                    duration = 0.3f,
+                    ticks = 10,
                     mode = AnimationMode.REVERSED,
                 ),
             ),
@@ -923,7 +923,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "clyde",
-                    duration = 1.125f,
+                    ticks = 25,
                     mode = AnimationMode.LOOP,
                     interpolation = Interpolation.POW2_IN,
                 ),
@@ -977,17 +977,17 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "gash",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 turn = TextureRegionAnimation(
                     assetId = "gash_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 eat = TextureRegionAnimation(
                     assetId = "gash_eat",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -1032,12 +1032,12 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "presto",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
                 turn = TextureRegionAnimation(
                     assetId = "presto_turn",
-                    duration = 0.5f,
+                    ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
             ),
@@ -1075,7 +1075,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "silver_coin",
-                    duration = 0.6f,
+                    ticks = 12,
                     mode = AnimationMode.LOOP,
                 ),
             ),
@@ -1103,7 +1103,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "gold_coin",
-                    duration = 0.6f,
+                    ticks = 12,
                     mode = AnimationMode.LOOP,
                 ),
             ),
@@ -1131,7 +1131,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "star",
-                    duration = 0.6f,
+                    ticks = 12,
                     mode = AnimationMode.LOOP,
                 ),
             ),
@@ -1159,7 +1159,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "diamond",
-                    duration = 0.6f,
+                    ticks = 12,
                     mode = AnimationMode.LOOP,
                 ),
             ),
@@ -1187,7 +1187,7 @@ object ConfigInfo {
             animations = BodyConfig.Animations(
                 swim =  TextureRegionAnimation(
                     assetId = "beetle",
-                    duration = 0.3f,
+                    ticks = 10,
                     mode = AnimationMode.LOOP,
                 ),
             ),

@@ -9,19 +9,19 @@ data class TextureRegionAnimation(
     @Expose
     val assetId: String,
     @Expose
-    val duration: Float = 1f,
+    val ticks: Int,
     @Expose
     val mode: AnimationMode = AnimationMode.NORMAL,
     @Expose
     val interpolation: Interpolation = Interpolation.LINEAR,
 ) {
-    fun getTextureRegion(stateTime: Float): TextureRegion {
+    fun getTextureRegion(stateTick: Int): TextureRegion {
         val textureRegionList = baseGame.assets.texture.getValue(assetId).getTextureRegionList()
         return textureRegionList.animFrame(
-            duration = duration,
+            duration = ticks.toFloat(),
             mode = mode,
             interpolation = interpolation,
-            stateTime = stateTime,
+            stateTime = stateTick.toFloat(),
         )
     }
 }
