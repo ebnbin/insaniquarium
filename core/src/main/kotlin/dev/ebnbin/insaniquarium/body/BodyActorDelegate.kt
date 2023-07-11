@@ -8,7 +8,7 @@ class BodyActorDelegate(
 ) {
     fun findNearestBodyByType(typeSet: Set<BodyType>): Body? {
         val bodies = bodyActor.tank.findBodyByType(typeSet)
-        return bodies.minByOrNull { bodyActor.body.box.distance(it.box) }
+        return bodies.minByOrNull { bodyActor.body.life.distance(it.life) }
     }
 
     fun removeFromTank() {

@@ -15,22 +15,27 @@ class Body(
 ) {
     val config: BodyConfig = game.config.body.getValue(type)
 
-    var box: BodyBox = BodyBox(
-        body = this,
-        params = BodyBox.Params(
-            drivingTargetX = initLifeStatus.drivingTargetX,
-            drivingTargetY = initLifeStatus.drivingTargetY,
-        ),
-        status = initBoxStatus,
-    )
-        private set
-
     var life: BodyLife = BodyLife(
         body = this,
         params = BodyLife.Params(
-            box = box,
+            x = initBoxStatus.x,
+            y = initBoxStatus.y,
         ),
         status = initLifeStatus,
+    )
+        private set
+
+    var box: BodyBox = BodyBox(
+        body = this,
+        params = BodyBox.Params(
+            minX = life.minX,
+            maxX = life.maxX,
+            minY = life.minY,
+            maxY = life.maxY,
+            velocityX = life.status.velocityX,
+            velocityY = life.status.velocityY,
+        ),
+        status = initBoxStatus,
     )
         private set
 
@@ -56,7 +61,8 @@ class Body(
             delta = delta,
             input = input,
             params = BodyLife.Params(
-                box = box,
+                x = box.status.x,
+                y = box.status.y,
             ),
         )
         life.postTick()
@@ -66,8 +72,12 @@ class Body(
         box = box.act(
             delta = delta,
             params = BodyBox.Params(
-                drivingTargetX = life.status.drivingTargetX,
-                drivingTargetY = life.status.drivingTargetY,
+                minX = life.minX,
+                maxX = life.maxX,
+                minY = life.minY,
+                maxY = life.maxY,
+                velocityX = life.status.velocityX,
+                velocityY = life.status.velocityY,
             ),
         )
         box.postAct()
@@ -89,7 +99,7 @@ class Body(
     }
 
     fun drawDebug(shapes: ShapeRenderer) {
-        box.drawDebug(shapes)
+        life.drawDebug(shapes)
     }
 
     fun touch(point: Point): Boolean {
