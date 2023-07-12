@@ -1,6 +1,7 @@
 package dev.ebnbin.insaniquarium.body
 
 import com.google.gson.annotations.Expose
+import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.World
 
 data class BodyConfig(
@@ -189,5 +190,10 @@ data class BodyConfig(
         const val DEFAULT_WATER_FRICTION_COEFFICIENT = 0.001f
         const val DEFAULT_BOTTOM_FRICTION_COEFFICIENT = 1f
         const val DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT = 0f
+
+        fun init(): Map<BodyType, BodyConfig> {
+            BodyConfigInitializer.assets = baseGame.assets
+            return BodyConfigInitializer.bodyMap()
+        }
     }
 }

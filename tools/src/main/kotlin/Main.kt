@@ -40,7 +40,7 @@ fun main() {
     File("../assets/assets.json").writeText(assets.toJson())
 
     val config = Config(
-        body = ConfigInfo.bodyMap.toSortedMap(),
+        body = ConfigInfo.bodyMap(),
     )
     File("../assets/config.json").writeText(config.toJson())
 }
