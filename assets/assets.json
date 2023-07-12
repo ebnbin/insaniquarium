@@ -5,7 +5,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 84,
+            "height": 117
+          },
+          {
+            "width": 84,
+            "height": 115
+          },
+          {
+            "width": 84,
+            "height": 115
+          },
+          {
+            "width": 82,
+            "height": 115
+          },
+          {
+            "width": 79,
+            "height": 117
+          },
+          {
+            "width": 76,
+            "height": 117
+          },
+          {
+            "width": 76,
+            "height": 117
+          },
+          {
+            "width": 78,
+            "height": 116
+          },
+          {
+            "width": 81,
+            "height": 114
+          },
+          {
+            "width": 84,
+            "height": 117
+          }
+        ]
       },
       "name": "angie",
       "extension": "png",
@@ -15,7 +56,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 82,
+            "height": 117
+          },
+          {
+            "width": 81,
+            "height": 116
+          },
+          {
+            "width": 75,
+            "height": 112
+          },
+          {
+            "width": 66,
+            "height": 111
+          },
+          {
+            "width": 53,
+            "height": 108
+          },
+          {
+            "width": 44,
+            "height": 108
+          },
+          {
+            "width": 42,
+            "height": 111
+          },
+          {
+            "width": 51,
+            "height": 114
+          },
+          {
+            "width": 67,
+            "height": 115
+          },
+          {
+            "width": 80,
+            "height": 115
+          }
+        ]
       },
       "name": "angie_turn",
       "extension": "png",
@@ -61,7 +143,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 53,
+            "height": 49
+          },
+          {
+            "width": 53,
+            "height": 49
+          },
+          {
+            "width": 55,
+            "height": 48
+          },
+          {
+            "width": 57,
+            "height": 50
+          },
+          {
+            "width": 55,
+            "height": 48
+          },
+          {
+            "width": 51,
+            "height": 46
+          },
+          {
+            "width": 47,
+            "height": 46
+          },
+          {
+            "width": 47,
+            "height": 48
+          },
+          {
+            "width": 47,
+            "height": 48
+          },
+          {
+            "width": 49,
+            "height": 49
+          }
+        ]
       },
       "name": "beetle",
       "extension": "png",
@@ -71,7 +194,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 99,
+            "height": 113
+          },
+          {
+            "width": 98,
+            "height": 111
+          },
+          {
+            "width": 99,
+            "height": 111
+          },
+          {
+            "width": 102,
+            "height": 110
+          },
+          {
+            "width": 105,
+            "height": 108
+          },
+          {
+            "width": 100,
+            "height": 108
+          },
+          {
+            "width": 99,
+            "height": 108
+          },
+          {
+            "width": 97,
+            "height": 110
+          },
+          {
+            "width": 102,
+            "height": 111
+          },
+          {
+            "width": 104,
+            "height": 111
+          }
+        ]
       },
       "name": "beetlemuncher",
       "extension": "png",
@@ -81,7 +245,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 106,
+            "height": 111
+          },
+          {
+            "width": 106,
+            "height": 110
+          },
+          {
+            "width": 108,
+            "height": 93
+          },
+          {
+            "width": 106,
+            "height": 66
+          },
+          {
+            "width": 106,
+            "height": 63
+          },
+          {
+            "width": 103,
+            "height": 76
+          },
+          {
+            "width": 102,
+            "height": 104
+          },
+          {
+            "width": 100,
+            "height": 113
+          },
+          {
+            "width": 98,
+            "height": 110
+          },
+          {
+            "width": 98,
+            "height": 107
+          }
+        ]
       },
       "name": "beetlemuncher_die",
       "extension": "png",
@@ -91,7 +296,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 106,
+            "height": 113
+          },
+          {
+            "width": 106,
+            "height": 114
+          },
+          {
+            "width": 104,
+            "height": 114
+          },
+          {
+            "width": 104,
+            "height": 115
+          },
+          {
+            "width": 100,
+            "height": 114
+          },
+          {
+            "width": 99,
+            "height": 112
+          },
+          {
+            "width": 102,
+            "height": 114
+          },
+          {
+            "width": 104,
+            "height": 115
+          },
+          {
+            "width": 104,
+            "height": 114
+          },
+          {
+            "width": 106,
+            "height": 114
+          }
+        ]
       },
       "name": "beetlemuncher_eat",
       "extension": "png",
@@ -101,7 +347,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 99,
+            "height": 113
+          },
+          {
+            "width": 98,
+            "height": 111
+          },
+          {
+            "width": 99,
+            "height": 111
+          },
+          {
+            "width": 102,
+            "height": 110
+          },
+          {
+            "width": 105,
+            "height": 108
+          },
+          {
+            "width": 100,
+            "height": 108
+          },
+          {
+            "width": 99,
+            "height": 108
+          },
+          {
+            "width": 97,
+            "height": 110
+          },
+          {
+            "width": 102,
+            "height": 111
+          },
+          {
+            "width": 104,
+            "height": 111
+          }
+        ]
       },
       "name": "beetlemuncher_hungry",
       "extension": "png",
@@ -111,7 +398,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 106,
+            "height": 113
+          },
+          {
+            "width": 106,
+            "height": 114
+          },
+          {
+            "width": 104,
+            "height": 114
+          },
+          {
+            "width": 104,
+            "height": 115
+          },
+          {
+            "width": 99,
+            "height": 114
+          },
+          {
+            "width": 99,
+            "height": 112
+          },
+          {
+            "width": 101,
+            "height": 114
+          },
+          {
+            "width": 104,
+            "height": 115
+          },
+          {
+            "width": 104,
+            "height": 114
+          },
+          {
+            "width": 106,
+            "height": 114
+          }
+        ]
       },
       "name": "beetlemuncher_hungry_eat",
       "extension": "png",
@@ -121,7 +449,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 106,
+            "height": 113
+          },
+          {
+            "width": 105,
+            "height": 113
+          },
+          {
+            "width": 101,
+            "height": 113
+          },
+          {
+            "width": 90,
+            "height": 107
+          },
+          {
+            "width": 75,
+            "height": 108
+          },
+          {
+            "width": 81,
+            "height": 110
+          },
+          {
+            "width": 78,
+            "height": 111
+          },
+          {
+            "width": 75,
+            "height": 111
+          },
+          {
+            "width": 85,
+            "height": 113
+          },
+          {
+            "width": 100,
+            "height": 113
+          }
+        ]
       },
       "name": "beetlemuncher_hungry_turn",
       "extension": "png",
@@ -131,7 +500,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 106,
+            "height": 113
+          },
+          {
+            "width": 105,
+            "height": 113
+          },
+          {
+            "width": 101,
+            "height": 113
+          },
+          {
+            "width": 90,
+            "height": 107
+          },
+          {
+            "width": 74,
+            "height": 108
+          },
+          {
+            "width": 81,
+            "height": 110
+          },
+          {
+            "width": 78,
+            "height": 111
+          },
+          {
+            "width": 75,
+            "height": 111
+          },
+          {
+            "width": 85,
+            "height": 113
+          },
+          {
+            "width": 100,
+            "height": 113
+          }
+        ]
       },
       "name": "beetlemuncher_turn",
       "extension": "png",
@@ -141,7 +551,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 4
+        "nonTransparentSizeList": [
+          {
+            "width": 63,
+            "height": 117
+          },
+          {
+            "width": 60,
+            "height": 117
+          },
+          {
+            "width": 63,
+            "height": 111
+          },
+          {
+            "width": 66,
+            "height": 102
+          },
+          {
+            "width": 74,
+            "height": 95
+          },
+          {
+            "width": 80,
+            "height": 88
+          },
+          {
+            "width": 81,
+            "height": 84
+          },
+          {
+            "width": 75,
+            "height": 91
+          },
+          {
+            "width": 72,
+            "height": 105
+          },
+          {
+            "width": 66,
+            "height": 113
+          }
+        ]
       },
       "name": "clyde",
       "extension": "png",
@@ -151,7 +602,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 48,
+            "height": 42
+          },
+          {
+            "width": 48,
+            "height": 40
+          },
+          {
+            "width": 48,
+            "height": 40
+          },
+          {
+            "width": 46,
+            "height": 40
+          },
+          {
+            "width": 45,
+            "height": 40
+          },
+          {
+            "width": 45,
+            "height": 40
+          },
+          {
+            "width": 45,
+            "height": 40
+          },
+          {
+            "width": 47,
+            "height": 40
+          },
+          {
+            "width": 48,
+            "height": 40
+          },
+          {
+            "width": 48,
+            "height": 40
+          }
+        ]
       },
       "name": "diamond",
       "extension": "png",
@@ -161,7 +653,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 31,
+            "height": 16
+          },
+          {
+            "width": 28,
+            "height": 16
+          },
+          {
+            "width": 27,
+            "height": 18
+          },
+          {
+            "width": 27,
+            "height": 20
+          },
+          {
+            "width": 29,
+            "height": 21
+          },
+          {
+            "width": 30,
+            "height": 21
+          },
+          {
+            "width": 28,
+            "height": 21
+          },
+          {
+            "width": 26,
+            "height": 21
+          },
+          {
+            "width": 28,
+            "height": 18
+          },
+          {
+            "width": 30,
+            "height": 16
+          }
+        ]
       },
       "name": "fish_food",
       "extension": "png",
@@ -171,7 +704,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 30,
+            "height": 35
+          },
+          {
+            "width": 28,
+            "height": 35
+          },
+          {
+            "width": 27,
+            "height": 33
+          },
+          {
+            "width": 27,
+            "height": 31
+          },
+          {
+            "width": 28,
+            "height": 30
+          },
+          {
+            "width": 30,
+            "height": 29
+          },
+          {
+            "width": 32,
+            "height": 29
+          },
+          {
+            "width": 33,
+            "height": 30
+          },
+          {
+            "width": 33,
+            "height": 33
+          },
+          {
+            "width": 33,
+            "height": 33
+          }
+        ]
       },
       "name": "fish_food_zorf",
       "extension": "png",
@@ -181,7 +755,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 105,
+            "height": 107
+          },
+          {
+            "width": 105,
+            "height": 107
+          },
+          {
+            "width": 107,
+            "height": 108
+          },
+          {
+            "width": 110,
+            "height": 110
+          },
+          {
+            "width": 111,
+            "height": 110
+          },
+          {
+            "width": 111,
+            "height": 110
+          },
+          {
+            "width": 111,
+            "height": 110
+          },
+          {
+            "width": 111,
+            "height": 110
+          },
+          {
+            "width": 111,
+            "height": 108
+          },
+          {
+            "width": 108,
+            "height": 107
+          }
+        ]
       },
       "name": "gash",
       "extension": "png",
@@ -191,7 +806,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 111,
+            "height": 110
+          },
+          {
+            "width": 111,
+            "height": 110
+          },
+          {
+            "width": 112,
+            "height": 111
+          },
+          {
+            "width": 113,
+            "height": 112
+          },
+          {
+            "width": 111,
+            "height": 115
+          },
+          {
+            "width": 113,
+            "height": 117
+          },
+          {
+            "width": 112,
+            "height": 112
+          },
+          {
+            "width": 114,
+            "height": 111
+          },
+          {
+            "width": 114,
+            "height": 111
+          },
+          {
+            "width": 111,
+            "height": 110
+          }
+        ]
       },
       "name": "gash_eat",
       "extension": "png",
@@ -201,7 +857,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 111,
+            "height": 110
+          },
+          {
+            "width": 110,
+            "height": 110
+          },
+          {
+            "width": 106,
+            "height": 110
+          },
+          {
+            "width": 96,
+            "height": 108
+          },
+          {
+            "width": 77,
+            "height": 107
+          },
+          {
+            "width": 60,
+            "height": 107
+          },
+          {
+            "width": 64,
+            "height": 107
+          },
+          {
+            "width": 77,
+            "height": 108
+          },
+          {
+            "width": 98,
+            "height": 110
+          },
+          {
+            "width": 108,
+            "height": 110
+          }
+        ]
       },
       "name": "gash_turn",
       "extension": "png",
@@ -211,7 +908,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 45,
+            "height": 45
+          },
+          {
+            "width": 45,
+            "height": 47
+          },
+          {
+            "width": 45,
+            "height": 45
+          },
+          {
+            "width": 45,
+            "height": 39
+          },
+          {
+            "width": 45,
+            "height": 25
+          },
+          {
+            "width": 45,
+            "height": 7
+          },
+          {
+            "width": 45,
+            "height": 25
+          },
+          {
+            "width": 45,
+            "height": 39
+          },
+          {
+            "width": 45,
+            "height": 45
+          },
+          {
+            "width": 45,
+            "height": 47
+          }
+        ]
       },
       "name": "gold_coin",
       "extension": "png",
@@ -221,7 +959,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 51,
+            "height": 48
+          },
+          {
+            "width": 51,
+            "height": 48
+          },
+          {
+            "width": 53,
+            "height": 48
+          },
+          {
+            "width": 56,
+            "height": 47
+          },
+          {
+            "width": 53,
+            "height": 48
+          },
+          {
+            "width": 50,
+            "height": 48
+          },
+          {
+            "width": 50,
+            "height": 48
+          },
+          {
+            "width": 51,
+            "height": 48
+          },
+          {
+            "width": 56,
+            "height": 48
+          },
+          {
+            "width": 54,
+            "height": 48
+          }
+        ]
       },
       "name": "guppy_baby",
       "extension": "png",
@@ -231,7 +1010,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 57,
+            "height": 48
+          },
+          {
+            "width": 57,
+            "height": 48
+          },
+          {
+            "width": 57,
+            "height": 46
+          },
+          {
+            "width": 57,
+            "height": 41
+          },
+          {
+            "width": 57,
+            "height": 29
+          },
+          {
+            "width": 57,
+            "height": 24
+          },
+          {
+            "width": 57,
+            "height": 38
+          },
+          {
+            "width": 57,
+            "height": 47
+          },
+          {
+            "width": 57,
+            "height": 48
+          },
+          {
+            "width": 57,
+            "height": 46
+          }
+        ]
       },
       "name": "guppy_baby_die",
       "extension": "png",
@@ -241,7 +1061,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 57,
+            "height": 48
+          },
+          {
+            "width": 57,
+            "height": 48
+          },
+          {
+            "width": 56,
+            "height": 48
+          },
+          {
+            "width": 56,
+            "height": 49
+          },
+          {
+            "width": 56,
+            "height": 51
+          },
+          {
+            "width": 56,
+            "height": 51
+          },
+          {
+            "width": 56,
+            "height": 51
+          },
+          {
+            "width": 56,
+            "height": 49
+          },
+          {
+            "width": 56,
+            "height": 48
+          },
+          {
+            "width": 57,
+            "height": 48
+          }
+        ]
       },
       "name": "guppy_baby_eat",
       "extension": "png",
@@ -251,7 +1112,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 51,
+            "height": 48
+          },
+          {
+            "width": 51,
+            "height": 48
+          },
+          {
+            "width": 53,
+            "height": 48
+          },
+          {
+            "width": 56,
+            "height": 47
+          },
+          {
+            "width": 53,
+            "height": 48
+          },
+          {
+            "width": 50,
+            "height": 48
+          },
+          {
+            "width": 50,
+            "height": 48
+          },
+          {
+            "width": 51,
+            "height": 48
+          },
+          {
+            "width": 56,
+            "height": 48
+          },
+          {
+            "width": 54,
+            "height": 48
+          }
+        ]
       },
       "name": "guppy_baby_hungry",
       "extension": "png",
@@ -261,7 +1163,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 57,
+            "height": 47
+          },
+          {
+            "width": 56,
+            "height": 48
+          },
+          {
+            "width": 56,
+            "height": 48
+          },
+          {
+            "width": 56,
+            "height": 49
+          },
+          {
+            "width": 56,
+            "height": 51
+          },
+          {
+            "width": 56,
+            "height": 51
+          },
+          {
+            "width": 56,
+            "height": 51
+          },
+          {
+            "width": 56,
+            "height": 49
+          },
+          {
+            "width": 56,
+            "height": 48
+          },
+          {
+            "width": 56,
+            "height": 48
+          }
+        ]
       },
       "name": "guppy_baby_hungry_eat",
       "extension": "png",
@@ -271,7 +1214,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 57,
+            "height": 48
+          },
+          {
+            "width": 57,
+            "height": 47
+          },
+          {
+            "width": 54,
+            "height": 47
+          },
+          {
+            "width": 49,
+            "height": 47
+          },
+          {
+            "width": 40,
+            "height": 47
+          },
+          {
+            "width": 36,
+            "height": 48
+          },
+          {
+            "width": 33,
+            "height": 49
+          },
+          {
+            "width": 35,
+            "height": 49
+          },
+          {
+            "width": 48,
+            "height": 49
+          },
+          {
+            "width": 55,
+            "height": 49
+          }
+        ]
       },
       "name": "guppy_baby_hungry_turn",
       "extension": "png",
@@ -281,7 +1265,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 57,
+            "height": 48
+          },
+          {
+            "width": 57,
+            "height": 47
+          },
+          {
+            "width": 54,
+            "height": 47
+          },
+          {
+            "width": 49,
+            "height": 47
+          },
+          {
+            "width": 40,
+            "height": 47
+          },
+          {
+            "width": 36,
+            "height": 48
+          },
+          {
+            "width": 33,
+            "height": 49
+          },
+          {
+            "width": 35,
+            "height": 49
+          },
+          {
+            "width": 48,
+            "height": 49
+          },
+          {
+            "width": 55,
+            "height": 49
+          }
+        ]
       },
       "name": "guppy_baby_turn",
       "extension": "png",
@@ -291,7 +1316,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 104,
+            "height": 94
+          },
+          {
+            "width": 104,
+            "height": 94
+          },
+          {
+            "width": 107,
+            "height": 94
+          },
+          {
+            "width": 110,
+            "height": 93
+          },
+          {
+            "width": 105,
+            "height": 93
+          },
+          {
+            "width": 98,
+            "height": 91
+          },
+          {
+            "width": 99,
+            "height": 93
+          },
+          {
+            "width": 102,
+            "height": 93
+          },
+          {
+            "width": 110,
+            "height": 94
+          },
+          {
+            "width": 110,
+            "height": 94
+          }
+        ]
       },
       "name": "guppy_king",
       "extension": "png",
@@ -301,7 +1367,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 113,
+            "height": 93
+          },
+          {
+            "width": 114,
+            "height": 94
+          },
+          {
+            "width": 115,
+            "height": 93
+          },
+          {
+            "width": 117,
+            "height": 83
+          },
+          {
+            "width": 118,
+            "height": 59
+          },
+          {
+            "width": 118,
+            "height": 42
+          },
+          {
+            "width": 118,
+            "height": 72
+          },
+          {
+            "width": 117,
+            "height": 90
+          },
+          {
+            "width": 114,
+            "height": 95
+          },
+          {
+            "width": 113,
+            "height": 92
+          }
+        ]
       },
       "name": "guppy_king_die",
       "extension": "png",
@@ -311,7 +1418,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 113,
+            "height": 93
+          },
+          {
+            "width": 113,
+            "height": 94
+          },
+          {
+            "width": 109,
+            "height": 96
+          },
+          {
+            "width": 107,
+            "height": 98
+          },
+          {
+            "width": 106,
+            "height": 99
+          },
+          {
+            "width": 106,
+            "height": 99
+          },
+          {
+            "width": 106,
+            "height": 99
+          },
+          {
+            "width": 107,
+            "height": 98
+          },
+          {
+            "width": 109,
+            "height": 96
+          },
+          {
+            "width": 113,
+            "height": 94
+          }
+        ]
       },
       "name": "guppy_king_eat",
       "extension": "png",
@@ -321,7 +1469,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 104,
+            "height": 94
+          },
+          {
+            "width": 104,
+            "height": 94
+          },
+          {
+            "width": 107,
+            "height": 94
+          },
+          {
+            "width": 110,
+            "height": 93
+          },
+          {
+            "width": 105,
+            "height": 93
+          },
+          {
+            "width": 98,
+            "height": 91
+          },
+          {
+            "width": 99,
+            "height": 93
+          },
+          {
+            "width": 102,
+            "height": 93
+          },
+          {
+            "width": 110,
+            "height": 94
+          },
+          {
+            "width": 110,
+            "height": 94
+          }
+        ]
       },
       "name": "guppy_king_hungry",
       "extension": "png",
@@ -331,7 +1520,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 113,
+            "height": 93
+          },
+          {
+            "width": 113,
+            "height": 94
+          },
+          {
+            "width": 109,
+            "height": 96
+          },
+          {
+            "width": 107,
+            "height": 98
+          },
+          {
+            "width": 105,
+            "height": 99
+          },
+          {
+            "width": 106,
+            "height": 99
+          },
+          {
+            "width": 105,
+            "height": 99
+          },
+          {
+            "width": 107,
+            "height": 98
+          },
+          {
+            "width": 109,
+            "height": 96
+          },
+          {
+            "width": 113,
+            "height": 94
+          }
+        ]
       },
       "name": "guppy_king_hungry_eat",
       "extension": "png",
@@ -341,7 +1571,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 113,
+            "height": 93
+          },
+          {
+            "width": 113,
+            "height": 93
+          },
+          {
+            "width": 111,
+            "height": 93
+          },
+          {
+            "width": 100,
+            "height": 93
+          },
+          {
+            "width": 78,
+            "height": 91
+          },
+          {
+            "width": 61,
+            "height": 93
+          },
+          {
+            "width": 54,
+            "height": 94
+          },
+          {
+            "width": 71,
+            "height": 94
+          },
+          {
+            "width": 96,
+            "height": 94
+          },
+          {
+            "width": 111,
+            "height": 94
+          }
+        ]
       },
       "name": "guppy_king_hungry_turn",
       "extension": "png",
@@ -351,7 +1622,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 113,
+            "height": 93
+          },
+          {
+            "width": 113,
+            "height": 93
+          },
+          {
+            "width": 111,
+            "height": 93
+          },
+          {
+            "width": 100,
+            "height": 93
+          },
+          {
+            "width": 78,
+            "height": 91
+          },
+          {
+            "width": 61,
+            "height": 93
+          },
+          {
+            "width": 54,
+            "height": 94
+          },
+          {
+            "width": 71,
+            "height": 94
+          },
+          {
+            "width": 96,
+            "height": 94
+          },
+          {
+            "width": 111,
+            "height": 94
+          }
+        ]
       },
       "name": "guppy_king_turn",
       "extension": "png",
@@ -361,7 +1673,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 99,
+            "height": 94
+          },
+          {
+            "width": 99,
+            "height": 94
+          },
+          {
+            "width": 102,
+            "height": 94
+          },
+          {
+            "width": 105,
+            "height": 93
+          },
+          {
+            "width": 100,
+            "height": 93
+          },
+          {
+            "width": 93,
+            "height": 91
+          },
+          {
+            "width": 94,
+            "height": 93
+          },
+          {
+            "width": 97,
+            "height": 93
+          },
+          {
+            "width": 105,
+            "height": 94
+          },
+          {
+            "width": 105,
+            "height": 94
+          }
+        ]
       },
       "name": "guppy_large",
       "extension": "png",
@@ -371,7 +1724,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 108,
+            "height": 93
+          },
+          {
+            "width": 109,
+            "height": 94
+          },
+          {
+            "width": 109,
+            "height": 91
+          },
+          {
+            "width": 111,
+            "height": 80
+          },
+          {
+            "width": 112,
+            "height": 53
+          },
+          {
+            "width": 112,
+            "height": 42
+          },
+          {
+            "width": 112,
+            "height": 68
+          },
+          {
+            "width": 111,
+            "height": 88
+          },
+          {
+            "width": 109,
+            "height": 95
+          },
+          {
+            "width": 108,
+            "height": 92
+          }
+        ]
       },
       "name": "guppy_large_die",
       "extension": "png",
@@ -381,7 +1775,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 108,
+            "height": 93
+          },
+          {
+            "width": 108,
+            "height": 94
+          },
+          {
+            "width": 106,
+            "height": 94
+          },
+          {
+            "width": 105,
+            "height": 96
+          },
+          {
+            "width": 106,
+            "height": 96
+          },
+          {
+            "width": 106,
+            "height": 96
+          },
+          {
+            "width": 106,
+            "height": 96
+          },
+          {
+            "width": 105,
+            "height": 96
+          },
+          {
+            "width": 106,
+            "height": 94
+          },
+          {
+            "width": 108,
+            "height": 94
+          }
+        ]
       },
       "name": "guppy_large_eat",
       "extension": "png",
@@ -391,7 +1826,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 99,
+            "height": 94
+          },
+          {
+            "width": 99,
+            "height": 94
+          },
+          {
+            "width": 102,
+            "height": 94
+          },
+          {
+            "width": 105,
+            "height": 93
+          },
+          {
+            "width": 100,
+            "height": 93
+          },
+          {
+            "width": 93,
+            "height": 91
+          },
+          {
+            "width": 94,
+            "height": 93
+          },
+          {
+            "width": 97,
+            "height": 93
+          },
+          {
+            "width": 105,
+            "height": 94
+          },
+          {
+            "width": 105,
+            "height": 94
+          }
+        ]
       },
       "name": "guppy_large_hungry",
       "extension": "png",
@@ -401,7 +1877,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 108,
+            "height": 93
+          },
+          {
+            "width": 108,
+            "height": 94
+          },
+          {
+            "width": 106,
+            "height": 94
+          },
+          {
+            "width": 105,
+            "height": 96
+          },
+          {
+            "width": 105,
+            "height": 96
+          },
+          {
+            "width": 106,
+            "height": 96
+          },
+          {
+            "width": 105,
+            "height": 96
+          },
+          {
+            "width": 105,
+            "height": 96
+          },
+          {
+            "width": 106,
+            "height": 94
+          },
+          {
+            "width": 108,
+            "height": 94
+          }
+        ]
       },
       "name": "guppy_large_hungry_eat",
       "extension": "png",
@@ -411,7 +1928,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 108,
+            "height": 93
+          },
+          {
+            "width": 108,
+            "height": 93
+          },
+          {
+            "width": 106,
+            "height": 93
+          },
+          {
+            "width": 96,
+            "height": 93
+          },
+          {
+            "width": 78,
+            "height": 91
+          },
+          {
+            "width": 61,
+            "height": 93
+          },
+          {
+            "width": 54,
+            "height": 94
+          },
+          {
+            "width": 66,
+            "height": 94
+          },
+          {
+            "width": 92,
+            "height": 94
+          },
+          {
+            "width": 107,
+            "height": 94
+          }
+        ]
       },
       "name": "guppy_large_hungry_turn",
       "extension": "png",
@@ -421,7 +1979,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 108,
+            "height": 93
+          },
+          {
+            "width": 108,
+            "height": 93
+          },
+          {
+            "width": 106,
+            "height": 93
+          },
+          {
+            "width": 96,
+            "height": 93
+          },
+          {
+            "width": 78,
+            "height": 91
+          },
+          {
+            "width": 61,
+            "height": 93
+          },
+          {
+            "width": 54,
+            "height": 94
+          },
+          {
+            "width": 66,
+            "height": 94
+          },
+          {
+            "width": 92,
+            "height": 94
+          },
+          {
+            "width": 107,
+            "height": 94
+          }
+        ]
       },
       "name": "guppy_large_turn",
       "extension": "png",
@@ -431,7 +2030,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 74,
+            "height": 72
+          },
+          {
+            "width": 74,
+            "height": 72
+          },
+          {
+            "width": 77,
+            "height": 72
+          },
+          {
+            "width": 80,
+            "height": 71
+          },
+          {
+            "width": 77,
+            "height": 71
+          },
+          {
+            "width": 71,
+            "height": 69
+          },
+          {
+            "width": 72,
+            "height": 71
+          },
+          {
+            "width": 74,
+            "height": 71
+          },
+          {
+            "width": 80,
+            "height": 72
+          },
+          {
+            "width": 78,
+            "height": 72
+          }
+        ]
       },
       "name": "guppy_medium",
       "extension": "png",
@@ -441,7 +2081,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 83,
+            "height": 71
+          },
+          {
+            "width": 83,
+            "height": 70
+          },
+          {
+            "width": 83,
+            "height": 69
+          },
+          {
+            "width": 84,
+            "height": 59
+          },
+          {
+            "width": 84,
+            "height": 40
+          },
+          {
+            "width": 84,
+            "height": 34
+          },
+          {
+            "width": 84,
+            "height": 53
+          },
+          {
+            "width": 83,
+            "height": 68
+          },
+          {
+            "width": 83,
+            "height": 72
+          },
+          {
+            "width": 81,
+            "height": 68
+          }
+        ]
       },
       "name": "guppy_medium_die",
       "extension": "png",
@@ -451,7 +2132,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 83,
+            "height": 71
+          },
+          {
+            "width": 81,
+            "height": 72
+          },
+          {
+            "width": 81,
+            "height": 72
+          },
+          {
+            "width": 80,
+            "height": 74
+          },
+          {
+            "width": 80,
+            "height": 74
+          },
+          {
+            "width": 81,
+            "height": 74
+          },
+          {
+            "width": 80,
+            "height": 74
+          },
+          {
+            "width": 80,
+            "height": 74
+          },
+          {
+            "width": 81,
+            "height": 72
+          },
+          {
+            "width": 81,
+            "height": 72
+          }
+        ]
       },
       "name": "guppy_medium_eat",
       "extension": "png",
@@ -461,7 +2183,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 74,
+            "height": 72
+          },
+          {
+            "width": 74,
+            "height": 72
+          },
+          {
+            "width": 77,
+            "height": 72
+          },
+          {
+            "width": 80,
+            "height": 71
+          },
+          {
+            "width": 77,
+            "height": 71
+          },
+          {
+            "width": 71,
+            "height": 69
+          },
+          {
+            "width": 72,
+            "height": 71
+          },
+          {
+            "width": 74,
+            "height": 71
+          },
+          {
+            "width": 80,
+            "height": 72
+          },
+          {
+            "width": 78,
+            "height": 72
+          }
+        ]
       },
       "name": "guppy_medium_hungry",
       "extension": "png",
@@ -471,7 +2234,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 83,
+            "height": 71
+          },
+          {
+            "width": 81,
+            "height": 72
+          },
+          {
+            "width": 81,
+            "height": 72
+          },
+          {
+            "width": 80,
+            "height": 72
+          },
+          {
+            "width": 80,
+            "height": 74
+          },
+          {
+            "width": 81,
+            "height": 72
+          },
+          {
+            "width": 80,
+            "height": 74
+          },
+          {
+            "width": 80,
+            "height": 72
+          },
+          {
+            "width": 81,
+            "height": 72
+          },
+          {
+            "width": 81,
+            "height": 72
+          }
+        ]
       },
       "name": "guppy_medium_hungry_eat",
       "extension": "png",
@@ -481,7 +2285,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 83,
+            "height": 71
+          },
+          {
+            "width": 83,
+            "height": 71
+          },
+          {
+            "width": 81,
+            "height": 71
+          },
+          {
+            "width": 72,
+            "height": 71
+          },
+          {
+            "width": 60,
+            "height": 69
+          },
+          {
+            "width": 50,
+            "height": 69
+          },
+          {
+            "width": 45,
+            "height": 70
+          },
+          {
+            "width": 49,
+            "height": 72
+          },
+          {
+            "width": 69,
+            "height": 72
+          },
+          {
+            "width": 79,
+            "height": 72
+          }
+        ]
       },
       "name": "guppy_medium_hungry_turn",
       "extension": "png",
@@ -491,7 +2336,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 83,
+            "height": 71
+          },
+          {
+            "width": 83,
+            "height": 71
+          },
+          {
+            "width": 81,
+            "height": 71
+          },
+          {
+            "width": 72,
+            "height": 71
+          },
+          {
+            "width": 60,
+            "height": 69
+          },
+          {
+            "width": 50,
+            "height": 69
+          },
+          {
+            "width": 45,
+            "height": 70
+          },
+          {
+            "width": 49,
+            "height": 72
+          },
+          {
+            "width": 69,
+            "height": 72
+          },
+          {
+            "width": 79,
+            "height": 72
+          }
+        ]
       },
       "name": "guppy_medium_turn",
       "extension": "png",
@@ -501,7 +2387,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 111,
+            "height": 70
+          },
+          {
+            "width": 111,
+            "height": 72
+          },
+          {
+            "width": 111,
+            "height": 72
+          },
+          {
+            "width": 111,
+            "height": 72
+          },
+          {
+            "width": 111,
+            "height": 74
+          },
+          {
+            "width": 111,
+            "height": 74
+          },
+          {
+            "width": 111,
+            "height": 75
+          },
+          {
+            "width": 114,
+            "height": 75
+          },
+          {
+            "width": 114,
+            "height": 75
+          },
+          {
+            "width": 114,
+            "height": 77
+          }
+        ]
       },
       "name": "niko",
       "extension": "png",
@@ -511,7 +2438,44 @@
       "region": {
         "row": 3,
         "column": 3,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 111,
+            "height": 70
+          },
+          {
+            "width": 111,
+            "height": 72
+          },
+          {
+            "width": 111,
+            "height": 70
+          },
+          {
+            "width": 111,
+            "height": 76
+          },
+          {
+            "width": 111,
+            "height": 85
+          },
+          {
+            "width": 111,
+            "height": 93
+          },
+          {
+            "width": 113,
+            "height": 100
+          },
+          {
+            "width": 114,
+            "height": 108
+          },
+          {
+            "width": 114,
+            "height": 114
+          }
+        ]
       },
       "name": "niko_charge",
       "extension": "png",
@@ -521,7 +2485,12 @@
       "region": {
         "row": 1,
         "column": 1,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 114,
+            "height": 117
+          }
+        ]
       },
       "name": "niko_charged",
       "extension": "png",
@@ -531,7 +2500,44 @@
       "region": {
         "row": 3,
         "column": 3,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 111,
+            "height": 70
+          },
+          {
+            "width": 111,
+            "height": 72
+          },
+          {
+            "width": 111,
+            "height": 70
+          },
+          {
+            "width": 111,
+            "height": 76
+          },
+          {
+            "width": 111,
+            "height": 85
+          },
+          {
+            "width": 111,
+            "height": 93
+          },
+          {
+            "width": 113,
+            "height": 100
+          },
+          {
+            "width": 114,
+            "height": 108
+          },
+          {
+            "width": 114,
+            "height": 114
+          }
+        ]
       },
       "name": "niko_hungry_charge",
       "extension": "png",
@@ -541,7 +2547,12 @@
       "region": {
         "row": 1,
         "column": 1,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 114,
+            "height": 117
+          }
+        ]
       },
       "name": "niko_hungry_charged",
       "extension": "png",
@@ -551,7 +2562,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 84,
+            "height": 117
+          },
+          {
+            "width": 84,
+            "height": 117
+          },
+          {
+            "width": 84,
+            "height": 117
+          },
+          {
+            "width": 84,
+            "height": 117
+          },
+          {
+            "width": 81,
+            "height": 116
+          },
+          {
+            "width": 80,
+            "height": 114
+          },
+          {
+            "width": 80,
+            "height": 114
+          },
+          {
+            "width": 80,
+            "height": 114
+          },
+          {
+            "width": 81,
+            "height": 116
+          },
+          {
+            "width": 84,
+            "height": 117
+          }
+        ]
       },
       "name": "prego",
       "extension": "png",
@@ -561,7 +2613,32 @@
       "region": {
         "row": 2,
         "column": 3,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 83,
+            "height": 117
+          },
+          {
+            "width": 84,
+            "height": 117
+          },
+          {
+            "width": 84,
+            "height": 117
+          },
+          {
+            "width": 86,
+            "height": 117
+          },
+          {
+            "width": 89,
+            "height": 115
+          },
+          {
+            "width": 90,
+            "height": 115
+          }
+        ]
       },
       "name": "prego_charge",
       "extension": "png",
@@ -571,7 +2648,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 88,
+            "height": 115
+          },
+          {
+            "width": 88,
+            "height": 115
+          },
+          {
+            "width": 88,
+            "height": 115
+          },
+          {
+            "width": 88,
+            "height": 115
+          },
+          {
+            "width": 90,
+            "height": 114
+          },
+          {
+            "width": 90,
+            "height": 112
+          },
+          {
+            "width": 90,
+            "height": 112
+          },
+          {
+            "width": 90,
+            "height": 114
+          },
+          {
+            "width": 90,
+            "height": 115
+          },
+          {
+            "width": 88,
+            "height": 117
+          }
+        ]
       },
       "name": "prego_charged",
       "extension": "png",
@@ -581,7 +2699,24 @@
       "region": {
         "row": 2,
         "column": 2,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 89,
+            "height": 115
+          },
+          {
+            "width": 86,
+            "height": 117
+          },
+          {
+            "width": 84,
+            "height": 117
+          },
+          {
+            "width": 84,
+            "height": 117
+          }
+        ]
       },
       "name": "prego_discharge",
       "extension": "png",
@@ -591,7 +2726,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 83,
+            "height": 117
+          },
+          {
+            "width": 81,
+            "height": 116
+          },
+          {
+            "width": 82,
+            "height": 117
+          },
+          {
+            "width": 95,
+            "height": 114
+          },
+          {
+            "width": 101,
+            "height": 111
+          },
+          {
+            "width": 99,
+            "height": 110
+          },
+          {
+            "width": 95,
+            "height": 110
+          },
+          {
+            "width": 84,
+            "height": 111
+          },
+          {
+            "width": 75,
+            "height": 114
+          },
+          {
+            "width": 79,
+            "height": 116
+          }
+        ]
       },
       "name": "prego_turn",
       "extension": "png",
@@ -601,7 +2777,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 85,
+            "height": 57
+          },
+          {
+            "width": 85,
+            "height": 57
+          },
+          {
+            "width": 84,
+            "height": 57
+          },
+          {
+            "width": 85,
+            "height": 57
+          },
+          {
+            "width": 85,
+            "height": 57
+          },
+          {
+            "width": 85,
+            "height": 57
+          },
+          {
+            "width": 85,
+            "height": 57
+          },
+          {
+            "width": 84,
+            "height": 57
+          },
+          {
+            "width": 85,
+            "height": 57
+          },
+          {
+            "width": 85,
+            "height": 57
+          }
+        ]
       },
       "name": "presto",
       "extension": "png",
@@ -611,7 +2828,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 85,
+            "height": 57
+          },
+          {
+            "width": 86,
+            "height": 57
+          },
+          {
+            "width": 84,
+            "height": 57
+          },
+          {
+            "width": 79,
+            "height": 57
+          },
+          {
+            "width": 69,
+            "height": 57
+          },
+          {
+            "width": 59,
+            "height": 57
+          },
+          {
+            "width": 47,
+            "height": 57
+          },
+          {
+            "width": 51,
+            "height": 57
+          },
+          {
+            "width": 63,
+            "height": 57
+          },
+          {
+            "width": 79,
+            "height": 57
+          }
+        ]
       },
       "name": "presto_turn",
       "extension": "png",
@@ -621,7 +2879,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 45,
+            "height": 45
+          },
+          {
+            "width": 45,
+            "height": 47
+          },
+          {
+            "width": 45,
+            "height": 45
+          },
+          {
+            "width": 45,
+            "height": 39
+          },
+          {
+            "width": 45,
+            "height": 25
+          },
+          {
+            "width": 45,
+            "height": 7
+          },
+          {
+            "width": 45,
+            "height": 25
+          },
+          {
+            "width": 45,
+            "height": 39
+          },
+          {
+            "width": 45,
+            "height": 45
+          },
+          {
+            "width": 45,
+            "height": 47
+          }
+        ]
       },
       "name": "silver_coin",
       "extension": "png",
@@ -631,7 +2930,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 66,
+            "height": 63
+          },
+          {
+            "width": 63,
+            "height": 65
+          },
+          {
+            "width": 54,
+            "height": 65
+          },
+          {
+            "width": 40,
+            "height": 65
+          },
+          {
+            "width": 22,
+            "height": 65
+          },
+          {
+            "width": 15,
+            "height": 65
+          },
+          {
+            "width": 23,
+            "height": 65
+          },
+          {
+            "width": 41,
+            "height": 65
+          },
+          {
+            "width": 55,
+            "height": 65
+          },
+          {
+            "width": 63,
+            "height": 65
+          }
+        ]
       },
       "name": "star",
       "extension": "png",
@@ -641,7 +2981,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 51,
+            "height": 49
+          },
+          {
+            "width": 51,
+            "height": 51
+          },
+          {
+            "width": 53,
+            "height": 51
+          },
+          {
+            "width": 52,
+            "height": 51
+          },
+          {
+            "width": 51,
+            "height": 51
+          },
+          {
+            "width": 51,
+            "height": 49
+          },
+          {
+            "width": 53,
+            "height": 48
+          },
+          {
+            "width": 52,
+            "height": 48
+          },
+          {
+            "width": 53,
+            "height": 48
+          },
+          {
+            "width": 52,
+            "height": 48
+          }
+        ]
       },
       "name": "star_potion",
       "extension": "png",
@@ -651,7 +3032,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          }
+        ]
       },
       "name": "starcatcher",
       "extension": "png",
@@ -661,7 +3083,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 101
+          },
+          {
+            "width": 81,
+            "height": 103
+          },
+          {
+            "width": 81,
+            "height": 104
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 89
+          },
+          {
+            "width": 81,
+            "height": 81
+          },
+          {
+            "width": 81,
+            "height": 81
+          },
+          {
+            "width": 81,
+            "height": 86
+          },
+          {
+            "width": 81,
+            "height": 89
+          }
+        ]
       },
       "name": "starcatcher_die",
       "extension": "png",
@@ -671,7 +3134,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          },
+          {
+            "width": 81,
+            "height": 99
+          }
+        ]
       },
       "name": "starcatcher_hungry",
       "extension": "png",
@@ -681,7 +3185,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 142,
+            "height": 207
+          },
+          {
+            "width": 144,
+            "height": 209
+          },
+          {
+            "width": 144,
+            "height": 212
+          },
+          {
+            "width": 142,
+            "height": 213
+          },
+          {
+            "width": 141,
+            "height": 221
+          },
+          {
+            "width": 141,
+            "height": 206
+          },
+          {
+            "width": 141,
+            "height": 206
+          },
+          {
+            "width": 142,
+            "height": 204
+          },
+          {
+            "width": 144,
+            "height": 207
+          },
+          {
+            "width": 144,
+            "height": 218
+          }
+        ]
       },
       "name": "sylvester",
       "extension": "png",
@@ -691,7 +3236,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 142,
+            "height": 207
+          },
+          {
+            "width": 145,
+            "height": 207
+          },
+          {
+            "width": 151,
+            "height": 208
+          },
+          {
+            "width": 154,
+            "height": 210
+          },
+          {
+            "width": 156,
+            "height": 211
+          },
+          {
+            "width": 158,
+            "height": 211
+          },
+          {
+            "width": 148,
+            "height": 211
+          },
+          {
+            "width": 146,
+            "height": 210
+          },
+          {
+            "width": 141,
+            "height": 208
+          },
+          {
+            "width": 134,
+            "height": 207
+          }
+        ]
       },
       "name": "sylvester_turn",
       "extension": "png",
@@ -701,7 +3287,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 93,
+            "height": 116
+          },
+          {
+            "width": 93,
+            "height": 114
+          },
+          {
+            "width": 93,
+            "height": 111
+          },
+          {
+            "width": 93,
+            "height": 108
+          },
+          {
+            "width": 93,
+            "height": 105
+          },
+          {
+            "width": 94,
+            "height": 105
+          },
+          {
+            "width": 93,
+            "height": 105
+          },
+          {
+            "width": 93,
+            "height": 108
+          },
+          {
+            "width": 93,
+            "height": 111
+          },
+          {
+            "width": 93,
+            "height": 114
+          }
+        ]
       },
       "name": "zorf",
       "extension": "png",
@@ -711,7 +3338,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 93,
+            "height": 116
+          },
+          {
+            "width": 93,
+            "height": 116
+          },
+          {
+            "width": 93,
+            "height": 114
+          },
+          {
+            "width": 91,
+            "height": 113
+          },
+          {
+            "width": 91,
+            "height": 111
+          },
+          {
+            "width": 91,
+            "height": 110
+          },
+          {
+            "width": 91,
+            "height": 108
+          },
+          {
+            "width": 91,
+            "height": 107
+          },
+          {
+            "width": 91,
+            "height": 105
+          },
+          {
+            "width": 93,
+            "height": 105
+          }
+        ]
       },
       "name": "zorf_drop",
       "extension": "png",
@@ -721,7 +3389,48 @@
       "region": {
         "row": 2,
         "column": 5,
-        "startIndex": 0
+        "nonTransparentSizeList": [
+          {
+            "width": 93,
+            "height": 113
+          },
+          {
+            "width": 93,
+            "height": 113
+          },
+          {
+            "width": 92,
+            "height": 113
+          },
+          {
+            "width": 79,
+            "height": 113
+          },
+          {
+            "width": 59,
+            "height": 113
+          },
+          {
+            "width": 39,
+            "height": 111
+          },
+          {
+            "width": 39,
+            "height": 111
+          },
+          {
+            "width": 69,
+            "height": 111
+          },
+          {
+            "width": 87,
+            "height": 111
+          },
+          {
+            "width": 93,
+            "height": 113
+          }
+        ]
       },
       "name": "zorf_turn",
       "extension": "png",

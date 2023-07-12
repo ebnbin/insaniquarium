@@ -1543,9 +1543,9 @@
     },
     "clyde": {
       "group": "pet",
-      "width": 0.135,
-      "height": 0.14,
-      "depth": 0.135,
+      "width": 0.105,
+      "height": 0.195,
+      "depth": 0.105,
       "density": 1000.0,
       "dragCoefficient": 1.0,
       "drivingAccelerationX": 0.2,

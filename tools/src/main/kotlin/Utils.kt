@@ -1,3 +1,4 @@
+import dev.ebnbin.gdx.utils.IntSize
 import java.awt.Color
 import java.awt.Graphics2D
 import java.awt.image.BufferedImage
@@ -106,17 +107,11 @@ data class PackResult(
     val row: Int,
     val column: Int,
     val image: BufferedImage,
+    val nonTransparentSizeList: List<IntSize>,
 )
 
 fun List<BufferedImage>.pack(): PackResult {
     val first = first()
-    if (size == 1) {
-        return PackResult(
-            row = 1,
-            column = 1,
-            image = first,
-        )
-    }
     val tileWidth = first.width
     val tileHeight = first.height
     require(all { it.width == tileWidth && it.height == tileHeight })
@@ -143,6 +138,7 @@ fun List<BufferedImage>.pack(): PackResult {
     }
 
     val (row, column) = rowColumn()
+    val nonTransparentSizeList = mutableListOf<IntSize>()
     val image = createImage(column * tileWidth, row * tileHeight).useGraphics {
         for (rowIndex in 0 until row) {
             for (columnIndex in 0 until column) {
@@ -150,6 +146,7 @@ fun List<BufferedImage>.pack(): PackResult {
                 val x = columnIndex * tileWidth
                 val y = rowIndex * tileHeight
                 drawImage(img, x, y, null)
+                nonTransparentSizeList.add(img.nonTransparentSize())
             }
         }
     }
@@ -157,6 +154,7 @@ fun List<BufferedImage>.pack(): PackResult {
         row = row,
         column = column,
         image = image,
+        nonTransparentSizeList = nonTransparentSizeList,
     )
 }
 
@@ -184,7 +182,7 @@ fun Graphics2D.drawScaledImage(
     return this
 }
 
-fun BufferedImage.nonTransparentSize(): Pair<Int, Int> {
+fun BufferedImage.nonTransparentSize(): IntSize {
     var xFirst = width - 1
     var xLast = 0
     var yFirst = height - 1
@@ -201,7 +199,8 @@ fun BufferedImage.nonTransparentSize(): Pair<Int, Int> {
         }
     }
     require(xFirst <= xLast && yFirst <= yLast)
-    val width = xLast - xFirst + 1
-    val height = yLast - yFirst + 1
-    return width to height
+    return IntSize(
+        width = xLast - xFirst + 1,
+        height = yLast - yFirst + 1,
+    )
 }

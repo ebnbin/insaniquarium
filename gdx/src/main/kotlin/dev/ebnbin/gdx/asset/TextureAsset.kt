@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.google.gson.annotations.Expose
 import dev.ebnbin.gdx.lifecycle.baseGame
+import dev.ebnbin.gdx.utils.IntSize
 import dev.ebnbin.gdx.utils.split
 
 class TextureAsset(
@@ -25,7 +26,7 @@ class TextureAsset(
         @Expose
         val column: Int,
         @Expose
-        val startIndex: Int = 0,
+        val nonTransparentSizeList: List<IntSize>,
     )
 
     override val directory: String
@@ -44,7 +45,6 @@ class TextureAsset(
             texture.split(
                 row = region.row,
                 column = region.column,
-                startIndex = region.startIndex,
             )
         }
     }

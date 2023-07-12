@@ -1,5 +1,5 @@
-import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.animation.AnimationMode
+import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.asset.Assets
 import dev.ebnbin.gdx.utils.Interpolation
 import dev.ebnbin.gdx.utils.fromJson
@@ -8,7 +8,6 @@ import dev.ebnbin.insaniquarium.body.BodyAnimations
 import dev.ebnbin.insaniquarium.body.BodyConfig
 import dev.ebnbin.insaniquarium.body.BodyGroup
 import dev.ebnbin.insaniquarium.body.BodyType
-import java.awt.image.BufferedImage
 import java.io.File
 
 object ConfigInfo {
@@ -20,24 +19,18 @@ object ConfigInfo {
     
     private val assets: Assets = File("../assets/assets.json").readText().fromJson()
 
-    private val imageCache: MutableMap<String, BufferedImage> = mutableMapOf()
-    
     private fun size(
         textureName: String,
         index: Int? = null,
         wh: WH,
     ): Float {
-        val image = imageCache.getOrPut(textureName) {
-            File(TextureInfo.dstDir, "${textureName}.png").readImage()
-        }
         val region = assets.texture.getValue(textureName).region
         require(region != null)
-        val split = image.split(region.row, region.column)
-        val nonTransparentSize = split[index ?: region.startIndex].nonTransparentSize()
+        val nonTransparentSize = region.nonTransparentSizeList[index ?: 0]
         return if (wh == WH.WIDTH) {
-            nonTransparentSize.first.toFloat().unitToMeter
+            nonTransparentSize.width.toFloat().unitToMeter
         } else {
-            nonTransparentSize.second.toFloat().unitToMeter
+            nonTransparentSize.height.toFloat().unitToMeter
         }
     }
     
@@ -1437,7 +1430,5 @@ object ConfigInfo {
                 health = -2,
             ),
         ),
-    ).also {
-        imageCache.clear()
-    }
+    )
 }

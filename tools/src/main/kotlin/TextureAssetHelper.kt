@@ -30,14 +30,16 @@ object TextureAssetHelper {
             .split(info.row, info.column)
         return info.outputList.map {
             val dstFile = File(TextureInfo.dstDir, "${it.name}.png")
-            val packResult = split.subList(it.tileStart, it.tileStart + it.tileCount).pack()
+            var imageList = split.subList(it.tileStart, it.tileStart + it.tileCount)
+            imageList = imageList.subList(it.startIndex, imageList.size) + imageList.subList(0, it.startIndex)
+            val packResult = imageList.pack()
             packResult.image.write(dstFile)
             TextureAsset(
                 name = it.name,
                 region = TextureAsset.Region(
                     row = packResult.row,
                     column = packResult.column,
-                    startIndex = it.startIndex,
+                    nonTransparentSizeList = packResult.nonTransparentSizeList,
                 ),
             )
         }
