@@ -890,9 +890,11 @@ data class BodyData(
                 type = transformationFromHunger,
                 state = BodyState(
                     position = state.position,
-                    animationData = animationData.copy(
-                        stateTick = 0,
+                    animationData = BodyAnimationState(
+                        isFacingRight = state.animationData.isFacingRight,
                     ),
+                    velocityX = state.velocityX,
+                    velocityY = state.velocityY,
                 ),
             )
             newBody.act(delta)
