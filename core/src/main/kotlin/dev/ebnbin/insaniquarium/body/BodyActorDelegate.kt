@@ -2,7 +2,6 @@ package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.gdx.utils.Point
-import dev.ebnbin.gdx.utils.Position
 
 class BodyActorDelegate(
     private val bodyActor: BodyActor,
@@ -18,22 +17,19 @@ class BodyActorDelegate(
 
     fun addBody(
         type: BodyType,
-        initPosition: Position = Position(),
-        lifeStatus: BodyLife.Status = BodyLife.Status(),
+        state: BodyState = BodyState(),
     ): Body {
         return bodyActor.tank.addBody(
             type = type,
-            initPosition = initPosition,
-            lifeStatus = lifeStatus,
+            state = state,
         )
     }
 
     fun replaceBody(
         type: BodyType,
-        initPosition: Position = Position(),
-        lifeStatus: BodyLife.Status = BodyLife.Status(),
+        state: BodyState = BodyState(),
     ): Body {
-        return bodyActor.tank.replaceBody(bodyActor.body, type, initPosition, lifeStatus)
+        return bodyActor.tank.replaceBody(bodyActor.body, type, state)
     }
 
     fun setSize(width: Float, height: Float) {

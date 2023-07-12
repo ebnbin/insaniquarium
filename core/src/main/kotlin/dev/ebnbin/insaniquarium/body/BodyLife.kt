@@ -21,13 +21,8 @@ import kotlin.math.min
 
 data class BodyLife(
     val body: Body,
-    val params: Params,
-    val status: Status,
+    val state: BodyState,
 ) {
-    data class Params(
-        val position: Position,
-    )
-
     private val halfWidth: Float = body.config.width / 2f
     private val halfHeight: Float = body.config.height / 2f
 
@@ -37,38 +32,8 @@ data class BodyLife(
     val minY: Float = halfHeight
     val maxY: Float = Float.MAX_VALUE
 
-    val x: Float = params.position.x.coerceIn(minX, maxX)
-    val y: Float = params.position.y.coerceIn(minY, maxY)
-
-    data class Status(
-        /**
-         * null: Neither targeting nor idling.
-         * 0: Targeting.
-         * > 0: Idling.
-         */
-        val swimTicksX: Int? = null,
-        val swimTicksY: Int? = null,
-
-        val drivingTargetX: BodyDrivingTarget? = null,
-        val drivingTargetY: BodyDrivingTarget? = null,
-
-        val health: Int? = null,
-        val hunger: Int? = null,
-        val growth: Int? = null,
-        val drop: Int? = null,
-        val energy: Int? = null,
-
-        val animationData: BodyAnimationData = BodyAnimationData(),
-        /**
-         * >= 0f: Delaying.
-         * < 0f: Changing alpha.
-         */
-        val alphaTime: Float? = null,
-        val scaleTransform: ScaleTransform? = null,
-
-        val velocityX: Float = 0f,
-        val velocityY: Float = 0f,
-    )
+    val x: Float = state.position.x.coerceIn(minX, maxX)
+    val y: Float = state.position.y.coerceIn(minY, maxY)
 
     private data class EatAct(
         val drivingTargetX: BodyDrivingTarget?,
@@ -96,10 +61,10 @@ data class BodyLife(
 
     val isDead: Boolean = body.config.isDead
 
-    val health: Int? = status.health
-    private val hunger: Int? = status.hunger
-    private val growth: Int? = status.growth
-    private val drop: Int? = status.drop
+    val health: Int? = state.health
+    private val hunger: Int? = state.hunger
+    private val growth: Int? = state.growth
+    private val drop: Int? = state.drop
 
     private val isDeadFromHealth: Boolean = body.config.health != null && health == 0
 
@@ -123,8 +88,8 @@ data class BodyLife(
         drop / body.config.drop.full
     }
 
-    private val animationData: BodyAnimationData = status.animationData
-    private val alphaTime: Float? = status.alphaTime
+    private val animationData: BodyAnimationData = state.animationData
+    private val alphaTime: Float? = state.alphaTime
 
     private val animation: TextureRegionAnimation = animationData.getAnimation(body.config.animations)
 
@@ -142,7 +107,7 @@ data class BodyLife(
         ((ALPHA_DURATION + alphaTime) / ALPHA_DURATION).coerceIn(0f, 1f)
     }
 
-    private val canEat = status.animationData.canEat
+    private val canEat = state.animationData.canEat
 
     private val rendererCanRemove: Boolean = alphaTime != null && alphaTime <= -ALPHA_DURATION
 
@@ -154,8 +119,8 @@ data class BodyLife(
 
     //*****************************************************************************************************************
 
-    private val velocityX: Float = status.velocityX
-    private val velocityY: Float = status.velocityY
+    private val velocityX: Float = state.velocityX
+    private val velocityY: Float = state.velocityY
 
     private val left: Float = x - halfWidth
     private val right: Float = left + body.config.width
@@ -211,13 +176,13 @@ data class BodyLife(
     )
 
     private val drivingX: Float = BodyForceHelper.driving(
-        drivingTarget = status.drivingTargetX,
+        drivingTarget = state.drivingTargetX,
         position = x,
         velocity = velocityX,
         mass = mass,
     )
     private val drivingY: Float = BodyForceHelper.driving(
-        drivingTarget = status.drivingTargetY,
+        drivingTarget = state.drivingTargetY,
         position = y,
         velocity = velocityY,
         mass = mass,
@@ -305,11 +270,11 @@ data class BodyLife(
 
     val expectedDirection: Direction = drivingX.direction.takeIf { it != Direction.ZERO } ?: velocityX.direction
 
-    val reachDrivingTargetX: Boolean = status.drivingTargetX?.position?.let { it in left..right } ?: false
-    val reachDrivingTargetY: Boolean = status.drivingTargetY?.position?.let { it in bottom..top } ?: false
+    val reachDrivingTargetX: Boolean = state.drivingTargetX?.position?.let { it in left..right } ?: false
+    val reachDrivingTargetY: Boolean = state.drivingTargetY?.position?.let { it in bottom..top } ?: false
 
-    val awayFromDrivingTargetX: Boolean = status.drivingTargetX != null &&
-        abs(status.drivingTargetX.position - x) >= body.config.width / 12f
+    val awayFromDrivingTargetX: Boolean = state.drivingTargetX != null &&
+        abs(state.drivingTargetX.position - x) >= body.config.width / 12f
 
     //*****************************************************************************************************************
 
@@ -339,18 +304,18 @@ data class BodyLife(
 
     //*****************************************************************************************************************
 
-    fun tick(delta: Float, input: BodyInput, params: Params): BodyLife {
-        val nextStatus = nextStatus(delta, input)
+    fun tick(delta: Float, input: BodyInput, position: Position): BodyLife {
+        val nextState = nextState(position, delta, input)
         return copy(
-            params = params,
-            status = nextStatus,
+            state = nextState,
         )
     }
 
-    fun nextStatus(
+    private fun nextState(
+        position: Position,
         delta: Float,
         input: BodyInput,
-    ): Status {
+    ): BodyState {
         val nextEatAct = nextEatAct(
             delegate = body.delegate,
         )
@@ -368,12 +333,12 @@ data class BodyLife(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
             tickDelta = delta,
             configSwimAct = body.config.swimActX,
-            swimAct = if (status.swimTicksX == null) {
+            swimAct = if (state.swimTicksX == null) {
                 null
             } else {
                 SwimAct(
-                    drivingTarget = status.drivingTargetX?.takeIf { it.type == BodyDrivingTarget.Type.SWIM },
-                    ticks = status.swimTicksX,
+                    drivingTarget = state.drivingTargetX?.takeIf { it.type == BodyDrivingTarget.Type.SWIM },
+                    ticks = state.swimTicksX,
                 )
             },
             tankSize = body.delegate.tankWidth,
@@ -383,12 +348,12 @@ data class BodyLife(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
             tickDelta = delta,
             configSwimAct = body.config.swimActY,
-            swimAct = if (status.swimTicksY == null) {
+            swimAct = if (state.swimTicksY == null) {
                 null
             } else {
                 SwimAct(
-                    drivingTarget = status.drivingTargetY?.takeIf { it.type == BodyDrivingTarget.Type.SWIM },
-                    ticks = status.swimTicksY,
+                    drivingTarget = state.drivingTargetY?.takeIf { it.type == BodyDrivingTarget.Type.SWIM },
+                    ticks = state.swimTicksY,
                 )
             },
             tankSize = body.delegate.tankHeight,
@@ -415,7 +380,8 @@ data class BodyLife(
         val nextVelocityX = nextVelocityX(delta)
         val nextVelocityY = nextVelocityY(delta)
 
-        return Status(
+        return BodyState(
+            position = position,
             swimTicksX = nextSwimActX?.ticks,
             swimTicksY = nextSwimActY?.ticks,
             drivingTargetX = nextDrivingTargetX,
@@ -491,7 +457,7 @@ data class BodyLife(
             } else {
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
-                    position = targetFood.position.x,
+                    position = targetFood.life.state.position.x,
                     acceleration = body.config.eatAct.drivingAccelerationX,
                 )
             },
@@ -500,7 +466,7 @@ data class BodyLife(
             } else {
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
-                    position = targetFood.position.y,
+                    position = targetFood.life.state.position.y,
                     acceleration = body.config.eatAct.drivingAccelerationY,
                 )
             },
@@ -675,7 +641,7 @@ data class BodyLife(
     ): Int? {
         body.config.energy ?: return null
         return nextValue(
-            value = status.energy,
+            value = state.energy,
             init = body.config.energy.init,
             tickDiff = if (tickDelta == 0f) 0 else body.config.energy.diffPerTick,
             inputDiff = input.energyDiff,
@@ -804,7 +770,7 @@ data class BodyLife(
         tickDelta: Float,
         input: BodyInput,
     ): ScaleTransform? {
-        val nextScaleTransform = input.scaleTransform ?: status.scaleTransform ?: return null
+        val nextScaleTransform = input.scaleTransform ?: state.scaleTransform ?: return null
         if (nextScaleTransform.tick == nextScaleTransform.totalTicks) {
             return null
         }
@@ -816,7 +782,7 @@ data class BodyLife(
     fun draw(batch: Batch, parentAlpha: Float) {
         val oldColor = batch.color.cpy()
         batch.color = batch.color.cpy().also { it.a = alpha * parentAlpha }
-        val scale = status.scaleTransform?.let {
+        val scale = state.scaleTransform?.let {
             val progress = it.tick.toFloat() / it.totalTicks
             it.startScale + (it.endScale - it.startScale) * progress
         } ?: 1f
@@ -855,11 +821,8 @@ data class BodyLife(
             animationData.action == BodyAnimationData.Action.SWIM) {
             val newBody = body.delegate.replaceBody(
                 type = transformationFromHunger,
-                initPosition = Position(
-                    x = x,
-                    y = y,
-                ),
-                lifeStatus = Status(
+                state = BodyState(
+                    position = state.position,
                     animationData = animationData.copy(
                         stateTick = 0,
                     ),
@@ -874,11 +837,7 @@ data class BodyLife(
             val newConfig = game.config.body.getValue(transformationFromGrowth)
             val newBody = body.delegate.replaceBody(
                 type = transformationFromGrowth,
-                initPosition = Position(
-                    x = x,
-                    y = y,
-                ),
-                lifeStatus = status.copy(
+                state = state.copy(
                     growth = null,
                 ),
             )
@@ -900,9 +859,8 @@ data class BodyLife(
             repeat(dropCount) {
                 val newBody = body.delegate.addBody(
                     type = productionFromDrop,
-                    initPosition = Position(
-                        x = x,
-                        y = y,
+                    state = BodyState(
+                        position = state.position,
                     ),
                 )
                 newBody.act(delta)
@@ -940,6 +898,9 @@ data class BodyLife(
     }
 
     fun actDebug() {
+        baseGame.putLog("position        ") {
+            "${state.position.x.devText()},${state.position.y.devText()}"
+        }
         baseGame.putLog("size            ") {
             "${body.config.width.devText()},${body.config.height.devText()}"
         }
@@ -999,7 +960,7 @@ data class BodyLife(
         }
 
         baseGame.putLog("swimTicks") {
-            "${status.swimTicksX},${status.swimTicksY}"
+            "${state.swimTicksX},${state.swimTicksY}"
         }
         baseGame.putLog("health") {
             "$health/${body.config.health?.full}"
@@ -1021,10 +982,10 @@ data class BodyLife(
         shapes.line(left, top, right, bottom)
         shapes.rect(depthLeft, bottom, body.config.depth, body.config.height)
         shapes.rect(left, depthBottom, body.config.width, body.config.depth)
-        status.drivingTargetX?.let {
+        state.drivingTargetX?.let {
             shapes.line(it.position, 0f, it.position, body.delegate.tankHeight)
         }
-        status.drivingTargetY?.let {
+        state.drivingTargetY?.let {
             shapes.line(0f, it.position, body.delegate.tankWidth, it.position)
         }
     }

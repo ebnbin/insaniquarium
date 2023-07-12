@@ -12,8 +12,7 @@ class Body(
     val type: BodyType,
     val id: String,
     val delegate: BodyActorDelegate,
-    initPosition: Position,
-    initLifeStatus: BodyLife.Status,
+    state: BodyState,
 ) {
     val config: BodyConfig = game.config.body.getValue(type)
 
@@ -25,15 +24,11 @@ class Body(
         )
     }
 
-    var position: Position = initPosition
-        private set
+    private var position: Position = state.position
 
     var life: BodyLife = BodyLife(
         body = this,
-        params = BodyLife.Params(
-            position = position,
-        ),
-        status = initLifeStatus,
+        state = state,
     )
         private set
 
@@ -58,9 +53,7 @@ class Body(
         life = life.tick(
             delta = delta,
             input = input,
-            params = BodyLife.Params(
-                position = position,
-            ),
+            position = position,
         )
         life.postTick()
     }
@@ -76,12 +69,12 @@ class Body(
         position = Position(
             x = BodyForceHelper.nextPosition(
                 position = position.x,
-                velocity = life.status.velocityX,
+                velocity = life.state.velocityX,
                 delta = delta,
             ),
             y = BodyForceHelper.nextPosition(
                 position = position.y,
-                velocity = life.status.velocityY,
+                velocity = life.state.velocityY,
                 delta = delta,
             ),
         )
@@ -91,9 +84,6 @@ class Body(
     private fun actDebug() {
         baseGame.putLog("type,id         ") {
             "${type.serializedName},${id}"
-        }
-        baseGame.putLog("position        ") {
-            "${position.x.devText()},${position.y.devText()}"
         }
         life.actDebug()
     }
