@@ -5,7 +5,6 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import com.badlogic.gdx.utils.Align
-import dev.ebnbin.gdx.lifecycle.BaseGame
 import dev.ebnbin.gdx.lifecycle.BaseStage
 import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.pref.GdxPrefManager
@@ -51,7 +50,7 @@ class DevGdxLogStage : BaseStage(viewport = UnitFitViewport()) {
                 "realDelta,tickDelta,delta(ms)" to {
                     "%6.3f,%6.3f,%6.3f".format(
                         Gdx.graphics.deltaTime * 1000f,
-                        BaseGame.DELTA_TICK * 1000f,
+                        baseGame.tickDelta * 1000f,
                         it * 1000f,
                     )
                 },

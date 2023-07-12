@@ -98,6 +98,9 @@ abstract class BaseGame : ApplicationListener {
         stageList().resume()
     }
 
+    open val tickDelta: Float
+        get() = DELTA_TICK
+
     private var frameStartTime: Long = 0L
 
     private var tickAccumulator: Float = 0f
@@ -126,11 +129,11 @@ abstract class BaseGame : ApplicationListener {
             drawCount = 0
             drawTime = 0L
         }
-        val tickDelta = min(DELTA_TICK, Gdx.graphics.deltaTime)
-        tickAccumulator += tickDelta
-        while (tickAccumulator >= DELTA_TICK) {
-            tick(DELTA_TICK)
-            tickAccumulator -= DELTA_TICK
+        val realTickDelta = min(tickDelta, Gdx.graphics.deltaTime)
+        tickAccumulator += realTickDelta
+        while (tickAccumulator >= tickDelta) {
+            tick(tickDelta)
+            tickAccumulator -= tickDelta
         }
         val delta = min(DELTA_MAX, Gdx.graphics.deltaTime)
         if (GdxPrefManager.use_fixed_delta.data) {
@@ -258,7 +261,7 @@ abstract class BaseGame : ApplicationListener {
     }
 
     companion object {
-        internal const val DELTA_TICK = 1f / 20f
+        private const val DELTA_TICK = 1f / 20f
         private const val DELTA_MAX = 1f / 20f
         private const val DELTA_FIXED = 1f / 60f
     }
