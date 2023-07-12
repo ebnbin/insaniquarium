@@ -53,6 +53,8 @@ data class BodyConfig(
     val swimActX: SwimAct? = null,
     @Expose
     val swimActY: SwimAct? = null,
+    @Expose
+    val touchAct: TouchAct? = null,
 ) {
     data class Health(
         @Expose
@@ -167,6 +169,19 @@ data class BodyConfig(
         val idlingTicksMin: Int,
         @Expose
         val idlingTicksMax: Int,
+    )
+
+    data class TouchAct(
+        @Expose
+        val health: Int = 0,
+        @Expose
+        val hunger: Int = 0,
+        @Expose
+        val growth: Int = 0,
+        @Expose
+        val drop: Int = 0,
+        @Expose
+        val energy: Int = 0,
     )
 
     companion object {

@@ -1100,6 +1100,9 @@ object ConfigInfo {
             health = BodyConfig.Health(
                 full = 2,
             ),
+            touchAct = BodyConfig.TouchAct(
+                health = -2,
+            ),
         ),
         BodyType.GOLD_COIN to BodyConfig(
             group = BodyGroup.MONEY,
@@ -1127,6 +1130,9 @@ object ConfigInfo {
             isDead = true,
             health = BodyConfig.Health(
                 full = 2,
+            ),
+            touchAct = BodyConfig.TouchAct(
+                health = -2,
             ),
         ),
         BodyType.STAR to BodyConfig(
@@ -1156,6 +1162,9 @@ object ConfigInfo {
             health = BodyConfig.Health(
                 full = 2,
             ),
+            touchAct = BodyConfig.TouchAct(
+                health = -2,
+            ),
         ),
         BodyType.DIAMOND to BodyConfig(
             group = BodyGroup.MONEY,
@@ -1184,6 +1193,9 @@ object ConfigInfo {
             health = BodyConfig.Health(
                 full = 2,
             ),
+            touchAct = BodyConfig.TouchAct(
+                health = -2,
+            ),
         ),
         BodyType.BEETLE to BodyConfig(
             group = BodyGroup.MONEY,
@@ -1211,6 +1223,9 @@ object ConfigInfo {
             isDead = true,
             health = BodyConfig.Health(
                 full = 2,
+            ),
+            touchAct = BodyConfig.TouchAct(
+                health = -2,
             ),
         ),
     ).also {

@@ -40,9 +40,10 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": null
     },
     "star_potion": {
       "group": "food",
@@ -84,9 +85,10 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": null
     },
     "guppy_small": {
       "group": "fish",
@@ -186,7 +188,7 @@
         },
         "drivingAccelerationMultiplier": 1.0
       },
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": {
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
@@ -196,7 +198,8 @@
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
-      }
+      },
+      "touchAct": null
     },
     "guppy_medium": {
       "group": "fish",
@@ -301,7 +304,7 @@
         },
         "drivingAccelerationMultiplier": 1.0
       },
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": {
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
@@ -311,7 +314,8 @@
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
-      }
+      },
+      "touchAct": null
     },
     "guppy_large": {
       "group": "fish",
@@ -416,7 +420,7 @@
         },
         "drivingAccelerationMultiplier": 1.0
       },
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": {
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
@@ -426,7 +430,8 @@
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
-      }
+      },
+      "touchAct": null
     },
     "guppy_king": {
       "group": "fish",
@@ -526,7 +531,7 @@
         },
         "drivingAccelerationMultiplier": 1.0
       },
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": {
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
@@ -536,7 +541,8 @@
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
-      }
+      },
+      "touchAct": null
     },
     "starcatcher": {
       "group": "fish",
@@ -608,13 +614,14 @@
         },
         "drivingAccelerationMultiplier": 1.0
       },
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": {
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
         "idlingTicksMax": 160
       },
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": null
     },
     "beetlemuncher": {
       "group": "fish",
@@ -705,7 +712,7 @@
         },
         "drivingAccelerationMultiplier": 1.0
       },
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": {
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
@@ -715,7 +722,8 @@
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
-      }
+      },
+      "touchAct": null
     },
     "guppy_small_corpse": {
       "group": "fish",
@@ -753,9 +761,10 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": null
     },
     "guppy_medium_corpse": {
       "group": "fish",
@@ -793,9 +802,10 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": null
     },
     "guppy_large_corpse": {
       "group": "fish",
@@ -833,9 +843,10 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": null
     },
     "guppy_king_corpse": {
       "group": "fish",
@@ -873,9 +884,10 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": null
     },
     "starcatcher_corpse": {
       "group": "fish",
@@ -913,9 +925,10 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": null
     },
     "beetlemuncher_corpse": {
       "group": "fish",
@@ -953,9 +966,10 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": null
     },
     "sylvester": {
       "group": "alien",
@@ -1062,7 +1076,7 @@
         },
         "drivingAccelerationMultiplier": 1.0
       },
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": {
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 0,
@@ -1072,7 +1086,8 @@
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 0,
         "idlingTicksMax": 0
-      }
+      },
+      "touchAct": null
     },
     "niko": {
       "group": "pet",
@@ -1134,9 +1149,10 @@
         "dischargeProduction": null
       },
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": null
     },
     "prego": {
       "group": "pet",
@@ -1204,7 +1220,7 @@
         "dischargeProduction": "guppy_small"
       },
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": {
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
@@ -1214,7 +1230,8 @@
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
-      }
+      },
+      "touchAct": null
     },
     "clyde": {
       "group": "pet",
@@ -1304,7 +1321,7 @@
         },
         "drivingAccelerationMultiplier": 1.0
       },
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": {
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
@@ -1314,7 +1331,8 @@
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
         "idlingTicksMax": 160
-      }
+      },
+      "touchAct": null
     },
     "gash": {
       "group": "pet",
@@ -1387,7 +1405,7 @@
         },
         "drivingAccelerationMultiplier": 1.0
       },
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": {
         "drivingAccelerationMultiplier": 0.25,
         "idlingTicksMin": 40,
@@ -1397,7 +1415,8 @@
         "drivingAccelerationMultiplier": 0.25,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
-      }
+      },
+      "touchAct": null
     },
     "presto": {
       "group": "pet",
@@ -1441,7 +1460,7 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": {
+      "followTouchAct": {
         "drivingAccelerationMultiplier": 1.0
       },
       "swimActX": {
@@ -1453,7 +1472,8 @@
         "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
-      }
+      },
+      "touchAct": null
     },
     "silver_coin": {
       "group": "money",
@@ -1495,9 +1515,16 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": {
+        "health": -2,
+        "hunger": 0,
+        "growth": 0,
+        "drop": 0,
+        "energy": 0
+      }
     },
     "gold_coin": {
       "group": "money",
@@ -1539,9 +1566,16 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": {
+        "health": -2,
+        "hunger": 0,
+        "growth": 0,
+        "drop": 0,
+        "energy": 0
+      }
     },
     "star": {
       "group": "money",
@@ -1583,9 +1617,16 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": {
+        "health": -2,
+        "hunger": 0,
+        "growth": 0,
+        "drop": 0,
+        "energy": 0
+      }
     },
     "diamond": {
       "group": "money",
@@ -1627,9 +1668,16 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": {
+        "health": -2,
+        "hunger": 0,
+        "growth": 0,
+        "drop": 0,
+        "energy": 0
+      }
     },
     "beetle": {
       "group": "money",
@@ -1671,9 +1719,16 @@
       "drop": null,
       "energy": null,
       "eatAct": null,
-      "touchAct": null,
+      "followTouchAct": null,
       "swimActX": null,
-      "swimActY": null
+      "swimActY": null,
+      "touchAct": {
+        "health": -2,
+        "hunger": 0,
+        "growth": 0,
+        "drop": 0,
+        "energy": 0
+      }
     }
   }
 }

@@ -27,7 +27,7 @@ class Tank : Group() {
             override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 val touchPoint = Point(x, y)
                 this@Tank.touchPoint = touchPoint
-                if (hitMoneyBodies(touchPoint)) {
+                if (touchBodies(touchPoint)) {
                     return true
                 }
                 devSelectedBodyType?.let {
@@ -61,7 +61,22 @@ class Tank : Group() {
     var touchPoint: Point? = null
         private set
 
-    private fun hitMoneyBodies(touchPoint: Point): Boolean {
+    private fun touchBodies(touchPoint: Point): Boolean {
+        groupMap
+            .values
+            .reversed()
+            .forEach { group ->
+                group.children
+                    .reversed()
+                    .map { it as BodyActor }
+                    .filter { it.body.config.touchAct != null }
+                    .forEach {
+                        if (it.body.touch(touchPoint)) {
+                            return true
+                        }
+                    }
+            }
+
         val moneyGroup = groupMap.getValue(BodyGroup.MONEY)
         moneyGroup.children
             .reversed()

@@ -953,9 +953,14 @@ data class BodyData(
     fun touch(point: Point): Boolean {
         val hit = hit(point)
         if (hit) {
+            requireNotNull(body.config.touchAct)
             body.tick(
                 input = BodyInput(
-                    healthDiff = -(health ?: 0),
+                    healthDiff = body.config.touchAct.health,
+                    hungerDiff = body.config.touchAct.hunger,
+                    growthDiff = body.config.touchAct.growth,
+                    dropDiff = body.config.touchAct.drop,
+                    energyDiff = body.config.touchAct.energy,
                 ),
             )
         }
