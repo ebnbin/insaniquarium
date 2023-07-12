@@ -1226,7 +1226,6 @@
       "swimActX": null,
       "swimActY": null,
       "touchAct": {
-        "charged": true,
         "health": 0,
         "hunger": -800,
         "growth": 0,
@@ -1614,7 +1613,6 @@
       "swimActX": null,
       "swimActY": null,
       "touchAct": {
-        "charged": false,
         "health": -2,
         "hunger": 0,
         "growth": 0,
@@ -1669,7 +1667,6 @@
       "swimActX": null,
       "swimActY": null,
       "touchAct": {
-        "charged": false,
         "health": -2,
         "hunger": 0,
         "growth": 0,
@@ -1724,7 +1721,6 @@
       "swimActX": null,
       "swimActY": null,
       "touchAct": {
-        "charged": false,
         "health": -2,
         "hunger": 0,
         "growth": 0,
@@ -1779,7 +1775,6 @@
       "swimActX": null,
       "swimActY": null,
       "touchAct": {
-        "charged": false,
         "health": -2,
         "hunger": 0,
         "growth": 0,
@@ -1834,7 +1829,6 @@
       "swimActX": null,
       "swimActY": null,
       "touchAct": {
-        "charged": false,
         "health": -2,
         "hunger": 0,
         "growth": 0,

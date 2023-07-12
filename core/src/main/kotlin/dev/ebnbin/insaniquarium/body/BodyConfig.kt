@@ -173,8 +173,6 @@ data class BodyConfig(
 
     data class TouchAct(
         @Expose
-        val charged: Boolean = false,
-        @Expose
         val health: Int = 0,
         @Expose
         val hunger: Int = 0,

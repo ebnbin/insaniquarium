@@ -881,7 +881,6 @@ object ConfigInfo {
                 dischargeDiffPerTick = -8,
             ),
             touchAct = BodyConfig.TouchAct(
-                charged = true,
                 hunger = -800,
             ),
         ),

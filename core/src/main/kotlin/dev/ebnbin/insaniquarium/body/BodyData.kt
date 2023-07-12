@@ -23,6 +23,8 @@ data class BodyData(
     val body: Body,
     val state: BodyState,
 ) {
+    private val behavior: BodyBehavior = BodyBehavior.get(body.type)
+
     private val halfWidth: Float = body.config.width / 2f
     private val halfHeight: Float = body.config.height / 2f
 
@@ -88,7 +90,7 @@ data class BodyData(
         drop / body.config.drop.full
     }
 
-    private val isCharged: Boolean = body.config.energy != null && state.energy != null && state.isCharging != null &&
+    val isCharged: Boolean = body.config.energy != null && state.energy != null && state.isCharging != null &&
         (state.isCharging && state.energy == body.config.energy.full || !state.isCharging && state.energy != 0)
 
     private val canCreateCharge = state.energy != null &&
@@ -944,20 +946,18 @@ data class BodyData(
     }
 
     fun touch(point: Point): Boolean {
-        val hit = hit(point)
+        val hit = hit(point) && behavior.canTouch(this)
         if (hit) {
             requireNotNull(body.config.touchAct)
-            if (!body.config.touchAct.charged || (isCharged && animationData.action != BodyAnimations.Action.CHARGE)) {
-                body.tick(
-                    input = BodyInput(
-                        healthDiff = body.config.touchAct.health,
-                        hungerDiff = body.config.touchAct.hunger,
-                        growthDiff = body.config.touchAct.growth,
-                        dropDiff = body.config.touchAct.drop,
-                        energyDiff = body.config.touchAct.energy,
-                    ),
-                )
-            }
+            body.tick(
+                input = BodyInput(
+                    healthDiff = body.config.touchAct.health,
+                    hungerDiff = body.config.touchAct.hunger,
+                    growthDiff = body.config.touchAct.growth,
+                    dropDiff = body.config.touchAct.drop,
+                    energyDiff = body.config.touchAct.energy,
+                ),
+            )
         }
         return hit
     }
