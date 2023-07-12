@@ -32,8 +32,8 @@ data class BodyData(
     val minY: Float = halfHeight
     val maxY: Float = Float.MAX_VALUE
 
-    val x: Float = state.position.x.coerceIn(minX, maxX)
-    val y: Float = state.position.y.coerceIn(minY, maxY)
+    val x: Float = state.position.x
+    val y: Float = state.position.y
 
     private data class EatAct(
         val drivingTargetX: BodyDrivingTarget?,

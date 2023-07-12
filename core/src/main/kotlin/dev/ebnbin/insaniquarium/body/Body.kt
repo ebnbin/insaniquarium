@@ -72,11 +72,15 @@ class Body(
                 position = position.x,
                 velocity = data.state.velocityX,
                 delta = delta,
+                minPosition = data.minX,
+                maxPosition = data.maxX,
             ),
             y = BodyForceHelper.nextPosition(
                 position = position.y,
                 velocity = data.state.velocityY,
                 delta = delta,
+                minPosition = data.minY,
+                maxPosition = data.maxY,
             ),
         )
         delegate.setPosition(position.x, position.y)
