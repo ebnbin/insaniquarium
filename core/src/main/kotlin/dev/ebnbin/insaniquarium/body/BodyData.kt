@@ -332,6 +332,7 @@ data class BodyData(
         val nextSwimActX = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
             tickDelta = delta,
+            drivingAcceleration = body.config.drivingAccelerationX,
             configSwimAct = body.config.swimActX,
             swimAct = if (state.swimTicksX == null) {
                 null
@@ -347,6 +348,7 @@ data class BodyData(
         val nextSwimActY = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
             tickDelta = delta,
+            drivingAcceleration = body.config.drivingAccelerationY,
             configSwimAct = body.config.swimActY,
             swimAct = if (state.swimTicksY == null) {
                 null
@@ -458,7 +460,7 @@ data class BodyData(
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
                     position = targetFood.data.state.position.x,
-                    acceleration = body.config.eatAct.drivingAccelerationX,
+                    acceleration = body.config.drivingAccelerationX * body.config.eatAct.drivingAccelerationMultiplier,
                 )
             },
             drivingTargetY = if (targetFood == null) {
@@ -467,7 +469,7 @@ data class BodyData(
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
                     position = targetFood.data.state.position.y,
-                    acceleration = body.config.eatAct.drivingAccelerationY,
+                    acceleration = body.config.drivingAccelerationY * body.config.eatAct.drivingAccelerationMultiplier,
                 )
             },
             foodRelation = foodRelation,
@@ -490,12 +492,12 @@ data class BodyData(
             drivingTargetX = BodyDrivingTarget(
                 type = BodyDrivingTarget.Type.TOUCH,
                 position = touchPoint.x,
-                acceleration = body.config.touchAct.drivingAccelerationX,
+                acceleration = body.config.drivingAccelerationX * body.config.touchAct.drivingAccelerationMultiplier,
             ),
             drivingTargetY = BodyDrivingTarget(
                 type = BodyDrivingTarget.Type.TOUCH,
                 position = touchPoint.y,
-                acceleration = body.config.touchAct.drivingAccelerationY,
+                acceleration = body.config.drivingAccelerationY * body.config.touchAct.drivingAccelerationMultiplier,
             ),
         )
     }
@@ -503,6 +505,7 @@ data class BodyData(
     private fun nextSwimAct(
         enabled: Boolean,
         tickDelta: Float,
+        drivingAcceleration: Float,
         configSwimAct: BodyConfig.SwimAct?,
         swimAct: SwimAct?,
         tankSize: Float,
@@ -522,7 +525,7 @@ data class BodyData(
                 drivingTarget = BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.SWIM,
                     position = Random.nextFloat(0f, tankSize),
-                    acceleration = configSwimAct.drivingAcceleration,
+                    acceleration = drivingAcceleration * configSwimAct.drivingAccelerationMultiplier,
                 ),
                 ticks = 0,
             )

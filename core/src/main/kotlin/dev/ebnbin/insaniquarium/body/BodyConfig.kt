@@ -20,6 +20,10 @@ data class BodyConfig(
     @Expose
     val dragCoefficient: Float = DEFAULT_DRAG_COEFFICIENT,
     @Expose
+    val drivingAccelerationX: Float = 0f,
+    @Expose
+    val drivingAccelerationY: Float = 0f,
+    @Expose
     val waterFrictionCoefficient: Float = DEFAULT_WATER_FRICTION_COEFFICIENT,
     @Expose
     val bottomFrictionCoefficient: Float = DEFAULT_BOTTOM_FRICTION_COEFFICIENT,
@@ -132,9 +136,7 @@ data class BodyConfig(
         @Expose
         val foods: Map<BodyType, Food>,
         @Expose
-        val drivingAccelerationX: Float = 0f,
-        @Expose
-        val drivingAccelerationY: Float = 0f,
+        val drivingAccelerationMultiplier: Float = 1f,
     )
 
     data class Food(
@@ -162,14 +164,12 @@ data class BodyConfig(
 
     data class TouchAct(
         @Expose
-        val drivingAccelerationX: Float,
-        @Expose
-        val drivingAccelerationY: Float,
+        val drivingAccelerationMultiplier: Float = 1f,
     )
 
     data class SwimAct(
         @Expose
-        val drivingAcceleration: Float,
+        val drivingAccelerationMultiplier: Float = 0.5f,
         @Expose
         val idlingTicksMin: Int,
         @Expose

@@ -118,6 +118,8 @@ object ConfigInfo {
                 index = 5,
                 wh = WH.WIDTH,
             ),
+            drivingAccelerationX = 0.4f,
+            drivingAccelerationY = 0.25f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_small",
@@ -172,16 +174,12 @@ object ConfigInfo {
                         growth = 5,
                     ),
                 ),
-                drivingAccelerationX = 0.4f,
-                drivingAccelerationY = 0.25f,
             ),
             swimActX = BodyConfig.SwimAct(
-                drivingAcceleration = 0.2f,
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
-                drivingAcceleration = 0.125f,
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),
@@ -203,6 +201,8 @@ object ConfigInfo {
                 index = 5,
                 wh = WH.WIDTH,
             ),
+            drivingAccelerationX = 0.4f,
+            drivingAccelerationY = 0.25f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_medium",
@@ -262,16 +262,12 @@ object ConfigInfo {
                         growth = 5,
                     ),
                 ),
-                drivingAccelerationX = 0.4f,
-                drivingAccelerationY = 0.25f,
             ),
             swimActX = BodyConfig.SwimAct(
-                drivingAcceleration = 0.2f,
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
-                drivingAcceleration = 0.125f,
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),
@@ -293,6 +289,8 @@ object ConfigInfo {
                 index = 5,
                 wh = WH.WIDTH,
             ),
+            drivingAccelerationX = 0.4f,
+            drivingAccelerationY = 0.25f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_large",
@@ -352,16 +350,12 @@ object ConfigInfo {
                         growth = 5,
                     ),
                 ),
-                drivingAccelerationX = 0.4f,
-                drivingAccelerationY = 0.25f,
             ),
             swimActX = BodyConfig.SwimAct(
-                drivingAcceleration = 0.2f,
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
-                drivingAcceleration = 0.125f,
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),
@@ -383,6 +377,8 @@ object ConfigInfo {
                 index = 5,
                 wh = WH.WIDTH,
             ),
+            drivingAccelerationX = 0.4f,
+            drivingAccelerationY = 0.25f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_king",
@@ -437,16 +433,12 @@ object ConfigInfo {
                         hunger = 2000,
                     ),
                 ),
-                drivingAccelerationX = 0.4f,
-                drivingAccelerationY = 0.25f,
             ),
             swimActX = BodyConfig.SwimAct(
-                drivingAcceleration = 0.2f,
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
-                drivingAcceleration = 0.125f,
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),
@@ -469,6 +461,8 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1080f,
+            drivingAccelerationX = 0.3f,
+            drivingAccelerationY = 0f,
             bottomFrictionCoefficient = 0.01f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
@@ -501,11 +495,8 @@ object ConfigInfo {
                         drop = 160,
                     ),
                 ),
-                drivingAccelerationX = 0.3f,
-                drivingAccelerationY = 0f,
             ),
             swimActX = BodyConfig.SwimAct(
-                drivingAcceleration = 0.15f,
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
             ),
@@ -527,6 +518,8 @@ object ConfigInfo {
                 index = 5,
                 wh = WH.WIDTH,
             ),
+            drivingAccelerationX = 0.4f,
+            drivingAccelerationY = 0.25f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "beetlemuncher",
@@ -573,16 +566,12 @@ object ConfigInfo {
                         hunger = 2000,
                     ),
                 ),
-                drivingAccelerationX = 0.4f,
-                drivingAccelerationY = 0.25f,
             ),
             swimActX = BodyConfig.SwimAct(
-                drivingAcceleration = 0.2f,
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
-                drivingAcceleration = 0.125f,
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),
@@ -766,6 +755,8 @@ object ConfigInfo {
                 index = 5,
                 wh = WH.WIDTH,
             ),
+            drivingAccelerationX = 0.4f,
+            drivingAccelerationY = 0.25f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "sylvester",
@@ -799,16 +790,12 @@ object ConfigInfo {
                         healthDiffPerTick = -10,
                     ),
                 ),
-                drivingAccelerationX = 0.4f,
-                drivingAccelerationY = 0.25f,
             ),
             swimActX = BodyConfig.SwimAct(
-                drivingAcceleration = 0.2f,
                 idlingTicksMin = 0,
                 idlingTicksMax = 0,
             ),
             swimActY = BodyConfig.SwimAct(
-                drivingAcceleration = 0.125f,
                 idlingTicksMin = 0,
                 idlingTicksMax = 0,
             ),
@@ -920,6 +907,8 @@ object ConfigInfo {
                 index = 0,
                 wh = WH.WIDTH,
             ),
+            drivingAccelerationX = 0.2f,
+            drivingAccelerationY = 0.3f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "clyde",
@@ -943,16 +932,12 @@ object ConfigInfo {
                         healthDiffPerTick = -1,
                     ),
                 ),
-                drivingAccelerationX = 0.2f,
-                drivingAccelerationY = 0.3f,
             ),
             swimActX = BodyConfig.SwimAct(
-                drivingAcceleration = 0.1f,
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
-                drivingAcceleration = 0.15f,
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
             ),
@@ -974,6 +959,8 @@ object ConfigInfo {
                 index = 5,
                 wh = WH.WIDTH,
             ),
+            drivingAccelerationX = 0.8f,
+            drivingAccelerationY = 0.5f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "gash",
@@ -1000,16 +987,14 @@ object ConfigInfo {
                         healthDiffPerTick = -5,
                     ),
                 ),
-                drivingAccelerationX = 0.8f,
-                drivingAccelerationY = 0.5f,
             ),
             swimActX = BodyConfig.SwimAct(
-                drivingAcceleration = 0.2f,
+                drivingAccelerationMultiplier = 0.25f,
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
-                drivingAcceleration = 0.125f,
+                drivingAccelerationMultiplier = 0.25f,
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),
@@ -1029,6 +1014,8 @@ object ConfigInfo {
                 index = 5,
                 wh = WH.WIDTH,
             ),
+            drivingAccelerationX = 0.4f,
+            drivingAccelerationY = 0.25f,
             animations = BodyConfig.Animations(
                 swim = TextureRegionAnimation(
                     assetId = "presto",
@@ -1041,17 +1028,12 @@ object ConfigInfo {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
-            touchAct = BodyConfig.TouchAct(
-                drivingAccelerationX = 0.4f,
-                drivingAccelerationY = 0.25f,
-            ),
+            touchAct = BodyConfig.TouchAct(),
             swimActX = BodyConfig.SwimAct(
-                drivingAcceleration = 0.2f,
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
             ),
             swimActY = BodyConfig.SwimAct(
-                drivingAcceleration = 0.125f,
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),

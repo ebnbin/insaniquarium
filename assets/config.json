@@ -7,6 +7,8 @@
       "depth": 0.051666666,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -47,6 +49,8 @@
       "depth": 0.085,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -87,6 +91,8 @@
       "depth": 0.06,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.4,
+      "drivingAccelerationY": 0.25,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -167,17 +173,16 @@
             "energy": 0
           }
         },
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
+        "drivingAccelerationMultiplier": 1.0
       },
       "touchAct": null,
       "swimActX": {
-        "drivingAcceleration": 0.2,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
         "idlingTicksMax": 160
       },
       "swimActY": {
-        "drivingAcceleration": 0.125,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
       }
@@ -189,6 +194,8 @@
       "depth": 0.083333336,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.4,
+      "drivingAccelerationY": 0.25,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -274,17 +281,16 @@
             "energy": 0
           }
         },
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
+        "drivingAccelerationMultiplier": 1.0
       },
       "touchAct": null,
       "swimActX": {
-        "drivingAcceleration": 0.2,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
         "idlingTicksMax": 160
       },
       "swimActY": {
-        "drivingAcceleration": 0.125,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
       }
@@ -296,6 +302,8 @@
       "depth": 0.10166667,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.4,
+      "drivingAccelerationY": 0.25,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -381,17 +389,16 @@
             "energy": 0
           }
         },
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
+        "drivingAccelerationMultiplier": 1.0
       },
       "touchAct": null,
       "swimActX": {
-        "drivingAcceleration": 0.2,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
         "idlingTicksMax": 160
       },
       "swimActY": {
-        "drivingAcceleration": 0.125,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
       }
@@ -403,6 +410,8 @@
       "depth": 0.10166667,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.4,
+      "drivingAccelerationY": 0.25,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -483,17 +492,16 @@
             "energy": 0
           }
         },
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
+        "drivingAccelerationMultiplier": 1.0
       },
       "touchAct": null,
       "swimActX": {
-        "drivingAcceleration": 0.2,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
         "idlingTicksMax": 160
       },
       "swimActY": {
-        "drivingAcceleration": 0.125,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
       }
@@ -505,6 +513,8 @@
       "depth": 0.135,
       "density": 1080.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.3,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 0.01,
       "leftRightFrictionCoefficient": 0.0,
@@ -561,12 +571,11 @@
             "energy": 0
           }
         },
-        "drivingAccelerationX": 0.3,
-        "drivingAccelerationY": 0.0
+        "drivingAccelerationMultiplier": 1.0
       },
       "touchAct": null,
       "swimActX": {
-        "drivingAcceleration": 0.15,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
         "idlingTicksMax": 160
       },
@@ -579,6 +588,8 @@
       "depth": 0.135,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.4,
+      "drivingAccelerationY": 0.25,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -650,17 +661,16 @@
             "energy": 0
           }
         },
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
+        "drivingAccelerationMultiplier": 1.0
       },
       "touchAct": null,
       "swimActX": {
-        "drivingAcceleration": 0.2,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
         "idlingTicksMax": 160
       },
       "swimActY": {
-        "drivingAcceleration": 0.125,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
       }
@@ -672,6 +682,8 @@
       "depth": 0.06,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -708,6 +720,8 @@
       "depth": 0.083333336,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -744,6 +758,8 @@
       "depth": 0.10166667,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -780,6 +796,8 @@
       "depth": 0.10166667,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -816,6 +834,8 @@
       "depth": 0.135,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -852,6 +872,8 @@
       "depth": 0.135,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -888,6 +910,8 @@
       "depth": 0.26333332,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.4,
+      "drivingAccelerationY": 0.25,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -979,17 +1003,16 @@
             "energy": 0
           }
         },
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
+        "drivingAccelerationMultiplier": 1.0
       },
       "touchAct": null,
       "swimActX": {
-        "drivingAcceleration": 0.2,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 0,
         "idlingTicksMax": 0
       },
       "swimActY": {
-        "drivingAcceleration": 0.125,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 0,
         "idlingTicksMax": 0
       }
@@ -1001,6 +1024,8 @@
       "depth": 0.185,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -1044,6 +1069,8 @@
       "depth": 0.185,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -1087,6 +1114,8 @@
       "depth": 0.185,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -1130,6 +1159,8 @@
       "depth": 0.135,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.2,
+      "drivingAccelerationY": 0.3,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -1205,17 +1236,16 @@
             "energy": 0
           }
         },
-        "drivingAccelerationX": 0.2,
-        "drivingAccelerationY": 0.3
+        "drivingAccelerationMultiplier": 1.0
       },
       "touchAct": null,
       "swimActX": {
-        "drivingAcceleration": 0.1,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
         "idlingTicksMax": 160
       },
       "swimActY": {
-        "drivingAcceleration": 0.15,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
         "idlingTicksMax": 160
       }
@@ -1227,6 +1257,8 @@
       "depth": 0.1,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.8,
+      "drivingAccelerationY": 0.5,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -1283,17 +1315,16 @@
             "energy": 0
           }
         },
-        "drivingAccelerationX": 0.8,
-        "drivingAccelerationY": 0.5
+        "drivingAccelerationMultiplier": 1.0
       },
       "touchAct": null,
       "swimActX": {
-        "drivingAcceleration": 0.2,
+        "drivingAccelerationMultiplier": 0.25,
         "idlingTicksMin": 40,
         "idlingTicksMax": 160
       },
       "swimActY": {
-        "drivingAcceleration": 0.125,
+        "drivingAccelerationMultiplier": 0.25,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
       }
@@ -1305,6 +1336,8 @@
       "depth": 0.09833334,
       "density": 1000.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.4,
+      "drivingAccelerationY": 0.25,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -1336,16 +1369,15 @@
       "energy": null,
       "eatAct": null,
       "touchAct": {
-        "drivingAccelerationX": 0.4,
-        "drivingAccelerationY": 0.25
+        "drivingAccelerationMultiplier": 1.0
       },
       "swimActX": {
-        "drivingAcceleration": 0.2,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 40,
         "idlingTicksMax": 160
       },
       "swimActY": {
-        "drivingAcceleration": 0.125,
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
       }
@@ -1357,6 +1389,8 @@
       "depth": 0.011666667,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -1397,6 +1431,8 @@
       "depth": 0.011666667,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -1437,6 +1473,8 @@
       "depth": 0.025,
       "density": 1010.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -1477,6 +1515,8 @@
       "depth": 0.08,
       "density": 1020.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
@@ -1517,6 +1557,8 @@
       "depth": 0.085,
       "density": 990.0,
       "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.0,
+      "drivingAccelerationY": 0.0,
       "waterFrictionCoefficient": 0.001,
       "bottomFrictionCoefficient": 1.0,
       "leftRightFrictionCoefficient": 0.0,
