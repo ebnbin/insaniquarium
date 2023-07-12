@@ -22,7 +22,6 @@ class InsaniquariumGame : BaseGame() {
         insaniquariumGame?.dispose()
         insaniquariumGame = this
         super.create()
-//        config = Gdx.files.internal("config.json").readString().fromJson()
         config = Config.init()
         loadScreen(
             assetSet = setOf(

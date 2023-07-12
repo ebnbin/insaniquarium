@@ -2,7 +2,7 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.gdx.animation.AnimationMode
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
-import dev.ebnbin.gdx.asset.Assets
+import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Interpolation
 import dev.ebnbin.gdx.utils.unitToMeter
 
@@ -13,16 +13,14 @@ object BodyConfigInitializer {
         ;
     }
 
-    lateinit var assets: Assets
-
     private fun size(
         textureName: String,
-        index: Int? = null,
+        index: Int = 0,
         wh: WH,
     ): Float {
-        val region = assets.texture.getValue(textureName).region
+        val region = baseGame.assets.texture.getValue(textureName).region
         require(region != null)
-        val nonTransparentSize = region.nonTransparentSizeList[index ?: 0]
+        val nonTransparentSize = region.nonTransparentSizeList[index]
         return if (wh == WH.WIDTH) {
             nonTransparentSize.width.toFloat().unitToMeter
         } else {

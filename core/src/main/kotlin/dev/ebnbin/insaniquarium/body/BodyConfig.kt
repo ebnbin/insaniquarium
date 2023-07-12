@@ -192,7 +192,6 @@ data class BodyConfig(
         const val DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT = 0f
 
         fun init(): Map<BodyType, BodyConfig> {
-            BodyConfigInitializer.assets = baseGame.assets
             return BodyConfigInitializer.bodyMap()
         }
     }
