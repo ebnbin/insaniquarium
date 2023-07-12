@@ -27,6 +27,7 @@ enum class BodyType(override val serializedName: String) : SerializableEnum {
     ZORF("zorf"),
     CLYDE("clyde"),
     GASH("gash"),
+    ANGIE("angie"),
     PRESTO("presto"),
 
     SILVER_COIN("silver_coin"),
@@ -67,6 +68,7 @@ enum class BodyType(override val serializedName: String) : SerializableEnum {
             ZORF,
             CLYDE,
             GASH,
+            ANGIE,
             PRESTO,
         )
         val MONEY_LIST: List<BodyType> = listOf(

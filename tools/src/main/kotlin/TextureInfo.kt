@@ -510,6 +510,26 @@ object TextureInfo {
         ),
         BodyTextureInfo(
             group = GROUP_PET,
+            srcFileName = "angie.gif",
+            srcMaskFileName = "_angie.gif",
+            scale = 1.5f,
+            row = 2,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "angie",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "angie_turn",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_PET,
             srcFileName = "presto.gif",
             srcMaskFileName = "_presto.gif",
             scale = 1.5f,

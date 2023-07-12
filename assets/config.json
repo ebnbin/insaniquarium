@@ -889,7 +889,14 @@
       },
       "isDead": true,
       "health": null,
-      "hunger": null,
+      "hunger": {
+        "full": 2,
+        "max": 2,
+        "init": 2,
+        "hungry": 0,
+        "diffPerTick": 0,
+        "transformation": "guppy_baby"
+      },
       "growth": null,
       "drop": null,
       "energy": null,
@@ -934,7 +941,14 @@
       },
       "isDead": true,
       "health": null,
-      "hunger": null,
+      "hunger": {
+        "full": 2,
+        "max": 2,
+        "init": 2,
+        "hungry": 0,
+        "diffPerTick": 0,
+        "transformation": "guppy_medium"
+      },
       "growth": null,
       "drop": null,
       "energy": null,
@@ -979,7 +993,14 @@
       },
       "isDead": true,
       "health": null,
-      "hunger": null,
+      "hunger": {
+        "full": 2,
+        "max": 2,
+        "init": 2,
+        "hungry": 0,
+        "diffPerTick": 0,
+        "transformation": "guppy_large"
+      },
       "growth": null,
       "drop": null,
       "energy": null,
@@ -1024,7 +1045,14 @@
       },
       "isDead": true,
       "health": null,
-      "hunger": null,
+      "hunger": {
+        "full": 2,
+        "max": 2,
+        "init": 2,
+        "hungry": 0,
+        "diffPerTick": 0,
+        "transformation": "guppy_king"
+      },
       "growth": null,
       "drop": null,
       "energy": null,
@@ -1069,7 +1097,14 @@
       },
       "isDead": true,
       "health": null,
-      "hunger": null,
+      "hunger": {
+        "full": 2,
+        "max": 2,
+        "init": 2,
+        "hungry": 0,
+        "diffPerTick": 0,
+        "transformation": "starcatcher"
+      },
       "growth": null,
       "drop": null,
       "energy": null,
@@ -1114,7 +1149,14 @@
       },
       "isDead": true,
       "health": null,
-      "hunger": null,
+      "hunger": {
+        "full": 2,
+        "max": 2,
+        "init": 2,
+        "hungry": 0,
+        "diffPerTick": 0,
+        "transformation": "beetlemuncher"
+      },
       "growth": null,
       "drop": null,
       "energy": null,
@@ -1687,6 +1729,141 @@
       },
       "swimActY": {
         "drivingAccelerationMultiplier": 0.25,
+        "idlingTicksMin": 120,
+        "idlingTicksMax": 200
+      },
+      "touchAct": null
+    },
+    "angie": {
+      "group": "pet",
+      "width": 0.14,
+      "height": 0.195,
+      "depth": 0.07333333,
+      "density": 1000.0,
+      "dragCoefficient": 1.0,
+      "drivingAccelerationX": 0.32,
+      "drivingAccelerationY": 0.2,
+      "waterFrictionCoefficient": 0.001,
+      "bottomFrictionCoefficient": 1.0,
+      "leftRightFrictionCoefficient": 0.0,
+      "animations": {
+        "swim": {
+          "assetId": "angie",
+          "ticks": 20,
+          "mode": "loop",
+          "interpolation": "linear",
+          "finishTicks": 20
+        },
+        "turn": {
+          "assetId": "angie_turn",
+          "ticks": 20,
+          "mode": "normal",
+          "interpolation": "linear",
+          "finishTicks": 20
+        },
+        "eat": null,
+        "hungry": null,
+        "hungryTurn": null,
+        "hungryEat": null,
+        "drop": null,
+        "charged": null,
+        "charge": null,
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
+      },
+      "isDead": false,
+      "health": null,
+      "hunger": null,
+      "growth": null,
+      "drop": null,
+      "energy": null,
+      "eatAct": {
+        "foods": {
+          "guppy_baby_corpse": {
+            "healthDiffPerTick": 0,
+            "hungerDiffPerTick": -1,
+            "growthDiffPerTick": 0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
+            "health": 0,
+            "hunger": 0,
+            "growth": 0,
+            "drop": 0,
+            "energy": 0
+          },
+          "guppy_medium_corpse": {
+            "healthDiffPerTick": 0,
+            "hungerDiffPerTick": -1,
+            "growthDiffPerTick": 0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
+            "health": 0,
+            "hunger": 0,
+            "growth": 0,
+            "drop": 0,
+            "energy": 0
+          },
+          "guppy_large_corpse": {
+            "healthDiffPerTick": 0,
+            "hungerDiffPerTick": -1,
+            "growthDiffPerTick": 0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
+            "health": 0,
+            "hunger": 0,
+            "growth": 0,
+            "drop": 0,
+            "energy": 0
+          },
+          "guppy_king_corpse": {
+            "healthDiffPerTick": 0,
+            "hungerDiffPerTick": -1,
+            "growthDiffPerTick": 0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
+            "health": 0,
+            "hunger": 0,
+            "growth": 0,
+            "drop": 0,
+            "energy": 0
+          },
+          "starcatcher_corpse": {
+            "healthDiffPerTick": 0,
+            "hungerDiffPerTick": -1,
+            "growthDiffPerTick": 0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
+            "health": 0,
+            "hunger": 0,
+            "growth": 0,
+            "drop": 0,
+            "energy": 0
+          },
+          "beetlemuncher_corpse": {
+            "healthDiffPerTick": 0,
+            "hungerDiffPerTick": -1,
+            "growthDiffPerTick": 0,
+            "dropDiffPerTick": 0,
+            "energyDiffPerTick": 0,
+            "health": 0,
+            "hunger": 0,
+            "growth": 0,
+            "drop": 0,
+            "energy": 0
+          }
+        },
+        "drivingAccelerationMultiplier": 1.0
+      },
+      "followTouchAct": null,
+      "swimActX": {
+        "drivingAccelerationMultiplier": 0.5,
+        "idlingTicksMin": 40,
+        "idlingTicksMax": 160
+      },
+      "swimActY": {
+        "drivingAccelerationMultiplier": 0.5,
         "idlingTicksMin": 120,
         "idlingTicksMax": 200
       },

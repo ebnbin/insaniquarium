@@ -1,6 +1,26 @@
 {
   "freeType": {},
   "texture": {
+    "angie": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "angie",
+      "extension": "png",
+      "preload": false
+    },
+    "angie_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "angie_turn",
+      "extension": "png",
+      "preload": false
+    },
     "aquarium_a": {
       "region": null,
       "name": "aquarium_a",

@@ -459,6 +459,10 @@ data class BodyData(
             targetFood.tick(
                 input = BodyInput(
                     healthDiff = food.healthDiffPerTick,
+                    hungerDiff = food.hungerDiffPerTick,
+                    growthDiff = food.growthDiffPerTick,
+                    dropDiff = food.dropDiffPerTick,
+                    energyDiff = food.energyDiffPerTick,
                 ),
             )
             if (targetFood.data.canRemove) {

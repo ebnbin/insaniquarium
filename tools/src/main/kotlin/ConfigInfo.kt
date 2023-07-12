@@ -664,6 +664,10 @@ object ConfigInfo {
                 ),
             ),
             isDead = true,
+            hunger = BodyConfig.Hunger(
+                full = 2,
+                transformation = BodyType.GUPPY_BABY,
+            ),
         ),
         BodyType.GUPPY_MEDIUM_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
@@ -691,6 +695,10 @@ object ConfigInfo {
                 ),
             ),
             isDead = true,
+            hunger = BodyConfig.Hunger(
+                full = 2,
+                transformation = BodyType.GUPPY_MEDIUM,
+            ),
         ),
         BodyType.GUPPY_LARGE_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
@@ -718,6 +726,10 @@ object ConfigInfo {
                 ),
             ),
             isDead = true,
+            hunger = BodyConfig.Hunger(
+                full = 2,
+                transformation = BodyType.GUPPY_LARGE,
+            ),
         ),
         BodyType.GUPPY_KING_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
@@ -745,6 +757,10 @@ object ConfigInfo {
                 ),
             ),
             isDead = true,
+            hunger = BodyConfig.Hunger(
+                full = 2,
+                transformation = BodyType.GUPPY_KING,
+            ),
         ),
         BodyType.STARCATCHER_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
@@ -772,6 +788,10 @@ object ConfigInfo {
                 ),
             ),
             isDead = true,
+            hunger = BodyConfig.Hunger(
+                full = 2,
+                transformation = BodyType.STARCATCHER,
+            ),
         ),
         BodyType.BEETLEMUNCHER_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
@@ -799,6 +819,10 @@ object ConfigInfo {
                 ),
             ),
             isDead = true,
+            hunger = BodyConfig.Hunger(
+                full = 2,
+                transformation = BodyType.BEETLEMUNCHER,
+            ),
         ),
         BodyType.SYLVESTER to BodyConfig(
             group = BodyGroup.ALIEN,
@@ -1152,6 +1176,68 @@ object ConfigInfo {
             ),
             swimActY = BodyConfig.SwimAct(
                 drivingAccelerationMultiplier = 0.25f,
+                idlingTicksMin = 120,
+                idlingTicksMax = 200,
+            ),
+        ),
+        BodyType.ANGIE to BodyConfig(
+            group = BodyGroup.PET,
+            width = size(
+                textureName = "angie",
+                index = 0,
+                wh = WH.WIDTH,
+            ),
+            height = size(
+                textureName = "angie",
+                index = 0,
+                wh = WH.HEIGHT,
+            ),
+            depth = size(
+                textureName = "angie_turn",
+                index = 5,
+                wh = WH.WIDTH,
+            ),
+            drivingAccelerationX = 0.32f,
+            drivingAccelerationY = 0.2f,
+            animations = BodyAnimations(
+                swim = TextureRegionAnimation(
+                    assetId = "angie",
+                    ticks = 20,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "angie_turn",
+                    ticks = 20,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+            eatAct = BodyConfig.EatAct(
+                foods = mapOf(
+                    BodyType.GUPPY_BABY_CORPSE to BodyConfig.Food(
+                        hungerDiffPerTick = -1,
+                    ),
+                    BodyType.GUPPY_MEDIUM_CORPSE to BodyConfig.Food(
+                        hungerDiffPerTick = -1,
+                    ),
+                    BodyType.GUPPY_LARGE_CORPSE to BodyConfig.Food(
+                        hungerDiffPerTick = -1,
+                    ),
+                    BodyType.GUPPY_KING_CORPSE to BodyConfig.Food(
+                        hungerDiffPerTick = -1,
+                    ),
+                    BodyType.STARCATCHER_CORPSE to BodyConfig.Food(
+                        hungerDiffPerTick = -1,
+                    ),
+                    BodyType.BEETLEMUNCHER_CORPSE to BodyConfig.Food(
+                        hungerDiffPerTick = -1,
+                    ),
+                ),
+            ),
+            swimActX = BodyConfig.SwimAct(
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
+            ),
+            swimActY = BodyConfig.SwimAct(
                 idlingTicksMin = 120,
                 idlingTicksMax = 200,
             ),
