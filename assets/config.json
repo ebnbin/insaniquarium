@@ -25,8 +25,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": {
@@ -68,8 +69,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": {
@@ -141,8 +143,9 @@
           "interpolation": "linear",
           "finishTicks": 10
         },
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": false,
       "health": {
@@ -250,8 +253,9 @@
           "interpolation": "linear",
           "finishTicks": 10
         },
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": false,
       "health": {
@@ -364,8 +368,9 @@
           "interpolation": "linear",
           "finishTicks": 10
         },
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": false,
       "health": {
@@ -478,8 +483,9 @@
           "interpolation": "linear",
           "finishTicks": 10
         },
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": false,
       "health": {
@@ -563,8 +569,9 @@
         },
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": false,
       "health": null,
@@ -664,8 +671,9 @@
           "interpolation": "linear",
           "finishTicks": 10
         },
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": false,
       "health": null,
@@ -734,8 +742,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": null,
@@ -773,8 +782,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": null,
@@ -812,8 +822,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": null,
@@ -851,8 +862,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": null,
@@ -890,8 +902,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": null,
@@ -929,8 +942,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": null,
@@ -974,8 +988,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": false,
       "health": {
@@ -1084,19 +1099,26 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": {
+        "charged": {
+          "assetId": "niko_opened",
+          "ticks": 1,
+          "mode": "loop",
+          "interpolation": "linear",
+          "finishTicks": 1
+        },
+        "charge": {
           "assetId": "niko_open",
-          "ticks": 10,
+          "ticks": 9,
           "mode": "normal",
           "interpolation": "linear",
-          "finishTicks": 100
+          "finishTicks": 9
         },
-        "actionB": {
+        "discharge": {
           "assetId": "niko_open",
-          "ticks": 10,
+          "ticks": 9,
           "mode": "reversed",
           "interpolation": "linear",
-          "finishTicks": 10
+          "finishTicks": 9
         }
       },
       "isDead": false,
@@ -1108,8 +1130,7 @@
         "full": 800,
         "init": 0,
         "diffPerTick": 1,
-        "animationAction": "a",
-        "animationActionReversed": "b"
+        "dischargeDiffPerTick": -8
       },
       "eatAct": null,
       "touchAct": null,
@@ -1141,8 +1162,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": false,
       "health": null,
@@ -1252,8 +1274,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": false,
       "health": null,
@@ -1328,8 +1351,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": false,
       "health": null,
@@ -1377,8 +1401,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": {
@@ -1420,8 +1445,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": {
@@ -1463,8 +1489,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": {
@@ -1506,8 +1533,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": {
@@ -1549,8 +1577,9 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+        "charged": null,
+        "charge": null,
+        "discharge": null
       },
       "isDead": true,
       "health": {

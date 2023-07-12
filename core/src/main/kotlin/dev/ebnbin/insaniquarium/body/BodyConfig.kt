@@ -121,9 +121,7 @@ data class BodyConfig(
         @Expose
         val diffPerTick: Int = 0,
         @Expose
-        val animationAction: BodyAnimations.Action,
-        @Expose
-        val animationActionReversed: BodyAnimations.Action,
+        val dischargeDiffPerTick: Int = 0,
     )
 
     data class EatAct(

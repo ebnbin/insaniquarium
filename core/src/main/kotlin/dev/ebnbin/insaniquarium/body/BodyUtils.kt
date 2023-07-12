@@ -19,8 +19,9 @@ fun BodyType.assets(): Set<Asset<*>> {
         config.animations.hungry,
         config.animations.hungryTurn,
         config.animations.hungryEat,
-        config.animations.actionA,
-        config.animations.actionB,
+        config.animations.charged,
+        config.animations.charge,
+        config.animations.discharge,
     ).mapTo(mutableSetOf()) {
         baseGame.assets.texture.getValue(it.assetId)
     }

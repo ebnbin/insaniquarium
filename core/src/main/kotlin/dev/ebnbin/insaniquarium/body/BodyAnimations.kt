@@ -18,22 +18,25 @@ data class BodyAnimations(
     @Expose
     val hungryEat: TextureRegionAnimation? = null,
     @Expose
-    val actionA: TextureRegionAnimation? = null,
+    val charged: TextureRegionAnimation? = null,
     @Expose
-    val actionB: TextureRegionAnimation? = null,
+    val charge: TextureRegionAnimation? = null,
+    @Expose
+    val discharge: TextureRegionAnimation? = null,
 ) {
     enum class Action(override val serializedName: String) : SerializableEnum {
         SWIM("swim"),
         TURN("turn"),
         EAT("eat"),
-        A("a"),
-        B("b"),
+        CHARGE("charge"),
+        DISCHARGE("discharge"),
         ;
     }
 
     enum class Status(override val serializedName: String) : SerializableEnum {
         NORMAL("normal"),
         HUNGRY("hungry"),
+        CHARGED("charged"),
         ;
     }
 
@@ -47,6 +50,9 @@ data class BodyAnimations(
                     Status.HUNGRY -> {
                         hungry ?: swim
                     }
+                    Status.CHARGED -> {
+                        charged ?: swim
+                    }
                 }
             }
             Action.TURN -> {
@@ -56,6 +62,9 @@ data class BodyAnimations(
                     }
                     Status.HUNGRY -> {
                         hungryTurn ?: requireNotNull(turn)
+                    }
+                    Status.CHARGED -> {
+                        requireNotNull(turn)
                     }
                 }
             }
@@ -67,13 +76,16 @@ data class BodyAnimations(
                     Status.HUNGRY -> {
                         hungryEat ?: requireNotNull(eat)
                     }
+                    Status.CHARGED -> {
+                        requireNotNull(eat)
+                    }
                 }
             }
-            Action.A -> {
-                requireNotNull(actionA)
+            Action.CHARGE -> {
+                requireNotNull(charge)
             }
-            Action.B -> {
-                requireNotNull(actionB)
+            Action.DISCHARGE -> {
+                requireNotNull(discharge)
             }
         }
     }

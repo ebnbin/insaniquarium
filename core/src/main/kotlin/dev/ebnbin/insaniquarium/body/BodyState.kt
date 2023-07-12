@@ -21,6 +21,7 @@ data class BodyState(
     val growth: Int? = null,
     val drop: Int? = null,
     val energy: Int? = null,
+    val isCharging: Boolean? = null,
 
     val animationData: BodyAnimationState = BodyAnimationState(),
     /**

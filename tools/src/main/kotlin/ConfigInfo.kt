@@ -838,24 +838,26 @@ object ConfigInfo {
                     mode = AnimationMode.LOOP_PINGPONG,
                     finishTicks = 20,
                 ),
-                actionA = TextureRegionAnimation(
-                    assetId = "niko_open",
-                    ticks = 10,
-                    mode = AnimationMode.NORMAL,
-                    finishTicks = 100,
+                charged = TextureRegionAnimation(
+                    assetId = "niko_opened",
+                    ticks = 1,
+                    mode = AnimationMode.LOOP,
                 ),
-                actionB = TextureRegionAnimation(
+                charge = TextureRegionAnimation(
                     assetId = "niko_open",
-                    ticks = 10,
+                    ticks = 9,
+                    mode = AnimationMode.NORMAL,
+                ),
+                discharge = TextureRegionAnimation(
+                    assetId = "niko_open",
+                    ticks = 9,
                     mode = AnimationMode.REVERSED,
-                    finishTicks = 10,
                 ),
             ),
             energy = BodyConfig.Energy(
                 full = 800,
                 diffPerTick = 1,
-                animationAction = BodyAnimations.Action.A,
-                animationActionReversed = BodyAnimations.Action.B,
+                dischargeDiffPerTick = -8,
             ),
         ),
         BodyType.CLYDE to BodyConfig(

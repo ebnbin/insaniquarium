@@ -88,13 +88,18 @@ data class BodyData(
         drop / body.config.drop.full
     }
 
-    private val canCreateAction = state.energy != null &&
-        body.config.energy != null &&
-        state.energy >= body.config.energy.full
+    private val isCharged: Boolean = body.config.energy != null && state.energy != null && state.isCharging != null &&
+        (state.isCharging && state.energy == body.config.energy.full || !state.isCharging && state.energy != 0)
 
-    private val canCreateActionReversed = state.energy != null &&
+    private val canCreateCharge = state.energy != null &&
         body.config.energy != null &&
-        state.animationData.action == body.config.energy.animationAction
+        state.energy == body.config.energy.full &&
+        state.animationData.status != BodyAnimations.Status.CHARGED
+
+    private val canCreateDischarge = state.energy != null &&
+        body.config.energy != null &&
+        state.energy == 0 &&
+        state.animationData.status == BodyAnimations.Status.CHARGED
 
     private val animationData: BodyAnimationState = state.animationData
     private val alphaTime: Float? = state.alphaTime
@@ -402,7 +407,8 @@ data class BodyData(
             hunger = nextHunger,
             growth = nextGrowth,
             drop = nextDrop,
-            energy = nextEnergy,
+            energy = nextEnergy?.first,
+            isCharging = nextEnergy?.second,
             animationData = nextAnimationData,
             alphaTime = nextAlphaTime,
             scaleTransform = nextScaleTransform,
@@ -651,20 +657,33 @@ data class BodyData(
         tickDelta: Float,
         input: BodyInput,
         food: BodyConfig.Food?,
-    ): Int? {
+    ): Pair<Int, Boolean>? {
         body.config.energy ?: return null
-        return nextValue(
+        val defaultEnergy = state.energy ?: body.config.energy.init
+        var nextIsCharging = state.isCharging ?: true
+        if (nextIsCharging && defaultEnergy == body.config.energy.full &&
+            animationData.action == BodyAnimations.Action.CHARGE && animation.canInterrupt(animationData.stateTick)) {
+            nextIsCharging = false
+        } else if (!nextIsCharging && defaultEnergy == 0 &&
+            animationData.action == BodyAnimations.Action.DISCHARGE && animation.canInterrupt(animationData.stateTick)) {
+            nextIsCharging = true
+        }
+        val nextEnergy = nextValue(
             value = state.energy,
             init = body.config.energy.init,
-            tickDiff = if (tickDelta == 0f || state.animationData.action == body.config.energy.animationAction ||
-                state.animationData.action == body.config.energy.animationActionReversed) {
+            tickDiff = if (tickDelta == 0f) {
                 0
             } else {
-                body.config.energy.diffPerTick
+                if (nextIsCharging) {
+                    body.config.energy.diffPerTick
+                } else {
+                    body.config.energy.dischargeDiffPerTick
+                }
             },
             inputDiff = input.energyDiff,
             foodDiff = food?.energy,
-        )
+        ).coerceIn(0, body.config.energy.full)
+        return nextEnergy to nextIsCharging
     }
 
     private fun nextValue(
@@ -683,13 +702,24 @@ data class BodyData(
     ): BodyAnimationState {
         val animationStatus = if (isHungry) {
             BodyAnimations.Status.HUNGRY
+        } else if (isCharged) {
+            BodyAnimations.Status.CHARGED
         } else {
             BodyAnimations.Status.NORMAL
         }
 
-        fun createAction(action: BodyAnimations.Action): BodyAnimationState {
+        fun createCharge(): BodyAnimationState {
             return BodyAnimationState(
-                action = action,
+                action = BodyAnimations.Action.CHARGE,
+                status = animationStatus,
+                stateTick = 0,
+                isFacingRight = animationData.isFacingRight,
+            )
+        }
+
+        fun createDischarge(): BodyAnimationState {
+            return BodyAnimationState(
+                action = BodyAnimations.Action.DISCHARGE,
                 status = animationStatus,
                 stateTick = 0,
                 isFacingRight = animationData.isFacingRight,
@@ -725,7 +755,11 @@ data class BodyData(
 
         fun update(): BodyAnimationState {
             return animationData.copy(
-                status = animationStatus,
+                status = if (animationStatus == BodyAnimations.Status.CHARGED) {
+                    animationData.status
+                } else {
+                    animationStatus
+                },
                 stateTick = animationData.stateTick + (if (tickDelta == 0f) 0 else 1),
             )
         }
@@ -737,10 +771,10 @@ data class BodyData(
             if (canCreateTurn && awayFromDrivingTargetX) {
                 createTurn()
             } else {
-                if (canCreateAction) {
-                    createAction(body.config.energy!!.animationAction)
-                } else if (canCreateActionReversed) {
-                    createAction(body.config.energy!!.animationActionReversed)
+                if (canCreateCharge) {
+                    createCharge()
+                } else if (canCreateDischarge) {
+                    createDischarge()
                 } else {
                     val canCreateEat = body.config.animations.eat != null &&
                         (eatenFoodRelation == BodyRelation.OVERLAP || eatenFoodRelation == BodyRelation.CONTAIN_CENTER)
@@ -825,14 +859,6 @@ data class BodyData(
      */
     fun postTick(): Boolean {
         val delta = 0f
-
-        if (canCreateAction && state.animationData.action == body.config.energy!!.animationAction) {
-            body.tick(
-                input = BodyInput(
-                    energyDiff = -state.energy!!,
-                ),
-            )
-        }
 
         if (isDeadFromHealth) {
             body.delegate.removeFromTank()
@@ -1000,6 +1026,9 @@ data class BodyData(
         }
         baseGame.putLog("energy") {
             "${state.energy}/${body.config.energy?.full}"
+        }
+        baseGame.putLog("animation") {
+            "${state.animationData}"
         }
     }
 
