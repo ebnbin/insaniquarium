@@ -111,6 +111,9 @@ class Tank : Group() {
         }
         idMap[bodyActor.id] = bodyActor
         typeMap.getValue(type).add(bodyActor)
+        if (BodyType.FOOD_LIST.contains(type)) {
+            baseGame.assets.sound.getValue("drop_food").get().play()
+        }
         return bodyActor.body
     }
 

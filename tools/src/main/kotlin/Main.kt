@@ -8,10 +8,12 @@ import java.io.File
 fun main() {
     InsaniquariumGame
 
-    TextureInfo.dstDir.deleteRecursively()
-    TextureInfo.dstDir.mkdirs()
     MusicAssetHelper.dstDir.deleteRecursively()
     MusicAssetHelper.dstDir.mkdirs()
+    SoundAssetHelper.dstDir.deleteRecursively()
+    SoundAssetHelper.dstDir.mkdirs()
+    TextureInfo.dstDir.deleteRecursively()
+    TextureInfo.dstDir.mkdirs()
 
     val gdxAssets = Assets(
         freeType = mapOf(
@@ -30,6 +32,9 @@ fun main() {
     val musicAssetMap = MusicInfo.all.associate {
         it.name to MusicAssetHelper.music(it)
     }
+    val soundAssetMap = SoundInfo.all.associate {
+        it.name to SoundAssetHelper.sound(it)
+    }
     val textureAssetMap = mutableMapOf<String, TextureAsset>()
     TextureInfo.aquariumList.forEach {
         textureAssetMap[it.name] = TextureAssetHelper.aquarium(it)
@@ -40,6 +45,7 @@ fun main() {
 
     val assets = Assets(
         music = musicAssetMap.toSortedMap(),
+        sound = soundAssetMap.toSortedMap(),
         texture = textureAssetMap.toSortedMap(),
     )
     File("../assets/assets.json").writeText(assets.toJson())

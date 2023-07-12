@@ -38,7 +38,13 @@
       "preload": false
     }
   },
-  "sound": {},
+  "sound": {
+    "drop_food": {
+      "name": "drop_food",
+      "extension": "mp3",
+      "preload": false
+    }
+  },
   "texture": {
     "angie": {
       "region": {

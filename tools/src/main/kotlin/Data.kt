@@ -53,3 +53,17 @@ data class MusicInfo(
         )
     }
 }
+
+data class SoundInfo(
+    val name: String,
+    val srcFileName: String,
+) {
+    companion object {
+        val all: List<SoundInfo> = listOf(
+            SoundInfo(
+                name = "drop_food",
+                srcFileName = "DROPFOOD.ogg",
+            )
+        )
+    }
+}

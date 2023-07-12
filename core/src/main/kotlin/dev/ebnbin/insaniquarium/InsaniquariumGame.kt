@@ -3,6 +3,7 @@ package dev.ebnbin.insaniquarium
 import com.kotcrab.vis.ui.widget.Menu
 import dev.ebnbin.gdx.asset.Asset
 import dev.ebnbin.gdx.lifecycle.BaseGame
+import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.createListMenuItem
 import dev.ebnbin.gdx.utils.createMenuItem
 import dev.ebnbin.insaniquarium.aquarium.Aquarium
@@ -28,7 +29,10 @@ class InsaniquariumGame : BaseGame() {
         loadScreen(
             assetSet = emptySet<Asset<*>>() +
                 Aquarium.values().flatMap { it.assets() } +
-                BodyType.values().flatMap { it.assets() },
+                BodyType.values().flatMap { it.assets() } +
+                setOf(
+                    baseGame.assets.sound.getValue("drop_food"),
+                ),
             createStageList = {
                 listOf(
                     AquariumStage(),

@@ -1,7 +1,6 @@
 package dev.ebnbin.insaniquarium.body
 
 import com.google.gson.annotations.Expose
-import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.World
 
 data class BodyConfig(
