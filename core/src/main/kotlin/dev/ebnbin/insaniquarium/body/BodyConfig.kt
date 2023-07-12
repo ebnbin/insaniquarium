@@ -1,7 +1,6 @@
 package dev.ebnbin.insaniquarium.body
 
 import com.google.gson.annotations.Expose
-import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.utils.SerializableEnum
 import dev.ebnbin.gdx.utils.World
 
@@ -31,7 +30,7 @@ data class BodyConfig(
     val leftRightFrictionCoefficient: Float = DEFAULT_LEFT_RIGHT_FRICTION_COEFFICIENT,
 
     @Expose
-    val animations: Animations,
+    val animations: BodyAnimations,
     /**
      * If true, the body will disappear when sinking or floating outside water.
      */
@@ -122,14 +121,9 @@ data class BodyConfig(
         @Expose
         val diffPerTick: Int = 0,
         @Expose
-        val action: Action? = null,
-    )
-
-    data class Action(
+        val animationAction: BodyAnimations.Action,
         @Expose
-        val beginAnimation: AnimationAction,
-        @Expose
-        val endAnimation: AnimationAction,
+        val animationActionReversed: BodyAnimations.Action,
     )
 
     data class EatAct(
@@ -181,25 +175,6 @@ data class BodyConfig(
         B("b"),
         ;
     }
-
-    data class Animations(
-        @Expose
-        val swim: TextureRegionAnimation,
-        @Expose
-        val turn: TextureRegionAnimation? = null,
-        @Expose
-        val eat: TextureRegionAnimation? = null,
-        @Expose
-        val hungry: TextureRegionAnimation? = null,
-        @Expose
-        val hungryTurn: TextureRegionAnimation? = null,
-        @Expose
-        val hungryEat: TextureRegionAnimation? = null,
-        @Expose
-        val actionA: TextureRegionAnimation? = null,
-        @Expose
-        val actionB: TextureRegionAnimation? = null,
-    )
 
     companion object {
         const val DEFAULT_DRAG_COEFFICIENT = 1f

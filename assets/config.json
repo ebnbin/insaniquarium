@@ -1084,114 +1084,33 @@
         "hungry": null,
         "hungryTurn": null,
         "hungryEat": null,
-        "actionA": null,
-        "actionB": null
-      },
-      "isDead": false,
-      "health": null,
-      "hunger": {
-        "full": 400,
-        "max": 400,
-        "init": 400,
-        "hungry": 0,
-        "diffPerTick": -1,
-        "transformation": "niko_open"
-      },
-      "growth": null,
-      "drop": null,
-      "energy": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null
-    },
-    "niko_open": {
-      "group": "pet",
-      "width": 0.185,
-      "height": 0.11666667,
-      "depth": 0.185,
-      "density": 1000.0,
-      "dragCoefficient": 1.0,
-      "drivingAccelerationX": 0.0,
-      "drivingAccelerationY": 0.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "animations": {
-        "swim": {
+        "actionA": {
           "assetId": "niko_open",
           "ticks": 10,
           "mode": "normal",
           "interpolation": "linear",
-          "finishTicks": 20
+          "finishTicks": 100
         },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null,
-        "actionA": null,
-        "actionB": null
-      },
-      "isDead": false,
-      "health": null,
-      "hunger": {
-        "full": 400,
-        "max": 400,
-        "init": 400,
-        "hungry": 0,
-        "diffPerTick": -4,
-        "transformation": "niko_close"
-      },
-      "growth": null,
-      "drop": null,
-      "energy": null,
-      "eatAct": null,
-      "touchAct": null,
-      "swimActX": null,
-      "swimActY": null
-    },
-    "niko_close": {
-      "group": "pet",
-      "width": 0.185,
-      "height": 0.11666667,
-      "depth": 0.185,
-      "density": 1000.0,
-      "dragCoefficient": 1.0,
-      "drivingAccelerationX": 0.0,
-      "drivingAccelerationY": 0.0,
-      "waterFrictionCoefficient": 0.001,
-      "bottomFrictionCoefficient": 1.0,
-      "leftRightFrictionCoefficient": 0.0,
-      "animations": {
-        "swim": {
-          "assetId": "niko_close",
+        "actionB": {
+          "assetId": "niko_open",
           "ticks": 10,
           "mode": "reversed",
           "interpolation": "linear",
-          "finishTicks": 20
-        },
-        "turn": null,
-        "eat": null,
-        "hungry": null,
-        "hungryTurn": null,
-        "hungryEat": null,
-        "actionA": null,
-        "actionB": null
+          "finishTicks": 10
+        }
       },
       "isDead": false,
       "health": null,
-      "hunger": {
-        "full": 400,
-        "max": 400,
-        "init": 400,
-        "hungry": 0,
-        "diffPerTick": -40,
-        "transformation": "niko"
-      },
+      "hunger": null,
       "growth": null,
       "drop": null,
-      "energy": null,
+      "energy": {
+        "full": 800,
+        "init": 0,
+        "diffPerTick": 1,
+        "animationAction": "a",
+        "animationActionReversed": "b"
+      },
       "eatAct": null,
       "touchAct": null,
       "swimActX": null,

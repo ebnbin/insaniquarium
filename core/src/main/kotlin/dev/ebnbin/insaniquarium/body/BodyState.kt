@@ -22,7 +22,7 @@ data class BodyState(
     val drop: Int? = null,
     val energy: Int? = null,
 
-    val animationData: BodyAnimationData = BodyAnimationData(),
+    val animationData: BodyAnimationState = BodyAnimationState(),
     /**
      * >= 0f: Delaying.
      * < 0f: Changing alpha.

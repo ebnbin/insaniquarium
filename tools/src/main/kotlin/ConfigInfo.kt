@@ -4,6 +4,7 @@ import dev.ebnbin.gdx.asset.Assets
 import dev.ebnbin.gdx.utils.Interpolation
 import dev.ebnbin.gdx.utils.fromJson
 import dev.ebnbin.gdx.utils.unitToMeter
+import dev.ebnbin.insaniquarium.body.BodyAnimations
 import dev.ebnbin.insaniquarium.body.BodyConfig
 import dev.ebnbin.insaniquarium.body.BodyGroup
 import dev.ebnbin.insaniquarium.body.BodyType
@@ -59,7 +60,7 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "fish_food",
                     ticks = 20,
@@ -89,7 +90,7 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "star_potion",
                     ticks = 20,
@@ -120,7 +121,7 @@ object ConfigInfo {
             ),
             drivingAccelerationX = 0.4f,
             drivingAccelerationY = 0.25f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_small",
                     ticks = 10,
@@ -205,7 +206,7 @@ object ConfigInfo {
             ),
             drivingAccelerationX = 0.4f,
             drivingAccelerationY = 0.25f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_medium",
                     ticks = 10,
@@ -295,7 +296,7 @@ object ConfigInfo {
             ),
             drivingAccelerationX = 0.4f,
             drivingAccelerationY = 0.25f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_large",
                     ticks = 10,
@@ -385,7 +386,7 @@ object ConfigInfo {
             ),
             drivingAccelerationX = 0.4f,
             drivingAccelerationY = 0.25f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_king",
                     ticks = 10,
@@ -472,7 +473,7 @@ object ConfigInfo {
             drivingAccelerationX = 0.3f,
             drivingAccelerationY = 0f,
             bottomFrictionCoefficient = 0.01f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "starcatcher",
                     ticks = 20,
@@ -530,7 +531,7 @@ object ConfigInfo {
             ),
             drivingAccelerationX = 0.4f,
             drivingAccelerationY = 0.25f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "beetlemuncher",
                     ticks = 10,
@@ -606,7 +607,7 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_small_die",
                     ticks = 20,
@@ -633,7 +634,7 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_medium_die",
                     ticks = 20,
@@ -660,7 +661,7 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_large_die",
                     ticks = 20,
@@ -687,7 +688,7 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "guppy_king_die",
                     ticks = 20,
@@ -714,7 +715,7 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "starcatcher_die",
                     ticks = 20,
@@ -741,7 +742,7 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "beetlemuncher_die",
                     ticks = 20,
@@ -769,7 +770,7 @@ object ConfigInfo {
             ),
             drivingAccelerationX = 0.4f,
             drivingAccelerationY = 0.25f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "sylvester",
                     ticks = 10,
@@ -830,80 +831,31 @@ object ConfigInfo {
                 index = 0,
                 wh = WH.WIDTH,
             ),
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "niko",
                     ticks = 10,
                     mode = AnimationMode.LOOP_PINGPONG,
                     finishTicks = 20,
                 ),
-            ),
-            hunger = BodyConfig.Hunger(
-                full = 400,
-                diffPerTick = -1,
-                transformation = BodyType.NIKO_OPEN,
-            ),
-        ),
-        BodyType.NIKO_OPEN to BodyConfig(
-            group = BodyGroup.PET,
-            width = size(
-                textureName = "niko",
-                index = 0,
-                wh = WH.WIDTH,
-            ),
-            height = size(
-                textureName = "niko",
-                index = 0,
-                wh = WH.HEIGHT,
-            ),
-            depth = size(
-                textureName = "niko",
-                index = 0,
-                wh = WH.WIDTH,
-            ),
-            animations = BodyConfig.Animations(
-                swim = TextureRegionAnimation(
+                actionA = TextureRegionAnimation(
                     assetId = "niko_open",
                     ticks = 10,
                     mode = AnimationMode.NORMAL,
-                    finishTicks = 20,
+                    finishTicks = 100,
                 ),
-            ),
-            hunger = BodyConfig.Hunger(
-                full = 400,
-                diffPerTick = -4,
-                transformation = BodyType.NIKO_CLOSE,
-            ),
-        ),
-        BodyType.NIKO_CLOSE to BodyConfig(
-            group = BodyGroup.PET,
-            width = size(
-                textureName = "niko",
-                index = 0,
-                wh = WH.WIDTH,
-            ),
-            height = size(
-                textureName = "niko",
-                index = 0,
-                wh = WH.HEIGHT,
-            ),
-            depth = size(
-                textureName = "niko",
-                index = 0,
-                wh = WH.WIDTH,
-            ),
-            animations = BodyConfig.Animations(
-                swim = TextureRegionAnimation(
-                    assetId = "niko_close",
+                actionB = TextureRegionAnimation(
+                    assetId = "niko_open",
                     ticks = 10,
                     mode = AnimationMode.REVERSED,
-                    finishTicks = 20,
+                    finishTicks = 10,
                 ),
             ),
-            hunger = BodyConfig.Hunger(
-                full = 400,
-                diffPerTick = -40,
-                transformation = BodyType.NIKO,
+            energy = BodyConfig.Energy(
+                full = 800,
+                diffPerTick = 1,
+                animationAction = BodyAnimations.Action.A,
+                animationActionReversed = BodyAnimations.Action.B,
             ),
         ),
         BodyType.CLYDE to BodyConfig(
@@ -925,7 +877,7 @@ object ConfigInfo {
             ),
             drivingAccelerationX = 0.2f,
             drivingAccelerationY = 0.3f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "clyde",
                     ticks = 25,
@@ -977,7 +929,7 @@ object ConfigInfo {
             ),
             drivingAccelerationX = 0.8f,
             drivingAccelerationY = 0.5f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "gash",
                     ticks = 10,
@@ -1033,7 +985,7 @@ object ConfigInfo {
             ),
             drivingAccelerationX = 0.4f,
             drivingAccelerationY = 0.25f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "presto",
                     ticks = 10,
@@ -1072,7 +1024,7 @@ object ConfigInfo {
                 wh = WH.HEIGHT,
             ),
             density = 1020f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "silver_coin",
                     ticks = 12,
@@ -1100,7 +1052,7 @@ object ConfigInfo {
                 wh = WH.HEIGHT,
             ),
             density = 1020f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "gold_coin",
                     ticks = 12,
@@ -1128,7 +1080,7 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1010f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "star",
                     ticks = 12,
@@ -1156,7 +1108,7 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 1020f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim = TextureRegionAnimation(
                     assetId = "diamond",
                     ticks = 12,
@@ -1184,7 +1136,7 @@ object ConfigInfo {
                 wh = WH.WIDTH,
             ),
             density = 990f,
-            animations = BodyConfig.Animations(
+            animations = BodyAnimations(
                 swim =  TextureRegionAnimation(
                     assetId = "beetle",
                     ticks = 10,

@@ -88,14 +88,23 @@ data class BodyData(
         drop / body.config.drop.full
     }
 
-    private val animationData: BodyAnimationData = state.animationData
+    private val canCreateAction = state.energy != null &&
+        body.config.energy != null &&
+        state.energy >= body.config.energy.full
+
+    private val canCreateActionReversed = state.energy != null &&
+        body.config.energy != null &&
+        state.animationData.action == body.config.energy.animationAction
+
+    private val animationData: BodyAnimationState = state.animationData
     private val alphaTime: Float? = state.alphaTime
 
-    private val animation: TextureRegionAnimation = animationData.getAnimation(body.config.animations)
+    private val animation: TextureRegionAnimation =
+        body.config.animations.get(animationData.action, animationData.status)
 
     private val textureRegion: TextureRegion = animation.getTextureRegion(animationData.stateTick)
 
-    private val isFlipX: Boolean = if (animationData.action == BodyAnimationData.Action.TURN) {
+    private val isFlipX: Boolean = if (animationData.action == BodyAnimations.Action.TURN) {
         !animationData.isFacingRight
     } else {
         animationData.isFacingRight
@@ -107,7 +116,8 @@ data class BodyData(
         ((ALPHA_DURATION + alphaTime) / ALPHA_DURATION).coerceIn(0f, 1f)
     }
 
-    private val canEat = state.animationData.canEat
+    private val canEat = state.animationData.action == BodyAnimations.Action.SWIM ||
+        state.animationData.action == BodyAnimations.Action.EAT
 
     private val rendererCanRemove: Boolean = alphaTime != null && alphaTime <= -ALPHA_DURATION
 
@@ -646,7 +656,12 @@ data class BodyData(
         return nextValue(
             value = state.energy,
             init = body.config.energy.init,
-            tickDiff = if (tickDelta == 0f) 0 else body.config.energy.diffPerTick,
+            tickDiff = if (tickDelta == 0f || state.animationData.action == body.config.energy.animationAction ||
+                state.animationData.action == body.config.energy.animationActionReversed) {
+                0
+            } else {
+                body.config.energy.diffPerTick
+            },
             inputDiff = input.energyDiff,
             foodDiff = food?.energy,
         )
@@ -665,59 +680,50 @@ data class BodyData(
     private fun nextAnimationData(
         tickDelta: Float,
         eatenFoodRelation: BodyRelation?,
-    ): BodyAnimationData {
+    ): BodyAnimationState {
         val animationStatus = if (isHungry) {
-            BodyAnimationData.Status.HUNGRY
+            BodyAnimations.Status.HUNGRY
         } else {
-            BodyAnimationData.Status.NORMAL
+            BodyAnimations.Status.NORMAL
         }
 
-        fun createA(): BodyAnimationData {
-            return BodyAnimationData(
-                action = BodyAnimationData.Action.A,
+        fun createAction(action: BodyAnimations.Action): BodyAnimationState {
+            return BodyAnimationState(
+                action = action,
                 status = animationStatus,
                 stateTick = 0,
                 isFacingRight = animationData.isFacingRight,
             )
         }
 
-        fun createB(): BodyAnimationData {
-            return BodyAnimationData(
-                action = BodyAnimationData.Action.B,
+        fun createEat(): BodyAnimationState {
+            return BodyAnimationState(
+                action = BodyAnimations.Action.EAT,
                 status = animationStatus,
                 stateTick = 0,
                 isFacingRight = animationData.isFacingRight,
             )
         }
 
-        fun createEat(): BodyAnimationData {
-            return BodyAnimationData(
-                action = BodyAnimationData.Action.EAT,
-                status = animationStatus,
-                stateTick = 0,
-                isFacingRight = animationData.isFacingRight,
-            )
-        }
-
-        fun createTurn(): BodyAnimationData {
-            return BodyAnimationData(
-                action = BodyAnimationData.Action.TURN,
+        fun createTurn(): BodyAnimationState {
+            return BodyAnimationState(
+                action = BodyAnimations.Action.TURN,
                 status = animationStatus,
                 stateTick = 0,
                 isFacingRight = !animationData.isFacingRight,
             )
         }
 
-        fun createSwim(): BodyAnimationData {
-            return BodyAnimationData(
-                action = BodyAnimationData.Action.SWIM,
+        fun createSwim(): BodyAnimationState {
+            return BodyAnimationState(
+                action = BodyAnimations.Action.SWIM,
                 status = animationStatus,
                 stateTick = 0,
                 isFacingRight = animationData.isFacingRight,
             )
         }
 
-        fun update(): BodyAnimationData {
+        fun update(): BodyAnimationState {
             return animationData.copy(
                 status = animationStatus,
                 stateTick = animationData.stateTick + (if (tickDelta == 0f) 0 else 1),
@@ -731,18 +737,24 @@ data class BodyData(
             if (canCreateTurn && awayFromDrivingTargetX) {
                 createTurn()
             } else {
-                val canCreateEat = body.config.animations.eat != null &&
-                    (eatenFoodRelation == BodyRelation.OVERLAP || eatenFoodRelation == BodyRelation.CONTAIN_CENTER)
-                if (canCreateEat) {
-                    createEat()
+                if (canCreateAction) {
+                    createAction(body.config.energy!!.animationAction)
+                } else if (canCreateActionReversed) {
+                    createAction(body.config.energy!!.animationActionReversed)
                 } else {
-                    if (canCreateTurn) {
-                        createTurn()
+                    val canCreateEat = body.config.animations.eat != null &&
+                        (eatenFoodRelation == BodyRelation.OVERLAP || eatenFoodRelation == BodyRelation.CONTAIN_CENTER)
+                    if (canCreateEat) {
+                        createEat()
                     } else {
-                        if (animationData.action == BodyAnimationData.Action.SWIM) {
-                            update()
+                        if (canCreateTurn) {
+                            createTurn()
                         } else {
-                            createSwim()
+                            if (animationData.action == BodyAnimations.Action.SWIM) {
+                                update()
+                            } else {
+                                createSwim()
+                            }
                         }
                     }
                 }
@@ -813,6 +825,14 @@ data class BodyData(
      */
     fun postTick(): Boolean {
         val delta = 0f
+
+        if (canCreateAction && state.animationData.action == body.config.energy!!.animationAction) {
+            body.tick(
+                input = BodyInput(
+                    energyDiff = -state.energy!!,
+                ),
+            )
+        }
 
         if (isDeadFromHealth) {
             body.delegate.removeFromTank()
@@ -977,6 +997,9 @@ data class BodyData(
         }
         baseGame.putLog("drop  ") {
             "$drop/${body.config.drop?.full}"
+        }
+        baseGame.putLog("energy") {
+            "${state.energy}/${body.config.energy?.full}"
         }
     }
 

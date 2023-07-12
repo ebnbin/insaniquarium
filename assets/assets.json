@@ -477,16 +477,6 @@
       "extension": "png",
       "preload": false
     },
-    "niko_close": {
-      "region": {
-        "row": 2,
-        "column": 5,
-        "startIndex": 0
-      },
-      "name": "niko_close",
-      "extension": "png",
-      "preload": false
-    },
     "niko_open": {
       "region": {
         "row": 2,

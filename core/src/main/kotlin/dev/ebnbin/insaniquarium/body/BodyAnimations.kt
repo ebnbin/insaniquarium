@@ -1,13 +1,26 @@
 package dev.ebnbin.insaniquarium.body
 
+import com.google.gson.annotations.Expose
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.utils.SerializableEnum
 
-data class BodyAnimationData(
-    val action: Action = Action.SWIM,
-    val status: Status = Status.NORMAL,
-    val stateTick: Int = 0,
-    val isFacingRight: Boolean = false,
+data class BodyAnimations(
+    @Expose
+    val swim: TextureRegionAnimation,
+    @Expose
+    val turn: TextureRegionAnimation? = null,
+    @Expose
+    val eat: TextureRegionAnimation? = null,
+    @Expose
+    val hungry: TextureRegionAnimation? = null,
+    @Expose
+    val hungryTurn: TextureRegionAnimation? = null,
+    @Expose
+    val hungryEat: TextureRegionAnimation? = null,
+    @Expose
+    val actionA: TextureRegionAnimation? = null,
+    @Expose
+    val actionB: TextureRegionAnimation? = null,
 ) {
     enum class Action(override val serializedName: String) : SerializableEnum {
         SWIM("swim"),
@@ -24,45 +37,43 @@ data class BodyAnimationData(
         ;
     }
 
-    val canEat: Boolean = action == Action.SWIM || action == Action.EAT
-
-    fun getAnimation(configAnimations: BodyConfig.Animations): TextureRegionAnimation {
+    fun get(action: Action, status: Status): TextureRegionAnimation {
         return when (action) {
             Action.SWIM -> {
                 when (status) {
                     Status.NORMAL -> {
-                        configAnimations.swim
+                        swim
                     }
                     Status.HUNGRY -> {
-                        configAnimations.hungry ?: configAnimations.swim
+                        hungry ?: swim
                     }
                 }
             }
             Action.TURN -> {
                 when (status) {
                     Status.NORMAL -> {
-                        requireNotNull(configAnimations.turn)
+                        requireNotNull(turn)
                     }
                     Status.HUNGRY -> {
-                        configAnimations.hungryTurn ?: requireNotNull(configAnimations.turn)
+                        hungryTurn ?: requireNotNull(turn)
                     }
                 }
             }
             Action.EAT -> {
                 when (status) {
                     Status.NORMAL -> {
-                        requireNotNull(configAnimations.eat)
+                        requireNotNull(eat)
                     }
                     Status.HUNGRY -> {
-                        configAnimations.hungryEat ?: requireNotNull(configAnimations.eat)
+                        hungryEat ?: requireNotNull(eat)
                     }
                 }
             }
             Action.A -> {
-                requireNotNull(configAnimations.actionA)
+                requireNotNull(actionA)
             }
             Action.B -> {
-                requireNotNull(configAnimations.actionB)
+                requireNotNull(actionB)
             }
         }
     }

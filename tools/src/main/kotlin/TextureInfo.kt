@@ -385,11 +385,6 @@ object TextureInfo {
                     tileStart = 10,
                     tileCount = 10,
                 ),
-                BodyTextureInfo.Output(
-                    name = "niko_close",
-                    tileStart = 20,
-                    tileCount = 10,
-                ),
             ),
         ),
         BodyTextureInfo(
