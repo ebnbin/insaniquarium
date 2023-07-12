@@ -6,5 +6,5 @@ data class BodyInput(
     val growthDiff: Int = 0,
     val dropDiff: Int = 0,
     val energyDiff: Int = 0,
-    val scaleTransform: BodyLife.ScaleTransform? = null,
+    val scaleTransform: BodyData.ScaleTransform? = null,
 )

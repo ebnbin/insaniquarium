@@ -19,7 +19,7 @@ import dev.ebnbin.insaniquarium.game
 import kotlin.math.abs
 import kotlin.math.min
 
-data class BodyLife(
+data class BodyData(
     val body: Body,
     val state: BodyState,
 ) {
@@ -281,7 +281,7 @@ data class BodyLife(
     private val vector2: Vector2 = Vector2(x, y)
     private val rectangle: Rectangle = Rectangle(left, bottom, body.config.width, body.config.height)
 
-    fun distance(other: BodyLife): Float {
+    fun distance(other: BodyData): Float {
         return vector2.dst(other.vector2)
     }
 
@@ -289,7 +289,7 @@ data class BodyLife(
         return rectangle.contains(touchPoint.x, touchPoint.y)
     }
 
-    fun relation(other: BodyLife?): BodyRelation {
+    fun relation(other: BodyData?): BodyRelation {
         if (other == null) {
             return BodyRelation.DISJOINT
         }
@@ -304,7 +304,7 @@ data class BodyLife(
 
     //*****************************************************************************************************************
 
-    fun tick(delta: Float, input: BodyInput, position: Position): BodyLife {
+    fun tick(delta: Float, input: BodyInput, position: Position): BodyData {
         val nextState = nextState(position, delta, input)
         return copy(
             state = nextState,
@@ -438,7 +438,7 @@ data class BodyLife(
 
         var eatenFood: BodyConfig.Food? = null
         val targetFood = targetFood()
-        val foodRelation = relation(targetFood?.life)
+        val foodRelation = relation(targetFood?.data)
 
         if (targetFood != null && canEat && foodRelation == BodyRelation.CONTAIN_CENTER) {
             val food = body.config.eatAct.foods.getValue(targetFood.type)
@@ -447,7 +447,7 @@ data class BodyLife(
                     healthDiff = food.healthDiffPerTick,
                 ),
             )
-            if (targetFood.life.canRemove) {
+            if (targetFood.data.canRemove) {
                 eatenFood = food
             }
         }
@@ -457,7 +457,7 @@ data class BodyLife(
             } else {
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
-                    position = targetFood.life.state.position.x,
+                    position = targetFood.data.state.position.x,
                     acceleration = body.config.eatAct.drivingAccelerationX,
                 )
             },
@@ -466,7 +466,7 @@ data class BodyLife(
             } else {
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
-                    position = targetFood.life.state.position.y,
+                    position = targetFood.data.state.position.y,
                     acceleration = body.config.eatAct.drivingAccelerationY,
                 )
             },
@@ -898,6 +898,9 @@ data class BodyLife(
     }
 
     fun actDebug() {
+        baseGame.putLog("type,id         ") {
+            "${body.type.serializedName},${body.id}"
+        }
         baseGame.putLog("position        ") {
             "${state.position.x.devText()},${state.position.y.devText()}"
         }

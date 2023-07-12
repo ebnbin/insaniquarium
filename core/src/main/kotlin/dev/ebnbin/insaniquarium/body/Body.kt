@@ -17,7 +17,8 @@ class Body(
     val config: BodyConfig = game.config.body.getValue(type)
 
     init {
-        val textureRegion = config.animations.swim.getTextureRegion(0)
+        val textureRegion = baseGame.assets.texture.getValue(config.animations.swim.assetId).getTextureRegionList()
+            .first()
         delegate.setSize(
             textureRegion.regionWidth.toFloat().unitToMeter,
             textureRegion.regionHeight.toFloat().unitToMeter,
@@ -26,7 +27,7 @@ class Body(
 
     private var position: Position = state.position
 
-    var life: BodyLife = BodyLife(
+    var data: BodyData = BodyData(
         body = this,
         state = state,
     )
@@ -50,18 +51,18 @@ class Body(
         delta: Float,
         input: BodyInput,
     ) {
-        life = life.tick(
+        data = data.tick(
             delta = delta,
             input = input,
             position = position,
         )
-        life.postTick()
+        data.postTick()
     }
 
     fun act(delta: Float) {
         actPosition(delta)
         if (delegate.debug) {
-            actDebug()
+            data.actDebug()
         }
     }
 
@@ -69,34 +70,27 @@ class Body(
         position = Position(
             x = BodyForceHelper.nextPosition(
                 position = position.x,
-                velocity = life.state.velocityX,
+                velocity = data.state.velocityX,
                 delta = delta,
             ),
             y = BodyForceHelper.nextPosition(
                 position = position.y,
-                velocity = life.state.velocityY,
+                velocity = data.state.velocityY,
                 delta = delta,
             ),
         )
         delegate.setPosition(position.x, position.y)
     }
 
-    private fun actDebug() {
-        baseGame.putLog("type,id         ") {
-            "${type.serializedName},${id}"
-        }
-        life.actDebug()
-    }
-
     fun draw(batch: Batch, parentAlpha: Float) {
-        life.draw(batch, parentAlpha)
+        data.draw(batch, parentAlpha)
     }
 
     fun drawDebug(shapes: ShapeRenderer) {
-        life.drawDebug(shapes)
+        data.drawDebug(shapes)
     }
 
     fun touch(point: Point): Boolean {
-        return life.touch(point)
+        return data.touch(point)
     }
 }

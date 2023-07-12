@@ -28,7 +28,7 @@ data class BodyState(
      * < 0f: Changing alpha.
      */
     val alphaTime: Float? = null,
-    val scaleTransform: BodyLife.ScaleTransform? = null,
+    val scaleTransform: BodyData.ScaleTransform? = null,
 
     val velocityX: Float = 0f,
     val velocityY: Float = 0f,
