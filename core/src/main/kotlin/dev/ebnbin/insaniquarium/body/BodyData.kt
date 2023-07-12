@@ -777,7 +777,7 @@ data class BodyData(
             if (canCreateTurn && awayFromDrivingTargetX) {
                 createTurn()
             } else {
-                val canCreateDrop = productionFromDrop != null && body.config.drop?.hasAnimation == true
+                val canCreateDrop = productionFromDrop != null && body.config.animations.drop != null
                 if (canCreateDrop) {
                     createDrop()
                 } else if (canCreateCharge) {
@@ -920,13 +920,17 @@ data class BodyData(
             )
             newBody.act(delta)
         }
-        if (productionFromDrop != null) {
+        if (productionFromDrop != null && behavior.canDrop(this)) {
             requireNotNull(drop)
             requireNotNull(body.config.drop)
             val newBody = body.delegate.addBody(
                 type = productionFromDrop,
                 state = BodyState(
-                    position = state.position,
+                    position = Position(
+                        x = state.position.x + behavior.dropXOffset(this),
+                        y = state.position.y,
+                    ),
+                    velocityX = behavior.dropVelocityX(this),
                 ),
             )
             newBody.act(delta)

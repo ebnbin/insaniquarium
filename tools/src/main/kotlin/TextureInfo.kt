@@ -61,6 +61,11 @@ object TextureInfo {
                     tileCount = 10,
                 ),
                 BodyTextureInfo.Output(
+                    name = "fish_food_zorf",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
                     name = "star_potion",
                     tileStart = 30,
                     tileCount = 10,
@@ -434,6 +439,31 @@ object TextureInfo {
                     name = "prego_discharge",
                     tileStart = 36,
                     tileCount = 4,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_PET,
+            srcFileName = "zorf.gif",
+            srcMaskFileName = "_zorf.gif",
+            scale = 1.5f,
+            row = 3,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "zorf",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "zorf_turn",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "zorf_drop",
+                    tileStart = 20,
+                    tileCount = 10,
                 ),
             ),
         ),

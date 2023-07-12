@@ -112,8 +112,6 @@ data class BodyConfig(
         val diffPerTick: Int = 0,
         @Expose
         val production: BodyType,
-        @Expose
-        val hasAnimation: Boolean = false,
     )
 
     data class Energy(

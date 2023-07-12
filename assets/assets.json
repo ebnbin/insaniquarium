@@ -147,6 +147,16 @@
       "extension": "png",
       "preload": false
     },
+    "fish_food_zorf": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "fish_food_zorf",
+      "extension": "png",
+      "preload": false
+    },
     "gash": {
       "region": {
         "row": 2,
@@ -664,6 +674,36 @@
         "startIndex": 0
       },
       "name": "sylvester_turn",
+      "extension": "png",
+      "preload": false
+    },
+    "zorf": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "zorf",
+      "extension": "png",
+      "preload": false
+    },
+    "zorf_drop": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "zorf_drop",
+      "extension": "png",
+      "preload": false
+    },
+    "zorf_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "zorf_turn",
       "extension": "png",
       "preload": false
     }

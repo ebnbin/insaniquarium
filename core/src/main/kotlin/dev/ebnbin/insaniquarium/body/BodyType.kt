@@ -4,6 +4,7 @@ import dev.ebnbin.gdx.utils.SerializableEnum
 
 enum class BodyType(override val serializedName: String) : SerializableEnum {
     FISH_FOOD("fish_food"),
+    FISH_FOOD_ZORF("fish_food_zorf"),
     STAR_POTION("star_potion"),
 
     GUPPY_SMALL("guppy_small"),
@@ -23,6 +24,7 @@ enum class BodyType(override val serializedName: String) : SerializableEnum {
 
     NIKO("niko"),
     PREGO("prego"),
+    ZORF("zorf"),
     CLYDE("clyde"),
     GASH("gash"),
     PRESTO("presto"),
@@ -37,6 +39,7 @@ enum class BodyType(override val serializedName: String) : SerializableEnum {
     companion object {
         val FOOD_LIST: List<BodyType> = listOf(
             FISH_FOOD,
+            FISH_FOOD_ZORF,
             STAR_POTION,
         )
         val FISH_LIST: List<BodyType> = listOf(
@@ -61,6 +64,7 @@ enum class BodyType(override val serializedName: String) : SerializableEnum {
         val PET_LIST: List<BodyType> = listOf(
             NIKO,
             PREGO,
+            ZORF,
             CLYDE,
             GASH,
             PRESTO,

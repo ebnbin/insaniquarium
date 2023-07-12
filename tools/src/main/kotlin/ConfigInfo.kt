@@ -72,6 +72,36 @@ object ConfigInfo {
                 full = 2,
             ),
         ),
+        BodyType.FISH_FOOD_ZORF to BodyConfig(
+            group = BodyGroup.FOOD,
+            width = size(
+                textureName = "fish_food_zorf",
+                index = 0,
+                wh = WH.WIDTH,
+            ),
+            height = size(
+                textureName = "fish_food_zorf",
+                index = 0,
+                wh = WH.HEIGHT,
+            ),
+            depth = size(
+                textureName = "fish_food_zorf",
+                index = 0,
+                wh = WH.WIDTH,
+            ),
+            density = 980f,
+            animations = BodyAnimations(
+                swim = TextureRegionAnimation(
+                    assetId = "fish_food_zorf",
+                    ticks = 20,
+                    mode = AnimationMode.LOOP,
+                ),
+            ),
+            isDead = true,
+            health = BodyConfig.Health(
+                full = 2,
+            ),
+        ),
         BodyType.STAR_POTION to BodyConfig(
             group = BodyGroup.FOOD,
             width = size(
@@ -176,6 +206,11 @@ object ConfigInfo {
                         hunger = 2000,
                         growth = 5,
                     ),
+                    BodyType.FISH_FOOD_ZORF to BodyConfig.Food(
+                        healthDiffPerTick = -1,
+                        hunger = 2000,
+                        growth = 8,
+                    ),
                 ),
             ),
             swimActX = BodyConfig.SwimAct(
@@ -265,6 +300,11 @@ object ConfigInfo {
                         healthDiffPerTick = -1,
                         hunger = 2000,
                         growth = 5,
+                    ),
+                    BodyType.FISH_FOOD_ZORF to BodyConfig.Food(
+                        healthDiffPerTick = -1,
+                        hunger = 2000,
+                        growth = 8,
                     ),
                 ),
             ),
@@ -356,6 +396,11 @@ object ConfigInfo {
                         hunger = 2000,
                         growth = 5,
                     ),
+                    BodyType.FISH_FOOD_ZORF to BodyConfig.Food(
+                        healthDiffPerTick = -1,
+                        hunger = 2000,
+                        growth = 8,
+                    ),
                 ),
             ),
             swimActX = BodyConfig.SwimAct(
@@ -438,6 +483,10 @@ object ConfigInfo {
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
                     BodyType.FISH_FOOD to BodyConfig.Food(
+                        healthDiffPerTick = -1,
+                        hunger = 2000,
+                    ),
+                    BodyType.FISH_FOOD_ZORF to BodyConfig.Food(
                         healthDiffPerTick = -1,
                         hunger = 2000,
                     ),
@@ -937,6 +986,56 @@ object ConfigInfo {
                 diffPerTick = 1,
                 dischargeDiffPerTick = -8,
                 dischargeProduction = BodyType.GUPPY_SMALL,
+            ),
+            swimActX = BodyConfig.SwimAct(
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                idlingTicksMin = 120,
+                idlingTicksMax = 200,
+            ),
+        ),
+        BodyType.ZORF to BodyConfig(
+            group = BodyGroup.PET,
+            width = size(
+                textureName = "zorf",
+                index = 0,
+                wh = WH.WIDTH,
+            ),
+            height = size(
+                textureName = "zorf",
+                index = 0,
+                wh = WH.HEIGHT,
+            ),
+            depth = size(
+                textureName = "zorf_turn",
+                index = 5,
+                wh = WH.WIDTH,
+            ),
+            drivingAccelerationX = 0.4f,
+            drivingAccelerationY = 0.25f,
+            animations = BodyAnimations(
+                swim = TextureRegionAnimation(
+                    assetId = "zorf",
+                    ticks = 20,
+                    mode = AnimationMode.LOOP,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "zorf_turn",
+                    ticks = 20,
+                    mode = AnimationMode.NORMAL,
+                ),
+                drop = TextureRegionAnimation(
+                    assetId = "zorf_drop",
+                    ticks = 20,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+            drop = BodyConfig.Drop(
+                full = 100,
+                diffPerTick = 1,
+                production = BodyType.FISH_FOOD_ZORF,
             ),
             swimActX = BodyConfig.SwimAct(
                 idlingTicksMin = 40,
