@@ -30,6 +30,8 @@ data class BodyConfig(
 
     @Expose
     val animations: BodyAnimations,
+    @Expose
+    val sounds: BodySounds = BodySounds(),
     /**
      * If true, the body will disappear when sinking or floating outside water.
      */

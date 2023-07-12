@@ -54,6 +54,9 @@ object BodyConfigInitializer {
                     mode = AnimationMode.LOOP,
                 ),
             ),
+            sounds = BodySounds(
+                init = "drop_food",
+            ),
             isDead = true,
             health = BodyConfig.Health(
                 full = 2,
@@ -84,6 +87,9 @@ object BodyConfigInitializer {
                     mode = AnimationMode.LOOP,
                 ),
             ),
+            sounds = BodySounds(
+                init = "drop_food",
+            ),
             isDead = true,
             health = BodyConfig.Health(
                 full = 2,
@@ -113,6 +119,9 @@ object BodyConfigInitializer {
                     ticks = 20,
                     mode = AnimationMode.LOOP,
                 ),
+            ),
+            sounds = BodySounds(
+                init = "drop_food",
             ),
             isDead = true,
             health = BodyConfig.Health(
