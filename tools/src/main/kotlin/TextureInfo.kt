@@ -381,13 +381,23 @@ object TextureInfo {
                     tileCount = 10,
                 ),
                 BodyTextureInfo.Output(
-                    name = "niko_open",
+                    name = "niko_charge",
                     tileStart = 10,
                     tileCount = 9,
                 ),
                 BodyTextureInfo.Output(
-                    name = "niko_opened",
+                    name = "niko_charged",
                     tileStart = 19,
+                    tileCount = 1,
+                ),
+                BodyTextureInfo.Output(
+                    name = "niko_hungry_charge",
+                    tileStart = 20,
+                    tileCount = 9,
+                ),
+                BodyTextureInfo.Output(
+                    name = "niko_hungry_charged",
+                    tileStart = 29,
                     tileCount = 1,
                 ),
             ),

@@ -2,6 +2,8 @@ package dev.ebnbin.insaniquarium.body
 
 import com.google.gson.annotations.Expose
 import dev.ebnbin.gdx.animation.TextureRegionAnimation
+import dev.ebnbin.gdx.asset.Asset
+import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.SerializableEnum
 
 data class BodyAnimations(
@@ -23,6 +25,12 @@ data class BodyAnimations(
     val charge: TextureRegionAnimation? = null,
     @Expose
     val discharge: TextureRegionAnimation? = null,
+    @Expose
+    val hungryCharged: TextureRegionAnimation? = null,
+    @Expose
+    val hungryCharge: TextureRegionAnimation? = null,
+    @Expose
+    val hungryDischarge: TextureRegionAnimation? = null,
 ) {
     enum class Action(override val serializedName: String) : SerializableEnum {
         SWIM("swim"),
@@ -33,60 +41,51 @@ data class BodyAnimations(
         ;
     }
 
-    enum class Status(override val serializedName: String) : SerializableEnum {
-        NORMAL("normal"),
-        HUNGRY("hungry"),
-        CHARGED("charged"),
-        ;
-    }
-
-    fun get(action: Action, status: Status): TextureRegionAnimation {
+    fun get(action: Action, isHungry: Boolean, isCharged: Boolean): TextureRegionAnimation {
         return when (action) {
             Action.SWIM -> {
-                when (status) {
-                    Status.NORMAL -> {
-                        swim
-                    }
-                    Status.HUNGRY -> {
-                        hungry ?: swim
-                    }
-                    Status.CHARGED -> {
-                        charged ?: swim
-                    }
+                when {
+                    isHungry && !isCharged -> hungry ?: swim
+                    !isHungry && isCharged -> charged ?: swim
+                    isHungry && isCharged -> hungryCharged ?: swim
+                    else -> swim
                 }
             }
             Action.TURN -> {
-                when (status) {
-                    Status.NORMAL -> {
-                        requireNotNull(turn)
-                    }
-                    Status.HUNGRY -> {
-                        hungryTurn ?: requireNotNull(turn)
-                    }
-                    Status.CHARGED -> {
-                        requireNotNull(turn)
-                    }
+                when {
+                    isHungry && !isCharged -> hungryTurn ?: requireNotNull(turn)
+                    else -> requireNotNull(turn)
                 }
             }
             Action.EAT -> {
-                when (status) {
-                    Status.NORMAL -> {
-                        requireNotNull(eat)
-                    }
-                    Status.HUNGRY -> {
-                        hungryEat ?: requireNotNull(eat)
-                    }
-                    Status.CHARGED -> {
-                        requireNotNull(eat)
-                    }
+                when {
+                    isHungry && !isCharged -> hungryEat ?: requireNotNull(eat)
+                    else -> requireNotNull(eat)
                 }
             }
             Action.CHARGE -> {
-                requireNotNull(charge)
+                requireNotNull(if (isHungry) hungryCharge else charge)
             }
             Action.DISCHARGE -> {
-                requireNotNull(discharge)
+                requireNotNull(if (isHungry) hungryDischarge else discharge)
             }
         }
+    }
+
+    fun allAssets(): Set<Asset<*>> {
+        return listOfNotNull(
+            swim,
+            turn,
+            eat,
+            hungry,
+            hungryTurn,
+            hungryEat,
+            charged,
+            charge,
+            discharge,
+            hungryCharged,
+            hungryCharge,
+            hungryDischarge,
+        ).mapTo(mutableSetOf()) { baseGame.assets.texture.getValue(it.assetId) }
     }
 }

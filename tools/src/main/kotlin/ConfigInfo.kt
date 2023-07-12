@@ -839,25 +839,50 @@ object ConfigInfo {
                     finishTicks = 20,
                 ),
                 charged = TextureRegionAnimation(
-                    assetId = "niko_opened",
+                    assetId = "niko_charged",
                     ticks = 1,
                     mode = AnimationMode.LOOP,
                 ),
                 charge = TextureRegionAnimation(
-                    assetId = "niko_open",
+                    assetId = "niko_charge",
                     ticks = 9,
                     mode = AnimationMode.NORMAL,
                 ),
                 discharge = TextureRegionAnimation(
-                    assetId = "niko_open",
+                    assetId = "niko_charge",
                     ticks = 9,
                     mode = AnimationMode.REVERSED,
                 ),
+                hungryCharged = TextureRegionAnimation(
+                    assetId = "niko_hungry_charged",
+                    ticks = 1,
+                    mode = AnimationMode.LOOP,
+                ),
+                hungryCharge = TextureRegionAnimation(
+                    assetId = "niko_hungry_charge",
+                    ticks = 9,
+                    mode = AnimationMode.NORMAL,
+                ),
+                hungryDischarge = TextureRegionAnimation(
+                    assetId = "niko_hungry_charge",
+                    ticks = 9,
+                    mode = AnimationMode.REVERSED,
+                ),
+            ),
+            hunger = BodyConfig.Hunger(
+                full = 800,
+                init = 0,
+                hungry = 799,
+                diffPerTick = 4,
             ),
             energy = BodyConfig.Energy(
                 full = 800,
                 diffPerTick = 1,
                 dischargeDiffPerTick = -8,
+            ),
+            touchAct = BodyConfig.TouchAct(
+                charged = true,
+                hunger = -800,
             ),
         ),
         BodyType.PREGO to BodyConfig(

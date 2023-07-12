@@ -27,7 +27,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": {
@@ -72,7 +75,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": {
@@ -147,7 +153,10 @@
         },
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": false,
       "health": {
@@ -258,7 +267,10 @@
         },
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": false,
       "health": {
@@ -374,7 +386,10 @@
         },
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": false,
       "health": {
@@ -490,7 +505,10 @@
         },
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": false,
       "health": {
@@ -577,7 +595,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": false,
       "health": null,
@@ -680,7 +701,10 @@
         },
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": false,
       "health": null,
@@ -752,7 +776,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": null,
@@ -793,7 +820,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": null,
@@ -834,7 +864,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": null,
@@ -875,7 +908,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": null,
@@ -916,7 +952,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": null,
@@ -957,7 +996,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": null,
@@ -1004,7 +1046,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": false,
       "health": {
@@ -1115,21 +1160,42 @@
         "hungryTurn": null,
         "hungryEat": null,
         "charged": {
-          "assetId": "niko_opened",
+          "assetId": "niko_charged",
           "ticks": 1,
           "mode": "loop",
           "interpolation": "linear",
           "finishTicks": 1
         },
         "charge": {
-          "assetId": "niko_open",
+          "assetId": "niko_charge",
           "ticks": 9,
           "mode": "normal",
           "interpolation": "linear",
           "finishTicks": 9
         },
         "discharge": {
-          "assetId": "niko_open",
+          "assetId": "niko_charge",
+          "ticks": 9,
+          "mode": "reversed",
+          "interpolation": "linear",
+          "finishTicks": 9
+        },
+        "hungryCharged": {
+          "assetId": "niko_hungry_charged",
+          "ticks": 1,
+          "mode": "loop",
+          "interpolation": "linear",
+          "finishTicks": 1
+        },
+        "hungryCharge": {
+          "assetId": "niko_hungry_charge",
+          "ticks": 9,
+          "mode": "normal",
+          "interpolation": "linear",
+          "finishTicks": 9
+        },
+        "hungryDischarge": {
+          "assetId": "niko_hungry_charge",
           "ticks": 9,
           "mode": "reversed",
           "interpolation": "linear",
@@ -1138,7 +1204,14 @@
       },
       "isDead": false,
       "health": null,
-      "hunger": null,
+      "hunger": {
+        "full": 800,
+        "max": 800,
+        "init": 0,
+        "hungry": 799,
+        "diffPerTick": 4,
+        "transformation": null
+      },
       "growth": null,
       "drop": null,
       "energy": {
@@ -1152,7 +1225,14 @@
       "followTouchAct": null,
       "swimActX": null,
       "swimActY": null,
-      "touchAct": null
+      "touchAct": {
+        "charged": true,
+        "health": 0,
+        "hunger": -800,
+        "growth": 0,
+        "drop": 0,
+        "energy": 0
+      }
     },
     "prego": {
       "group": "pet",
@@ -1205,7 +1285,10 @@
           "mode": "normal",
           "interpolation": "linear",
           "finishTicks": 8
-        }
+        },
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": false,
       "health": null,
@@ -1260,7 +1343,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": false,
       "health": null,
@@ -1373,7 +1459,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": false,
       "health": null,
@@ -1451,7 +1540,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": false,
       "health": null,
@@ -1502,7 +1594,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": {
@@ -1519,6 +1614,7 @@
       "swimActX": null,
       "swimActY": null,
       "touchAct": {
+        "charged": false,
         "health": -2,
         "hunger": 0,
         "growth": 0,
@@ -1553,7 +1649,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": {
@@ -1570,6 +1669,7 @@
       "swimActX": null,
       "swimActY": null,
       "touchAct": {
+        "charged": false,
         "health": -2,
         "hunger": 0,
         "growth": 0,
@@ -1604,7 +1704,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": {
@@ -1621,6 +1724,7 @@
       "swimActX": null,
       "swimActY": null,
       "touchAct": {
+        "charged": false,
         "health": -2,
         "hunger": 0,
         "growth": 0,
@@ -1655,7 +1759,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": {
@@ -1672,6 +1779,7 @@
       "swimActX": null,
       "swimActY": null,
       "touchAct": {
+        "charged": false,
         "health": -2,
         "hunger": 0,
         "growth": 0,
@@ -1706,7 +1814,10 @@
         "hungryEat": null,
         "charged": null,
         "charge": null,
-        "discharge": null
+        "discharge": null,
+        "hungryCharged": null,
+        "hungryCharge": null,
+        "hungryDischarge": null
       },
       "isDead": true,
       "health": {
@@ -1723,6 +1834,7 @@
       "swimActX": null,
       "swimActY": null,
       "touchAct": {
+        "charged": false,
         "health": -2,
         "hunger": 0,
         "growth": 0,

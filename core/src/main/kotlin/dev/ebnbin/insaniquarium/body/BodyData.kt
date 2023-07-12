@@ -94,18 +94,18 @@ data class BodyData(
     private val canCreateCharge = state.energy != null &&
         body.config.energy != null &&
         state.energy == body.config.energy.full &&
-        state.animationData.status != BodyAnimations.Status.CHARGED
+        !state.animationData.isCharged
 
     private val canCreateDischarge = state.energy != null &&
         body.config.energy != null &&
         state.energy == 0 &&
-        state.animationData.status == BodyAnimations.Status.CHARGED
+        state.animationData.isCharged
 
     private val animationData: BodyAnimationState = state.animationData
     private val alphaTime: Float? = state.alphaTime
 
     private val animation: TextureRegionAnimation =
-        body.config.animations.get(animationData.action, animationData.status)
+        body.config.animations.get(animationData.action, animationData.isHungry, animationData.isCharged)
 
     private val textureRegion: TextureRegion = animation.getTextureRegion(animationData.stateTick)
 
@@ -537,7 +537,7 @@ data class BodyData(
         }
 
         fun createTargeting(): SwimAct {
-            if (state.animationData.status == BodyAnimations.Status.CHARGED) {
+            if (state.animationData.isCharged) {
                 return SwimAct(
                     drivingTarget = null,
                     ticks = 1,
@@ -706,18 +706,11 @@ data class BodyData(
         tickDelta: Float,
         eatenFoodRelation: BodyRelation?,
     ): BodyAnimationState {
-        val animationStatus = if (isHungry) {
-            BodyAnimations.Status.HUNGRY
-        } else if (isCharged) {
-            BodyAnimations.Status.CHARGED
-        } else {
-            BodyAnimations.Status.NORMAL
-        }
-
         fun createCharge(): BodyAnimationState {
             return BodyAnimationState(
                 action = BodyAnimations.Action.CHARGE,
-                status = animationStatus,
+                isHungry = isHungry,
+                isCharged = isCharged,
                 stateTick = 0,
                 isFacingRight = animationData.isFacingRight,
             )
@@ -726,7 +719,8 @@ data class BodyData(
         fun createDischarge(): BodyAnimationState {
             return BodyAnimationState(
                 action = BodyAnimations.Action.DISCHARGE,
-                status = animationStatus,
+                isHungry = isHungry,
+                isCharged = isCharged,
                 stateTick = 0,
                 isFacingRight = animationData.isFacingRight,
             )
@@ -735,7 +729,8 @@ data class BodyData(
         fun createEat(): BodyAnimationState {
             return BodyAnimationState(
                 action = BodyAnimations.Action.EAT,
-                status = animationStatus,
+                isHungry = isHungry,
+                isCharged = isCharged,
                 stateTick = 0,
                 isFacingRight = animationData.isFacingRight,
             )
@@ -744,7 +739,8 @@ data class BodyData(
         fun createTurn(): BodyAnimationState {
             return BodyAnimationState(
                 action = BodyAnimations.Action.TURN,
-                status = animationStatus,
+                isHungry = isHungry,
+                isCharged = isCharged,
                 stateTick = 0,
                 isFacingRight = !animationData.isFacingRight,
             )
@@ -753,7 +749,8 @@ data class BodyData(
         fun createSwim(): BodyAnimationState {
             return BodyAnimationState(
                 action = BodyAnimations.Action.SWIM,
-                status = animationStatus,
+                isHungry = isHungry,
+                isCharged = isCharged,
                 stateTick = 0,
                 isFacingRight = animationData.isFacingRight,
             )
@@ -761,11 +758,7 @@ data class BodyData(
 
         fun update(): BodyAnimationState {
             return animationData.copy(
-                status = if (animationStatus == BodyAnimations.Status.CHARGED) {
-                    animationData.status
-                } else {
-                    animationStatus
-                },
+                isHungry = isHungry,
                 stateTick = animationData.stateTick + (if (tickDelta == 0f) 0 else 1),
             )
         }
@@ -774,7 +767,7 @@ data class BodyData(
             val canCreateTurn = body.config.animations.turn != null &&
                 (animationData.isFacingRight && expectedDirection == Direction.NEGATIVE ||
                     !animationData.isFacingRight && expectedDirection == Direction.POSITIVE) &&
-                animationData.status != BodyAnimations.Status.CHARGED
+                !animationData.isCharged
             if (canCreateTurn && awayFromDrivingTargetX) {
                 createTurn()
             } else {
@@ -954,15 +947,17 @@ data class BodyData(
         val hit = hit(point)
         if (hit) {
             requireNotNull(body.config.touchAct)
-            body.tick(
-                input = BodyInput(
-                    healthDiff = body.config.touchAct.health,
-                    hungerDiff = body.config.touchAct.hunger,
-                    growthDiff = body.config.touchAct.growth,
-                    dropDiff = body.config.touchAct.drop,
-                    energyDiff = body.config.touchAct.energy,
-                ),
-            )
+            if (!body.config.touchAct.charged || (isCharged && animationData.action != BodyAnimations.Action.CHARGE)) {
+                body.tick(
+                    input = BodyInput(
+                        healthDiff = body.config.touchAct.health,
+                        hungerDiff = body.config.touchAct.hunger,
+                        growthDiff = body.config.touchAct.growth,
+                        dropDiff = body.config.touchAct.drop,
+                        energyDiff = body.config.touchAct.energy,
+                    ),
+                )
+            }
         }
         return hit
     }

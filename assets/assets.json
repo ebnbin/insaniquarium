@@ -477,23 +477,43 @@
       "extension": "png",
       "preload": false
     },
-    "niko_open": {
+    "niko_charge": {
       "region": {
         "row": 3,
         "column": 3,
         "startIndex": 0
       },
-      "name": "niko_open",
+      "name": "niko_charge",
       "extension": "png",
       "preload": false
     },
-    "niko_opened": {
+    "niko_charged": {
       "region": {
         "row": 1,
         "column": 1,
         "startIndex": 0
       },
-      "name": "niko_opened",
+      "name": "niko_charged",
+      "extension": "png",
+      "preload": false
+    },
+    "niko_hungry_charge": {
+      "region": {
+        "row": 3,
+        "column": 3,
+        "startIndex": 0
+      },
+      "name": "niko_hungry_charge",
+      "extension": "png",
+      "preload": false
+    },
+    "niko_hungry_charged": {
+      "region": {
+        "row": 1,
+        "column": 1,
+        "startIndex": 0
+      },
+      "name": "niko_hungry_charged",
       "extension": "png",
       "preload": false
     },
