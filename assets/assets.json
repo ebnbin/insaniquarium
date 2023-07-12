@@ -497,6 +497,56 @@
       "extension": "png",
       "preload": false
     },
+    "prego": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "prego",
+      "extension": "png",
+      "preload": false
+    },
+    "prego_charge": {
+      "region": {
+        "row": 2,
+        "column": 3,
+        "startIndex": 0
+      },
+      "name": "prego_charge",
+      "extension": "png",
+      "preload": false
+    },
+    "prego_charged": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "prego_charged",
+      "extension": "png",
+      "preload": false
+    },
+    "prego_discharge": {
+      "region": {
+        "row": 2,
+        "column": 2,
+        "startIndex": 0
+      },
+      "name": "prego_discharge",
+      "extension": "png",
+      "preload": false
+    },
+    "prego_turn": {
+      "region": {
+        "row": 2,
+        "column": 5,
+        "startIndex": 0
+      },
+      "name": "prego_turn",
+      "extension": "png",
+      "preload": false
+    },
     "presto": {
       "region": {
         "row": 2,

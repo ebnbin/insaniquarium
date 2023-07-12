@@ -860,6 +860,69 @@ object ConfigInfo {
                 dischargeDiffPerTick = -8,
             ),
         ),
+        BodyType.PREGO to BodyConfig(
+            group = BodyGroup.PET,
+            width = size(
+                textureName = "prego",
+                index = 0,
+                wh = WH.WIDTH,
+            ),
+            height = size(
+                textureName = "prego",
+                index = 0,
+                wh = WH.HEIGHT,
+            ),
+            depth = size(
+                textureName = "prego_turn",
+                index = 5,
+                wh = WH.WIDTH,
+            ),
+            drivingAccelerationX = 0.4f,
+            drivingAccelerationY = 0.25f,
+            animations = BodyAnimations(
+                swim = TextureRegionAnimation(
+                    assetId = "prego",
+                    ticks = 20,
+                    mode = AnimationMode.LOOP,
+                    finishTicks = 0,
+                ),
+                turn = TextureRegionAnimation(
+                    assetId = "prego_turn",
+                    ticks = 20,
+                    mode = AnimationMode.NORMAL,
+                ),
+                charged = TextureRegionAnimation(
+                    assetId = "prego_charged",
+                    ticks = 20,
+                    mode = AnimationMode.LOOP,
+                    finishTicks = 0,
+                ),
+                charge = TextureRegionAnimation(
+                    assetId = "prego_charge",
+                    ticks = 12,
+                    mode = AnimationMode.NORMAL,
+                ),
+                discharge = TextureRegionAnimation(
+                    assetId = "prego_discharge",
+                    ticks = 8,
+                    mode = AnimationMode.NORMAL,
+                ),
+            ),
+            energy = BodyConfig.Energy(
+                full = 480,
+                diffPerTick = 1,
+                dischargeDiffPerTick = -8,
+                dischargeProduction = BodyType.GUPPY_SMALL,
+            ),
+            swimActX = BodyConfig.SwimAct(
+                idlingTicksMin = 40,
+                idlingTicksMax = 160,
+            ),
+            swimActY = BodyConfig.SwimAct(
+                idlingTicksMin = 120,
+                idlingTicksMax = 200,
+            ),
+        ),
         BodyType.CLYDE to BodyConfig(
             group = BodyGroup.PET,
             width = size(

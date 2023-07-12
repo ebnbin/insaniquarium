@@ -537,6 +537,12 @@ data class BodyData(
         }
 
         fun createTargeting(): SwimAct {
+            if (state.animationData.status == BodyAnimations.Status.CHARGED) {
+                return SwimAct(
+                    drivingTarget = null,
+                    ticks = 1,
+                )
+            }
             return SwimAct(
                 drivingTarget = BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.SWIM,
@@ -767,7 +773,8 @@ data class BodyData(
         return if (animation.canInterrupt(animationData.stateTick)) {
             val canCreateTurn = body.config.animations.turn != null &&
                 (animationData.isFacingRight && expectedDirection == Direction.NEGATIVE ||
-                    !animationData.isFacingRight && expectedDirection == Direction.POSITIVE)
+                    !animationData.isFacingRight && expectedDirection == Direction.POSITIVE) &&
+                animationData.status != BodyAnimations.Status.CHARGED
             if (canCreateTurn && awayFromDrivingTargetX) {
                 createTurn()
             } else {
@@ -860,6 +867,17 @@ data class BodyData(
     fun postTick(): Boolean {
         val delta = 0f
 
+        if (state.animationData.action == BodyAnimations.Action.DISCHARGE &&
+            animationData.stateTick == 0 &&
+            body.config.energy?.dischargeProduction != null) {
+            val newBody = body.delegate.addBody(
+                type = body.config.energy.dischargeProduction,
+                state = BodyState(
+                    position = state.position,
+                ),
+            )
+            newBody.act(delta)
+        }
         if (isDeadFromHealth) {
             body.delegate.removeFromTank()
             return true

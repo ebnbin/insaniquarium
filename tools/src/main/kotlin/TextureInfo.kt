@@ -394,6 +394,41 @@ object TextureInfo {
         ),
         BodyTextureInfo(
             group = GROUP_PET,
+            srcFileName = "prego.gif",
+            srcMaskFileName = "_prego.gif",
+            scale = 1.5f,
+            row = 4,
+            column = 10,
+            outputList = listOf(
+                BodyTextureInfo.Output(
+                    name = "prego",
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "prego_charged",
+                    tileStart = 10,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "prego_turn",
+                    tileStart = 20,
+                    tileCount = 10,
+                ),
+                BodyTextureInfo.Output(
+                    name = "prego_charge",
+                    tileStart = 30,
+                    tileCount = 6,
+                ),
+                BodyTextureInfo.Output(
+                    name = "prego_discharge",
+                    tileStart = 36,
+                    tileCount = 4,
+                ),
+            ),
+        ),
+        BodyTextureInfo(
+            group = GROUP_PET,
             srcFileName = "clyde.gif",
             srcMaskFileName = "_clyde.gif",
             scale = 1.5f,

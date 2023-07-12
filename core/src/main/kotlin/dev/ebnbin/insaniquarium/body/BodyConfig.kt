@@ -1,7 +1,6 @@
 package dev.ebnbin.insaniquarium.body
 
 import com.google.gson.annotations.Expose
-import dev.ebnbin.gdx.utils.SerializableEnum
 import dev.ebnbin.gdx.utils.World
 
 data class BodyConfig(
@@ -122,6 +121,8 @@ data class BodyConfig(
         val diffPerTick: Int = 0,
         @Expose
         val dischargeDiffPerTick: Int = 0,
+        @Expose
+        val dischargeProduction: BodyType? = null,
     )
 
     data class EatAct(
@@ -167,12 +168,6 @@ data class BodyConfig(
         @Expose
         val idlingTicksMax: Int,
     )
-
-    enum class AnimationAction(override val serializedName: String) : SerializableEnum {
-        A("a"),
-        B("b"),
-        ;
-    }
 
     companion object {
         const val DEFAULT_DRAG_COEFFICIENT = 1f
