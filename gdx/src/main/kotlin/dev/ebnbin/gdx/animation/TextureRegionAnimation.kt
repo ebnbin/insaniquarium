@@ -14,6 +14,8 @@ data class TextureRegionAnimation(
     val mode: AnimationMode = AnimationMode.NORMAL,
     @Expose
     val interpolation: Interpolation = Interpolation.LINEAR,
+    @Expose
+    val finishTicks: Int = ticks,
 ) {
     fun getTextureRegion(stateTick: Int): TextureRegion {
         val textureRegionList = baseGame.assets.texture.getValue(assetId).getTextureRegionList()
@@ -23,5 +25,22 @@ data class TextureRegionAnimation(
             interpolation = interpolation,
             stateTime = stateTick.toFloat(),
         )
+    }
+
+    fun canInterrupt(stateTick: Int): Boolean {
+        if (finishTicks == 0) {
+            return true
+        }
+        if (stateTick < finishTicks) {
+            return false
+        }
+        return when (mode) {
+            AnimationMode.NORMAL, AnimationMode.REVERSED -> {
+                true
+            }
+            AnimationMode.LOOP, AnimationMode.LOOP_REVERSED, AnimationMode.LOOP_PINGPONG -> {
+                stateTick % finishTicks == 0
+            }
+        }
     }
 }

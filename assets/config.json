@@ -17,7 +17,8 @@
           "assetId": "fish_food",
           "ticks": 20,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 20
         },
         "turn": null,
         "eat": null,
@@ -59,7 +60,8 @@
           "assetId": "star_potion",
           "ticks": 20,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 20
         },
         "turn": null,
         "eat": null,
@@ -101,37 +103,43 @@
           "assetId": "guppy_small",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "turn": {
           "assetId": "guppy_small_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "eat": {
           "assetId": "guppy_small_eat",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "hungry": {
           "assetId": "guppy_small_hungry",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "hungryTurn": {
           "assetId": "guppy_small_hungry_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "hungryEat": {
           "assetId": "guppy_small_hungry_eat",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "actionA": null,
         "actionB": null
@@ -204,37 +212,43 @@
           "assetId": "guppy_medium",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "turn": {
           "assetId": "guppy_medium_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "eat": {
           "assetId": "guppy_medium_eat",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "hungry": {
           "assetId": "guppy_medium_hungry",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "hungryTurn": {
           "assetId": "guppy_medium_hungry_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "hungryEat": {
           "assetId": "guppy_medium_hungry_eat",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "actionA": null,
         "actionB": null
@@ -312,37 +326,43 @@
           "assetId": "guppy_large",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "turn": {
           "assetId": "guppy_large_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "eat": {
           "assetId": "guppy_large_eat",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "hungry": {
           "assetId": "guppy_large_hungry",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "hungryTurn": {
           "assetId": "guppy_large_hungry_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "hungryEat": {
           "assetId": "guppy_large_hungry_eat",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "actionA": null,
         "actionB": null
@@ -420,37 +440,43 @@
           "assetId": "guppy_king",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "turn": {
           "assetId": "guppy_king_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "eat": {
           "assetId": "guppy_king_eat",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "hungry": {
           "assetId": "guppy_king_hungry",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "hungryTurn": {
           "assetId": "guppy_king_hungry_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "hungryEat": {
           "assetId": "guppy_king_hungry_eat",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "actionA": null,
         "actionB": null
@@ -523,7 +549,8 @@
           "assetId": "starcatcher",
           "ticks": 20,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "turn": null,
         "eat": null,
@@ -531,7 +558,8 @@
           "assetId": "starcatcher_hungry",
           "ticks": 20,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "hungryTurn": null,
         "hungryEat": null,
@@ -598,37 +626,43 @@
           "assetId": "beetlemuncher",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "turn": {
           "assetId": "beetlemuncher_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "eat": {
           "assetId": "beetlemuncher_eat",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "hungry": {
           "assetId": "beetlemuncher_hungry",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "hungryTurn": {
           "assetId": "beetlemuncher_hungry_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "hungryEat": {
           "assetId": "beetlemuncher_hungry_eat",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "actionA": null,
         "actionB": null
@@ -692,7 +726,8 @@
           "assetId": "guppy_small_die",
           "ticks": 20,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 20
         },
         "turn": null,
         "eat": null,
@@ -730,7 +765,8 @@
           "assetId": "guppy_medium_die",
           "ticks": 20,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 20
         },
         "turn": null,
         "eat": null,
@@ -768,7 +804,8 @@
           "assetId": "guppy_large_die",
           "ticks": 20,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 20
         },
         "turn": null,
         "eat": null,
@@ -806,7 +843,8 @@
           "assetId": "guppy_king_die",
           "ticks": 20,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 20
         },
         "turn": null,
         "eat": null,
@@ -844,7 +882,8 @@
           "assetId": "starcatcher_die",
           "ticks": 20,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 20
         },
         "turn": null,
         "eat": null,
@@ -882,7 +921,8 @@
           "assetId": "beetlemuncher_die",
           "ticks": 20,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 20
         },
         "turn": null,
         "eat": null,
@@ -920,13 +960,15 @@
           "assetId": "sylvester",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "turn": {
           "assetId": "sylvester_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "eat": null,
         "hungry": null,
@@ -1034,7 +1076,8 @@
           "assetId": "niko",
           "ticks": 10,
           "mode": "loop_pingpong",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 20
         },
         "turn": null,
         "eat": null,
@@ -1079,7 +1122,8 @@
           "assetId": "niko_open",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 20
         },
         "turn": null,
         "eat": null,
@@ -1124,7 +1168,8 @@
           "assetId": "niko_close",
           "ticks": 10,
           "mode": "reversed",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 20
         },
         "turn": null,
         "eat": null,
@@ -1169,7 +1214,8 @@
           "assetId": "clyde",
           "ticks": 25,
           "mode": "loop",
-          "interpolation": "pow2_in"
+          "interpolation": "pow2_in",
+          "finishTicks": 25
         },
         "turn": null,
         "eat": null,
@@ -1267,19 +1313,22 @@
           "assetId": "gash",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "turn": {
           "assetId": "gash_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "eat": {
           "assetId": "gash_eat",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "hungry": null,
         "hungryTurn": null,
@@ -1346,13 +1395,15 @@
           "assetId": "presto",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 0
         },
         "turn": {
           "assetId": "presto_turn",
           "ticks": 10,
           "mode": "normal",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "eat": null,
         "hungry": null,
@@ -1399,7 +1450,8 @@
           "assetId": "silver_coin",
           "ticks": 12,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 12
         },
         "turn": null,
         "eat": null,
@@ -1441,7 +1493,8 @@
           "assetId": "gold_coin",
           "ticks": 12,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 12
         },
         "turn": null,
         "eat": null,
@@ -1483,7 +1536,8 @@
           "assetId": "star",
           "ticks": 12,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 12
         },
         "turn": null,
         "eat": null,
@@ -1525,7 +1579,8 @@
           "assetId": "diamond",
           "ticks": 12,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 12
         },
         "turn": null,
         "eat": null,
@@ -1567,7 +1622,8 @@
           "assetId": "beetle",
           "ticks": 10,
           "mode": "loop",
-          "interpolation": "linear"
+          "interpolation": "linear",
+          "finishTicks": 10
         },
         "turn": null,
         "eat": null,

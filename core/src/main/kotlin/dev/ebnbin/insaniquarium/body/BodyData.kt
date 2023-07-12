@@ -112,7 +112,7 @@ data class BodyData(
     private val rendererCanRemove: Boolean = alphaTime != null && alphaTime <= -ALPHA_DURATION
 
     private val lifeCanRemove: Boolean = isDeadFromHealth ||
-        (transformationFromHunger != null && animationData.isSwimming) ||
+        (transformationFromHunger != null && animation.canInterrupt(animationData.stateTick)) ||
         transformationFromGrowth != null
 
     val canRemove: Boolean = lifeCanRemove || rendererCanRemove
@@ -724,8 +724,7 @@ data class BodyData(
             )
         }
 
-        val canAnimationActionChange = animationData.action == BodyAnimationData.Action.SWIM
-        return if (canAnimationActionChange) {
+        return if (animation.canInterrupt(animationData.stateTick)) {
             val canCreateTurn = body.config.animations.turn != null &&
                 (animationData.isFacingRight && expectedDirection == Direction.NEGATIVE ||
                     !animationData.isFacingRight && expectedDirection == Direction.POSITIVE)
@@ -740,17 +739,16 @@ data class BodyData(
                     if (canCreateTurn) {
                         createTurn()
                     } else {
-                        update()
+                        if (animationData.action == BodyAnimationData.Action.SWIM) {
+                            update()
+                        } else {
+                            createSwim()
+                        }
                     }
                 }
             }
         } else {
-            val isAnimationActionFinished = animationData.stateTick >= animation.ticks
-            if (isAnimationActionFinished) {
-                createSwim()
-            } else {
-                update()
-            }
+            update()
         }
     }
 
@@ -821,7 +819,7 @@ data class BodyData(
             return true
         }
         if (transformationFromHunger != null &&
-            animationData.action == BodyAnimationData.Action.SWIM) {
+            animation.canInterrupt(animationData.stateTick)) {
             val newBody = body.delegate.replaceBody(
                 type = transformationFromHunger,
                 state = BodyState(
