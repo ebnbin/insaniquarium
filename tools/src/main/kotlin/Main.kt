@@ -10,6 +10,8 @@ fun main() {
 
     TextureInfo.dstDir.deleteRecursively()
     TextureInfo.dstDir.mkdirs()
+    MusicAssetHelper.dstDir.deleteRecursively()
+    MusicAssetHelper.dstDir.mkdirs()
 
     val gdxAssets = Assets(
         freeType = mapOf(
@@ -25,6 +27,9 @@ fun main() {
     )
     File("../assets_gdx/assets_gdx.json").writeText(gdxAssets.toJson())
 
+    val musicAssetMap = MusicInfo.all.associate {
+        it.name to MusicAssetHelper.music(it)
+    }
     val textureAssetMap = mutableMapOf<String, TextureAsset>()
     TextureInfo.aquariumList.forEach {
         textureAssetMap[it.name] = TextureAssetHelper.aquarium(it)
@@ -34,6 +39,7 @@ fun main() {
     }
 
     val assets = Assets(
+        music = musicAssetMap.toSortedMap(),
         texture = textureAssetMap.toSortedMap(),
     )
     File("../assets/assets.json").writeText(assets.toJson())

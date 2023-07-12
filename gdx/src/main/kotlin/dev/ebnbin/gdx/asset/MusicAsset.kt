@@ -6,8 +6,8 @@ import com.badlogic.gdx.audio.Music
 
 class MusicAsset(
     name: String,
-    extension: String,
-    preload: Boolean,
+    extension: String = "mp3",
+    preload: Boolean = false,
 ) : Asset<Music>(
     name = name,
     extension = extension,

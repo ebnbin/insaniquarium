@@ -19,3 +19,37 @@ data class BodyTextureInfo(
         val startIndex: Int = 0,
     )
 }
+
+data class MusicInfo(
+    val name: String,
+    val srcFileName: String,
+) {
+    companion object {
+        val all: List<MusicInfo> = listOf(
+            MusicInfo(
+                name = "aquarium_a",
+                srcFileName = "Insaniq2.mo3(1).wav",
+            ),
+            MusicInfo(
+                name = "aquarium_b",
+                srcFileName = "Insaniq2.mo3(3).wav",
+            ),
+            MusicInfo(
+                name = "aquarium_c",
+                srcFileName = "Insaniq2.mo3(7).wav",
+            ),
+            MusicInfo(
+                name = "aquarium_d",
+                srcFileName = "Insaniq2.mo3(2).wav",
+            ),
+            MusicInfo(
+                name = "aquarium_e",
+                srcFileName = "Lullaby.mo3.wav",
+            ),
+            MusicInfo(
+                name = "aquarium_f",
+                srcFileName = "Insaniq2.mo3(4).wav",
+            ),
+        )
+    }
+}

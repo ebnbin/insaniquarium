@@ -204,3 +204,12 @@ fun BufferedImage.nonTransparentSize(): IntSize {
         height = yLast - yFirst + 1,
     )
 }
+
+fun exec(commandList: List<String>) {
+    val process = ProcessBuilder(commandList.filter { it.isNotEmpty() }).start()
+    require(process.waitFor() == 0)
+}
+
+fun exec(command: String) {
+    exec(command.split(" "))
+}
