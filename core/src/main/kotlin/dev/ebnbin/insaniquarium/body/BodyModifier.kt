@@ -1,6 +1,6 @@
 package dev.ebnbin.insaniquarium.body
 
-interface BodyBehavior {
+interface BodyModifier {
     fun canTouch(data: BodyData): Boolean = true
 
     fun canDrop(data: BodyData): Boolean = true
@@ -10,7 +10,7 @@ interface BodyBehavior {
     fun dropVelocityX(data: BodyData): Float = 0f
 
     companion object {
-        private val NIKO: BodyBehavior = object : BodyBehavior {
+        private val NIKO: BodyModifier = object : BodyModifier {
             override fun canTouch(data: BodyData): Boolean {
                 return data.isCharged &&
                     data.state.animationData.action != BodyAnimations.Action.CHARGE &&
@@ -18,7 +18,7 @@ interface BodyBehavior {
             }
         }
 
-        private val ZORF: BodyBehavior = object : BodyBehavior {
+        private val ZORF: BodyModifier = object : BodyModifier {
             override fun canDrop(data: BodyData): Boolean {
                 return data.state.animationData.action == BodyAnimations.Action.DROP &&
                     data.state.animationData.stateTick == data.body.config.animations.drop!!.ticks - 1
@@ -35,11 +35,11 @@ interface BodyBehavior {
             }
         }
 
-        fun get(bodyType: BodyType): BodyBehavior {
+        fun get(bodyType: BodyType): BodyModifier {
             return when (bodyType) {
                 BodyType.NIKO -> NIKO
                 BodyType.ZORF -> ZORF
-                else -> object : BodyBehavior {}
+                else -> object : BodyModifier {}
             }
         }
     }

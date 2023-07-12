@@ -23,7 +23,7 @@ data class BodyData(
     val body: Body,
     val state: BodyState,
 ) {
-    private val behavior: BodyBehavior = BodyBehavior.get(body.type)
+    private val modifier: BodyModifier = BodyModifier.get(body.type)
 
     private val halfWidth: Float = body.config.width / 2f
     private val halfHeight: Float = body.config.height / 2f
@@ -922,17 +922,17 @@ data class BodyData(
             )
             newBody.act(delta)
         }
-        if (productionFromDrop != null && behavior.canDrop(this)) {
+        if (productionFromDrop != null && modifier.canDrop(this)) {
             requireNotNull(drop)
             requireNotNull(body.config.drop)
             val newBody = body.delegate.addBody(
                 type = productionFromDrop,
                 state = BodyState(
                     position = Position(
-                        x = state.position.x + behavior.dropXOffset(this),
+                        x = state.position.x + modifier.dropXOffset(this),
                         y = state.position.y,
                     ),
-                    velocityX = behavior.dropVelocityX(this),
+                    velocityX = modifier.dropVelocityX(this),
                 ),
             )
             newBody.act(delta)
@@ -951,7 +951,7 @@ data class BodyData(
     }
 
     fun touch(point: Point): Boolean {
-        val hit = hit(point) && behavior.canTouch(this)
+        val hit = hit(point) && modifier.canTouch(this)
         if (hit) {
             requireNotNull(body.config.touchAct)
             body.tick(
