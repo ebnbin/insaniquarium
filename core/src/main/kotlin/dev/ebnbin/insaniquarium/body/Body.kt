@@ -4,38 +4,36 @@ import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Point
+import dev.ebnbin.gdx.utils.Position
+import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.game
 
 class Body(
     val type: BodyType,
     val id: String,
     val delegate: BodyActorDelegate,
-    initBoxStatus: BodyBox.Status,
+    initPosition: Position,
     initLifeStatus: BodyLife.Status,
 ) {
     val config: BodyConfig = game.config.body.getValue(type)
 
+    init {
+        val textureRegion = config.animations.swim.getTextureRegion(0)
+        delegate.setSize(
+            textureRegion.regionWidth.toFloat().unitToMeter,
+            textureRegion.regionHeight.toFloat().unitToMeter,
+        )
+    }
+
+    var position: Position = initPosition
+        private set
+
     var life: BodyLife = BodyLife(
         body = this,
         params = BodyLife.Params(
-            x = initBoxStatus.x,
-            y = initBoxStatus.y,
+            position = position,
         ),
         status = initLifeStatus,
-    )
-        private set
-
-    var box: BodyBox = BodyBox(
-        body = this,
-        params = BodyBox.Params(
-            minX = life.minX,
-            maxX = life.maxX,
-            minY = life.minY,
-            maxY = life.maxY,
-            velocityX = life.status.velocityX,
-            velocityY = life.status.velocityY,
-        ),
-        status = initBoxStatus,
     )
         private set
 
@@ -61,36 +59,42 @@ class Body(
             delta = delta,
             input = input,
             params = BodyLife.Params(
-                x = box.status.x,
-                y = box.status.y,
+                position = position,
             ),
         )
         life.postTick()
     }
 
     fun act(delta: Float) {
-        box = box.act(
-            delta = delta,
-            params = BodyBox.Params(
-                minX = life.minX,
-                maxX = life.maxX,
-                minY = life.minY,
-                maxY = life.maxY,
-                velocityX = life.status.velocityX,
-                velocityY = life.status.velocityY,
-            ),
-        )
-        box.postAct()
+        actPosition(delta)
         if (delegate.debug) {
             actDebug()
         }
+    }
+
+    private fun actPosition(delta: Float) {
+        position = Position(
+            x = BodyForceHelper.nextPosition(
+                position = position.x,
+                velocity = life.status.velocityX,
+                delta = delta,
+            ),
+            y = BodyForceHelper.nextPosition(
+                position = position.y,
+                velocity = life.status.velocityY,
+                delta = delta,
+            ),
+        )
+        delegate.setPosition(position.x, position.y)
     }
 
     private fun actDebug() {
         baseGame.putLog("type,id         ") {
             "${type.serializedName},${id}"
         }
-        box.actDebug()
+        baseGame.putLog("position        ") {
+            "${position.x.devText()},${position.y.devText()}"
+        }
         life.actDebug()
     }
 

@@ -9,6 +9,7 @@ import dev.ebnbin.gdx.animation.TextureRegionAnimation
 import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Direction
 import dev.ebnbin.gdx.utils.Point
+import dev.ebnbin.gdx.utils.Position
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.World
 import dev.ebnbin.gdx.utils.XY
@@ -24,9 +25,20 @@ data class BodyLife(
     val status: Status,
 ) {
     data class Params(
-        val x: Float,
-        val y: Float,
+        val position: Position,
     )
+
+    private val halfWidth: Float = body.config.width / 2f
+    private val halfHeight: Float = body.config.height / 2f
+
+    val minX: Float = halfWidth
+    val maxX: Float = body.delegate.tankWidth - halfWidth
+
+    val minY: Float = halfHeight
+    val maxY: Float = Float.MAX_VALUE
+
+    val x: Float = params.position.x.coerceIn(minX, maxX)
+    val y: Float = params.position.y.coerceIn(minY, maxY)
 
     data class Status(
         /**
@@ -145,18 +157,9 @@ data class BodyLife(
     private val velocityX: Float = status.velocityX
     private val velocityY: Float = status.velocityY
 
-    private val halfWidth: Float = body.config.width / 2f
-    private val halfHeight: Float = body.config.height / 2f
-
-    val minX: Float = halfWidth
-    val maxX: Float = body.delegate.tankWidth - halfWidth
-
-    val minY: Float = halfHeight
-    val maxY: Float = Float.MAX_VALUE
-
-    private val left: Float = params.x - halfWidth
+    private val left: Float = x - halfWidth
     private val right: Float = left + body.config.width
-    private val bottom: Float = params.y - halfHeight
+    private val bottom: Float = y - halfHeight
     private val top: Float = bottom + body.config.height
 
     private val isInsideLeft: Boolean = left > 0f
@@ -175,8 +178,8 @@ data class BodyLife(
 
     private val halfDepth: Float = body.config.depth / 2f
 
-    private val depthLeft: Float = params.x - halfDepth
-    private val depthBottom: Float = params.y - halfDepth
+    private val depthLeft: Float = x - halfDepth
+    private val depthBottom: Float = y - halfDepth
 
     private val areaX: Float = body.config.height * body.config.depth
     private val areaY: Float = body.config.width * body.config.depth
@@ -209,13 +212,13 @@ data class BodyLife(
 
     private val drivingX: Float = BodyForceHelper.driving(
         drivingTarget = status.drivingTargetX,
-        position = params.x,
+        position = x,
         velocity = velocityX,
         mass = mass,
     )
     private val drivingY: Float = BodyForceHelper.driving(
         drivingTarget = status.drivingTargetY,
-        position = params.y,
+        position = y,
         velocity = velocityY,
         mass = mass,
     )
@@ -306,11 +309,11 @@ data class BodyLife(
     val reachDrivingTargetY: Boolean = status.drivingTargetY?.position?.let { it in bottom..top } ?: false
 
     val awayFromDrivingTargetX: Boolean = status.drivingTargetX != null &&
-        abs(status.drivingTargetX.position - params.x) >= body.config.width / 12f
+        abs(status.drivingTargetX.position - x) >= body.config.width / 12f
 
     //*****************************************************************************************************************
 
-    private val vector2: Vector2 = Vector2(params.x, params.y)
+    private val vector2: Vector2 = Vector2(x, y)
     private val rectangle: Rectangle = Rectangle(left, bottom, body.config.width, body.config.height)
 
     fun distance(other: BodyLife): Float {
@@ -488,7 +491,7 @@ data class BodyLife(
             } else {
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
-                    position = targetFood.box.status.x,
+                    position = targetFood.position.x,
                     acceleration = body.config.eatAct.drivingAccelerationX,
                 )
             },
@@ -497,7 +500,7 @@ data class BodyLife(
             } else {
                 BodyDrivingTarget(
                     type = BodyDrivingTarget.Type.EAT,
-                    position = targetFood.box.status.y,
+                    position = targetFood.position.y,
                     acceleration = body.config.eatAct.drivingAccelerationY,
                 )
             },
@@ -852,9 +855,9 @@ data class BodyLife(
             animationData.action == BodyAnimationData.Action.SWIM) {
             val newBody = body.delegate.replaceBody(
                 type = transformationFromHunger,
-                boxStatus = BodyBox.Status(
-                    x = params.x,
-                    y = params.y,
+                initPosition = Position(
+                    x = x,
+                    y = y,
                 ),
                 lifeStatus = Status(
                     animationData = animationData.copy(
@@ -871,9 +874,9 @@ data class BodyLife(
             val newConfig = game.config.body.getValue(transformationFromGrowth)
             val newBody = body.delegate.replaceBody(
                 type = transformationFromGrowth,
-                boxStatus = BodyBox.Status(
-                    x = params.x,
-                    y = params.y,
+                initPosition = Position(
+                    x = x,
+                    y = y,
                 ),
                 lifeStatus = status.copy(
                     growth = null,
@@ -897,9 +900,9 @@ data class BodyLife(
             repeat(dropCount) {
                 val newBody = body.delegate.addBody(
                     type = productionFromDrop,
-                    boxStatus = BodyBox.Status(
-                        x = params.x,
-                        y = params.y,
+                    initPosition = Position(
+                        x = x,
+                        y = y,
                     ),
                 )
                 newBody.act(delta)

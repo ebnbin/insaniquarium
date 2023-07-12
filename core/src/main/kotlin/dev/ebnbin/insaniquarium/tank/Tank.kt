@@ -5,11 +5,11 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
 import dev.ebnbin.gdx.lifecycle.baseGame
 import dev.ebnbin.gdx.utils.Point
+import dev.ebnbin.gdx.utils.Position
 import dev.ebnbin.gdx.utils.Random
 import dev.ebnbin.gdx.utils.unitToMeter
 import dev.ebnbin.insaniquarium.body.Body
 import dev.ebnbin.insaniquarium.body.BodyActor
-import dev.ebnbin.insaniquarium.body.BodyBox
 import dev.ebnbin.insaniquarium.body.BodyGroup
 import dev.ebnbin.insaniquarium.body.BodyLife
 import dev.ebnbin.insaniquarium.body.BodyType
@@ -33,7 +33,7 @@ class Tank : Group() {
                 devSelectedBodyType?.let {
                     addBody(
                         type = it,
-                        boxStatus = BodyBox.Status(
+                        initPosition = Position(
                             x = x,
                             y = y,
                         ),
@@ -77,7 +77,7 @@ class Tank : Group() {
     fun addBody(
         type: BodyType,
         id: String = "${UUID.randomUUID()}",
-        boxStatus: BodyBox.Status = BodyBox.Status(),
+        initPosition: Position = Position(),
         lifeStatus: BodyLife.Status = BodyLife.Status(),
         index: Int? = null,
     ): Body {
@@ -85,7 +85,7 @@ class Tank : Group() {
             tank = this,
             type = type,
             id = id,
-            boxStatus = boxStatus,
+            initPosition = initPosition,
             lifeStatus = lifeStatus,
         )
         val group = groupMap.getValue(bodyActor.body.config.group)
@@ -114,14 +114,14 @@ class Tank : Group() {
     fun replaceBody(
         oldBody: Body,
         type: BodyType,
-        boxStatus: BodyBox.Status,
+        initPosition: Position,
         lifeStatus: BodyLife.Status,
     ): Body {
         val index = removeBody(oldBody)
         return addBody(
             type = type,
             id = oldBody.id,
-            boxStatus = boxStatus,
+            initPosition = initPosition,
             lifeStatus = lifeStatus,
             index = index
         )
@@ -139,7 +139,7 @@ class Tank : Group() {
         val type = devSelectedBodyType ?: BodyType.values().random()
         addBody(
             type = type,
-            boxStatus = BodyBox.Status(
+            initPosition = Position(
                 x = Random.nextFloat(0f, width),
                 y = Random.nextFloat(0f, height),
             ),

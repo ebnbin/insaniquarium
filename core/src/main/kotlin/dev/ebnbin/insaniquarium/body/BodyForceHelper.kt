@@ -108,11 +108,8 @@ object BodyForceHelper {
     fun nextPosition(
         position: Float,
         velocity: Float,
-        minPosition: Float,
-        maxPosition: Float,
         delta: Float,
     ): Float {
-        val nextPosition = position + velocity * delta
-        return nextPosition.coerceIn(minPosition, maxPosition)
+        return position + velocity * delta
     }
 }
