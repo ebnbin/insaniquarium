@@ -81,13 +81,7 @@ data class BodyData(
     }
 
     private val productionFromDrop: BodyType? = body.config.drop?.production?.takeIf {
-        drop != null && drop >= body.config.drop.full
-    }
-
-    private val dropCount: Int = if (drop == null || body.config.drop == null || drop < body.config.drop.full) {
-        0
-    } else {
-        drop / body.config.drop.full
+        drop != null && drop == body.config.drop.full
     }
 
     val isCharged: Boolean = body.config.energy != null && state.energy != null && state.isCharging != null &&
@@ -658,7 +652,7 @@ data class BodyData(
             tickDiff = if (tickDelta == 0f) 0 else body.config.drop.diffPerTick,
             inputDiff = input.dropDiff,
             foodDiff = food?.drop,
-        )
+        ).coerceIn(0, body.config.drop.full)
     }
 
     private fun nextEnergy(
@@ -708,6 +702,16 @@ data class BodyData(
         tickDelta: Float,
         eatenFoodRelation: BodyRelation?,
     ): BodyAnimationState {
+        fun createDrop(): BodyAnimationState {
+            return BodyAnimationState(
+                action = BodyAnimations.Action.DROP,
+                isHungry = isHungry,
+                isCharged = isCharged,
+                stateTick = 0,
+                isFacingRight = animationData.isFacingRight,
+            )
+        }
+
         fun createCharge(): BodyAnimationState {
             return BodyAnimationState(
                 action = BodyAnimations.Action.CHARGE,
@@ -773,7 +777,10 @@ data class BodyData(
             if (canCreateTurn && awayFromDrivingTargetX) {
                 createTurn()
             } else {
-                if (canCreateCharge) {
+                val canCreateDrop = productionFromDrop != null && body.config.drop?.hasAnimation == true
+                if (canCreateDrop) {
+                    createDrop()
+                } else if (canCreateCharge) {
                     createCharge()
                 } else if (canCreateDischarge) {
                     createDischarge()
@@ -916,26 +923,18 @@ data class BodyData(
         if (productionFromDrop != null) {
             requireNotNull(drop)
             requireNotNull(body.config.drop)
-            repeat(dropCount) {
-                val newBody = body.delegate.addBody(
-                    type = productionFromDrop,
-                    state = BodyState(
-                        position = state.position,
-                    ),
-                )
-                newBody.act(delta)
-            }
-            body.tick(
-                input = BodyInput(
-                    dropDiff = -(dropCount * body.config.drop.full),
+            val newBody = body.delegate.addBody(
+                type = productionFromDrop,
+                state = BodyState(
+                    position = state.position,
                 ),
             )
-
-            if (rendererCanRemove) {
-                body.delegate.removeFromTank()
-                return true
-            }
-            return false
+            newBody.act(delta)
+            body.tick(
+                input = BodyInput(
+                    dropDiff = -body.config.drop.full,
+                ),
+            )
         }
 
         if (rendererCanRemove) {

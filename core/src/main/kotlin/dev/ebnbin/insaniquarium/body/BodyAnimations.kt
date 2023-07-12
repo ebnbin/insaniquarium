@@ -20,6 +20,8 @@ data class BodyAnimations(
     @Expose
     val hungryEat: TextureRegionAnimation? = null,
     @Expose
+    val drop: TextureRegionAnimation? = null,
+    @Expose
     val charged: TextureRegionAnimation? = null,
     @Expose
     val charge: TextureRegionAnimation? = null,
@@ -36,6 +38,7 @@ data class BodyAnimations(
         SWIM("swim"),
         TURN("turn"),
         EAT("eat"),
+        DROP("drop"),
         CHARGE("charge"),
         DISCHARGE("discharge"),
         ;
@@ -63,6 +66,9 @@ data class BodyAnimations(
                     else -> requireNotNull(eat)
                 }
             }
+            Action.DROP -> {
+                requireNotNull(drop)
+            }
             Action.CHARGE -> {
                 requireNotNull(if (isHungry) hungryCharge else charge)
             }
@@ -80,6 +86,7 @@ data class BodyAnimations(
             hungry,
             hungryTurn,
             hungryEat,
+            drop,
             charged,
             charge,
             discharge,
