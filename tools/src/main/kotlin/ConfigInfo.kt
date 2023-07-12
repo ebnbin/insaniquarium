@@ -132,20 +132,20 @@ object ConfigInfo {
                 full = 2,
             ),
         ),
-        BodyType.GUPPY_SMALL to BodyConfig(
+        BodyType.GUPPY_BABY to BodyConfig(
             group = BodyGroup.FISH,
             width = size(
-                textureName = "guppy_small",
+                textureName = "guppy_baby",
                 index = 0,
                 wh = WH.WIDTH,
             ),
             height = size(
-                textureName = "guppy_small",
+                textureName = "guppy_baby",
                 index = 0,
                 wh = WH.HEIGHT,
             ),
             depth = size(
-                textureName = "guppy_small_turn",
+                textureName = "guppy_baby_turn",
                 index = 5,
                 wh = WH.WIDTH,
             ),
@@ -153,34 +153,34 @@ object ConfigInfo {
             drivingAccelerationY = 0.25f,
             animations = BodyAnimations(
                 swim = TextureRegionAnimation(
-                    assetId = "guppy_small",
+                    assetId = "guppy_baby",
                     ticks = 10,
                     mode = AnimationMode.LOOP,
                     finishTicks = 0,
                 ),
                 turn = TextureRegionAnimation(
-                    assetId = "guppy_small_turn",
+                    assetId = "guppy_baby_turn",
                     ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 eat = TextureRegionAnimation(
-                    assetId = "guppy_small_eat",
+                    assetId = "guppy_baby_eat",
                     ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 hungry = TextureRegionAnimation(
-                    assetId = "guppy_small_hungry",
+                    assetId = "guppy_baby_hungry",
                     ticks = 10,
                     mode = AnimationMode.LOOP,
                     finishTicks = 0,
                 ),
                 hungryTurn = TextureRegionAnimation(
-                    assetId = "guppy_small_hungry_turn",
+                    assetId = "guppy_baby_hungry_turn",
                     ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
                 hungryEat = TextureRegionAnimation(
-                    assetId = "guppy_small_hungry_eat",
+                    assetId = "guppy_baby_hungry_eat",
                     ticks = 10,
                     mode = AnimationMode.NORMAL,
                 ),
@@ -193,7 +193,7 @@ object ConfigInfo {
                 max = 3000,
                 hungry = 1000,
                 diffPerTick = -5,
-                transformation = BodyType.GUPPY_SMALL_CORPSE,
+                transformation = BodyType.GUPPY_BABY_CORPSE,
             ),
             growth = BodyConfig.Growth(
                 full = 10,
@@ -638,27 +638,27 @@ object ConfigInfo {
                 idlingTicksMax = 200,
             ),
         ),
-        BodyType.GUPPY_SMALL_CORPSE to BodyConfig(
+        BodyType.GUPPY_BABY_CORPSE to BodyConfig(
             group = BodyGroup.FISH,
             width = size(
-                textureName = "guppy_small",
+                textureName = "guppy_baby",
                 index = 0,
                 wh = WH.WIDTH,
             ),
             height = size(
-                textureName = "guppy_small",
+                textureName = "guppy_baby",
                 index = 0,
                 wh = WH.HEIGHT,
             ),
             depth = size(
-                textureName = "guppy_small_turn",
+                textureName = "guppy_baby_turn",
                 index = 5,
                 wh = WH.WIDTH,
             ),
             density = 1020f,
             animations = BodyAnimations(
                 swim = TextureRegionAnimation(
-                    assetId = "guppy_small_die",
+                    assetId = "guppy_baby_die",
                     ticks = 20,
                     mode = AnimationMode.NORMAL,
                 ),
@@ -840,7 +840,7 @@ object ConfigInfo {
             ),
             eatAct = BodyConfig.EatAct(
                 foods = mapOf(
-                    BodyType.GUPPY_SMALL to BodyConfig.Food(
+                    BodyType.GUPPY_BABY to BodyConfig.Food(
                         healthDiffPerTick = -10,
                     ),
                     BodyType.GUPPY_MEDIUM to BodyConfig.Food(
@@ -985,7 +985,7 @@ object ConfigInfo {
                 full = 480,
                 diffPerTick = 1,
                 dischargeDiffPerTick = -8,
-                dischargeProduction = BodyType.GUPPY_SMALL,
+                dischargeProduction = BodyType.GUPPY_BABY,
             ),
             swimActX = BodyConfig.SwimAct(
                 idlingTicksMin = 40,

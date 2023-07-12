@@ -147,7 +147,7 @@
       "swimActY": null,
       "touchAct": null
     },
-    "guppy_small": {
+    "guppy_baby": {
       "group": "fish",
       "width": 0.085,
       "height": 0.08,
@@ -161,42 +161,42 @@
       "leftRightFrictionCoefficient": 0.0,
       "animations": {
         "swim": {
-          "assetId": "guppy_small",
+          "assetId": "guppy_baby",
           "ticks": 10,
           "mode": "loop",
           "interpolation": "linear",
           "finishTicks": 0
         },
         "turn": {
-          "assetId": "guppy_small_turn",
+          "assetId": "guppy_baby_turn",
           "ticks": 10,
           "mode": "normal",
           "interpolation": "linear",
           "finishTicks": 10
         },
         "eat": {
-          "assetId": "guppy_small_eat",
+          "assetId": "guppy_baby_eat",
           "ticks": 10,
           "mode": "normal",
           "interpolation": "linear",
           "finishTicks": 10
         },
         "hungry": {
-          "assetId": "guppy_small_hungry",
+          "assetId": "guppy_baby_hungry",
           "ticks": 10,
           "mode": "loop",
           "interpolation": "linear",
           "finishTicks": 0
         },
         "hungryTurn": {
-          "assetId": "guppy_small_hungry_turn",
+          "assetId": "guppy_baby_hungry_turn",
           "ticks": 10,
           "mode": "normal",
           "interpolation": "linear",
           "finishTicks": 10
         },
         "hungryEat": {
-          "assetId": "guppy_small_hungry_eat",
+          "assetId": "guppy_baby_hungry_eat",
           "ticks": 10,
           "mode": "normal",
           "interpolation": "linear",
@@ -222,7 +222,7 @@
         "init": 2000,
         "hungry": 1000,
         "diffPerTick": -5,
-        "transformation": "guppy_small_corpse"
+        "transformation": "guppy_baby_corpse"
       },
       "growth": {
         "full": 10,
@@ -854,7 +854,7 @@
       },
       "touchAct": null
     },
-    "guppy_small_corpse": {
+    "guppy_baby_corpse": {
       "group": "fish",
       "width": 0.085,
       "height": 0.08,
@@ -868,7 +868,7 @@
       "leftRightFrictionCoefficient": 0.0,
       "animations": {
         "swim": {
-          "assetId": "guppy_small_die",
+          "assetId": "guppy_baby_die",
           "ticks": 20,
           "mode": "normal",
           "interpolation": "linear",
@@ -1182,7 +1182,7 @@
       "energy": null,
       "eatAct": {
         "foods": {
-          "guppy_small": {
+          "guppy_baby": {
             "healthDiffPerTick": -10,
             "hungerDiffPerTick": 0,
             "growthDiffPerTick": 0,
@@ -1413,7 +1413,7 @@
         "init": 0,
         "diffPerTick": 1,
         "dischargeDiffPerTick": -8,
-        "dischargeProduction": "guppy_small"
+        "dischargeProduction": "guppy_baby"
       },
       "eatAct": null,
       "followTouchAct": null,

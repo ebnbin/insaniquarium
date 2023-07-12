@@ -81,7 +81,7 @@ object TextureInfo {
             column = 10,
             outputList = listOf(
                 BodyTextureInfo.Output(
-                    name = "guppy_small",
+                    name = "guppy_baby",
                     tileStart = 0,
                     tileCount = 10,
                 ),
@@ -111,7 +111,7 @@ object TextureInfo {
             column = 10,
             outputList = listOf(
                 BodyTextureInfo.Output(
-                    name = "guppy_small_turn",
+                    name = "guppy_baby_turn",
                     tileStart = 0,
                     tileCount = 10,
                 ),
@@ -141,7 +141,7 @@ object TextureInfo {
             column = 10,
             outputList = listOf(
                 BodyTextureInfo.Output(
-                    name = "guppy_small_eat",
+                    name = "guppy_baby_eat",
                     tileStart = 0,
                     tileCount = 10,
                 ),
@@ -171,7 +171,7 @@ object TextureInfo {
             column = 10,
             outputList = listOf(
                 BodyTextureInfo.Output(
-                    name = "guppy_small_hungry",
+                    name = "guppy_baby_hungry",
                     tileStart = 0,
                     tileCount = 10,
                 ),
@@ -201,7 +201,7 @@ object TextureInfo {
             column = 10,
             outputList = listOf(
                 BodyTextureInfo.Output(
-                    name = "guppy_small_hungry_turn",
+                    name = "guppy_baby_hungry_turn",
                     tileStart = 0,
                     tileCount = 10,
                 ),
@@ -231,7 +231,7 @@ object TextureInfo {
             column = 10,
             outputList = listOf(
                 BodyTextureInfo.Output(
-                    name = "guppy_small_hungry_eat",
+                    name = "guppy_baby_hungry_eat",
                     tileStart = 0,
                     tileCount = 10,
                 ),
@@ -261,7 +261,7 @@ object TextureInfo {
             column = 10,
             outputList = listOf(
                 BodyTextureInfo.Output(
-                    name = "guppy_small_die",
+                    name = "guppy_baby_die",
                     tileStart = 0,
                     tileCount = 10,
                 ),
