@@ -8,6 +8,8 @@ data class Assets(
     @Expose
     val music: Map<String, MusicAsset> = emptyMap(),
     @Expose
+    val sound: Map<String, SoundAsset> = emptyMap(),
+    @Expose
     val texture: Map<String, TextureAsset> = emptyMap(),
 ) {
     /**
@@ -17,6 +19,7 @@ data class Assets(
         val set = mutableSetOf<Asset<*>>()
         set.addAll(freeType.values)
         set.addAll(music.values)
+        set.addAll(sound.values)
         set.addAll(texture.values)
         return set
     }
@@ -25,6 +28,7 @@ data class Assets(
         return Assets(
             freeType = freeType + other.freeType,
             music = music + other.music,
+            sound = sound + other.sound,
             texture = texture + other.texture,
         )
     }

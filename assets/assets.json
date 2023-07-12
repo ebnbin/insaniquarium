@@ -38,6 +38,7 @@
       "preload": false
     }
   },
+  "sound": {},
   "texture": {
     "angie": {
       "region": {
