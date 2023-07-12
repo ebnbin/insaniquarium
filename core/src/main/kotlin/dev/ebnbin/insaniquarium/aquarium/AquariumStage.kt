@@ -13,9 +13,7 @@ class AquariumStage(
         addActor(aquariumImage)
     }
 
-    private val music: Music = aquarium.musicAsset.get().also {
-        it.isLooping = true
-    }
+    private val music: Music = aquarium.musicAsset.get()
 
     override fun resume() {
         super.resume()

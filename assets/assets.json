@@ -2,31 +2,37 @@
   "freeType": {},
   "music": {
     "aquarium_a": {
+      "isLooping": true,
       "name": "aquarium_a",
       "extension": "mp3",
       "preload": false
     },
     "aquarium_b": {
+      "isLooping": true,
       "name": "aquarium_b",
       "extension": "mp3",
       "preload": false
     },
     "aquarium_c": {
+      "isLooping": true,
       "name": "aquarium_c",
       "extension": "mp3",
       "preload": false
     },
     "aquarium_d": {
+      "isLooping": true,
       "name": "aquarium_d",
       "extension": "mp3",
       "preload": false
     },
     "aquarium_e": {
+      "isLooping": true,
       "name": "aquarium_e",
       "extension": "mp3",
       "preload": false
     },
     "aquarium_f": {
+      "isLooping": true,
       "name": "aquarium_f",
       "extension": "mp3",
       "preload": false

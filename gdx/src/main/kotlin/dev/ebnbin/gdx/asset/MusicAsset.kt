@@ -3,11 +3,14 @@ package dev.ebnbin.gdx.asset
 import com.badlogic.gdx.assets.AssetLoaderParameters
 import com.badlogic.gdx.assets.loaders.MusicLoader
 import com.badlogic.gdx.audio.Music
+import com.google.gson.annotations.Expose
 
 class MusicAsset(
     name: String,
     extension: String = "mp3",
     preload: Boolean = false,
+    @Expose
+    val isLooping: Boolean = true,
 ) : Asset<Music>(
     name = name,
     extension = extension,
@@ -21,4 +24,10 @@ class MusicAsset(
 
     override val params: AssetLoaderParameters<Music>
         get() = MusicLoader.MusicParameter()
+
+    override fun loaded(assetHelper: AssetHelper) {
+        super.loaded(assetHelper)
+        val music = assetHelper.get(this)
+        music.isLooping = isLooping
+    }
 }
