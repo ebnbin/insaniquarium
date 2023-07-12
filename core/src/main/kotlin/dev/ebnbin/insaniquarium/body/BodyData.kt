@@ -42,7 +42,7 @@ data class BodyData(
         val eatenFood: BodyConfig.Food?,
     )
 
-    private data class TouchAct(
+    private data class FollowTouchAct(
         val drivingTargetX: BodyDrivingTarget,
         val drivingTargetY: BodyDrivingTarget,
     )
@@ -337,12 +337,12 @@ data class BodyData(
 
         val hasEatDrivingTarget = nextEatAct?.drivingTargetX != null || nextEatAct?.drivingTargetY != null
 
-        val nextTouchAct = nextTouchAct(
+        val nextFollowTouchAct = nextFollowTouchAct(
             enabled = !hasEatDrivingTarget,
             touchPoint = body.delegate.touchPoint,
         )
 
-        val hasTouchDrivingTarget = nextTouchAct != null
+        val hasTouchDrivingTarget = nextFollowTouchAct != null
 
         val nextSwimActX = nextSwimAct(
             enabled = !hasEatDrivingTarget && !hasTouchDrivingTarget,
@@ -378,9 +378,9 @@ data class BodyData(
         )
 
         val nextDrivingTargetX: BodyDrivingTarget? =
-            nextEatAct?.drivingTargetX ?: nextTouchAct?.drivingTargetX ?: nextSwimActX?.drivingTarget
+            nextEatAct?.drivingTargetX ?: nextFollowTouchAct?.drivingTargetX ?: nextSwimActX?.drivingTarget
         val nextDrivingTargetY: BodyDrivingTarget? =
-            nextEatAct?.drivingTargetY ?: nextTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
+            nextEatAct?.drivingTargetY ?: nextFollowTouchAct?.drivingTargetY ?: nextSwimActY?.drivingTarget
 
         val nextHealth = nextHealth(delta, input, nextEatAct?.eatenFood)
         val nextHunger = nextHunger(delta, input, nextEatAct?.eatenFood)
@@ -493,27 +493,27 @@ data class BodyData(
         )
     }
 
-    private fun nextTouchAct(
+    private fun nextFollowTouchAct(
         enabled: Boolean,
         touchPoint: Point?,
-    ): TouchAct? {
+    ): FollowTouchAct? {
         if (!enabled) {
             return null
         }
-        if (body.config.touchAct == null) {
+        if (body.config.followTouchAct == null) {
             return null
         }
         touchPoint ?: return null
-        return TouchAct(
+        return FollowTouchAct(
             drivingTargetX = BodyDrivingTarget(
                 type = BodyDrivingTarget.Type.TOUCH,
                 position = touchPoint.x,
-                acceleration = body.config.drivingAccelerationX * body.config.touchAct.drivingAccelerationMultiplier,
+                acceleration = body.config.drivingAccelerationX * body.config.followTouchAct.drivingAccelerationMultiplier,
             ),
             drivingTargetY = BodyDrivingTarget(
                 type = BodyDrivingTarget.Type.TOUCH,
                 position = touchPoint.y,
-                acceleration = body.config.drivingAccelerationY * body.config.touchAct.drivingAccelerationMultiplier,
+                acceleration = body.config.drivingAccelerationY * body.config.followTouchAct.drivingAccelerationMultiplier,
             ),
         )
     }

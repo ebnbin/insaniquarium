@@ -48,7 +48,7 @@ data class BodyConfig(
     @Expose
     val eatAct: EatAct? = null,
     @Expose
-    val touchAct: TouchAct? = null,
+    val followTouchAct: FollowTouchAct? = null,
     @Expose
     val swimActX: SwimAct? = null,
     @Expose
@@ -155,7 +155,7 @@ data class BodyConfig(
         val energy: Int = 0,
     )
 
-    data class TouchAct(
+    data class FollowTouchAct(
         @Expose
         val drivingAccelerationMultiplier: Float = 1f,
     )

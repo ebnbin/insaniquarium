@@ -1063,7 +1063,7 @@ object ConfigInfo {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
-            touchAct = BodyConfig.TouchAct(),
+            followTouchAct = BodyConfig.FollowTouchAct(),
             swimActX = BodyConfig.SwimAct(
                 idlingTicksMin = 40,
                 idlingTicksMax = 160,
