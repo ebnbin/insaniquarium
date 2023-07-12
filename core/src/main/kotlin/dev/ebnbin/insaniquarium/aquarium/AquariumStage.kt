@@ -1,21 +1,34 @@
 package dev.ebnbin.insaniquarium.aquarium
 
+import com.badlogic.gdx.audio.Music
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import dev.ebnbin.gdx.lifecycle.BaseStage
-import dev.ebnbin.gdx.lifecycle.baseGame
 
-class AquariumStage : BaseStage() {
+class AquariumStage(
+    aquarium: Aquarium = Aquarium.values().random(),
+) : BaseStage() {
     init {
-        val aquariumTextureAssetKeyList = listOf(
-            "aquarium_a",
-            "aquarium_b",
-            "aquarium_c",
-            "aquarium_d",
-            "aquarium_e",
-            "aquarium_f",
-        )
-        val aquariumImage = Image(baseGame.assets.texture.getValue(aquariumTextureAssetKeyList.random()).get())
+        val aquariumImage = Image(aquarium.textureAsset.get())
         aquariumImage.setFillParent(true)
         addActor(aquariumImage)
+    }
+
+    private val music: Music = aquarium.musicAsset.get().also {
+        it.isLooping = true
+    }
+
+    override fun resume() {
+        super.resume()
+        music.play()
+    }
+
+    override fun pause() {
+        music.pause()
+        super.pause()
+    }
+
+    override fun dispose() {
+        music.stop()
+        super.dispose()
     }
 }
