@@ -44,6 +44,10 @@ class AssetHelper(assets: Assets) : AssetManager() {
             }
     }
 
+    fun <T> isLoaded(asset: Asset<T>): Boolean {
+        return isLoaded(assetDescriptor(asset))
+    }
+
     fun <T> load(asset: Asset<T>) {
         load(assetDescriptor(asset))
     }

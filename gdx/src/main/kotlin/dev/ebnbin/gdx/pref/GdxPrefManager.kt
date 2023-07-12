@@ -21,4 +21,9 @@ object GdxPrefManager : PrefManager("gdx") {
         key = "is_debug_all",
         defaultValue = false,
     )
+    val music_volume: SimplePref<Float> = SimplePref(
+        prefManager = this,
+        key = "music_volume",
+        defaultValue = 1f,
+    )
 }

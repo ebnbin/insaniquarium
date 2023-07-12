@@ -28,6 +28,10 @@ sealed class Asset<T>(
         return AssetDescriptor(file, type, params)
     }
 
+    fun isLoaded(): Boolean {
+        return baseGame.assetHelper.isLoaded(this)
+    }
+
     fun get(): T {
         return baseGame.assetHelper.get(this)
     }
