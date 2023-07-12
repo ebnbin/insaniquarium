@@ -7,7 +7,7 @@ object SoundAssetHelper {
 
     fun sound(soundInfo: SoundInfo): SoundAsset {
         val srcFile = File(srcDir, soundInfo.srcFileName)
-        val dstFile = File(dstDir, "${soundInfo.name}.mp3")
+        val dstFile = File(dstDir, "${soundInfo.name}.ogg")
         exec("ffmpeg -i ${srcFile.path} ${dstFile.path}")
         return SoundAsset(
             name = soundInfo.name,

@@ -467,6 +467,9 @@ data class BodyData(
             )
             if (targetFood.data.canRemove) {
                 eatenFood = food
+                body.config.sounds.eat?.let {
+                    baseGame.assets.sound.getValue(it.random()).get().play()
+                }
             }
         }
         return EatAct(
@@ -886,6 +889,9 @@ data class BodyData(
         }
         if (isDeadFromHealth) {
             body.delegate.removeFromTank()
+            body.config.sounds.die?.let {
+                baseGame.assets.sound.getValue(it.random()).get().play()
+            }
             return true
         }
         if (transformationFromHunger != null &&

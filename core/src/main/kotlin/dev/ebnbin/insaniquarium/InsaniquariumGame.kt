@@ -29,10 +29,7 @@ class InsaniquariumGame : BaseGame() {
         loadScreen(
             assetSet = emptySet<Asset<*>>() +
                 Aquarium.values().flatMap { it.assets() } +
-                BodyType.values().flatMap { it.assets() } +
-                setOf(
-                    baseGame.assets.sound.getValue("drop_food"),
-                ),
+                BodyType.values().flatMap { it.assets() },
             createStageList = {
                 listOf(
                     AquariumStage(),

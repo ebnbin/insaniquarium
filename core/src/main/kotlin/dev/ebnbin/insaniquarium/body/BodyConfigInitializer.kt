@@ -181,6 +181,11 @@ object BodyConfigInitializer {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
+            sounds = BodySounds(
+                eat = listOf(
+                    "slurp_a",
+                ),
+            ),
             health = BodyConfig.Health(
                 full = 40,
             ),
@@ -269,6 +274,11 @@ object BodyConfigInitializer {
                     assetId = "guppy_medium_hungry_eat",
                     ticks = 10,
                     mode = AnimationMode.NORMAL,
+                ),
+            ),
+            sounds = BodySounds(
+                eat = listOf(
+                    "slurp_b",
                 ),
             ),
             health = BodyConfig.Health(
@@ -366,6 +376,11 @@ object BodyConfigInitializer {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
+            sounds = BodySounds(
+                eat = listOf(
+                    "slurp_c",
+                ),
+            ),
             health = BodyConfig.Health(
                 full = 40,
             ),
@@ -461,6 +476,11 @@ object BodyConfigInitializer {
                     mode = AnimationMode.NORMAL,
                 ),
             ),
+            sounds = BodySounds(
+                eat = listOf(
+                    "slurp_c",
+                ),
+            ),
             health = BodyConfig.Health(
                 full = 40,
             ),
@@ -530,6 +550,11 @@ object BodyConfigInitializer {
                     ticks = 20,
                     mode = AnimationMode.LOOP,
                     finishTicks = 0,
+                ),
+            ),
+            sounds = BodySounds(
+                eat = listOf(
+                    "slurp_a",
                 ),
             ),
             hunger = BodyConfig.Hunger(
@@ -608,6 +633,11 @@ object BodyConfigInitializer {
                     assetId = "beetlemuncher_hungry_eat",
                     ticks = 10,
                     mode = AnimationMode.NORMAL,
+                ),
+            ),
+            sounds = BodySounds(
+                eat = listOf(
+                    "slurp_a",
                 ),
             ),
             hunger = BodyConfig.Hunger(
@@ -1301,6 +1331,14 @@ object BodyConfigInitializer {
                     mode = AnimationMode.LOOP,
                 ),
             ),
+            sounds = BodySounds(
+                die = listOf(
+                    "points_a",
+                    "points_b",
+                    "points_c",
+                    "points_d",
+                ),
+            ),
             isDead = true,
             health = BodyConfig.Health(
                 full = 2,
@@ -1330,6 +1368,14 @@ object BodyConfigInitializer {
                     assetId = "gold_coin",
                     ticks = 12,
                     mode = AnimationMode.LOOP,
+                ),
+            ),
+            sounds = BodySounds(
+                die = listOf(
+                    "points_a",
+                    "points_b",
+                    "points_c",
+                    "points_d",
                 ),
             ),
             isDead = true,
@@ -1363,6 +1409,14 @@ object BodyConfigInitializer {
                     mode = AnimationMode.LOOP,
                 ),
             ),
+            sounds = BodySounds(
+                die = listOf(
+                    "points_a",
+                    "points_b",
+                    "points_c",
+                    "points_d",
+                ),
+            ),
             isDead = true,
             health = BodyConfig.Health(
                 full = 2,
@@ -1394,6 +1448,11 @@ object BodyConfigInitializer {
                     mode = AnimationMode.LOOP,
                 ),
             ),
+            sounds = BodySounds(
+                die = listOf(
+                    "diamond",
+                ),
+            ),
             isDead = true,
             health = BodyConfig.Health(
                 full = 2,
@@ -1423,6 +1482,14 @@ object BodyConfigInitializer {
                     assetId = "beetle",
                     ticks = 10,
                     mode = AnimationMode.LOOP,
+                ),
+            ),
+            sounds = BodySounds(
+                die = listOf(
+                    "points_a",
+                    "points_b",
+                    "points_c",
+                    "points_d",
                 ),
             ),
             isDead = true,

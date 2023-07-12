@@ -61,9 +61,41 @@ data class SoundInfo(
     companion object {
         val all: List<SoundInfo> = listOf(
             SoundInfo(
+                name = "diamond",
+                srcFileName = "diamond.au",
+            ),
+            SoundInfo(
                 name = "drop_food",
                 srcFileName = "DROPFOOD.ogg",
-            )
+            ),
+            SoundInfo(
+                name = "points_a",
+                srcFileName = "POINTS.ogg",
+            ),
+            SoundInfo(
+                name = "points_b",
+                srcFileName = "POINTS2.ogg",
+            ),
+            SoundInfo(
+                name = "points_c",
+                srcFileName = "POINTS3.ogg",
+            ),
+            SoundInfo(
+                name = "points_d",
+                srcFileName = "POINTS4.ogg",
+            ),
+            SoundInfo(
+                name = "slurp_a",
+                srcFileName = "SLURP.ogg",
+            ),
+            SoundInfo(
+                name = "slurp_b",
+                srcFileName = "SLURP2.ogg",
+            ),
+            SoundInfo(
+                name = "slurp_c",
+                srcFileName = "SLURP3.ogg",
+            ),
         )
     }
 }

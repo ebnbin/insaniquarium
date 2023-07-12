@@ -10,7 +10,8 @@ import dev.ebnbin.gdx.utils.magnitude
 import dev.ebnbin.insaniquarium.game
 
 fun BodyType.assets(): Set<Asset<*>> {
-    return game.config.body.getValue(this).animations.allAssets()
+    return game.config.body.getValue(this).animations.allAssets() +
+        game.config.body.getValue(this).sounds.allAssets()
 }
 
 enum class BodyRelation {

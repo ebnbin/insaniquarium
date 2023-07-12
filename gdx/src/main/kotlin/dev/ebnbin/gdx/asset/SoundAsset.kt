@@ -6,7 +6,7 @@ import com.badlogic.gdx.audio.Sound
 
 class SoundAsset(
     name: String,
-    extension: String = "mp3",
+    extension: String = "ogg",
     preload: Boolean = false,
 ) : Asset<Sound>(
     name = name,
