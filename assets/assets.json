@@ -41,47 +41,47 @@
   "sound": {
     "diamond": {
       "name": "diamond",
-      "extension": "ogg",
+      "extension": "mp3",
       "preload": false
     },
     "drop_food": {
       "name": "drop_food",
-      "extension": "ogg",
+      "extension": "mp3",
       "preload": false
     },
     "points_a": {
       "name": "points_a",
-      "extension": "ogg",
+      "extension": "mp3",
       "preload": false
     },
     "points_b": {
       "name": "points_b",
-      "extension": "ogg",
+      "extension": "mp3",
       "preload": false
     },
     "points_c": {
       "name": "points_c",
-      "extension": "ogg",
+      "extension": "mp3",
       "preload": false
     },
     "points_d": {
       "name": "points_d",
-      "extension": "ogg",
+      "extension": "mp3",
       "preload": false
     },
     "slurp_a": {
       "name": "slurp_a",
-      "extension": "ogg",
+      "extension": "mp3",
       "preload": false
     },
     "slurp_b": {
       "name": "slurp_b",
-      "extension": "ogg",
+      "extension": "mp3",
       "preload": false
     },
     "slurp_c": {
       "name": "slurp_c",
-      "extension": "ogg",
+      "extension": "mp3",
       "preload": false
     }
   },
