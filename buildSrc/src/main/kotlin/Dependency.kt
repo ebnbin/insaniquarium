@@ -4,7 +4,7 @@ object Dependency {
         const val GDX = "1.12.1"
 
         // https://github.com/MobiVM/robovm
-        const val ROBOVM = "2.3.20"
+        const val ROBOVM = "2.3.21"
     }
 
     // https://github.com/JetBrains/kotlin
