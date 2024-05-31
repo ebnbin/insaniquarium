@@ -31,7 +31,7 @@ object Dependency {
     const val GDX_FREETYPE_PLATFORM_NATIVES_IOS = "com.badlogicgames.gdx:gdx-freetype-platform:${Version.GDX}:natives-ios"
 
     // https://maven.google.com/web/index.html
-    const val GRADLE = "com.android.tools.build:gradle:8.1.4"
+    const val GRADLE = "com.android.tools.build:gradle:8.2.2"
     const val DESUGAR_JDK_LIBS = "com.android.tools:desugar_jdk_libs:2.0.4"
 
     // https://github.com/MobiVM/robovm
