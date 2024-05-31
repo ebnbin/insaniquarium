@@ -3,6 +3,8 @@ import Dependency
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+
 android {
   namespace "dev.ebnbin.insaniquarium"
   compileSdk 34
@@ -34,8 +36,6 @@ android {
     multiDexEnabled true
   }
   compileOptions {
-    sourceCompatibility "11"
-    targetCompatibility "11"
     coreLibraryDesugaringEnabled true
   }
   buildTypes {
@@ -44,9 +44,6 @@ android {
       proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
-
-  kotlin.compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
-
 }
 
 repositories {

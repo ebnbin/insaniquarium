@@ -4,8 +4,6 @@ apply plugin: 'application'
 apply plugin: 'org.jetbrains.kotlin.jvm'
 
 
-java.sourceCompatibility = 11
-java.targetCompatibility = 11
 mainClassName = 'dev.ebnbin.insaniquarium.headless.HeadlessLauncher'
 application.setMainClass(mainClassName)
 

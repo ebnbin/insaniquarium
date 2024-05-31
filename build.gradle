@@ -20,11 +20,10 @@ buildscript {
 configure(subprojects - project(':android')) {
   apply plugin: 'java-library'
   apply plugin: 'kotlin'
-  sourceCompatibility = 11
   compileJava {
     options.incremental = true
   }
-  compileKotlin.compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
+  java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 
 }
 
