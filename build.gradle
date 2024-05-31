@@ -18,7 +18,6 @@ buildscript {
 }
 
 subprojects {
-  ext.appName = 'insaniquarium'
   repositories {
     mavenCentral()
     maven { url 'https://s01.oss.sonatype.org' }
