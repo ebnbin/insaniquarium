@@ -4,13 +4,14 @@ package dev.ebnbin.insaniquarium.desktop
 
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration
+import com.badlogic.gdx.graphics.glutils.HdpiMode
 import dev.ebnbin.insaniquarium.LauncherHelper
 
-/** Launches the desktop (LWJGL3) application. */
 fun main() {
-    Lwjgl3Application(LauncherHelper.createGame(), Lwjgl3ApplicationConfiguration().apply {
-        setTitle("insaniquarium")
-        setWindowedMode(640, 480)
-        setWindowIcon(*(arrayOf(128, 64, 32, 16).map { "libgdx$it.png" }.toTypedArray()))
-    })
+    val listener = LauncherHelper.createGame()
+    val config = Lwjgl3ApplicationConfiguration().also {
+        it.setMaximized(true)
+        it.setHdpiMode(HdpiMode.Pixels)
+    }
+    Lwjgl3Application(listener, config)
 }
