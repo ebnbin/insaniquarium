@@ -6,7 +6,7 @@ apply plugin: 'org.jetbrains.kotlin.jvm'
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(Version.JAVA))
 
 
-mainClassName = 'dev.ebnbin.insaniquarium.headless.HeadlessLauncher'
+mainClassName = 'dev.ebnbin.insaniquarium.tool.ToolLauncher'
 application.setMainClass(mainClassName)
 
 dependencies {
