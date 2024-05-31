@@ -8,7 +8,6 @@ java.sourceCompatibility = 11
 java.targetCompatibility = 11
 mainClassName = 'dev.ebnbin.insaniquarium.headless.HeadlessLauncher'
 application.setMainClass(mainClassName)
-eclipse.project.name = appName + '-tool'
 
 dependencies {
   implementation Dependency.GDX_BACKEND_HEADLESS

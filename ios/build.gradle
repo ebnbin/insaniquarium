@@ -21,11 +21,6 @@ launchIPadSimulator.dependsOn build
 launchIOSDevice.dependsOn build
 createIPA.dependsOn build
 
-eclipse.project {
-  name = appName + "-ios"
-  natures 'org.robovm.eclipse.RoboVMNature'
-}
-
 dependencies {
   implementation Dependency.GDX_BACKEND_ROBOVM
   implementation Dependency.GDX_FREETYPE_PLATFORM_NATIVES_IOS

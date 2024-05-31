@@ -1,7 +1,6 @@
 import Dependency
 
 [compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-eclipse.project.name = appName + '-core'
 
 dependencies {
   api Dependency.GDX_FREETYPE
