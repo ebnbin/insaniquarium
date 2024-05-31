@@ -10,8 +10,6 @@ buildscript {
 }
 apply plugin: 'robovm'
 
-[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
-
 ext {
   mainClassName = "dev.ebnbin.insaniquarium.ios.IOSLauncher"
 }

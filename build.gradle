@@ -19,9 +19,6 @@ buildscript {
 
 configure(subprojects - project(':android')) {
   apply plugin: 'kotlin'
-  compileJava {
-    options.incremental = true
-  }
   java.toolchain.languageVersion.set(JavaLanguageVersion.of(Version.JAVA))
 
 }
