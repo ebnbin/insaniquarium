@@ -1,15 +1,5 @@
 import Dependency
 
-buildscript {
-  repositories {
-    gradlePluginPortal()
-  }
-  dependencies {
-    if(enableGraalNative == 'true') {
-      classpath Dependency.ORG_GRAALVM_BUILDTOOLS_NATIVE_GRADLE_PLUGIN
-    }
-  }
-}
 plugins {
   id "application"
 }
@@ -65,8 +55,4 @@ jar {
 // Equivalent to the jar task; here for compatibility with gdx-setup.
 tasks.register('dist') {
   dependsOn 'jar'
-}
-
-if(enableGraalNative == 'true') {
-  apply from: file("nativeimage.gradle")
 }

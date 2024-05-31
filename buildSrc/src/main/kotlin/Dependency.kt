@@ -3,9 +3,6 @@ object Dependency {
         // https://github.com/libgdx/libgdx
         const val GDX = "1.12.1"
 
-        // https://github.com/Berstanio/gdx-graalhelper
-        const val GDX_SVMHELPER = "2.0.1"
-
         // https://github.com/MobiVM/robovm
         const val ROBOVM = "2.3.20"
     }
@@ -32,14 +29,6 @@ object Dependency {
     const val GDX_FREETYPE_PLATFORM_NATIVES_X86 = "com.badlogicgames.gdx:gdx-freetype-platform:${Version.GDX}:natives-x86"
     const val GDX_FREETYPE_PLATFORM_NATIVES_X86_64 = "com.badlogicgames.gdx:gdx-freetype-platform:${Version.GDX}:natives-x86_64"
     const val GDX_FREETYPE_PLATFORM_NATIVES_IOS = "com.badlogicgames.gdx:gdx-freetype-platform:${Version.GDX}:natives-ios"
-
-    // https://github.com/graalvm/native-build-tools
-    const val ORG_GRAALVM_BUILDTOOLS_NATIVE_GRADLE_PLUGIN = "org.graalvm.buildtools.native:org.graalvm.buildtools.native.gradle.plugin:0.9.28"
-
-    // https://github.com/Berstanio/gdx-graalhelper
-    const val GDX_SVMHELPER_ANNOTATIONS = "io.github.berstanio:gdx-svmhelper-annotations:${Version.GDX_SVMHELPER}"
-    const val GDX_SVMHELPER_BACKEND_LWJGL3 = "io.github.berstanio:gdx-svmhelper-backend-lwjgl3:${Version.GDX_SVMHELPER}"
-    const val GDX_SVMHELPER_EXTENSION_FREETYPE = "io.github.berstanio:gdx-svmhelper-extension-freetype:${Version.GDX_SVMHELPER}"
 
     // https://maven.google.com/web/index.html
     const val GRADLE = "com.android.tools.build:gradle:8.1.4"
