@@ -23,7 +23,7 @@ configure(subprojects - project(':android')) {
   compileJava {
     options.incremental = true
   }
-  java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+  java.toolchain.languageVersion.set(JavaLanguageVersion.of(Version.JAVA))
 
 }
 

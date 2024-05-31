@@ -3,7 +3,7 @@ import Dependency
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
-java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(Version.JAVA))
 
 android {
   namespace "dev.ebnbin.insaniquarium"
