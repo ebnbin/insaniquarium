@@ -1,3 +1,5 @@
+import Dependency
+
 apply plugin: 'application'
 apply plugin: 'org.jetbrains.kotlin.jvm'
 
@@ -9,8 +11,8 @@ application.setMainClass(mainClassName)
 eclipse.project.name = appName + '-tool'
 
 dependencies {
-  implementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
-  implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+  implementation Dependency.GDX_BACKEND_HEADLESS
+  implementation Dependency.GDX_PLATFORM_NATIVES_DESKTOP
   implementation project(':core')
 }
 

@@ -1,10 +1,12 @@
+import Dependency
+
 buildscript {
   repositories {
     gradlePluginPortal()
   }
   dependencies {
     if(enableGraalNative == 'true') {
-      classpath "org.graalvm.buildtools.native:org.graalvm.buildtools.native.gradle.plugin:0.9.28"
+      classpath Dependency.ORG_GRAALVM_BUILDTOOLS_NATIVE_GRADLE_PLUGIN
     }
   }
 }
@@ -25,9 +27,9 @@ java.sourceCompatibility = 11
 java.targetCompatibility = 11
 
 dependencies {
-  implementation "com.badlogicgames.gdx:gdx-backend-lwjgl3:$gdxVersion"
-  implementation "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-desktop"
-  implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+  implementation Dependency.GDX_BACKEND_LWJGL3
+  implementation Dependency.GDX_FREETYPE_PLATFORM_NATIVES_DESKTOP
+  implementation Dependency.GDX_PLATFORM_NATIVES_DESKTOP
   implementation project(':core')
 }
 

@@ -1,3 +1,5 @@
+import Dependency
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
@@ -44,7 +46,7 @@ android {
   }
 
   kotlin.compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
-  
+
 }
 
 repositories {
@@ -55,18 +57,18 @@ repositories {
 configurations { natives }
 
 dependencies {
-  coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.4'
-  implementation "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
+  coreLibraryDesugaring Dependency.DESUGAR_JDK_LIBS
+  implementation Dependency.GDX_BACKEND_ANDROID
   implementation project(':core')
 
-  natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-arm64-v8a"
-  natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-armeabi-v7a"
-  natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86"
-  natives "com.badlogicgames.gdx:gdx-freetype-platform:$gdxVersion:natives-x86_64"
-  natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-arm64-v8a"
-  natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-armeabi-v7a"
-  natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86"
-  natives "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-x86_64"
+  natives Dependency.GDX_FREETYPE_PLATFORM_NATIVES_ARM64_V8A
+  natives Dependency.GDX_FREETYPE_PLATFORM_NATIVES_ARMEABI_V7A
+  natives Dependency.GDX_FREETYPE_PLATFORM_NATIVES_X86
+  natives Dependency.GDX_FREETYPE_PLATFORM_NATIVES_X86_64
+  natives Dependency.GDX_PLATFORM_NATIVES_ARM64_V8A
+  natives Dependency.GDX_PLATFORM_NATIVES_ARMEABI_V7A
+  natives Dependency.GDX_PLATFORM_NATIVES_X86
+  natives Dependency.GDX_PLATFORM_NATIVES_X86_64
 
 }
 

@@ -1,3 +1,5 @@
+import Dependency
+
 buildscript {
   repositories {
     mavenCentral()
@@ -9,8 +11,8 @@ buildscript {
     maven { url 'https://s01.oss.sonatype.org/content/repositories/snapshots/' }
   }
   dependencies {
-    classpath "com.android.tools.build:gradle:8.1.4"
-    classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
+    classpath Dependency.GRADLE
+    classpath Dependency.KOTLIN_GRADLE_PLUGIN
 
   }
 }
@@ -53,7 +55,7 @@ configure(subprojects - project(':android')) {
     }
   }
   compileKotlin.compilerOptions.jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_11)
-  
+
 }
 
 subprojects {

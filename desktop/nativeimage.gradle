@@ -1,10 +1,11 @@
+import Dependency
 
 project(":desktop") {
   apply plugin: "org.graalvm.buildtools.native"
 
   dependencies {
-    implementation "io.github.berstanio:gdx-svmhelper-backend-lwjgl3:$graalHelperVersion"
-    implementation "io.github.berstanio:gdx-svmhelper-extension-freetype:$graalHelperVersion"
+    implementation Dependency.GDX_SVMHELPER_BACKEND_LWJGL3
+    implementation Dependency.GDX_SVMHELPER_EXTENSION_FREETYPE
   }
   graalvmNative {
     binaries {
@@ -58,6 +59,6 @@ project(":desktop") {
 
 project(":core") {
   dependencies {
-    implementation "io.github.berstanio:gdx-svmhelper-annotations:$graalHelperVersion"
+    implementation Dependency.GDX_SVMHELPER_ANNOTATIONS
   }
 }
