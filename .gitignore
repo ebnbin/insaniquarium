@@ -10,7 +10,7 @@ gradle-app.setting
 /teavm/build/
 /ios/build/
 /ios-moe/build/
-/headless/build/
+/tool/build/
 /server/build/
 /kgdx/build/
 
@@ -74,7 +74,7 @@ www-test/
 /teavm/bin/
 /ios/bin/
 /ios-moe/bin/
-/headless/bin/
+/tool/bin/
 /server/bin/
 /kgdx/bin/
 *.tmp
@@ -98,7 +98,7 @@ www-test/
 /teavm/nbproject/private/
 /ios/nbproject/private/
 /ios-moe/nbproject/private/
-/headless/nbproject/private/
+/tool/nbproject/private/
 /server/nbproject/private/
 /kgdx/nbproject/private/
 
@@ -111,7 +111,7 @@ www-test/
 /teavm/nbbuild/
 /ios/nbbuild/
 /ios-moe/nbbuild/
-/headless/nbbuild/
+/tool/nbbuild/
 /server/nbbuild/
 /kgdx/nbbuild/
 
@@ -124,7 +124,7 @@ www-test/
 /teavm/dist/
 /ios/dist/
 /ios-moe/dist/
-/headless/dist/
+/tool/dist/
 /server/dist/
 /kgdx/dist/
 
@@ -137,7 +137,7 @@ www-test/
 /teavm/nbdist/
 /ios/nbdist/
 /ios-moe/nbdist/
-/headless/nbdist/
+/tool/nbdist/
 /server/nbdist/
 /kgdx/nbdist/
 
