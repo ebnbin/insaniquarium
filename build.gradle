@@ -17,12 +17,6 @@ buildscript {
   }
 }
 
-configure(subprojects - project(':android')) {
-  apply plugin: 'kotlin'
-  java.toolchain.languageVersion.set(JavaLanguageVersion.of(Version.JAVA))
-
-}
-
 subprojects {
   version = '1.0.0'
   ext.appName = 'insaniquarium'

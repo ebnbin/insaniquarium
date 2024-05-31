@@ -1,5 +1,9 @@
 import Dependency
 
+apply plugin: 'kotlin'
+
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(Version.JAVA))
+
 dependencies {
   api Dependency.GDX_FREETYPE
   api Dependency.GDX

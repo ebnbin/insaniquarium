@@ -3,6 +3,8 @@ import Dependency
 apply plugin: 'application'
 apply plugin: 'org.jetbrains.kotlin.jvm'
 
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(Version.JAVA))
+
 
 mainClassName = 'dev.ebnbin.insaniquarium.headless.HeadlessLauncher'
 application.setMainClass(mainClassName)

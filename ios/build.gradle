@@ -9,6 +9,9 @@ buildscript {
   }
 }
 apply plugin: 'robovm'
+apply plugin: 'kotlin'
+
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(Version.JAVA))
 
 ext {
   mainClassName = "dev.ebnbin.insaniquarium.ios.IOSLauncher"
