@@ -31,8 +31,8 @@ android {
     applicationId 'dev.ebnbin.insaniquarium'
     minSdkVersion 19
     targetSdkVersion 34
-    versionCode 1
-    versionName "1.0"
+    versionCode Version.VERSION_CODE
+    versionName Version.VERSION
     multiDexEnabled true
   }
   compileOptions {

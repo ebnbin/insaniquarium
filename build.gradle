@@ -18,7 +18,6 @@ buildscript {
 }
 
 subprojects {
-  version = '1.0.0'
   ext.appName = 'insaniquarium'
   repositories {
     mavenCentral()
