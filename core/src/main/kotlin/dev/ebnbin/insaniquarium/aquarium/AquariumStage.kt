@@ -3,13 +3,13 @@ package dev.ebnbin.insaniquarium.aquarium
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.ui.Image
+import dev.ebnbin.kgdx.LifecycleStage
 import ktx.assets.disposeSafely
 import java.io.ByteArrayOutputStream
 import java.util.zip.ZipInputStream
 
-class AquariumStage : Stage() {
+class AquariumStage : LifecycleStage() {
     private val texture: Texture = readTextureFromZip("aquarium1.jpg")
 
     init {

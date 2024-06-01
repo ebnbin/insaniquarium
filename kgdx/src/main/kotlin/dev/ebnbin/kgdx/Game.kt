@@ -3,7 +3,6 @@ package dev.ebnbin.kgdx
 import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
-import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.ScreenUtils
 import dev.ebnbin.kgdx.asset.AssetManager
 import dev.ebnbin.kgdx.asset.Assets
@@ -17,6 +16,10 @@ val game: Game
     get() = requireNotNull(singleton)
 
 abstract class Game : ApplicationListener {
+    private var resumed: Boolean = false
+
+    private var canRender: Boolean = false
+
     internal lateinit var assetManager: AssetManager
 
     val assets: Assets
@@ -28,17 +31,30 @@ abstract class Game : ApplicationListener {
     private var screen: Screen? = null
 
     fun setScreen(createScreen: (() -> Screen)?) {
-        screen?.stageList?.reversed()?.forEach { stage ->
+        val oldScreen = screen
+        val resumed = resumed
+        if (resumed) {
+            oldScreen?.stageList?.reversed()?.forEach { stage ->
+                stage.pause()
+            }
+        }
+        oldScreen?.stageList?.reversed()?.forEach { stage ->
             stage.disposeSafely()
         }
-        screen = createScreen?.invoke()
-        screen?.stageList?.forEach { stage ->
+        val newScreen = createScreen?.invoke()
+        screen = newScreen
+        newScreen?.stageList?.forEach { stage ->
             stage.viewport.update(Gdx.graphics.width, Gdx.graphics.height, true)
+        }
+        if (resumed) {
+            newScreen?.stageList?.forEach { stage ->
+                stage.resume()
+            }
         }
     }
 
-    private fun stageList(): List<Stage> {
-        val stageList = mutableListOf<Stage>()
+    private fun stageList(): List<LifecycleStage> {
+        val stageList = mutableListOf<LifecycleStage>()
         screen?.stageList?.let { stageList.addAll(it) }
         stageList.add(devInfoStage)
         stageList.add(devMenuStage)
@@ -50,6 +66,7 @@ abstract class Game : ApplicationListener {
         assetManager = AssetManager()
         devInfoStage = DevInfoStage()
         devMenuStage = DevMenuStage()
+        canRender = true
     }
 
     override fun resize(width: Int, height: Int) {
@@ -58,7 +75,18 @@ abstract class Game : ApplicationListener {
         }
     }
 
+    override fun resume() {
+        canRender = true
+    }
+
     override fun render() {
+        if (!canRender) return
+        if (!resumed) {
+            resumed = true
+            stageList().forEach { stage ->
+                stage.resume()
+            }
+        }
         val deltaTime = Gdx.graphics.deltaTime
         stageList().forEach { stage ->
             stage.act(deltaTime)
@@ -71,9 +99,13 @@ abstract class Game : ApplicationListener {
     }
 
     override fun pause() {
-    }
-
-    override fun resume() {
+        if (resumed) {
+            stageList().reversed().forEach { stage ->
+                stage.pause()
+            }
+            resumed = false
+        }
+        canRender = false
     }
 
     override fun dispose() {
