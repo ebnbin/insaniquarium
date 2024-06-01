@@ -14,20 +14,3 @@ dependencies {
   implementation Dependency.GDX_PLATFORM_NATIVES_DESKTOP
   implementation project(':core')
 }
-
-jar {
-  duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
-  dependsOn configurations.runtimeClasspath
-  from { configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) } }
-  manifest {
-    attributes 'Main-Class': project.mainClassName
-  }
-  doLast {
-    file(archiveFile).setExecutable(true, false)
-  }
-}
-
-// Equivalent to the jar task; here for compatibility with gdx-setup.
-tasks.register('dist') {
-  dependsOn 'jar'
-}
