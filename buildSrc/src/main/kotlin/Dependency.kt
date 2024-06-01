@@ -83,4 +83,7 @@ object Dependency {
     const val KTX_TILED = "io.github.libktx:ktx-tiled:${Version.KTX}"
     const val KTX_VIS = "io.github.libktx:ktx-vis:${Version.KTX}"
     const val KTX_VIS_STYLE = "io.github.libktx:ktx-vis-style:${Version.KTX}"
+
+    // https://github.com/google/gson
+    const val GSON = "com.google.code.gson:gson:2.11.0"
 }

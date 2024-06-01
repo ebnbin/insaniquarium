@@ -35,4 +35,5 @@ dependencies {
     api(Dependency.KTX_TILED)
     api(Dependency.KTX_VIS)
     api(Dependency.KTX_VIS_STYLE)
+    api(Dependency.GSON)
 }
