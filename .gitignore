@@ -4,7 +4,6 @@ gradle-app.setting
 /build/
 /android/build/
 /lwjgl2/build/
-/desktop/build/
 /html/build/
 /teavm/build/
 /ios/build/
