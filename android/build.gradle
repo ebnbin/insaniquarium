@@ -13,30 +13,11 @@ android {
       assets.setSrcDirs(['../assets'])
     }
   }
-  packagingOptions {
-		resources {
-			excludes += ['META-INF/robovm/ios/robovm.xml', 'META-INF/DEPENDENCIES.txt', 'META-INF/DEPENDENCIES',
-                   'META-INF/dependencies.txt', '**/*.gwt.xml']
-			pickFirsts += ['META-INF/LICENSE.txt', 'META-INF/LICENSE', 'META-INF/license.txt', 'META-INF/LGPL2.1',
-                     'META-INF/NOTICE.txt', 'META-INF/NOTICE', 'META-INF/notice.txt']
-		}
-  }
   defaultConfig {
-    applicationId 'dev.ebnbin.insaniquarium'
     minSdkVersion 19
     targetSdkVersion 34
     versionCode Version.VERSION_CODE
     versionName Version.VERSION
-    multiDexEnabled true
-  }
-  compileOptions {
-    coreLibraryDesugaringEnabled true
-  }
-  buildTypes {
-    release {
-      minifyEnabled true
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
   }
 }
 
@@ -48,7 +29,6 @@ repositories {
 configurations { natives }
 
 dependencies {
-  coreLibraryDesugaring Dependency.DESUGAR_JDK_LIBS
   implementation Dependency.GDX_BACKEND_ANDROID
   implementation project(':core')
 
@@ -92,26 +72,4 @@ tasks.register('copyAndroidNatives') {
 
 tasks.matching { it.name.contains("merge") && it.name.contains("JniLibFolders") }.configureEach { packageTask ->
   packageTask.dependsOn 'copyAndroidNatives'
-}
-
-tasks.register('run', Exec) {
-  def path
-  def localProperties = project.file("../local.properties")
-  if (localProperties.exists()) {
-    Properties properties = new Properties()
-    localProperties.withInputStream { instr ->
-      properties.load(instr)
-    }
-    def sdkDir = properties.getProperty('sdk.dir')
-    if (sdkDir) {
-      path = sdkDir
-    } else {
-      path = "$System.env.ANDROID_SDK_ROOT"
-    }
-  } else {
-    path = "$System.env.ANDROID_SDK_ROOT"
-  }
-
-  def adb = path + "/platform-tools/adb"
-  commandLine "$adb", 'shell', 'am', 'start', '-n', 'dev.ebnbin.insaniquarium/dev.ebnbin.insaniquarium.android.AndroidLauncher'
 }
