@@ -12,7 +12,6 @@ gradle-app.setting
 /ios-moe/build/
 /tool/build/
 /server/build/
-/kgdx/build/
 
 ## Java:
 *.class
