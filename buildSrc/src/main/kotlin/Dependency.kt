@@ -55,6 +55,9 @@ object Dependency {
     // https://github.com/libgdx/ashley
     const val ASHLEY = "com.badlogicgames.ashley:ashley:1.7.4"
 
+    // https://github.com/kotcrab/vis-ui
+    const val VIS_UI = "com.kotcrab.vis:vis-ui:1.5.3"
+
     // https://github.com/libktx/ktx
     const val KTX_ACTORS = "io.github.libktx:ktx-actors:${Version.KTX}"
     const val KTX_AI = "io.github.libktx:ktx-ai:${Version.KTX}"

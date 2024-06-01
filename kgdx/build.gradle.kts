@@ -10,6 +10,7 @@ dependencies {
     api(Dependency.GDX_FREETYPE)
     api(Dependency.GDX_AI)
     api(Dependency.ASHLEY)
+    api(Dependency.VIS_UI)
     api(Dependency.KTX_ACTORS)
     api(Dependency.KTX_AI)
     api(Dependency.KTX_APP)
@@ -32,6 +33,6 @@ dependencies {
     api(Dependency.KTX_SCENE2D)
     api(Dependency.KTX_STYLE)
     api(Dependency.KTX_TILED)
-//    api(Dependency.KTX_VIS)
-//    api(Dependency.KTX_VIS_STYLE)
+    api(Dependency.KTX_VIS)
+    api(Dependency.KTX_VIS_STYLE)
 }
