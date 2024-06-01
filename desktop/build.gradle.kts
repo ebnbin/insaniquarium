@@ -6,7 +6,10 @@ plugins {
 java.toolchain.languageVersion = JavaLanguageVersion.of(Version.JAVA)
 
 sourceSets.main.configure {
-    resources.srcDirs(rootProject.file("assets"))
+    resources.srcDirs(
+        rootProject.file("assets-kgdx"),
+        rootProject.file("assets"),
+    )
 }
 
 application.mainClass = "dev.ebnbin.insaniquarium.desktop.DesktopLauncher"

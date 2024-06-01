@@ -9,7 +9,10 @@ android {
     namespace = "dev.ebnbin.insaniquarium"
     compileSdk = 34
     sourceSets.named("main").configure {
-        assets.srcDirs(rootProject.file("assets"))
+        assets.srcDirs(
+            rootProject.file("assets-kgdx"),
+            rootProject.file("assets"),
+        )
     }
     defaultConfig {
         minSdk = 19

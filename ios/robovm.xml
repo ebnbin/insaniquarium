@@ -7,6 +7,13 @@
   <treeShaker>conservative</treeShaker>
   <resources>
     <resource>
+      <directory>../assets-kgdx</directory>
+      <includes>
+        <include>**</include>
+      </includes>
+      <skipPngCrush>true</skipPngCrush>
+    </resource>
+    <resource>
       <directory>../assets</directory>
       <includes>
         <include>**</include>
