@@ -7,9 +7,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.ScreenUtils
 import dev.ebnbin.kgdx.asset.AssetManager
 import dev.ebnbin.kgdx.asset.Assets
-import dev.ebnbin.kgdx.asset.FreeTypeAsset
 import dev.ebnbin.kgdx.dev.DevInfoStage
 import dev.ebnbin.kgdx.dev.DevMenuStage
+import dev.ebnbin.kgdx.util.fromJson
 import ktx.assets.disposeSafely
 
 private var singleton: Game? = null
@@ -18,6 +18,9 @@ val game: Game
     get() = requireNotNull(singleton)
 
 abstract class Game : ApplicationListener {
+    lateinit var kgdxAssets: Assets
+        private set
+
     internal lateinit var assetManager: AssetManager
 
     private lateinit var devInfoStage: DevInfoStage
@@ -45,6 +48,7 @@ abstract class Game : ApplicationListener {
 
     override fun create() {
         singleton = this
+        kgdxAssets = Gdx.files.internal("kgdx_assets.json").readString().fromJson(Assets::class.java)
         assetManager = AssetManager()
         devInfoStage = DevInfoStage()
         devMenuStage = DevMenuStage()
@@ -95,15 +99,5 @@ abstract class Game : ApplicationListener {
             WORLD_WIDTH = worldWidth
             WORLD_HEIGHT = worldHeight
         }
-
-        val ASSETS: Assets = Assets(
-            freeType = mapOf(
-                "kgdx_noto_sans_mono" to FreeTypeAsset(
-                    name = "kgdx_noto_sans_mono",
-                    extension = "ttf",
-                    fontFileName = "kgdx_noto_sans_mono",
-                ),
-            ),
-        )
     }
 }
