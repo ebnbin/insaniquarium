@@ -9,7 +9,6 @@ import dev.ebnbin.kgdx.asset.AssetManager
 import dev.ebnbin.kgdx.asset.Assets
 import dev.ebnbin.kgdx.dev.DevInfoStage
 import dev.ebnbin.kgdx.dev.DevMenuStage
-import dev.ebnbin.kgdx.util.fromJson
 import ktx.assets.disposeSafely
 
 private var singleton: Game? = null
@@ -18,10 +17,10 @@ val game: Game
     get() = requireNotNull(singleton)
 
 abstract class Game : ApplicationListener {
-    lateinit var kgdxAssets: Assets
-        private set
-
     internal lateinit var assetManager: AssetManager
+
+    val assets: Assets
+        get() = assetManager.assets
 
     private lateinit var devInfoStage: DevInfoStage
     private lateinit var devMenuStage: DevMenuStage
@@ -48,7 +47,6 @@ abstract class Game : ApplicationListener {
 
     override fun create() {
         singleton = this
-        kgdxAssets = Gdx.files.internal("kgdx_assets.json").readString().fromJson(Assets::class.java)
         assetManager = AssetManager()
         devInfoStage = DevInfoStage()
         devMenuStage = DevMenuStage()

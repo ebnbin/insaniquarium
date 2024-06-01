@@ -9,7 +9,7 @@ import dev.ebnbin.kgdx.game
 
 internal class DevInfoStage : Stage(FitViewport(Game.WORLD_WIDTH, Game.WORLD_HEIGHT)) {
     private val label: Label = run {
-        val freeTypeAsset = game.kgdxAssets.freeType("kgdx_noto_sans_mono")
+        val freeTypeAsset = game.assets.freeType("kgdx_noto_sans_mono")
         Label(null, Label.LabelStyle(freeTypeAsset.get(), null)).also {
             it.setFillParent(true)
             it.setAlignment(Align.topRight)
