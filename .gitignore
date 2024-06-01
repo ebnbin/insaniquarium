@@ -42,82 +42,11 @@ com_crashlytics_export_strings.xml
 /ios/IOSLauncher.app
 /ios/IOSLauncher.app.dSYM
 
-## GWT:
-/html/war/
-/html/gwt-unitCache/
-.apt_generated/
-/html/war/WEB-INF/deploy/
-/html/war/WEB-INF/classes/
-.gwt/
-gwt-unitCache/
-www-test/
-.gwt-tmp/
-
-## TeaVM:
-# Not sure yet...
-
 ## IntelliJ, Android Studio:
 .idea/
 *.ipr
 *.iws
 *.iml
-
-## NetBeans:
-
-/nbproject/private/
-/android/nbproject/private/
-/core/nbproject/private/
-/lwjgl2/nbproject/private/
-/desktop/nbproject/private/
-/html/nbproject/private/
-/teavm/nbproject/private/
-/ios/nbproject/private/
-/ios-moe/nbproject/private/
-/tool/nbproject/private/
-/server/nbproject/private/
-/kgdx/nbproject/private/
-
-/nbbuild/
-/android/nbbuild/
-/core/nbbuild/
-/lwjgl2/nbbuild/
-/desktop/nbbuild/
-/html/nbbuild/
-/teavm/nbbuild/
-/ios/nbbuild/
-/ios-moe/nbbuild/
-/tool/nbbuild/
-/server/nbbuild/
-/kgdx/nbbuild/
-
-/dist/
-/android/dist/
-/core/dist/
-/lwjgl2/dist/
-/desktop/dist/
-/html/dist/
-/teavm/dist/
-/ios/dist/
-/ios-moe/dist/
-/tool/dist/
-/server/dist/
-/kgdx/dist/
-
-/nbdist/
-/android/nbdist/
-/core/nbdist/
-/lwjgl2/nbdist/
-/desktop/nbdist/
-/html/nbdist/
-/teavm/nbdist/
-/ios/nbdist/
-/ios-moe/nbdist/
-/tool/nbdist/
-/server/nbdist/
-/kgdx/nbdist/
-
-nbactions.xml
-nb-configuration.xml
 
 ## OS-Specific:
 .DS_Store
