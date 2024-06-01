@@ -3,7 +3,9 @@ package dev.ebnbin.kgdx
 import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
+import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.ScreenUtils
+import dev.ebnbin.kgdx.dev.DevStage
 import ktx.assets.disposeSafely
 
 private var singleton: Game? = null
@@ -12,6 +14,8 @@ val game: Game
     get() = requireNotNull(singleton)
 
 abstract class Game : ApplicationListener {
+    private lateinit var devStage: DevStage
+
     private var screen: Screen? = null
 
     fun setScreen(createScreen: (() -> Screen)?) {
@@ -24,23 +28,31 @@ abstract class Game : ApplicationListener {
         }
     }
 
+    private fun stageList(): List<Stage> {
+        val stageList = mutableListOf<Stage>()
+        screen?.stageList?.let { stageList.addAll(it) }
+        stageList.add(devStage)
+        return stageList
+    }
+
     override fun create() {
         singleton = this
+        devStage = DevStage()
     }
 
     override fun resize(width: Int, height: Int) {
-        screen?.stageList?.forEach { stage ->
+        stageList().forEach { stage ->
             stage.viewport.update(width, height, true)
         }
     }
 
     override fun render() {
         val deltaTime = Gdx.graphics.deltaTime
-        screen?.stageList?.forEach { stage ->
+        stageList().forEach { stage ->
             stage.act(deltaTime)
         }
         ScreenUtils.clear(Color.CLEAR)
-        screen?.stageList?.forEach { stage ->
+        stageList().forEach { stage ->
             stage.viewport.apply(true)
             stage.draw()
         }
@@ -54,6 +66,7 @@ abstract class Game : ApplicationListener {
 
     override fun dispose() {
         setScreen(null)
+        devStage.disposeSafely()
         singleton = null
     }
 }
