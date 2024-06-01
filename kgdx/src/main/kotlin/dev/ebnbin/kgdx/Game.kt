@@ -69,4 +69,19 @@ abstract class Game : ApplicationListener {
         devStage.disposeSafely()
         singleton = null
     }
+
+    companion object {
+        var WORLD_WIDTH = 0f
+            private set
+        var WORLD_HEIGHT = 0f
+            private set
+
+        fun init(
+            worldWidth: Float,
+            worldHeight: Float,
+        ) {
+            WORLD_WIDTH = worldWidth
+            WORLD_HEIGHT = worldHeight
+        }
+    }
 }

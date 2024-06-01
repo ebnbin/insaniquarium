@@ -15,4 +15,13 @@ class Insaniquarium : Game() {
             Screen(stageList = listOf(AquariumStage()))
         }
     }
+
+    companion object {
+        init {
+            init(
+                worldWidth = 1280f,
+                worldHeight = 720f,
+            )
+        }
+    }
 }
