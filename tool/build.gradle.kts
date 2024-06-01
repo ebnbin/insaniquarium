@@ -11,4 +11,5 @@ dependencies {
     implementation(project(":core"))
     implementation(Dependency.GDX_BACKEND_HEADLESS)
     implementation(Dependency.GDX_PLATFORM_NATIVES_DESKTOP)
+    implementation(Dependency.GDX_TOOLS)
 }

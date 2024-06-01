@@ -15,6 +15,7 @@ dependencies {
     implementation(project(":core"))
     implementation(Dependency.GDX_BACKEND_LWJGL3)
     implementation(Dependency.GDX_PLATFORM_NATIVES_DESKTOP)
+    implementation(Dependency.GDX_BOX2D_PLATFORM_NATIVES_DESKTOP)
     implementation(Dependency.GDX_FREETYPE_PLATFORM_NATIVES_DESKTOP)
 }
 
