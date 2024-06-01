@@ -32,7 +32,6 @@ object Dependency {
 
     // https://maven.google.com/web/index.html
     const val GRADLE = "com.android.tools.build:gradle:8.2.2"
-    const val DESUGAR_JDK_LIBS = "com.android.tools:desugar_jdk_libs:2.0.4"
 
     // https://github.com/MobiVM/robovm
     const val ROBOVM_GRADLE_PLUGIN = "com.mobidevelop.robovm:robovm-gradle-plugin:${Version.ROBOVM}"
