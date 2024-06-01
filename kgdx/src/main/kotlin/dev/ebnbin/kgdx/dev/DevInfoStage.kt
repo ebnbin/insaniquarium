@@ -8,7 +8,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport
 import dev.ebnbin.kgdx.Game
 import ktx.assets.disposeSafely
 
-internal class DevStage : Stage(FitViewport(Game.WORLD_WIDTH, Game.WORLD_HEIGHT)) {
+internal class DevInfoStage : Stage(FitViewport(Game.WORLD_WIDTH, Game.WORLD_HEIGHT)) {
     private val bitmapFont: BitmapFont = BitmapFont()
 
     private val label: Label = Label(null, Label.LabelStyle(bitmapFont, null)).also {
