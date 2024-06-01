@@ -1,45 +1,4 @@
-## Gradle:
-.gradle/
-gradle-app.setting
-/build/
-/lwjgl2/build/
-/html/build/
-/teavm/build/
-/ios-moe/build/
-/server/build/
-
-## Java:
-*.class
-*.war
-*.ear
-hs_err_pid*
-.attach_pid*
-
-## Android:
-/android/gen/
-/android/out/
-local.properties
-com_crashlytics_export_strings.xml
-
-## iOS:
-/ios/xcode/*.xcodeproj/*
-!/ios/xcode/*.xcodeproj/xcshareddata
-!/ios/xcode/*.xcodeproj/project.pbxproj
-/ios/xcode/native/
-/ios/IOSLauncher.app
-/ios/IOSLauncher.app.dSYM
-
-## IntelliJ, Android Studio:
-.idea/
-*.ipr
-*.iws
-*.iml
-
-## OS-Specific:
 .DS_Store
-Thumbs.db
-
-## Miscellaneous:
-*~
-*.*#
-*#*#
+/.gradle/
+/.idea/
+/local.properties
