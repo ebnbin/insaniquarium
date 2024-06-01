@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.ScreenUtils
 import dev.ebnbin.kgdx.asset.AssetManager
+import dev.ebnbin.kgdx.asset.Assets
+import dev.ebnbin.kgdx.asset.FreeTypeAsset
 import dev.ebnbin.kgdx.dev.DevInfoStage
 import dev.ebnbin.kgdx.dev.DevMenuStage
 import ktx.assets.disposeSafely
@@ -93,5 +95,15 @@ abstract class Game : ApplicationListener {
             WORLD_WIDTH = worldWidth
             WORLD_HEIGHT = worldHeight
         }
+
+        val ASSETS: Assets = Assets(
+            freeType = mapOf(
+                "kgdx_noto_sans_mono" to FreeTypeAsset(
+                    name = "kgdx_noto_sans_mono",
+                    extension = "ttf",
+                    fontFileName = "kgdx_noto_sans_mono",
+                ),
+            ),
+        )
     }
 }
