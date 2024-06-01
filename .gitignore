@@ -5,7 +5,6 @@ gradle-app.setting
 /lwjgl2/build/
 /html/build/
 /teavm/build/
-/ios/build/
 /ios-moe/build/
 /tool/build/
 /server/build/
@@ -22,9 +21,6 @@ hs_err_pid*
 /android/out/
 local.properties
 com_crashlytics_export_strings.xml
-
-## Robovm:
-/ios/robovm-build/
 
 ## iOS:
 /ios/xcode/*.xcodeproj/*
