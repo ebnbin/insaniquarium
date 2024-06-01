@@ -6,7 +6,6 @@ gradle-app.setting
 /html/build/
 /teavm/build/
 /ios-moe/build/
-/tool/build/
 /server/build/
 
 ## Java:
