@@ -13,15 +13,6 @@ apply plugin: 'kotlin'
 
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(Version.JAVA))
 
-ext {
-  mainClassName = "dev.ebnbin.insaniquarium.ios.IOSLauncher"
-}
-
-launchIPhoneSimulator.dependsOn build
-launchIPadSimulator.dependsOn build
-launchIOSDevice.dependsOn build
-createIPA.dependsOn build
-
 dependencies {
   implementation Dependency.GDX_BACKEND_ROBOVM
   implementation Dependency.GDX_FREETYPE_PLATFORM_NATIVES_IOS
