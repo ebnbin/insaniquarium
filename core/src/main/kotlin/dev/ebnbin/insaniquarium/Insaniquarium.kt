@@ -4,6 +4,10 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.ScreenUtils
 import dev.ebnbin.kgdx.Game
+import dev.ebnbin.kgdx.game
+
+val insaniquarium: Insaniquarium
+    get() = game as Insaniquarium
 
 class Insaniquarium : Game() {
     private lateinit var spriteBatch: SpriteBatch
