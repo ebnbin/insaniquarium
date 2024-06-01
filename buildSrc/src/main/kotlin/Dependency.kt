@@ -5,6 +5,9 @@ object Dependency {
 
         // https://github.com/MobiVM/robovm
         const val ROBOVM = "2.3.21"
+
+        // https://github.com/libktx/ktx
+        const val KTX = "1.12.1-rc1"
     }
 
     // https://github.com/JetBrains/kotlin
@@ -51,4 +54,30 @@ object Dependency {
 
     // https://github.com/libgdx/ashley
     const val ASHLEY = "com.badlogicgames.ashley:ashley:1.7.4"
+
+    // https://github.com/libktx/ktx
+    const val KTX_ACTORS = "io.github.libktx:ktx-actors:${Version.KTX}"
+    const val KTX_AI = "io.github.libktx:ktx-ai:${Version.KTX}"
+    const val KTX_APP = "io.github.libktx:ktx-app:${Version.KTX}"
+    const val KTX_ASHLEY = "io.github.libktx:ktx-ashley:${Version.KTX}"
+    const val KTX_ASSETS = "io.github.libktx:ktx-assets:${Version.KTX}"
+    const val KTX_ASSETS_ASYNC = "io.github.libktx:ktx-assets-async:${Version.KTX}"
+    const val KTX_ASYNC = "io.github.libktx:ktx-async:${Version.KTX}"
+    const val KTX_BOX2D = "io.github.libktx:ktx-box2d:${Version.KTX}"
+    const val KTX_COLLECTIONS = "io.github.libktx:ktx-collections:${Version.KTX}"
+    const val KTX_FREETYPE = "io.github.libktx:ktx-freetype:${Version.KTX}"
+    const val KTX_FREETYPE_ASYNC = "io.github.libktx:ktx-freetype-async:${Version.KTX}"
+    const val KTX_GRAPHICS = "io.github.libktx:ktx-graphics:${Version.KTX}"
+    const val KTX_I18N = "io.github.libktx:ktx-i18n:${Version.KTX}"
+    const val KTX_INJECT = "io.github.libktx:ktx-inject:${Version.KTX}"
+    const val KTX_JSON = "io.github.libktx:ktx-json:${Version.KTX}"
+    const val KTX_LOG = "io.github.libktx:ktx-log:${Version.KTX}"
+    const val KTX_MATH = "io.github.libktx:ktx-math:${Version.KTX}"
+    const val KTX_PREFERENCES = "io.github.libktx:ktx-preferences:${Version.KTX}"
+    const val KTX_REFLECT = "io.github.libktx:ktx-reflect:${Version.KTX}"
+    const val KTX_SCENE2D = "io.github.libktx:ktx-scene2d:${Version.KTX}"
+    const val KTX_STYLE = "io.github.libktx:ktx-style:${Version.KTX}"
+    const val KTX_TILED = "io.github.libktx:ktx-tiled:${Version.KTX}"
+    const val KTX_VIS = "io.github.libktx:ktx-vis:${Version.KTX}"
+    const val KTX_VIS_STYLE = "io.github.libktx:ktx-vis-style:${Version.KTX}"
 }
