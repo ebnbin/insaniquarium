@@ -1,11 +1,11 @@
 package dev.ebnbin.insaniquarium
 
-import com.badlogic.gdx.ApplicationAdapter
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.utils.ScreenUtils
+import dev.ebnbin.kgdx.Game
 
-class Insaniquarium : ApplicationAdapter() {
+class Insaniquarium : Game() {
     private lateinit var spriteBatch: SpriteBatch
     private lateinit var texture: Texture
 
