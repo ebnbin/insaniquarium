@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.ScreenUtils
+import dev.ebnbin.kgdx.asset.AssetManager
 import dev.ebnbin.kgdx.dev.DevInfoStage
 import dev.ebnbin.kgdx.dev.DevMenuStage
 import ktx.assets.disposeSafely
@@ -15,6 +16,8 @@ val game: Game
     get() = requireNotNull(singleton)
 
 abstract class Game : ApplicationListener {
+    private lateinit var assetManager: AssetManager
+
     private lateinit var devInfoStage: DevInfoStage
     private lateinit var devMenuStage: DevMenuStage
 
@@ -40,6 +43,7 @@ abstract class Game : ApplicationListener {
 
     override fun create() {
         singleton = this
+        assetManager = AssetManager()
         devInfoStage = DevInfoStage()
         devMenuStage = DevMenuStage()
     }
@@ -72,6 +76,7 @@ abstract class Game : ApplicationListener {
         setScreen(null)
         devMenuStage.disposeSafely()
         devInfoStage.disposeSafely()
+        assetManager.disposeSafely()
         singleton = null
     }
 
