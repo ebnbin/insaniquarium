@@ -16,7 +16,7 @@ val game: Game
     get() = requireNotNull(singleton)
 
 abstract class Game : ApplicationListener {
-    private lateinit var assetManager: AssetManager
+    internal lateinit var assetManager: AssetManager
 
     private lateinit var devInfoStage: DevInfoStage
     private lateinit var devMenuStage: DevMenuStage
