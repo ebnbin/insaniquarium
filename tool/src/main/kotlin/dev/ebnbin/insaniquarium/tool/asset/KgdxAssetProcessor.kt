@@ -5,7 +5,7 @@ import dev.ebnbin.kgdx.asset.FreeTypeAsset
 import dev.ebnbin.kgdx.util.toJson
 import java.io.File
 
-object AssetProcessor {
+object KgdxAssetProcessor {
     fun process() {
         val kgdxAssets = Assets(
             freeType = mapOf(
