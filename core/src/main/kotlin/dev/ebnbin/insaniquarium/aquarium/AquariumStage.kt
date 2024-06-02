@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Pixmap
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import dev.ebnbin.kgdx.LifecycleStage
+import dev.ebnbin.kgdx.util.internalAsset
 import ktx.assets.disposeSafely
 import java.io.ByteArrayOutputStream
 import java.util.zip.ZipInputStream
@@ -20,7 +21,7 @@ class AquariumStage : LifecycleStage() {
     }
 
     private fun readTextureFromZip(imageFileName: String): Texture {
-        val zipFileHandle = Gdx.files.internal("Insaniquarium Deluxe.zip")
+        val zipFileHandle = Gdx.files.internalAsset("Insaniquarium Deluxe.zip")
         ZipInputStream(zipFileHandle.read()).use { zipInputStream ->
             var zipEntry = zipInputStream.nextEntry
             while (zipEntry != null) {

@@ -18,6 +18,6 @@ object KgdxAssetProcessor {
                 ),
             ),
         )
-        File("../assets-kgdx/kgdx_assets.json").writeText(kgdxAssets.toJson())
+        File("../assets-kgdx/assets/kgdx_assets.json").writeText(kgdxAssets.toJson())
     }
 }

@@ -7,6 +7,6 @@ import java.io.File
 object AssetProcessor {
     fun process() {
         val assets = Assets()
-        File("../assets/assets.json").writeText(assets.toJson())
+        File("../assets/assets/assets.json").writeText(assets.toJson())
     }
 }
