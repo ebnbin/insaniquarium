@@ -12,7 +12,13 @@ data class Assets(
         return freeType.getValue(name)
     }
 
-    operator fun plus(other: Assets): Assets {
+    internal fun all(): Set<Asset<*>> {
+        val set = mutableSetOf<Asset<*>>()
+        set.addAll(freeType.values)
+        return set
+    }
+
+    internal operator fun plus(other: Assets): Assets {
         return Assets(
             freeType = freeType + other.freeType,
         )
