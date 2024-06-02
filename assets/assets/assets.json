@@ -5,6 +5,31 @@
       "name": "aquarium_a",
       "extension": "png",
       "file_type": "local"
+    },
+    "aquarium_b": {
+      "name": "aquarium_b",
+      "extension": "png",
+      "file_type": "local"
+    },
+    "aquarium_c": {
+      "name": "aquarium_c",
+      "extension": "png",
+      "file_type": "local"
+    },
+    "aquarium_d": {
+      "name": "aquarium_d",
+      "extension": "png",
+      "file_type": "local"
+    },
+    "aquarium_e": {
+      "name": "aquarium_e",
+      "extension": "png",
+      "file_type": "local"
+    },
+    "aquarium_f": {
+      "name": "aquarium_f",
+      "extension": "png",
+      "file_type": "local"
     }
   }
 }

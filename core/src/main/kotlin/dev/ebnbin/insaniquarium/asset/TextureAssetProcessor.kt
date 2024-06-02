@@ -67,6 +67,26 @@ object TextureAssetProcessor {
             name = "aquarium_a",
             imageFileName = "aquarium1.jpg",
         ),
+        Aquarium(
+            name = "aquarium_b",
+            imageFileName = "aquarium4.jpg",
+        ),
+        Aquarium(
+            name = "aquarium_c",
+            imageFileName = "aquarium3.jpg",
+        ),
+        Aquarium(
+            name = "aquarium_d",
+            imageFileName = "aquarium2.jpg",
+        ),
+        Aquarium(
+            name = "aquarium_e",
+            imageFileName = "aquarium6.jpg",
+        ),
+        Aquarium(
+            name = "aquarium_f",
+            imageFileName = "Aquarium5.jpg",
+        ),
     )
 
     fun process(fileName: String) {
