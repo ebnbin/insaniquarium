@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import dev.ebnbin.kgdx.game
+import dev.ebnbin.kgdx.util.colorMarkup
 import ktx.assets.disposeSafely
 import ktx.graphics.copy
 
@@ -19,7 +20,9 @@ internal class DevLabel(
 
     override fun act(delta: Float) {
         super.act(delta)
-        val text = " ${entry.key}=${entry.getValue(delta)} "
+        val keyText = "${entry.key}=".colorMarkup(Color.LIGHT_GRAY)
+        val valueText = entry.getValue(delta)
+        val text = " $keyText$valueText "
         setText(text)
     }
 

@@ -26,4 +26,9 @@ class FreeTypeAsset(
         get() = FreetypeFontLoader.FreeTypeFontLoaderParameter().also { parameters ->
             parameters.fontFileName = "$directory/$fontFileName.$extension"
         }
+
+    override fun loaded(asset: BitmapFont) {
+        super.loaded(asset)
+        asset.data.markupEnabled = true
+    }
 }
