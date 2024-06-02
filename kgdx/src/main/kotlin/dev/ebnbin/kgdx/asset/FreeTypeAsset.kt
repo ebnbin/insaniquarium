@@ -9,12 +9,14 @@ import com.google.gson.annotations.SerializedName
 class FreeTypeAsset(
     name: String,
     extension: String,
+    fileType: FileType,
     @Expose
     @SerializedName("font_file_name")
     val fontFileName: String,
 ) : Asset<BitmapFont>(
     name = name,
     extension = extension,
+    fileType = fileType,
 ) {
     override val directory: String
         get() = "freetype"
@@ -24,7 +26,7 @@ class FreeTypeAsset(
 
     override val parameters: AssetLoaderParameters<BitmapFont>
         get() = FreetypeFontLoader.FreeTypeFontLoaderParameter().also { parameters ->
-            parameters.fontFileName = "$directory/$fontFileName.$extension"
+            parameters.fontFileName = "${fileType.serializedName}:$directory/$fontFileName.$extension"
         }
 
     override fun loaded(asset: BitmapFont) {

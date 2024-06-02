@@ -7,9 +7,11 @@ import com.badlogic.gdx.graphics.Texture
 class TextureAsset(
     name: String,
     extension: String,
+    fileType: FileType,
 ) : Asset<Texture>(
     name = name,
     extension = extension,
+    fileType = fileType,
 ) {
     override val directory: String
         get() = "texture"

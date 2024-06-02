@@ -3,7 +3,8 @@
     "kgdx_noto_sans_mono": {
       "font_file_name": "kgdx_noto_sans_mono",
       "name": "kgdx_noto_sans_mono",
-      "extension": "ttf"
+      "extension": "ttf",
+      "file_type": "internal"
     }
   },
   "texture": {}
