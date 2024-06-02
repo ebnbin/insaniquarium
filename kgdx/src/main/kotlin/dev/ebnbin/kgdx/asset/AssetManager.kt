@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.assets.AssetDescriptor
 import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.files.FileHandle
+import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.util.fromJson
 import dev.ebnbin.kgdx.util.internalAsset
 import dev.ebnbin.kgdx.util.localAsset
@@ -11,9 +12,10 @@ import ktx.freetype.registerFreeTypeFontLoaders
 
 typealias GdxAssetManager = com.badlogic.gdx.assets.AssetManager
 
-internal class AssetManager : GdxAssetManager(AssetFileHandleResolver) {
+internal class AssetManager : GdxAssetManager(AssetFileHandleResolver), AssetLoaderRegistry {
     init {
         registerFreeTypeFontLoaders()
+        game.registerAssetLoaders(this, fileHandleResolver)
     }
 
     val assets: Assets = listOf("kgdx_assets.json", "assets.json")

@@ -2,8 +2,10 @@ package dev.ebnbin.kgdx
 
 import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
+import dev.ebnbin.kgdx.asset.AssetLoaderRegistry
 import dev.ebnbin.kgdx.asset.AssetManager
 import dev.ebnbin.kgdx.asset.Assets
 import dev.ebnbin.kgdx.dev.DevInfoStage
@@ -71,6 +73,9 @@ abstract class Game : ApplicationListener {
         devMessageStage = DevMessageStage()
         devMenuStage = DevMenuStage()
         canRender = true
+    }
+
+    open fun registerAssetLoaders(assetLoaderRegistry: AssetLoaderRegistry, resolver: FileHandleResolver) {
     }
 
     override fun resize(width: Int, height: Int) {

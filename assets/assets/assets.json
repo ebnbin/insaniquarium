@@ -1,4 +1,10 @@
 {
   "free_type": {},
-  "texture": {}
+  "texture": {
+    "aquarium_a": {
+      "name": "aquarium_a",
+      "extension": "png",
+      "file_type": "local"
+    }
+  }
 }
