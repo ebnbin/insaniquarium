@@ -11,16 +11,17 @@ import ktx.assets.disposeSafely
 import ktx.graphics.copy
 
 internal class DevLabel(
-    private val entry: Entry,
+    val entry: Entry,
 ) : Label(null, LabelStyle(game.assets.freeType("kgdx_noto_sans_mono").get(), null)) {
     data class Entry(
-        val key: String,
+        val key: Any,
+        val keyToString: (key: Any) -> String = { "$it" },
         val getValue: (delta: Float) -> String,
     )
 
     override fun act(delta: Float) {
         super.act(delta)
-        val keyText = "${entry.key}=".colorMarkup(Color.LIGHT_GRAY)
+        val keyText = "${entry.keyToString(entry.key)}=".colorMarkup(Color.LIGHT_GRAY)
         val valueText = entry.getValue(delta)
         val text = " $keyText$valueText "
         setText(text)

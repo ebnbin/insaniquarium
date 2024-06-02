@@ -8,6 +8,7 @@ import dev.ebnbin.kgdx.asset.AssetManager
 import dev.ebnbin.kgdx.asset.Assets
 import dev.ebnbin.kgdx.dev.DevInfoStage
 import dev.ebnbin.kgdx.dev.DevMenuStage
+import dev.ebnbin.kgdx.dev.DevMessageStage
 import ktx.assets.disposeSafely
 
 private var singleton: Game? = null
@@ -26,6 +27,7 @@ abstract class Game : ApplicationListener {
         get() = assetManager.assets
 
     private lateinit var devInfoStage: DevInfoStage
+    private lateinit var devMessageStage: DevMessageStage
     private lateinit var devMenuStage: DevMenuStage
 
     private var screen: Screen? = null
@@ -57,6 +59,7 @@ abstract class Game : ApplicationListener {
         val stageList = mutableListOf<LifecycleStage>()
         screen?.stageList?.let { stageList.addAll(it) }
         stageList.add(devInfoStage)
+        stageList.add(devMessageStage)
         stageList.add(devMenuStage)
         return stageList
     }
@@ -65,6 +68,7 @@ abstract class Game : ApplicationListener {
         singleton = this
         assetManager = AssetManager()
         devInfoStage = DevInfoStage()
+        devMessageStage = DevMessageStage()
         devMenuStage = DevMenuStage()
         canRender = true
     }
@@ -111,9 +115,14 @@ abstract class Game : ApplicationListener {
     override fun dispose() {
         setScreen(null)
         devMenuStage.disposeSafely()
+        devMessageStage.disposeSafely()
         devInfoStage.disposeSafely()
         assetManager.disposeSafely()
         singleton = null
+    }
+
+    fun addDevMessage(message: String) {
+        devMessageStage.addMessage(message)
     }
 
     companion object {
