@@ -44,13 +44,7 @@ sealed class Asset<T>(
     }
 
     fun get(): T {
-        val assetDescriptor = createAssetDescriptor()
-        return if (game.assetManager.isLoaded(assetDescriptor)) {
-            game.assetManager.get(assetDescriptor)
-        } else {
-            game.assetManager.load(assetDescriptor)
-            game.assetManager.finishLoadingAsset(assetDescriptor)
-        }
+        return game.assetManager.get(this)
     }
 
     internal open fun loaded(asset: T) {
