@@ -2,14 +2,15 @@ package dev.ebnbin.insaniquarium.asset
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Pixmap
-import com.badlogic.gdx.graphics.PixmapIO
 import dev.ebnbin.kgdx.asset.Asset
 import dev.ebnbin.kgdx.asset.TextureAsset
+import dev.ebnbin.kgdx.util.createPixmap
+import dev.ebnbin.kgdx.util.drawSubPixmap
 import dev.ebnbin.kgdx.util.internalAsset
 import dev.ebnbin.kgdx.util.localAsset
+import dev.ebnbin.kgdx.util.write
 import ktx.assets.disposeSafely
 import java.io.ByteArrayOutputStream
-import java.util.zip.Deflater
 import java.util.zip.ZipInputStream
 
 object TextureAssetProcessor {
@@ -24,7 +25,13 @@ object TextureAssetProcessor {
         name = name,
     ) {
         override fun process(): TextureAsset {
-            readPixmapFromZip(imageFileName).writeToLocal(name)
+            val inputPixmap = readPixmapFromZip(imageFileName)
+            val outputPixmap = createPixmap(1280, 720)
+                .drawSubPixmap(inputPixmap,    0,    0,   32,  480,    0,    0,  160,  720)
+                .drawSubPixmap(inputPixmap,   32,    0,  576,  480,  160,    0,  960,  720)
+                .drawSubPixmap(inputPixmap,  608,    0,   32,  480, 1120,    0,  160,  720)
+            inputPixmap.disposeSafely()
+            outputPixmap.writeToLocal(name)
             return TextureAsset(
                 name = name,
                 extension = "png",
@@ -48,7 +55,7 @@ object TextureAssetProcessor {
                         }
                         zipInputStream.closeEntry()
                         val byteArray = byteArrayOutputStream.toByteArray()
-                        Pixmap(byteArray, 0, byteArray.size)
+                        createPixmap(byteArray)
                     }
                 }
                 zipInputStream.closeEntry()
@@ -59,8 +66,8 @@ object TextureAssetProcessor {
     }
 
     private fun Pixmap.writeToLocal(name: String) {
-        PixmapIO.writePNG(Gdx.files.localAsset("texture/$name.png"), this, Deflater.NO_COMPRESSION, false)
-        disposeSafely()
+        write(Gdx.files.localAsset("texture/$name.png"))
+            .disposeSafely()
     }
 
     private val PROCESSOR_LIST: List<Processor> = listOf(
