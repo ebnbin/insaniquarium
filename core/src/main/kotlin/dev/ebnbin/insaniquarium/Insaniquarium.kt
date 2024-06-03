@@ -2,6 +2,7 @@ package dev.ebnbin.insaniquarium
 
 import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.graphics.Texture
+import dev.ebnbin.insaniquarium.aquarium.Aquarium
 import dev.ebnbin.insaniquarium.aquarium.AquariumStage
 import dev.ebnbin.insaniquarium.asset.InsaniquariumTextureLoader
 import dev.ebnbin.kgdx.Game
@@ -15,9 +16,12 @@ val insaniquarium: Insaniquarium
 class Insaniquarium : Game() {
     override fun create() {
         super.create()
-        setScreen {
-            Screen(stageList = listOf(AquariumStage()))
-        }
+        loadScreen(screenCreator = Screen.Creator(
+            assetSet = Aquarium.entries.mapTo(mutableSetOf()) { it.textureAsset },
+            createStageList = {
+                listOf(AquariumStage())
+            },
+        ))
     }
 
     override fun registerAssetLoaders(assetLoaderRegistry: AssetLoaderRegistry, resolver: FileHandleResolver) {

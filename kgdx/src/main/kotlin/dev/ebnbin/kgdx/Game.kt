@@ -6,6 +6,7 @@ import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
 import dev.ebnbin.kgdx.asset.AssetLoaderRegistry
+import dev.ebnbin.kgdx.asset.AssetLoadingStage
 import dev.ebnbin.kgdx.asset.AssetManager
 import dev.ebnbin.kgdx.asset.Assets
 import dev.ebnbin.kgdx.dev.DevInfoStage
@@ -28,38 +29,41 @@ abstract class Game : ApplicationListener {
     val assets: Assets
         get() = assetManager.assets
 
+    private lateinit var assetLoadingStage: AssetLoadingStage
     private lateinit var devInfoStage: DevInfoStage
     private lateinit var devMessageStage: DevMessageStage
     private lateinit var devMenuStage: DevMenuStage
 
-    private var screen: Screen? = null
+    internal var screen: Screen? = null
+        set(value) {
+            val resumed = resumed
+            if (resumed) {
+                field?.stageList?.reversed()?.forEach { stage ->
+                    stage.pause()
+                }
+            }
+            field?.stageList?.reversed()?.forEach { stage ->
+                stage.disposeSafely()
+            }
+            field = value
+            value?.stageList?.forEach { stage ->
+                stage.viewport.update(Gdx.graphics.width, Gdx.graphics.height, true)
+            }
+            if (resumed) {
+                value?.stageList?.forEach { stage ->
+                    stage.resume()
+                }
+            }
+        }
 
-    fun setScreen(createScreen: (() -> Screen)?) {
-        val oldScreen = screen
-        val resumed = resumed
-        if (resumed) {
-            oldScreen?.stageList?.reversed()?.forEach { stage ->
-                stage.pause()
-            }
-        }
-        oldScreen?.stageList?.reversed()?.forEach { stage ->
-            stage.disposeSafely()
-        }
-        val newScreen = createScreen?.invoke()
-        screen = newScreen
-        newScreen?.stageList?.forEach { stage ->
-            stage.viewport.update(Gdx.graphics.width, Gdx.graphics.height, true)
-        }
-        if (resumed) {
-            newScreen?.stageList?.forEach { stage ->
-                stage.resume()
-            }
-        }
+    fun loadScreen(screenCreator: Screen.Creator) {
+        assetLoadingStage.load(screenCreator)
     }
 
     private fun stageList(): List<LifecycleStage> {
         val stageList = mutableListOf<LifecycleStage>()
         screen?.stageList?.let { stageList.addAll(it) }
+        stageList.add(assetLoadingStage)
         stageList.add(devInfoStage)
         stageList.add(devMessageStage)
         stageList.add(devMenuStage)
@@ -69,6 +73,7 @@ abstract class Game : ApplicationListener {
     override fun create() {
         singleton = this
         assetManager = AssetManager()
+        assetLoadingStage = AssetLoadingStage()
         devInfoStage = DevInfoStage()
         devMessageStage = DevMessageStage()
         devMenuStage = DevMenuStage()
@@ -118,10 +123,11 @@ abstract class Game : ApplicationListener {
     }
 
     override fun dispose() {
-        setScreen(null)
+        screen = null
         devMenuStage.disposeSafely()
         devMessageStage.disposeSafely()
         devInfoStage.disposeSafely()
+        assetLoadingStage.disposeSafely()
         assetManager.disposeSafely()
         singleton = null
     }

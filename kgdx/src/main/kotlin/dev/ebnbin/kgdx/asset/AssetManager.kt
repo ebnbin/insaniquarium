@@ -8,6 +8,7 @@ import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.util.fromJson
 import dev.ebnbin.kgdx.util.internalAsset
 import dev.ebnbin.kgdx.util.localAsset
+import ktx.assets.unloadSafely
 import ktx.freetype.registerFreeTypeFontLoaders
 
 typealias GdxAssetManager = com.badlogic.gdx.assets.AssetManager
@@ -41,6 +42,14 @@ internal class AssetManager : GdxAssetManager(AssetFileHandleResolver), AssetLoa
 
     fun <T> get(asset: Asset<T>): T {
         return get(assetDescriptor(asset))
+    }
+
+    fun <T> load(asset: Asset<T>) {
+        load(assetDescriptor(asset))
+    }
+
+    fun <T> unload(asset: Asset<T>) {
+        unloadSafely(assetDescriptor(asset).fileName)
     }
 
     override fun unload(fileName: String?) {
