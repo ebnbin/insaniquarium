@@ -10,6 +10,7 @@ class FreeTypeAsset(
     name: String,
     extension: String,
     fileType: FileType,
+    preload: Boolean,
     @Expose
     @SerializedName("font_file_name")
     val fontFileName: String,
@@ -17,6 +18,7 @@ class FreeTypeAsset(
     name = name,
     extension = extension,
     fileType = fileType,
+    preload = preload,
 ) {
     override val directory: String
         get() = "freetype"

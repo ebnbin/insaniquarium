@@ -17,6 +17,9 @@ sealed class Asset<T>(
     @Expose
     @SerializedName("file_type")
     val fileType: FileType,
+    @Expose
+    @SerializedName("preload")
+    val preload: Boolean,
 ) {
     enum class FileType(override val serializedName: String) : SerializableEnum {
         INTERNAL("internal"),

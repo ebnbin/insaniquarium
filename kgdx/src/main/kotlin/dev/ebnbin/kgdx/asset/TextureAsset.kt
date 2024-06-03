@@ -8,10 +8,12 @@ class TextureAsset(
     name: String,
     extension: String,
     fileType: FileType,
+    preload: Boolean,
 ) : Asset<Texture>(
     name = name,
     extension = extension,
     fileType = fileType,
+    preload = preload,
 ) {
     override val directory: String
         get() = "texture"

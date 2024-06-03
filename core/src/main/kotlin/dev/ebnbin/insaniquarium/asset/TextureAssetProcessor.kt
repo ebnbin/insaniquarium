@@ -29,6 +29,7 @@ object TextureAssetProcessor {
                 name = name,
                 extension = "png",
                 fileType = Asset.FileType.LOCAL,
+                preload = false,
             )
         }
     }

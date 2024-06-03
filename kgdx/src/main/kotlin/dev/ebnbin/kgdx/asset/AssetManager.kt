@@ -40,6 +40,17 @@ internal class AssetManager : GdxAssetManager(AssetFileHandleResolver), AssetLoa
         assetDescriptor(asset).fileName
     }
 
+    private val loadedAssetSet: MutableSet<Asset<*>> = mutableSetOf()
+
+    init {
+        assetSet
+            .filter { it.preload }
+            .forEach { asset ->
+                load(asset)
+                finishLoadingAsset(assetDescriptor(asset))
+            }
+    }
+
     fun <T> get(asset: Asset<T>): T {
         return get(assetDescriptor(asset))
     }
@@ -69,8 +80,6 @@ internal class AssetManager : GdxAssetManager(AssetFileHandleResolver), AssetLoa
             super.clear()
         }
     }
-
-    private val loadedAssetSet: MutableSet<Asset<*>> = mutableSetOf()
 
     private fun diffAssets(updateAssets: () -> Unit) {
         val oldAssetSet = assetNames.mapNotNullTo(mutableSetOf()) { fileNameMap[it] }

@@ -4,7 +4,8 @@
       "font_file_name": "kgdx_noto_sans_mono",
       "name": "kgdx_noto_sans_mono",
       "extension": "ttf",
-      "file_type": "internal"
+      "file_type": "internal",
+      "preload": true
     }
   },
   "texture": {}

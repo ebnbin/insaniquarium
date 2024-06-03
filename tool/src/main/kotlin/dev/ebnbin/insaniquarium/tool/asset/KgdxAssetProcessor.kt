@@ -15,6 +15,7 @@ object KgdxAssetProcessor {
                     extension = "ttf",
                     fileType = Asset.FileType.INTERNAL,
                     fontFileName = "kgdx_noto_sans_mono",
+                    preload = true,
                 ),
             ),
         )
