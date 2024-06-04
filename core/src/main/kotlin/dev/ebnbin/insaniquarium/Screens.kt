@@ -2,15 +2,24 @@ package dev.ebnbin.insaniquarium
 
 import dev.ebnbin.insaniquarium.aquarium.Aquarium
 import dev.ebnbin.insaniquarium.aquarium.AquariumStage
+import dev.ebnbin.insaniquarium.tank.TankStage
 import dev.ebnbin.kgdx.Screen
+import dev.ebnbin.kgdx.asset.Asset
+import dev.ebnbin.kgdx.game
 
 object Screens {
     private fun aquarium(aquarium: Aquarium): Screen.Creator {
         return Screen.Creator(
             name = "aquarium_${aquarium.id}",
-            assetSet = setOf(aquarium.textureAsset),
+            assetSet = mutableSetOf<Asset<*>>().also { set ->
+                set.add(aquarium.textureAsset)
+                set.add(game.assets.texture("stinky"))
+            },
             createStageList = {
-                listOf(AquariumStage(aquarium))
+                listOf(
+                    AquariumStage(aquarium),
+                    TankStage(),
+                )
             },
         )
     }
