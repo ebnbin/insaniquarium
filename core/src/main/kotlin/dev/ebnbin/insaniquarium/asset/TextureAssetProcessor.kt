@@ -4,11 +4,11 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Pixmap
 import dev.ebnbin.kgdx.asset.AssetFileType
 import dev.ebnbin.kgdx.asset.AssetId
+import dev.ebnbin.kgdx.asset.AssetType
 import dev.ebnbin.kgdx.asset.TextureAsset
 import dev.ebnbin.kgdx.util.createPixmap
 import dev.ebnbin.kgdx.util.drawSubPixmap
 import dev.ebnbin.kgdx.util.internalAsset
-import dev.ebnbin.kgdx.util.localAsset
 import dev.ebnbin.kgdx.util.mask
 import dev.ebnbin.kgdx.util.pack
 import dev.ebnbin.kgdx.util.scale
@@ -115,7 +115,7 @@ object TextureAssetProcessor {
     private fun Pixmap.writeToLocal(name: String) {
         val assetId = AssetId(
             fileType = AssetFileType.LOCAL,
-            directory = "texture",
+            type = AssetType.TEXTURE,
             nameWithExtension = "$name.png",
         )
         write(assetId.fileHandle())
@@ -162,7 +162,7 @@ object TextureAssetProcessor {
         val processorMap = PROCESSOR_LIST.associateBy { processor ->
             AssetId(
                 fileType = AssetFileType.LOCAL,
-                directory = "texture",
+                type = AssetType.TEXTURE,
                 nameWithExtension = "${processor.name}.png",
             ).id
         }

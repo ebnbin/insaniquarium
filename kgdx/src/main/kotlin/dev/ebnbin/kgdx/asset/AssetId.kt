@@ -7,14 +7,13 @@ import dev.ebnbin.kgdx.util.localAsset
 
 data class AssetId(
     val fileType: AssetFileType,
-    val directory: String,
+    val type: AssetType,
     val nameWithExtension: String,
 ) {
-
-    val id: String = "${fileType.id}:$directory:$nameWithExtension"
+    val id: String = "${fileType.id}:${type.id}:$nameWithExtension"
 
     fun fileHandle(): FileHandle {
-        val path = "$directory/$nameWithExtension"
+        val path = "${type.directory}/$nameWithExtension"
         return when (fileType) {
             AssetFileType.INTERNAL -> Gdx.files.internalAsset(path)
             AssetFileType.LOCAL -> Gdx.files.localAsset(path)
@@ -23,8 +22,12 @@ data class AssetId(
 
     companion object {
         fun of(id: String): AssetId {
-            val (fileType, directory, nameWithExtension) = id.split(":")
-            return AssetId(AssetFileType.of(fileType), directory, nameWithExtension)
+            val (fileType, type, nameWithExtension) = id.split(":")
+            return AssetId(
+                fileType = AssetFileType.of(fileType),
+                type = AssetType.of(type),
+                nameWithExtension = nameWithExtension,
+            )
         }
     }
 }

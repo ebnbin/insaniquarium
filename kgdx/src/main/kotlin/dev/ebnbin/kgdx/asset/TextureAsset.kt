@@ -32,11 +32,8 @@ class TextureAsset(
         val column: Int,
     )
 
-    override val directory: String
-        get() = "texture"
-
-    override val type: Class<Texture>
-        get() = Texture::class.java
+    override val type: AssetType
+        get() = AssetType.TEXTURE
 
     override val parameters: AssetLoaderParameters<Texture>
         get() = TextureLoader.TextureParameter()

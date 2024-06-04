@@ -20,19 +20,17 @@ sealed class Asset<T>(
     @SerializedName("preload")
     val preload: Boolean,
 ) {
-    abstract val directory: String
-
-    abstract val type: Class<T>
+    abstract val type: AssetType
 
     abstract val parameters: AssetLoaderParameters<T>
 
     internal fun createAssetDescriptor(): AssetDescriptor<T> {
         val assetId = AssetId(
             fileType = fileType,
-            directory = directory,
+            type = type,
             nameWithExtension = "$name.$extension",
         )
-        return AssetDescriptor(assetId.id, type, parameters)
+        return AssetDescriptor(assetId.id, type.type(), parameters)
     }
 
     fun get(): T {
@@ -49,13 +47,13 @@ sealed class Asset<T>(
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
         other as Asset<*>
-        if (directory != other.directory) return false
+        if (type != other.type) return false
         if (name != other.name) return false
         return true
     }
 
     override fun hashCode(): Int {
-        var result = directory.hashCode()
+        var result = type.hashCode()
         result = 31 * result + name.hashCode()
         return result
     }

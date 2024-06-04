@@ -20,17 +20,14 @@ class FreeTypeAsset(
     fileType = fileType,
     preload = preload,
 ) {
-    override val directory: String
-        get() = "freetype"
-
-    override val type: Class<BitmapFont>
-        get() = BitmapFont::class.java
+    override val type: AssetType
+        get() = AssetType.FREETYPE
 
     override val parameters: AssetLoaderParameters<BitmapFont>
         get() = FreetypeFontLoader.FreeTypeFontLoaderParameter().also { parameters ->
             parameters.fontFileName = AssetId(
                 fileType = fileType,
-                directory = directory,
+                type = type,
                 nameWithExtension = "$fontFileName.$extension",
             ).id
         }
