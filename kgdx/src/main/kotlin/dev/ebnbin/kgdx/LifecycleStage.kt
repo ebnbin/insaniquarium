@@ -3,6 +3,7 @@ package dev.ebnbin.kgdx
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.Viewport
+import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.WorldScreenViewport
 import ktx.assets.disposeSafely
 
@@ -66,6 +67,7 @@ abstract class LifecycleStage : Stage {
 
         internal fun List<LifecycleStage>.act(delta: Float) {
             filter { it.isRendering }.forEach { stage ->
+                stage.isDebugAll = KgdxPreferenceManager.isDebugAll.value
                 stage.act(delta)
             }
         }

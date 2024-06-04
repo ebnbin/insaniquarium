@@ -12,6 +12,12 @@ internal object KgdxPreferenceManager {
         defaultValue = false,
     )
 
+    val isDebugAll: SimplePreference<Boolean> = SimplePreference(
+        name = NAME,
+        key = "is_debug_all",
+        defaultValue = false,
+    )
+
     val clearColor: Preference<Color, Int> = Preference(
         name = NAME,
         key = "clear_color",

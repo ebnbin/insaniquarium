@@ -40,6 +40,10 @@ internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
                 text = KgdxPreferenceManager.showDevInfo.key,
                 valueProperty = KgdxPreferenceManager.showDevInfo::value,
             )
+            checkBoxMenuItem(
+                text = KgdxPreferenceManager.isDebugAll.key,
+                valueProperty = KgdxPreferenceManager.isDebugAll::value,
+            )
             listMenuItem(
                 text = KgdxPreferenceManager.clearColor.key,
                 valueList = CLEAR_COLOR_MAP.values.toList(),
