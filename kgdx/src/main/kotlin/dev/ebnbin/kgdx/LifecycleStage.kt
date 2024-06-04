@@ -11,6 +11,9 @@ abstract class LifecycleStage : Stage {
 
     constructor(viewport: Viewport = defaultViewport(), batch: Batch) : super(viewport, batch)
 
+    protected open val isRendering: Boolean
+        get() = true
+
     private var resized: Boolean = false
 
     protected open fun resize(width: Float, height: Float) {
@@ -62,13 +65,13 @@ abstract class LifecycleStage : Stage {
         }
 
         internal fun List<LifecycleStage>.act(delta: Float) {
-            forEach { stage ->
+            filter { it.isRendering }.forEach { stage ->
                 stage.act(delta)
             }
         }
 
         internal fun List<LifecycleStage>.draw() {
-            forEach { stage ->
+            filter { it.isRendering }.forEach { stage ->
                 stage.viewport.apply(true)
                 stage.draw()
             }

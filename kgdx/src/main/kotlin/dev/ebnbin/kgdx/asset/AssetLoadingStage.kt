@@ -7,6 +7,9 @@ import dev.ebnbin.kgdx.game
 class AssetLoadingStage : LifecycleStage() {
     private var isLoading: Boolean = false
 
+    override val isRendering: Boolean
+        get() = isLoading
+
     private lateinit var screenCreator: Screen.Creator
 
     fun load(screenCreator: Screen.Creator) {
@@ -25,7 +28,6 @@ class AssetLoadingStage : LifecycleStage() {
 
     override fun act(delta: Float) {
         super.act(delta)
-        if (!isLoading) return
         if (game.assetManager.update()) {
             val screen = Screen(
                 assetSet = screenCreator.assetSet,
