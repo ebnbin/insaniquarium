@@ -1,10 +1,9 @@
 package dev.ebnbin.kgdx
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.scenes.scene2d.Stage
-import com.badlogic.gdx.utils.viewport.StretchViewport
 import com.badlogic.gdx.utils.viewport.Viewport
+import dev.ebnbin.kgdx.util.WorldScreenViewport
 
 abstract class LifecycleStage : Stage {
     constructor(viewport: Viewport = defaultViewport()) : super(viewport)
@@ -19,7 +18,7 @@ abstract class LifecycleStage : Stage {
 
     companion object {
         private fun defaultViewport(): Viewport {
-            return StretchViewport(Gdx.graphics.width.toFloat(), Gdx.graphics.height.toFloat())
+            return WorldScreenViewport()
         }
     }
 }
