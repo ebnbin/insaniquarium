@@ -7,6 +7,7 @@ import com.badlogic.gdx.utils.Align
 import com.kotcrab.vis.ui.VisUI
 import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.kgdx.LifecycleStage
+import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.WorldFitViewport
 import ktx.scene2d.vis.menu
 import ktx.scene2d.vis.menuItem
@@ -33,6 +34,15 @@ internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
                 addListener(object : ChangeListener() {
                     override fun changed(event: ChangeEvent?, actor: Actor?) {
                         Gdx.app.exit()
+                    }
+                })
+            }
+            menuItem(
+                text = "show_dev_info",
+            ) {
+                addListener(object : ChangeListener() {
+                    override fun changed(event: ChangeEvent?, actor: Actor?) {
+                        KgdxPreferenceManager.showDevInfo.value = !KgdxPreferenceManager.showDevInfo.value
                     }
                 })
             }

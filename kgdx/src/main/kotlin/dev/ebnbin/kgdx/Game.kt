@@ -127,15 +127,20 @@ abstract class Game : ApplicationListener {
     }
 
     companion object {
+        var ID = ""
+            private set
+
         var WORLD_WIDTH = 0f
             private set
         var WORLD_HEIGHT = 0f
             private set
 
         fun init(
+            id: String,
             worldWidth: Float,
             worldHeight: Float,
         ) {
+            ID = id
             WORLD_WIDTH = worldWidth
             WORLD_HEIGHT = worldHeight
         }

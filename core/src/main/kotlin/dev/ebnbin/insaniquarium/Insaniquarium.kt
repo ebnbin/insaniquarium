@@ -32,6 +32,7 @@ class Insaniquarium : Game() {
     companion object {
         init {
             init(
+                id = "dev.ebnbin.insaniquarium",
                 worldWidth = 1280f,
                 worldHeight = 720f,
             )

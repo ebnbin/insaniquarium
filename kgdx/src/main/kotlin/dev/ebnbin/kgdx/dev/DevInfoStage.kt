@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.kgdx.LifecycleStage
 import dev.ebnbin.kgdx.game
+import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.WorldFitViewport
 
 internal class DevInfoStage : LifecycleStage(WorldFitViewport()) {
@@ -20,6 +21,9 @@ internal class DevInfoStage : LifecycleStage(WorldFitViewport()) {
             addActor(verticalGroup)
         }
     }
+
+    override val isRendering: Boolean
+        get() = KgdxPreferenceManager.showDevInfo.value
 
     companion object {
         private val ENTRY_LIST: List<DevLabel.Entry> = listOf(
