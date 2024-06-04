@@ -2,42 +2,52 @@
   "free_type": {},
   "texture": {
     "aquarium_a": {
+      "region": null,
       "name": "aquarium_a",
       "extension": "png",
       "file_type": "local",
       "preload": false
     },
     "aquarium_b": {
+      "region": null,
       "name": "aquarium_b",
       "extension": "png",
       "file_type": "local",
       "preload": false
     },
     "aquarium_c": {
+      "region": null,
       "name": "aquarium_c",
       "extension": "png",
       "file_type": "local",
       "preload": false
     },
     "aquarium_d": {
+      "region": null,
       "name": "aquarium_d",
       "extension": "png",
       "file_type": "local",
       "preload": false
     },
     "aquarium_e": {
+      "region": null,
       "name": "aquarium_e",
       "extension": "png",
       "file_type": "local",
       "preload": false
     },
     "aquarium_f": {
+      "region": null,
       "name": "aquarium_f",
       "extension": "png",
       "file_type": "local",
       "preload": false
     },
     "stinky": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
       "name": "stinky",
       "extension": "png",
       "file_type": "local",

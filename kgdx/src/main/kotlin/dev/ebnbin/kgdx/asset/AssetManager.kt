@@ -89,6 +89,7 @@ internal class AssetManager : GdxAssetManager(AssetFileHandleResolver), AssetLoa
         val addedAssetSet = newAssetSet - oldAssetSet
         removedAssetSet.forEach { asset ->
             if (!loadedAssetSet.contains(asset)) return@forEach
+            assetExtraMapMap.remove(asset)
             loadedAssetSet.remove(asset)
             asset.unloaded()
         }
@@ -99,6 +100,23 @@ internal class AssetManager : GdxAssetManager(AssetFileHandleResolver), AssetLoa
             asset as Asset<Any>
             asset.loaded(get(asset))
         }
+    }
+
+    private val assetExtraMapMap: MutableMap<Asset<*>, MutableMap<String, Any?>> = mutableMapOf()
+
+    internal fun <T, U> getAssetExtraOrPut(asset: Asset<T>, key: String, defaultValue: (T) -> U): U {
+        if (assetExtraMapMap.containsKey(asset)) {
+            val assetExtraMap = assetExtraMapMap.getValue(asset)
+            if (assetExtraMap.containsKey(key)) {
+                @Suppress("UNCHECKED_CAST")
+                return assetExtraMap.getValue(key) as U
+            }
+        }
+        val assetExtraMap = assetExtraMapMap.getOrElse(asset) { mutableMapOf() }
+        val assetExtra = defaultValue(get(asset))
+        assetExtraMap[key] = assetExtra
+        assetExtraMapMap[asset] = assetExtraMap
+        return assetExtra
     }
 }
 

@@ -41,6 +41,7 @@ object TextureAssetProcessor {
                 extension = "png",
                 fileType = Asset.FileType.LOCAL,
                 preload = false,
+                region = null,
             )
         }
     }
@@ -69,7 +70,7 @@ object TextureAssetProcessor {
                     tiledPixmap.disposeSafely()
                 }
             }
-            val (packedPixmap, _, _) = scaledPixmapList.pack()
+            val (packedPixmap, packedRow, packedColumn) = scaledPixmapList.pack()
             scaledPixmapList.forEach { it.disposeSafely() }
             packedPixmap.writeToLocal(name)
             packedPixmap.disposeSafely()
@@ -78,6 +79,10 @@ object TextureAssetProcessor {
                 extension = "png",
                 fileType = Asset.FileType.LOCAL,
                 preload = false,
+                region = TextureAsset.Region(
+                    row = packedRow,
+                    column = packedColumn,
+                ),
             )
         }
     }
