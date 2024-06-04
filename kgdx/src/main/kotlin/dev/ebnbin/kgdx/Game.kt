@@ -126,6 +126,10 @@ abstract class Game : ApplicationListener {
         devMessageStage.addMessage(message)
     }
 
+    open fun devScreenList(): List<Screen.Creator> {
+        return emptyList()
+    }
+
     companion object {
         var ID = ""
             private set

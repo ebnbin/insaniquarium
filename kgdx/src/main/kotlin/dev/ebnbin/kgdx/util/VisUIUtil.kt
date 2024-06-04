@@ -64,3 +64,35 @@ fun PopupMenu.checkBoxMenuItem(
         clicked = clicked,
     )
 }
+
+@Scene2dDsl
+fun <T> PopupMenu.listMenuItem(
+    text: String,
+    valueList: List<T>,
+    valueProperty: KMutableProperty0<T>? = null,
+    valueToString: (T) -> String = { "$it" },
+    clicked: ((T) -> Unit)? = null,
+) {
+    val menuItem = MenuItem(text)
+    menuItem.imageCell.size(0f)
+    if (valueProperty == null) {
+        menuItem.shortcutCell.padLeft(0f)
+    } else {
+        menuItem.subMenuIconCell.padLeft(0f).padRight(0f).size(0f)
+        menuItem.setShortcut(valueToString(valueProperty.get()))
+    }
+    val subPopupMenu = PopupMenu()
+    valueList.forEach { value ->
+        subPopupMenu.menuItem(
+            text = valueToString(value),
+        ) {
+            if (valueProperty != null) {
+                valueProperty.set(value)
+                menuItem.setShortcut(valueToString(value))
+            }
+            clicked?.invoke(value)
+        }
+    }
+    menuItem.subMenu = subPopupMenu
+    addItem(menuItem)
+}

@@ -30,6 +30,7 @@ class AssetLoadingStage : LifecycleStage() {
         super.act(delta)
         if (game.assetManager.update()) {
             val screen = Screen(
+                name = screenCreator.name,
                 assetSet = screenCreator.assetSet,
                 stageList = screenCreator.createStageList(),
             )
