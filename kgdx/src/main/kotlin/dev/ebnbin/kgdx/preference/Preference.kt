@@ -15,27 +15,17 @@ open class Preference<V, SV : Any>(
 
     private val defaultStoredValue: SV = valueToStoredValue(defaultValue)
 
-    var value: V
-        get() = get()
+    var storedValue: SV
+        get() = preferences.get(key, defaultStoredValue)
         set(value) {
-            put(value)
+            preferences.put(key, value).flush()
         }
 
-    private fun getStoredValue(): SV {
-        return preferences.get(key, defaultStoredValue)
-    }
-
-    private fun putStoredValue(storedValue: SV) {
-        preferences.put(key, storedValue).flush()
-    }
-
-    private fun get(): V {
-        return storedValueToValue(getStoredValue())
-    }
-
-    private fun put(value: V) {
-        putStoredValue(valueToStoredValue(value))
-    }
+    var value: V
+        get() = storedValueToValue(storedValue)
+        set(value) {
+            storedValue = valueToStoredValue(value)
+        }
 }
 
 private fun <T : Any> Preferences.get(key: String, defaultValue: T): T {
