@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Align
 import com.badlogic.gdx.utils.viewport.FitViewport
 import dev.ebnbin.kgdx.Game
 import dev.ebnbin.kgdx.LifecycleStage
+import dev.ebnbin.kgdx.game
 
 internal class DevInfoStage : LifecycleStage(FitViewport(Game.WORLD_WIDTH, Game.WORLD_HEIGHT)) {
     init {
@@ -25,6 +26,10 @@ internal class DevInfoStage : LifecycleStage(FitViewport(Game.WORLD_WIDTH, Game.
         private val ENTRY_LIST: List<DevLabel.Entry> = listOf(
             DevLabel.Entry("fps") {
                 "${Gdx.graphics.framesPerSecond}"
+            },
+            DevLabel.Entry("asset") {
+                val loadedAssets = game.assetManager.loadedAssets
+                "${loadedAssets}/${loadedAssets + game.assetManager.queuedAssets}"
             },
         )
     }
