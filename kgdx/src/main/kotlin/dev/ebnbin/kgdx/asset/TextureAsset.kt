@@ -12,7 +12,7 @@ import dev.ebnbin.kgdx.util.split
 class TextureAsset(
     name: String,
     extension: String,
-    fileType: FileType,
+    fileType: AssetFileType,
     preload: Boolean,
     @Expose
     @SerializedName("region")

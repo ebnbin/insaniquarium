@@ -3,7 +3,6 @@ package dev.ebnbin.kgdx
 import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.assets.loaders.FileHandleResolver
-import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
 import dev.ebnbin.kgdx.LifecycleStage.Companion.act
 import dev.ebnbin.kgdx.LifecycleStage.Companion.dispose

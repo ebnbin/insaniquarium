@@ -5,7 +5,6 @@ import com.badlogic.gdx.assets.AssetLoaderParameters
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import dev.ebnbin.kgdx.game
-import dev.ebnbin.kgdx.util.SerializableEnum
 
 sealed class Asset<T>(
     @Expose
@@ -16,23 +15,11 @@ sealed class Asset<T>(
     val extension: String,
     @Expose
     @SerializedName("file_type")
-    val fileType: FileType,
+    val fileType: AssetFileType,
     @Expose
     @SerializedName("preload")
     val preload: Boolean,
 ) {
-    enum class FileType(override val serializedName: String) : SerializableEnum {
-        INTERNAL("internal"),
-        LOCAL("local"),
-        ;
-
-        companion object {
-            fun of(serializedName: String): FileType {
-                return entries.first { it.serializedName == serializedName }
-            }
-        }
-    }
-
     abstract val directory: String
 
     abstract val type: Class<T>
@@ -40,7 +27,12 @@ sealed class Asset<T>(
     abstract val parameters: AssetLoaderParameters<T>
 
     internal fun createAssetDescriptor(): AssetDescriptor<T> {
-        return AssetDescriptor("${fileType.serializedName}:$directory/$name.$extension", type, parameters)
+        val assetId = AssetId(
+            fileType = fileType,
+            directory = directory,
+            nameWithExtension = "$name.$extension",
+        )
+        return AssetDescriptor(assetId.id, type, parameters)
     }
 
     fun get(): T {

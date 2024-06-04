@@ -1,6 +1,6 @@
 package dev.ebnbin.insaniquarium.tool.asset
 
-import dev.ebnbin.kgdx.asset.Asset
+import dev.ebnbin.kgdx.asset.AssetFileType
 import dev.ebnbin.kgdx.asset.Assets
 import dev.ebnbin.kgdx.asset.FreeTypeAsset
 import dev.ebnbin.kgdx.util.toJson
@@ -13,7 +13,7 @@ object KgdxAssetProcessor {
                 "kgdx_noto_sans_mono" to FreeTypeAsset(
                     name = "kgdx_noto_sans_mono",
                     extension = "ttf",
-                    fileType = Asset.FileType.INTERNAL,
+                    fileType = AssetFileType.INTERNAL,
                     fontFileName = "kgdx_noto_sans_mono",
                     preload = true,
                 ),

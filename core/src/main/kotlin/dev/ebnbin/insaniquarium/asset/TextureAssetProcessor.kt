@@ -2,7 +2,8 @@ package dev.ebnbin.insaniquarium.asset
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Pixmap
-import dev.ebnbin.kgdx.asset.Asset
+import dev.ebnbin.kgdx.asset.AssetFileType
+import dev.ebnbin.kgdx.asset.AssetId
 import dev.ebnbin.kgdx.asset.TextureAsset
 import dev.ebnbin.kgdx.util.createPixmap
 import dev.ebnbin.kgdx.util.drawSubPixmap
@@ -39,7 +40,7 @@ object TextureAssetProcessor {
             return TextureAsset(
                 name = name,
                 extension = "png",
-                fileType = Asset.FileType.LOCAL,
+                fileType = AssetFileType.LOCAL,
                 preload = false,
                 region = null,
             )
@@ -77,7 +78,7 @@ object TextureAssetProcessor {
             return TextureAsset(
                 name = name,
                 extension = "png",
-                fileType = Asset.FileType.LOCAL,
+                fileType = AssetFileType.LOCAL,
                 preload = false,
                 region = TextureAsset.Region(
                     row = packedRow,
@@ -112,7 +113,12 @@ object TextureAssetProcessor {
     }
 
     private fun Pixmap.writeToLocal(name: String) {
-        write(Gdx.files.localAsset("texture/$name.png"))
+        val assetId = AssetId(
+            fileType = AssetFileType.LOCAL,
+            directory = "texture",
+            nameWithExtension = "$name.png",
+        )
+        write(assetId.fileHandle())
         disposeSafely()
     }
 
@@ -154,7 +160,11 @@ object TextureAssetProcessor {
 
     fun process(fileName: String) {
         val processorMap = PROCESSOR_LIST.associateBy { processor ->
-            "local:texture/${processor.name}.png"
+            AssetId(
+                fileType = AssetFileType.LOCAL,
+                directory = "texture",
+                nameWithExtension = "${processor.name}.png",
+            ).id
         }
         processorMap[fileName]?.process()
     }

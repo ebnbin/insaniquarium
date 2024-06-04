@@ -7,7 +7,6 @@ import com.badlogic.gdx.files.FileHandle
 import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.util.fromJson
 import dev.ebnbin.kgdx.util.internalAsset
-import dev.ebnbin.kgdx.util.localAsset
 import ktx.assets.unloadSafely
 import ktx.freetype.registerFreeTypeFontLoaders
 
@@ -122,10 +121,6 @@ internal class AssetManager : GdxAssetManager(AssetFileHandleResolver), AssetLoa
 
 private object AssetFileHandleResolver : FileHandleResolver {
     override fun resolve(fileName: String): FileHandle {
-        val (fileType, path) = fileName.split(':')
-        return when (Asset.FileType.of(fileType)) {
-            Asset.FileType.INTERNAL -> Gdx.files.internalAsset(path)
-            Asset.FileType.LOCAL -> Gdx.files.localAsset(path)
-        }
+        return AssetId.of(fileName).fileHandle()
     }
 }
