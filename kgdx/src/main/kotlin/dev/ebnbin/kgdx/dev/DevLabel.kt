@@ -35,7 +35,7 @@ internal class DevLabel(
         texture
     }
 
-    private val backgroundColor: Color = Color.BLACK.copy(alpha = 0.25f)
+    private val backgroundColor: Color = Color.BLACK.copy(alpha = 0.125f)
 
     override fun draw(batch: Batch, parentAlpha: Float) {
         val oldColor = batch.color

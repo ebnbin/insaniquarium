@@ -18,6 +18,7 @@ import dev.ebnbin.kgdx.asset.Assets
 import dev.ebnbin.kgdx.dev.DevInfoStage
 import dev.ebnbin.kgdx.dev.DevMenuStage
 import dev.ebnbin.kgdx.dev.DevMessageStage
+import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import ktx.assets.disposeSafely
 
 private var singleton: Game? = null
@@ -103,7 +104,8 @@ abstract class Game : ApplicationListener {
             stageList().resume()
         }
         stageList().act(Gdx.graphics.deltaTime)
-        ScreenUtils.clear(Color.CLEAR)
+        val clearColor = KgdxPreferenceManager.clearColor.value
+        ScreenUtils.clear(clearColor)
         stageList().draw()
     }
 

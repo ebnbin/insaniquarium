@@ -6,7 +6,6 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
 import com.kotcrab.vis.ui.widget.MenuItem
 import com.kotcrab.vis.ui.widget.PopupMenu
 import com.kotcrab.vis.ui.widget.VisCheckBox
-import dev.ebnbin.kgdx.preference.Preference
 import ktx.scene2d.Scene2dDsl
 import kotlin.reflect.KMutableProperty0
 
@@ -51,18 +50,6 @@ fun PopupMenu.checkBoxMenuItem(
         }
     })
     addItem(menuItem)
-}
-
-@Scene2dDsl
-fun PopupMenu.checkBoxMenuItem(
-    preference: Preference<*, Boolean>,
-    clicked: (() -> Unit)? = null,
-) {
-    checkBoxMenuItem(
-        text = preference.key,
-        valueProperty = preference::storedValue,
-        clicked = clicked,
-    )
 }
 
 @Scene2dDsl

@@ -2,6 +2,16 @@ package dev.ebnbin.kgdx.util
 
 import com.badlogic.gdx.graphics.Color
 
+val CLEAR_COLOR_MAP: Map<String, Color> = mapOf(
+    "clear" to Color.CLEAR,
+    "black" to Color.BLACK,
+    "white" to Color.WHITE,
+    "gray" to Color.GRAY,
+    "red" to Color.RED,
+    "green" to Color.GREEN,
+    "blue" to Color.BLUE,
+)
+
 fun Int.toColor(): Color {
     return Color(this)
 }

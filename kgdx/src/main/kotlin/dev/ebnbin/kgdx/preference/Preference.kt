@@ -15,7 +15,7 @@ open class Preference<V, SV : Any>(
 
     private val defaultStoredValue: SV = valueToStoredValue(defaultValue)
 
-    var storedValue: SV
+    private var storedValue: SV
         get() = preferences.get(key, defaultStoredValue)
         set(value) {
             preferences.put(key, value).flush()
