@@ -2,6 +2,7 @@ package dev.ebnbin.kgdx.asset
 
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.BitmapFont
+import dev.ebnbin.kgdx.util.Dpi
 
 enum class AssetType(
     val id: String,
@@ -22,6 +23,13 @@ enum class AssetType(
     fun <T> type(): Class<T> {
         @Suppress("UNCHECKED_CAST")
         return type as Class<T>
+    }
+
+    fun dpiSuffix(dpi: Dpi): String {
+        return when (this) {
+            FREETYPE -> ""
+            TEXTURE -> dpi.suffix
+        }
     }
 
     companion object {

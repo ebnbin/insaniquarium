@@ -5,11 +5,13 @@ package dev.ebnbin.insaniquarium.tool
 import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.backends.headless.HeadlessApplication
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration
+import dev.ebnbin.insaniquarium.Insaniquarium
 import dev.ebnbin.insaniquarium.tool.asset.AssetProcessor
 import dev.ebnbin.insaniquarium.tool.asset.KgdxAssetProcessor
 
 fun main() {
     runHeadlessApplication {
+        Insaniquarium
         KgdxAssetProcessor.process()
         AssetProcessor.process()
     }

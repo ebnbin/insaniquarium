@@ -9,6 +9,7 @@ import dev.ebnbin.kgdx.Screen
 import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.CLEAR_COLOR_MAP
+import dev.ebnbin.kgdx.util.Dpi
 import dev.ebnbin.kgdx.util.WorldFitViewport
 import dev.ebnbin.kgdx.util.checkBoxMenuItem
 import dev.ebnbin.kgdx.util.listMenuItem
@@ -52,6 +53,14 @@ internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
                     CLEAR_COLOR_MAP.entries.firstOrNull { it.value == color }?.key ?: "$color"
                 },
             )
+            listMenuItem(
+                text = KgdxPreferenceManager.dpi.key,
+                valueList = Dpi.entries,
+                valueProperty = KgdxPreferenceManager.dpi::value,
+                valueToString = { it.id },
+            ) {
+                Gdx.app.exit()
+            }
             listMenuItem(
                 text = "screen",
                 valueList = mutableListOf<Screen.Creator>().also { list ->
