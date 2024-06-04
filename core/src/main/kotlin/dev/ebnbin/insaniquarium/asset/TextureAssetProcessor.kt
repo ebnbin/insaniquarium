@@ -8,6 +8,10 @@ import dev.ebnbin.kgdx.util.createPixmap
 import dev.ebnbin.kgdx.util.drawSubPixmap
 import dev.ebnbin.kgdx.util.internalAsset
 import dev.ebnbin.kgdx.util.localAsset
+import dev.ebnbin.kgdx.util.mask
+import dev.ebnbin.kgdx.util.pack
+import dev.ebnbin.kgdx.util.scale
+import dev.ebnbin.kgdx.util.tile
 import dev.ebnbin.kgdx.util.write
 import ktx.assets.disposeSafely
 import java.io.ByteArrayOutputStream
@@ -20,18 +24,55 @@ object TextureAssetProcessor {
 
     private class Aquarium(
         name: String,
-        private val imageFileName: String,
+        private val inputFileName: String,
     ) : Processor(
         name = name,
     ) {
         override fun process(): TextureAsset {
-            val inputPixmap = readPixmapFromZip(imageFileName)
+            val inputPixmap = readPixmapFromZip(inputFileName)
             val outputPixmap = createPixmap(1280, 720)
-                .drawSubPixmap(inputPixmap,    0,    0,   32,  480,    0,    0,  160,  720)
-                .drawSubPixmap(inputPixmap,   32,    0,  576,  480,  160,    0,  960,  720)
-                .drawSubPixmap(inputPixmap,  608,    0,   32,  480, 1120,    0,  160,  720)
+            outputPixmap.drawSubPixmap(inputPixmap,    0,    0,   32,  480,    0,    0,  160,  720)
+            outputPixmap.drawSubPixmap(inputPixmap,   32,    0,  576,  480,  160,    0,  960,  720)
+            outputPixmap.drawSubPixmap(inputPixmap,  608,    0,   32,  480, 1120,    0,  160,  720)
             inputPixmap.disposeSafely()
             outputPixmap.writeToLocal(name)
+            return TextureAsset(
+                name = name,
+                extension = "png",
+                fileType = Asset.FileType.LOCAL,
+                preload = false,
+            )
+        }
+    }
+
+    private class Body(
+        name: String,
+        private val inputFileName: String,
+        private val inputMaskFileName: String,
+        private val row: Int,
+        private val column: Int,
+        private val tileStart: Int,
+        private val tileCount: Int,
+    ) : Processor(
+        name = name,
+    ) {
+        override fun process(): TextureAsset {
+            val inputPixmap = readPixmapFromZip(inputFileName)
+            val inputMaskPixmap = readPixmapFromZip(inputMaskFileName)
+            val maskedPixmap = inputPixmap.mask(inputMaskPixmap)
+            inputPixmap.disposeSafely()
+            inputMaskPixmap.disposeSafely()
+            val tiledPixmapList = maskedPixmap.tile(row, column, tileStart, tileCount)
+            maskedPixmap.disposeSafely()
+            val scaledPixmapList = tiledPixmapList.map { tiledPixmap ->
+                tiledPixmap.scale(1.5f).also {
+                    tiledPixmap.disposeSafely()
+                }
+            }
+            val (packedPixmap, _, _) = scaledPixmapList.pack()
+            scaledPixmapList.forEach { it.disposeSafely() }
+            packedPixmap.writeToLocal(name)
+            packedPixmap.disposeSafely()
             return TextureAsset(
                 name = name,
                 extension = "png",
@@ -67,33 +108,42 @@ object TextureAssetProcessor {
 
     private fun Pixmap.writeToLocal(name: String) {
         write(Gdx.files.localAsset("texture/$name.png"))
-            .disposeSafely()
+        disposeSafely()
     }
 
     private val PROCESSOR_LIST: List<Processor> = listOf(
         Aquarium(
             name = "aquarium_a",
-            imageFileName = "aquarium1.jpg",
+            inputFileName = "aquarium1.jpg",
         ),
         Aquarium(
             name = "aquarium_b",
-            imageFileName = "aquarium4.jpg",
+            inputFileName = "aquarium4.jpg",
         ),
         Aquarium(
             name = "aquarium_c",
-            imageFileName = "aquarium3.jpg",
+            inputFileName = "aquarium3.jpg",
         ),
         Aquarium(
             name = "aquarium_d",
-            imageFileName = "aquarium2.jpg",
+            inputFileName = "aquarium2.jpg",
         ),
         Aquarium(
             name = "aquarium_e",
-            imageFileName = "aquarium6.jpg",
+            inputFileName = "aquarium6.jpg",
         ),
         Aquarium(
             name = "aquarium_f",
-            imageFileName = "Aquarium5.jpg",
+            inputFileName = "Aquarium5.jpg",
+        ),
+        Body(
+            name = "stinky",
+            inputFileName = "stinky.gif",
+            inputMaskFileName = "_stinky.gif",
+            row = 3,
+            column = 10,
+            tileStart = 0,
+            tileCount = 10,
         ),
     )
 

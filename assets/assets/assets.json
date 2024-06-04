@@ -36,6 +36,12 @@
       "extension": "png",
       "file_type": "local",
       "preload": false
+    },
+    "stinky": {
+      "name": "stinky",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
     }
   }
 }
