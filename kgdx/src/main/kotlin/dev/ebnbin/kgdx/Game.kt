@@ -5,6 +5,12 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.ScreenUtils
+import dev.ebnbin.kgdx.LifecycleStage.Companion.act
+import dev.ebnbin.kgdx.LifecycleStage.Companion.dispose
+import dev.ebnbin.kgdx.LifecycleStage.Companion.draw
+import dev.ebnbin.kgdx.LifecycleStage.Companion.pause
+import dev.ebnbin.kgdx.LifecycleStage.Companion.resize
+import dev.ebnbin.kgdx.LifecycleStage.Companion.resume
 import dev.ebnbin.kgdx.asset.AssetLoaderRegistry
 import dev.ebnbin.kgdx.asset.AssetLoadingStage
 import dev.ebnbin.kgdx.asset.AssetManager
@@ -38,21 +44,13 @@ abstract class Game : ApplicationListener {
         set(value) {
             val resumed = resumed
             if (resumed) {
-                field?.stageList?.reversed()?.forEach { stage ->
-                    stage.pause()
-                }
+                field?.stageList?.pause()
             }
-            field?.stageList?.reversed()?.forEach { stage ->
-                stage.disposeSafely()
-            }
+            field?.stageList?.dispose()
             field = value
-            value?.stageList?.forEach { stage ->
-                stage.viewport.update(Gdx.graphics.width, Gdx.graphics.height, true)
-            }
+            value?.stageList?.resize(Gdx.graphics.width, Gdx.graphics.height)
             if (resumed) {
-                value?.stageList?.forEach { stage ->
-                    stage.resume()
-                }
+                value?.stageList?.resume()
             }
         }
 
@@ -60,13 +58,19 @@ abstract class Game : ApplicationListener {
         assetLoadingStage.load(screenCreator)
     }
 
+    private fun globalStageList(): List<LifecycleStage> {
+        return listOf(
+            assetLoadingStage,
+            devInfoStage,
+            devMessageStage,
+            devMenuStage,
+        )
+    }
+
     private fun stageList(): List<LifecycleStage> {
         val stageList = mutableListOf<LifecycleStage>()
         screen?.stageList?.let { stageList.addAll(it) }
-        stageList.add(assetLoadingStage)
-        stageList.add(devInfoStage)
-        stageList.add(devMessageStage)
-        stageList.add(devMenuStage)
+        stageList.addAll(globalStageList())
         return stageList
     }
 
@@ -77,6 +81,7 @@ abstract class Game : ApplicationListener {
         devInfoStage = DevInfoStage()
         devMessageStage = DevMessageStage()
         devMenuStage = DevMenuStage()
+        globalStageList().resize(Gdx.graphics.width, Gdx.graphics.height)
         canRender = true
     }
 
@@ -84,9 +89,7 @@ abstract class Game : ApplicationListener {
     }
 
     override fun resize(width: Int, height: Int) {
-        stageList().forEach { stage ->
-            stage.viewport.update(width, height, true)
-        }
+        stageList().resize(width, height)
     }
 
     override fun resume() {
@@ -97,26 +100,16 @@ abstract class Game : ApplicationListener {
         if (!canRender) return
         if (!resumed) {
             resumed = true
-            stageList().forEach { stage ->
-                stage.resume()
-            }
+            stageList().resume()
         }
-        val deltaTime = Gdx.graphics.deltaTime
-        stageList().forEach { stage ->
-            stage.act(deltaTime)
-        }
+        stageList().act(Gdx.graphics.deltaTime)
         ScreenUtils.clear(Color.CLEAR)
-        stageList().forEach { stage ->
-            stage.viewport.apply(true)
-            stage.draw()
-        }
+        stageList().draw()
     }
 
     override fun pause() {
         if (resumed) {
-            stageList().reversed().forEach { stage ->
-                stage.pause()
-            }
+            stageList().pause()
             resumed = false
         }
         canRender = false
@@ -124,10 +117,7 @@ abstract class Game : ApplicationListener {
 
     override fun dispose() {
         screen = null
-        devMenuStage.disposeSafely()
-        devMessageStage.disposeSafely()
-        devInfoStage.disposeSafely()
-        assetLoadingStage.disposeSafely()
+        globalStageList().dispose()
         assetManager.disposeSafely()
         singleton = null
     }
