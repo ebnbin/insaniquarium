@@ -37,6 +37,11 @@ internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
             ) {
                 Gdx.app.exit()
             }
+            menuItem(
+                text = "recreate",
+            ) {
+                game.recreate()
+            }
             checkBoxMenuItem(
                 text = KgdxPreferenceManager.showDevInfo.key,
                 valueProperty = KgdxPreferenceManager.showDevInfo::value,
@@ -59,7 +64,7 @@ internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
                 valueProperty = KgdxPreferenceManager.dpi::value,
                 valueToString = { it.id },
             ) {
-                Gdx.app.exit()
+                game.recreate()
             }
             listMenuItem(
                 text = "screen",

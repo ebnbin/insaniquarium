@@ -26,6 +26,7 @@ val game: Game
     get() = requireNotNull(singleton)
 
 abstract class Game : ApplicationListener {
+    private var created: Boolean = false
     private var resumed: Boolean = false
 
     private var canRender: Boolean = false
@@ -76,6 +77,7 @@ abstract class Game : ApplicationListener {
 
     override fun create() {
         singleton = this
+        created = true
         assetManager = AssetManager()
         assetLoadingStage = AssetLoadingStage()
         devInfoStage = DevInfoStage()
@@ -120,7 +122,20 @@ abstract class Game : ApplicationListener {
         screen = null
         globalStageList().dispose()
         assetManager.disposeSafely()
+        created = false
         singleton = null
+    }
+
+    internal fun recreate() {
+        if (resumed) {
+            pause()
+        }
+        if (created) {
+            dispose()
+        }
+        create()
+        resize(Gdx.graphics.width, Gdx.graphics.height)
+        resume()
     }
 
     fun addDevMessage(message: String) {
