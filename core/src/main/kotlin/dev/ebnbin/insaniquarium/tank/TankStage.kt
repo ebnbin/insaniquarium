@@ -1,15 +1,19 @@
 package dev.ebnbin.insaniquarium.tank
 
-import com.badlogic.gdx.scenes.scene2d.ui.Image
+import com.badlogic.gdx.utils.Align
 import dev.ebnbin.kgdx.LifecycleStage
-import dev.ebnbin.kgdx.game
 
 class TankStage : LifecycleStage(TankViewport()) {
-    init {
-        val textureAsset = game.assets.texture("stinky")
-        Image(textureAsset.getTextureRegionList().first()).also {
-            it.setSize(1f, 1f)
-            addActor(it)
-        }
+    private val tankGroup: TankGroup = TankGroup().also {
+        addActor(it)
+    }
+
+    override fun resize(width: Float, height: Float) {
+        super.resize(width, height)
+        tankGroup.setPosition(
+            (width - tankGroup.width) / 2f,
+            (height - tankGroup.height) / 3f,
+            Align.bottomLeft,
+        )
     }
 }
