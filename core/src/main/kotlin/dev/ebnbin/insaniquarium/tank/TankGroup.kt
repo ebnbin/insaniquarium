@@ -10,7 +10,7 @@ class TankGroup : Group() {
 
         BodyActor(
             tankGroup = this,
-            type = BodyType.STINKY,
+            type = BodyType.entries.random(),
         ).also {
             addActor(it)
         }

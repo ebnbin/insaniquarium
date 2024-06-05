@@ -10,6 +10,28 @@
     }
   },
   "texture": {
+    "amp": {
+      "region": {
+        "row": 5,
+        "column": 2
+      },
+      "stretchable": null,
+      "name": "amp",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "angie": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "angie",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
     "aquarium_a": {
       "region": null,
       "stretchable": {
@@ -136,6 +158,193 @@
       "file_type": "local",
       "preload": false
     },
+    "blip": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "blip",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "brinkley": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "brinkley",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "clyde": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "clyde",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "gash": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "gash",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "gumbo": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "gumbo",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "itchy": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "itchy",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "meryl": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "meryl",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "niko": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "niko",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "nimbus": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "nimbus",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "nostradamus": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "nostradamus",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "prego": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "prego",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "presto": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "presto",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "rhubarb": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "rhubarb",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "rufus": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "rufus",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "seymour": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "seymour",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "shrapnel": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "shrapnel",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "stanley": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "stanley",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
     "stinky": {
       "region": {
         "row": 2,
@@ -143,6 +352,50 @@
       },
       "stretchable": null,
       "name": "stinky",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "vert": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "vert",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "wadsworth": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "wadsworth",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "walter": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "walter",
+      "extension": "png",
+      "file_type": "local",
+      "preload": false
+    },
+    "zorf": {
+      "region": {
+        "row": 2,
+        "column": 5
+      },
+      "stretchable": null,
+      "name": "zorf",
       "extension": "png",
       "file_type": "local",
       "preload": false
