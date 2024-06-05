@@ -1,6 +1,14 @@
 {
   "free_type": {},
-  "json": {},
+  "json": {
+    "body_def": {
+      "class": "dev.ebnbin.insaniquarium.body.BodyDefJsonWrapper",
+      "name": "body_def",
+      "extension": "json",
+      "file_type": "internal",
+      "preload": false
+    }
+  },
   "texture": {
     "aquarium_a": {
       "region": null,

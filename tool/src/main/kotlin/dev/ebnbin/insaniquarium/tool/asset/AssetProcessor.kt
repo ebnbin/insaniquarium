@@ -8,6 +8,9 @@ import java.io.File
 object AssetProcessor {
     fun process() {
         val assets = Assets(
+            json = mapOf(
+                BodyDefProcessor.process(),
+            ),
             texture = TextureAssetProcessor.process(),
         )
         File("../assets/assets/assets.json").writeText(assets.toJson())

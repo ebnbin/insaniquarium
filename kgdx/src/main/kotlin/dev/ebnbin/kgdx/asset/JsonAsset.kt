@@ -20,7 +20,7 @@ class JsonAsset(
     preload: Boolean,
     @Expose
     @SerializedName("class")
-    val classOfT: Class<*>,
+    val classOfT: Class<out JsonWrapper<*>>,
 ) : Asset<Json>(
     name = name,
     extension = extension,
@@ -38,7 +38,7 @@ class JsonAsset(
         return get().data as T
     }
 
-    class Parameters(val classOfT: Class<*>) : AssetLoaderParameters<Json>()
+    class Parameters(val classOfT: Class<out JsonWrapper<*>>) : AssetLoaderParameters<Json>()
 
     class Loader(resolver: FileHandleResolver) : AsynchronousAssetLoader<Json, Parameters>(resolver) {
         override fun getDependencies(
@@ -53,7 +53,7 @@ class JsonAsset(
 
         override fun loadAsync(manager: AssetManager?, fileName: String?, file: FileHandle, parameter: Parameters?) {
             requireNotNull(parameter)
-            val data = file.readString().fromJson(parameter.classOfT)
+            val data = file.readString().fromJson(parameter.classOfT).data
             json = Json(data)
         }
 
@@ -68,4 +68,8 @@ class JsonAsset(
             }
         }
     }
+}
+
+interface JsonWrapper<T> {
+    val data: T
 }
