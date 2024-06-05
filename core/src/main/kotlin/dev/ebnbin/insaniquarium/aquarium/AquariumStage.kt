@@ -1,11 +1,14 @@
 package dev.ebnbin.insaniquarium.aquarium
 
-import com.badlogic.gdx.scenes.scene2d.ui.Image
 import dev.ebnbin.kgdx.LifecycleStage
+import dev.ebnbin.kgdx.ui.StretchableImage
 
 class AquariumStage(aquarium: Aquarium) : LifecycleStage() {
     init {
-        Image(aquarium.textureAsset.get()).also {
+        StretchableImage(
+            texture = aquarium.textureAsset.get(),
+            stretchable = requireNotNull(aquarium.textureAsset.stretchable),
+        ).also {
             it.setFillParent(true)
             addActor(it)
         }

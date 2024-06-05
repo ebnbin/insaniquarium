@@ -18,6 +18,9 @@ class TextureAsset(
     @Expose
     @SerializedName("region")
     val region: Region?,
+    @Expose
+    @SerializedName("stretchable")
+    val stretchable: Stretchable?,
 ) : Asset<Texture>(
     name = name,
     extension = extension,
@@ -31,6 +34,16 @@ class TextureAsset(
         @Expose
         @SerializedName("column")
         val column: Int,
+    )
+
+    // position, size, position, size, ...
+    class Stretchable(
+        @Expose
+        @SerializedName("x")
+        val x: List<Int>,
+        @Expose
+        @SerializedName("y")
+        val y: List<Int>,
     )
 
     override val type: AssetType

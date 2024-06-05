@@ -44,6 +44,10 @@ object TextureAssetProcessor {
                 fileType = AssetFileType.LOCAL,
                 preload = false,
                 region = null,
+                stretchable = TextureAsset.Stretchable(
+                    x = listOf(0, 160, 1120, 160),
+                    y = listOf(0, 80, 680, 40),
+                ),
             )
         }
     }
@@ -85,6 +89,7 @@ object TextureAssetProcessor {
                     row = packedRow,
                     column = packedColumn,
                 ),
+                stretchable = null,
             )
         }
     }

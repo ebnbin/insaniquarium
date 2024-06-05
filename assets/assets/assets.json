@@ -3,6 +3,20 @@
   "texture": {
     "aquarium_a": {
       "region": null,
+      "stretchable": {
+        "x": [
+          0,
+          160,
+          1120,
+          160
+        ],
+        "y": [
+          0,
+          80,
+          680,
+          40
+        ]
+      },
       "name": "aquarium_a",
       "extension": "png",
       "file_type": "local",
@@ -10,6 +24,20 @@
     },
     "aquarium_b": {
       "region": null,
+      "stretchable": {
+        "x": [
+          0,
+          160,
+          1120,
+          160
+        ],
+        "y": [
+          0,
+          80,
+          680,
+          40
+        ]
+      },
       "name": "aquarium_b",
       "extension": "png",
       "file_type": "local",
@@ -17,6 +45,20 @@
     },
     "aquarium_c": {
       "region": null,
+      "stretchable": {
+        "x": [
+          0,
+          160,
+          1120,
+          160
+        ],
+        "y": [
+          0,
+          80,
+          680,
+          40
+        ]
+      },
       "name": "aquarium_c",
       "extension": "png",
       "file_type": "local",
@@ -24,6 +66,20 @@
     },
     "aquarium_d": {
       "region": null,
+      "stretchable": {
+        "x": [
+          0,
+          160,
+          1120,
+          160
+        ],
+        "y": [
+          0,
+          80,
+          680,
+          40
+        ]
+      },
       "name": "aquarium_d",
       "extension": "png",
       "file_type": "local",
@@ -31,6 +87,20 @@
     },
     "aquarium_e": {
       "region": null,
+      "stretchable": {
+        "x": [
+          0,
+          160,
+          1120,
+          160
+        ],
+        "y": [
+          0,
+          80,
+          680,
+          40
+        ]
+      },
       "name": "aquarium_e",
       "extension": "png",
       "file_type": "local",
@@ -38,6 +108,20 @@
     },
     "aquarium_f": {
       "region": null,
+      "stretchable": {
+        "x": [
+          0,
+          160,
+          1120,
+          160
+        ],
+        "y": [
+          0,
+          80,
+          680,
+          40
+        ]
+      },
       "name": "aquarium_f",
       "extension": "png",
       "file_type": "local",
@@ -48,6 +132,7 @@
         "row": 2,
         "column": 5
       },
+      "stretchable": null,
       "name": "stinky",
       "extension": "png",
       "file_type": "local",
