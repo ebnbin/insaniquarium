@@ -33,6 +33,8 @@ class FreeTypeAsset(
                 nameWithExtension = "$fontFileName.$extension",
             ).id
             parameters.fontParameters.size = 16f.dpToPxRound
+            parameters.fontParameters.minFilter = KgdxPreferenceManager.textureFilter.value.value
+            parameters.fontParameters.magFilter = KgdxPreferenceManager.textureFilter.value.value
         }
 
     override fun loaded(asset: BitmapFont) {

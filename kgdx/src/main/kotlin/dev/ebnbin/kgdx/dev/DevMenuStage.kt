@@ -10,6 +10,7 @@ import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.CLEAR_COLOR_MAP
 import dev.ebnbin.kgdx.util.Dpi
+import dev.ebnbin.kgdx.util.TextureFilter
 import dev.ebnbin.kgdx.util.WorldFitViewport
 import dev.ebnbin.kgdx.util.checkBoxMenuItem
 import dev.ebnbin.kgdx.util.listMenuItem
@@ -62,7 +63,15 @@ internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
                 text = KgdxPreferenceManager.dpi.key,
                 valueList = Dpi.entries,
                 valueProperty = KgdxPreferenceManager.dpi::value,
-                valueToString = { it.id },
+                valueToString = Dpi::id,
+            ) {
+                game.recreate()
+            }
+            listMenuItem(
+                text = KgdxPreferenceManager.textureFilter.key,
+                valueList = TextureFilter.entries,
+                valueProperty = KgdxPreferenceManager.textureFilter::value,
+                valueToString = TextureFilter::id,
             ) {
                 game.recreate()
             }

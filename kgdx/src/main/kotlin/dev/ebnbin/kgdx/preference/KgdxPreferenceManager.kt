@@ -2,6 +2,7 @@ package dev.ebnbin.kgdx.preference
 
 import com.badlogic.gdx.graphics.Color
 import dev.ebnbin.kgdx.util.Dpi
+import dev.ebnbin.kgdx.util.TextureFilter
 import dev.ebnbin.kgdx.util.toColor
 
 object KgdxPreferenceManager {
@@ -31,7 +32,15 @@ object KgdxPreferenceManager {
         name = NAME,
         key = "dpi",
         defaultValue = Dpi.M,
-        valueToStoredValue = { it.id },
-        storedValueToValue = { Dpi.of(it) },
+        valueToStoredValue = Dpi::id,
+        storedValueToValue = Dpi::of,
+    )
+
+    val textureFilter: Preference<TextureFilter, String> = Preference(
+        name = NAME,
+        key = "texture_filter",
+        defaultValue = TextureFilter.NEAREST,
+        valueToStoredValue = TextureFilter::id,
+        storedValueToValue = TextureFilter::of,
     )
 }

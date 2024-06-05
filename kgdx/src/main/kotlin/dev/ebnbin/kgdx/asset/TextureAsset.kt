@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import dev.ebnbin.kgdx.game
+import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.split
 
 class TextureAsset(
@@ -36,7 +37,10 @@ class TextureAsset(
         get() = AssetType.TEXTURE
 
     override val parameters: AssetLoaderParameters<Texture>
-        get() = TextureLoader.TextureParameter()
+        get() = TextureLoader.TextureParameter().also {
+            it.minFilter = KgdxPreferenceManager.textureFilter.value.value
+            it.magFilter = KgdxPreferenceManager.textureFilter.value.value
+        }
 
     fun getTextureRegionList(): List<TextureRegion> {
         requireNotNull(region)
