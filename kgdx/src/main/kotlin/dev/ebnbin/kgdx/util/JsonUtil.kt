@@ -14,6 +14,7 @@ private val gson: Gson = GsonBuilder()
     .serializeNulls()
     .setPrettyPrinting()
     .registerTypeAdapterFactory(EnumTypeAdapterFactory)
+    .registerTypeHierarchyAdapter(Class::class.java, ClassTypeAdapter)
     .create()
 
 fun Any?.toJson(): String {
@@ -58,6 +59,25 @@ private object EnumTypeAdapterFactory : TypeAdapterFactory {
                     enumMap.getValue(`in`.nextString())
                 }
             }
+        }
+    }
+}
+
+private object ClassTypeAdapter : TypeAdapter<Class<*>>() {
+    override fun write(out: JsonWriter, value: Class<*>?) {
+        if (value == null) {
+            out.nullValue()
+        } else {
+            out.value(value.name)
+        }
+    }
+
+    override fun read(`in`: JsonReader): Class<*>? {
+        return if (`in`.peek() == JsonToken.NULL) {
+            `in`.nextNull()
+            null
+        } else {
+            Class.forName(`in`.nextString())
         }
     }
 }

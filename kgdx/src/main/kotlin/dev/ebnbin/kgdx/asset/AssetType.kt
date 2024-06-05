@@ -12,6 +12,10 @@ enum class AssetType(
         id = "freetype",
         type = BitmapFont::class.java,
     ),
+    JSON(
+        id = "json",
+        type = Json::class.java,
+    ),
     TEXTURE(
         id = "texture",
         type = Texture::class.java,
@@ -27,8 +31,8 @@ enum class AssetType(
 
     fun dpiSuffix(dpi: Dpi): String {
         return when (this) {
-            FREETYPE -> ""
             TEXTURE -> dpi.suffix
+            else -> ""
         }
     }
 

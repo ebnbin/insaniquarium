@@ -8,11 +8,18 @@ data class Assets(
     @SerializedName("free_type")
     private val freeType: Map<String, FreeTypeAsset> = emptyMap(),
     @Expose
+    @SerializedName("json")
+    private val json: Map<String, JsonAsset> = emptyMap(),
+    @Expose
     @SerializedName("texture")
     private val texture: Map<String, TextureAsset> = emptyMap(),
 ) {
     fun freeType(name: String): FreeTypeAsset {
         return freeType.getValue(name)
+    }
+
+    fun json(name: String): JsonAsset {
+        return json.getValue(name)
     }
 
     fun texture(name: String): TextureAsset {
@@ -22,6 +29,7 @@ data class Assets(
     internal fun all(): Set<Asset<*>> {
         val set = mutableSetOf<Asset<*>>()
         set.addAll(freeType.values)
+        set.addAll(json.values)
         set.addAll(texture.values)
         return set
     }
@@ -29,6 +37,7 @@ data class Assets(
     internal operator fun plus(other: Assets): Assets {
         return Assets(
             freeType = freeType + other.freeType,
+            json = json + other.json,
             texture = texture + other.texture,
         )
     }
