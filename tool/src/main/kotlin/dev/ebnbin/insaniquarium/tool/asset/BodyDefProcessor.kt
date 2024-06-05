@@ -1,19 +1,35 @@
 package dev.ebnbin.insaniquarium.tool.asset
 
+import com.badlogic.gdx.graphics.Pixmap
 import dev.ebnbin.insaniquarium.body.BodyDef
 import dev.ebnbin.insaniquarium.body.BodyDefJsonWrapper
 import dev.ebnbin.insaniquarium.body.BodyType
+import dev.ebnbin.insaniquarium.tank.dpToMeter
 import dev.ebnbin.kgdx.asset.AssetFileType
+import dev.ebnbin.kgdx.asset.AssetId
+import dev.ebnbin.kgdx.asset.AssetType
 import dev.ebnbin.kgdx.asset.JsonAsset
+import dev.ebnbin.kgdx.asset.TextureAsset
+import dev.ebnbin.kgdx.util.Dpi
+import dev.ebnbin.kgdx.util.nonTransparentSize
+import dev.ebnbin.kgdx.util.tile
 import dev.ebnbin.kgdx.util.toJson
+import ktx.assets.disposeSafely
 import java.io.File
 
-object BodyDefProcessor {
+class BodyDefProcessor(
+    private val textureAssetMap: Map<String, TextureAsset>,
+) {
+    private val nonTransparentSizeCache: MutableMap<String, Pair<Int, Int>> = mutableMapOf()
+
     fun process(): Pair<String, JsonAsset> {
         val bodyDefJsonWrapper = BodyDefJsonWrapper(
             data = BodyType.entries.associate { type ->
+                val nonTransparentSize = nonTransparentSize(type.id)
                 val def = BodyDef(
                     id = type.id,
+                    width = nonTransparentSize.first.toFloat().dpToMeter,
+                    height = nonTransparentSize.second.toFloat().dpToMeter,
                 )
                 def.id to def
             },
@@ -28,6 +44,30 @@ object BodyDefProcessor {
             preload = true,
             classOfT = BodyDefJsonWrapper::class.java,
         )
-        return jsonAsset.name to jsonAsset
+        val pair = jsonAsset.name to jsonAsset
+        nonTransparentSizeCache.clear()
+        return pair
+    }
+
+    private fun nonTransparentSize(name: String): Pair<Int, Int> {
+        return nonTransparentSizeCache.getOrPut(name) {
+            val assetId = AssetId(
+                fileType = AssetFileType.LOCAL,
+                type = AssetType.TEXTURE,
+                nameWithExtension = "$name.png",
+            )
+            val pixmap = Pixmap(assetId.fileHandle(dpi = Dpi.M))
+            val region = requireNotNull(textureAssetMap.getValue(name).region)
+            val tiledPixmap = pixmap.tile(
+                row = region.row,
+                column = region.column,
+                tileStart = 0,
+                tileCount = 1,
+            ).first()
+            pixmap.disposeSafely()
+            val nonTransparentSize = tiledPixmap.nonTransparentSize()
+            tiledPixmap.disposeSafely()
+            nonTransparentSize
+        }
     }
 }

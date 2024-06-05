@@ -1,7 +1,9 @@
 {
   "data": {
     "stinky": {
-      "id": "stinky"
+      "id": "stinky",
+      "width": 0.96666664,
+      "height": 0.6333333
     }
   }
 }

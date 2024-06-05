@@ -7,11 +7,12 @@ import java.io.File
 
 object AssetProcessor {
     fun process() {
+        val textureAssetMap = TextureAssetProcessor.process()
         val assets = Assets(
             json = mapOf(
-                BodyDefProcessor.process(),
+                BodyDefProcessor(textureAssetMap).process(),
             ),
-            texture = TextureAssetProcessor.process(),
+            texture = textureAssetMap,
         )
         File("../assets/assets/assets.json").writeText(assets.toJson())
     }

@@ -7,6 +7,7 @@ import dev.ebnbin.kgdx.asset.AssetId
 import dev.ebnbin.kgdx.asset.AssetType
 import dev.ebnbin.kgdx.asset.TextureAsset
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
+import dev.ebnbin.kgdx.util.Dpi
 import dev.ebnbin.kgdx.util.createPixmap
 import dev.ebnbin.kgdx.util.drawSubPixmap
 import dev.ebnbin.kgdx.util.internalAsset
@@ -21,7 +22,7 @@ import java.util.zip.ZipInputStream
 
 object TextureAssetProcessor {
     private abstract class Processor(val name: String) {
-        abstract fun process(): TextureAsset
+        abstract fun process(fromTool: Boolean): TextureAsset
     }
 
     private class Aquarium(
@@ -30,14 +31,14 @@ object TextureAssetProcessor {
     ) : Processor(
         name = name,
     ) {
-        override fun process(): TextureAsset {
+        override fun process(fromTool: Boolean): TextureAsset {
             val inputPixmap = readPixmapFromZip(inputFileName)
             val outputPixmap = createPixmap(1280, 720)
             outputPixmap.drawSubPixmap(inputPixmap,    0,    0,   32,  480,    0,    0,  160,  720)
             outputPixmap.drawSubPixmap(inputPixmap,   32,    0,  576,  480,  160,    0,  960,  720)
             outputPixmap.drawSubPixmap(inputPixmap,  608,    0,   32,  480, 1120,    0,  160,  720)
             inputPixmap.disposeSafely()
-            outputPixmap.writeToLocal(name)
+            outputPixmap.writeToLocal(name, fromTool)
             return TextureAsset(
                 name = name,
                 extension = "png",
@@ -63,7 +64,7 @@ object TextureAssetProcessor {
     ) : Processor(
         name = name,
     ) {
-        override fun process(): TextureAsset {
+        override fun process(fromTool: Boolean): TextureAsset {
             val inputPixmap = readPixmapFromZip(inputFileName)
             val inputMaskPixmap = readPixmapFromZip(inputMaskFileName)
             val maskedPixmap = inputPixmap.mask(inputMaskPixmap)
@@ -78,7 +79,7 @@ object TextureAssetProcessor {
             }
             val (packedPixmap, packedRow, packedColumn) = scaledPixmapList.pack()
             scaledPixmapList.forEach { it.disposeSafely() }
-            packedPixmap.writeToLocal(name)
+            packedPixmap.writeToLocal(name, fromTool)
             packedPixmap.disposeSafely()
             return TextureAsset(
                 name = name,
@@ -118,15 +119,16 @@ object TextureAssetProcessor {
         error(Unit)
     }
 
-    private fun Pixmap.writeToLocal(name: String) {
+    private fun Pixmap.writeToLocal(name: String, fromTool: Boolean) {
         val assetId = AssetId(
             fileType = AssetFileType.LOCAL,
             type = AssetType.TEXTURE,
             nameWithExtension = "$name.png",
         )
-        val dpiPixmap = scale(KgdxPreferenceManager.dpi.value.pxsPerDp)
+        val dpi = if (fromTool) Dpi.M else KgdxPreferenceManager.dpi.value
+        val dpiPixmap = scale(dpi.pxsPerDp)
         disposeSafely()
-        dpiPixmap.write(assetId.fileHandle())
+        dpiPixmap.write(assetId.fileHandle(dpi = dpi))
         dpiPixmap.disposeSafely()
     }
 
@@ -174,12 +176,12 @@ object TextureAssetProcessor {
                 nameWithExtension = "${processor.name}.png",
             ).id
         }
-        processorMap[fileName]?.process()
+        processorMap[fileName]?.process(fromTool = false)
     }
 
     fun process(): Map<String, TextureAsset> {
         return PROCESSOR_LIST
-            .map { it.process() }
+            .map { it.process(fromTool = true) }
             .associateBy { it.name }
             .toSortedMap()
     }

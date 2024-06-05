@@ -16,6 +16,9 @@ fun Int.toColor(): Color {
     return Color(this)
 }
 
+val Color.isTransparent: Boolean
+    get() = a == 0f
+
 val Color.isOpaque: Boolean
     get() = a == 1f
 

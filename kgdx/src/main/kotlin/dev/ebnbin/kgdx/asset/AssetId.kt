@@ -3,6 +3,7 @@ package dev.ebnbin.kgdx.asset
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.files.FileHandle
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
+import dev.ebnbin.kgdx.util.Dpi
 import dev.ebnbin.kgdx.util.internalAsset
 import dev.ebnbin.kgdx.util.localAsset
 
@@ -13,8 +14,7 @@ data class AssetId(
 ) {
     val id: String = "${fileType.id}:${type.id}:$nameWithExtension"
 
-    fun fileHandle(): FileHandle {
-        val dpi = KgdxPreferenceManager.dpi.value
+    fun fileHandle(dpi: Dpi = KgdxPreferenceManager.dpi.value): FileHandle {
         val path = "${type.directory}${type.dpiSuffix(dpi)}/$nameWithExtension"
         return when (fileType) {
             AssetFileType.INTERNAL -> Gdx.files.internalAsset(path)

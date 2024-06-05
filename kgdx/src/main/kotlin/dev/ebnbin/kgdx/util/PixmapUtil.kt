@@ -8,6 +8,8 @@ import ktx.assets.disposeSafely
 import ktx.graphics.copy
 import java.util.zip.Deflater
 import kotlin.math.abs
+import kotlin.math.max
+import kotlin.math.min
 
 fun createPixmap(width: Int, height: Int): Pixmap {
     return Pixmap(width, height, Pixmap.Format.RGBA8888)
@@ -125,6 +127,24 @@ fun Pixmap.scale(scale: Float): Pixmap {
     val scaleHeight = height * scale
     require(scaleHeight.toInt().toFloat() == scaleHeight)
     return scale(scaleWidth.toInt(), scaleHeight.toInt())
+}
+
+fun Pixmap.nonTransparentSize(): Pair<Int, Int> {
+    var minX = width - 1
+    var minY = height - 1
+    var maxX = 0
+    var maxY = 0
+    for (y in 0 until height) {
+        for (x in 0 until width) {
+            if (getPixel(x, y).toColor().isTransparent) continue
+            minX = min(minX, x)
+            minY = min(minY, y)
+            maxX = max(maxX, x)
+            maxY = max(maxY, y)
+        }
+    }
+    require(minX <= maxX && minY <= maxY)
+    return maxX - minX + 1 to maxY - minY + 1
 }
 
 fun Pixmap.write(fileHandle: FileHandle) {

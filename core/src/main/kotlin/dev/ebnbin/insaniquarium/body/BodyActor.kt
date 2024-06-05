@@ -2,6 +2,7 @@ package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.insaniquarium.tank.TankGroup
@@ -9,7 +10,7 @@ import dev.ebnbin.insaniquarium.tank.pxToMeter
 
 class BodyActor(
     tankGroup: TankGroup,
-    type: BodyType,
+    private val type: BodyType,
 ) : Actor() {
     private val textureRegion: TextureRegion = type.def.textureAsset.getTextureRegionList().first()
 
@@ -26,6 +27,16 @@ class BodyActor(
             y,
             width,
             height,
+        )
+    }
+
+    override fun drawDebugBounds(shapes: ShapeRenderer) {
+        super.drawDebugBounds(shapes)
+        shapes.rect(
+            getX(Align.center) - type.def.width / 2f,
+            getY(Align.center) - type.def.height / 2f,
+            type.def.width,
+            type.def.height,
         )
     }
 }
