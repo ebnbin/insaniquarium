@@ -1,6 +1,5 @@
 package dev.ebnbin.insaniquarium.body
 
-import dev.ebnbin.kgdx.asset.TextureAsset
 import dev.ebnbin.kgdx.game
 
 enum class BodyType(
@@ -9,6 +8,6 @@ enum class BodyType(
     STINKY("stinky"),
     ;
 
-    val textureAsset: TextureAsset
-        get() = game.assets.texture(id)
+    val def: BodyDef
+        get() = game.assets.json("body_def").data<Map<String, BodyDef>>().getValue(id)
 }

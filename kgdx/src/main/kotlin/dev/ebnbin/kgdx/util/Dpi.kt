@@ -43,3 +43,6 @@ val Float.dpToPxRound: Int
 
 val Float.dpToPxInt: Int
     get() = dpToPxFloat.toInt()
+
+val Int.pxToDp: Float
+    get() = this * KgdxPreferenceManager.dpi.value.dpsPerPx

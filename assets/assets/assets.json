@@ -6,7 +6,7 @@
       "name": "body_def",
       "extension": "json",
       "file_type": "internal",
-      "preload": false
+      "preload": true
     }
   },
   "texture": {

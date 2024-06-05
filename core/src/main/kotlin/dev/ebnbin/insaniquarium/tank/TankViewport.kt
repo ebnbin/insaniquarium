@@ -2,6 +2,7 @@ package dev.ebnbin.insaniquarium.tank
 
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 import dev.ebnbin.kgdx.Game
+import dev.ebnbin.kgdx.util.pxToDp
 import kotlin.math.max
 
 class TankViewport : ScreenViewport() {
@@ -18,3 +19,6 @@ private const val DPS_PER_METER = 120f
 
 val Float.dpToMeter: Float
     get() = this / DPS_PER_METER
+
+val Int.pxToMeter: Float
+    get() = pxToDp.dpToMeter

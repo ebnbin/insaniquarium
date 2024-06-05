@@ -25,7 +25,7 @@ object BodyDefProcessor {
             name = "body_def",
             extension = "json",
             fileType = AssetFileType.INTERNAL,
-            preload = false,
+            preload = true,
             classOfT = BodyDefJsonWrapper::class.java,
         )
         return jsonAsset.name to jsonAsset
