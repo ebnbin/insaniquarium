@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
+import dev.ebnbin.kgdx.util.dpToPxRound
 
 class FreeTypeAsset(
     name: String,
@@ -30,10 +32,12 @@ class FreeTypeAsset(
                 type = type,
                 nameWithExtension = "$fontFileName.$extension",
             ).id
+            parameters.fontParameters.size = 16f.dpToPxRound
         }
 
     override fun loaded(asset: BitmapFont) {
         super.loaded(asset)
         asset.data.markupEnabled = true
+        asset.data.setScale(KgdxPreferenceManager.dpi.value.dpsPerPx)
     }
 }

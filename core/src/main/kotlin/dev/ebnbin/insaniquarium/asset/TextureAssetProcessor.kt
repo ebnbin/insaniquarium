@@ -6,6 +6,7 @@ import dev.ebnbin.kgdx.asset.AssetFileType
 import dev.ebnbin.kgdx.asset.AssetId
 import dev.ebnbin.kgdx.asset.AssetType
 import dev.ebnbin.kgdx.asset.TextureAsset
+import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.createPixmap
 import dev.ebnbin.kgdx.util.drawSubPixmap
 import dev.ebnbin.kgdx.util.internalAsset
@@ -118,8 +119,10 @@ object TextureAssetProcessor {
             type = AssetType.TEXTURE,
             nameWithExtension = "$name.png",
         )
-        write(assetId.fileHandle())
+        val dpiPixmap = scale(KgdxPreferenceManager.dpi.value.pxsPerDp)
         disposeSafely()
+        dpiPixmap.write(assetId.fileHandle())
+        dpiPixmap.disposeSafely()
     }
 
     private val PROCESSOR_LIST: List<Processor> = listOf(

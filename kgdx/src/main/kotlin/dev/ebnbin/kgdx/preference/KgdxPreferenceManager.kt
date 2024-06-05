@@ -4,7 +4,7 @@ import com.badlogic.gdx.graphics.Color
 import dev.ebnbin.kgdx.util.Dpi
 import dev.ebnbin.kgdx.util.toColor
 
-internal object KgdxPreferenceManager {
+object KgdxPreferenceManager {
     private const val NAME = "kgdx"
 
     val showDevInfo: SimplePreference<Boolean> = SimplePreference(
