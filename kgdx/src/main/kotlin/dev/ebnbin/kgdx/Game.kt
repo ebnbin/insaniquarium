@@ -98,13 +98,18 @@ abstract class Game : ApplicationListener {
         canRender = true
     }
 
+    internal var time: Float = 0f
+        private set
+
     override fun render() {
         if (!canRender) return
         if (!resumed) {
             resumed = true
             stageList().resume()
         }
-        stageList().act(Gdx.graphics.deltaTime)
+        val delta = Gdx.graphics.deltaTime
+        time += delta
+        stageList().act(delta)
         val clearColor = KgdxPreferenceManager.clearColor.value
         ScreenUtils.clear(clearColor)
         stageList().draw()
@@ -122,6 +127,7 @@ abstract class Game : ApplicationListener {
         screen = null
         globalStageList().dispose()
         assetManager.disposeSafely()
+        time = 0f
         created = false
         singleton = null
     }

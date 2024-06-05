@@ -1,12 +1,15 @@
 package dev.ebnbin.kgdx.dev
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.kgdx.LifecycleStage
 import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.WorldFitViewport
+import dev.ebnbin.kgdx.util.colorMarkup
+import dev.ebnbin.kgdx.util.toTime
 
 internal class DevInfoStage : LifecycleStage(WorldFitViewport()) {
     init {
@@ -29,6 +32,16 @@ internal class DevInfoStage : LifecycleStage(WorldFitViewport()) {
         private val ENTRY_LIST: List<DevLabel.Entry> = listOf(
             DevLabel.Entry("fps") {
                 "${Gdx.graphics.framesPerSecond}"
+            },
+            DevLabel.Entry("time") {
+                val time = game.time.toTime()
+                val timeString = if (time.hour > 0) {
+                    "%d:%02d:%02d".format(time.hour, time.minute, time.second)
+                } else {
+                    "%02d:%02d".format(time.minute, time.second)
+                }
+                val millisecondString = ".%03d".format(time.millisecond).colorMarkup(Color.GRAY)
+                "$timeString$millisecondString"
             },
             DevLabel.Entry("asset") {
                 val loadedAssets = game.assetManager.loadedAssets
