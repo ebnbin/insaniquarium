@@ -33,6 +33,9 @@ internal class DevInfoStage : LifecycleStage(WorldFitViewport()) {
             DevLabel.Entry("fps") {
                 "${Gdx.graphics.framesPerSecond}"
             },
+            DevLabel.Entry("screen") {
+                "${Gdx.graphics.width}x${Gdx.graphics.height}"
+            },
             DevLabel.Entry("time") {
                 val time = game.time.toTime()
                 val timeString = if (time.hour > 0) {
