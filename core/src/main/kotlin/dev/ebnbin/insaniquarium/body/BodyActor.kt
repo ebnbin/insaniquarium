@@ -14,6 +14,8 @@ import dev.ebnbin.kgdx.util.diffStage
 class BodyActor(
     tankGroup: TankGroup,
     type: BodyType,
+    x: Float,
+    y: Float,
 ) : Actor() {
     private val textureRegion: TextureRegion = type.def.textureAsset.getTextureRegionList().first()
 
@@ -27,8 +29,8 @@ class BodyActor(
         tankHeight = tankGroup.height,
         velocityX = 0f,
         velocityY = 0f,
-        x = tankGroup.width / 2f,
-        y = tankGroup.height / 2f,
+        x = x,
+        y = y,
     )
 
     init {
