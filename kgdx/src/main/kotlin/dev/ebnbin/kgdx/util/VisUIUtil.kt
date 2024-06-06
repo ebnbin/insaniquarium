@@ -3,6 +3,7 @@ package dev.ebnbin.kgdx.util
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
+import com.kotcrab.vis.ui.widget.MenuBar
 import com.kotcrab.vis.ui.widget.MenuItem
 import com.kotcrab.vis.ui.widget.PopupMenu
 import com.kotcrab.vis.ui.widget.VisCheckBox
@@ -11,6 +12,7 @@ import kotlin.reflect.KMutableProperty0
 
 @Scene2dDsl
 fun PopupMenu.menuItem(
+    menuBar: MenuBar? = null,
     text: String,
     clicked: (() -> Unit)? = null,
 ) {
@@ -21,6 +23,7 @@ fun PopupMenu.menuItem(
     menuItem.addListener(object : ChangeListener() {
         override fun changed(event: ChangeEvent?, actor: Actor?) {
             clicked?.invoke()
+            menuBar?.closeMenu()
         }
     })
     addItem(menuItem)
@@ -28,6 +31,7 @@ fun PopupMenu.menuItem(
 
 @Scene2dDsl
 fun PopupMenu.checkBoxMenuItem(
+    menuBar: MenuBar? = null,
     text: String,
     valueProperty: KMutableProperty0<Boolean>,
     clicked: (() -> Unit)? = null,
@@ -47,6 +51,7 @@ fun PopupMenu.checkBoxMenuItem(
             valueProperty.set(newValue)
             checkBox.isChecked = newValue
             clicked?.invoke()
+            menuBar?.closeMenu()
         }
     })
     addItem(menuItem)
@@ -54,6 +59,7 @@ fun PopupMenu.checkBoxMenuItem(
 
 @Scene2dDsl
 fun <T> PopupMenu.listMenuItem(
+    menuBar: MenuBar? = null,
     text: String,
     valueList: List<T>,
     valueProperty: KMutableProperty0<T>? = null,
@@ -71,6 +77,7 @@ fun <T> PopupMenu.listMenuItem(
     val subPopupMenu = PopupMenu()
     valueList.forEach { value ->
         subPopupMenu.menuItem(
+            menuBar = menuBar,
             text = valueToString(value),
         ) {
             if (valueProperty != null) {

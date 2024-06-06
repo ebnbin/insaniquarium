@@ -34,24 +34,29 @@ internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
             title = "dev",
         ) {
             menuItem(
+                menuBar = this@createDevMenu,
                 text = "exit",
             ) {
                 Gdx.app.exit()
             }
             menuItem(
+                menuBar = this@createDevMenu,
                 text = "recreate",
             ) {
                 game.recreate()
             }
             checkBoxMenuItem(
+                menuBar = this@createDevMenu,
                 text = KgdxPreferenceManager.showDevInfo.key,
                 valueProperty = KgdxPreferenceManager.showDevInfo::value,
             )
             checkBoxMenuItem(
+                menuBar = this@createDevMenu,
                 text = KgdxPreferenceManager.isDebugAll.key,
                 valueProperty = KgdxPreferenceManager.isDebugAll::value,
             )
             listMenuItem(
+                menuBar = this@createDevMenu,
                 text = KgdxPreferenceManager.clearColor.key,
                 valueList = CLEAR_COLOR_MAP.values.toList(),
                 valueProperty = KgdxPreferenceManager.clearColor::value,
@@ -60,6 +65,7 @@ internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
                 },
             )
             listMenuItem(
+                menuBar = this@createDevMenu,
                 text = KgdxPreferenceManager.dpi.key,
                 valueList = Dpi.entries,
                 valueProperty = KgdxPreferenceManager.dpi::value,
@@ -68,6 +74,7 @@ internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
                 game.recreate()
             }
             listMenuItem(
+                menuBar = this@createDevMenu,
                 text = KgdxPreferenceManager.textureFilter.key,
                 valueList = TextureFilter.entries,
                 valueProperty = KgdxPreferenceManager.textureFilter::value,
@@ -76,6 +83,7 @@ internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
                 game.recreate()
             }
             listMenuItem(
+                menuBar = this@createDevMenu,
                 text = "screen",
                 valueList = mutableListOf<Screen.Creator>().also { list ->
                     list.add(Screen.Creator.EMPTY)
