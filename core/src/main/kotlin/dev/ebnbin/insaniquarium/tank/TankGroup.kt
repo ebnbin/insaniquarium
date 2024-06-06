@@ -1,6 +1,8 @@
 package dev.ebnbin.insaniquarium.tank
 
 import com.badlogic.gdx.scenes.scene2d.Group
+import com.badlogic.gdx.scenes.scene2d.InputEvent
+import com.badlogic.gdx.scenes.scene2d.InputListener
 import dev.ebnbin.insaniquarium.body.BodyActor
 import dev.ebnbin.insaniquarium.body.BodyType
 import kotlin.random.Random
@@ -8,6 +10,17 @@ import kotlin.random.Random
 class TankGroup : Group() {
     init {
         setSize(WIDTH_DP.dpToMeter, HEIGHT_DP.dpToMeter)
+    }
+
+    var devSelectedBody: BodyActor? = null
+
+    init {
+        addListener(object : InputListener() {
+            override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+                devSelectedBody = null
+                return true
+            }
+        })
     }
 
     fun devCreateBody(count: Int) {
