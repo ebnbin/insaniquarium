@@ -20,6 +20,10 @@ class BodyActor(
 
     private var data: BodyData = BodyData(
         type = type,
+        tankWidth = tankGroup.width,
+        tankHeight = tankGroup.height,
+        velocityX = 0f,
+        velocityY = 0f,
         x = tankGroup.width / 2f,
         y = tankGroup.height / 2f,
     )

@@ -30,6 +30,7 @@ class BodyDefProcessor(
                     id = type.id,
                     width = nonTransparentSize.first.toFloat().dpToMeter,
                     height = nonTransparentSize.second.toFloat().dpToMeter,
+                    density = 1000f,
                 )
                 def.id to def
             },

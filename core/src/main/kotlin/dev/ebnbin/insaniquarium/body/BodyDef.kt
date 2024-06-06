@@ -22,6 +22,9 @@ data class BodyDef(
     @Expose
     @SerializedName("height")
     val height: Float,
+    @Expose
+    @SerializedName("density")
+    val density: Float,
 ) {
     val textureAsset: TextureAsset
         get() = game.assets.texture(id)

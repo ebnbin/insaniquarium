@@ -4,6 +4,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 
 data class BodyData(
     private val type: BodyType,
+    private val tankWidth: Float,
+    private val tankHeight: Float,
+    val velocityX: Float,
+    val velocityY: Float,
     val x: Float,
     val y: Float,
 ) {
@@ -20,11 +24,43 @@ data class BodyData(
     val bottom: Float = y - halfHeight
     val top: Float = bottom + height
 
+    val area: Float = width * height
+
+    val areaInWater: Float = ((tankHeight - bottom) / height).coerceIn(0f, 1f) * area
+
+    val density: Float = def.density
+
+    val mass: Float = area * density
+
+    val gravityY: Float = -(mass * G)
+
+    val buoyancyY: Float = +(DENSITY_WATER * G * areaInWater)
+
+    val forceX: Float = 0f
+    val forceY: Float = gravityY + buoyancyY
+
+    val accelerationX = forceX / mass
+    val accelerationY = forceY / mass
+
     fun act(delta: Float): BodyData {
-        return copy()
+        val nextVelocityX = velocityX + accelerationX * delta
+        val nextVelocityY = velocityY + accelerationY * delta
+        val nextX = x + nextVelocityX * delta
+        val nextY = y + nextVelocityY * delta
+        return copy(
+            velocityX = nextVelocityX,
+            velocityY = nextVelocityY,
+            x = nextX,
+            y = nextY,
+        )
     }
 
     fun drawDebugBounds(shapes: ShapeRenderer) {
         shapes.rect(left, bottom, width, height)
+    }
+
+    companion object {
+        private const val G = 10f
+        private const val DENSITY_WATER = 1000f
     }
 }
