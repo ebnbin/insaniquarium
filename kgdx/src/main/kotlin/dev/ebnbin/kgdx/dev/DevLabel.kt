@@ -15,13 +15,14 @@ internal class DevLabel(
 ) : Label(null, LabelStyle(game.assets.freeType("kgdx_noto_sans_mono").get(), null)) {
     data class Entry(
         val key: Any,
-        val keyToString: (key: Any) -> String = { "$it" },
+        val keyToString: (key: Any) -> String? = { "$it" },
         val getValue: (delta: Float) -> String,
     )
 
     override fun act(delta: Float) {
         super.act(delta)
-        val keyText = "${entry.keyToString(entry.key)}=".colorMarkup(Color.LIGHT_GRAY)
+        val key = entry.keyToString(entry.key)
+        val keyText = if (key == null) "" else "$key=".colorMarkup(Color.LIGHT_GRAY)
         val valueText = entry.getValue(delta)
         val text = " $keyText$valueText "
         setText(text)

@@ -5,14 +5,12 @@ import com.badlogic.gdx.utils.Align
 import dev.ebnbin.kgdx.LifecycleStage
 import dev.ebnbin.kgdx.util.WorldFitViewport
 import dev.ebnbin.kgdx.util.nanoTimestamp
-import java.text.SimpleDateFormat
-import java.util.Locale
 
 internal class DevMessageStage : LifecycleStage(WorldFitViewport()) {
     private val verticalGroup: VerticalGroup = VerticalGroup().also {
         it.setFillParent(true)
-        it.align(Align.bottomLeft)
-        it.columnAlign(Align.left)
+        it.align(Align.bottom)
+        it.columnAlign(Align.center)
         addActor(it)
     }
 
@@ -22,9 +20,7 @@ internal class DevMessageStage : LifecycleStage(WorldFitViewport()) {
         }
         val entry = DevLabel.Entry(
             key = nanoTimestamp(),
-            keyToString = { key ->
-                SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(key as Long / 1_000_000)
-            },
+            keyToString = { null },
         ) {
             message
         }
