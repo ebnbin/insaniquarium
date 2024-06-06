@@ -45,7 +45,7 @@ abstract class Game : ApplicationListener {
     internal lateinit var gameDevInfoStage: GameDevInfoStage
     private lateinit var kgdxDevInfoStage: KgdxDevInfoStage
     private lateinit var devMessageStage: DevMessageStage
-    private lateinit var devMenuStage: DevMenuStage
+    internal lateinit var devMenuStage: DevMenuStage
 
     internal var screen: Screen? = null
         set(value) {

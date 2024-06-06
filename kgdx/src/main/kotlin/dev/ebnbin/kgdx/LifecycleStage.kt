@@ -3,6 +3,8 @@ package dev.ebnbin.kgdx
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.Viewport
+import com.kotcrab.vis.ui.widget.Menu
+import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.WorldScreenViewport
 import ktx.assets.disposeSafely
@@ -56,6 +58,12 @@ abstract class LifecycleStage : Stage {
         super.act()
     }
 
+    protected open val hasDevMenu: Boolean
+        get() = false
+
+    protected open fun createDevMenu(menuBar: MenuBar, menu: Menu) {
+    }
+
     fun putDevInfo(key: String?, getValue: (delta: Float) -> String) {
         game.gameDevInfoStage.putInfo(this, key, getValue)
     }
@@ -75,6 +83,13 @@ abstract class LifecycleStage : Stage {
 
         internal fun List<LifecycleStage>.resume() {
             forEach { stage ->
+                if (stage.hasDevMenu) {
+                    val menu = Menu(stage::class.java.simpleName)
+                    game.devMenuStage.createMenu(stage) { menuBar ->
+                        stage.createDevMenu(menuBar, menu)
+                        menu
+                    }
+                }
                 stage.resume()
             }
         }
@@ -96,6 +111,7 @@ abstract class LifecycleStage : Stage {
         internal fun List<LifecycleStage>.pause() {
             reversed().forEach { stage ->
                 stage.pause()
+                game.devMenuStage.removeMenu(stage)
             }
         }
 
