@@ -8,9 +8,9 @@ import dev.ebnbin.kgdx.util.toColor
 object KgdxPreferenceManager {
     private const val NAME = "kgdx"
 
-    val showDevInfo: SimplePreference<Boolean> = SimplePreference(
+    val showKgdxDevInfo: SimplePreference<Boolean> = SimplePreference(
         name = NAME,
-        key = "show_dev_info",
+        key = "show_kgdx_dev_info",
         defaultValue = false,
     )
 

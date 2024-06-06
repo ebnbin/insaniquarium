@@ -14,9 +14,9 @@ import dev.ebnbin.kgdx.asset.AssetLoaderRegistry
 import dev.ebnbin.kgdx.asset.AssetLoadingStage
 import dev.ebnbin.kgdx.asset.AssetManager
 import dev.ebnbin.kgdx.asset.Assets
-import dev.ebnbin.kgdx.dev.DevInfoStage
 import dev.ebnbin.kgdx.dev.DevMenuStage
 import dev.ebnbin.kgdx.dev.DevMessageStage
+import dev.ebnbin.kgdx.dev.KgdxDevInfoStage
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import ktx.assets.disposeSafely
 import kotlin.math.min
@@ -38,7 +38,7 @@ abstract class Game : ApplicationListener {
         get() = assetManager.assets
 
     private lateinit var assetLoadingStage: AssetLoadingStage
-    private lateinit var devInfoStage: DevInfoStage
+    private lateinit var kgdxDevInfoStage: KgdxDevInfoStage
     private lateinit var devMessageStage: DevMessageStage
     private lateinit var devMenuStage: DevMenuStage
 
@@ -63,7 +63,7 @@ abstract class Game : ApplicationListener {
     private fun globalStageList(): List<LifecycleStage> {
         return listOf(
             assetLoadingStage,
-            devInfoStage,
+            kgdxDevInfoStage,
             devMessageStage,
             devMenuStage,
         )
@@ -81,7 +81,7 @@ abstract class Game : ApplicationListener {
         created = true
         assetManager = AssetManager()
         assetLoadingStage = AssetLoadingStage()
-        devInfoStage = DevInfoStage()
+        kgdxDevInfoStage = KgdxDevInfoStage()
         devMessageStage = DevMessageStage()
         devMenuStage = DevMenuStage()
         globalStageList().resize(Gdx.graphics.width, Gdx.graphics.height)

@@ -11,7 +11,7 @@ import dev.ebnbin.kgdx.util.WorldFitViewport
 import dev.ebnbin.kgdx.util.colorMarkup
 import dev.ebnbin.kgdx.util.toTime
 
-internal class DevInfoStage : LifecycleStage(WorldFitViewport()) {
+internal class KgdxDevInfoStage : LifecycleStage(WorldFitViewport()) {
     init {
         VerticalGroup().also { verticalGroup ->
             verticalGroup.setFillParent(true)
@@ -26,7 +26,7 @@ internal class DevInfoStage : LifecycleStage(WorldFitViewport()) {
     }
 
     override val isRendering: Boolean
-        get() = KgdxPreferenceManager.showDevInfo.value
+        get() = KgdxPreferenceManager.showKgdxDevInfo.value
 
     companion object {
         private val ENTRY_LIST: List<DevLabel.Entry> = listOf(
