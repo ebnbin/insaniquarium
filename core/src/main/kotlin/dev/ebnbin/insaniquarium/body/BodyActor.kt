@@ -10,13 +10,28 @@ import dev.ebnbin.insaniquarium.tank.pxToMeter
 
 class BodyActor(
     tankGroup: TankGroup,
-    private val type: BodyType,
+    type: BodyType,
 ) : Actor() {
     private val textureRegion: TextureRegion = type.def.textureAsset.getTextureRegionList().first()
 
     init {
         setSize(textureRegion.regionWidth.pxToMeter, textureRegion.regionHeight.pxToMeter)
-        setPosition(tankGroup.width / 2f, tankGroup.height / 2f, Align.center)
+    }
+
+    private var data: BodyData = BodyData(
+        type = type,
+        x = tankGroup.width / 2f,
+        y = tankGroup.height / 2f,
+    )
+
+    init {
+        setPosition(data.x, data.y, Align.center)
+    }
+
+    override fun act(delta: Float) {
+        super.act(delta)
+        data = data.act(delta)
+        setPosition(data.x, data.y, Align.center)
     }
 
     override fun draw(batch: Batch, parentAlpha: Float) {
@@ -32,11 +47,6 @@ class BodyActor(
 
     override fun drawDebugBounds(shapes: ShapeRenderer) {
         super.drawDebugBounds(shapes)
-        shapes.rect(
-            getX(Align.center) - type.def.width / 2f,
-            getY(Align.center) - type.def.height / 2f,
-            type.def.width,
-            type.def.height,
-        )
+        data.drawDebugBounds(shapes)
     }
 }
