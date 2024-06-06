@@ -4,9 +4,12 @@ import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.Actor
+import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.insaniquarium.tank.TankGroup
+import dev.ebnbin.insaniquarium.tank.TankStage
 import dev.ebnbin.insaniquarium.tank.pxToMeter
+import dev.ebnbin.kgdx.util.diffStage
 
 class BodyActor(
     tankGroup: TankGroup,
@@ -30,6 +33,21 @@ class BodyActor(
 
     init {
         setPosition(data.x, data.y, Align.center)
+    }
+
+    override fun setStage(stage: Stage?) {
+        diffStage<TankStage>(
+            stage = stage,
+            updateStage = { super.setStage(it) },
+            addedToStage = ::addedToStage,
+            removedFromStage = ::removedFromStage,
+        )
+    }
+
+    private fun addedToStage(stage: TankStage) {
+    }
+
+    private fun removedFromStage(stage: TankStage) {
     }
 
     override fun act(delta: Float) {
