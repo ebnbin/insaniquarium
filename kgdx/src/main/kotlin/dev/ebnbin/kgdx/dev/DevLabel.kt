@@ -10,7 +10,7 @@ import dev.ebnbin.kgdx.util.colorMarkup
 import ktx.assets.disposeSafely
 import ktx.graphics.copy
 
-internal class DevLabel(
+class DevLabel(
     val entry: Entry,
 ) : Label(null, LabelStyle(game.assets.freeType("kgdx_noto_sans_mono").get(), null)) {
     data class Entry(

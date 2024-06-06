@@ -14,6 +14,12 @@ object KgdxPreferenceManager {
         defaultValue = false,
     )
 
+    val showGameDevInfo: SimplePreference<Boolean> = SimplePreference(
+        name = NAME,
+        key = "show_game_dev_info",
+        defaultValue = false,
+    )
+
     val isDebugAll: SimplePreference<Boolean> = SimplePreference(
         name = NAME,
         key = "is_debug_all",

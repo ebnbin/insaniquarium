@@ -52,6 +52,11 @@ internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
             )
             checkBoxMenuItem(
                 menuBar = this@createDevMenu,
+                text = KgdxPreferenceManager.showGameDevInfo.key,
+                valueProperty = KgdxPreferenceManager.showGameDevInfo::value,
+            )
+            checkBoxMenuItem(
+                menuBar = this@createDevMenu,
                 text = KgdxPreferenceManager.isDebugAll.key,
                 valueProperty = KgdxPreferenceManager.isDebugAll::value,
             )
