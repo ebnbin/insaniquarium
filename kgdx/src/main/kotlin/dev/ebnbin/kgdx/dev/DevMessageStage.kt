@@ -4,7 +4,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.kgdx.LifecycleStage
 import dev.ebnbin.kgdx.util.WorldFitViewport
-import dev.ebnbin.kgdx.util.nanoTimestamp
 
 internal class DevMessageStage : LifecycleStage(WorldFitViewport()) {
     private val verticalGroup: VerticalGroup = VerticalGroup().also {
@@ -18,13 +17,10 @@ internal class DevMessageStage : LifecycleStage(WorldFitViewport()) {
         if (verticalGroup.children.size >= MAX_SIZE) {
             verticalGroup.removeActorAt(0, true)
         }
-        val entry = DevLabel.Entry(
-            key = nanoTimestamp(),
-            keyToString = { null },
-        ) {
+        val devLabel = DevLabel(key = null) {
             message
         }
-        val devLabel = DevLabel(entry)
+        devLabel.userObject = System.currentTimeMillis()
         verticalGroup.addActor(devLabel)
     }
 
@@ -33,7 +29,7 @@ internal class DevMessageStage : LifecycleStage(WorldFitViewport()) {
         val iterator = verticalGroup.children.iterator()
         while (iterator.hasNext()) {
             val devLabel = iterator.next() as DevLabel
-            if (nanoTimestamp() - devLabel.entry.key as Long > DURATION) {
+            if (System.currentTimeMillis() - devLabel.userObject as Long > DURATION) {
                 iterator.remove()
             } else {
                 break
@@ -43,6 +39,6 @@ internal class DevMessageStage : LifecycleStage(WorldFitViewport()) {
 
     companion object {
         private const val MAX_SIZE = 30
-        private const val DURATION = 10_000_000_000L
+        private const val DURATION = 10_000L
     }
 }

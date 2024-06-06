@@ -14,8 +14,8 @@ internal class GameDevInfoStage : LifecycleStage(WorldFitViewport()) {
         addActor(verticalGroup)
     }
 
-    fun putInfo(stage: LifecycleStage, entry: DevLabel.Entry) {
-        val devLabel = DevLabel(entry)
+    fun putInfo(stage: LifecycleStage, key: String?, getValue: (delta: Float) -> String) {
+        val devLabel = DevLabel(key, getValue)
         devLabel.userObject = stage
         verticalGroup.addActor(devLabel)
     }

@@ -3,7 +3,6 @@ package dev.ebnbin.kgdx
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.Viewport
-import dev.ebnbin.kgdx.dev.DevLabel
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.WorldScreenViewport
 import ktx.assets.disposeSafely
@@ -57,8 +56,8 @@ abstract class LifecycleStage : Stage {
         super.act()
     }
 
-    fun putDevInfo(entry: DevLabel.Entry) {
-        game.gameDevInfoStage.putInfo(this, entry)
+    fun putDevInfo(key: String?, getValue: (delta: Float) -> String) {
+        game.gameDevInfoStage.putInfo(this, key, getValue)
     }
 
     companion object {
