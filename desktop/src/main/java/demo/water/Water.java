@@ -26,7 +26,7 @@ public class Water implements Disposable {
     private Set<Pair<Fixture, Fixture>> fixturePairs; // contacts between this object and other dynamic bodies
     private Body body; // Box2d body
 
-    private float density = 1f;
+    private float density = 1000f;
 
     /**
      * Constructor that allows to specify if there is an effect of waves and splash particles.

@@ -27,7 +27,7 @@ public class WaterGame extends ApplicationAdapter {
     @Override
     public void create() {
         camera = new OrthographicCamera();
-        stage = new Stage(new StretchViewport(Gdx.graphics.getWidth() / 100, Gdx.graphics.getHeight() / 100, camera));
+        stage = new Stage(new StretchViewport(Gdx.graphics.getWidth() / 240f, Gdx.graphics.getHeight() / 240f, camera));
 
         // Create box2d world
         world = new World(new Vector2(0, -10), true);
@@ -35,7 +35,7 @@ public class WaterGame extends ApplicationAdapter {
         debugRenderer = new Box2DDebugRenderer();
 
         water = new Water();
-        water.createBody(world, 3f, 0, 8, 2); //world, x, y, width, height
+        water.createBody(world, 4.5f, 3f, 8f, 5f); //world, x, y, width, height
         //water.setDebugMode(true);
     }
 
@@ -62,19 +62,19 @@ public class WaterGame extends ApplicationAdapter {
         bodyDef.type = BodyType.DynamicBody;
 
         // Set our body's starting position in the world
-        bodyDef.position.set(Gdx.input.getX() / 100f, camera.viewportHeight - Gdx.input.getY() / 100f);
+        bodyDef.position.set(Gdx.input.getX() / 240f, camera.viewportHeight - Gdx.input.getY() / 240f);
 
         // Create our body in the world using our body definition
         Body body = world.createBody(bodyDef);
 
         // Create a circle shape and set its radius to 6
         PolygonShape square = new PolygonShape();
-        square.setAsBox(0.3f, 0.3f);
+        square.setAsBox(0.25f, 0.25f);
 
         // Create a fixture definition to apply our shape to
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = square;
-        fixtureDef.density = 0.5f;
+        fixtureDef.density = 500f;
         fixtureDef.friction = 0.5f;
         fixtureDef.restitution = 0.5f;
 
