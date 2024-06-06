@@ -2,6 +2,7 @@ package dev.ebnbin.kgdx
 
 import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.utils.ScreenUtils
 import dev.ebnbin.kgdx.LifecycleStage.Companion.act
@@ -38,6 +39,8 @@ abstract class Game : ApplicationListener {
     val assets: Assets
         get() = assetManager.assets
 
+    private lateinit var inputMultiplexer: InputMultiplexer
+
     private lateinit var assetLoadingStage: AssetLoadingStage
     internal lateinit var gameDevInfoStage: GameDevInfoStage
     private lateinit var kgdxDevInfoStage: KgdxDevInfoStage
@@ -50,11 +53,17 @@ abstract class Game : ApplicationListener {
             if (resumed) {
                 field?.stageList?.pause()
             }
+            field?.stageList?.forEach { stage ->
+                inputMultiplexer.removeProcessor(stage)
+            }
             field?.stageList?.dispose()
             field = value
-            value?.stageList?.resize(Gdx.graphics.width, Gdx.graphics.height)
+            field?.stageList?.reversed()?.forEach { stage ->
+                inputMultiplexer.addProcessor(stage)
+            }
+            field?.stageList?.resize(Gdx.graphics.width, Gdx.graphics.height)
             if (resumed) {
-                value?.stageList?.resume()
+                field?.stageList?.resume()
             }
         }
 
@@ -83,11 +92,16 @@ abstract class Game : ApplicationListener {
         singleton = this
         created = true
         assetManager = AssetManager()
+        inputMultiplexer = InputMultiplexer()
+        Gdx.input.inputProcessor = inputMultiplexer
         assetLoadingStage = AssetLoadingStage()
         gameDevInfoStage = GameDevInfoStage()
         kgdxDevInfoStage = KgdxDevInfoStage()
         devMessageStage = DevMessageStage()
         devMenuStage = DevMenuStage()
+        globalStageList().reversed().forEach { stage ->
+            inputMultiplexer.addProcessor(stage)
+        }
         globalStageList().resize(Gdx.graphics.width, Gdx.graphics.height)
         canRender = true
     }
@@ -139,7 +153,11 @@ abstract class Game : ApplicationListener {
 
     override fun dispose() {
         screen = null
+        globalStageList().forEach { stage ->
+            inputMultiplexer.removeProcessor(stage)
+        }
         globalStageList().dispose()
+        inputMultiplexer.clear()
         assetManager.disposeSafely()
         time = 0f
         created = false

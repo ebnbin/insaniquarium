@@ -19,7 +19,6 @@ import ktx.scene2d.vis.menu
 
 internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
     init {
-        Gdx.input.inputProcessor = this
         VisUI.load(VisUI.SkinScale.X2)
         MenuBar().also {
             it.table.setPosition(0f, height)
@@ -103,7 +102,6 @@ internal class DevMenuStage : LifecycleStage(WorldFitViewport()) {
 
     override fun dispose() {
         VisUI.dispose()
-        Gdx.input.inputProcessor = null
         super.dispose()
     }
 }
