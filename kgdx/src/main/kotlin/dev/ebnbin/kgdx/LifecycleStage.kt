@@ -46,6 +46,11 @@ abstract class LifecycleStage : Stage {
     protected open fun pause() {
     }
 
+    @Deprecated("", ReplaceWith(""))
+    final override fun act() {
+        super.act()
+    }
+
     companion object {
         private fun defaultViewport(): Viewport {
             return WorldScreenViewport()

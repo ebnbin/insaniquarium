@@ -19,6 +19,7 @@ import dev.ebnbin.kgdx.dev.DevMenuStage
 import dev.ebnbin.kgdx.dev.DevMessageStage
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import ktx.assets.disposeSafely
+import kotlin.math.min
 
 private var singleton: Game? = null
 
@@ -108,8 +109,17 @@ abstract class Game : ApplicationListener {
             stageList().resume()
         }
         val delta = Gdx.graphics.deltaTime
-        time += delta
+        val limitedDelta = min(delta, LIMITED_DELTA)
+        time += limitedDelta
+        act(limitedDelta)
+        draw()
+    }
+
+    private fun act(delta: Float) {
         stageList().act(delta)
+    }
+
+    private fun draw() {
         val clearColor = KgdxPreferenceManager.clearColor.value
         ScreenUtils.clear(clearColor)
         stageList().draw()
@@ -153,6 +163,9 @@ abstract class Game : ApplicationListener {
     }
 
     companion object {
+        private const val LIMITED_FRAMES_PER_SECOND = 20
+        private const val LIMITED_DELTA = 1f / LIMITED_FRAMES_PER_SECOND
+
         var ID = ""
             private set
 
