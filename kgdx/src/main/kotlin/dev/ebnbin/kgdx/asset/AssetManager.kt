@@ -64,6 +64,13 @@ internal class AssetManager : GdxAssetManager(AssetFileHandleResolver), AssetLoa
         unloadSafely(assetDescriptor(asset).fileName)
     }
 
+    internal fun loadWithDiff(oldAssetSet: Set<Asset<*>>, newAssetSet: Set<Asset<*>>) {
+        val removedAssetSet = oldAssetSet - newAssetSet
+        val addedAssetSet = newAssetSet - oldAssetSet
+        removedAssetSet.forEach { unload(it) }
+        addedAssetSet.forEach { load(it) }
+    }
+
     override fun unload(fileName: String?) {
         diffAssets {
             super.unload(fileName)

@@ -18,12 +18,10 @@ class AssetLoadingStage : LifecycleStage() {
         this.screenCreator = screenCreator
         val oldScreen = game.screen
         game.screen = null
-        oldScreen?.assetSet?.forEach { asset ->
-            game.assetManager.unload(asset)
-        }
-        screenCreator.assetSet.forEach { asset ->
-            game.assetManager.load(asset)
-        }
+        game.assetManager.loadWithDiff(
+            oldAssetSet = oldScreen?.assetSet ?: emptySet(),
+            newAssetSet = screenCreator.assetSet,
+        )
     }
 
     override fun act(delta: Float) {
