@@ -25,7 +25,7 @@ internal class GameDevInfoStage : LifecycleStage(WorldFitViewport()) {
         while (iterator.hasNext()) {
             val devLabel = iterator.next() as DevLabel
             if (devLabel.userObject === stage && devLabel.entry === entry) {
-                iterator.remove()
+                verticalGroup.removeActor(devLabel)
             }
         }
     }
@@ -35,7 +35,7 @@ internal class GameDevInfoStage : LifecycleStage(WorldFitViewport()) {
         while (iterator.hasNext()) {
             val devLabel = iterator.next() as DevLabel
             if (devLabel.userObject === stage) {
-                iterator.remove()
+                verticalGroup.removeActor(devLabel)
             }
         }
     }

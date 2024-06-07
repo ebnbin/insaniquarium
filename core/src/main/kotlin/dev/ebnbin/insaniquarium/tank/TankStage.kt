@@ -3,7 +3,10 @@ package dev.ebnbin.insaniquarium.tank
 import com.badlogic.gdx.utils.Align
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
+import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.kgdx.LifecycleStage
+import dev.ebnbin.kgdx.dev.toDevEntry
+import dev.ebnbin.kgdx.util.listMenuItem
 import dev.ebnbin.kgdx.util.menuItem
 
 class TankStage : LifecycleStage(TankViewport()) {
@@ -36,35 +39,51 @@ class TankStage : LifecycleStage(TankViewport()) {
         super.act(delta)
     }
 
+    private var devBodyType: BodyType? = null
+
+    init {
+        putDevInfo("devBodyType" toDevEntry {
+            "${devBodyType?.id}"
+        })
+    }
+
     override val hasDevMenu: Boolean
         get() = true
 
     override fun createDevMenu(menuBar: MenuBar, menu: Menu) {
         super.createDevMenu(menuBar, menu)
         menu.apply {
+            listMenuItem(
+                menuBar = menuBar,
+                text = "body type pet A",
+                valueList = BodyType.PET_LIST.subList(0, BodyType.PET_LIST.size / 2),
+                valueToString = { it.id },
+            ) {
+                devBodyType = it
+            }
+            listMenuItem(
+                menuBar = menuBar,
+                text = "body type pet B",
+                valueList = BodyType.PET_LIST.subList(BodyType.PET_LIST.size / 2, BodyType.PET_LIST.size),
+                valueToString = { it.id },
+            ) {
+                devBodyType = it
+            }
             menuItem(
+                menuBar = menuBar,
+                text = "reset body type",
+            ) {
+                devBodyType = null
+            }
+            listMenuItem(
                 menuBar = menuBar,
                 text = "create body",
-            ) {
-                tankGroup.devCreateBody(count = 1)
-            }
-            menuItem(
-                menuBar = menuBar,
-                text = "create 10 bodies",
-            ) {
-                tankGroup.devCreateBody(count = 10)
-            }
-            menuItem(
-                menuBar = menuBar,
-                text = "create 100 bodies",
-            ) {
-                tankGroup.devCreateBody(count = 100)
-            }
-            menuItem(
-                menuBar = menuBar,
-                text = "create 1000 bodies",
-            ) {
-                tankGroup.devCreateBody(count = 1000)
+                valueList = listOf(1, 10, 100, 1000),
+            ) { count ->
+                tankGroup.devCreateBody(
+                    type = devBodyType,
+                    count = count,
+                )
             }
             menuItem(
                 menuBar = menuBar,

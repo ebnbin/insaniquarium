@@ -32,7 +32,7 @@ internal class DevMessageStage : LifecycleStage(WorldFitViewport()) {
         while (iterator.hasNext()) {
             val devLabel = iterator.next() as DevLabel
             if (System.currentTimeMillis() - devLabel.userObject as Long > DURATION) {
-                iterator.remove()
+                verticalGroup.removeActor(devLabel)
             } else {
                 break
             }

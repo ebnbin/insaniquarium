@@ -33,4 +33,33 @@ enum class BodyType(
 
     val def: BodyDef
         get() = game.assets.json("body_def").data<Map<String, BodyDef>>().getValue(id)
+
+    companion object {
+        val PET_LIST = listOf(
+            STINKY,
+            NIKO,
+            ITCHY,
+            PREGO,
+            ZORF,
+            CLYDE,
+            VERT,
+            RUFUS,
+            MERYL,
+            WADSWORTH,
+            SEYMOUR,
+            SHRAPNEL,
+            GUMBO,
+            BLIP,
+            RHUBARB,
+            NIMBUS,
+            AMP,
+            GASH,
+            ANGIE,
+            PRESTO,
+            BRINKLEY,
+            NOSTRADAMUS,
+            STANLEY,
+            WALTER,
+        )
+    }
 }
