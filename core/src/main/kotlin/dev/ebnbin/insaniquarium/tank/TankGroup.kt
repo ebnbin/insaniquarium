@@ -18,6 +18,14 @@ class TankGroup : Group() {
         addListener(object : InputListener() {
             override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 devUnselectBody(null)
+                val tankStage = stage as TankStage? ?: return false
+                val devBodyType = tankStage.devBodyType ?: return false
+                devCreateBody(
+                    type = devBodyType,
+                    count = 1,
+                    x = x,
+                    y = y,
+                )
                 return true
             }
         })
@@ -45,13 +53,18 @@ class TankGroup : Group() {
         }
     }
 
-    fun devCreateBody(type: BodyType?, count: Int) {
+    fun devCreateBody(
+        type: BodyType?,
+        count: Int,
+        x: Float = Random.nextFloat() * width,
+        y: Float = Random.nextFloat() * height,
+    ) {
         repeat(count) {
             BodyActor(
                 tankGroup = this,
                 type = type ?: BodyType.entries.random(),
-                x = Random.nextFloat() * width,
-                y = Random.nextFloat() * height,
+                x = x,
+                y = y,
             ).also {
                 addActor(it)
             }

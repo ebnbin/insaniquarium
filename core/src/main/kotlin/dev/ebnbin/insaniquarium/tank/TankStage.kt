@@ -39,7 +39,8 @@ class TankStage : LifecycleStage(TankViewport()) {
         super.act(delta)
     }
 
-    private var devBodyType: BodyType? = null
+    var devBodyType: BodyType? = null
+        private set
 
     init {
         putDevInfo("devBodyType" toDevEntry {
