@@ -42,11 +42,11 @@ data class BodyData(
     val accelerationX = forceX / mass
     val accelerationY = forceY / mass
 
-    fun act(delta: Float): BodyData {
-        val nextVelocityX = velocityX + accelerationX * delta
-        val nextVelocityY = velocityY + accelerationY * delta
-        val nextX = x + nextVelocityX * delta
-        val nextY = y + nextVelocityY * delta
+    fun tick(tickDelta: Float): BodyData {
+        val nextVelocityX = velocityX + accelerationX * tickDelta
+        val nextVelocityY = velocityY + accelerationY * tickDelta
+        val nextX = x + nextVelocityX * tickDelta
+        val nextY = y + nextVelocityY * tickDelta
         return copy(
             velocityX = nextVelocityX,
             velocityY = nextVelocityY,

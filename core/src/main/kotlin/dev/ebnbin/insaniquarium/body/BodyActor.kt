@@ -42,8 +42,10 @@ class BodyActor(
         y = y,
     )
 
+    private var position: Pair<Float, Float> = data.x to data.y
+
     init {
-        setPosition(data.x, data.y, Align.center)
+        setPosition(position.first, position.second, Align.center)
     }
 
     override fun setStage(stage: Stage?) {
@@ -108,8 +110,16 @@ class BodyActor(
 
     override fun act(delta: Float) {
         super.act(delta)
-        data = data.act(delta)
-        setPosition(data.x, data.y, Align.center)
+        val tankStage = stage as TankStage? ?: return
+        val tickDelta = tankStage.tickDelta
+        val position = if (tickDelta > 0f) {
+            data = data.tick(tickDelta)
+            data.x to data.y
+        } else {
+            position.first + data.velocityX * delta to position.second + data.velocityY * delta
+        }
+        this.position = position
+        setPosition(position.first, position.second, Align.center)
     }
 
     private val shapeRenderer: ShapeRenderer = ShapeRenderer().also {

@@ -20,6 +20,22 @@ class TankStage : LifecycleStage(TankViewport()) {
         )
     }
 
+    private var accumulator: Float = 0f
+
+    var tickDelta: Float = 0f
+        private set
+
+    override fun act(delta: Float) {
+        accumulator += delta
+        tickDelta = if (accumulator >= TICK_DELTA) {
+            accumulator -= TICK_DELTA
+            TICK_DELTA
+        } else {
+            0f
+        }
+        super.act(delta)
+    }
+
     override val hasDevMenu: Boolean
         get() = true
 
@@ -57,5 +73,10 @@ class TankStage : LifecycleStage(TankViewport()) {
                 tankGroup.devClearBodies()
             }
         }
+    }
+
+    companion object {
+        private const val TICKS_PER_SECOND = 20
+        private const val TICK_DELTA = 1f / TICKS_PER_SECOND
     }
 }
