@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.Viewport
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
+import dev.ebnbin.kgdx.dev.DevLabel
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.WorldScreenViewport
 import ktx.assets.disposeSafely
@@ -64,8 +65,12 @@ abstract class LifecycleStage : Stage {
     protected open fun createDevMenu(menuBar: MenuBar, menu: Menu) {
     }
 
-    fun putDevInfo(key: String?, getValue: (delta: Float) -> String) {
-        game.gameDevInfoStage.putInfo(this, key, getValue)
+    fun putDevInfo(entry: DevLabel.Entry) {
+        game.gameDevInfoStage.putInfo(this, entry)
+    }
+
+    fun removeDevInfo(entry: DevLabel.Entry) {
+        game.gameDevInfoStage.removeInfo(this, entry)
     }
 
     companion object {

@@ -15,6 +15,8 @@ import com.badlogic.gdx.utils.Align
 import dev.ebnbin.insaniquarium.tank.TankGroup
 import dev.ebnbin.insaniquarium.tank.TankStage
 import dev.ebnbin.insaniquarium.tank.pxToMeter
+import dev.ebnbin.kgdx.dev.DevLabel
+import dev.ebnbin.kgdx.dev.toDevEntry
 import dev.ebnbin.kgdx.util.diffParent
 import dev.ebnbin.kgdx.util.diffStage
 
@@ -57,6 +59,7 @@ class BodyActor(
     }
 
     private fun removedFromStage(stage: TankStage) {
+        removeDevInfo(stage)
     }
 
     override fun setParent(parent: Group?) {
@@ -72,19 +75,25 @@ class BodyActor(
     }
 
     private fun removedFromParent(parent: TankGroup) {
-        if (parent.devSelectedBody === this) {
-            parent.devSelectedBody = null
-        }
+        parent.devUnselectBody(this)
     }
 
     init {
         addListener(object : InputListener() {
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                (parent as TankGroup?)?.devSelectedBody = this@BodyActor
+                (parent as TankGroup?)?.devSelectBody(this@BodyActor)
                 event.stop()
                 return true
             }
         })
+    }
+
+    fun devSelect() {
+        stage?.let { putDevInfo(it as TankStage) }
+    }
+
+    fun devUnselect() {
+        stage?.let { removeDevInfo(it as TankStage) }
     }
 
     override fun hit(x: Float, y: Float, touchable: Boolean): Actor? {
@@ -121,7 +130,7 @@ class BodyActor(
         shapeRenderer.projectionMatrix = batch.projectionMatrix
         shapeRenderer.transformMatrix = batch.transformMatrix
         shapeRenderer.begin()
-        if ((parent as TankGroup?)?.devSelectedBody === this) {
+        if ((parent as TankGroup?)?.isDevSelected(this) == true) {
             data.drawDebugBounds(shapeRenderer)
         }
         shapeRenderer.end()
@@ -132,5 +141,91 @@ class BodyActor(
     override fun drawDebugBounds(shapes: ShapeRenderer) {
         super.drawDebugBounds(shapes)
         data.drawDebugBounds(shapes)
+    }
+
+    private val devInfoEntryList: List<DevLabel.Entry> = listOf(
+        "type" toDevEntry {
+            data.type.id
+        },
+        "size" toDevEntry {
+            "%.3f,%.3f".format(
+                data.width,
+                data.height,
+            )
+        },
+        "lrbt" toDevEntry {
+            "%.3f,%.3f,%.3f,%.3f".format(
+                data.left,
+                data.right,
+                data.bottom,
+                data.top,
+            )
+        },
+        "area" toDevEntry {
+            "%.3f".format(
+                data.area,
+            )
+        },
+        "areaInWater" toDevEntry {
+            "%.3f".format(
+                data.areaInWater,
+            )
+        },
+        "density" toDevEntry {
+            "%.3f".format(
+                data.density,
+            )
+        },
+        "mass" toDevEntry {
+            "%.3f".format(
+                data.mass,
+            )
+        },
+        "gravity" toDevEntry {
+            "%.3f".format(
+                data.gravityY,
+            )
+        },
+        "buoyancy" toDevEntry {
+            "%.3f".format(
+                data.buoyancyY,
+            )
+        },
+        "force" toDevEntry {
+            "%.3f,%.3f".format(
+                data.forceX,
+                data.forceY,
+            )
+        },
+        "acceleration" toDevEntry {
+            "%.3f,%.3f".format(
+                data.accelerationX,
+                data.accelerationY,
+            )
+        },
+        "velocity" toDevEntry {
+            "%.3f,%.3f".format(
+                data.velocityX,
+                data.velocityY,
+            )
+        },
+        "position" toDevEntry {
+            "%.3f,%.3f".format(
+                data.x,
+                data.y,
+            )
+        },
+    )
+
+    private fun putDevInfo(stage: TankStage) {
+        devInfoEntryList.forEach { entry ->
+            stage.putDevInfo(entry)
+        }
+    }
+
+    private fun removeDevInfo(stage: TankStage) {
+        devInfoEntryList.reversed().forEach { entry ->
+            stage.removeDevInfo(entry)
+        }
     }
 }

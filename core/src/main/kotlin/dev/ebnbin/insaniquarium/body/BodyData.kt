@@ -3,7 +3,7 @@ package dev.ebnbin.insaniquarium.body
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 
 data class BodyData(
-    private val type: BodyType,
+    val type: BodyType,
     private val tankWidth: Float,
     private val tankHeight: Float,
     val velocityX: Float,

@@ -12,15 +12,37 @@ class TankGroup : Group() {
         setSize(WIDTH_DP.dpToMeter, HEIGHT_DP.dpToMeter)
     }
 
-    var devSelectedBody: BodyActor? = null
+    private var devSelectedBody: BodyActor? = null
 
     init {
         addListener(object : InputListener() {
             override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                devSelectedBody = null
+                devUnselectBody(null)
                 return true
             }
         })
+    }
+
+    fun isDevSelected(body: BodyActor): Boolean {
+        return devSelectedBody === body
+    }
+
+    fun devSelectBody(body: BodyActor) {
+        devUnselectBody(null)
+        devSelectedBody = body
+        body.devSelect()
+    }
+
+    fun devUnselectBody(body: BodyActor?) {
+        if (body == null) {
+            devSelectedBody?.devUnselect()
+            devSelectedBody = null
+        } else {
+            if (devSelectedBody === body) {
+                body.devUnselect()
+                devSelectedBody = null
+            }
+        }
     }
 
     fun devCreateBody(count: Int) {

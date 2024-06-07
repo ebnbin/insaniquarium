@@ -17,8 +17,8 @@ internal class KgdxDevInfoStage : LifecycleStage(WorldFitViewport()) {
             verticalGroup.setFillParent(true)
             verticalGroup.align(Align.topRight)
             verticalGroup.columnAlign(Align.right)
-            INFO_LIST.forEach { (key, getValue) ->
-                val devLabel = DevLabel(key, getValue)
+            INFO_LIST.forEach { entry ->
+                val devLabel = DevLabel(entry)
                 verticalGroup.addActor(devLabel)
             }
             addActor(verticalGroup)
@@ -29,14 +29,14 @@ internal class KgdxDevInfoStage : LifecycleStage(WorldFitViewport()) {
         get() = KgdxPreferenceManager.showKgdxDevInfo.value
 
     companion object {
-        private val INFO_LIST: List<Pair<String?, (delta: Float) -> String>> = listOf(
-            "fps" to {
+        private val INFO_LIST: List<DevLabel.Entry> = listOf(
+            "fps" toDevEntry {
                 "${Gdx.graphics.framesPerSecond}"
             },
-            "screen" to {
+            "screen" toDevEntry {
                 "${Gdx.graphics.width}x${Gdx.graphics.height}"
             },
-            "time" to {
+            "time" toDevEntry {
                 val time = game.time.toTime()
                 val timeString = if (time.hour > 0) {
                     "%d:%02d:%02d".format(time.hour, time.minute, time.second)
@@ -46,7 +46,7 @@ internal class KgdxDevInfoStage : LifecycleStage(WorldFitViewport()) {
                 val millisecondString = ".%03d".format(time.millisecond).colorMarkup(Color.GRAY)
                 "$timeString$millisecondString"
             },
-            "asset" to {
+            "asset" toDevEntry {
                 val loadedAssets = game.assetManager.loadedAssets
                 "${loadedAssets}/${loadedAssets + game.assetManager.queuedAssets}"
             },

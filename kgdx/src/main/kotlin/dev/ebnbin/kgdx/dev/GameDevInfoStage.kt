@@ -14,10 +14,20 @@ internal class GameDevInfoStage : LifecycleStage(WorldFitViewport()) {
         addActor(verticalGroup)
     }
 
-    fun putInfo(stage: LifecycleStage, key: String?, getValue: (delta: Float) -> String) {
-        val devLabel = DevLabel(key, getValue)
+    fun putInfo(stage: LifecycleStage, entry: DevLabel.Entry) {
+        val devLabel = DevLabel(entry)
         devLabel.userObject = stage
         verticalGroup.addActor(devLabel)
+    }
+
+    fun removeInfo(stage: LifecycleStage, entry: DevLabel.Entry) {
+        val iterator = verticalGroup.children.iterator()
+        while (iterator.hasNext()) {
+            val devLabel = iterator.next() as DevLabel
+            if (devLabel.userObject === stage && devLabel.entry === entry) {
+                iterator.remove()
+            }
+        }
     }
 
     fun removeInfo(stage: LifecycleStage) {

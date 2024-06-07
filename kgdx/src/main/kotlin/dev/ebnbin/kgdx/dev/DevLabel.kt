@@ -10,14 +10,22 @@ import dev.ebnbin.kgdx.util.colorMarkup
 import ktx.assets.disposeSafely
 import ktx.graphics.copy
 
-internal class DevLabel(
-    val key: String?,
-    val getValue: (delta: Float) -> String,
+infix fun String.toDevEntry(that: (delta: Float) -> String): DevLabel.Entry {
+    return DevLabel.Entry(this, that)
+}
+
+class DevLabel(
+    val entry: Entry,
 ) : Label(null, LabelStyle(game.assets.freeType("kgdx_noto_sans_mono").get(), null)) {
+    class Entry(
+        val key: String,
+        val getValue: (delta: Float) -> String,
+    )
+
     override fun act(delta: Float) {
         super.act(delta)
-        val keyText = if (key == null) "" else "$key=".colorMarkup(Color.LIGHT_GRAY)
-        val valueText = getValue(delta)
+        val keyText = if (entry.key.isEmpty()) "" else "${entry.key}=".colorMarkup(Color.LIGHT_GRAY)
+        val valueText = entry.getValue(delta)
         val text = " $keyText$valueText "
         setText(text)
     }
