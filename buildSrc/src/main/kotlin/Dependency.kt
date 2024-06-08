@@ -11,7 +11,7 @@ object Dependency {
     }
 
     // https://github.com/JetBrains/kotlin
-    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.22"
+    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0"
 
     // https://github.com/libgdx/libgdx
     const val GDX = "com.badlogicgames.gdx:gdx:${Version.GDX}"
