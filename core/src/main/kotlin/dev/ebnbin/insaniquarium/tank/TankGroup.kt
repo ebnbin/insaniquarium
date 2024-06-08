@@ -56,15 +56,15 @@ class TankGroup : Group() {
     fun devCreateBody(
         type: BodyType?,
         count: Int,
-        x: Float = Random.nextFloat() * width,
-        y: Float = Random.nextFloat() * height,
+        x: Float? = null,
+        y: Float? = null,
     ) {
         repeat(count) {
             BodyActor(
                 tankGroup = this,
                 type = type ?: BodyType.entries.random(),
-                x = x,
-                y = y,
+                x = x ?: (Random.nextFloat() * width),
+                y = y ?: (Random.nextFloat() * height),
             ).also {
                 addActor(it)
             }
