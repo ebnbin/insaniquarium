@@ -90,3 +90,17 @@ fun <T> PopupMenu.listMenuItem(
     menuItem.subMenu = subPopupMenu
     addItem(menuItem)
 }
+
+@Scene2dDsl
+fun PopupMenu.subPopupMenu(
+    text: String,
+    init: (@Scene2dDsl PopupMenu).() -> Unit = {},
+) {
+    val menuItem = MenuItem(text)
+    menuItem.imageCell.size(0f)
+    menuItem.shortcutCell.padLeft(0f)
+    val subPopupMenu = PopupMenu()
+    subPopupMenu.init()
+    menuItem.subMenu = subPopupMenu
+    addItem(menuItem)
+}

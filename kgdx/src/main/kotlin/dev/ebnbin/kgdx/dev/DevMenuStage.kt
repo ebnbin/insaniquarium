@@ -17,6 +17,7 @@ import dev.ebnbin.kgdx.util.WorldScreenViewport
 import dev.ebnbin.kgdx.util.checkBoxMenuItem
 import dev.ebnbin.kgdx.util.listMenuItem
 import dev.ebnbin.kgdx.util.menuItem
+import dev.ebnbin.kgdx.util.subPopupMenu
 import ktx.scene2d.vis.menu
 
 internal class DevMenuStage : LifecycleStage(WorldScreenViewport()) {
@@ -67,48 +68,6 @@ internal class DevMenuStage : LifecycleStage(WorldScreenViewport()) {
             ) {
                 game.recreate()
             }
-            checkBoxMenuItem(
-                menuBar = this@createKgdxMenu,
-                text = KgdxPreferenceManager.showKgdxDevInfo.key,
-                valueProperty = KgdxPreferenceManager.showKgdxDevInfo::value,
-            )
-            checkBoxMenuItem(
-                menuBar = this@createKgdxMenu,
-                text = KgdxPreferenceManager.showGameDevInfo.key,
-                valueProperty = KgdxPreferenceManager.showGameDevInfo::value,
-            )
-            checkBoxMenuItem(
-                menuBar = this@createKgdxMenu,
-                text = KgdxPreferenceManager.isDebugAll.key,
-                valueProperty = KgdxPreferenceManager.isDebugAll::value,
-            )
-            listMenuItem(
-                menuBar = this@createKgdxMenu,
-                text = KgdxPreferenceManager.clearColor.key,
-                valueList = CLEAR_COLOR_MAP.values.toList(),
-                valueProperty = KgdxPreferenceManager.clearColor::value,
-                valueToString = { color ->
-                    CLEAR_COLOR_MAP.entries.firstOrNull { it.value == color }?.key ?: "$color"
-                },
-            )
-            listMenuItem(
-                menuBar = this@createKgdxMenu,
-                text = KgdxPreferenceManager.dpi.key,
-                valueList = Dpi.entries,
-                valueProperty = KgdxPreferenceManager.dpi::value,
-                valueToString = Dpi::id,
-            ) {
-                game.recreate()
-            }
-            listMenuItem(
-                menuBar = this@createKgdxMenu,
-                text = KgdxPreferenceManager.textureFilter.key,
-                valueList = TextureFilter.entries,
-                valueProperty = KgdxPreferenceManager.textureFilter::value,
-                valueToString = TextureFilter::id,
-            ) {
-                game.recreate()
-            }
             listMenuItem(
                 menuBar = this@createKgdxMenu,
                 text = "screen",
@@ -119,6 +78,52 @@ internal class DevMenuStage : LifecycleStage(WorldScreenViewport()) {
                 valueToString = { it.name },
             ) {
                 game.loadScreen(it)
+            }
+            subPopupMenu(
+                text = "preference"
+            ) {
+                checkBoxMenuItem(
+                    menuBar = this@createKgdxMenu,
+                    text = KgdxPreferenceManager.showKgdxDevInfo.key,
+                    valueProperty = KgdxPreferenceManager.showKgdxDevInfo::value,
+                )
+                checkBoxMenuItem(
+                    menuBar = this@createKgdxMenu,
+                    text = KgdxPreferenceManager.showGameDevInfo.key,
+                    valueProperty = KgdxPreferenceManager.showGameDevInfo::value,
+                )
+                checkBoxMenuItem(
+                    menuBar = this@createKgdxMenu,
+                    text = KgdxPreferenceManager.isDebugAll.key,
+                    valueProperty = KgdxPreferenceManager.isDebugAll::value,
+                )
+                listMenuItem(
+                    menuBar = this@createKgdxMenu,
+                    text = KgdxPreferenceManager.clearColor.key,
+                    valueList = CLEAR_COLOR_MAP.values.toList(),
+                    valueProperty = KgdxPreferenceManager.clearColor::value,
+                    valueToString = { color ->
+                        CLEAR_COLOR_MAP.entries.firstOrNull { it.value == color }?.key ?: "$color"
+                    },
+                )
+                listMenuItem(
+                    menuBar = this@createKgdxMenu,
+                    text = KgdxPreferenceManager.dpi.key,
+                    valueList = Dpi.entries,
+                    valueProperty = KgdxPreferenceManager.dpi::value,
+                    valueToString = Dpi::id,
+                ) {
+                    game.recreate()
+                }
+                listMenuItem(
+                    menuBar = this@createKgdxMenu,
+                    text = KgdxPreferenceManager.textureFilter.key,
+                    valueList = TextureFilter.entries,
+                    valueProperty = KgdxPreferenceManager.textureFilter::value,
+                    valueToString = TextureFilter::id,
+                ) {
+                    game.recreate()
+                }
             }
         }
     }
