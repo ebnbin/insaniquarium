@@ -18,6 +18,7 @@ import dev.ebnbin.kgdx.asset.AssetManager
 import dev.ebnbin.kgdx.asset.Assets
 import dev.ebnbin.kgdx.dev.DevMenuStage
 import dev.ebnbin.kgdx.dev.DevMessageStage
+import dev.ebnbin.kgdx.dev.DevSafeInsetStage
 import dev.ebnbin.kgdx.dev.GameDevInfoStage
 import dev.ebnbin.kgdx.dev.KgdxDevInfoStage
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
@@ -45,6 +46,7 @@ abstract class Game : ApplicationListener {
     private lateinit var kgdxDevInfoStage: KgdxDevInfoStage
     private lateinit var devMessageStage: DevMessageStage
     internal lateinit var devMenuStage: DevMenuStage
+    private lateinit var devSafeInsetStage: DevSafeInsetStage
 
     internal var screen: Screen? = null
         set(value) {
@@ -77,6 +79,7 @@ abstract class Game : ApplicationListener {
             kgdxDevInfoStage,
             devMessageStage,
             devMenuStage,
+            devSafeInsetStage,
         )
     }
 
@@ -99,6 +102,7 @@ abstract class Game : ApplicationListener {
         kgdxDevInfoStage = KgdxDevInfoStage()
         devMessageStage = DevMessageStage()
         devMenuStage = DevMenuStage()
+        devSafeInsetStage = DevSafeInsetStage()
         globalStageList().reversed().forEach { stage ->
             inputMultiplexer.addProcessor(stage)
         }

@@ -94,6 +94,11 @@ internal class DevMenuStage : LifecycleStage(WorldScreenViewport()) {
                 )
                 checkBoxMenuItem(
                     menuBar = this@createKgdxMenu,
+                    text = KgdxPreferenceManager.showSafeInset.key,
+                    valueProperty = KgdxPreferenceManager.showSafeInset::value,
+                )
+                checkBoxMenuItem(
+                    menuBar = this@createKgdxMenu,
                     text = KgdxPreferenceManager.isDebugAll.key,
                     valueProperty = KgdxPreferenceManager.isDebugAll::value,
                 )

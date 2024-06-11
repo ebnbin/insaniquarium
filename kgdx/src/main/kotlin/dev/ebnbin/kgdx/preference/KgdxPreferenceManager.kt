@@ -20,6 +20,12 @@ object KgdxPreferenceManager {
         defaultValue = false,
     )
 
+    val showSafeInset: SimplePreference<Boolean> = SimplePreference(
+        name = NAME,
+        key = "show_safe_inset",
+        defaultValue = false,
+    )
+
     val isDebugAll: SimplePreference<Boolean> = SimplePreference(
         name = NAME,
         key = "is_debug_all",

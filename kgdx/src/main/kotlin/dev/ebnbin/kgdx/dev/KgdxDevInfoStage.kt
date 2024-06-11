@@ -30,6 +30,9 @@ internal class KgdxDevInfoStage : LifecycleStage(WorldFitViewport()) {
 
     companion object {
         private val INFO_LIST: List<DevLabel.Entry> = listOf(
+            "platform" toDevEntry {
+                "${Gdx.app.type},${Gdx.app.version}"
+            },
             "fps" toDevEntry {
                 "${Gdx.graphics.framesPerSecond}"
             },
@@ -49,6 +52,14 @@ internal class KgdxDevInfoStage : LifecycleStage(WorldFitViewport()) {
             "asset" toDevEntry {
                 val loadedAssets = game.assetManager.loadedAssets
                 "${loadedAssets}/${loadedAssets + game.assetManager.queuedAssets}"
+            },
+            "safeInsetLTRB" toDevEntry {
+                listOf(
+                    Gdx.graphics.safeInsetLeft,
+                    Gdx.graphics.safeInsetTop,
+                    Gdx.graphics.safeInsetRight,
+                    Gdx.graphics.safeInsetBottom,
+                ).joinToString(",")
             },
         )
     }
