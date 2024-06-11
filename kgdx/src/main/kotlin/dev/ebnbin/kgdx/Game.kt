@@ -23,10 +23,8 @@ import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import ktx.assets.disposeSafely
 import kotlin.math.min
 
-private var singleton: Game? = null
-
 val game: Game
-    get() = requireNotNull(singleton)
+    get() = Gdx.app.applicationListener as Game
 
 abstract class Game : ApplicationListener {
     private var created: Boolean = false
@@ -89,7 +87,6 @@ abstract class Game : ApplicationListener {
     }
 
     override fun create() {
-        singleton = this
         created = true
         assetManager = AssetManager()
         inputMultiplexer = InputMultiplexer()
@@ -161,7 +158,6 @@ abstract class Game : ApplicationListener {
         assetManager.disposeSafely()
         time = 0f
         created = false
-        singleton = null
     }
 
     internal fun recreate() {
