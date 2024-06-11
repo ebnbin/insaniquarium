@@ -1,5 +1,6 @@
 package dev.ebnbin.kgdx
 
+import com.badlogic.gdx.Application
 import com.badlogic.gdx.ApplicationListener
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputMultiplexer
@@ -87,6 +88,8 @@ abstract class Game : ApplicationListener {
     }
 
     override fun create() {
+        @Suppress("GDXKotlinLogLevel")
+        Gdx.app.logLevel = Application.LOG_DEBUG
         created = true
         assetManager = AssetManager()
         inputMultiplexer = InputMultiplexer()
