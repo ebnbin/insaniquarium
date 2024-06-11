@@ -188,7 +188,7 @@ abstract class Game : ApplicationListener {
     }
 
     companion object {
-        private const val LIMITED_FRAMES_PER_SECOND = 20
+        internal const val LIMITED_FRAMES_PER_SECOND = 20
         private const val LIMITED_DELTA = 1f / LIMITED_FRAMES_PER_SECOND
 
         var ID = ""

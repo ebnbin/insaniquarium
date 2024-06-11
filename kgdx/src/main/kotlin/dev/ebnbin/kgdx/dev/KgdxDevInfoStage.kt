@@ -4,12 +4,14 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup
 import com.badlogic.gdx.utils.Align
+import dev.ebnbin.kgdx.Game
 import dev.ebnbin.kgdx.LifecycleStage
 import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.WorldFitViewport
 import dev.ebnbin.kgdx.util.colorMarkup
 import dev.ebnbin.kgdx.util.toTime
+import kotlin.math.max
 
 internal class KgdxDevInfoStage : LifecycleStage(WorldFitViewport()) {
     init {
@@ -30,36 +32,56 @@ internal class KgdxDevInfoStage : LifecycleStage(WorldFitViewport()) {
 
     companion object {
         private val INFO_LIST: List<DevLabel.Entry> = listOf(
-            "platform" toDevEntry {
-                "${Gdx.app.type},${Gdx.app.version}"
+            "memory(M)" toDevEntry {
+                val freeMemory = Runtime.getRuntime().freeMemory()
+                val totalMemory = Runtime.getRuntime().totalMemory()
+                val usedMemory = totalMemory - freeMemory
+                "%.1f/%.1f".format(
+                    usedMemory / 1024f / 1024f,
+                    totalMemory / 1024f / 1024f,
+                )
             },
             "fps" toDevEntry {
-                "${Gdx.graphics.framesPerSecond}"
+                val fps = Gdx.graphics.framesPerSecond
+                val color = when {
+                    fps >= 60 -> Color.GREEN
+                    fps >= Game.LIMITED_FRAMES_PER_SECOND -> Color.ORANGE
+                    else -> Color.RED
+                }
+                "$fps".colorMarkup(color)
             },
             "screen" toDevEntry {
-                "${Gdx.graphics.width}x${Gdx.graphics.height}"
+                val width = Gdx.graphics.width
+                val height = Gdx.graphics.height
+                val scale = 1f / max(Game.WORLD_WIDTH / width, Game.WORLD_HEIGHT / height)
+                "%dx%d,%.1f".format(width, height, scale)
             },
             "time" toDevEntry {
                 val time = game.time.toTime()
                 val timeString = if (time.hour > 0) {
                     "%d:%02d:%02d".format(time.hour, time.minute, time.second)
+                } else if (time.minute > 0) {
+                    "%d:%02d".format(time.minute, time.second)
                 } else {
-                    "%02d:%02d".format(time.minute, time.second)
+                    "%d".format(time.second)
                 }
-                val millisecondString = ".%03d".format(time.millisecond).colorMarkup(Color.GRAY)
+                val millisecondString = ".%d".format(time.millisecond / 100).colorMarkup(Color.GRAY)
                 "$timeString$millisecondString"
             },
             "asset" toDevEntry {
                 val loadedAssets = game.assetManager.loadedAssets
-                "${loadedAssets}/${loadedAssets + game.assetManager.queuedAssets}"
+                val queuedAssets = game.assetManager.queuedAssets
+                val totalAssets = loadedAssets + queuedAssets
+                val progress = game.assetManager.progress
+                if (progress < 1f) {
+                    "${loadedAssets}/${totalAssets}"
+                } else {
+                    "$totalAssets"
+                }
             },
-            "safeInsetLTRB" toDevEntry {
-                listOf(
-                    Gdx.graphics.safeInsetLeft,
-                    Gdx.graphics.safeInsetTop,
-                    Gdx.graphics.safeInsetRight,
-                    Gdx.graphics.safeInsetBottom,
-                ).joinToString(",")
+            "touch" toDevEntry {
+                val color = if (Gdx.input.isTouched) Color.YELLOW else null
+                "${Gdx.input.x},${Gdx.input.y}".colorMarkup(color)
             },
         )
     }
