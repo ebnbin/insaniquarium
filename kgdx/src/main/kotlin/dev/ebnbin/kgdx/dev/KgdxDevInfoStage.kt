@@ -11,7 +11,7 @@ import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.WorldFitViewport
 import dev.ebnbin.kgdx.util.colorMarkup
 import dev.ebnbin.kgdx.util.toTime
-import kotlin.math.max
+import kotlin.math.min
 
 internal class KgdxDevInfoStage : LifecycleStage(WorldFitViewport()) {
     init {
@@ -45,16 +45,31 @@ internal class KgdxDevInfoStage : LifecycleStage(WorldFitViewport()) {
                 val fps = Gdx.graphics.framesPerSecond
                 val color = when {
                     fps >= 60 -> Color.GREEN
-                    fps >= Game.LIMITED_FRAMES_PER_SECOND -> Color.ORANGE
+                    fps >= Game.LIMITED_FRAMES_PER_SECOND -> Color.YELLOW
                     else -> Color.RED
                 }
                 "$fps".colorMarkup(color)
             },
             "screen" toDevEntry {
-                val width = Gdx.graphics.width
-                val height = Gdx.graphics.height
-                val scale = 1f / max(Game.WORLD_WIDTH / width, Game.WORLD_HEIGHT / height)
-                "%dx%d,%.1f".format(width, height, scale)
+                "${Gdx.graphics.width}x${Gdx.graphics.height}"
+            },
+            "scale" toDevEntry {
+                val scaleWidth = Gdx.graphics.width / Game.WORLD_WIDTH
+                val scaleHeight = Gdx.graphics.height / Game.WORLD_HEIGHT
+                val scale = min(scaleWidth, scaleHeight)
+                val dpiScale = KgdxPreferenceManager.dpi.value.pxsPerDp
+                val scaleColor = if (scale >= dpiScale) {
+                    Color.GREEN
+                } else {
+                    Color.RED
+                }
+                val scaleText = "%.2f".format(scale).colorMarkup(scaleColor)
+                val scaleSign = when {
+                    scaleWidth == scaleHeight -> ""
+                    scaleWidth > scaleHeight -> "↔"
+                    else -> "↕"
+                }
+                "$scaleText$scaleSign"
             },
             "time" toDevEntry {
                 val time = game.time.toTime()

@@ -3,7 +3,7 @@
     "kgdx_noto_sans_mono": {
       "font_file_name": "kgdx_noto_sans_mono",
       "default_characters": true,
-      "characters": null,
+      "characters": "↔↕",
       "name": "kgdx_noto_sans_mono",
       "extension": "ttf",
       "file_type": "internal",
