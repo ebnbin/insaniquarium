@@ -2,6 +2,7 @@ package dev.ebnbin.kgdx.asset
 
 import com.badlogic.gdx.assets.AssetLoaderParameters
 import com.badlogic.gdx.graphics.g2d.BitmapFont
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator
 import com.badlogic.gdx.graphics.g2d.freetype.FreetypeFontLoader
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
@@ -16,6 +17,12 @@ class FreeTypeAsset(
     @Expose
     @SerializedName("font_file_name")
     val fontFileName: String,
+    @Expose
+    @SerializedName("default_characters")
+    val defaultCharacters: Boolean,
+    @Expose
+    @SerializedName("characters")
+    val characters: String?,
 ) : Asset<BitmapFont>(
     name = name,
     extension = extension,
@@ -33,6 +40,11 @@ class FreeTypeAsset(
                 nameWithExtension = "$fontFileName.$extension",
             ).id
             parameters.fontParameters.size = 16f.dpToPxRound
+            parameters.fontParameters.characters = if (defaultCharacters) {
+                FreeTypeFontGenerator.DEFAULT_CHARS
+            } else {
+                ""
+            } + (characters ?: "")
             parameters.fontParameters.minFilter = KgdxPreferenceManager.textureFilter.value.value
             parameters.fontParameters.magFilter = KgdxPreferenceManager.textureFilter.value.value
         }

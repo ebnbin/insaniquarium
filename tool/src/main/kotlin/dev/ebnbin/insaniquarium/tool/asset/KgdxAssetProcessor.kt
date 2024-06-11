@@ -14,8 +14,10 @@ object KgdxAssetProcessor {
                     name = "kgdx_noto_sans_mono",
                     extension = "ttf",
                     fileType = AssetFileType.INTERNAL,
-                    fontFileName = "kgdx_noto_sans_mono",
                     preload = true,
+                    fontFileName = "kgdx_noto_sans_mono",
+                    defaultCharacters = true,
+                    characters = null,
                 ),
             ),
         )
