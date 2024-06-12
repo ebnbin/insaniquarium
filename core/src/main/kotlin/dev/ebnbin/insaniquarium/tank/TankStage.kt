@@ -6,6 +6,7 @@ import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.kgdx.LifecycleStage
 import dev.ebnbin.kgdx.dev.toDevEntry
+import dev.ebnbin.kgdx.ui.TextureRegionImage
 import dev.ebnbin.kgdx.util.listMenuItem
 import dev.ebnbin.kgdx.util.menuItem
 
@@ -58,7 +59,13 @@ class TankStage : LifecycleStage(TankViewport()) {
                 menuBar = menuBar,
                 text = "body type pet A",
                 valueList = BodyType.PET_LIST.subList(0, BodyType.PET_LIST.size / 2),
-                valueToString = { it.id },
+                valueToText = { it.id },
+                valueToImage = { type ->
+                    TextureRegionImage(
+                        textureRegionList = type.def.textureAsset.getTextureRegionList(),
+                        duration = 1f,
+                    )
+                },
             ) {
                 devBodyType = it
             }
@@ -66,7 +73,13 @@ class TankStage : LifecycleStage(TankViewport()) {
                 menuBar = menuBar,
                 text = "body type pet B",
                 valueList = BodyType.PET_LIST.subList(BodyType.PET_LIST.size / 2, BodyType.PET_LIST.size),
-                valueToString = { it.id },
+                valueToText = { it.id },
+                valueToImage = { type ->
+                    TextureRegionImage(
+                        textureRegionList = type.def.textureAsset.getTextureRegionList(),
+                        duration = 1f,
+                    )
+                },
             ) {
                 devBodyType = it
             }

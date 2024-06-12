@@ -2,6 +2,7 @@ package dev.ebnbin.kgdx.util
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.Actor
+import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener
 import com.kotcrab.vis.ui.widget.MenuBar
 import com.kotcrab.vis.ui.widget.MenuItem
@@ -14,10 +15,17 @@ import kotlin.reflect.KMutableProperty0
 fun PopupMenu.menuItem(
     menuBar: MenuBar? = null,
     text: String,
+    image: Image? = null,
     clicked: (() -> Unit)? = null,
 ) {
-    val menuItem = MenuItem(text)
-    menuItem.imageCell.size(0f)
+    val menuItem = if (image == null) {
+        MenuItem(text)
+    } else {
+        MenuItem(text, image)
+    }
+    if (image == null) {
+        menuItem.imageCell.size(0f)
+    }
     menuItem.shortcutCell.padLeft(0f)
     menuItem.subMenuIconCell.padLeft(0f).padRight(0f).size(0f)
     menuItem.addListener(object : ChangeListener() {
@@ -63,7 +71,8 @@ fun <T> PopupMenu.listMenuItem(
     text: String,
     valueList: List<T>,
     valueProperty: KMutableProperty0<T>? = null,
-    valueToString: (T) -> String = { "$it" },
+    valueToText: (T) -> String = { "$it" },
+    valueToImage: (T) -> Image? = { null },
     clicked: ((T) -> Unit)? = null,
 ) {
     val menuItem = MenuItem(text)
@@ -72,17 +81,18 @@ fun <T> PopupMenu.listMenuItem(
         menuItem.shortcutCell.padLeft(0f)
     } else {
         menuItem.subMenuIconCell.padLeft(0f).padRight(0f).size(0f)
-        menuItem.setShortcut(valueToString(valueProperty.get()))
+        menuItem.setShortcut(valueToText(valueProperty.get()))
     }
     val subPopupMenu = PopupMenu()
     valueList.forEach { value ->
         subPopupMenu.menuItem(
             menuBar = menuBar,
-            text = valueToString(value),
+            text = valueToText(value),
+            image = valueToImage(value),
         ) {
             if (valueProperty != null) {
                 valueProperty.set(value)
-                menuItem.setShortcut(valueToString(value))
+                menuItem.setShortcut(valueToText(value))
             }
             clicked?.invoke(value)
         }

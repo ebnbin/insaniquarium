@@ -79,7 +79,7 @@ internal class DevMenuStage : LifecycleStage(WorldScreenViewport()) {
                     list.add(Screen.Creator.EMPTY)
                     list.addAll(game.devScreenList())
                 },
-                valueToString = { it.name },
+                valueToText = { it.name },
             ) {
                 game.loadScreen(it)
             }
@@ -111,7 +111,7 @@ internal class DevMenuStage : LifecycleStage(WorldScreenViewport()) {
                     text = KgdxPreferenceManager.clearColor.key,
                     valueList = CLEAR_COLOR_MAP.values.toList(),
                     valueProperty = KgdxPreferenceManager.clearColor::value,
-                    valueToString = { color ->
+                    valueToText = { color ->
                         CLEAR_COLOR_MAP.entries.firstOrNull { it.value == color }?.key ?: "$color"
                     },
                 )
@@ -120,7 +120,7 @@ internal class DevMenuStage : LifecycleStage(WorldScreenViewport()) {
                     text = KgdxPreferenceManager.dpi.key,
                     valueList = Dpi.entries,
                     valueProperty = KgdxPreferenceManager.dpi::value,
-                    valueToString = Dpi::id,
+                    valueToText = Dpi::id,
                 ) {
                     game.recreate()
                 }
@@ -129,7 +129,7 @@ internal class DevMenuStage : LifecycleStage(WorldScreenViewport()) {
                     text = KgdxPreferenceManager.textureFilter.key,
                     valueList = TextureFilter.entries,
                     valueProperty = KgdxPreferenceManager.textureFilter::value,
-                    valueToString = TextureFilter::id,
+                    valueToText = TextureFilter::id,
                 ) {
                     game.recreate()
                 }
