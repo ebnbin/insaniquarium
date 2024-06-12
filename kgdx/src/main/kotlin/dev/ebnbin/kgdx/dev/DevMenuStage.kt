@@ -1,8 +1,11 @@
 package dev.ebnbin.kgdx.dev
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.Input
 import com.badlogic.gdx.utils.Align
 import com.kotcrab.vis.ui.VisUI
+import com.kotcrab.vis.ui.util.dialog.Dialogs
+import com.kotcrab.vis.ui.util.dialog.InputDialogListener
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.kgdx.Game
@@ -18,6 +21,7 @@ import dev.ebnbin.kgdx.util.checkBoxMenuItem
 import dev.ebnbin.kgdx.util.listMenuItem
 import dev.ebnbin.kgdx.util.menuItem
 import dev.ebnbin.kgdx.util.subPopupMenu
+import ktx.app.Platform
 import ktx.scene2d.vis.menu
 
 internal class DevMenuStage : LifecycleStage(WorldScreenViewport()) {
@@ -80,7 +84,7 @@ internal class DevMenuStage : LifecycleStage(WorldScreenViewport()) {
                 game.loadScreen(it)
             }
             subPopupMenu(
-                text = "preference"
+                text = "preference",
             ) {
                 checkBoxMenuItem(
                     menuBar = this@createKgdxMenu,
@@ -128,6 +132,38 @@ internal class DevMenuStage : LifecycleStage(WorldScreenViewport()) {
                     valueToString = TextureFilter::id,
                 ) {
                     game.recreate()
+                }
+            }
+            menuItem(
+                menuBar = this@createKgdxMenu,
+                text = "input",
+            ) {
+                val onInput = { text: String ->
+                    game.addDevMessage(text)
+                }
+                val onCanceled = {
+                }
+                Platform.runOnMobile {
+                    Gdx.input.getTextInput(object : Input.TextInputListener {
+                        override fun input(text: String?) {
+                            onInput(text ?: "")
+                        }
+
+                        override fun canceled() {
+                            onCanceled()
+                        }
+                    }, "input", null, null)
+                }
+                Platform.runOnDesktop {
+                    Dialogs.showInputDialog(this@DevMenuStage, "input", null, object : InputDialogListener {
+                        override fun finished(input: String?) {
+                            onInput(input ?: "")
+                        }
+
+                        override fun canceled() {
+                            onCanceled()
+                        }
+                    })
                 }
             }
         }
