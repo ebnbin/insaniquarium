@@ -31,7 +31,7 @@ internal class KgdxDevInfoStage : LifecycleStage(WorldFitViewport()) {
         get() = KgdxPreferenceManager.showKgdxDevInfo.value
 
     companion object {
-        private val INFO_LIST: List<DevLabel.Entry> = listOf(
+        private val INFO_LIST: List<DevEntry> = listOf(
             "memory(M)" toDevEntry {
                 val freeMemory = Runtime.getRuntime().freeMemory()
                 val totalMemory = Runtime.getRuntime().totalMemory()

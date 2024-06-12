@@ -6,27 +6,15 @@ import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.scenes.scene2d.ui.Label
 import dev.ebnbin.kgdx.game
-import dev.ebnbin.kgdx.util.colorMarkup
 import ktx.assets.disposeSafely
 import ktx.graphics.copy
 
-infix fun String.toDevEntry(that: (delta: Float) -> String): DevLabel.Entry {
-    return DevLabel.Entry(this, that)
-}
-
-class DevLabel(
-    val entry: Entry,
+internal class DevLabel(
+    val entry: DevEntry,
 ) : Label(null, LabelStyle(game.assets.freeType("kgdx_noto_sans_mono").get(), null)) {
-    class Entry(
-        val key: String,
-        val getValue: (delta: Float) -> String,
-    )
-
     override fun act(delta: Float) {
         super.act(delta)
-        val keyText = if (entry.key.isEmpty()) "" else "${entry.key}=".colorMarkup(Color.LIGHT_GRAY)
-        val valueText = entry.getValue(delta)
-        val text = " $keyText$valueText "
+        val text = entry.getText(delta)
         setText(text)
     }
 

@@ -18,7 +18,7 @@ internal class DevMessageStage : LifecycleStage(WorldFitViewport()) {
             verticalGroup.removeActorAt(0, true)
         }
         val devLabel = DevLabel(
-            entry = DevLabel.Entry("") {
+            entry = DevEntry("") {
                 message
             },
         )

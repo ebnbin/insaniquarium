@@ -15,7 +15,7 @@ import com.badlogic.gdx.utils.Align
 import dev.ebnbin.insaniquarium.tank.TankGroup
 import dev.ebnbin.insaniquarium.tank.TankStage
 import dev.ebnbin.insaniquarium.tank.pxToMeter
-import dev.ebnbin.kgdx.dev.DevLabel
+import dev.ebnbin.kgdx.dev.DevEntry
 import dev.ebnbin.kgdx.dev.toDevEntry
 import dev.ebnbin.kgdx.util.diffParent
 import dev.ebnbin.kgdx.util.diffStage
@@ -153,7 +153,7 @@ class BodyActor(
         data.drawDebugBounds(shapes)
     }
 
-    private val devInfoEntryList: List<DevLabel.Entry> = listOf(
+    private val devInfoEntryList: List<DevEntry> = listOf(
         "type" toDevEntry {
             data.type.id
         },
