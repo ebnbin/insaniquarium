@@ -8,16 +8,16 @@ import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.dpToPxFloat
 import kotlin.math.roundToInt
 
-class StretchableImage(
-    private val texture: Texture,
-    private val stretchable: TextureAsset.Stretchable,
-) : Widget() {
+class StretchableImage(textureAsset: TextureAsset) : Widget() {
     private class Region(
         val widgetPosition: Float,
         val widgetSize: Float,
         val texturePosition: Int,
         val textureSize: Int,
     )
+
+    private val texture: Texture = textureAsset.get()
+    private val stretchable: TextureAsset.Stretchable = requireNotNull(textureAsset.stretchable)
 
     private lateinit var regionListX: List<Region>
     private lateinit var regionListY: List<Region>

@@ -1,18 +1,17 @@
 package dev.ebnbin.kgdx.ui
 
-import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.utils.Drawable
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable
-import dev.ebnbin.kgdx.util.AnimationMode
+import dev.ebnbin.kgdx.asset.TextureAsset
 import dev.ebnbin.kgdx.util.animationFrame
 
-class TextureRegionImage(
-    textureRegionList: List<TextureRegion>,
-    private val duration: Float,
-    private val animationMode: AnimationMode = AnimationMode.LOOP,
-) : Image(textureRegionList.first()) {
-    private val drawableList: List<Drawable> = textureRegionList.map { TextureRegionDrawable(it) }
+class AnimationImage(textureAsset: TextureAsset) : Image(textureAsset.getTextureRegionList().first()) {
+    private val animation: TextureAsset.Region.Animation = requireNotNull(textureAsset.region?.animation)
+
+    private val drawableList: List<Drawable> = textureAsset.getTextureRegionList().map { textureRegion ->
+        TextureRegionDrawable(textureRegion)
+    }
 
     private var stateTime: Float = 0f
 
@@ -20,8 +19,8 @@ class TextureRegionImage(
         super.act(delta)
         stateTime += delta
         val drawable = drawableList.animationFrame(
-            duration = duration,
-            mode = animationMode,
+            duration = animation.duration,
+            mode = animation.mode,
             stateTime = stateTime,
         )
         setDrawable(drawable)

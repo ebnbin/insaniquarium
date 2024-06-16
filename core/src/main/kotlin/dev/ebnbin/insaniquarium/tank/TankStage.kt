@@ -6,7 +6,7 @@ import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.kgdx.LifecycleStage
 import dev.ebnbin.kgdx.dev.toDevEntry
-import dev.ebnbin.kgdx.ui.TextureRegionImage
+import dev.ebnbin.kgdx.ui.AnimationImage
 import dev.ebnbin.kgdx.util.listMenuItem
 import dev.ebnbin.kgdx.util.menuItem
 
@@ -60,13 +60,7 @@ class TankStage : LifecycleStage(TankViewport()) {
                 text = "body type pet A",
                 valueList = BodyType.PET_LIST.subList(0, BodyType.PET_LIST.size / 2),
                 valueToText = { it.id },
-                valueToImage = { type ->
-                    TextureRegionImage(
-                        textureRegionList = type.def.textureAsset.getTextureRegionList(),
-                        duration = requireNotNull(type.def.textureAsset.region?.animation?.duration),
-                        animationMode = requireNotNull(type.def.textureAsset.region?.animation?.mode),
-                    )
-                },
+                valueToImage = { AnimationImage(textureAsset = it.def.textureAsset) },
             ) {
                 devBodyType = it
             }
@@ -75,13 +69,7 @@ class TankStage : LifecycleStage(TankViewport()) {
                 text = "body type pet B",
                 valueList = BodyType.PET_LIST.subList(BodyType.PET_LIST.size / 2, BodyType.PET_LIST.size),
                 valueToText = { it.id },
-                valueToImage = { type ->
-                    TextureRegionImage(
-                        textureRegionList = type.def.textureAsset.getTextureRegionList(),
-                        duration = requireNotNull(type.def.textureAsset.region?.animation?.duration),
-                        animationMode = requireNotNull(type.def.textureAsset.region?.animation?.mode),
-                    )
-                },
+                valueToImage = { AnimationImage(textureAsset = it.def.textureAsset) },
             ) {
                 devBodyType = it
             }

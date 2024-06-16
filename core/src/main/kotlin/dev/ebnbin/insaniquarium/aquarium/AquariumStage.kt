@@ -5,10 +5,7 @@ import dev.ebnbin.kgdx.ui.StretchableImage
 
 class AquariumStage(aquarium: Aquarium) : LifecycleStage() {
     init {
-        StretchableImage(
-            texture = aquarium.textureAsset.get(),
-            stretchable = requireNotNull(aquarium.textureAsset.stretchable),
-        ).also {
+        StretchableImage(textureAsset = aquarium.textureAsset).also {
             it.setFillParent(true)
             addActor(it)
         }
