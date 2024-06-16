@@ -8,6 +8,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
+import dev.ebnbin.kgdx.util.AnimationMode
 import dev.ebnbin.kgdx.util.split
 
 class TextureAsset(
@@ -34,7 +35,19 @@ class TextureAsset(
         @Expose
         @SerializedName("column")
         val column: Int,
-    )
+        @Expose
+        @SerializedName("animation")
+        val animation: Animation?,
+    ) {
+        class Animation(
+            @Expose
+            @SerializedName("duration")
+            val duration: Float,
+            @Expose
+            @SerializedName("mode")
+            val mode: AnimationMode,
+        )
+    }
 
     // position, size, position, size, ...
     class Stretchable(

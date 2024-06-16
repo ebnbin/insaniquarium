@@ -7,6 +7,7 @@ import dev.ebnbin.kgdx.asset.AssetId
 import dev.ebnbin.kgdx.asset.AssetType
 import dev.ebnbin.kgdx.asset.TextureAsset
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
+import dev.ebnbin.kgdx.util.AnimationMode
 import dev.ebnbin.kgdx.util.Dpi
 import dev.ebnbin.kgdx.util.createPixmap
 import dev.ebnbin.kgdx.util.drawSubPixmap
@@ -89,6 +90,22 @@ object TextureAssetProcessor {
                 region = TextureAsset.Region(
                     row = packedRow,
                     column = packedColumn,
+                    animation = TextureAsset.Region.Animation(
+                        duration = when (name) {
+                            "clyde",
+                            "seymour",
+                            "shrapnel",
+                            "rhubarb",
+                            "brinkley" -> 1f
+                            else -> 0.5f
+                        },
+                        mode = when (name) {
+                            "niko",
+                            "vert",
+                            "walter" -> AnimationMode.LOOP_PINGPONG
+                            else -> AnimationMode.LOOP
+                        },
+                    ),
                 ),
                 stretchable = null,
             )

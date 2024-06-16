@@ -1,10 +1,17 @@
 package dev.ebnbin.kgdx.util
 
+import com.google.gson.annotations.SerializedName
+
 enum class AnimationMode {
+    @SerializedName("normal")
     NORMAL,
+    @SerializedName("reversed")
     REVERSED,
+    @SerializedName("loop")
     LOOP,
+    @SerializedName("loop_reversed")
     LOOP_REVERSED,
+    @SerializedName("loop_pingpong")
     LOOP_PINGPONG,
     ;
 }

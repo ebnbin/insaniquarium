@@ -63,7 +63,8 @@ class TankStage : LifecycleStage(TankViewport()) {
                 valueToImage = { type ->
                     TextureRegionImage(
                         textureRegionList = type.def.textureAsset.getTextureRegionList(),
-                        duration = 1f,
+                        duration = requireNotNull(type.def.textureAsset.region?.animation?.duration),
+                        animationMode = requireNotNull(type.def.textureAsset.region?.animation?.mode),
                     )
                 },
             ) {
@@ -77,7 +78,8 @@ class TankStage : LifecycleStage(TankViewport()) {
                 valueToImage = { type ->
                     TextureRegionImage(
                         textureRegionList = type.def.textureAsset.getTextureRegionList(),
-                        duration = 1f,
+                        duration = requireNotNull(type.def.textureAsset.region?.animation?.duration),
+                        animationMode = requireNotNull(type.def.textureAsset.region?.animation?.mode),
                     )
                 },
             ) {

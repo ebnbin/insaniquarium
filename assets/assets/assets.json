@@ -13,7 +13,11 @@
     "amp": {
       "region": {
         "row": 5,
-        "column": 2
+        "column": 2,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "amp",
@@ -24,7 +28,11 @@
     "angie": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "angie",
@@ -161,7 +169,11 @@
     "blip": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "blip",
@@ -172,7 +184,11 @@
     "brinkley": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 1.0,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "brinkley",
@@ -183,7 +199,11 @@
     "clyde": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 1.0,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "clyde",
@@ -194,7 +214,11 @@
     "gash": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "gash",
@@ -205,7 +229,11 @@
     "gumbo": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "gumbo",
@@ -216,7 +244,11 @@
     "itchy": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "itchy",
@@ -227,7 +259,11 @@
     "meryl": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "meryl",
@@ -238,7 +274,11 @@
     "niko": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop_pingpong"
+        }
       },
       "stretchable": null,
       "name": "niko",
@@ -249,7 +289,11 @@
     "nimbus": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "nimbus",
@@ -260,7 +304,11 @@
     "nostradamus": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "nostradamus",
@@ -271,7 +319,11 @@
     "prego": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "prego",
@@ -282,7 +334,11 @@
     "presto": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "presto",
@@ -293,7 +349,11 @@
     "rhubarb": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 1.0,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "rhubarb",
@@ -304,7 +364,11 @@
     "rufus": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "rufus",
@@ -315,7 +379,11 @@
     "seymour": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 1.0,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "seymour",
@@ -326,7 +394,11 @@
     "shrapnel": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 1.0,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "shrapnel",
@@ -337,7 +409,11 @@
     "stanley": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "stanley",
@@ -348,7 +424,11 @@
     "stinky": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "stinky",
@@ -359,7 +439,11 @@
     "vert": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop_pingpong"
+        }
       },
       "stretchable": null,
       "name": "vert",
@@ -370,7 +454,11 @@
     "wadsworth": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "wadsworth",
@@ -381,7 +469,11 @@
     "walter": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop_pingpong"
+        }
       },
       "stretchable": null,
       "name": "walter",
@@ -392,7 +484,11 @@
     "zorf": {
       "region": {
         "row": 2,
-        "column": 5
+        "column": 5,
+        "animation": {
+          "duration": 0.5,
+          "mode": "loop"
+        }
       },
       "stretchable": null,
       "name": "zorf",
