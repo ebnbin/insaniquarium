@@ -16,6 +16,7 @@ object KgdxAssetProcessor {
                     fileType = AssetFileType.INTERNAL,
                     preload = true,
                     fontFileName = "kgdx_noto_sans_mono",
+                    fontSize = 16f,
                     defaultCharacters = true,
                     characters = "↔↕",
                 ),

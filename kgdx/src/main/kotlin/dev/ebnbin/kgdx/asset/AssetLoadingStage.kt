@@ -40,7 +40,7 @@ open class AssetLoadingStage(viewport: Viewport = defaultViewport()) : Lifecycle
             disposeBackgroundUI()
             isLoading = false
         } else {
-            updateProgressUI()
+            updateProgressUI(game.assetManager.progress)
         }
     }
 
@@ -50,7 +50,7 @@ open class AssetLoadingStage(viewport: Viewport = defaultViewport()) : Lifecycle
     protected open fun createProgressUI() {
     }
 
-    protected open fun updateProgressUI() {
+    protected open fun updateProgressUI(progress: Float) {
     }
 
     protected open fun disposeProgressUI() {

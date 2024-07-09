@@ -18,6 +18,9 @@ class FreeTypeAsset(
     @SerializedName("font_file_name")
     val fontFileName: String,
     @Expose
+    @SerializedName("font_size")
+    val fontSize: Float,
+    @Expose
     @SerializedName("default_characters")
     val defaultCharacters: Boolean,
     @Expose
@@ -39,7 +42,7 @@ class FreeTypeAsset(
                 type = type,
                 nameWithExtension = "$fontFileName.$extension",
             ).id
-            parameters.fontParameters.size = 16f.dpToPxRound
+            parameters.fontParameters.size = fontSize.dpToPxRound
             parameters.fontParameters.characters = if (defaultCharacters) {
                 FreeTypeFontGenerator.DEFAULT_CHARS
             } else {

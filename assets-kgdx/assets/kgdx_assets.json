@@ -2,6 +2,7 @@
   "free_type": {
     "kgdx_noto_sans_mono": {
       "font_file_name": "kgdx_noto_sans_mono",
+      "font_size": 16.0,
       "default_characters": true,
       "characters": "↔↕",
       "name": "kgdx_noto_sans_mono",
