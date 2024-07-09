@@ -74,7 +74,7 @@ abstract class LifecycleStage : Stage {
     }
 
     companion object {
-        private fun defaultViewport(): Viewport {
+        fun defaultViewport(): Viewport {
             return WorldScreenViewport()
         }
 

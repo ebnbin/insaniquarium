@@ -97,7 +97,7 @@ abstract class Game : ApplicationListener {
         assetManager = AssetManager()
         inputMultiplexer = InputMultiplexer()
         Gdx.input.inputProcessor = inputMultiplexer
-        assetLoadingStage = AssetLoadingStage()
+        assetLoadingStage = createAssetLoadingStage()
         gameDevInfoStage = GameDevInfoStage()
         kgdxDevInfoStage = KgdxDevInfoStage()
         devMessageStage = DevMessageStage()
@@ -111,6 +111,10 @@ abstract class Game : ApplicationListener {
     }
 
     open fun registerAssetLoaders(assetLoaderRegistry: AssetLoaderRegistry, resolver: FileHandleResolver) {
+    }
+
+    open fun createAssetLoadingStage(): AssetLoadingStage {
+        return AssetLoadingStage()
     }
 
     override fun resize(width: Int, height: Int) {
