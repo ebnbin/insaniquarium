@@ -17,7 +17,7 @@ object AssetProcessor {
                     extension = "ttf",
                     fileType = AssetFileType.INTERNAL,
                     preload = true,
-                    fontFileName = "kgdx_noto_sans_mono",
+                    fontFileName = "kgdx_noto_sans_mono_bold",
                     fontSize = 32f,
                     defaultCharacters = false,
                     characters = "%0123456789",

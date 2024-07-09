@@ -1,7 +1,7 @@
 {
   "free_type": {
     "loading_progress": {
-      "font_file_name": "kgdx_noto_sans_mono",
+      "font_file_name": "kgdx_noto_sans_mono_bold",
       "font_size": 32.0,
       "default_characters": false,
       "characters": "%0123456789",
