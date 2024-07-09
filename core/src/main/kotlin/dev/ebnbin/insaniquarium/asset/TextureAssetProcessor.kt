@@ -1,6 +1,7 @@
 package dev.ebnbin.insaniquarium.asset
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Pixmap
 import dev.ebnbin.kgdx.asset.AssetFileType
 import dev.ebnbin.kgdx.asset.AssetId
@@ -18,12 +19,45 @@ import dev.ebnbin.kgdx.util.scale
 import dev.ebnbin.kgdx.util.tile
 import dev.ebnbin.kgdx.util.write
 import ktx.assets.disposeSafely
+import ktx.graphics.copy
 import java.io.ByteArrayOutputStream
 import java.util.zip.ZipInputStream
 
 object TextureAssetProcessor {
     private abstract class Processor(val name: String) {
         abstract fun process(fromTool: Boolean): TextureAsset
+    }
+
+    private object LoadingBackground : Processor(name = "loading_background") {
+        override fun process(fromTool: Boolean): TextureAsset {
+            val inputFile = Gdx.files.internalAsset("insaniquarium_desktop.jpg")
+            val inputPixmap = createPixmap(inputFile.readBytes())
+            val primaryColor = Color(inputPixmap.getPixel(0, inputPixmap.height - 1))
+            val outputPixmap = createPixmap(1504, 846)
+            outputPixmap.setColor(primaryColor)
+            outputPixmap.fill()
+            outputPixmap.drawPixmap(inputPixmap, 2, 92)
+            inputPixmap.disposeSafely()
+            for (y in 0..47) {
+                val alpha = (47f - y) / 47f
+                outputPixmap.setColor(primaryColor.copy(alpha = alpha))
+                outputPixmap.fillRectangle(2, 92 + y, 1500, 1)
+            }
+            val scaledPixmap = outputPixmap.scale(1280, 720)
+            outputPixmap.disposeSafely()
+            scaledPixmap.writeToLocal(name, fromTool)
+            return TextureAsset(
+                name = name,
+                extension = "png",
+                fileType = AssetFileType.LOCAL,
+                preload = true,
+                region = null,
+                stretchable = TextureAsset.Stretchable(
+                    x = listOf(0, 1, 1279, 1),
+                    y = listOf(0, 1, 719, 1),
+                ),
+            )
+        }
     }
 
     private class Aquarium(
@@ -150,6 +184,7 @@ object TextureAssetProcessor {
     }
 
     private val PROCESSOR_LIST: List<Processor> = listOf(
+        LoadingBackground,
         Aquarium(
             name = "aquarium_a",
             inputFileName = "aquarium1.jpg",

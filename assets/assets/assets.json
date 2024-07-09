@@ -256,6 +256,27 @@
       "file_type": "local",
       "preload": false
     },
+    "loading_background": {
+      "region": null,
+      "stretchable": {
+        "x": [
+          0,
+          1,
+          1279,
+          1
+        ],
+        "y": [
+          0,
+          1,
+          719,
+          1
+        ]
+      },
+      "name": "loading_background",
+      "extension": "png",
+      "file_type": "local",
+      "preload": true
+    },
     "meryl": {
       "region": {
         "row": 2,
