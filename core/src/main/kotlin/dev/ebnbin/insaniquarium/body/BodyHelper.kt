@@ -4,7 +4,7 @@ import kotlin.math.sign
 
 object BodyHelper {
     private const val G = 10f
-    private const val DENSITY_WATER = 1000f
+    private const val DENSITY_WATER = 1f
 
     fun gravityY(mass: Float): Float {
         return -(mass * G)
