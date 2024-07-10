@@ -25,6 +25,9 @@ data class BodyDef(
     @Expose
     @SerializedName("density")
     val density: Float,
+    @Expose
+    @SerializedName("drag_coefficient")
+    val dragCoefficient: Float,
 ) {
     val textureAsset: TextureAsset
         get() = game.assets.texture(id)

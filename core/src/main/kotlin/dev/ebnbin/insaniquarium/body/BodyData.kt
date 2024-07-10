@@ -45,8 +45,19 @@ data class BodyData(
 
     val buoyancyY: Float = BodyHelper.buoyancyY(areaInWater)
 
-    val normalReactionForceX: Float = BodyHelper.force()
-    val normalReactionForceY: Float = BodyHelper.force(gravityY, buoyancyY)
+    val dragX: Float = BodyHelper.drag(
+        velocity = velocityX,
+        dragCoefficient = def.dragCoefficient,
+        crossSectionalArea = height,
+    )
+    val dragY: Float = BodyHelper.drag(
+        velocity = velocityY,
+        dragCoefficient = def.dragCoefficient,
+        crossSectionalArea = width,
+    )
+
+    val normalReactionForceX: Float = BodyHelper.force(dragX)
+    val normalReactionForceY: Float = BodyHelper.force(gravityY, buoyancyY, dragY)
 
     val normalForceX: Float = BodyHelper.normalForce(
         isInsideLeftOrBottom = isInsideLeft,

@@ -1,5 +1,7 @@
 package dev.ebnbin.insaniquarium.body
 
+import kotlin.math.sign
+
 object BodyHelper {
     private const val G = 10f
     private const val DENSITY_WATER = 1000f
@@ -10,6 +12,11 @@ object BodyHelper {
 
     fun buoyancyY(areaInWater: Float): Float {
         return +(DENSITY_WATER * G * areaInWater)
+    }
+
+    fun drag(velocity: Float, dragCoefficient: Float, crossSectionalArea: Float): Float {
+        return -velocity.sign.toInt() *
+            (0.5f * DENSITY_WATER * velocity * velocity * dragCoefficient * crossSectionalArea)
     }
 
     fun normalForce(

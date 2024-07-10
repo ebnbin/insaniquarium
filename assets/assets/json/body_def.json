@@ -4,145 +4,169 @@
       "id": "stinky",
       "width": 0.96666664,
       "height": 0.6333333,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "niko": {
       "id": "niko",
       "width": 0.94166666,
       "height": 0.6,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "itchy": {
       "id": "itchy",
       "width": 0.9583333,
       "height": 0.675,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "prego": {
       "id": "prego",
       "width": 0.71666664,
       "height": 0.9916667,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "zorf": {
       "id": "zorf",
       "width": 0.7916667,
       "height": 0.98333335,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "clyde": {
       "id": "clyde",
       "width": 0.69166666,
       "height": 0.71666664,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "vert": {
       "id": "vert",
       "width": 0.93333334,
       "height": 0.73333335,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "rufus": {
       "id": "rufus",
       "width": 0.925,
       "height": 0.7583333,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "meryl": {
       "id": "meryl",
       "width": 0.93333334,
       "height": 0.90833336,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "wadsworth": {
       "id": "wadsworth",
       "width": 0.975,
       "height": 0.80833334,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "seymour": {
       "id": "seymour",
       "width": 0.96666664,
       "height": 0.825,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "shrapnel": {
       "id": "shrapnel",
       "width": 0.9583333,
       "height": 0.8833333,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "gumbo": {
       "id": "gumbo",
       "width": 0.8,
       "height": 0.625,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "blip": {
       "id": "blip",
       "width": 0.9583333,
       "height": 0.775,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "rhubarb": {
       "id": "rhubarb",
       "width": 0.8333333,
       "height": 0.95,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "nimbus": {
       "id": "nimbus",
       "width": 0.98333335,
       "height": 0.6333333,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "amp": {
       "id": "amp",
       "width": 1.9416667,
       "height": 0.68333334,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "gash": {
       "id": "gash",
       "width": 0.89166665,
       "height": 0.90833336,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "angie": {
       "id": "angie",
       "width": 0.725,
       "height": 0.9916667,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "presto": {
       "id": "presto",
       "width": 0.73333335,
       "height": 0.49166667,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "brinkley": {
       "id": "brinkley",
       "width": 0.9916667,
       "height": 0.85833335,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "nostradamus": {
       "id": "nostradamus",
       "width": 0.7583333,
       "height": 0.8666667,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "stanley": {
       "id": "stanley",
       "width": 0.94166666,
       "height": 0.85,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     },
     "walter": {
       "id": "walter",
       "width": 0.98333335,
       "height": 0.575,
-      "density": 1000.0
+      "density": 1000.0,
+      "drag_coefficient": 1.0
     }
   }
 }

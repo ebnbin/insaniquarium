@@ -31,6 +31,7 @@ class BodyDefProcessor(
                     width = nonTransparentSize.first.toFloat().dpToMeter,
                     height = nonTransparentSize.second.toFloat().dpToMeter,
                     density = 1000f,
+                    dragCoefficient = 1f,
                 )
                 def.id to def
             },

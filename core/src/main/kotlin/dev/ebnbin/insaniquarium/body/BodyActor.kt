@@ -214,6 +214,12 @@ class BodyActor(
                 data.buoyancyY,
             )
         },
+        "drag" toDevEntry {
+            "%.3f,%.3f".format(
+                data.dragX,
+                data.dragY,
+            )
+        },
         "normalReactionForce" toDevEntry {
             "%.3f,%.3f".format(
                 data.normalReactionForceX,
