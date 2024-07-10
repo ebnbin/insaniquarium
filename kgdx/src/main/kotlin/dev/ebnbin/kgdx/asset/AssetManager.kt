@@ -2,7 +2,6 @@ package dev.ebnbin.kgdx.asset
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.assets.AssetDescriptor
-import com.badlogic.gdx.assets.GdxAssetManager
 import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.files.FileHandle
 import dev.ebnbin.kgdx.game
@@ -12,7 +11,9 @@ import ktx.assets.setLoader
 import ktx.assets.unloadSafely
 import ktx.freetype.registerFreeTypeFontLoaders
 
-internal class AssetManager : GdxAssetManager(AssetFileHandleResolver), AssetLoaderRegistry {
+typealias GdxAssetManager = com.badlogic.gdx.assets.AssetManager
+
+internal class AssetManager : com.badlogic.gdx.assets.GdxAssetManager(AssetFileHandleResolver), AssetLoaderRegistry {
     init {
         registerFreeTypeFontLoaders()
         setLoader(JsonAsset.Loader(fileHandleResolver), ".json")
