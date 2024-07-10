@@ -33,8 +33,16 @@ sealed class Asset<T>(
         return AssetDescriptor(assetId.id, type.type(), parameters)
     }
 
-    fun get(): T {
-        return game.assetManager.get(this)
+    fun isLoaded(): Boolean {
+        return game.assetManager.isLoaded(this)
+    }
+
+    fun get(blocked: Boolean = false): T {
+        return game.assetManager.get(this, blocked = blocked)
+    }
+
+    fun unload() {
+        game.assetManager.unload(this)
     }
 
     internal open fun loaded(asset: T) {

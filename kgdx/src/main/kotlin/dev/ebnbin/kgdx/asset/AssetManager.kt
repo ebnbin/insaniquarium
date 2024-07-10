@@ -3,6 +3,7 @@ package dev.ebnbin.kgdx.asset
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.assets.AssetDescriptor
 import com.badlogic.gdx.assets.loaders.FileHandleResolver
+import com.badlogic.gdx.assets.publicLoadQueue
 import com.badlogic.gdx.files.FileHandle
 import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.util.fromJson
@@ -52,8 +53,21 @@ internal class AssetManager : GdxAssetManager(AssetFileHandleResolver), AssetLoa
             }
     }
 
-    fun <T> get(asset: Asset<T>): T {
-        return get(assetDescriptor(asset))
+    fun <T> isLoaded(asset: Asset<T>): Boolean {
+        return isLoaded(assetDescriptor(asset))
+    }
+
+    fun <T> get(asset: Asset<T>, blocked: Boolean = false): T {
+        val assetDescriptor = assetDescriptor(asset)
+        if (blocked && !isLoaded(asset)) {
+            load(asset)
+            val loadQueue = publicLoadQueue
+            val lastAssetDescriptor = loadQueue.removeIndex(loadQueue.size - 1)
+            require(lastAssetDescriptor.fileName == assetDescriptor.fileName)
+            loadQueue.insert(0, lastAssetDescriptor)
+            return finishLoadingAsset(lastAssetDescriptor)
+        }
+        return get(assetDescriptor)
     }
 
     fun <T> load(asset: Asset<T>) {

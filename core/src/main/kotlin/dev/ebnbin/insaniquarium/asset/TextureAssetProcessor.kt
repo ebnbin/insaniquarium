@@ -50,7 +50,7 @@ object TextureAssetProcessor {
                 name = name,
                 extension = "png",
                 fileType = AssetFileType.LOCAL,
-                preload = true,
+                preload = false,
                 region = null,
                 stretchable = TextureAsset.Stretchable(
                     x = listOf(0, 1, 1279, 1),

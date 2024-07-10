@@ -8,7 +8,7 @@
       "name": "loading_progress",
       "extension": "ttf",
       "file_type": "internal",
-      "preload": true
+      "preload": false
     }
   },
   "json": {
@@ -286,7 +286,7 @@
       "name": "loading_background",
       "extension": "png",
       "file_type": "local",
-      "preload": true
+      "preload": false
     },
     "meryl": {
       "region": {

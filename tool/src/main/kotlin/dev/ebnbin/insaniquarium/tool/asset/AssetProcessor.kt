@@ -16,7 +16,7 @@ object AssetProcessor {
                     name = "loading_progress",
                     extension = "ttf",
                     fileType = AssetFileType.INTERNAL,
-                    preload = true,
+                    preload = false,
                     fontFileName = "kgdx_noto_sans_mono_bold",
                     fontSize = 32f,
                     defaultCharacters = false,

@@ -33,9 +33,9 @@ class JsonAsset(
     override val parameters: AssetLoaderParameters<Json>
         get() = Parameters(classOfT)
 
-    fun <T> data(): T {
+    fun <T> data(blocked: Boolean = false): T {
         @Suppress("UNCHECKED_CAST")
-        return get().data as T
+        return get(blocked = blocked).data as T
     }
 
     class Parameters(val classOfT: Class<out JsonWrapper<*>>) : AssetLoaderParameters<Json>()
