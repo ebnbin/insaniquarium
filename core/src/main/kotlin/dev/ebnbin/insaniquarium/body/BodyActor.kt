@@ -116,7 +116,15 @@ class BodyActor(
             data = data.tick(tickDelta)
             data.x to data.y
         } else {
-            position.first + data.velocityX * delta to position.second + data.velocityY * delta
+            BodyHelper.position(
+                position = position.first,
+                velocity = data.velocityX,
+                delta = delta,
+            ) to BodyHelper.position(
+                position = position.second,
+                velocity = data.velocityY,
+                delta = delta,
+            )
         }
         this.position = position
         setPosition(position.first, position.second, Align.center)

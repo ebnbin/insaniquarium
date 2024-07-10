@@ -32,21 +32,21 @@ data class BodyData(
 
     val mass: Float = area * density
 
-    val gravityY: Float = -(mass * G)
+    val gravityY: Float = BodyHelper.gravityY(mass)
 
-    val buoyancyY: Float = +(DENSITY_WATER * G * areaInWater)
+    val buoyancyY: Float = BodyHelper.buoyancyY(areaInWater)
 
-    val forceX: Float = 0f
-    val forceY: Float = gravityY + buoyancyY
+    val forceX: Float = BodyHelper.force()
+    val forceY: Float = BodyHelper.force(gravityY, buoyancyY)
 
-    val accelerationX = forceX / mass
-    val accelerationY = forceY / mass
+    val accelerationX: Float = BodyHelper.acceleration(forceX, mass)
+    val accelerationY: Float = BodyHelper.acceleration(forceY, mass)
 
     fun tick(tickDelta: Float): BodyData {
-        val nextVelocityX = velocityX + accelerationX * tickDelta
-        val nextVelocityY = velocityY + accelerationY * tickDelta
-        val nextX = x + nextVelocityX * tickDelta
-        val nextY = y + nextVelocityY * tickDelta
+        val nextVelocityX = BodyHelper.velocity(velocityX, accelerationX, tickDelta)
+        val nextVelocityY = BodyHelper.velocity(velocityY, accelerationY, tickDelta)
+        val nextX = BodyHelper.position(x, nextVelocityX, tickDelta)
+        val nextY = BodyHelper.position(y, nextVelocityY, tickDelta)
         return copy(
             velocityX = nextVelocityX,
             velocityY = nextVelocityY,
@@ -57,10 +57,5 @@ data class BodyData(
 
     fun drawDebugBounds(shapes: ShapeRenderer) {
         shapes.rect(left, bottom, width, height)
-    }
-
-    companion object {
-        private const val G = 10f
-        private const val DENSITY_WATER = 1000f
     }
 }
