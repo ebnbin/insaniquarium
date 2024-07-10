@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
 import dev.ebnbin.insaniquarium.body.BodyActor
 import dev.ebnbin.insaniquarium.body.BodyType
+import dev.ebnbin.insaniquarium.body.BodyPosition
 import kotlin.random.Random
 
 class TankGroup : Group() {
@@ -63,8 +64,10 @@ class TankGroup : Group() {
             BodyActor(
                 tankGroup = this,
                 type = type ?: BodyType.entries.random(),
-                x = x ?: (Random.nextFloat() * width),
-                y = y ?: (Random.nextFloat() * height),
+                position = BodyPosition(
+                    x = x ?: (Random.nextFloat() * width),
+                    y = y ?: (Random.nextFloat() * height),
+                ),
             ).also {
                 addActor(it)
             }

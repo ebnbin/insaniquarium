@@ -8,8 +8,7 @@ data class BodyData(
     private val tankHeight: Float,
     val velocityX: Float,
     val velocityY: Float,
-    val x: Float,
-    val y: Float,
+    val position: BodyPosition,
 ) {
     private val def: BodyDef = type.def
 
@@ -19,9 +18,9 @@ data class BodyData(
     val halfWidth: Float = width / 2f
     val halfHeight: Float = height / 2f
 
-    val left: Float = x - halfWidth
+    val left: Float = position.x - halfWidth
     val right: Float = left + width
-    val bottom: Float = y - halfHeight
+    val bottom: Float = position.y - halfHeight
     val top: Float = bottom + height
 
     val area: Float = width * height
@@ -45,13 +44,15 @@ data class BodyData(
     fun tick(tickDelta: Float): BodyData {
         val nextVelocityX = BodyHelper.velocity(velocityX, accelerationX, tickDelta)
         val nextVelocityY = BodyHelper.velocity(velocityY, accelerationY, tickDelta)
-        val nextX = BodyHelper.position(x, nextVelocityX, tickDelta)
-        val nextY = BodyHelper.position(y, nextVelocityY, tickDelta)
+        val nextX = BodyHelper.position(position.x, nextVelocityX, tickDelta)
+        val nextY = BodyHelper.position(position.y, nextVelocityY, tickDelta)
         return copy(
             velocityX = nextVelocityX,
             velocityY = nextVelocityY,
-            x = nextX,
-            y = nextY,
+            position = BodyPosition(
+                x = nextX,
+                y = nextY,
+            ),
         )
     }
 

@@ -23,8 +23,7 @@ import dev.ebnbin.kgdx.util.diffStage
 class BodyActor(
     tankGroup: TankGroup,
     type: BodyType,
-    x: Float,
-    y: Float,
+    position: BodyPosition,
 ) : Actor() {
     private val textureRegion: TextureRegion = type.def.textureAsset.getTextureRegionList().first()
 
@@ -38,14 +37,13 @@ class BodyActor(
         tankHeight = tankGroup.height,
         velocityX = 0f,
         velocityY = 0f,
-        x = x,
-        y = y,
+        position = position,
     )
 
-    private var position: Pair<Float, Float> = data.x to data.y
+    private var position: BodyPosition = data.position
 
     init {
-        setPosition(position.first, position.second, Align.center)
+        setPosition(position.x, position.y, Align.center)
     }
 
     override fun setStage(stage: Stage?) {
@@ -114,20 +112,23 @@ class BodyActor(
         val tickDelta = tankStage.tickDelta
         val position = if (tickDelta > 0f) {
             data = data.tick(tickDelta)
-            data.x to data.y
+            data.position
         } else {
-            BodyHelper.position(
-                position = position.first,
-                velocity = data.velocityX,
-                delta = delta,
-            ) to BodyHelper.position(
-                position = position.second,
-                velocity = data.velocityY,
-                delta = delta,
+            BodyPosition(
+                x = BodyHelper.position(
+                    position = position.x,
+                    velocity = data.velocityX,
+                    delta = delta,
+                ),
+                y = BodyHelper.position(
+                    position = position.y,
+                    velocity = data.velocityY,
+                    delta = delta,
+                ),
             )
         }
         this.position = position
-        setPosition(position.first, position.second, Align.center)
+        setPosition(position.x, position.y, Align.center)
     }
 
     private val shapeRenderer: ShapeRenderer = ShapeRenderer().also {
@@ -229,8 +230,8 @@ class BodyActor(
         },
         "position" toDevEntry {
             "%.3f,%.3f".format(
-                data.x,
-                data.y,
+                data.position.x,
+                data.position.y,
             )
         },
     )
