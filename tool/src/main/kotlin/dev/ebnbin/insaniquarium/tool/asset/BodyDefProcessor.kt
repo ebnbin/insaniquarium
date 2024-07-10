@@ -30,7 +30,16 @@ class BodyDefProcessor(
                     id = type.id,
                     width = nonTransparentSize.first.toFloat().dpToMeter,
                     height = nonTransparentSize.second.toFloat().dpToMeter,
-                    density = 1f,
+                    density = when (type) {
+                        BodyType.STINKY -> 1.5f
+                        BodyType.NIKO -> 1.5f
+                        BodyType.RUFUS -> 1.5f
+                        BodyType.WADSWORTH -> 0.9f
+                        BodyType.BLIP -> 0.9f
+                        BodyType.RHUBARB -> 1.5f
+                        BodyType.BRINKLEY -> 1.1f
+                        else -> 1f
+                    },
                     dragCoefficient = 1f,
                 )
                 def.id to def
