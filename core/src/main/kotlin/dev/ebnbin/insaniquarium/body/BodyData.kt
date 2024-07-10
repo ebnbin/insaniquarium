@@ -18,10 +18,20 @@ data class BodyData(
     val halfWidth: Float = width / 2f
     val halfHeight: Float = height / 2f
 
+    val minX: Float = halfWidth
+    val maxX: Float = tankWidth - halfWidth
+    val minY: Float = halfHeight
+    val maxY: Float = Float.MAX_VALUE
+
     val left: Float = position.x - halfWidth
     val right: Float = left + width
     val bottom: Float = position.y - halfHeight
     val top: Float = bottom + height
+
+    val isInsideLeft: Boolean = left > 0f
+    val isInsideRight: Boolean = right < tankWidth
+    val isInsideBottom: Boolean = bottom > 0f
+    val isInsideTop: Boolean = true
 
     val area: Float = width * height
 
@@ -35,17 +45,55 @@ data class BodyData(
 
     val buoyancyY: Float = BodyHelper.buoyancyY(areaInWater)
 
-    val forceX: Float = BodyHelper.force()
-    val forceY: Float = BodyHelper.force(gravityY, buoyancyY)
+    val normalReactionForceX: Float = BodyHelper.force()
+    val normalReactionForceY: Float = BodyHelper.force(gravityY, buoyancyY)
+
+    val normalForceX: Float = BodyHelper.normalForce(
+        isInsideLeftOrBottom = isInsideLeft,
+        isInsideRightOrTop = isInsideRight,
+        reactionForce = normalReactionForceX
+    )
+    val normalForceY: Float = BodyHelper.normalForce(
+        isInsideLeftOrBottom = isInsideBottom,
+        isInsideRightOrTop = isInsideTop,
+        reactionForce = normalReactionForceY
+    )
+
+    val forceX: Float = BodyHelper.force(normalReactionForceX, normalForceX)
+    val forceY: Float = BodyHelper.force(normalReactionForceY, normalForceY)
 
     val accelerationX: Float = BodyHelper.acceleration(forceX, mass)
     val accelerationY: Float = BodyHelper.acceleration(forceY, mass)
 
     fun tick(tickDelta: Float): BodyData {
-        val nextVelocityX = BodyHelper.velocity(velocityX, accelerationX, tickDelta)
-        val nextVelocityY = BodyHelper.velocity(velocityY, accelerationY, tickDelta)
-        val nextX = BodyHelper.position(position.x, nextVelocityX, tickDelta)
-        val nextY = BodyHelper.position(position.y, nextVelocityY, tickDelta)
+        val nextVelocityX = BodyHelper.velocity(
+            velocity = velocityX,
+            acceleration = accelerationX,
+            delta = tickDelta,
+            isInsideLeftOrBottom = isInsideLeft,
+            isInsideRightOrTop = isInsideRight,
+        )
+        val nextVelocityY = BodyHelper.velocity(
+            velocity = velocityY,
+            acceleration = accelerationY,
+            delta = tickDelta,
+            isInsideLeftOrBottom = isInsideBottom,
+            isInsideRightOrTop = isInsideTop,
+        )
+        val nextX = BodyHelper.position(
+            position = position.x,
+            velocity = nextVelocityX,
+            delta = tickDelta,
+            minPosition = minX,
+            maxPosition = maxX,
+        )
+        val nextY = BodyHelper.position(
+            position = position.y,
+            velocity = nextVelocityY,
+            delta = tickDelta,
+            minPosition = minY,
+            maxPosition = maxY,
+        )
         return copy(
             velocityX = nextVelocityX,
             velocityY = nextVelocityY,

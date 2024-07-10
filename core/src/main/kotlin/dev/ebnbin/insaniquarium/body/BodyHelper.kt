@@ -12,6 +12,18 @@ object BodyHelper {
         return +(DENSITY_WATER * G * areaInWater)
     }
 
+    fun normalForce(
+        isInsideLeftOrBottom: Boolean,
+        isInsideRightOrTop: Boolean,
+        reactionForce: Float,
+    ): Float {
+        return if (!isInsideLeftOrBottom && reactionForce < 0f || !isInsideRightOrTop && reactionForce > 0f) {
+            -reactionForce
+        } else {
+            0f
+        }
+    }
+
     fun force(vararg forces: Float): Float {
         return forces.sum()
     }
@@ -20,11 +32,29 @@ object BodyHelper {
         return force / mass
     }
 
-    fun velocity(velocity: Float, acceleration: Float, delta: Float): Float {
-        return velocity + acceleration * delta
+    fun velocity(
+        velocity: Float,
+        acceleration: Float,
+        delta: Float,
+        isInsideLeftOrBottom: Boolean,
+        isInsideRightOrTop: Boolean,
+    ): Float {
+        val nextVelocity = velocity + acceleration * delta
+        return if (!isInsideLeftOrBottom && nextVelocity < 0f || !isInsideRightOrTop && nextVelocity > 0f) {
+            0f
+        } else {
+            nextVelocity
+        }
     }
 
-    fun position(position: Float, velocity: Float, delta: Float): Float {
-        return position + velocity * delta
+    fun position(
+        position: Float,
+        velocity: Float,
+        delta: Float,
+        minPosition: Float,
+        maxPosition: Float,
+    ): Float {
+        val nextPosition = position + velocity * delta
+        return nextPosition.coerceIn(minPosition, maxPosition)
     }
 }

@@ -119,11 +119,15 @@ class BodyActor(
                     position = position.x,
                     velocity = data.velocityX,
                     delta = delta,
+                    minPosition = data.minX,
+                    maxPosition = data.maxX,
                 ),
                 y = BodyHelper.position(
                     position = position.y,
                     velocity = data.velocityY,
                     delta = delta,
+                    minPosition = data.minY,
+                    maxPosition = data.maxY,
                 ),
             )
         }
@@ -208,6 +212,18 @@ class BodyActor(
         "buoyancy" toDevEntry {
             "%.3f".format(
                 data.buoyancyY,
+            )
+        },
+        "normalReactionForce" toDevEntry {
+            "%.3f,%.3f".format(
+                data.normalReactionForceX,
+                data.normalReactionForceY,
+            )
+        },
+        "normalForce" toDevEntry {
+            "%.3f,%.3f".format(
+                data.normalForceX,
+                data.normalForceY,
             )
         },
         "force" toDevEntry {
