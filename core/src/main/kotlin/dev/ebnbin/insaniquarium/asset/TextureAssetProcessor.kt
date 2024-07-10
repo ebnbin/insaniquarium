@@ -54,7 +54,7 @@ object TextureAssetProcessor {
                 region = null,
                 stretchable = TextureAsset.Stretchable(
                     x = listOf(0, 1, 1279, 1),
-                    y = listOf(0, 1, 719, 1),
+                    y = listOf(0, 2, 719, 1),
                 ),
             )
         }
