@@ -4,9 +4,11 @@ import com.badlogic.gdx.utils.Align
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.insaniquarium.body.BodyType
+import dev.ebnbin.insaniquarium.preference.PreferenceManager
 import dev.ebnbin.kgdx.LifecycleStage
 import dev.ebnbin.kgdx.dev.toDevEntry
 import dev.ebnbin.kgdx.ui.AnimationImage
+import dev.ebnbin.kgdx.util.checkBoxMenuItem
 import dev.ebnbin.kgdx.util.listMenuItem
 import dev.ebnbin.kgdx.util.menuItem
 
@@ -58,6 +60,11 @@ class TankStage : LifecycleStage(TankViewport()) {
     override fun createDevMenu(menuBar: MenuBar, menu: Menu) {
         super.createDevMenu(menuBar, menu)
         menu.apply {
+            checkBoxMenuItem(
+                menuBar = menuBar,
+                text = PreferenceManager.enableBodySmoothPosition.key,
+                valueProperty = PreferenceManager.enableBodySmoothPosition::value,
+            )
             listMenuItem(
                 menuBar = menuBar,
                 text = "body type pet A",

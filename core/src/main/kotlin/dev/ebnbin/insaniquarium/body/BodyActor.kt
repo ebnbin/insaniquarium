@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.utils.Align
+import dev.ebnbin.insaniquarium.preference.PreferenceManager
 import dev.ebnbin.insaniquarium.tank.TankGroup
 import dev.ebnbin.insaniquarium.tank.TankStage
 import dev.ebnbin.insaniquarium.tank.pxToMeter
@@ -121,22 +122,26 @@ class BodyActor(
             )
             data.position
         } else {
-            BodyPosition(
-                x = BodyHelper.position(
-                    position = position.x,
-                    velocity = data.velocityX,
-                    delta = delta,
-                    minPosition = data.minX,
-                    maxPosition = data.maxX,
-                ),
-                y = BodyHelper.position(
-                    position = position.y,
-                    velocity = data.velocityY,
-                    delta = delta,
-                    minPosition = data.minY,
-                    maxPosition = data.maxY,
-                ),
-            )
+            if (PreferenceManager.enableBodySmoothPosition.value) {
+                BodyPosition(
+                    x = BodyHelper.position(
+                        position = position.x,
+                        velocity = data.velocityX,
+                        delta = delta,
+                        minPosition = data.minX,
+                        maxPosition = data.maxX,
+                    ),
+                    y = BodyHelper.position(
+                        position = position.y,
+                        velocity = data.velocityY,
+                        delta = delta,
+                        minPosition = data.minY,
+                        maxPosition = data.maxY,
+                    ),
+                )
+            } else {
+                data.position
+            }
         }
         this.position = position
         setPosition(position.x, position.y, Align.center)
