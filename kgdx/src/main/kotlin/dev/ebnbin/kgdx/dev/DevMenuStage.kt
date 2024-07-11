@@ -133,6 +133,23 @@ internal class DevMenuStage : LifecycleStage(WorldScreenViewport()) {
                 ) {
                     game.recreate()
                 }
+                listMenuItem(
+                    menuBar = this@createKgdxMenu,
+                    text = KgdxPreferenceManager.gameSpeedFPS.key,
+                    valueList = listOf(
+                        0.5f,
+                        1f,
+                        2f,
+                        5f,
+                        10f,
+                        15f,
+                        20f,
+                        30f,
+                        40f,
+                        60f,
+                    ),
+                    valueProperty = KgdxPreferenceManager.gameSpeedFPS::value,
+                )
             }
             menuItem(
                 menuBar = this@createKgdxMenu,

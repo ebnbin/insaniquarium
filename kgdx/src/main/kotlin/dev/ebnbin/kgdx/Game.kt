@@ -134,7 +134,7 @@ abstract class Game : ApplicationListener {
             resumed = true
             stageList().resume()
         }
-        val delta = Gdx.graphics.deltaTime
+        val delta = Gdx.graphics.deltaTime * KgdxPreferenceManager.gameSpeedFPS.value / 20f
         val limitedDelta = min(delta, LIMITED_DELTA)
         time += limitedDelta
         act(limitedDelta)

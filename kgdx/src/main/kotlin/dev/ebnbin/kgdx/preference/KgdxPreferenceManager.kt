@@ -55,4 +55,10 @@ object KgdxPreferenceManager {
         valueToStoredValue = TextureFilter::id,
         storedValueToValue = TextureFilter::of,
     )
+
+    val gameSpeedFPS: SimplePreference<Float> = SimplePreference(
+        name = NAME,
+        key = "game_speed_fps",
+        defaultValue = 20f,
+    )
 }
