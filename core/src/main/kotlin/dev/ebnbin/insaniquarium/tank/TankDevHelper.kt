@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
+import dev.ebnbin.insaniquarium.body.Body
 import dev.ebnbin.insaniquarium.body.BodyActor
 import dev.ebnbin.insaniquarium.body.BodyPosition
 import dev.ebnbin.insaniquarium.body.BodyType
@@ -85,25 +86,25 @@ class TankDevHelper(
         }
     }
 
-    private var devSelectedBody: BodyActor? = null
+    private var devSelectedBody: Body? = null
 
-    fun isSelected(body: BodyActor): Boolean {
+    fun isSelected(body: Body): Boolean {
         return devSelectedBody === body
     }
 
-    fun selectBody(body: BodyActor) {
+    fun selectBody(body: Body) {
         unselectBody(null)
         devSelectedBody = body
-        body.devSelect()
+        body.devHelper.devSelect()
     }
 
-    fun unselectBody(body: BodyActor?) {
+    fun unselectBody(body: Body?) {
         if (body == null) {
-            devSelectedBody?.devUnselect()
+            devSelectedBody?.devHelper?.devUnselect()
             devSelectedBody = null
         } else {
             if (devSelectedBody === body) {
-                body.devUnselect()
+                body.devHelper.devUnselect()
                 devSelectedBody = null
             }
         }
