@@ -61,13 +61,13 @@ class BodyActor(
     }
 
     private fun removedFromParent(parent: TankGroup) {
-        parent.devUnselectBody(this)
+        parent.tank.devHelper.unselectBody(this)
     }
 
     init {
         addListener(object : InputListener() {
             override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                (parent as TankGroup?)?.devSelectBody(this@BodyActor)
+                (parent as TankGroup?)?.tank?.devHelper?.selectBody(this@BodyActor)
                 event.stop()
                 return true
             }
@@ -99,7 +99,7 @@ class BodyActor(
         body.act(
             actDelta = delta,
             tickDelta = tickDelta,
-            touchPosition = (parent as TankGroup?)?.touchPosition,
+            touchPosition = (parent as TankGroup?)?.tank?.touchPosition,
         )
     }
 
@@ -109,7 +109,7 @@ class BodyActor(
         super.draw(batch, parentAlpha)
         body.draw(batch, parentAlpha)
         shapeRendererHelper.draw(batch) {
-            if ((parent as TankGroup?)?.isDevSelected(this@BodyActor) == true) {
+            if ((parent as TankGroup?)?.tank?.devHelper?.isSelected(this@BodyActor) == true) {
                 body.data.drawDebugBounds(this)
             }
         }
