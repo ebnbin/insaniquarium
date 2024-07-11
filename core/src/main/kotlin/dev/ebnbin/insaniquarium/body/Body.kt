@@ -99,12 +99,4 @@ class Body(
     fun removedFromStage(stage: TankStage) {
         devHelper.removedFromStage(stage)
     }
-
-    fun addedToParent() {
-        devHelper.addedToParent()
-    }
-
-    fun removedFromParent() {
-        devHelper.removedFromParent()
-    }
 }

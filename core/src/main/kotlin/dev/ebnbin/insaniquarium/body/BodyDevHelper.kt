@@ -114,14 +114,8 @@ class BodyDevHelper(
     }
 
     fun removedFromStage(stage: TankStage) {
-        removeDevInfo(stage)
-    }
-
-    fun addedToParent() {
-    }
-
-    fun removedFromParent() {
         body.tank.devHelper.unselectBody(body)
+        removeDevInfo(stage)
     }
 
     fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {

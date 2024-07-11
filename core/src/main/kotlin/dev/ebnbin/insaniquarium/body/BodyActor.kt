@@ -51,11 +51,9 @@ class BodyActor(
     }
 
     private fun addedToParent(parent: TankGroup) {
-        body.addedToParent()
     }
 
     private fun removedFromParent(parent: TankGroup) {
-        body.removedFromParent()
     }
 
     override fun hit(x: Float, y: Float, touchable: Boolean): Actor? {
