@@ -2,7 +2,6 @@ package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.Batch
-import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.Group
@@ -10,12 +9,9 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.Touchable
-import com.badlogic.gdx.utils.Align
-import dev.ebnbin.insaniquarium.preference.PreferenceManager
 import dev.ebnbin.insaniquarium.tank.Tank
 import dev.ebnbin.insaniquarium.tank.TankGroup
 import dev.ebnbin.insaniquarium.tank.TankStage
-import dev.ebnbin.insaniquarium.tank.pxToMeter
 import dev.ebnbin.kgdx.dev.DevEntry
 import dev.ebnbin.kgdx.dev.toDevEntry
 import dev.ebnbin.kgdx.util.ShapeRendererHelper
@@ -29,27 +25,12 @@ class BodyActor(
     type: BodyType,
     position: BodyPosition,
 ) : Actor() {
-    private val textureRegion: TextureRegion = type.def.textureAsset.getTextureRegionList().first()
-
-    init {
-        setSize(textureRegion.regionWidth.pxToMeter, textureRegion.regionHeight.pxToMeter)
-    }
-
-    private var data: BodyData = BodyData(
-        tankData = tank.data,
+    val body: Body = Body(
+        actorWrapper = BodyActorWrapper(this),
+        tank = tank,
         type = type,
-        velocityX = 0f,
-        velocityY = 0f,
         position = position,
-        drivingTargetX = null,
-        drivingTargetY = null,
     )
-
-    private var position: BodyPosition = data.position
-
-    init {
-        setPosition(position.x, position.y, Align.center)
-    }
 
     override fun setStage(stage: Stage?) {
         diffStage<TankStage>(
@@ -104,10 +85,10 @@ class BodyActor(
     override fun hit(x: Float, y: Float, touchable: Boolean): Actor? {
         if (touchable && this.touchable != Touchable.enabled) return null
         if (!isVisible) return null
-        val left = data.left - this.x
-        val right = left + data.width
-        val bottom = data.bottom - this.y
-        val top = bottom + data.height
+        val left = body.data.left - this.x
+        val right = left + body.data.width
+        val bottom = body.data.bottom - this.y
+        val top = bottom + body.data.height
         return if (x >= left && x < right && y >= bottom && y < top) this else null
     }
 
@@ -115,123 +96,93 @@ class BodyActor(
         super.act(delta)
         val tankStage = stage as TankStage? ?: return
         val tickDelta = tankStage.tickDelta
-        val position = if (tickDelta > 0f) {
-            data = data.tick(
-                tickDelta = tickDelta,
-                touchPosition = (parent as TankGroup?)?.touchPosition,
-            )
-            data.position
-        } else {
-            if (PreferenceManager.enableBodySmoothPosition.value) {
-                BodyPosition(
-                    x = BodyHelper.position(
-                        position = position.x,
-                        velocity = data.velocityX,
-                        delta = delta,
-                        minPosition = data.minX,
-                        maxPosition = data.maxX,
-                    ),
-                    y = BodyHelper.position(
-                        position = position.y,
-                        velocity = data.velocityY,
-                        delta = delta,
-                        minPosition = data.minY,
-                        maxPosition = data.maxY,
-                    ),
-                )
-            } else {
-                data.position
-            }
-        }
-        this.position = position
-        setPosition(position.x, position.y, Align.center)
+        body.act(
+            actDelta = delta,
+            tickDelta = tickDelta,
+            touchPosition = (parent as TankGroup?)?.touchPosition,
+        )
     }
 
     private val shapeRendererHelper: ShapeRendererHelper = ShapeRendererHelper()
 
     override fun draw(batch: Batch, parentAlpha: Float) {
         super.draw(batch, parentAlpha)
-        batch.draw(
-            textureRegion,
-            x,
-            y,
-            width,
-            height,
-        )
+        body.draw(batch, parentAlpha)
         shapeRendererHelper.draw(batch) {
             if ((parent as TankGroup?)?.isDevSelected(this@BodyActor) == true) {
-                data.drawDebugBounds(this)
+                body.data.drawDebugBounds(this)
             }
         }
     }
 
     override fun drawDebugBounds(shapes: ShapeRenderer) {
         super.drawDebugBounds(shapes)
-        data.drawDebugBounds(shapes)
+        body.data.drawDebugBounds(shapes)
     }
 
     private val devInfoEntryList: List<DevEntry> = listOf(
         "type" toDevEntry {
-            data.type.id
+            body.data.type.id
         },
         "size".key() toDevEntry {
-            "${data.width.value(Sign.UNSIGNED)},${data.height.value(Sign.UNSIGNED)}"
+            "${body.data.width.value(Sign.UNSIGNED)},${body.data.height.value(Sign.UNSIGNED)}"
         },
         "lrbt".key() toDevEntry {
-            "${data.left.value(Sign.SIGNED)},${data.right.value(Sign.SIGNED)}," +
-                "${data.bottom.value(Sign.SIGNED)},${data.top.value(Sign.SIGNED)}"
+            "${body.data.left.value(Sign.SIGNED)},${body.data.right.value(Sign.SIGNED)}," +
+                "${body.data.bottom.value(Sign.SIGNED)},${body.data.top.value(Sign.SIGNED)}"
         },
         "isInsideLRBT".key() toDevEntry {
-            "${data.isInsideLeft.value()},${data.isInsideRight.value()}," +
-                "${data.isInsideBottom.value()},${data.isInsideTop.value()}"
+            "${body.data.isInsideLeft.value()},${body.data.isInsideRight.value()}," +
+                "${body.data.isInsideBottom.value()},${body.data.isInsideTop.value()}"
         },
         "areaInWater/area".key() toDevEntry {
-            "${data.areaInWater.value(Sign.UNSIGNED)}/${data.area.value(Sign.UNSIGNED)}"
+            "${body.data.areaInWater.value(Sign.UNSIGNED)}/${body.data.area.value(Sign.UNSIGNED)}"
         },
         "density".key() toDevEntry {
-            data.density.value(Sign.UNSIGNED)
+            body.data.density.value(Sign.UNSIGNED)
         },
         "mass".key() toDevEntry {
-            data.mass.value(Sign.UNSIGNED)
+            body.data.mass.value(Sign.UNSIGNED)
         },
         "gravity".key() toDevEntry {
-            "${0f.value(Sign.X)},${data.gravityY.value(Sign.Y)}"
+            "${0f.value(Sign.X)},${body.data.gravityY.value(Sign.Y)}"
         },
         "buoyancy".key() toDevEntry {
-            "${0f.value(Sign.X)},${data.buoyancyY.value(Sign.Y)}"
+            "${0f.value(Sign.X)},${body.data.buoyancyY.value(Sign.Y)}"
         },
         "drag".key() toDevEntry {
-            "${data.dragX.value(Sign.X)},${data.dragY.value(Sign.Y)}"
+            "${body.data.dragX.value(Sign.X)},${body.data.dragY.value(Sign.Y)}"
         },
         "drivingTarget".key() toDevEntry {
-            "${data.drivingTargetX?.position.value(Sign.SIGNED)},${data.drivingTargetY?.position.value(Sign.SIGNED)}"
+            "${body.data.drivingTargetX?.position.value(Sign.SIGNED)}," +
+                body.data.drivingTargetY?.position.value(Sign.SIGNED)
         },
         "drivingForce".key() toDevEntry {
-            "${data.drivingForceX.value(Sign.X)},${data.drivingForceY.value(Sign.Y)}"
+            "${body.data.drivingForceX.value(Sign.X)},${body.data.drivingForceY.value(Sign.Y)}"
         },
         "normalReactionForce".key() toDevEntry {
-            "${data.normalReactionForceX.value(Sign.X)},${data.normalReactionForceY.value(Sign.Y)}"
+            "${body.data.normalReactionForceX.value(Sign.X)},${body.data.normalReactionForceY.value(Sign.Y)}"
         },
         "normalForce".key() toDevEntry {
-            "${data.normalForceX.value(Sign.X)},${data.normalForceY.value(Sign.Y)}"
+            "${body.data.normalForceX.value(Sign.X)},${body.data.normalForceY.value(Sign.Y)}"
         },
         "frictionReactionForce".key() toDevEntry {
-            "${data.frictionReactionForceX.value(Sign.X)},${0f.value(Sign.Y)}"
+            "${body.data.frictionReactionForceX.value(Sign.X)},${0f.value(Sign.Y)}"
         },
         "friction".key() toDevEntry {
-            "${data.frictionX.value(Sign.X)},${0f.value(Sign.Y)}"
+            "${body.data.frictionX.value(Sign.X)},${0f.value(Sign.Y)}"
         },
         "force".key() toDevEntry {
-            "${data.forceX.value(Sign.X)},${data.forceY.value(Sign.Y)}"
+            "${body.data.forceX.value(Sign.X)},${body.data.forceY.value(Sign.Y)}"
         },
         "acceleration".key() toDevEntry {
-            "${data.accelerationX.value(Sign.X)},${data.accelerationY.value(Sign.Y)}"
+            "${body.data.accelerationX.value(Sign.X)},${body.data.accelerationY.value(Sign.Y)}"
         },
         "velocity".key() toDevEntry {
-            "${data.velocityX.value(Sign.X)},${data.velocityY.value(Sign.Y)}"
+            "${body.data.velocityX.value(Sign.X)},${body.data.velocityY.value(Sign.Y)}"
         },
         "position".key() toDevEntry {
-            "${data.position.x.value(Sign.SIGNED)},${data.position.y.value(Sign.SIGNED)}"
+            "${body.data.position.x.value(Sign.SIGNED)},${body.data.position.y.value(Sign.SIGNED)}"
         },
     )
 
