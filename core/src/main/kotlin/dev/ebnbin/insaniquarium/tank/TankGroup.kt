@@ -22,7 +22,6 @@ class TankGroup : Group() {
         addListener(object : InputListener() {
             override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
                 touchPosition = BodyPosition(x, y)
-                devUnselectBody(null)
                 val tankStage = stage as TankStage? ?: return false
                 val devBodyType = tankStage.devBodyType
                 if (devBodyType != null) {
