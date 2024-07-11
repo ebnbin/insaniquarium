@@ -11,9 +11,9 @@ import dev.ebnbin.kgdx.util.ShapeRendererHelper
 import kotlin.random.Random
 
 class TankGroup : Group() {
-    init {
-        setSize(WIDTH_DP.dpToMeter, HEIGHT_DP.dpToMeter)
-    }
+    private val tank: Tank = Tank(
+        groupWrapper = TankGroupWrapper(this),
+    )
 
     private var devSelectedBody: BodyActor? = null
 
@@ -88,7 +88,7 @@ class TankGroup : Group() {
     ) {
         repeat(count) {
             BodyActor(
-                tankGroup = this,
+                tank = tank,
                 type = type ?: BodyType.entries.random(),
                 position = BodyPosition(
                     x = x ?: (Random.nextFloat() * width),
@@ -102,10 +102,5 @@ class TankGroup : Group() {
 
     fun devClearBodies() {
         clearChildren()
-    }
-
-    companion object {
-        private const val WIDTH_DP = 960f
-        private const val HEIGHT_DP = 600f
     }
 }

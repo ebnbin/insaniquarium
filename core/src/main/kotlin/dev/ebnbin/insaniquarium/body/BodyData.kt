@@ -1,11 +1,11 @@
 package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
+import dev.ebnbin.insaniquarium.tank.TankData
 
 data class BodyData(
+    val tankData: TankData,
     val type: BodyType,
-    private val tankWidth: Float,
-    private val tankHeight: Float,
     val velocityX: Float,
     val velocityY: Float,
     val position: BodyPosition,
@@ -21,7 +21,7 @@ data class BodyData(
     val halfHeight: Float = height / 2f
 
     val minX: Float = halfWidth
-    val maxX: Float = tankWidth - halfWidth
+    val maxX: Float = tankData.width - halfWidth
     val minY: Float = halfHeight
     val maxY: Float = Float.MAX_VALUE
 
@@ -31,7 +31,7 @@ data class BodyData(
     val top: Float = bottom + height
 
     val isInsideLeft: Boolean = left > 0f
-    val isInsideRight: Boolean = right < tankWidth
+    val isInsideRight: Boolean = right < tankData.width
     val isInsideBottom: Boolean = bottom > 0f
     val isInsideTop: Boolean = true
 
@@ -40,7 +40,7 @@ data class BodyData(
     val areaX: Float = height * height
     val areaY: Float = width * width
 
-    val areaInWater: Float = ((tankHeight - bottom) / height).coerceIn(0f, 1f) * area
+    val areaInWater: Float = ((tankData.height - bottom) / height).coerceIn(0f, 1f) * area
 
     val density: Float = def.density
 

@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.Touchable
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.insaniquarium.preference.PreferenceManager
+import dev.ebnbin.insaniquarium.tank.Tank
 import dev.ebnbin.insaniquarium.tank.TankGroup
 import dev.ebnbin.insaniquarium.tank.TankStage
 import dev.ebnbin.insaniquarium.tank.pxToMeter
@@ -24,7 +25,7 @@ import dev.ebnbin.kgdx.util.diffStage
 import kotlin.math.absoluteValue
 
 class BodyActor(
-    tankGroup: TankGroup,
+    tank: Tank,
     type: BodyType,
     position: BodyPosition,
 ) : Actor() {
@@ -35,9 +36,8 @@ class BodyActor(
     }
 
     private var data: BodyData = BodyData(
+        tankData = tank.data,
         type = type,
-        tankWidth = tankGroup.width,
-        tankHeight = tankGroup.height,
         velocityX = 0f,
         velocityY = 0f,
         position = position,
