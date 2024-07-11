@@ -1,6 +1,9 @@
 package dev.ebnbin.insaniquarium.body
 
-import kotlin.math.sign
+import dev.ebnbin.kgdx.util.VectorDirection
+import dev.ebnbin.kgdx.util.direction
+import dev.ebnbin.kgdx.util.isNegative
+import dev.ebnbin.kgdx.util.isPositive
 
 object BodyHelper {
     private const val G = 10f
@@ -8,11 +11,11 @@ object BodyHelper {
     private const val DRAG_COEFFICIENT_SCALE = 0.5f
 
     fun gravityY(mass: Float): Float {
-        return -(mass * G)
+        return VectorDirection.NEGATIVE * (mass * G)
     }
 
     fun buoyancyY(areaInWater: Float): Float {
-        return +(DENSITY_WATER * G * areaInWater)
+        return VectorDirection.POSITIVE * (DENSITY_WATER * G * areaInWater)
     }
 
     fun drag(
@@ -20,7 +23,7 @@ object BodyHelper {
         dragCoefficient: Float,
         crossSectionalArea: Float,
     ): Float {
-        return -velocity.sign.toInt() *
+        return -velocity.direction *
             (0.5f * DENSITY_WATER * velocity * velocity * dragCoefficient * DRAG_COEFFICIENT_SCALE *
                 crossSectionalArea)
     }
@@ -30,8 +33,8 @@ object BodyHelper {
         isInsideRightOrTop: Boolean,
         normalReactionForce: Float,
     ): Float {
-        return if (!isInsideLeftOrBottom && normalReactionForce < 0f ||
-            !isInsideRightOrTop && normalReactionForce > 0f) {
+        return if (!isInsideLeftOrBottom && normalReactionForce.isNegative ||
+            !isInsideRightOrTop && normalReactionForce.isPositive) {
             -normalReactionForce
         } else {
             0f
@@ -54,7 +57,8 @@ object BodyHelper {
         isInsideRightOrTop: Boolean,
     ): Float {
         val nextVelocity = velocity + acceleration * delta
-        return if (!isInsideLeftOrBottom && nextVelocity < 0f || !isInsideRightOrTop && nextVelocity > 0f) {
+        return if (!isInsideLeftOrBottom && nextVelocity.isNegative ||
+            !isInsideRightOrTop && nextVelocity.isPositive) {
             0f
         } else {
             nextVelocity
