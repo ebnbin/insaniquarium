@@ -1,15 +1,13 @@
 package dev.ebnbin.insaniquarium.tank
 
-import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.Batch
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.Group
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
 import dev.ebnbin.insaniquarium.body.BodyActor
-import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.insaniquarium.body.BodyPosition
+import dev.ebnbin.insaniquarium.body.BodyType
+import dev.ebnbin.kgdx.util.ShapeRendererHelper
 import kotlin.random.Random
 
 class TankGroup : Group() {
@@ -51,21 +49,13 @@ class TankGroup : Group() {
         })
     }
 
-    private val shapeRenderer: ShapeRenderer = ShapeRenderer().also {
-        it.setAutoShapeType(true)
-    }
+    private val shapeRendererHelper: ShapeRendererHelper = ShapeRendererHelper()
 
     override fun draw(batch: Batch, parentAlpha: Float) {
         super.draw(batch, parentAlpha)
-        batch.end()
-        Gdx.gl.glEnable(GL20.GL_BLEND)
-        shapeRenderer.projectionMatrix = batch.projectionMatrix
-        shapeRenderer.transformMatrix = batch.transformMatrix
-        shapeRenderer.begin()
-        shapeRenderer.rect(x, y, width, height)
-        shapeRenderer.end()
-        Gdx.gl.glDisable(GL20.GL_BLEND)
-        batch.begin()
+        shapeRendererHelper.draw(batch) {
+            rect(x, y, width, height)
+        }
     }
 
     fun isDevSelected(body: BodyActor): Boolean {

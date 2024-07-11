@@ -1,8 +1,6 @@
 package dev.ebnbin.insaniquarium.body
 
-import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
-import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
@@ -18,6 +16,7 @@ import dev.ebnbin.insaniquarium.tank.TankStage
 import dev.ebnbin.insaniquarium.tank.pxToMeter
 import dev.ebnbin.kgdx.dev.DevEntry
 import dev.ebnbin.kgdx.dev.toDevEntry
+import dev.ebnbin.kgdx.util.ShapeRendererHelper
 import dev.ebnbin.kgdx.util.colorMarkup
 import dev.ebnbin.kgdx.util.diffParent
 import dev.ebnbin.kgdx.util.diffStage
@@ -143,9 +142,7 @@ class BodyActor(
         setPosition(position.x, position.y, Align.center)
     }
 
-    private val shapeRenderer: ShapeRenderer = ShapeRenderer().also {
-        it.setAutoShapeType(true)
-    }
+    private val shapeRendererHelper: ShapeRendererHelper = ShapeRendererHelper()
 
     override fun draw(batch: Batch, parentAlpha: Float) {
         super.draw(batch, parentAlpha)
@@ -156,17 +153,11 @@ class BodyActor(
             width,
             height,
         )
-        batch.end()
-        Gdx.gl.glEnable(GL20.GL_BLEND)
-        shapeRenderer.projectionMatrix = batch.projectionMatrix
-        shapeRenderer.transformMatrix = batch.transformMatrix
-        shapeRenderer.begin()
-        if ((parent as TankGroup?)?.isDevSelected(this) == true) {
-            data.drawDebugBounds(shapeRenderer)
+        shapeRendererHelper.draw(batch) {
+            if ((parent as TankGroup?)?.isDevSelected(this@BodyActor) == true) {
+                data.drawDebugBounds(this)
+            }
         }
-        shapeRenderer.end()
-        Gdx.gl.glDisable(GL20.GL_BLEND)
-        batch.begin()
     }
 
     override fun drawDebugBounds(shapes: ShapeRenderer) {
