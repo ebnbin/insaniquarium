@@ -20,6 +20,10 @@ enum class VectorDirection(val value: Int) {
         require(magnitude >= 0f)
         return value * magnitude
     }
+
+    fun isOpposite(other: VectorDirection): Boolean {
+        return this == POSITIVE && other == NEGATIVE || this == NEGATIVE && other == POSITIVE
+    }
 }
 
 val Float.direction: VectorDirection

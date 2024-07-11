@@ -41,6 +41,8 @@ class BodyActor(
         velocityX = 0f,
         velocityY = 0f,
         position = position,
+        drivingTargetX = null,
+        drivingTargetY = null,
     )
 
     private var position: BodyPosition = data.position
@@ -198,6 +200,12 @@ class BodyActor(
         "drag".key() toDevEntry {
             "${data.dragX.value(Sign.X)},${data.dragY.value(Sign.Y)}"
         },
+        "drivingTarget".key() toDevEntry {
+            "${data.drivingTargetX?.position.value(Sign.SIGNED)},${data.drivingTargetY?.position.value(Sign.SIGNED)}"
+        },
+        "drivingForce".key() toDevEntry {
+            "${data.drivingForceX.value(Sign.X)},${data.drivingForceY.value(Sign.Y)}"
+        },
         "normalReactionForce".key() toDevEntry {
             "${data.normalReactionForceX.value(Sign.X)},${data.normalReactionForceY.value(Sign.Y)}"
         },
@@ -242,7 +250,8 @@ class BodyActor(
         return "%-19s".format(this)
     }
 
-    private fun Float.value(sign: Sign): String {
+    private fun Float?.value(sign: Sign): String {
+        if (this == null) return "%8s".format("null").colorMarkup(Color.YELLOW)
         return "%s%7.3f".format(
             when {
                 this > 0f -> when (sign) {

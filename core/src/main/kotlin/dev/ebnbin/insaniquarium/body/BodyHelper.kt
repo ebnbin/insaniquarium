@@ -28,6 +28,22 @@ object BodyHelper {
                 crossSectionalArea)
     }
 
+    fun drivingForce(
+        drivingTarget: BodyDrivingTarget?,
+        position: Float,
+        mass: Float,
+        velocity: Float,
+    ): Float {
+        if (drivingTarget == null) return 0f
+        val direction = (drivingTarget.position - position).direction
+        val magnitude = drivingTarget.acceleration * mass
+        return direction * if (direction.isOpposite(velocity.direction)) {
+            magnitude * drivingTarget.oppositeAccelerationMultiplier
+        } else {
+            magnitude
+        }
+    }
+
     fun normalForce(
         isInsideLeftOrBottom: Boolean,
         isInsideRightOrTop: Boolean,

@@ -9,6 +9,8 @@ data class BodyData(
     val velocityX: Float,
     val velocityY: Float,
     val position: BodyPosition,
+    val drivingTargetX: BodyDrivingTarget?,
+    val drivingTargetY: BodyDrivingTarget?,
 ) {
     private val def: BodyDef = type.def
 
@@ -59,8 +61,21 @@ data class BodyData(
         crossSectionalArea = areaY,
     )
 
-    val normalReactionForceX: Float = BodyHelper.force(dragX)
-    val normalReactionForceY: Float = BodyHelper.force(gravityY, buoyancyY, dragY)
+    val drivingForceX: Float = BodyHelper.drivingForce(
+        drivingTarget = drivingTargetX,
+        position = position.x,
+        mass = mass,
+        velocity = velocityX,
+    )
+    val drivingForceY: Float = BodyHelper.drivingForce(
+        drivingTarget = drivingTargetY,
+        position = position.y,
+        mass = mass,
+        velocity = velocityY,
+    )
+
+    val normalReactionForceX: Float = BodyHelper.force(dragX, drivingForceX)
+    val normalReactionForceY: Float = BodyHelper.force(gravityY, drivingForceY, buoyancyY, dragY)
 
     val normalForceX: Float = BodyHelper.normalForce(
         isInsideLeftOrBottom = isInsideLeft,
