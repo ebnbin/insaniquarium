@@ -2,6 +2,7 @@ package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.Batch
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import dev.ebnbin.insaniquarium.tank.TankStage
 import dev.ebnbin.kgdx.dev.DevEntry
@@ -19,9 +20,13 @@ class BodyDevHelper(
     fun draw(batch: Batch, parentAlpha: Float) {
         shapeRendererHelper.draw(batch) {
             if (body.tank.devHelper.isSelected(body)) {
-                body.data.drawDebugBounds(this)
+                drawDebugBounds(this)
             }
         }
+    }
+
+    fun drawDebugBounds(shape: ShapeRenderer) {
+        shape.rect(body.data.left, body.data.bottom, body.data.width, body.data.height)
     }
 
     fun devSelect() {

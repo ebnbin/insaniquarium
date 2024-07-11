@@ -1,6 +1,5 @@
 package dev.ebnbin.insaniquarium.body
 
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import dev.ebnbin.insaniquarium.tank.TankData
 
 data class BodyData(
@@ -160,9 +159,5 @@ data class BodyData(
                 )
             },
         )
-    }
-
-    fun drawDebugBounds(shapes: ShapeRenderer) {
-        shapes.rect(left, bottom, width, height)
     }
 }

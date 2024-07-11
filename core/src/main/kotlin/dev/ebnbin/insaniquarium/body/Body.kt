@@ -2,8 +2,8 @@ package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.InputEvent
-import com.badlogic.gdx.scenes.scene2d.InputListener
 import dev.ebnbin.insaniquarium.preference.PreferenceManager
 import dev.ebnbin.insaniquarium.tank.Tank
 import dev.ebnbin.insaniquarium.tank.TankStage
@@ -40,13 +40,25 @@ class Body(
 
     val devHelper: BodyDevHelper = BodyDevHelper(this)
 
-    init {
-        actorWrapper.addListener(object : InputListener() {
-            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-                devHelper.touchDown(event, x, y, pointer, button)
-                return true
-            }
-        })
+    fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+        devHelper.touchDown(event, x, y, pointer, button)
+        return true
+    }
+
+    fun addedToStage(stage: TankStage) {
+        devHelper.addedToStage(stage)
+    }
+
+    fun removedFromStage(stage: TankStage) {
+        devHelper.removedFromStage(stage)
+    }
+
+    fun hit(x: Float, y: Float): Boolean {
+        val left = data.left - actorWrapper.x
+        val right = left + data.width
+        val bottom = data.bottom - actorWrapper.y
+        val top = bottom + data.height
+        return x >= left && x < right && y >= bottom && y < top
     }
 
     fun act(actDelta: Float, tickDelta: Float) {
@@ -92,11 +104,7 @@ class Body(
         devHelper.draw(batch, parentAlpha)
     }
 
-    fun addedToStage(stage: TankStage) {
-        devHelper.addedToStage(stage)
-    }
-
-    fun removedFromStage(stage: TankStage) {
-        devHelper.removedFromStage(stage)
+    fun drawDebugBounds(shape: ShapeRenderer) {
+        devHelper.drawDebugBounds(shape)
     }
 }

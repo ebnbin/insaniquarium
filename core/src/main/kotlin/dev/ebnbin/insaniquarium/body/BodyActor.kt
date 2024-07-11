@@ -4,6 +4,8 @@ import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.Group
+import com.badlogic.gdx.scenes.scene2d.InputEvent
+import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.Touchable
 import dev.ebnbin.insaniquarium.tank.Tank
@@ -23,6 +25,14 @@ class BodyActor(
         type = type,
         position = position,
     )
+
+    init {
+        addListener(object : InputListener() {
+            override fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+                return body.touchDown(event, x, y, pointer, button)
+            }
+        })
+    }
 
     override fun setStage(stage: Stage?) {
         diffStage<TankStage>(
@@ -59,11 +69,7 @@ class BodyActor(
     override fun hit(x: Float, y: Float, touchable: Boolean): Actor? {
         if (touchable && this.touchable != Touchable.enabled) return null
         if (!isVisible) return null
-        val left = body.data.left - this.x
-        val right = left + body.data.width
-        val bottom = body.data.bottom - this.y
-        val top = bottom + body.data.height
-        return if (x >= left && x < right && y >= bottom && y < top) this else null
+        return if (body.hit(x, y)) this else null
     }
 
     override fun act(delta: Float) {
@@ -83,6 +89,6 @@ class BodyActor(
 
     override fun drawDebugBounds(shapes: ShapeRenderer) {
         super.drawDebugBounds(shapes)
-        body.data.drawDebugBounds(shapes)
+        body.drawDebugBounds(shapes)
     }
 }

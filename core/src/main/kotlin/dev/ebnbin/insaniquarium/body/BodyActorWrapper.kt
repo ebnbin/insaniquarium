@@ -1,6 +1,5 @@
 package dev.ebnbin.insaniquarium.body
 
-import com.badlogic.gdx.scenes.scene2d.EventListener
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.insaniquarium.tank.TankStage
 
@@ -27,10 +26,6 @@ class BodyActorWrapper(
         bodyActor.setPosition(x, y, Align.center)
     }
 
-    fun addListener(listener: EventListener): Boolean {
-        return bodyActor.addListener(listener)
-    }
-
     val tankStage: TankStage?
-        get() = bodyActor.stage as? TankStage
+        get() = bodyActor.stage as TankStage?
 }
