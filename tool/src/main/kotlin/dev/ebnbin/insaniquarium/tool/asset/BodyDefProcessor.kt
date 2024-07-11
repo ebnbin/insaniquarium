@@ -41,6 +41,7 @@ class BodyDefProcessor(
                         else -> 1f
                     },
                     dragCoefficient = 1f,
+                    frictionCoefficient = 1f,
                 )
                 def.id to def
             },

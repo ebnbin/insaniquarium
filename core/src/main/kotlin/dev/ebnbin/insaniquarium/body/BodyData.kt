@@ -88,19 +88,33 @@ data class BodyData(
         normalReactionForce = normalReactionForceY
     )
 
-    val forceX: Float = BodyHelper.force(normalReactionForceX, normalForceX)
+    val frictionReactionForceX: Float = BodyHelper.force(normalReactionForceX, normalForceX)
+
+    val frictionX: Float = BodyHelper.frictionX(
+        normalReactionForceY = normalReactionForceY,
+        frictionCoefficient = def.frictionCoefficient,
+        isInsideBottom = isInsideBottom,
+        frictionReactionForceX = frictionReactionForceX,
+        velocityX = velocityX,
+    )
+
+    val forceX: Float = BodyHelper.force(frictionReactionForceX, frictionX)
     val forceY: Float = BodyHelper.force(normalReactionForceY, normalForceY)
 
     val accelerationX: Float = BodyHelper.acceleration(forceX, mass)
     val accelerationY: Float = BodyHelper.acceleration(forceY, mass)
 
-    fun tick(tickDelta: Float): BodyData {
+    fun tick(
+        tickDelta: Float,
+        touchPosition: BodyPosition?,
+    ): BodyData {
         val nextVelocityX = BodyHelper.velocity(
             velocity = velocityX,
             acceleration = accelerationX,
             delta = tickDelta,
             isInsideLeftOrBottom = isInsideLeft,
             isInsideRightOrTop = isInsideRight,
+            friction = frictionX,
         )
         val nextVelocityY = BodyHelper.velocity(
             velocity = velocityY,
@@ -108,6 +122,7 @@ data class BodyData(
             delta = tickDelta,
             isInsideLeftOrBottom = isInsideBottom,
             isInsideRightOrTop = isInsideTop,
+            friction = 0f,
         )
         val nextX = BodyHelper.position(
             position = position.x,
@@ -130,6 +145,20 @@ data class BodyData(
                 x = nextX,
                 y = nextY,
             ),
+            drivingTargetX = touchPosition?.let {
+                BodyDrivingTarget(
+                    position = it.x,
+                    acceleration = 2f,
+                    oppositeAccelerationMultiplier = 1.5f,
+                )
+            },
+            drivingTargetY = touchPosition?.let {
+                BodyDrivingTarget(
+                    position = it.y,
+                    acceleration = 2f,
+                    oppositeAccelerationMultiplier = 1.5f,
+                )
+            },
         )
     }
 

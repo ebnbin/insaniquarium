@@ -36,6 +36,9 @@ val Float.direction: VectorDirection
 val Float.magnitude: Float
     get() = absoluteValue
 
+val Float.isZero: Boolean
+    get() = direction == VectorDirection.ZERO
+
 val Float.isPositive: Boolean
     get() = direction == VectorDirection.POSITIVE
 

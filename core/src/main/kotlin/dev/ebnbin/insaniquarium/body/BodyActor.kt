@@ -116,7 +116,10 @@ class BodyActor(
         val tankStage = stage as TankStage? ?: return
         val tickDelta = tankStage.tickDelta
         val position = if (tickDelta > 0f) {
-            data = data.tick(tickDelta)
+            data = data.tick(
+                tickDelta = tickDelta,
+                touchPosition = (parent as TankGroup?)?.touchPosition,
+            )
             data.position
         } else {
             BodyPosition(
@@ -182,6 +185,10 @@ class BodyActor(
             "${data.left.value(Sign.SIGNED)},${data.right.value(Sign.SIGNED)}," +
                 "${data.bottom.value(Sign.SIGNED)},${data.top.value(Sign.SIGNED)}"
         },
+        "isInsideLRBT".key() toDevEntry {
+            "${data.isInsideLeft.value()},${data.isInsideRight.value()}," +
+                "${data.isInsideBottom.value()},${data.isInsideTop.value()}"
+        },
         "areaInWater/area".key() toDevEntry {
             "${data.areaInWater.value(Sign.UNSIGNED)}/${data.area.value(Sign.UNSIGNED)}"
         },
@@ -211,6 +218,12 @@ class BodyActor(
         },
         "normalForce".key() toDevEntry {
             "${data.normalForceX.value(Sign.X)},${data.normalForceY.value(Sign.Y)}"
+        },
+        "frictionReactionForce".key() toDevEntry {
+            "${data.frictionReactionForceX.value(Sign.X)},${0f.value(Sign.Y)}"
+        },
+        "friction".key() toDevEntry {
+            "${data.frictionX.value(Sign.X)},${0f.value(Sign.Y)}"
         },
         "force".key() toDevEntry {
             "${data.forceX.value(Sign.X)},${data.forceY.value(Sign.Y)}"
@@ -247,7 +260,7 @@ class BodyActor(
     }
 
     private fun String.key(): String {
-        return "%-19s".format(this)
+        return "%-21s".format(this)
     }
 
     private fun Float?.value(sign: Sign): String {
@@ -270,5 +283,9 @@ class BodyActor(
             },
             absoluteValue,
         )
+    }
+
+    private fun Boolean.value(): String {
+        return "%8s".format(toString()).colorMarkup(if (this) Color.GREEN else Color.RED)
     }
 }

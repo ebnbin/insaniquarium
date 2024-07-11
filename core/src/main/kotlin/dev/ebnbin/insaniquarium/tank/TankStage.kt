@@ -47,6 +47,9 @@ class TankStage : LifecycleStage(TankViewport()) {
         putDevInfo("devBodyType" toDevEntry {
             "${devBodyType?.id}"
         })
+        putDevInfo("touchPosition" toDevEntry {
+            "${tankGroup.touchPosition}"
+        })
     }
 
     override val hasDevMenu: Boolean

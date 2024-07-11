@@ -15,19 +15,35 @@ class TankGroup : Group() {
 
     private var devSelectedBody: BodyActor? = null
 
+    var touchPosition: BodyPosition? = null
+        private set
+
     init {
         addListener(object : InputListener() {
             override fun touchDown(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int): Boolean {
+                touchPosition = BodyPosition(x, y)
                 devUnselectBody(null)
                 val tankStage = stage as TankStage? ?: return false
-                val devBodyType = tankStage.devBodyType ?: return false
-                devCreateBody(
-                    type = devBodyType,
-                    count = 1,
-                    x = x,
-                    y = y,
-                )
+                val devBodyType = tankStage.devBodyType
+                if (devBodyType != null) {
+                    devCreateBody(
+                        type = devBodyType,
+                        count = 1,
+                        x = x,
+                        y = y,
+                    )
+                }
                 return true
+            }
+
+            override fun touchDragged(event: InputEvent?, x: Float, y: Float, pointer: Int) {
+                super.touchDragged(event, x, y, pointer)
+                touchPosition = BodyPosition(x, y)
+            }
+
+            override fun touchUp(event: InputEvent?, x: Float, y: Float, pointer: Int, button: Int) {
+                super.touchUp(event, x, y, pointer, button)
+                touchPosition = null
             }
         })
     }
