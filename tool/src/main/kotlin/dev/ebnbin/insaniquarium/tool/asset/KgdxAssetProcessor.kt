@@ -18,7 +18,7 @@ object KgdxAssetProcessor {
                     fontFileName = "kgdx_noto_sans_mono",
                     fontSize = 16f,
                     defaultCharacters = true,
-                    characters = "↔↕",
+                    characters = "↔↕▲►▼◄",
                 ),
             ),
         )

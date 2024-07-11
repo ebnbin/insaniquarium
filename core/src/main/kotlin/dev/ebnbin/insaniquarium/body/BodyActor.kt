@@ -1,6 +1,7 @@
 package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
@@ -17,8 +18,10 @@ import dev.ebnbin.insaniquarium.tank.TankStage
 import dev.ebnbin.insaniquarium.tank.pxToMeter
 import dev.ebnbin.kgdx.dev.DevEntry
 import dev.ebnbin.kgdx.dev.toDevEntry
+import dev.ebnbin.kgdx.util.colorMarkup
 import dev.ebnbin.kgdx.util.diffParent
 import dev.ebnbin.kgdx.util.diffStage
+import kotlin.math.absoluteValue
 
 class BodyActor(
     tankGroup: TankGroup,
@@ -170,91 +173,48 @@ class BodyActor(
         "type" toDevEntry {
             data.type.id
         },
-        "size" toDevEntry {
-            "%.3f,%.3f".format(
-                data.width,
-                data.height,
-            )
+        "size".key() toDevEntry {
+            "${data.width.value(Sign.UNSIGNED)},${data.height.value(Sign.UNSIGNED)}"
         },
-        "lrbt" toDevEntry {
-            "%.3f,%.3f,%.3f,%.3f".format(
-                data.left,
-                data.right,
-                data.bottom,
-                data.top,
-            )
+        "lrbt".key() toDevEntry {
+            "${data.left.value(Sign.SIGNED)},${data.right.value(Sign.SIGNED)}," +
+                "${data.bottom.value(Sign.SIGNED)},${data.top.value(Sign.SIGNED)}"
         },
-        "area" toDevEntry {
-            "%.3f".format(
-                data.area,
-            )
+        "areaInWater/area".key() toDevEntry {
+            "${data.areaInWater.value(Sign.UNSIGNED)}/${data.area.value(Sign.UNSIGNED)}"
         },
-        "areaInWater" toDevEntry {
-            "%.3f".format(
-                data.areaInWater,
-            )
+        "density".key() toDevEntry {
+            data.density.value(Sign.UNSIGNED)
         },
-        "density" toDevEntry {
-            "%.3f".format(
-                data.density,
-            )
+        "mass".key() toDevEntry {
+            data.mass.value(Sign.UNSIGNED)
         },
-        "mass" toDevEntry {
-            "%.3f".format(
-                data.mass,
-            )
+        "gravity".key() toDevEntry {
+            "${0f.value(Sign.X)},${data.gravityY.value(Sign.Y)}"
         },
-        "gravity" toDevEntry {
-            "%.3f".format(
-                data.gravityY,
-            )
+        "buoyancy".key() toDevEntry {
+            "${0f.value(Sign.X)},${data.buoyancyY.value(Sign.Y)}"
         },
-        "buoyancy" toDevEntry {
-            "%.3f".format(
-                data.buoyancyY,
-            )
+        "drag".key() toDevEntry {
+            "${data.dragX.value(Sign.X)},${data.dragY.value(Sign.Y)}"
         },
-        "drag" toDevEntry {
-            "%.3f,%.3f".format(
-                data.dragX,
-                data.dragY,
-            )
+        "normalReactionForce".key() toDevEntry {
+            "${data.normalReactionForceX.value(Sign.X)},${data.normalReactionForceY.value(Sign.Y)}"
         },
-        "normalReactionForce" toDevEntry {
-            "%.3f,%.3f".format(
-                data.normalReactionForceX,
-                data.normalReactionForceY,
-            )
+        "normalForce".key() toDevEntry {
+            "${data.normalForceX.value(Sign.X)},${data.normalForceY.value(Sign.Y)}"
         },
-        "normalForce" toDevEntry {
-            "%.3f,%.3f".format(
-                data.normalForceX,
-                data.normalForceY,
-            )
+        "force".key() toDevEntry {
+            "${data.forceX.value(Sign.X)},${data.forceY.value(Sign.Y)}"
         },
-        "force" toDevEntry {
-            "%.3f,%.3f".format(
-                data.forceX,
-                data.forceY,
-            )
+        "acceleration".key() toDevEntry {
+            "${data.accelerationX.value(Sign.X)},${data.accelerationY.value(Sign.Y)}"
         },
-        "acceleration" toDevEntry {
-            "%.3f,%.3f".format(
-                data.accelerationX,
-                data.accelerationY,
-            )
+        "velocity".key() toDevEntry {
+            "${data.velocityX.value(Sign.X)},${data.velocityY.value(Sign.Y)}"
         },
-        "velocity" toDevEntry {
-            "%.3f,%.3f".format(
-                data.velocityX,
-                data.velocityY,
-            )
-        },
-        "position" toDevEntry {
-            "%.3f,%.3f".format(
-                data.position.x,
-                data.position.y,
-            )
+        "position".key() toDevEntry {
+            "${data.position.x.value(Sign.SIGNED)},${data.position.y.value(Sign.SIGNED)}"
         },
     )
 
@@ -268,5 +228,38 @@ class BodyActor(
         devInfoEntryList.reversed().forEach { entry ->
             stage.removeDevInfo(entry)
         }
+    }
+
+    private enum class Sign {
+        X,
+        Y,
+        SIGNED,
+        UNSIGNED,
+        ;
+    }
+
+    private fun String.key(): String {
+        return "%-19s".format(this)
+    }
+
+    private fun Float.value(sign: Sign): String {
+        return "%s%7.3f".format(
+            when {
+                this > 0f -> when (sign) {
+                    Sign.X -> "►"
+                    Sign.Y -> "▲"
+                    Sign.SIGNED -> "+"
+                    Sign.UNSIGNED -> " "
+                }.colorMarkup(Color.GREEN)
+                this < 0f -> when (sign) {
+                    Sign.X -> "◄"
+                    Sign.Y -> "▼"
+                    Sign.SIGNED -> "-"
+                    Sign.UNSIGNED -> " "
+                }.colorMarkup(Color.RED)
+                else -> " "
+            },
+            absoluteValue,
+        )
     }
 }
