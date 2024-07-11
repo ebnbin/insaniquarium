@@ -1,7 +1,6 @@
 package dev.ebnbin.insaniquarium.tank
 
 import com.badlogic.gdx.scenes.scene2d.Actor
-import com.badlogic.gdx.scenes.scene2d.EventListener
 
 class TankGroupWrapper(
     private val tankGroup: TankGroup,
@@ -20,10 +19,6 @@ class TankGroupWrapper(
 
     fun setSize(width: Float, height: Float) {
         tankGroup.setSize(width, height)
-    }
-
-    fun addListener(listener: EventListener): Boolean {
-        return tankGroup.addListener(listener)
     }
 
     fun addActor(actor: Actor) {

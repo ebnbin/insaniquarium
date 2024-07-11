@@ -110,7 +110,7 @@ class TankDevHelper(
         }
     }
 
-    fun createBody(
+    private fun createBody(
         type: BodyType?,
         count: Int,
         x: Float? = null,
@@ -130,7 +130,7 @@ class TankDevHelper(
         }
     }
 
-    fun clearBodies() {
+    private fun clearBodies() {
         tank.groupWrapper.clearChildren()
     }
 
@@ -143,15 +143,13 @@ class TankDevHelper(
     }
 
     fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-        val devBodyType = devBodyType
-        if (devBodyType != null) {
-            createBody(
-                type = devBodyType,
-                count = 1,
-                x = x,
-                y = y,
-            )
-        }
+        val devBodyType = devBodyType ?: return false
+        createBody(
+            type = devBodyType,
+            count = 1,
+            x = x,
+            y = y,
+        )
         return true
     }
 }
