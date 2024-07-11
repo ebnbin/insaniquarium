@@ -1,5 +1,9 @@
 package dev.ebnbin.insaniquarium.tank
 
+import com.badlogic.gdx.Gdx
+import com.badlogic.gdx.graphics.GL20
+import com.badlogic.gdx.graphics.g2d.Batch
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.Group
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
@@ -45,6 +49,23 @@ class TankGroup : Group() {
                 touchPosition = null
             }
         })
+    }
+
+    private val shapeRenderer: ShapeRenderer = ShapeRenderer().also {
+        it.setAutoShapeType(true)
+    }
+
+    override fun draw(batch: Batch, parentAlpha: Float) {
+        super.draw(batch, parentAlpha)
+        batch.end()
+        Gdx.gl.glEnable(GL20.GL_BLEND)
+        shapeRenderer.projectionMatrix = batch.projectionMatrix
+        shapeRenderer.transformMatrix = batch.transformMatrix
+        shapeRenderer.begin()
+        shapeRenderer.rect(x, y, width, height)
+        shapeRenderer.end()
+        Gdx.gl.glDisable(GL20.GL_BLEND)
+        batch.begin()
     }
 
     fun isDevSelected(body: BodyActor): Boolean {
