@@ -35,6 +35,9 @@ data class BodyData(
 
     val area: Float = width * height
 
+    val areaX: Float = height * height
+    val areaY: Float = width * width
+
     val areaInWater: Float = ((tankHeight - bottom) / height).coerceIn(0f, 1f) * area
 
     val density: Float = def.density
@@ -48,12 +51,12 @@ data class BodyData(
     val dragX: Float = BodyHelper.drag(
         velocity = velocityX,
         dragCoefficient = def.dragCoefficient,
-        crossSectionalArea = height,
+        crossSectionalArea = areaX,
     )
     val dragY: Float = BodyHelper.drag(
         velocity = velocityY,
         dragCoefficient = def.dragCoefficient,
-        crossSectionalArea = width,
+        crossSectionalArea = areaY,
     )
 
     val normalReactionForceX: Float = BodyHelper.force(dragX)
@@ -62,12 +65,12 @@ data class BodyData(
     val normalForceX: Float = BodyHelper.normalForce(
         isInsideLeftOrBottom = isInsideLeft,
         isInsideRightOrTop = isInsideRight,
-        reactionForce = normalReactionForceX
+        normalReactionForce = normalReactionForceX
     )
     val normalForceY: Float = BodyHelper.normalForce(
         isInsideLeftOrBottom = isInsideBottom,
         isInsideRightOrTop = isInsideTop,
-        reactionForce = normalReactionForceY
+        normalReactionForce = normalReactionForceY
     )
 
     val forceX: Float = BodyHelper.force(normalReactionForceX, normalForceX)

@@ -5,6 +5,7 @@ import kotlin.math.sign
 object BodyHelper {
     private const val G = 10f
     private const val DENSITY_WATER = 1f
+    private const val DRAG_COEFFICIENT_SCALE = 0.5f
 
     fun gravityY(mass: Float): Float {
         return -(mass * G)
@@ -14,18 +15,24 @@ object BodyHelper {
         return +(DENSITY_WATER * G * areaInWater)
     }
 
-    fun drag(velocity: Float, dragCoefficient: Float, crossSectionalArea: Float): Float {
+    fun drag(
+        velocity: Float,
+        dragCoefficient: Float,
+        crossSectionalArea: Float,
+    ): Float {
         return -velocity.sign.toInt() *
-            (0.5f * DENSITY_WATER * velocity * velocity * dragCoefficient * crossSectionalArea)
+            (0.5f * DENSITY_WATER * velocity * velocity * dragCoefficient * DRAG_COEFFICIENT_SCALE *
+                crossSectionalArea)
     }
 
     fun normalForce(
         isInsideLeftOrBottom: Boolean,
         isInsideRightOrTop: Boolean,
-        reactionForce: Float,
+        normalReactionForce: Float,
     ): Float {
-        return if (!isInsideLeftOrBottom && reactionForce < 0f || !isInsideRightOrTop && reactionForce > 0f) {
-            -reactionForce
+        return if (!isInsideLeftOrBottom && normalReactionForce < 0f ||
+            !isInsideRightOrTop && normalReactionForce > 0f) {
+            -normalReactionForce
         } else {
             0f
         }
