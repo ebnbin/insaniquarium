@@ -11,7 +11,7 @@ import ktx.graphics.copy
 
 internal class DevLabel(
     val entry: DevEntry,
-) : Label(null, LabelStyle(game.assets.freeType("kgdx_noto_sans_mono").get(), null)) {
+) : Label(null, LabelStyle(game.assets.freeType("kgdx_dev").get(), null)) {
     override fun act(delta: Float) {
         super.act(delta)
         val text = entry.getText(delta)

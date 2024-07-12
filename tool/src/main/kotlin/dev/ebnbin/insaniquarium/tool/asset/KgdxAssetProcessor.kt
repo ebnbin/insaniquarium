@@ -10,8 +10,8 @@ object KgdxAssetProcessor {
     fun process() {
         val kgdxAssets = Assets(
             freeType = mapOf(
-                "kgdx_noto_sans_mono" to FreeTypeAsset(
-                    name = "kgdx_noto_sans_mono",
+                "kgdx_dev" to FreeTypeAsset(
+                    name = "kgdx_dev",
                     extension = "ttf",
                     fileType = AssetFileType.INTERNAL,
                     preload = true,
