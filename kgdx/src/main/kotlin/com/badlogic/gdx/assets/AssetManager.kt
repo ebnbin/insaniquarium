@@ -4,7 +4,7 @@ import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver
 import ktx.collections.GdxArray
 
-open class GdxAssetManager(
+open class ExtendedAssetManager(
     resolver: FileHandleResolver = InternalFileHandleResolver(),
     defaultLoaders: Boolean = true,
 ) : AssetManager(resolver, defaultLoaders) {
