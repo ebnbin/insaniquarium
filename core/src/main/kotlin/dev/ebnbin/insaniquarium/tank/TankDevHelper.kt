@@ -46,7 +46,7 @@ class TankDevHelper(
             listMenuItem(
                 menuBar = menuBar,
                 text = "body type pet A",
-                valueList = BodyType.PET_LIST.subList(0, BodyType.PET_LIST.size / 2),
+                valueList = BodyType.DEV_PET_LIST_A,
                 valueToText = { it.id },
                 valueToImage = { AnimationImage(textureAsset = it.def.textureAsset) },
             ) {
@@ -55,7 +55,7 @@ class TankDevHelper(
             listMenuItem(
                 menuBar = menuBar,
                 text = "body type pet B",
-                valueList = BodyType.PET_LIST.subList(BodyType.PET_LIST.size / 2, BodyType.PET_LIST.size),
+                valueList = BodyType.DEV_PET_LIST_B,
                 valueToText = { it.id },
                 valueToImage = { AnimationImage(textureAsset = it.def.textureAsset) },
             ) {
