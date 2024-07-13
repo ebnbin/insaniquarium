@@ -2,9 +2,7 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.kgdx.game
 
-enum class BodyType(
-    val id: String,
-) {
+enum class BodyType(val id: String) {
     STINKY("stinky"),
     NIKO("niko"),
     ITCHY("itchy"),

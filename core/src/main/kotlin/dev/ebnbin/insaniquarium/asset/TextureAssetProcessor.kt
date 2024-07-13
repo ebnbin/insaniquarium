@@ -3,6 +3,8 @@ package dev.ebnbin.insaniquarium.asset
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Pixmap
+import dev.ebnbin.insaniquarium.aquarium.AquariumType
+import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.kgdx.asset.AssetFileType
 import dev.ebnbin.kgdx.asset.AssetId
 import dev.ebnbin.kgdx.asset.AssetType
@@ -61,10 +63,10 @@ object TextureAssetProcessor {
     }
 
     private class Aquarium(
-        name: String,
+        type: AquariumType,
         private val inputFileName: String,
     ) : Processor(
-        name = name,
+        name = type.id,
     ) {
         override fun process(fromTool: Boolean): TextureAsset {
             val inputPixmap = readPixmapFromZip(inputFileName)
@@ -86,10 +88,45 @@ object TextureAssetProcessor {
                 ),
             )
         }
+
+        companion object {
+            private fun processor(type: AquariumType): Aquarium {
+                return when (type) {
+                    AquariumType.A -> Aquarium(
+                        type = type,
+                        inputFileName = "aquarium1.jpg",
+                    )
+                    AquariumType.B -> Aquarium(
+                        type = type,
+                        inputFileName = "aquarium4.jpg",
+                    )
+                    AquariumType.C -> Aquarium(
+                        type = type,
+                        inputFileName = "aquarium3.jpg",
+                    )
+                    AquariumType.D -> Aquarium(
+                        type = type,
+                        inputFileName = "aquarium2.jpg",
+                    )
+                    AquariumType.E -> Aquarium(
+                        type = type,
+                        inputFileName = "aquarium6.jpg",
+                    )
+                    AquariumType.F -> Aquarium(
+                        type = type,
+                        inputFileName = "Aquarium5.jpg",
+                    )
+                }
+            }
+
+            val ALL: List<Aquarium> = AquariumType.entries.map { aquariumType ->
+                processor(aquariumType)
+            }
+        }
     }
 
     private class Body(
-        name: String,
+        private val type: BodyType,
         private val inputFileName: String,
         private val inputMaskFileName: String,
         private val row: Int,
@@ -97,7 +134,7 @@ object TextureAssetProcessor {
         private val tileStart: Int,
         private val tileCount: Int,
     ) : Processor(
-        name = name,
+        name = type.id,
     ) {
         override fun process(fromTool: Boolean): TextureAsset {
             val inputPixmap = readPixmapFromZip(inputFileName)
@@ -125,24 +162,251 @@ object TextureAssetProcessor {
                     row = packedRow,
                     column = packedColumn,
                     animation = TextureAsset.Region.Animation(
-                        duration = when (name) {
-                            "clyde",
-                            "seymour",
-                            "shrapnel",
-                            "rhubarb",
-                            "brinkley" -> 1f
+                        duration = when (type) {
+                            BodyType.CLYDE,
+                            BodyType.SEYMOUR,
+                            BodyType.SHRAPNEL,
+                            BodyType.RHUBARB,
+                            BodyType.BRINKLEY -> 1f
                             else -> 0.5f
                         },
-                        mode = when (name) {
-                            "niko",
-                            "vert",
-                            "walter" -> AnimationMode.LOOP_PINGPONG
+                        mode = when (type) {
+                            BodyType.NIKO,
+                            BodyType.VERT,
+                            BodyType.WALTER -> AnimationMode.LOOP_PINGPONG
                             else -> AnimationMode.LOOP
                         },
                     ),
                 ),
                 stretchable = null,
             )
+        }
+
+        companion object {
+            private fun processor(type: BodyType): Body {
+                return when (type) {
+                    BodyType.STINKY -> Body(
+                        type = type,
+                        inputFileName = "stinky.gif",
+                        inputMaskFileName = "_stinky.gif",
+                        row = 3,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.NIKO -> Body(
+                        type = type,
+                        inputFileName = "niko.gif",
+                        inputMaskFileName = "_niko.gif",
+                        row = 3,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.ITCHY -> Body(
+                        type = type,
+                        inputFileName = "itchy.gif",
+                        inputMaskFileName = "_itchy.gif",
+                        row = 4,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.PREGO -> Body(
+                        type = type,
+                        inputFileName = "prego.gif",
+                        inputMaskFileName = "_prego.gif",
+                        row = 4,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.ZORF -> Body(
+                        type = type,
+                        inputFileName = "zorf.gif",
+                        inputMaskFileName = "_zorf.gif",
+                        row = 3,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.CLYDE -> Body(
+                        type = type,
+                        inputFileName = "clyde.gif",
+                        inputMaskFileName = "_clyde.gif",
+                        row = 1,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.VERT -> Body(
+                        type = type,
+                        inputFileName = "vert.gif",
+                        inputMaskFileName = "_vert.gif",
+                        row = 2,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.RUFUS -> Body(
+                        type = type,
+                        inputFileName = "rufus.gif",
+                        inputMaskFileName = "_rufus.gif",
+                        row = 2,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.MERYL -> Body(
+                        type = type,
+                        inputFileName = "meryl.gif",
+                        inputMaskFileName = "_meryl.gif",
+                        row = 4,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.WADSWORTH -> Body(
+                        type = type,
+                        inputFileName = "wadsworth.gif",
+                        inputMaskFileName = "_wadsworth.gif",
+                        row = 3,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.SEYMOUR -> Body(
+                        type = type,
+                        inputFileName = "seymour.gif",
+                        inputMaskFileName = "_seymour.gif",
+                        row = 2,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.SHRAPNEL -> Body(
+                        type = type,
+                        inputFileName = "shrapnel.gif",
+                        inputMaskFileName = "_shrapnel.gif",
+                        row = 2,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.GUMBO -> Body(
+                        type = type,
+                        inputFileName = "gumbo.gif",
+                        inputMaskFileName = "_gumbo.gif",
+                        row = 2,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.BLIP -> Body(
+                        type = type,
+                        inputFileName = "blip.gif",
+                        inputMaskFileName = "_blip.gif",
+                        row = 2,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.RHUBARB -> Body(
+                        type = type,
+                        inputFileName = "rhubarb.gif",
+                        inputMaskFileName = "_rhubarb.gif",
+                        row = 2,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.NIMBUS -> Body(
+                        type = type,
+                        inputFileName = "nimbus.gif",
+                        inputMaskFileName = "_nimbus.gif",
+                        row = 2,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.AMP -> Body(
+                        type = type,
+                        inputFileName = "amp.gif",
+                        inputMaskFileName = "_amp.gif",
+                        row = 2,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.GASH -> Body(
+                        type = type,
+                        inputFileName = "gash.gif",
+                        inputMaskFileName = "_gash.gif",
+                        row = 3,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.ANGIE -> Body(
+                        type = type,
+                        inputFileName = "angie.gif",
+                        inputMaskFileName = "_angie.gif",
+                        row = 2,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.PRESTO -> Body(
+                        type = type,
+                        inputFileName = "presto.gif",
+                        inputMaskFileName = "_presto.gif",
+                        row = 3,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.BRINKLEY -> Body(
+                        type = type,
+                        inputFileName = "brink.gif",
+                        inputMaskFileName = "_brink.gif",
+                        row = 2,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.NOSTRADAMUS -> Body(
+                        type = type,
+                        inputFileName = "nostradamus.gif",
+                        inputMaskFileName = "_nostradamus.gif",
+                        row = 2,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.STANLEY -> Body(
+                        type = type,
+                        inputFileName = "stanley.gif",
+                        inputMaskFileName = "_stanley.gif",
+                        row = 6,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                    BodyType.WALTER -> Body(
+                        type = type,
+                        inputFileName = "walter.gif",
+                        inputMaskFileName = "_walter.gif",
+                        row = 3,
+                        column = 10,
+                        tileStart = 0,
+                        tileCount = 10,
+                    )
+                }
+            }
+
+            val ALL: List<Body> = BodyType.entries.map { type ->
+                processor(type)
+            }
         }
     }
 
@@ -185,246 +449,8 @@ object TextureAssetProcessor {
 
     private val PROCESSOR_LIST: List<Processor> = listOf(
         LoadingBackground,
-        Aquarium(
-            name = "aquarium_a",
-            inputFileName = "aquarium1.jpg",
-        ),
-        Aquarium(
-            name = "aquarium_b",
-            inputFileName = "aquarium4.jpg",
-        ),
-        Aquarium(
-            name = "aquarium_c",
-            inputFileName = "aquarium3.jpg",
-        ),
-        Aquarium(
-            name = "aquarium_d",
-            inputFileName = "aquarium2.jpg",
-        ),
-        Aquarium(
-            name = "aquarium_e",
-            inputFileName = "aquarium6.jpg",
-        ),
-        Aquarium(
-            name = "aquarium_f",
-            inputFileName = "Aquarium5.jpg",
-        ),
-        Body(
-            name = "stinky",
-            inputFileName = "stinky.gif",
-            inputMaskFileName = "_stinky.gif",
-            row = 3,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "niko",
-            inputFileName = "niko.gif",
-            inputMaskFileName = "_niko.gif",
-            row = 3,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "itchy",
-            inputFileName = "itchy.gif",
-            inputMaskFileName = "_itchy.gif",
-            row = 4,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "prego",
-            inputFileName = "prego.gif",
-            inputMaskFileName = "_prego.gif",
-            row = 4,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "zorf",
-            inputFileName = "zorf.gif",
-            inputMaskFileName = "_zorf.gif",
-            row = 3,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "clyde",
-            inputFileName = "clyde.gif",
-            inputMaskFileName = "_clyde.gif",
-            row = 1,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "vert",
-            inputFileName = "vert.gif",
-            inputMaskFileName = "_vert.gif",
-            row = 2,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "rufus",
-            inputFileName = "rufus.gif",
-            inputMaskFileName = "_rufus.gif",
-            row = 2,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "meryl",
-            inputFileName = "meryl.gif",
-            inputMaskFileName = "_meryl.gif",
-            row = 4,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "wadsworth",
-            inputFileName = "wadsworth.gif",
-            inputMaskFileName = "_wadsworth.gif",
-            row = 3,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "seymour",
-            inputFileName = "seymour.gif",
-            inputMaskFileName = "_seymour.gif",
-            row = 2,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "shrapnel",
-            inputFileName = "shrapnel.gif",
-            inputMaskFileName = "_shrapnel.gif",
-            row = 2,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "gumbo",
-            inputFileName = "gumbo.gif",
-            inputMaskFileName = "_gumbo.gif",
-            row = 2,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "blip",
-            inputFileName = "blip.gif",
-            inputMaskFileName = "_blip.gif",
-            row = 2,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "rhubarb",
-            inputFileName = "rhubarb.gif",
-            inputMaskFileName = "_rhubarb.gif",
-            row = 2,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "nimbus",
-            inputFileName = "nimbus.gif",
-            inputMaskFileName = "_nimbus.gif",
-            row = 2,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "amp",
-            inputFileName = "amp.gif",
-            inputMaskFileName = "_amp.gif",
-            row = 2,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "gash",
-            inputFileName = "gash.gif",
-            inputMaskFileName = "_gash.gif",
-            row = 3,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "angie",
-            inputFileName = "angie.gif",
-            inputMaskFileName = "_angie.gif",
-            row = 2,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "presto",
-            inputFileName = "presto.gif",
-            inputMaskFileName = "_presto.gif",
-            row = 3,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "brinkley",
-            inputFileName = "brink.gif",
-            inputMaskFileName = "_brink.gif",
-            row = 2,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "nostradamus",
-            inputFileName = "nostradamus.gif",
-            inputMaskFileName = "_nostradamus.gif",
-            row = 2,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "stanley",
-            inputFileName = "stanley.gif",
-            inputMaskFileName = "_stanley.gif",
-            row = 6,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
-        Body(
-            name = "walter",
-            inputFileName = "walter.gif",
-            inputMaskFileName = "_walter.gif",
-            row = 3,
-            column = 10,
-            tileStart = 0,
-            tileCount = 10,
-        ),
+        *Aquarium.ALL.toTypedArray(),
+        *Body.ALL.toTypedArray(),
     )
 
     fun process(fileName: String) {
