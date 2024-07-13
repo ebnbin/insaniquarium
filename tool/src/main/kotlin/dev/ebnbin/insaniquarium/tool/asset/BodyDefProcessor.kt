@@ -46,10 +46,10 @@ class BodyDefProcessor(
                         else -> 2f
                     },
                     drivingAccelerationY = when (type) {
-                        BodyType.STINKY -> 0f
-                        BodyType.NIKO -> 0f
-                        BodyType.RUFUS -> 0f
-                        BodyType.RHUBARB -> 0f
+                        BodyType.STINKY,
+                        BodyType.NIKO,
+                        BodyType.RUFUS,
+                        BodyType.RHUBARB,
                         BodyType.BRINKLEY -> 1f
                         else -> 2f
                     },
