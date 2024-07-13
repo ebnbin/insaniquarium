@@ -29,6 +29,12 @@ data class BodyDef(
     @SerializedName("drag_coefficient")
     val dragCoefficient: Float,
     @Expose
+    @SerializedName("driving_acceleration_x")
+    val drivingAccelerationX: Float,
+    @Expose
+    @SerializedName("driving_acceleration_y")
+    val drivingAccelerationY: Float,
+    @Expose
     @SerializedName("friction_coefficient")
     val frictionCoefficient: Float,
 ) {

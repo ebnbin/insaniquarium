@@ -6,6 +6,8 @@
       "height": 0.6333333,
       "density": 1.5,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 0.0,
       "friction_coefficient": 1.0
     },
     "niko": {
@@ -14,6 +16,8 @@
       "height": 0.6,
       "density": 1.5,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 0.0,
+      "driving_acceleration_y": 0.0,
       "friction_coefficient": 1.0
     },
     "itchy": {
@@ -22,6 +26,8 @@
       "height": 0.675,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "prego": {
@@ -30,6 +36,8 @@
       "height": 0.9916667,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "zorf": {
@@ -38,6 +46,8 @@
       "height": 0.98333335,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "clyde": {
@@ -46,6 +56,8 @@
       "height": 0.71666664,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "vert": {
@@ -54,6 +66,8 @@
       "height": 0.73333335,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "rufus": {
@@ -62,6 +76,8 @@
       "height": 0.7583333,
       "density": 1.5,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 0.0,
       "friction_coefficient": 1.0
     },
     "meryl": {
@@ -70,6 +86,8 @@
       "height": 0.90833336,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "wadsworth": {
@@ -78,6 +96,8 @@
       "height": 0.80833334,
       "density": 0.9,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "seymour": {
@@ -86,6 +106,8 @@
       "height": 0.825,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "shrapnel": {
@@ -94,6 +116,8 @@
       "height": 0.8833333,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "gumbo": {
@@ -102,6 +126,8 @@
       "height": 0.625,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "blip": {
@@ -110,6 +136,8 @@
       "height": 0.775,
       "density": 0.9,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "rhubarb": {
@@ -118,6 +146,8 @@
       "height": 0.95,
       "density": 1.5,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 0.0,
       "friction_coefficient": 1.0
     },
     "nimbus": {
@@ -126,6 +156,8 @@
       "height": 0.6333333,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "amp": {
@@ -134,6 +166,8 @@
       "height": 0.68333334,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "gash": {
@@ -142,6 +176,8 @@
       "height": 0.90833336,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "angie": {
@@ -150,6 +186,8 @@
       "height": 0.9916667,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "presto": {
@@ -158,6 +196,8 @@
       "height": 0.49166667,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "brinkley": {
@@ -166,6 +206,8 @@
       "height": 0.85833335,
       "density": 1.1,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 1.0,
       "friction_coefficient": 1.0
     },
     "nostradamus": {
@@ -174,6 +216,8 @@
       "height": 0.8666667,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "stanley": {
@@ -182,6 +226,8 @@
       "height": 0.85,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     },
     "walter": {
@@ -190,6 +236,8 @@
       "height": 0.575,
       "density": 1.0,
       "drag_coefficient": 1.0,
+      "driving_acceleration_x": 2.0,
+      "driving_acceleration_y": 2.0,
       "friction_coefficient": 1.0
     }
   }

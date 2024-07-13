@@ -147,14 +147,14 @@ data class BodyData(
             drivingTargetX = touchPosition?.let {
                 BodyDrivingTarget(
                     position = it.x,
-                    acceleration = 2f,
+                    acceleration = def.drivingAccelerationX,
                     oppositeAccelerationMultiplier = 1.5f,
                 )
             },
             drivingTargetY = touchPosition?.let {
                 BodyDrivingTarget(
                     position = it.y,
-                    acceleration = 2f,
+                    acceleration = def.drivingAccelerationY,
                     oppositeAccelerationMultiplier = 1.5f,
                 )
             },

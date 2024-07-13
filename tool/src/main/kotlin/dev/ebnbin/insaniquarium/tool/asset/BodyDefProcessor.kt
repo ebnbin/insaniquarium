@@ -41,6 +41,18 @@ class BodyDefProcessor(
                         else -> 1f
                     },
                     dragCoefficient = 1f,
+                    drivingAccelerationX = when (type) {
+                        BodyType.NIKO -> 0f
+                        else -> 2f
+                    },
+                    drivingAccelerationY = when (type) {
+                        BodyType.STINKY -> 0f
+                        BodyType.NIKO -> 0f
+                        BodyType.RUFUS -> 0f
+                        BodyType.RHUBARB -> 0f
+                        BodyType.BRINKLEY -> 1f
+                        else -> 2f
+                    },
                     frictionCoefficient = 1f,
                 )
                 def.id to def
