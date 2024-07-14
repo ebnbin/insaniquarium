@@ -8,7 +8,13 @@
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
       "driving_acceleration_y": 0.0,
-      "friction_coefficient": 1.0
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": null
     },
     "niko": {
       "id": "niko",
@@ -18,7 +24,9 @@
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 0.0,
       "driving_acceleration_y": 0.0,
-      "friction_coefficient": 1.0
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": null,
+      "swim_behavior_y": null
     },
     "itchy": {
       "id": "itchy",
@@ -27,8 +35,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "prego": {
       "id": "prego",
@@ -37,8 +55,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "zorf": {
       "id": "zorf",
@@ -47,8 +75,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "clyde": {
       "id": "clyde",
@@ -57,8 +95,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "vert": {
       "id": "vert",
@@ -67,8 +115,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "rufus": {
       "id": "rufus",
@@ -78,7 +136,13 @@
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
       "driving_acceleration_y": 0.0,
-      "friction_coefficient": 1.0
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": null
     },
     "meryl": {
       "id": "meryl",
@@ -87,18 +151,38 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "wadsworth": {
       "id": "wadsworth",
       "width": 0.975,
       "height": 0.80833334,
-      "density": 0.9,
+      "density": 0.95,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 1.0,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "seymour": {
       "id": "seymour",
@@ -107,8 +191,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "shrapnel": {
       "id": "shrapnel",
@@ -117,8 +211,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "gumbo": {
       "id": "gumbo",
@@ -127,18 +231,38 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "blip": {
       "id": "blip",
       "width": 0.9583333,
       "height": 0.775,
-      "density": 0.9,
+      "density": 0.95,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 1.0,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "rhubarb": {
       "id": "rhubarb",
@@ -148,7 +272,13 @@
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
       "driving_acceleration_y": 0.0,
-      "friction_coefficient": 1.0
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": null
     },
     "nimbus": {
       "id": "nimbus",
@@ -157,8 +287,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "amp": {
       "id": "amp",
@@ -167,8 +307,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "gash": {
       "id": "gash",
@@ -177,8 +327,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "angie": {
       "id": "angie",
@@ -187,8 +347,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "presto": {
       "id": "presto",
@@ -197,8 +367,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "brinkley": {
       "id": "brinkley",
@@ -208,7 +388,17 @@
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
       "driving_acceleration_y": 1.0,
-      "friction_coefficient": 1.0
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 1.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "nostradamus": {
       "id": "nostradamus",
@@ -217,8 +407,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "stanley": {
       "id": "stanley",
@@ -227,8 +427,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     },
     "walter": {
       "id": "walter",
@@ -237,8 +447,18 @@
       "density": 1.0,
       "drag_coefficient": 1.0,
       "driving_acceleration_x": 2.0,
-      "driving_acceleration_y": 2.0,
-      "friction_coefficient": 1.0
+      "driving_acceleration_y": 1.0,
+      "friction_coefficient": 1.0,
+      "swim_behavior_x": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 40,
+        "cooldown_ticks_max": 160
+      },
+      "swim_behavior_y": {
+        "driving_acceleration_multiplier": 0.25,
+        "cooldown_ticks_min": 120,
+        "cooldown_ticks_max": 200
+      }
     }
   }
 }

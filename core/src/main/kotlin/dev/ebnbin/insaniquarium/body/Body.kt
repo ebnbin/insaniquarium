@@ -27,8 +27,8 @@ class Body(
         velocityX = 0f,
         velocityY = 0f,
         position = position,
-        drivingTargetX = null,
-        drivingTargetY = null,
+        swimBehaviorX = null,
+        swimBehaviorY = null,
     )
         private set
 
@@ -65,7 +65,6 @@ class Body(
         position = if (tickDelta > 0f) {
             data = data.tick(
                 tickDelta = tickDelta,
-                touchPosition = tank.touchPosition,
             )
             data.position
         } else {

@@ -7,6 +7,7 @@ import dev.ebnbin.kgdx.util.isPositive
 import dev.ebnbin.kgdx.util.isZero
 import dev.ebnbin.kgdx.util.magnitude
 import kotlin.math.min
+import kotlin.random.Random
 
 object BodyHelper {
     private const val G = 10f
@@ -33,6 +34,7 @@ object BodyHelper {
     }
 
     fun drivingForce(
+        drivingAcceleration: Float,
         drivingTarget: BodyDrivingTarget?,
         position: Float,
         mass: Float,
@@ -40,12 +42,14 @@ object BodyHelper {
     ): Float {
         if (drivingTarget == null) return 0f
         val direction = (drivingTarget.position - position).direction
-        val magnitude = drivingTarget.acceleration * mass
-        return direction * if (direction.isOpposite(velocity.direction)) {
-            magnitude * drivingTarget.oppositeAccelerationMultiplier
+        val oppositeAccelerationMultiplier = if (direction.isOpposite(velocity.direction)) {
+            BodyDrivingTarget.OPPOSITE_ACCELERATION_MULTIPLIER
         } else {
-            magnitude
+            1f
         }
+        val magnitude = drivingAcceleration * drivingTarget.accelerationMultiplier * oppositeAccelerationMultiplier *
+            mass
+        return direction * magnitude
     }
 
     fun normalForce(
@@ -114,4 +118,68 @@ object BodyHelper {
         val nextPosition = position + velocity * delta
         return nextPosition.coerceIn(minPosition, maxPosition)
     }
+
+    fun swimBehavior(
+        swimBehavior: SwimBehavior?,
+        tankSize: Float,
+        leftOrBottom: Float,
+        rightOrTop: Float,
+        defSwimBehavior: BodyDef.SwimBehavior?,
+    ): SwimBehavior? {
+        if (defSwimBehavior == null) return null
+
+        fun createTargetingBehavior(): SwimBehavior {
+            return SwimBehavior(
+                drivingTarget = BodyDrivingTarget(
+                    position = Random.nextFloat() * tankSize,
+                    accelerationMultiplier = defSwimBehavior.drivingAccelerationMultiplier,
+                ),
+                cooldownTicks = 0,
+            )
+        }
+
+        fun createCooldownBehavior(): SwimBehavior {
+            val cooldownTicks = Random.nextInt(defSwimBehavior.cooldownTicksMin, defSwimBehavior.cooldownTicksMax + 1)
+            return if (cooldownTicks <= 0) {
+                createTargetingBehavior()
+            } else {
+                SwimBehavior(
+                    drivingTarget = null,
+                    cooldownTicks = cooldownTicks,
+                )
+            }
+        }
+
+        fun updateCooldownBehavior(swimBehavior: SwimBehavior): SwimBehavior {
+            return swimBehavior.copy(
+                cooldownTicks = swimBehavior.cooldownTicks - 1,
+            )
+        }
+
+        if (swimBehavior == null) {
+            return if (Random.nextBoolean()) {
+                createTargetingBehavior()
+            } else {
+                createCooldownBehavior()
+            }
+        }
+        return if (swimBehavior.drivingTarget == null) {
+            if (swimBehavior.cooldownTicks - 1 <= 0) {
+                createTargetingBehavior()
+            } else {
+                updateCooldownBehavior(swimBehavior)
+            }
+        } else {
+            if (swimBehavior.drivingTarget.position in leftOrBottom..rightOrTop) {
+                createCooldownBehavior()
+            } else {
+                swimBehavior
+            }
+        }
+    }
+
+    data class SwimBehavior(
+        val drivingTarget: BodyDrivingTarget?,
+        val cooldownTicks: Int,
+    )
 }

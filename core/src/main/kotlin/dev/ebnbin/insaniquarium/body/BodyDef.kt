@@ -37,7 +37,25 @@ data class BodyDef(
     @Expose
     @SerializedName("friction_coefficient")
     val frictionCoefficient: Float,
+    @Expose
+    @SerializedName("swim_behavior_x")
+    val swimBehaviorX: SwimBehavior?,
+    @Expose
+    @SerializedName("swim_behavior_y")
+    val swimBehaviorY: SwimBehavior?,
 ) {
     val textureAsset: TextureAsset
         get() = game.assets.texture(id)
+
+    data class SwimBehavior(
+        @Expose
+        @SerializedName("driving_acceleration_multiplier")
+        val drivingAccelerationMultiplier: Float,
+        @Expose
+        @SerializedName("cooldown_ticks_min")
+        val cooldownTicksMin: Int,
+        @Expose
+        @SerializedName("cooldown_ticks_max")
+        val cooldownTicksMax: Int,
+    )
 }

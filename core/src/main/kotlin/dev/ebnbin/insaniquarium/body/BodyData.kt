@@ -8,8 +8,8 @@ data class BodyData(
     val velocityX: Float,
     val velocityY: Float,
     val position: BodyPosition,
-    val drivingTargetX: BodyDrivingTarget?,
-    val drivingTargetY: BodyDrivingTarget?,
+    val swimBehaviorX: BodyHelper.SwimBehavior?,
+    val swimBehaviorY: BodyHelper.SwimBehavior?,
 ) {
     private val def: BodyDef = type.def
 
@@ -60,13 +60,18 @@ data class BodyData(
         crossSectionalArea = areaY,
     )
 
+    val drivingTargetX: BodyDrivingTarget? = swimBehaviorX?.drivingTarget
+    val drivingTargetY: BodyDrivingTarget? = swimBehaviorY?.drivingTarget
+
     val drivingForceX: Float = BodyHelper.drivingForce(
+        drivingAcceleration = def.drivingAccelerationX,
         drivingTarget = drivingTargetX,
         position = position.x,
         mass = mass,
         velocity = velocityX,
     )
     val drivingForceY: Float = BodyHelper.drivingForce(
+        drivingAcceleration = def.drivingAccelerationY,
         drivingTarget = drivingTargetY,
         position = position.y,
         mass = mass,
@@ -105,7 +110,6 @@ data class BodyData(
 
     fun tick(
         tickDelta: Float,
-        touchPosition: BodyPosition?,
     ): BodyData {
         val nextVelocityX = BodyHelper.velocity(
             velocity = velocityX,
@@ -144,20 +148,20 @@ data class BodyData(
                 x = nextX,
                 y = nextY,
             ),
-            drivingTargetX = touchPosition?.let {
-                BodyDrivingTarget(
-                    position = it.x,
-                    acceleration = def.drivingAccelerationX,
-                    oppositeAccelerationMultiplier = 1.5f,
-                )
-            },
-            drivingTargetY = touchPosition?.let {
-                BodyDrivingTarget(
-                    position = it.y,
-                    acceleration = def.drivingAccelerationY,
-                    oppositeAccelerationMultiplier = 1.5f,
-                )
-            },
+            swimBehaviorX = BodyHelper.swimBehavior(
+                swimBehavior = swimBehaviorX,
+                tankSize = tankData.width,
+                leftOrBottom = left,
+                rightOrTop = right,
+                defSwimBehavior = def.swimBehaviorX,
+            ),
+            swimBehaviorY = BodyHelper.swimBehavior(
+                swimBehavior = swimBehaviorY,
+                tankSize = tankData.height,
+                leftOrBottom = bottom,
+                rightOrTop = top,
+                defSwimBehavior = def.swimBehaviorY,
+            ),
         )
     }
 }

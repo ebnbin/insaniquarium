@@ -34,8 +34,8 @@ class BodyDefProcessor(
                         BodyType.STINKY -> 1.5f
                         BodyType.NIKO -> 1.5f
                         BodyType.RUFUS -> 1.5f
-                        BodyType.WADSWORTH -> 0.9f
-                        BodyType.BLIP -> 0.9f
+                        BodyType.WADSWORTH -> 0.95f
+                        BodyType.BLIP -> 0.95f
                         BodyType.RHUBARB -> 1.5f
                         BodyType.BRINKLEY -> 1.1f
                         else -> 1f
@@ -49,11 +49,48 @@ class BodyDefProcessor(
                         BodyType.STINKY,
                         BodyType.NIKO,
                         BodyType.RUFUS,
-                        BodyType.RHUBARB,
-                        BodyType.BRINKLEY -> 1f
-                        else -> 2f
+                        BodyType.RHUBARB -> 0f
+                        else -> 1f
                     },
                     frictionCoefficient = 1f,
+                    swimBehaviorX = when (type) {
+                        BodyType.STINKY,
+                        BodyType.RUFUS,
+                        BodyType.RHUBARB,
+                        BodyType.BRINKLEY -> BodyDef.SwimBehavior(
+                            drivingAccelerationMultiplier = 0.25f,
+                            cooldownTicksMin = 40,
+                            cooldownTicksMax = 160,
+                        )
+                        BodyType.NIKO -> null
+                        else -> BodyDef.SwimBehavior(
+                            drivingAccelerationMultiplier = 0.25f,
+                            cooldownTicksMin = 40,
+                            cooldownTicksMax = 160,
+                        )
+                    },
+                    swimBehaviorY = when (type) {
+                        BodyType.STINKY,
+                        BodyType.NIKO,
+                        BodyType.RUFUS,
+                        BodyType.RHUBARB -> null
+                        BodyType.WADSWORTH,
+                        BodyType.BLIP -> BodyDef.SwimBehavior(
+                            drivingAccelerationMultiplier = 1f,
+                            cooldownTicksMin = 120,
+                            cooldownTicksMax = 200,
+                        )
+                        BodyType.BRINKLEY -> BodyDef.SwimBehavior(
+                            drivingAccelerationMultiplier = 1.25f,
+                            cooldownTicksMin = 120,
+                            cooldownTicksMax = 200,
+                        )
+                        else -> BodyDef.SwimBehavior(
+                            drivingAccelerationMultiplier = 0.25f,
+                            cooldownTicksMin = 120,
+                            cooldownTicksMax = 200,
+                        )
+                    },
                 )
                 def.id to def
             },

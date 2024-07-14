@@ -21,6 +21,12 @@ class BodyDevHelper(
         shapeRendererHelper.draw(batch) {
             if (body.tank.devHelper.isSelected(body)) {
                 drawDebugBounds(this)
+                body.data.swimBehaviorX?.drivingTarget?.let { drivingTarget ->
+                    line(drivingTarget.position, 0f, drivingTarget.position, body.data.tankData.height)
+                }
+                body.data.swimBehaviorY?.drivingTarget?.let { drivingTarget ->
+                    line(0f, drivingTarget.position, body.data.tankData.width, drivingTarget.position)
+                }
             }
         }
     }
@@ -100,6 +106,11 @@ class BodyDevHelper(
         },
         "position".key() toDevEntry {
             "${body.data.position.x.value(Sign.SIGNED)},${body.data.position.y.value(Sign.SIGNED)}"
+        },
+        "swimBehavior".key() toDevEntry {
+            "${body.data.swimBehaviorX?.drivingTarget?.position.value(Sign.SIGNED)}," +
+                "${body.data.swimBehaviorY?.drivingTarget?.position.value(Sign.SIGNED)}," +
+                "${body.data.swimBehaviorX?.cooldownTicks},${body.data.swimBehaviorY?.cooldownTicks}"
         },
     )
 
