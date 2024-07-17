@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.Pixmap
 import dev.ebnbin.insaniquarium.aquarium.AquariumType
-import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.kgdx.asset.AssetFileType
 import dev.ebnbin.kgdx.asset.AssetId
 import dev.ebnbin.kgdx.asset.AssetType
@@ -125,24 +124,28 @@ object TextureAssetProcessor {
         }
     }
 
-    private class Body(
-        private val type: BodyType,
-        private val inputFileName: String,
-        private val inputMaskFileName: String,
-        private val row: Int,
-        private val column: Int,
+    private class Region(
+        name: String,
+        private val input: Input,
         private val tileStart: Int,
         private val tileCount: Int,
     ) : Processor(
-        name = type.id,
+        name = name,
     ) {
+        class Input(
+            val inputFileName: String,
+            val inputMaskFileName: String,
+            val row: Int,
+            val column: Int,
+        )
+
         override fun process(fromTool: Boolean): TextureAsset {
-            val inputPixmap = readPixmapFromZip(inputFileName)
-            val inputMaskPixmap = readPixmapFromZip(inputMaskFileName)
+            val inputPixmap = readPixmapFromZip(input.inputFileName)
+            val inputMaskPixmap = readPixmapFromZip(input.inputMaskFileName)
             val maskedPixmap = inputPixmap.mask(inputMaskPixmap)
             inputPixmap.disposeSafely()
             inputMaskPixmap.disposeSafely()
-            val tiledPixmapList = maskedPixmap.tile(row, column, tileStart, tileCount)
+            val tiledPixmapList = maskedPixmap.tile(input.row, input.column, tileStart, tileCount)
             maskedPixmap.disposeSafely()
             val scaledPixmapList = tiledPixmapList.map { tiledPixmap ->
                 tiledPixmap.scale(1.5f).also {
@@ -161,252 +164,345 @@ object TextureAssetProcessor {
                 region = TextureAsset.Region(
                     row = packedRow,
                     column = packedColumn,
-                    animation = TextureAsset.Region.Animation(
-                        duration = when (type) {
-                            BodyType.CLYDE,
-                            BodyType.SEYMOUR,
-                            BodyType.SHRAPNEL,
-                            BodyType.RHUBARB,
-                            BodyType.BRINKLEY -> 1f
-                            else -> 0.5f
-                        },
-                        mode = when (type) {
-                            BodyType.NIKO,
-                            BodyType.VERT,
-                            BodyType.WALTER -> AnimationMode.LOOP_PINGPONG
-                            else -> AnimationMode.LOOP
-                        },
-                    ),
+                    animation = when (name) {
+                        "stinky",
+                        "niko",
+                        "itchy",
+                        "prego",
+                        "zorf",
+                        "clyde",
+                        "vert",
+                        "rufus",
+                        "meryl",
+                        "wadsworth",
+                        "seymour",
+                        "shrapnel",
+                        "gumbo",
+                        "blip",
+                        "rhubarb",
+                        "nimbus",
+                        "amp",
+                        "gash",
+                        "angie",
+                        "presto",
+                        "brinkley",
+                        "nostradamus",
+                        "stanley",
+                        "walter" -> TextureAsset.Region.Animation(
+                            duration = when (name) {
+                                "clyde",
+                                "seymour",
+                                "shrapnel",
+                                "rhubarb",
+                                "brinkley" -> 1f
+                                else -> 0.5f
+                            },
+                            mode = when (name) {
+                                "niko",
+                                "vert",
+                                "walter" -> AnimationMode.LOOP_PINGPONG
+                                else -> AnimationMode.LOOP
+                            },
+                        )
+                        else -> null
+                    },
                 ),
                 stretchable = null,
             )
         }
 
         companion object {
-            private fun processor(type: BodyType): Body {
-                return when (type) {
-                    BodyType.STINKY -> Body(
-                        type = type,
-                        inputFileName = "stinky.gif",
-                        inputMaskFileName = "_stinky.gif",
-                        row = 3,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.NIKO -> Body(
-                        type = type,
-                        inputFileName = "niko.gif",
-                        inputMaskFileName = "_niko.gif",
-                        row = 3,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.ITCHY -> Body(
-                        type = type,
-                        inputFileName = "itchy.gif",
-                        inputMaskFileName = "_itchy.gif",
-                        row = 4,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.PREGO -> Body(
-                        type = type,
-                        inputFileName = "prego.gif",
-                        inputMaskFileName = "_prego.gif",
-                        row = 4,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.ZORF -> Body(
-                        type = type,
-                        inputFileName = "zorf.gif",
-                        inputMaskFileName = "_zorf.gif",
-                        row = 3,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.CLYDE -> Body(
-                        type = type,
-                        inputFileName = "clyde.gif",
-                        inputMaskFileName = "_clyde.gif",
-                        row = 1,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.VERT -> Body(
-                        type = type,
-                        inputFileName = "vert.gif",
-                        inputMaskFileName = "_vert.gif",
-                        row = 2,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.RUFUS -> Body(
-                        type = type,
-                        inputFileName = "rufus.gif",
-                        inputMaskFileName = "_rufus.gif",
-                        row = 2,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.MERYL -> Body(
-                        type = type,
-                        inputFileName = "meryl.gif",
-                        inputMaskFileName = "_meryl.gif",
-                        row = 4,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.WADSWORTH -> Body(
-                        type = type,
-                        inputFileName = "wadsworth.gif",
-                        inputMaskFileName = "_wadsworth.gif",
-                        row = 3,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.SEYMOUR -> Body(
-                        type = type,
-                        inputFileName = "seymour.gif",
-                        inputMaskFileName = "_seymour.gif",
-                        row = 2,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.SHRAPNEL -> Body(
-                        type = type,
-                        inputFileName = "shrapnel.gif",
-                        inputMaskFileName = "_shrapnel.gif",
-                        row = 2,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.GUMBO -> Body(
-                        type = type,
-                        inputFileName = "gumbo.gif",
-                        inputMaskFileName = "_gumbo.gif",
-                        row = 2,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.BLIP -> Body(
-                        type = type,
-                        inputFileName = "blip.gif",
-                        inputMaskFileName = "_blip.gif",
-                        row = 2,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.RHUBARB -> Body(
-                        type = type,
-                        inputFileName = "rhubarb.gif",
-                        inputMaskFileName = "_rhubarb.gif",
-                        row = 2,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.NIMBUS -> Body(
-                        type = type,
-                        inputFileName = "nimbus.gif",
-                        inputMaskFileName = "_nimbus.gif",
-                        row = 2,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.AMP -> Body(
-                        type = type,
-                        inputFileName = "amp.gif",
-                        inputMaskFileName = "_amp.gif",
-                        row = 2,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.GASH -> Body(
-                        type = type,
-                        inputFileName = "gash.gif",
-                        inputMaskFileName = "_gash.gif",
-                        row = 3,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.ANGIE -> Body(
-                        type = type,
-                        inputFileName = "angie.gif",
-                        inputMaskFileName = "_angie.gif",
-                        row = 2,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.PRESTO -> Body(
-                        type = type,
-                        inputFileName = "presto.gif",
-                        inputMaskFileName = "_presto.gif",
-                        row = 3,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.BRINKLEY -> Body(
-                        type = type,
-                        inputFileName = "brink.gif",
-                        inputMaskFileName = "_brink.gif",
-                        row = 2,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.NOSTRADAMUS -> Body(
-                        type = type,
-                        inputFileName = "nostradamus.gif",
-                        inputMaskFileName = "_nostradamus.gif",
-                        row = 2,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.STANLEY -> Body(
-                        type = type,
-                        inputFileName = "stanley.gif",
-                        inputMaskFileName = "_stanley.gif",
-                        row = 6,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                    BodyType.WALTER -> Body(
-                        type = type,
-                        inputFileName = "walter.gif",
-                        inputMaskFileName = "_walter.gif",
-                        row = 3,
-                        column = 10,
-                        tileStart = 0,
-                        tileCount = 10,
-                    )
-                }
-            }
+            private val STINKY = Input(
+                inputFileName = "stinky.gif",
+                inputMaskFileName = "_stinky.gif",
+                row = 3,
+                column = 10,
+            )
+            private val NIKO = Input(
+                inputFileName = "niko.gif",
+                inputMaskFileName = "_niko.gif",
+                row = 3,
+                column = 10,
+            )
+            private val ITCHY = Input(
+                inputFileName = "itchy.gif",
+                inputMaskFileName = "_itchy.gif",
+                row = 4,
+                column = 10,
+            )
+            private val PREGO = Input(
+                inputFileName = "prego.gif",
+                inputMaskFileName = "_prego.gif",
+                row = 4,
+                column = 10,
+            )
+            private val ZORF = Input(
+                inputFileName = "zorf.gif",
+                inputMaskFileName = "_zorf.gif",
+                row = 3,
+                column = 10,
+            )
+            private val CLYDE = Input(
+                inputFileName = "clyde.gif",
+                inputMaskFileName = "_clyde.gif",
+                row = 1,
+                column = 10,
+            )
+            private val VERT = Input(
+                inputFileName = "vert.gif",
+                inputMaskFileName = "_vert.gif",
+                row = 2,
+                column = 10,
+            )
+            private val RUFUS = Input(
+                inputFileName = "rufus.gif",
+                inputMaskFileName = "_rufus.gif",
+                row = 2,
+                column = 10,
+            )
+            private val MERYL = Input(
+                inputFileName = "meryl.gif",
+                inputMaskFileName = "_meryl.gif",
+                row = 4,
+                column = 10,
+            )
+            private val WADSWORTH = Input(
+                inputFileName = "wadsworth.gif",
+                inputMaskFileName = "_wadsworth.gif",
+                row = 3,
+                column = 10,
+            )
+            private val SEYMOUR = Input(
+                inputFileName = "seymour.gif",
+                inputMaskFileName = "_seymour.gif",
+                row = 2,
+                column = 10,
+            )
+            private val SHRAPNEL = Input(
+                inputFileName = "shrapnel.gif",
+                inputMaskFileName = "_shrapnel.gif",
+                row = 2,
+                column = 10,
+            )
+            private val GUMBO = Input(
+                inputFileName = "gumbo.gif",
+                inputMaskFileName = "_gumbo.gif",
+                row = 2,
+                column = 10,
+            )
+            private val BLIP = Input(
+                inputFileName = "blip.gif",
+                inputMaskFileName = "_blip.gif",
+                row = 2,
+                column = 10,
+            )
+            private val RHUBARB = Input(
+                inputFileName = "rhubarb.gif",
+                inputMaskFileName = "_rhubarb.gif",
+                row = 2,
+                column = 10,
+            )
+            private val NIMBUS = Input(
+                inputFileName = "nimbus.gif",
+                inputMaskFileName = "_nimbus.gif",
+                row = 2,
+                column = 10,
+            )
+            private val AMP = Input(
+                inputFileName = "amp.gif",
+                inputMaskFileName = "_amp.gif",
+                row = 2,
+                column = 10,
+            )
+            private val GASH = Input(
+                inputFileName = "gash.gif",
+                inputMaskFileName = "_gash.gif",
+                row = 3,
+                column = 10,
+            )
+            private val ANGIE = Input(
+                inputFileName = "angie.gif",
+                inputMaskFileName = "_angie.gif",
+                row = 2,
+                column = 10,
+            )
+            private val PRESTO = Input(
+                inputFileName = "presto.gif",
+                inputMaskFileName = "_presto.gif",
+                row = 3,
+                column = 10,
+            )
+            private val BRINKLEY = Input(
+                inputFileName = "brink.gif",
+                inputMaskFileName = "_brink.gif",
+                row = 2,
+                column = 10,
+            )
+            private val NOSTRADAMUS = Input(
+                inputFileName = "nostradamus.gif",
+                inputMaskFileName = "_nostradamus.gif",
+                row = 2,
+                column = 10,
+            )
+            private val STANLEY = Input(
+                inputFileName = "stanley.gif",
+                inputMaskFileName = "_stanley.gif",
+                row = 6,
+                column = 10,
+            )
+            private val WALTER = Input(
+                inputFileName = "walter.gif",
+                inputMaskFileName = "_walter.gif",
+                row = 3,
+                column = 10,
+            )
 
-            val ALL: List<Body> = BodyType.entries.map { type ->
-                processor(type)
-            }
+            val ALL: List<Region> = listOf(
+                Region(
+                    name = "stinky",
+                    input = STINKY,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "niko",
+                    input = NIKO,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "itchy",
+                    input = ITCHY,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "prego",
+                    input = PREGO,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "zorf",
+                    input = ZORF,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "clyde",
+                    input = CLYDE,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "vert",
+                    input = VERT,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "rufus",
+                    input = RUFUS,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "meryl",
+                    input = MERYL,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "wadsworth",
+                    input = WADSWORTH,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "seymour",
+                    input = SEYMOUR,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "shrapnel",
+                    input = SHRAPNEL,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "gumbo",
+                    input = GUMBO,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "blip",
+                    input = BLIP,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "rhubarb",
+                    input = RHUBARB,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "nimbus",
+                    input = NIMBUS,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "amp",
+                    input = AMP,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "gash",
+                    input = GASH,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "angie",
+                    input = ANGIE,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "presto",
+                    input = PRESTO,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "brinkley",
+                    input = BRINKLEY,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "nostradamus",
+                    input = NOSTRADAMUS,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "stanley",
+                    input = STANLEY,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+                Region(
+                    name = "walter",
+                    input = WALTER,
+                    tileStart = 0,
+                    tileCount = 10,
+                ),
+            )
         }
     }
 
@@ -450,7 +546,7 @@ object TextureAssetProcessor {
     private val PROCESSOR_LIST: List<Processor> = listOf(
         LoadingBackground,
         *Aquarium.ALL.toTypedArray(),
-        *Body.ALL.toTypedArray(),
+        *Region.ALL.toTypedArray(),
     )
 
     fun process(fileName: String) {
