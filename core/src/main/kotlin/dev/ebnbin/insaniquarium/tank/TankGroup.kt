@@ -5,7 +5,10 @@ import com.badlogic.gdx.scenes.scene2d.Group
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.Stage
+import dev.ebnbin.kgdx.dev.DevEntry
+import dev.ebnbin.kgdx.dev.toDevEntry
 import dev.ebnbin.kgdx.util.diffStage
+import kotlin.system.measureNanoTime
 
 class TankGroup : Group() {
     val tank: Tank = Tank(
@@ -28,9 +31,42 @@ class TankGroup : Group() {
         })
     }
 
+    private var tickNanoAccumulator: Long = 0L
+    private var tickMillis: Long = 0L
+
+    private var drawStartNano: Long = System.nanoTime()
+    private var drawNanoAccumulator: Long = 0L
+    private var drawCount: Int = 0
+    private var drawMillis: Long = 0
+
+    override fun act(delta: Float) {
+        val tankStage = stage as TankStage? ?: return
+        val tickDelta = tankStage.tickDelta
+        if (tickDelta > 0) {
+            tickNanoAccumulator += measureNanoTime {
+                super.act(delta)
+            }
+            if (tankStage.ticks % 20 == 0) {
+                tickMillis = tickNanoAccumulator / 1_000_000 / 20
+                tickNanoAccumulator = 0L
+            }
+        } else {
+            super.act(delta)
+        }
+    }
+
     override fun draw(batch: Batch, parentAlpha: Float) {
-        super.draw(batch, parentAlpha)
-        tank.draw(batch, parentAlpha)
+        drawNanoAccumulator += measureNanoTime {
+            super.draw(batch, parentAlpha)
+            tank.draw(batch, parentAlpha)
+        }
+        ++drawCount
+        if (System.nanoTime() - drawStartNano > 1_000_000_000) {
+            drawMillis = drawNanoAccumulator / 1_000_000 / drawCount
+            drawStartNano = System.nanoTime()
+            drawNanoAccumulator = 0L
+            drawCount = 0
+        }
     }
 
     override fun setStage(stage: Stage?) {
@@ -42,11 +78,27 @@ class TankGroup : Group() {
         )
     }
 
+    private val bodyCountDevEntry: DevEntry = "bodyCount" toDevEntry {
+        "${children.size}"
+    }
+    private val tickTimeDevEntry: DevEntry = "tickTime" toDevEntry {
+        "$tickMillis"
+    }
+    private val drawTimeDevEntry: DevEntry = "drawTime" toDevEntry {
+        "$drawMillis"
+    }
+
     private fun addedToStage(stage: TankStage) {
+        stage.putDevInfo(bodyCountDevEntry)
+        stage.putDevInfo(tickTimeDevEntry)
+        stage.putDevInfo(drawTimeDevEntry)
         tank.addedToStage(stage)
     }
 
     private fun removedFromStage(stage: TankStage) {
         tank.removedFromStage(stage)
+        stage.removeDevInfo(drawTimeDevEntry)
+        stage.removeDevInfo(tickTimeDevEntry)
+        stage.removeDevInfo(bodyCountDevEntry)
     }
 }

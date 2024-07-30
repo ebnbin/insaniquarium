@@ -57,11 +57,15 @@ abstract class LifecycleStage : Stage {
     var tickDelta: Float = 0f
         private set
 
+    var ticks: Int = 0
+        private set
+
     override fun act(delta: Float) {
         if (enableTick) {
             accumulator += delta
             tickDelta = if (accumulator >= TICK_DELTA) {
                 accumulator -= TICK_DELTA
+                ++ticks
                 TICK_DELTA
             } else {
                 0f
