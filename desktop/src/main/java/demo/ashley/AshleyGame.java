@@ -4,8 +4,10 @@ import com.badlogic.ashley.core.Entity;
 import com.badlogic.ashley.core.PooledEngine;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
@@ -14,6 +16,9 @@ import demo.ashley.components.PositionComponent;
 import demo.ashley.components.VisualComponent;
 import demo.ashley.systems.MovementSystem;
 import demo.ashley.systems.RenderSystem;
+import dev.ebnbin.kgdx.util.FileUtilKt;
+import dev.ebnbin.kgdx.util.PixmapUtilKt;
+import dev.ebnbin.kgdx.util.ZipUtilKt;
 
 public class AshleyGame extends ApplicationAdapter {
     PooledEngine engine;
@@ -24,8 +29,13 @@ public class AshleyGame extends ApplicationAdapter {
         camera.position.set(320, 240, 0);
         camera.update();
 
-        Texture crateTexture = new Texture("assets/crate.png");
-        Texture coinTexture = new Texture("assets/coin.png");
+        FileHandle zipFileHandle = FileUtilKt.internalAsset(Gdx.files, "Insaniquarium Deluxe.zip");
+        Pixmap aPixmap =
+                PixmapUtilKt.createPixmap(ZipUtilKt.readByteArrayFromZip(zipFileHandle, "images/helppetchoose.gif"));
+        Pixmap bPixmap =
+                PixmapUtilKt.createPixmap(ZipUtilKt.readByteArrayFromZip(zipFileHandle, "images/helpalien.gif"));
+        Texture crateTexture = new Texture(aPixmap);
+        Texture coinTexture = new Texture(bPixmap);
 
         engine = new PooledEngine();
         engine.addSystem(new RenderSystem(camera));
