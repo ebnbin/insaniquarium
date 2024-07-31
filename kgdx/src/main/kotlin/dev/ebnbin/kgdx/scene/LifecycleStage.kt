@@ -1,4 +1,4 @@
-package dev.ebnbin.kgdx
+package dev.ebnbin.kgdx.scene
 
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.scenes.scene2d.Stage
@@ -6,11 +6,11 @@ import com.badlogic.gdx.utils.viewport.Viewport
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.kgdx.dev.DevEntry
+import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.WorldScreenViewport
-import ktx.assets.disposeSafely
 
-abstract class LifecycleStage : Stage {
+abstract class LifecycleStage : Stage, LifecycleScene {
     constructor(viewport: Viewport = defaultViewport()) : super(viewport)
 
     constructor(viewport: Viewport = defaultViewport(), batch: Batch) : super(viewport, batch)
@@ -19,6 +19,12 @@ abstract class LifecycleStage : Stage {
         get() = true
 
     private var resized: Boolean = false
+
+    final override fun resize(width: Int, height: Int) {
+        diffSize {
+            viewport.update(width, height, true)
+        }
+    }
 
     protected open fun resize(width: Float, height: Float) {
     }
@@ -43,10 +49,28 @@ abstract class LifecycleStage : Stage {
         }
     }
 
-    protected open fun resume() {
+    override fun resume() {
+        if (hasDevMenu) {
+            val menu = Menu(this::class.java.simpleName)
+            game.devMenuStage.createMenu(this) { menuBar ->
+                createDevMenu(menuBar, menu)
+                menu
+            }
+        }
     }
 
-    protected open fun pause() {
+    override fun pause() {
+        game.devMenuStage.removeMenu(this)
+    }
+
+    final override fun render(delta: Float) {
+        if (!isRendering) {
+            return
+        }
+        isDebugAll = KgdxPreferenceManager.isDebugAll.value
+        act(delta)
+        viewport.apply(true)
+        draw()
     }
 
     protected open val enableTick: Boolean
@@ -104,54 +128,6 @@ abstract class LifecycleStage : Stage {
 
         fun defaultViewport(): Viewport {
             return WorldScreenViewport()
-        }
-
-        internal fun List<LifecycleStage>.resize(width: Int, height: Int) {
-            forEach { stage ->
-                stage.diffSize {
-                    stage.viewport.update(width, height, true)
-                }
-            }
-        }
-
-        internal fun List<LifecycleStage>.resume() {
-            forEach { stage ->
-                if (stage.hasDevMenu) {
-                    val menu = Menu(stage::class.java.simpleName)
-                    game.devMenuStage.createMenu(stage) { menuBar ->
-                        stage.createDevMenu(menuBar, menu)
-                        menu
-                    }
-                }
-                stage.resume()
-            }
-        }
-
-        internal fun List<LifecycleStage>.act(delta: Float) {
-            filter { it.isRendering }.forEach { stage ->
-                stage.isDebugAll = KgdxPreferenceManager.isDebugAll.value
-                stage.act(delta)
-            }
-        }
-
-        internal fun List<LifecycleStage>.draw() {
-            filter { it.isRendering }.forEach { stage ->
-                stage.viewport.apply(true)
-                stage.draw()
-            }
-        }
-
-        internal fun List<LifecycleStage>.pause() {
-            reversed().forEach { stage ->
-                stage.pause()
-                game.devMenuStage.removeMenu(stage)
-            }
-        }
-
-        internal fun List<LifecycleStage>.dispose() {
-            reversed().forEach { stage ->
-                stage.disposeSafely()
-            }
         }
     }
 }

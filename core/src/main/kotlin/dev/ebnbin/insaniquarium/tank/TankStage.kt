@@ -3,7 +3,7 @@ package dev.ebnbin.insaniquarium.tank
 import com.badlogic.gdx.utils.Align
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
-import dev.ebnbin.kgdx.LifecycleStage
+import dev.ebnbin.kgdx.scene.LifecycleStage
 
 class TankStage : LifecycleStage(TankViewport()) {
     private val tankGroup: TankGroup = TankGroup().also {

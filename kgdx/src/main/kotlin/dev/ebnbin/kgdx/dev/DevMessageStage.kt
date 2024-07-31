@@ -2,7 +2,7 @@ package dev.ebnbin.kgdx.dev
 
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup
 import com.badlogic.gdx.utils.Align
-import dev.ebnbin.kgdx.LifecycleStage
+import dev.ebnbin.kgdx.scene.LifecycleStage
 import dev.ebnbin.kgdx.util.WorldFitViewport
 
 internal class DevMessageStage : LifecycleStage(WorldFitViewport()) {

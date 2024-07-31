@@ -9,10 +9,10 @@ import com.kotcrab.vis.ui.util.dialog.InputDialogListener
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.kgdx.Game
-import dev.ebnbin.kgdx.LifecycleStage
-import dev.ebnbin.kgdx.Screen
 import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
+import dev.ebnbin.kgdx.scene.LifecycleStage
+import dev.ebnbin.kgdx.scene.Screen
 import dev.ebnbin.kgdx.util.CLEAR_COLOR_MAP
 import dev.ebnbin.kgdx.util.Dpi
 import dev.ebnbin.kgdx.util.TextureFilter

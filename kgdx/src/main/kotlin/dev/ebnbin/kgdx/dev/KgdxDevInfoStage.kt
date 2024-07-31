@@ -5,9 +5,9 @@ import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.scenes.scene2d.ui.VerticalGroup
 import com.badlogic.gdx.utils.Align
 import dev.ebnbin.kgdx.Game
-import dev.ebnbin.kgdx.LifecycleStage
 import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
+import dev.ebnbin.kgdx.scene.LifecycleStage
 import dev.ebnbin.kgdx.util.WorldFitViewport
 import dev.ebnbin.kgdx.util.colorMarkup
 import dev.ebnbin.kgdx.util.toTime

@@ -1,22 +1,22 @@
-package dev.ebnbin.kgdx
+package dev.ebnbin.kgdx.scene
 
 import dev.ebnbin.kgdx.asset.Asset
 
 class Screen(
     val name: String,
     val assetSet: Set<Asset<*>>,
-    val stageList: List<LifecycleStage>,
+    val sceneList: List<LifecycleScene>,
 ) {
     class Creator(
         val name: String,
         val assetSet: Set<Asset<*>>,
-        val createStageList: () -> List<LifecycleStage>,
+        val createSceneList: () -> List<LifecycleScene>,
     ) {
         companion object {
             val EMPTY: Creator = Creator(
                 name = "empty",
                 assetSet = emptySet(),
-                createStageList = { emptyList() },
+                createSceneList = { emptyList() },
             )
         }
     }

@@ -4,8 +4,8 @@ import dev.ebnbin.insaniquarium.aquarium.AquariumType
 import dev.ebnbin.insaniquarium.aquarium.AquariumStage
 import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.insaniquarium.tank.TankStage
-import dev.ebnbin.kgdx.Screen
 import dev.ebnbin.kgdx.asset.Asset
+import dev.ebnbin.kgdx.scene.Screen
 
 object Screens {
     private fun aquarium(aquariumType: AquariumType): Screen.Creator {
@@ -15,7 +15,7 @@ object Screens {
                 set.add(aquariumType.textureAsset)
                 set.addAll(BodyType.entries.map { it.def.textureAsset })
             },
-            createStageList = {
+            createSceneList = {
                 listOf(
                     AquariumStage(aquariumType),
                     TankStage(),

@@ -6,12 +6,6 @@ import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.assets.loaders.FileHandleResolver
 import com.badlogic.gdx.utils.ScreenUtils
-import dev.ebnbin.kgdx.LifecycleStage.Companion.act
-import dev.ebnbin.kgdx.LifecycleStage.Companion.dispose
-import dev.ebnbin.kgdx.LifecycleStage.Companion.draw
-import dev.ebnbin.kgdx.LifecycleStage.Companion.pause
-import dev.ebnbin.kgdx.LifecycleStage.Companion.resize
-import dev.ebnbin.kgdx.LifecycleStage.Companion.resume
 import dev.ebnbin.kgdx.asset.AssetLoaderRegistry
 import dev.ebnbin.kgdx.asset.AssetLoadingStage
 import dev.ebnbin.kgdx.asset.AssetManager
@@ -22,6 +16,15 @@ import dev.ebnbin.kgdx.dev.DevSafeInsetStage
 import dev.ebnbin.kgdx.dev.GameDevInfoStage
 import dev.ebnbin.kgdx.dev.KgdxDevInfoStage
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
+import dev.ebnbin.kgdx.scene.LifecycleScene
+import dev.ebnbin.kgdx.scene.LifecycleScene.Companion.dispose
+import dev.ebnbin.kgdx.scene.LifecycleScene.Companion.pause
+import dev.ebnbin.kgdx.scene.LifecycleScene.Companion.registerInputProcessor
+import dev.ebnbin.kgdx.scene.LifecycleScene.Companion.render
+import dev.ebnbin.kgdx.scene.LifecycleScene.Companion.resize
+import dev.ebnbin.kgdx.scene.LifecycleScene.Companion.resume
+import dev.ebnbin.kgdx.scene.LifecycleScene.Companion.unregisterInputProcessor
+import dev.ebnbin.kgdx.scene.Screen
 import ktx.assets.disposeSafely
 import kotlin.math.min
 
@@ -52,19 +55,15 @@ abstract class Game : ApplicationListener {
         set(value) {
             val resumed = resumed
             if (resumed) {
-                field?.stageList?.pause()
+                field?.sceneList?.pause()
             }
-            field?.stageList?.forEach { stage ->
-                inputMultiplexer.removeProcessor(stage)
-            }
-            field?.stageList?.dispose()
+            field?.sceneList?.unregisterInputProcessor(inputMultiplexer)
+            field?.sceneList?.dispose()
             field = value
-            field?.stageList?.reversed()?.forEach { stage ->
-                inputMultiplexer.addProcessor(stage)
-            }
-            field?.stageList?.resize(Gdx.graphics.width, Gdx.graphics.height)
+            field?.sceneList?.registerInputProcessor(inputMultiplexer)
+            field?.sceneList?.resize(Gdx.graphics.width, Gdx.graphics.height)
             if (resumed) {
-                field?.stageList?.resume()
+                field?.sceneList?.resume()
             }
         }
 
@@ -72,7 +71,7 @@ abstract class Game : ApplicationListener {
         assetLoadingStage.load(screenCreator)
     }
 
-    private fun globalStageList(): List<LifecycleStage> {
+    private fun globalSceneList(): List<LifecycleScene> {
         return listOf(
             assetLoadingStage,
             gameDevInfoStage,
@@ -83,10 +82,10 @@ abstract class Game : ApplicationListener {
         )
     }
 
-    private fun stageList(): List<LifecycleStage> {
-        val stageList = mutableListOf<LifecycleStage>()
-        screen?.stageList?.let { stageList.addAll(it) }
-        stageList.addAll(globalStageList())
+    private fun sceneList(): List<LifecycleScene> {
+        val stageList = mutableListOf<LifecycleScene>()
+        screen?.sceneList?.let { stageList.addAll(it) }
+        stageList.addAll(globalSceneList())
         return stageList
     }
 
@@ -103,10 +102,8 @@ abstract class Game : ApplicationListener {
         devMessageStage = DevMessageStage()
         devMenuStage = DevMenuStage()
         devSafeInsetStage = DevSafeInsetStage()
-        globalStageList().reversed().forEach { stage ->
-            inputMultiplexer.addProcessor(stage)
-        }
-        globalStageList().resize(Gdx.graphics.width, Gdx.graphics.height)
+        globalSceneList().registerInputProcessor(inputMultiplexer)
+        globalSceneList().resize(Gdx.graphics.width, Gdx.graphics.height)
         canRender = true
     }
 
@@ -118,7 +115,7 @@ abstract class Game : ApplicationListener {
     }
 
     override fun resize(width: Int, height: Int) {
-        stageList().resize(width, height)
+        sceneList().resize(width, height)
     }
 
     override fun resume() {
@@ -132,28 +129,21 @@ abstract class Game : ApplicationListener {
         if (!canRender) return
         if (!resumed) {
             resumed = true
-            stageList().resume()
+            sceneList().resume()
         }
+
+        val clearColor = KgdxPreferenceManager.clearColor.value
+        ScreenUtils.clear(clearColor)
+
         val delta = Gdx.graphics.deltaTime * KgdxPreferenceManager.gameSpeedFPS.value / 20f
         val limitedDelta = min(delta, LIMITED_DELTA)
         time += limitedDelta
-        act(limitedDelta)
-        draw()
-    }
-
-    private fun act(delta: Float) {
-        stageList().act(delta)
-    }
-
-    private fun draw() {
-        val clearColor = KgdxPreferenceManager.clearColor.value
-        ScreenUtils.clear(clearColor)
-        stageList().draw()
+        sceneList().render(delta = limitedDelta)
     }
 
     override fun pause() {
         if (resumed) {
-            stageList().pause()
+            sceneList().pause()
             resumed = false
         }
         canRender = false
@@ -161,10 +151,8 @@ abstract class Game : ApplicationListener {
 
     override fun dispose() {
         screen = null
-        globalStageList().forEach { stage ->
-            inputMultiplexer.removeProcessor(stage)
-        }
-        globalStageList().dispose()
+        globalSceneList().unregisterInputProcessor(inputMultiplexer)
+        globalSceneList().dispose()
         inputMultiplexer.clear()
         assetManager.disposeSafely()
         time = 0f

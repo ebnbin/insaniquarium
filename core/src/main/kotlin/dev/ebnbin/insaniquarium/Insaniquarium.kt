@@ -5,10 +5,10 @@ import com.badlogic.gdx.graphics.Texture
 import dev.ebnbin.insaniquarium.asset.InsaniquariumAssetLoadingStage
 import dev.ebnbin.insaniquarium.asset.InsaniquariumTextureLoader
 import dev.ebnbin.kgdx.Game
-import dev.ebnbin.kgdx.Screen
 import dev.ebnbin.kgdx.asset.AssetLoaderRegistry
 import dev.ebnbin.kgdx.asset.AssetLoadingStage
 import dev.ebnbin.kgdx.game
+import dev.ebnbin.kgdx.scene.Screen
 
 val insaniquarium: Insaniquarium
     get() = game as Insaniquarium

@@ -3,8 +3,8 @@ package dev.ebnbin.kgdx.dev
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.utils.viewport.ScreenViewport
-import dev.ebnbin.kgdx.LifecycleStage
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
+import dev.ebnbin.kgdx.scene.LifecycleStage
 import dev.ebnbin.kgdx.ui.ColorImage
 import ktx.graphics.copy
 

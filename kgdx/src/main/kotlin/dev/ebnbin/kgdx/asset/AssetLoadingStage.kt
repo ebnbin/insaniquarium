@@ -1,9 +1,9 @@
 package dev.ebnbin.kgdx.asset
 
 import com.badlogic.gdx.utils.viewport.Viewport
-import dev.ebnbin.kgdx.LifecycleStage
-import dev.ebnbin.kgdx.Screen
 import dev.ebnbin.kgdx.game
+import dev.ebnbin.kgdx.scene.LifecycleStage
+import dev.ebnbin.kgdx.scene.Screen
 
 open class AssetLoadingStage(viewport: Viewport = defaultViewport()) : LifecycleStage(viewport) {
     private var isLoading: Boolean = false
@@ -34,7 +34,7 @@ open class AssetLoadingStage(viewport: Viewport = defaultViewport()) : Lifecycle
             val screen = Screen(
                 name = screenCreator.name,
                 assetSet = screenCreator.assetSet,
-                stageList = screenCreator.createStageList(),
+                sceneList = screenCreator.createSceneList(),
             )
             game.screen = screen
             disposeBackgroundUI()
