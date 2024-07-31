@@ -16,13 +16,12 @@ import dev.ebnbin.kgdx.util.drawSubPixmap
 import dev.ebnbin.kgdx.util.internalAsset
 import dev.ebnbin.kgdx.util.mask
 import dev.ebnbin.kgdx.util.pack
+import dev.ebnbin.kgdx.util.readByteArrayFromZip
 import dev.ebnbin.kgdx.util.scale
 import dev.ebnbin.kgdx.util.tile
 import dev.ebnbin.kgdx.util.write
 import ktx.assets.disposeSafely
 import ktx.graphics.copy
-import java.io.ByteArrayOutputStream
-import java.util.zip.ZipInputStream
 
 object TextureAssetProcessor {
     private abstract class Processor(val name: String) {
@@ -508,26 +507,8 @@ object TextureAssetProcessor {
 
     private fun readPixmapFromZip(imageFileName: String): Pixmap {
         val zipFileHandle = Gdx.files.internalAsset("Insaniquarium Deluxe.zip")
-        ZipInputStream(zipFileHandle.read()).use { zipInputStream ->
-            var zipEntry = zipInputStream.nextEntry
-            while (zipEntry != null) {
-                if (zipEntry.name == "images/$imageFileName") {
-                    return ByteArrayOutputStream().use { byteArrayOutputStream ->
-                        val buffer = ByteArray(DEFAULT_BUFFER_SIZE)
-                        var len: Int
-                        while (zipInputStream.read(buffer, 0, buffer.size).also { len = it } != -1) {
-                            byteArrayOutputStream.write(buffer, 0, len)
-                        }
-                        zipInputStream.closeEntry()
-                        val byteArray = byteArrayOutputStream.toByteArray()
-                        createPixmap(byteArray)
-                    }
-                }
-                zipInputStream.closeEntry()
-                zipEntry = zipInputStream.nextEntry
-            }
-        }
-        error(Unit)
+        val byteArray = zipFileHandle.readByteArrayFromZip("images/$imageFileName")
+        return createPixmap(byteArray)
     }
 
     private fun Pixmap.writeToLocal(name: String, fromTool: Boolean) {
