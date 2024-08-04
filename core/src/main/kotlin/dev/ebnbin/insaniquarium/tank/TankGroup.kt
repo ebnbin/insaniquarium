@@ -81,7 +81,7 @@ class TankGroup : Group() {
     }
 
     private val bodyCountDevEntry: DevEntry = "bodyCount" toDevEntry {
-        "${children.size}"
+        "${tank.bodyCount()}"
     }
     private val tickTimeDevEntry: DevEntry = "tickTime" toDevEntry {
         "$tickMillis"

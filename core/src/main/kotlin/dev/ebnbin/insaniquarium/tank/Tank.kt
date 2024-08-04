@@ -4,10 +4,7 @@ import com.badlogic.ashley.core.Component
 import com.badlogic.ashley.core.ComponentMapper
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
-import com.badlogic.ashley.core.EntitySystem
-import com.badlogic.ashley.core.Family
 import com.badlogic.ashley.systems.IteratingSystem
-import com.badlogic.ashley.utils.ImmutableArray
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.InputEvent
@@ -16,6 +13,8 @@ import dev.ebnbin.insaniquarium.body.BodyData
 import dev.ebnbin.insaniquarium.body.BodyHelper
 import dev.ebnbin.insaniquarium.body.BodyPosition
 import dev.ebnbin.insaniquarium.body.BodyType
+import ktx.ashley.allOf
+import ktx.ashley.mapperFor
 
 private const val USE_ASHLEY = true
 
@@ -49,6 +48,14 @@ class Tank(
 
     fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
         touchPosition = null
+    }
+
+    fun bodyCount(): Int {
+        return if (USE_ASHLEY) {
+            engine.entities.size()
+        } else {
+            groupWrapper.childrenCount
+        }
     }
 
     fun tick(delta: Float) {
@@ -133,9 +140,10 @@ class Tank(
 }
 
 private data class UpdateType(
-    var type: Type = Type.TICK,
+    var type: Type = Type.NONE,
 ) {
     enum class Type {
+        NONE,
         TICK,
         ACT,
         DRAW,
@@ -158,21 +166,25 @@ private class TextureRegionComponent(
     val height: Float = textureRegion.regionHeight.pxToMeter
 }
 
+private object ComponentMappers {
+    val bodyData: ComponentMapper<BodyDataComponent> = mapperFor()
+    val bodyPosition: ComponentMapper<BodyPositionComponent> = mapperFor()
+    val textureRegion: ComponentMapper<TextureRegionComponent> = mapperFor()
+}
+
 private class TickSystem(
     private val updateType: UpdateType,
-) : IteratingSystem(
-    Family.all(BodyDataComponent::class.java, BodyPositionComponent::class.java).get(),
-) {
-    private val bodyDataCM = ComponentMapper.getFor(BodyDataComponent::class.java)
-    private val bodyPositionCM = ComponentMapper.getFor(BodyPositionComponent::class.java)
-
+) : IteratingSystem(allOf(
+    BodyDataComponent::class,
+    BodyPositionComponent::class,
+).get()) {
     override fun checkProcessing(): Boolean {
         return updateType.type == UpdateType.Type.TICK
     }
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val bodyData = bodyDataCM.get(entity)
-        val bodyPosition = bodyPositionCM.get(entity)
+        val bodyData = ComponentMappers.bodyData.get(entity)
+        val bodyPosition = ComponentMappers.bodyPosition.get(entity)
         bodyData.bodyData = bodyData.bodyData.tick(deltaTime)
         bodyPosition.bodyPosition = bodyData.bodyData.position
     }
@@ -180,19 +192,17 @@ private class TickSystem(
 
 private class ActSystem(
     private val updateType: UpdateType,
-) : IteratingSystem(
-    Family.all(BodyDataComponent::class.java, BodyPositionComponent::class.java).get(),
-) {
-    private val bodyDataCM = ComponentMapper.getFor(BodyDataComponent::class.java)
-    private val bodyPositionCM = ComponentMapper.getFor(BodyPositionComponent::class.java)
-
+) : IteratingSystem(allOf(
+    BodyDataComponent::class,
+    BodyPositionComponent::class,
+).get()) {
     override fun checkProcessing(): Boolean {
         return updateType.type == UpdateType.Type.ACT
     }
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val bodyData = bodyDataCM.get(entity)
-        val bodyPosition = bodyPositionCM.get(entity)
+        val bodyData = ComponentMappers.bodyData.get(entity)
+        val bodyPosition = ComponentMappers.bodyPosition.get(entity)
         bodyPosition.bodyPosition = BodyPosition(
             x = BodyHelper.position(
                 position = bodyPosition.bodyPosition.x,
@@ -215,36 +225,23 @@ private class ActSystem(
 private class DrawSystem(
     private val updateType: UpdateType,
     private val batch: Batch,
-) : EntitySystem() {
-    private lateinit var entities: ImmutableArray<Entity>
-
-    private val bodyPositionCM = ComponentMapper.getFor(BodyPositionComponent::class.java)
-    private val textureRegionCM = ComponentMapper.getFor(TextureRegionComponent::class.java)
-
-    override fun addedToEngine(engine: Engine) {
-        super.addedToEngine(engine)
-        entities = engine.getEntitiesFor(Family.all(
-            BodyPositionComponent::class.java,
-            TextureRegionComponent::class.java,
-        ).get())
-    }
-
+) : IteratingSystem(allOf(
+    BodyPositionComponent::class,
+    TextureRegionComponent::class,
+).get()) {
     override fun checkProcessing(): Boolean {
         return updateType.type == UpdateType.Type.DRAW
     }
 
-    override fun update(deltaTime: Float) {
-        super.update(deltaTime)
-        for (entity in entities) {
-            val bodyPosition = bodyPositionCM.get(entity).bodyPosition
-            val textureRegion = textureRegionCM.get(entity)
-            batch.draw(
-                textureRegion.textureRegion,
-                bodyPosition.x - textureRegion.width / 2,
-                bodyPosition.y - textureRegion.height / 2,
-                textureRegion.width,
-                textureRegion.height,
-            )
-        }
+    override fun processEntity(entity: Entity, deltaTime: Float) {
+        val bodyPosition = ComponentMappers.bodyPosition.get(entity)
+        val textureRegion = ComponentMappers.textureRegion.get(entity)
+        batch.draw(
+            textureRegion.textureRegion,
+            bodyPosition.bodyPosition.x - textureRegion.width / 2,
+            bodyPosition.bodyPosition.y - textureRegion.height / 2,
+            textureRegion.width,
+            textureRegion.height,
+        )
     }
 }

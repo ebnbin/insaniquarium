@@ -18,6 +18,9 @@ class TankGroupWrapper(
     val height: Float
         get() = tankGroup.height
 
+    val childrenCount: Int
+        get() = tankGroup.children.size
+
     val batch: Batch
         get() = requireNotNull(tankGroup.stage).batch
 
