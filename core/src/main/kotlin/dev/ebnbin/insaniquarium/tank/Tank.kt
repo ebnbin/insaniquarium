@@ -12,6 +12,7 @@ import dev.ebnbin.insaniquarium.body.BodyData
 import dev.ebnbin.insaniquarium.body.BodyHelper
 import dev.ebnbin.insaniquarium.body.BodyPosition
 import dev.ebnbin.insaniquarium.body.BodyType
+import dev.ebnbin.insaniquarium.preference.PreferenceManager
 import ktx.ashley.allOf
 import ktx.ashley.mapperFor
 
@@ -173,22 +174,26 @@ private class ActSystem(
     override fun processEntity(entity: Entity, deltaTime: Float) {
         val bodyData = ComponentMappers.bodyData.get(entity)
         val bodyPosition = ComponentMappers.bodyPosition.get(entity)
-        bodyPosition.bodyPosition = BodyPosition(
-            x = BodyHelper.position(
-                position = bodyPosition.bodyPosition.x,
-                velocity = bodyData.bodyData.velocityX,
-                delta = deltaTime,
-                minPosition = bodyData.bodyData.minX,
-                maxPosition = bodyData.bodyData.maxX,
-            ),
-            y = BodyHelper.position(
-                position = bodyPosition.bodyPosition.y,
-                velocity = bodyData.bodyData.velocityY,
-                delta = deltaTime,
-                minPosition = bodyData.bodyData.minY,
-                maxPosition = bodyData.bodyData.maxY,
-            ),
-        )
+        bodyPosition.bodyPosition = if (PreferenceManager.enableBodySmoothPosition.value) {
+            BodyPosition(
+                x = BodyHelper.position(
+                    position = bodyPosition.bodyPosition.x,
+                    velocity = bodyData.bodyData.velocityX,
+                    delta = deltaTime,
+                    minPosition = bodyData.bodyData.minX,
+                    maxPosition = bodyData.bodyData.maxX,
+                ),
+                y = BodyHelper.position(
+                    position = bodyPosition.bodyPosition.y,
+                    velocity = bodyData.bodyData.velocityY,
+                    delta = deltaTime,
+                    minPosition = bodyData.bodyData.minY,
+                    maxPosition = bodyData.bodyData.maxY,
+                ),
+            )
+        } else {
+            bodyData.bodyData.position
+        }
     }
 }
 

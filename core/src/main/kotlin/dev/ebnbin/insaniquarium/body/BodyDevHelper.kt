@@ -14,7 +14,6 @@ import kotlin.math.absoluteValue
 class BodyDevHelper(
     private val body: Body,
 ) {
-
     private val shapeRendererHelper: ShapeRendererHelper = ShapeRendererHelper()
 
     fun draw(batch: Batch, parentAlpha: Float) {
