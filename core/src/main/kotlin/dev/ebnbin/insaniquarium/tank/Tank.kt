@@ -8,7 +8,6 @@ import com.badlogic.ashley.systems.IteratingSystem
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.InputEvent
-import dev.ebnbin.insaniquarium.body.BodyActor
 import dev.ebnbin.insaniquarium.body.BodyData
 import dev.ebnbin.insaniquarium.body.BodyHelper
 import dev.ebnbin.insaniquarium.body.BodyPosition
@@ -16,10 +15,8 @@ import dev.ebnbin.insaniquarium.body.BodyType
 import ktx.ashley.allOf
 import ktx.ashley.mapperFor
 
-private const val USE_ASHLEY = true
-
 class Tank(
-    val groupWrapper: TankGroupWrapper,
+    val actorWrapper: TankActorWrapper,
 ) {
     private val engine: Engine = Engine()
 
@@ -28,7 +25,7 @@ class Tank(
     val data: TankData = TankData()
 
     init {
-        groupWrapper.setSize(data.width, data.height)
+        actorWrapper.setSize(data.width, data.height)
     }
 
     val devHelper: TankDevHelper = TankDevHelper(this)
@@ -51,48 +48,34 @@ class Tank(
     }
 
     fun bodyCount(): Int {
-        return if (USE_ASHLEY) {
-            engine.entities.size()
-        } else {
-            groupWrapper.childrenCount
-        }
+        return engine.entities.size()
     }
 
     fun tick(delta: Float) {
-        if (USE_ASHLEY) {
-            updateType.type = UpdateType.Type.TICK
-            engine.update(delta)
-        }
+        updateType.type = UpdateType.Type.TICK
+        engine.update(delta)
     }
 
     fun act(delta: Float) {
-        if (USE_ASHLEY) {
-            updateType.type = UpdateType.Type.ACT
-            engine.update(delta)
-        }
+        updateType.type = UpdateType.Type.ACT
+        engine.update(delta)
     }
 
     fun draw(batch: Batch, parentAlpha: Float) {
         devHelper.draw(batch, parentAlpha)
-        if (USE_ASHLEY) {
-            updateType.type = UpdateType.Type.DRAW
-            engine.update(0f)
-        }
+        updateType.type = UpdateType.Type.DRAW
+        engine.update(0f)
     }
 
     fun addedToStage(stage: TankStage) {
         devHelper.addedToStage(stage)
-        if (USE_ASHLEY) {
-            engine.addSystem(ActSystem(updateType))
-            engine.addSystem(TickSystem(updateType))
-            engine.addSystem(DrawSystem(updateType, groupWrapper.batch))
-        }
+        engine.addSystem(ActSystem(updateType))
+        engine.addSystem(TickSystem(updateType))
+        engine.addSystem(DrawSystem(updateType, actorWrapper.batch))
     }
 
     fun removedFromStage(stage: TankStage) {
-        if (USE_ASHLEY) {
-            engine.removeAllSystems()
-        }
+        engine.removeAllSystems()
         devHelper.removedFromStage(stage)
     }
 
@@ -100,42 +83,29 @@ class Tank(
         type: BodyType,
         position: BodyPosition,
     ) {
-        if (USE_ASHLEY) {
-            val entity = engine.createEntity()
-            entity.add(BodyDataComponent(
-                bodyData = BodyData(
-                    tankData = data,
-                    type = type,
-                    velocityX = 0f,
-                    velocityY = 0f,
-                    position = position,
-                    swimBehaviorX = null,
-                    swimBehaviorY = null,
-                ),
-            ))
-            entity.add(BodyPositionComponent(
-                bodyPosition = position,
-            ))
-            entity.add(TextureRegionComponent(
-                textureRegion = type.def.textureAsset.getTextureRegionList().first(),
-            ))
-            engine.addEntity(entity)
-        } else {
-            val actor = BodyActor(
-                tank = this,
+        val entity = engine.createEntity()
+        entity.add(BodyDataComponent(
+            bodyData = BodyData(
+                tankData = data,
                 type = type,
+                velocityX = 0f,
+                velocityY = 0f,
                 position = position,
-            )
-            groupWrapper.addActor(actor)
-        }
+                swimBehaviorX = null,
+                swimBehaviorY = null,
+            ),
+        ))
+        entity.add(BodyPositionComponent(
+            bodyPosition = position,
+        ))
+        entity.add(TextureRegionComponent(
+            textureRegion = type.def.textureAsset.getTextureRegionList().first(),
+        ))
+        engine.addEntity(entity)
     }
 
     fun clearBodies() {
-        if (USE_ASHLEY) {
-            engine.removeAllEntities()
-        } else {
-            groupWrapper.clearChildren()
-        }
+        engine.removeAllEntities()
     }
 }
 

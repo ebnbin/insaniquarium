@@ -2,15 +2,12 @@ package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.scenes.scene2d.Actor
-import com.badlogic.gdx.scenes.scene2d.Group
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.scenes.scene2d.Touchable
 import dev.ebnbin.insaniquarium.tank.Tank
-import dev.ebnbin.insaniquarium.tank.TankGroup
 import dev.ebnbin.insaniquarium.tank.TankStage
-import dev.ebnbin.kgdx.util.diffParent
 import dev.ebnbin.kgdx.util.diffStage
 
 class BodyActor(
@@ -48,21 +45,6 @@ class BodyActor(
 
     private fun removedFromStage(stage: TankStage) {
         body.removedFromStage(stage)
-    }
-
-    override fun setParent(parent: Group?) {
-        diffParent<TankGroup>(
-            parent = parent,
-            updateParent = { super.setParent(it) },
-            addedToParent = ::addedToParent,
-            removedFromParent = ::removedFromParent,
-        )
-    }
-
-    private fun addedToParent(parent: TankGroup) {
-    }
-
-    private fun removedFromParent(parent: TankGroup) {
     }
 
     override fun hit(x: Float, y: Float, touchable: Boolean): Actor? {

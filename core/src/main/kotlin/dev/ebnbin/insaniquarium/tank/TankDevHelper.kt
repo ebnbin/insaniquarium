@@ -119,8 +119,8 @@ class TankDevHelper(
             tank.addBody(
                 type = type ?: BodyType.entries.random(),
                 position = BodyPosition(
-                    x = x ?: (Random.nextFloat() * tank.groupWrapper.width),
-                    y = y ?: (Random.nextFloat() * tank.groupWrapper.height),
+                    x = x ?: (Random.nextFloat() * tank.actorWrapper.width),
+                    y = y ?: (Random.nextFloat() * tank.actorWrapper.height),
                 ),
             )
         }
@@ -134,7 +134,7 @@ class TankDevHelper(
 
     fun draw(batch: Batch, parentAlpha: Float) {
         shapeRendererHelper.draw(batch = batch) {
-            rect(tank.groupWrapper.x, tank.groupWrapper.y, tank.groupWrapper.width, tank.groupWrapper.height)
+            rect(tank.actorWrapper.x, tank.actorWrapper.y, tank.actorWrapper.width, tank.actorWrapper.height)
         }
     }
 

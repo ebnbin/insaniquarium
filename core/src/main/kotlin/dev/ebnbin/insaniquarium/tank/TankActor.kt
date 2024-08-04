@@ -1,7 +1,7 @@
 package dev.ebnbin.insaniquarium.tank
 
 import com.badlogic.gdx.graphics.g2d.Batch
-import com.badlogic.gdx.scenes.scene2d.Group
+import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.Stage
@@ -10,9 +10,9 @@ import dev.ebnbin.kgdx.dev.toDevEntry
 import dev.ebnbin.kgdx.util.diffStage
 import kotlin.system.measureNanoTime
 
-class TankGroup : Group() {
+class TankActor : Actor() {
     val tank: Tank = Tank(
-        groupWrapper = TankGroupWrapper(this),
+        actorWrapper = TankActorWrapper(this),
     )
 
     init {
