@@ -32,7 +32,7 @@ class BodyDevHelper(
         }
     }
 
-    fun drawDebugBounds(shape: ShapeRenderer) {
+    private fun drawDebugBounds(shape: ShapeRenderer) {
         shape.rect(body.data.left, body.data.bottom, body.data.width, body.data.height)
     }
 

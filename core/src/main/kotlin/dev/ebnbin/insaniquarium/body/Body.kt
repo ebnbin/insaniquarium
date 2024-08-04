@@ -2,7 +2,6 @@ package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import dev.ebnbin.insaniquarium.preference.PreferenceManager
 import dev.ebnbin.insaniquarium.tank.Tank
@@ -102,9 +101,5 @@ class Body(
             actorWrapper.height,
         )
         devHelper.draw(batch, parentAlpha)
-    }
-
-    fun drawDebugBounds(shape: ShapeRenderer) {
-        devHelper.drawDebugBounds(shape)
     }
 }

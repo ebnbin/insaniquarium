@@ -1,7 +1,6 @@
 package dev.ebnbin.insaniquarium.body
 
 import com.badlogic.gdx.graphics.g2d.Batch
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer
 import com.badlogic.gdx.scenes.scene2d.Actor
 import com.badlogic.gdx.scenes.scene2d.Group
 import com.badlogic.gdx.scenes.scene2d.InputEvent
@@ -85,10 +84,5 @@ class BodyActor(
     override fun draw(batch: Batch, parentAlpha: Float) {
         super.draw(batch, parentAlpha)
         body.draw(batch, parentAlpha)
-    }
-
-    override fun drawDebugBounds(shapes: ShapeRenderer) {
-        super.drawDebugBounds(shapes)
-        body.drawDebugBounds(shapes)
     }
 }
