@@ -71,7 +71,7 @@ class Tank(
         devHelper.addedToStage(stage)
         engine.addSystem(ActSystem(updateType))
         engine.addSystem(TickSystem(updateType))
-        engine.addSystem(DrawSystem(updateType, actorWrapper.batch))
+        engine.addSystem(DrawSystem(updateType, actorWrapper))
     }
 
     fun removedFromStage(stage: TankStage) {
@@ -194,11 +194,13 @@ private class ActSystem(
 
 private class DrawSystem(
     private val updateType: UpdateType,
-    private val batch: Batch,
+    private val actorWrapper: TankActorWrapper,
 ) : IteratingSystem(allOf(
     BodyPositionComponent::class,
     TextureRegionComponent::class,
 ).get()) {
+    private val batch: Batch = actorWrapper.batch
+
     override fun checkProcessing(): Boolean {
         return updateType.type == UpdateType.Type.DRAW
     }
@@ -208,8 +210,8 @@ private class DrawSystem(
         val textureRegion = ComponentMappers.textureRegion.get(entity)
         batch.draw(
             textureRegion.textureRegion,
-            bodyPosition.bodyPosition.x - textureRegion.width / 2,
-            bodyPosition.bodyPosition.y - textureRegion.height / 2,
+            bodyPosition.bodyPosition.x - textureRegion.width / 2 + actorWrapper.x,
+            bodyPosition.bodyPosition.y - textureRegion.height / 2 + actorWrapper.y,
             textureRegion.width,
             textureRegion.height,
         )
