@@ -18,15 +18,16 @@ class BodyDevHelper(
     private val shapeRendererHelper: ShapeRendererHelper = ShapeRendererHelper()
 
     fun draw(batch: Batch, parentAlpha: Float) {
-        shapeRendererHelper.draw(batch) {
-            if (body.tank.devHelper.isSelected(body)) {
-                drawDebugBounds(this)
-                body.data.swimBehaviorX?.drivingTarget?.let { drivingTarget ->
-                    line(drivingTarget.position, 0f, drivingTarget.position, body.data.tankData.height)
-                }
-                body.data.swimBehaviorY?.drivingTarget?.let { drivingTarget ->
-                    line(0f, drivingTarget.position, body.data.tankData.width, drivingTarget.position)
-                }
+        shapeRendererHelper.draw(
+            enabled = body.tank.devHelper.isSelected(body),
+            batch = batch,
+        ) {
+            drawDebugBounds(this)
+            body.data.swimBehaviorX?.drivingTarget?.let { drivingTarget ->
+                line(drivingTarget.position, 0f, drivingTarget.position, body.data.tankData.height)
+            }
+            body.data.swimBehaviorY?.drivingTarget?.let { drivingTarget ->
+                line(0f, drivingTarget.position, body.data.tankData.width, drivingTarget.position)
             }
         }
     }

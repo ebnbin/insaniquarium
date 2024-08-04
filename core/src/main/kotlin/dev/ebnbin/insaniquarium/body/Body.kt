@@ -9,6 +9,7 @@ import dev.ebnbin.insaniquarium.tank.Tank
 import dev.ebnbin.insaniquarium.tank.TankStage
 import dev.ebnbin.insaniquarium.tank.pxToMeter
 
+// 3000 bodies: tick 11ms, draw 90ms
 class Body(
     val actorWrapper: BodyActorWrapper,
     val tank: Tank,

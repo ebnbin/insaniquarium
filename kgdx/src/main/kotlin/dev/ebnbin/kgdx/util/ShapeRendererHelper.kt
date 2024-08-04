@@ -12,10 +12,12 @@ class ShapeRendererHelper {
     }
 
     fun draw(
+        enabled: Boolean = true,
         batch: Batch,
         type: ShapeType = ShapeType.Line,
         action: ShapeRenderer.() -> Unit,
     ) {
+        if (!enabled) return
         batch.end()
         Gdx.gl.glEnable(GL20.GL_BLEND)
         shapeRenderer.projectionMatrix = batch.projectionMatrix

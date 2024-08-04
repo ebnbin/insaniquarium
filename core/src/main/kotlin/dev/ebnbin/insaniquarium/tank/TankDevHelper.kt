@@ -5,7 +5,6 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.insaniquarium.body.Body
-import dev.ebnbin.insaniquarium.body.BodyActor
 import dev.ebnbin.insaniquarium.body.BodyPosition
 import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.insaniquarium.preference.PreferenceManager
@@ -134,7 +133,7 @@ class TankDevHelper(
     private val shapeRendererHelper: ShapeRendererHelper = ShapeRendererHelper()
 
     fun draw(batch: Batch, parentAlpha: Float) {
-        shapeRendererHelper.draw(batch) {
+        shapeRendererHelper.draw(batch = batch) {
             rect(tank.groupWrapper.x, tank.groupWrapper.y, tank.groupWrapper.width, tank.groupWrapper.height)
         }
     }
