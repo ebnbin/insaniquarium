@@ -117,21 +117,18 @@ class TankDevHelper(
         y: Float? = null,
     ) {
         repeat(count) {
-            BodyActor(
-                tank = tank,
+            tank.addBody(
                 type = type ?: BodyType.entries.random(),
                 position = BodyPosition(
                     x = x ?: (Random.nextFloat() * tank.groupWrapper.width),
                     y = y ?: (Random.nextFloat() * tank.groupWrapper.height),
                 ),
-            ).also {
-                tank.groupWrapper.addActor(it)
-            }
+            )
         }
     }
 
     private fun clearBodies() {
-        tank.groupWrapper.clearChildren()
+        tank.clearBodies()
     }
 
     private val shapeRendererHelper: ShapeRendererHelper = ShapeRendererHelper()

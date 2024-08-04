@@ -45,6 +45,7 @@ class TankGroup : Group() {
         if (tickDelta > 0) {
             tickNanoAccumulator += measureNanoTime {
                 super.act(delta)
+                tank.tick(tickDelta)
             }
             if (tankStage.ticks % 20 == 0) {
                 tickMillis = tickNanoAccumulator / 1_000_000 / 20
@@ -52,6 +53,7 @@ class TankGroup : Group() {
             }
         } else {
             super.act(delta)
+            tank.act(delta)
         }
     }
 

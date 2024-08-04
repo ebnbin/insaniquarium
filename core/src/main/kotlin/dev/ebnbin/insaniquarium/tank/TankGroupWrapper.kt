@@ -1,5 +1,6 @@
 package dev.ebnbin.insaniquarium.tank
 
+import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.scenes.scene2d.Actor
 
 class TankGroupWrapper(
@@ -16,6 +17,9 @@ class TankGroupWrapper(
 
     val height: Float
         get() = tankGroup.height
+
+    val batch: Batch
+        get() = requireNotNull(tankGroup.stage).batch
 
     fun setSize(width: Float, height: Float) {
         tankGroup.setSize(width, height)
