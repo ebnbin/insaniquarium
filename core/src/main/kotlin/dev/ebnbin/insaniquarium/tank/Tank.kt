@@ -4,6 +4,8 @@ import com.badlogic.ashley.core.Component
 import com.badlogic.ashley.core.ComponentMapper
 import com.badlogic.ashley.core.Engine
 import com.badlogic.ashley.core.Entity
+import com.badlogic.ashley.core.EntityListener
+import com.badlogic.ashley.core.EntitySystem
 import com.badlogic.ashley.systems.IteratingSystem
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
@@ -13,15 +15,39 @@ import dev.ebnbin.insaniquarium.body.BodyHelper
 import dev.ebnbin.insaniquarium.body.BodyPosition
 import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.insaniquarium.preference.PreferenceManager
+import dev.ebnbin.kgdx.util.ShapeRendererHelper
 import ktx.ashley.allOf
 import ktx.ashley.mapperFor
 
 class Tank(
     val actorWrapper: TankActorWrapper,
 ) {
-    private val engine: Engine = Engine()
+    private val engine: Engine = Engine().also { engine ->
+        engine.addEntityListener(
+            allOf(
+                TankComponent::class,
+                BodyDataComponent::class,
+                BodyPositionComponent::class,
+                TextureRegionComponent::class,
+            ).get(),
+            object : EntityListener {
+                override fun entityAdded(entity: Entity) {
+                }
+
+                override fun entityRemoved(entity: Entity) {
+                    if (tankComponent.selectedBodyEntity === entity) {
+                        tankComponent.selectedBodyEntity = null
+                    }
+                }
+            },
+        )
+    }
 
     private val updateType: UpdateType = UpdateType()
+
+    val tankComponent: TankComponent = TankComponent()
+
+    private val shapeRendererHelper: ShapeRendererHelper = ShapeRendererHelper()
 
     val data: TankData = TankData()
 
@@ -31,21 +57,43 @@ class Tank(
 
     val devHelper: TankDevHelper = TankDevHelper(this)
 
-    var touchPosition: BodyPosition? = null
-        private set
-
     fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-        if (devHelper.touchDown(event, x, y, pointer, button)) return false
-        touchPosition = BodyPosition(x, y)
+        tankComponent.touchPosition = BodyPosition(x, y)
+        val entities = engine.getEntitiesFor(allOf(
+            BodyDataComponent::class,
+        ).get())
+        var handled = false
+        for (i in entities.size() - 1 downTo 0) {
+            val entity = entities[i]
+            val bodyData = ComponentMappers.bodyData.get(entity)
+            if (bodyData.bodyData.contains(x, y)) {
+                tankComponent.selectedBodyEntity = entity
+                handled = true
+                break
+            }
+        }
+        if (!handled) {
+            if (tankComponent.selectedBodyEntity == null) {
+                val bodyType = tankComponent.selectedBodyType
+                if (bodyType != null) {
+                    addBody(
+                        type = bodyType,
+                        position = BodyPosition(x, y),
+                    )
+                }
+            } else {
+                tankComponent.selectedBodyEntity = null
+            }
+        }
         return true
     }
 
     fun touchDragged(event: InputEvent, x: Float, y: Float, pointer: Int) {
-        touchPosition = BodyPosition(x, y)
+        tankComponent.touchPosition = BodyPosition(x, y)
     }
 
     fun touchUp(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int) {
-        touchPosition = null
+        tankComponent.touchPosition = null
     }
 
     fun bodyCount(): Int {
@@ -63,16 +111,16 @@ class Tank(
     }
 
     fun draw(batch: Batch, parentAlpha: Float) {
-        devHelper.draw(batch, parentAlpha)
         updateType.type = UpdateType.Type.DRAW
         engine.update(0f)
     }
 
     fun addedToStage(stage: TankStage) {
         devHelper.addedToStage(stage)
-        engine.addSystem(ActSystem(updateType))
-        engine.addSystem(TickSystem(updateType))
-        engine.addSystem(DrawSystem(updateType, actorWrapper))
+        engine.addSystem(BodyActSystem(updateType))
+        engine.addSystem(BodyTickSystem(updateType))
+        engine.addSystem(TankDrawSystem(updateType, actorWrapper, shapeRendererHelper))
+        engine.addSystem(BodyDrawSystem(updateType, actorWrapper, shapeRendererHelper))
     }
 
     fun removedFromStage(stage: TankStage) {
@@ -85,6 +133,7 @@ class Tank(
         position: BodyPosition,
     ) {
         val entity = engine.createEntity()
+        entity.add(tankComponent)
         entity.add(BodyDataComponent(
             bodyData = BodyData(
                 tankData = data,
@@ -106,7 +155,12 @@ class Tank(
     }
 
     fun clearBodies() {
-        engine.removeAllEntities()
+        engine.removeAllEntities(allOf(
+            TankComponent::class,
+            BodyDataComponent::class,
+            BodyPositionComponent::class,
+            TextureRegionComponent::class,
+        ).get())
     }
 }
 
@@ -121,6 +175,12 @@ private data class UpdateType(
         ;
     }
 }
+
+class TankComponent(
+    var touchPosition: BodyPosition? = null,
+    var selectedBodyType: BodyType? = null,
+    var selectedBodyEntity: Entity? = null,
+) : Component
 
 private class BodyDataComponent(
     var bodyData: BodyData,
@@ -138,12 +198,32 @@ private class TextureRegionComponent(
 }
 
 private object ComponentMappers {
+    val tank: ComponentMapper<TankComponent> = mapperFor()
     val bodyData: ComponentMapper<BodyDataComponent> = mapperFor()
     val bodyPosition: ComponentMapper<BodyPositionComponent> = mapperFor()
     val textureRegion: ComponentMapper<TextureRegionComponent> = mapperFor()
 }
 
-private class TickSystem(
+private class TankDrawSystem(
+    private val updateType: UpdateType,
+    private val actorWrapper: TankActorWrapper,
+    private val shapeRendererHelper: ShapeRendererHelper,
+) : EntitySystem() {
+    private val batch: Batch = actorWrapper.batch
+
+    override fun checkProcessing(): Boolean {
+        return updateType.type == UpdateType.Type.DRAW
+    }
+
+    override fun update(deltaTime: Float) {
+        super.update(deltaTime)
+        shapeRendererHelper.draw(batch = batch) {
+            rect(actorWrapper.x, actorWrapper.y, actorWrapper.width, actorWrapper.height)
+        }
+    }
+}
+
+private class BodyTickSystem(
     private val updateType: UpdateType,
 ) : IteratingSystem(allOf(
     BodyDataComponent::class,
@@ -161,7 +241,7 @@ private class TickSystem(
     }
 }
 
-private class ActSystem(
+private class BodyActSystem(
     private val updateType: UpdateType,
 ) : IteratingSystem(allOf(
     BodyDataComponent::class,
@@ -197,10 +277,13 @@ private class ActSystem(
     }
 }
 
-private class DrawSystem(
+private class BodyDrawSystem(
     private val updateType: UpdateType,
     private val actorWrapper: TankActorWrapper,
+    private val shapeRendererHelper: ShapeRendererHelper,
 ) : IteratingSystem(allOf(
+    TankComponent::class,
+    BodyDataComponent::class,
     BodyPositionComponent::class,
     TextureRegionComponent::class,
 ).get()) {
@@ -210,15 +293,50 @@ private class DrawSystem(
         return updateType.type == UpdateType.Type.DRAW
     }
 
+    override fun update(deltaTime: Float) {
+        actorWrapper.applyTransform(batch)
+        super.update(deltaTime)
+        actorWrapper.resetTransform(batch)
+    }
+
     override fun processEntity(entity: Entity, deltaTime: Float) {
+        val tankComponent = ComponentMappers.tank.get(entity)
+        val bodyData = ComponentMappers.bodyData.get(entity)
         val bodyPosition = ComponentMappers.bodyPosition.get(entity)
         val textureRegion = ComponentMappers.textureRegion.get(entity)
         batch.draw(
             textureRegion.textureRegion,
-            bodyPosition.bodyPosition.x - textureRegion.width / 2 + actorWrapper.x,
-            bodyPosition.bodyPosition.y - textureRegion.height / 2 + actorWrapper.y,
+            bodyPosition.bodyPosition.x - textureRegion.width / 2,
+            bodyPosition.bodyPosition.y - textureRegion.height / 2,
             textureRegion.width,
             textureRegion.height,
         )
+        shapeRendererHelper.draw(
+            enabled = tankComponent.selectedBodyEntity === entity,
+            batch = batch,
+        ) {
+            rect(
+                bodyData.bodyData.left,
+                bodyData.bodyData.bottom,
+                bodyData.bodyData.width,
+                bodyData.bodyData.height,
+            )
+            bodyData.bodyData.swimBehaviorX?.drivingTarget?.let { drivingTarget ->
+                line(
+                    drivingTarget.position,
+                    0f,
+                    drivingTarget.position,
+                    bodyData.bodyData.tankData.height,
+                )
+            }
+            bodyData.bodyData.swimBehaviorY?.drivingTarget?.let { drivingTarget ->
+                line(
+                    0f,
+                    drivingTarget.position,
+                    bodyData.bodyData.tankData.width,
+                    drivingTarget.position,
+                )
+            }
+        }
     }
 }

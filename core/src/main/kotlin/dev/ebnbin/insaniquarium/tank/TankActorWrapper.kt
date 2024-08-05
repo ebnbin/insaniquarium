@@ -23,4 +23,12 @@ class TankActorWrapper(
     fun setSize(width: Float, height: Float) {
         tankActor.setSize(width, height)
     }
+
+    fun applyTransform(batch: Batch) {
+        tankActor.applyTransform(batch)
+    }
+
+    fun resetTransform(batch: Batch) {
+        tankActor.resetTransform(batch)
+    }
 }

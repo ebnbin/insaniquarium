@@ -164,4 +164,8 @@ data class BodyData(
             ),
         )
     }
+
+    fun contains(x: Float, y: Float): Boolean {
+        return x in left..right && y in bottom..top
+    }
 }

@@ -1,7 +1,5 @@
 package dev.ebnbin.insaniquarium.tank
 
-import com.badlogic.gdx.graphics.g2d.Batch
-import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.insaniquarium.body.Body
@@ -10,7 +8,6 @@ import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.insaniquarium.preference.PreferenceManager
 import dev.ebnbin.kgdx.dev.toDevEntry
 import dev.ebnbin.kgdx.ui.AnimationImage
-import dev.ebnbin.kgdx.util.ShapeRendererHelper
 import dev.ebnbin.kgdx.util.checkBoxMenuItem
 import dev.ebnbin.kgdx.util.listMenuItem
 import dev.ebnbin.kgdx.util.menuItem
@@ -19,14 +16,15 @@ import kotlin.random.Random
 class TankDevHelper(
     private val tank: Tank,
 ) {
-    private var devBodyType: BodyType? = null
-
     fun addedToStage(stage: TankStage) {
         stage.putDevInfo("devBodyType" toDevEntry {
-            "${devBodyType?.id}"
+            "${tank.tankComponent.selectedBodyType?.id}"
         })
         stage.putDevInfo("touchPosition" toDevEntry {
-            "${tank.touchPosition}"
+            "%.3f,%.3f".format(
+                tank.tankComponent.touchPosition?.x ?: Float.NaN,
+                tank.tankComponent.touchPosition?.y ?: Float.NaN,
+            )
         })
     }
 
@@ -49,7 +47,7 @@ class TankDevHelper(
                 valueToText = { it.id },
                 valueToImage = { AnimationImage(textureAsset = it.def.textureAsset) },
             ) {
-                devBodyType = it
+                tank.tankComponent.selectedBodyType = it
             }
             listMenuItem(
                 menuBar = menuBar,
@@ -58,13 +56,13 @@ class TankDevHelper(
                 valueToText = { it.id },
                 valueToImage = { AnimationImage(textureAsset = it.def.textureAsset) },
             ) {
-                devBodyType = it
+                tank.tankComponent.selectedBodyType = it
             }
             menuItem(
                 menuBar = menuBar,
                 text = "reset body type",
             ) {
-                devBodyType = null
+                tank.tankComponent.selectedBodyType = null
             }
             listMenuItem(
                 menuBar = menuBar,
@@ -72,7 +70,7 @@ class TankDevHelper(
                 valueList = listOf(1, 10, 100, 1000),
             ) { count ->
                 createBody(
-                    type = devBodyType,
+                    type = tank.tankComponent.selectedBodyType,
                     count = count,
                 )
             }
@@ -128,24 +126,5 @@ class TankDevHelper(
 
     private fun clearBodies() {
         tank.clearBodies()
-    }
-
-    private val shapeRendererHelper: ShapeRendererHelper = ShapeRendererHelper()
-
-    fun draw(batch: Batch, parentAlpha: Float) {
-        shapeRendererHelper.draw(batch = batch) {
-            rect(tank.actorWrapper.x, tank.actorWrapper.y, tank.actorWrapper.width, tank.actorWrapper.height)
-        }
-    }
-
-    fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
-        val devBodyType = devBodyType ?: return false
-        createBody(
-            type = devBodyType,
-            count = 1,
-            x = x,
-            y = y,
-        )
-        return true
     }
 }
