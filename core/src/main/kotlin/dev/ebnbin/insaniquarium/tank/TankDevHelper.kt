@@ -117,8 +117,8 @@ class TankDevHelper(
             tank.addBody(
                 type = type ?: BodyType.entries.random(),
                 position = BodyPosition(
-                    x = x ?: (Random.nextFloat() * tank.actorWrapper.width),
-                    y = y ?: (Random.nextFloat() * tank.actorWrapper.height),
+                    x = x ?: (Random.nextFloat() * tank.groupWrapper.width),
+                    y = y ?: (Random.nextFloat() * tank.groupWrapper.height),
                 ),
             )
         }

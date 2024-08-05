@@ -6,15 +6,15 @@ import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.kgdx.scene.LifecycleStage
 
 class TankStage : LifecycleStage(TankViewport()) {
-    private val tankActor: TankActor = TankActor().also {
+    private val tankGroup: TankGroup = TankGroup().also {
         addActor(it)
     }
 
     override fun resize(width: Float, height: Float) {
         super.resize(width, height)
-        tankActor.setPosition(
-            (width - tankActor.width) / 2f,
-            (height - tankActor.height) / 3f,
+        tankGroup.setPosition(
+            (width - tankGroup.width) / 2f,
+            (height - tankGroup.height) / 3f,
             Align.bottomLeft,
         )
     }
@@ -23,10 +23,10 @@ class TankStage : LifecycleStage(TankViewport()) {
         get() = true
 
     override val hasDevMenu: Boolean
-        get() = tankActor.tank.devHelper.hasDevMenu
+        get() = tankGroup.tank.devHelper.hasDevMenu
 
     override fun createDevMenu(menuBar: MenuBar, menu: Menu) {
         super.createDevMenu(menuBar, menu)
-        tankActor.tank.devHelper.createDevMenu(menuBar, menu)
+        tankGroup.tank.devHelper.createDevMenu(menuBar, menu)
     }
 }

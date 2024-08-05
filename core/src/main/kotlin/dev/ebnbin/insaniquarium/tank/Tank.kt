@@ -20,7 +20,7 @@ import ktx.ashley.allOf
 import ktx.ashley.mapperFor
 
 class Tank(
-    val actorWrapper: TankActorWrapper,
+    val groupWrapper: TankGroupWrapper,
 ) {
     private val engine: Engine = Engine().also { engine ->
         engine.addEntityListener(
@@ -52,7 +52,7 @@ class Tank(
     val data: TankData = TankData()
 
     init {
-        actorWrapper.setSize(data.width, data.height)
+        groupWrapper.setSize(data.width, data.height)
     }
 
     val devHelper: TankDevHelper = TankDevHelper(this)
@@ -119,8 +119,8 @@ class Tank(
         devHelper.addedToStage(stage)
         engine.addSystem(BodyActSystem(updateType))
         engine.addSystem(BodyTickSystem(updateType))
-        engine.addSystem(TankDrawSystem(updateType, actorWrapper, shapeRendererHelper))
-        engine.addSystem(BodyDrawSystem(updateType, actorWrapper, shapeRendererHelper))
+        engine.addSystem(TankDrawSystem(updateType, groupWrapper, shapeRendererHelper))
+        engine.addSystem(BodyDrawSystem(updateType, groupWrapper, shapeRendererHelper))
     }
 
     fun removedFromStage(stage: TankStage) {
@@ -206,10 +206,10 @@ private object ComponentMappers {
 
 private class TankDrawSystem(
     private val updateType: UpdateType,
-    private val actorWrapper: TankActorWrapper,
+    private val groupWrapper: TankGroupWrapper,
     private val shapeRendererHelper: ShapeRendererHelper,
 ) : EntitySystem() {
-    private val batch: Batch = actorWrapper.batch
+    private val batch: Batch = groupWrapper.batch
 
     override fun checkProcessing(): Boolean {
         return updateType.type == UpdateType.Type.DRAW
@@ -218,7 +218,7 @@ private class TankDrawSystem(
     override fun update(deltaTime: Float) {
         super.update(deltaTime)
         shapeRendererHelper.draw(batch = batch) {
-            rect(actorWrapper.x, actorWrapper.y, actorWrapper.width, actorWrapper.height)
+            rect(groupWrapper.x, groupWrapper.y, groupWrapper.width, groupWrapper.height)
         }
     }
 }
@@ -279,7 +279,7 @@ private class BodyActSystem(
 
 private class BodyDrawSystem(
     private val updateType: UpdateType,
-    private val actorWrapper: TankActorWrapper,
+    private val groupWrapper: TankGroupWrapper,
     private val shapeRendererHelper: ShapeRendererHelper,
 ) : IteratingSystem(allOf(
     TankComponent::class,
@@ -287,16 +287,16 @@ private class BodyDrawSystem(
     BodyPositionComponent::class,
     TextureRegionComponent::class,
 ).get()) {
-    private val batch: Batch = actorWrapper.batch
+    private val batch: Batch = groupWrapper.batch
 
     override fun checkProcessing(): Boolean {
         return updateType.type == UpdateType.Type.DRAW
     }
 
     override fun update(deltaTime: Float) {
-        actorWrapper.applyTransform(batch)
+        groupWrapper.applyTransform(batch)
         super.update(deltaTime)
-        actorWrapper.resetTransform(batch)
+        groupWrapper.resetTransform(batch)
     }
 
     override fun processEntity(entity: Entity, deltaTime: Float) {

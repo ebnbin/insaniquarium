@@ -10,9 +10,9 @@ import dev.ebnbin.kgdx.dev.toDevEntry
 import dev.ebnbin.kgdx.util.diffStage
 import kotlin.system.measureNanoTime
 
-class TankActor : Group() {
+class TankGroup : Group() {
     val tank: Tank = Tank(
-        actorWrapper = TankActorWrapper(this),
+        groupWrapper = TankGroupWrapper(this),
     )
 
     init {
