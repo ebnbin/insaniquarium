@@ -97,16 +97,29 @@ class TankGroup : Group() {
     private val drawTimeDevEntry: DevEntry = "drawTime" toDevEntry {
         "$drawMillis"
     }
+    private val devBodyTypeDevEntry: DevEntry = "devBodyType" toDevEntry {
+        "${tank.tankComponent.selectedBodyType?.id}"
+    }
+    private val touchPositionDevEntry: DevEntry = "touchPosition" toDevEntry {
+        "%.3f,%.3f".format(
+            tank.tankComponent.touchPosition?.x ?: Float.NaN,
+            tank.tankComponent.touchPosition?.y ?: Float.NaN,
+        )
+    }
 
     private fun addedToStage(stage: TankStage) {
         stage.putDevInfo(bodyCountDevEntry)
         stage.putDevInfo(tickTimeDevEntry)
         stage.putDevInfo(drawTimeDevEntry)
+        stage.putDevInfo(devBodyTypeDevEntry)
+        stage.putDevInfo(touchPositionDevEntry)
         tank.addedToStage(stage)
     }
 
     private fun removedFromStage(stage: TankStage) {
         tank.removedFromStage(stage)
+        stage.removeDevInfo(touchPositionDevEntry)
+        stage.removeDevInfo(devBodyTypeDevEntry)
         stage.removeDevInfo(drawTimeDevEntry)
         stage.removeDevInfo(tickTimeDevEntry)
         stage.removeDevInfo(bodyCountDevEntry)

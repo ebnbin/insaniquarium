@@ -2,6 +2,7 @@ package dev.ebnbin.insaniquarium.body
 
 import dev.ebnbin.insaniquarium.tank.TankData
 
+// 3000 bodies: tick 11ms, draw 90ms
 data class BodyData(
     val tankData: TankData,
     val type: BodyType,

@@ -17,8 +17,11 @@ class TankGroupWrapper(
     val height: Float
         get() = tankGroup.height
 
+    val stage: TankStage
+        get() = requireNotNull(tankGroup.stage) as TankStage
+
     val batch: Batch
-        get() = requireNotNull(tankGroup.stage).batch
+        get() = stage.batch
 
     fun setSize(width: Float, height: Float) {
         tankGroup.setSize(width, height)

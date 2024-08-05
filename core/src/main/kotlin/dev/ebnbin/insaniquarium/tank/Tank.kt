@@ -7,17 +7,28 @@ import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.EntityListener
 import com.badlogic.ashley.core.EntitySystem
 import com.badlogic.ashley.systems.IteratingSystem
+import com.badlogic.gdx.graphics.Color
 import com.badlogic.gdx.graphics.g2d.Batch
 import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.InputEvent
+import com.kotcrab.vis.ui.widget.Menu
+import com.kotcrab.vis.ui.widget.MenuBar
 import dev.ebnbin.insaniquarium.body.BodyData
 import dev.ebnbin.insaniquarium.body.BodyHelper
 import dev.ebnbin.insaniquarium.body.BodyPosition
 import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.insaniquarium.preference.PreferenceManager
+import dev.ebnbin.kgdx.dev.DevEntry
+import dev.ebnbin.kgdx.dev.toDevEntry
+import dev.ebnbin.kgdx.ui.AnimationImage
 import dev.ebnbin.kgdx.util.ShapeRendererHelper
+import dev.ebnbin.kgdx.util.checkBoxMenuItem
+import dev.ebnbin.kgdx.util.colorMarkup
+import dev.ebnbin.kgdx.util.listMenuItem
+import dev.ebnbin.kgdx.util.menuItem
 import ktx.ashley.allOf
 import ktx.ashley.mapperFor
+import kotlin.math.absoluteValue
 
 class Tank(
     val groupWrapper: TankGroupWrapper,
@@ -35,8 +46,8 @@ class Tank(
                 }
 
                 override fun entityRemoved(entity: Entity) {
-                    if (tankComponent.selectedBodyEntity === entity) {
-                        tankComponent.selectedBodyEntity = null
+                    if (tankComponent.selectedBodyEntity() === entity) {
+                        tankComponent.selectBodyEntity(null)
                     }
                 }
             },
@@ -45,7 +56,9 @@ class Tank(
 
     private val updateType: UpdateType = UpdateType()
 
-    val tankComponent: TankComponent = TankComponent()
+    val tankComponent: TankComponent = TankComponent(
+        groupWrapper = groupWrapper,
+    )
 
     private val shapeRendererHelper: ShapeRendererHelper = ShapeRendererHelper()
 
@@ -54,8 +67,6 @@ class Tank(
     init {
         groupWrapper.setSize(data.width, data.height)
     }
-
-    val devHelper: TankDevHelper = TankDevHelper(this)
 
     fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
         tankComponent.touchPosition = BodyPosition(x, y)
@@ -67,13 +78,13 @@ class Tank(
             val entity = entities[i]
             val bodyData = ComponentMappers.bodyData.get(entity)
             if (bodyData.bodyData.contains(x, y)) {
-                tankComponent.selectedBodyEntity = entity
+                tankComponent.selectBodyEntity(entity)
                 handled = true
                 break
             }
         }
         if (!handled) {
-            if (tankComponent.selectedBodyEntity == null) {
+            if (tankComponent.selectedBodyEntity() == null) {
                 val bodyType = tankComponent.selectedBodyType
                 if (bodyType != null) {
                     addBody(
@@ -82,7 +93,7 @@ class Tank(
                     )
                 }
             } else {
-                tankComponent.selectedBodyEntity = null
+                tankComponent.selectBodyEntity(null)
             }
         }
         return true
@@ -116,7 +127,6 @@ class Tank(
     }
 
     fun addedToStage(stage: TankStage) {
-        devHelper.addedToStage(stage)
         engine.addSystem(BodyActSystem(updateType))
         engine.addSystem(BodyTickSystem(updateType))
         engine.addSystem(TankDrawSystem(updateType, groupWrapper, shapeRendererHelper))
@@ -125,10 +135,9 @@ class Tank(
 
     fun removedFromStage(stage: TankStage) {
         engine.removeAllSystems()
-        devHelper.removedFromStage(stage)
     }
 
-    fun addBody(
+    private fun addBody(
         type: BodyType,
         position: BodyPosition,
     ) {
@@ -154,13 +163,82 @@ class Tank(
         engine.addEntity(entity)
     }
 
-    fun clearBodies() {
+    private fun addBodies(
+        type: BodyType?,
+        count: Int,
+        x: Float? = null,
+        y: Float? = null,
+    ) {
+        repeat(count) {
+            addBody(
+                type = type ?: BodyType.entries.random(),
+                position = BodyPosition(
+                    x = x ?: (Math.random().toFloat() * groupWrapper.width),
+                    y = y ?: (Math.random().toFloat() * groupWrapper.height),
+                ),
+            )
+        }
+    }
+
+    private fun clearBodies() {
         engine.removeAllEntities(allOf(
             TankComponent::class,
             BodyDataComponent::class,
             BodyPositionComponent::class,
             TextureRegionComponent::class,
         ).get())
+    }
+
+    val hasDevMenu: Boolean = true
+
+    fun createDevMenu(menuBar: MenuBar, menu: Menu) {
+        menu.apply {
+            checkBoxMenuItem(
+                menuBar = menuBar,
+                text = PreferenceManager.enableBodySmoothPosition.key,
+                valueProperty = PreferenceManager.enableBodySmoothPosition::value,
+            )
+            listMenuItem(
+                menuBar = menuBar,
+                text = "body type pet A",
+                valueList = BodyType.DEV_PET_LIST_A,
+                valueToText = { it.id },
+                valueToImage = { AnimationImage(textureAsset = it.def.textureAsset) },
+            ) {
+                tankComponent.selectedBodyType = it
+            }
+            listMenuItem(
+                menuBar = menuBar,
+                text = "body type pet B",
+                valueList = BodyType.DEV_PET_LIST_B,
+                valueToText = { it.id },
+                valueToImage = { AnimationImage(textureAsset = it.def.textureAsset) },
+            ) {
+                tankComponent.selectedBodyType = it
+            }
+            menuItem(
+                menuBar = menuBar,
+                text = "reset body type",
+            ) {
+                tankComponent.selectedBodyType = null
+            }
+            listMenuItem(
+                menuBar = menuBar,
+                text = "create body",
+                valueList = listOf(1, 10, 100, 1000),
+            ) { count ->
+                addBodies(
+                    type = tankComponent.selectedBodyType,
+                    count = count,
+                )
+            }
+            menuItem(
+                menuBar = menuBar,
+                text = "clear bodies",
+            ) {
+                clearBodies()
+            }
+        }
     }
 }
 
@@ -177,10 +255,163 @@ private data class UpdateType(
 }
 
 class TankComponent(
+    val groupWrapper: TankGroupWrapper,
     var touchPosition: BodyPosition? = null,
     var selectedBodyType: BodyType? = null,
-    var selectedBodyEntity: Entity? = null,
-) : Component
+    private var selectedBodyEntity: Entity? = null,
+    private var devInfoEntryList: List<DevEntry>? = null,
+) : Component {
+    fun selectBodyEntity(entity: Entity?) {
+        if (selectedBodyEntity == null) {
+            if (entity == null) {
+                return
+            } else {
+                selectedBodyEntity = entity
+                val bodyData = ComponentMappers.bodyData.get(entity)
+                devInfoEntryList = createDevInfoEntryList(bodyData).onEach { entry ->
+                    groupWrapper.stage.putDevInfo(entry)
+                }
+            }
+        } else {
+            if (entity == null) {
+                devInfoEntryList?.reversed()?.forEach { entry ->
+                    groupWrapper.stage.removeDevInfo(entry)
+                }
+                devInfoEntryList = null
+                selectedBodyEntity = null
+            } else {
+                if (selectedBodyEntity === entity) {
+                    return
+                } else {
+                    devInfoEntryList?.reversed()?.forEach { entry ->
+                        groupWrapper.stage.removeDevInfo(entry)
+                    }
+                    selectedBodyEntity = entity
+                    val bodyData = ComponentMappers.bodyData.get(entity)
+                    devInfoEntryList = createDevInfoEntryList(bodyData).onEach { entry ->
+                        groupWrapper.stage.putDevInfo(entry)
+                    }
+                }
+            }
+        }
+    }
+
+    fun selectedBodyEntity(): Entity? {
+        return selectedBodyEntity
+    }
+
+    private fun createDevInfoEntryList(data: BodyDataComponent): List<DevEntry> {
+        return listOf(
+            "type" toDevEntry {
+                data.bodyData.type.id
+            },
+            "size".key() toDevEntry {
+                "${data.bodyData.width.value(Sign.UNSIGNED)},${data.bodyData.height.value(Sign.UNSIGNED)}"
+            },
+            "lrbt".key() toDevEntry {
+                "${data.bodyData.left.value(Sign.SIGNED)},${data.bodyData.right.value(Sign.SIGNED)}," +
+                    "${data.bodyData.bottom.value(Sign.SIGNED)},${data.bodyData.top.value(Sign.SIGNED)}"
+            },
+            "isInsideLRBT".key() toDevEntry {
+                "${data.bodyData.isInsideLeft.value()},${data.bodyData.isInsideRight.value()}," +
+                    "${data.bodyData.isInsideBottom.value()},${data.bodyData.isInsideTop.value()}"
+            },
+            "areaInWater/area".key() toDevEntry {
+                "${data.bodyData.areaInWater.value(Sign.UNSIGNED)}/${data.bodyData.area.value(Sign.UNSIGNED)}"
+            },
+            "density".key() toDevEntry {
+                data.bodyData.density.value(Sign.UNSIGNED)
+            },
+            "mass".key() toDevEntry {
+                data.bodyData.mass.value(Sign.UNSIGNED)
+            },
+            "gravity".key() toDevEntry {
+                "${0f.value(Sign.X)},${data.bodyData.gravityY.value(Sign.Y)}"
+            },
+            "buoyancy".key() toDevEntry {
+                "${0f.value(Sign.X)},${data.bodyData.buoyancyY.value(Sign.Y)}"
+            },
+            "drag".key() toDevEntry {
+                "${data.bodyData.dragX.value(Sign.X)},${data.bodyData.dragY.value(Sign.Y)}"
+            },
+            "drivingTarget".key() toDevEntry {
+                "${data.bodyData.drivingTargetX?.position.value(Sign.SIGNED)}," +
+                    data.bodyData.drivingTargetY?.position.value(Sign.SIGNED)
+            },
+            "drivingForce".key() toDevEntry {
+                "${data.bodyData.drivingForceX.value(Sign.X)},${data.bodyData.drivingForceY.value(Sign.Y)}"
+            },
+            "normalReactionForce".key() toDevEntry {
+                "${data.bodyData.normalReactionForceX.value(Sign.X)}," +
+                    "${data.bodyData.normalReactionForceY.value(Sign.Y)}"
+            },
+            "normalForce".key() toDevEntry {
+                "${data.bodyData.normalForceX.value(Sign.X)},${data.bodyData.normalForceY.value(Sign.Y)}"
+            },
+            "frictionReactionForce".key() toDevEntry {
+                "${data.bodyData.frictionReactionForceX.value(Sign.X)},${0f.value(Sign.Y)}"
+            },
+            "friction".key() toDevEntry {
+                "${data.bodyData.frictionX.value(Sign.X)},${0f.value(Sign.Y)}"
+            },
+            "force".key() toDevEntry {
+                "${data.bodyData.forceX.value(Sign.X)},${data.bodyData.forceY.value(Sign.Y)}"
+            },
+            "acceleration".key() toDevEntry {
+                "${data.bodyData.accelerationX.value(Sign.X)},${data.bodyData.accelerationY.value(Sign.Y)}"
+            },
+            "velocity".key() toDevEntry {
+                "${data.bodyData.velocityX.value(Sign.X)},${data.bodyData.velocityY.value(Sign.Y)}"
+            },
+            "position".key() toDevEntry {
+                "${data.bodyData.position.x.value(Sign.SIGNED)},${data.bodyData.position.y.value(Sign.SIGNED)}"
+            },
+            "swimBehavior".key() toDevEntry {
+                "${data.bodyData.swimBehaviorX?.drivingTarget?.position.value(Sign.SIGNED)}," +
+                    "${data.bodyData.swimBehaviorY?.drivingTarget?.position.value(Sign.SIGNED)}," +
+                    "${data.bodyData.swimBehaviorX?.cooldownTicks},${data.bodyData.swimBehaviorY?.cooldownTicks}"
+            },
+        )
+    }
+
+    private enum class Sign {
+        X,
+        Y,
+        SIGNED,
+        UNSIGNED,
+        ;
+    }
+
+    private fun String.key(): String {
+        return "%-21s".format(this)
+    }
+
+    private fun Float?.value(sign: Sign): String {
+        if (this == null) return "%8s".format("null").colorMarkup(Color.YELLOW)
+        return "%s%7.3f".format(
+            when {
+                this > 0f -> when (sign) {
+                    Sign.X -> "►"
+                    Sign.Y -> "▲"
+                    Sign.SIGNED -> "+"
+                    Sign.UNSIGNED -> " "
+                }.colorMarkup(Color.GREEN)
+                this < 0f -> when (sign) {
+                    Sign.X -> "◄"
+                    Sign.Y -> "▼"
+                    Sign.SIGNED -> "-"
+                    Sign.UNSIGNED -> " "
+                }.colorMarkup(Color.RED)
+                else -> " "
+            },
+            absoluteValue,
+        )
+    }
+
+    private fun Boolean.value(): String {
+        return "%8s".format(toString()).colorMarkup(if (this) Color.GREEN else Color.RED)
+    }
+}
 
 private class BodyDataComponent(
     var bodyData: BodyData,
@@ -312,7 +543,7 @@ private class BodyDrawSystem(
             textureRegion.height,
         )
         shapeRendererHelper.draw(
-            enabled = tankComponent.selectedBodyEntity === entity,
+            enabled = tankComponent.selectedBodyEntity() === entity,
             batch = batch,
         ) {
             rect(

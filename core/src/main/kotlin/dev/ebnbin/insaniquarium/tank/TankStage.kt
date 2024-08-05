@@ -23,10 +23,10 @@ class TankStage : LifecycleStage(TankViewport()) {
         get() = true
 
     override val hasDevMenu: Boolean
-        get() = tankGroup.tank.devHelper.hasDevMenu
+        get() = tankGroup.tank.hasDevMenu
 
     override fun createDevMenu(menuBar: MenuBar, menu: Menu) {
         super.createDevMenu(menuBar, menu)
-        tankGroup.tank.devHelper.createDevMenu(menuBar, menu)
+        tankGroup.tank.createDevMenu(menuBar, menu)
     }
 }
