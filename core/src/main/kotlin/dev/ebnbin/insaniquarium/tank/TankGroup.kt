@@ -34,6 +34,11 @@ class TankGroup : Group() {
     private var tickNanoAccumulator: Long = 0L
     private var tickMillis: Long = 0L
 
+    private var actStartNano: Long = System.nanoTime()
+    private var actNanoAccumulator: Long = 0L
+    private var actCount: Int = 0
+    private var actMillis: Long = 0
+
     private var drawStartNano: Long = System.nanoTime()
     private var drawNanoAccumulator: Long = 0L
     private var drawCount: Int = 0
@@ -52,8 +57,17 @@ class TankGroup : Group() {
                 tickNanoAccumulator = 0L
             }
         } else {
-            super.act(delta)
-            tank.act(delta)
+            actNanoAccumulator += measureNanoTime {
+                super.act(delta)
+                tank.act(delta)
+            }
+            ++actCount
+            if (System.nanoTime() - actStartNano > 1_000_000_000) {
+                actMillis = actNanoAccumulator / 1_000_000 / actCount
+                actStartNano = System.nanoTime()
+                actNanoAccumulator = 0L
+                actCount = 0
+            }
         }
     }
 
@@ -94,6 +108,9 @@ class TankGroup : Group() {
     private val tickTimeDevEntry: DevEntry = "tickTime" toDevEntry {
         "$tickMillis"
     }
+    private val actTimeDevEntry: DevEntry = "actTime" toDevEntry {
+        "$actMillis"
+    }
     private val drawTimeDevEntry: DevEntry = "drawTime" toDevEntry {
         "$drawMillis"
     }
@@ -110,6 +127,7 @@ class TankGroup : Group() {
     private fun addedToStage(stage: TankStage) {
         stage.putDevInfo(bodyCountDevEntry)
         stage.putDevInfo(tickTimeDevEntry)
+        stage.putDevInfo(actTimeDevEntry)
         stage.putDevInfo(drawTimeDevEntry)
         stage.putDevInfo(devBodyTypeDevEntry)
         stage.putDevInfo(touchPositionDevEntry)
@@ -121,6 +139,7 @@ class TankGroup : Group() {
         stage.removeDevInfo(touchPositionDevEntry)
         stage.removeDevInfo(devBodyTypeDevEntry)
         stage.removeDevInfo(drawTimeDevEntry)
+        stage.removeDevInfo(actTimeDevEntry)
         stage.removeDevInfo(tickTimeDevEntry)
         stage.removeDevInfo(bodyCountDevEntry)
     }
