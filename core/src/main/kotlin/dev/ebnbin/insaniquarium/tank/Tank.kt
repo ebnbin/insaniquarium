@@ -13,7 +13,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion
 import com.badlogic.gdx.scenes.scene2d.InputEvent
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
-import dev.ebnbin.insaniquarium.body.BodyData
+import dev.ebnbin.insaniquarium.body.BodyDef
+import dev.ebnbin.insaniquarium.body.BodyDrivingTarget
 import dev.ebnbin.insaniquarium.body.BodyHelper
 import dev.ebnbin.insaniquarium.body.BodyPosition
 import dev.ebnbin.insaniquarium.body.BodyType
@@ -30,6 +31,8 @@ import ktx.ashley.allOf
 import ktx.ashley.mapperFor
 import kotlin.math.absoluteValue
 
+// 3000 bodies: tick 11ms, draw 93ms
+// 3000 bodies: tick 8ms, draw 93ms
 class Tank(
     val groupWrapper: TankGroupWrapper,
 ) {
@@ -62,10 +65,8 @@ class Tank(
 
     private val shapeRendererHelper: ShapeRendererHelper = ShapeRendererHelper()
 
-    val data: TankData = TankData()
-
     init {
-        groupWrapper.setSize(data.width, data.height)
+        groupWrapper.setSize(tankComponent.width, tankComponent.height)
     }
 
     fun touchDown(event: InputEvent, x: Float, y: Float, pointer: Int, button: Int): Boolean {
@@ -77,7 +78,7 @@ class Tank(
         for (i in entities.size() - 1 downTo 0) {
             val entity = entities[i]
             val bodyData = ComponentMappers.bodyData.get(entity)
-            if (bodyData.bodyData.contains(x, y)) {
+            if (bodyData.contains(x, y)) {
                 tankComponent.selectBodyEntity(entity)
                 handled = true
                 break
@@ -144,9 +145,8 @@ class Tank(
         val entity = engine.createEntity()
         entity.add(tankComponent)
         entity.add(BodyDataComponent(
-            bodyData = BodyData(
-                tankData = data,
-                type = type,
+            def = type.def,
+            bodyInitData = BodyInitData(
                 velocityX = 0f,
                 velocityY = 0f,
                 position = position,
@@ -242,7 +242,7 @@ class Tank(
     }
 }
 
-private data class UpdateType(
+data class UpdateType(
     var type: Type = Type.NONE,
 ) {
     enum class Type {
@@ -256,6 +256,8 @@ private data class UpdateType(
 
 class TankComponent(
     val groupWrapper: TankGroupWrapper,
+    val width: Float = WIDTH_DP.dpToMeter,
+    val height: Float = HEIGHT_DP.dpToMeter,
     var touchPosition: BodyPosition? = null,
     var selectedBodyType: BodyType? = null,
     private var selectedBodyEntity: Entity? = null,
@@ -303,73 +305,73 @@ class TankComponent(
     private fun createDevInfoEntryList(data: BodyDataComponent): List<DevEntry> {
         return listOf(
             "type" toDevEntry {
-                data.bodyData.type.id
+                data.def.id
             },
             "size".key() toDevEntry {
-                "${data.bodyData.width.value(Sign.UNSIGNED)},${data.bodyData.height.value(Sign.UNSIGNED)}"
+                "${data.width.value(Sign.UNSIGNED)},${data.height.value(Sign.UNSIGNED)}"
             },
             "lrbt".key() toDevEntry {
-                "${data.bodyData.left.value(Sign.SIGNED)},${data.bodyData.right.value(Sign.SIGNED)}," +
-                    "${data.bodyData.bottom.value(Sign.SIGNED)},${data.bodyData.top.value(Sign.SIGNED)}"
+                "${data.left.value(Sign.SIGNED)},${data.right.value(Sign.SIGNED)}," +
+                    "${data.bottom.value(Sign.SIGNED)},${data.top.value(Sign.SIGNED)}"
             },
             "isInsideLRBT".key() toDevEntry {
-                "${data.bodyData.isInsideLeft.value()},${data.bodyData.isInsideRight.value()}," +
-                    "${data.bodyData.isInsideBottom.value()},${data.bodyData.isInsideTop.value()}"
+                "${data.isInsideLeft.value()},${data.isInsideRight.value()}," +
+                    "${data.isInsideBottom.value()},${data.isInsideTop.value()}"
             },
             "areaInWater/area".key() toDevEntry {
-                "${data.bodyData.areaInWater.value(Sign.UNSIGNED)}/${data.bodyData.area.value(Sign.UNSIGNED)}"
+                "${data.areaInWater.value(Sign.UNSIGNED)}/${data.area.value(Sign.UNSIGNED)}"
             },
             "density".key() toDevEntry {
-                data.bodyData.density.value(Sign.UNSIGNED)
+                data.density.value(Sign.UNSIGNED)
             },
             "mass".key() toDevEntry {
-                data.bodyData.mass.value(Sign.UNSIGNED)
+                data.mass.value(Sign.UNSIGNED)
             },
             "gravity".key() toDevEntry {
-                "${0f.value(Sign.X)},${data.bodyData.gravityY.value(Sign.Y)}"
+                "${0f.value(Sign.X)},${data.gravityY.value(Sign.Y)}"
             },
             "buoyancy".key() toDevEntry {
-                "${0f.value(Sign.X)},${data.bodyData.buoyancyY.value(Sign.Y)}"
+                "${0f.value(Sign.X)},${data.buoyancyY.value(Sign.Y)}"
             },
             "drag".key() toDevEntry {
-                "${data.bodyData.dragX.value(Sign.X)},${data.bodyData.dragY.value(Sign.Y)}"
+                "${data.dragX.value(Sign.X)},${data.dragY.value(Sign.Y)}"
             },
             "drivingTarget".key() toDevEntry {
-                "${data.bodyData.drivingTargetX?.position.value(Sign.SIGNED)}," +
-                    data.bodyData.drivingTargetY?.position.value(Sign.SIGNED)
+                "${data.drivingTargetX?.position.value(Sign.SIGNED)}," +
+                    data.drivingTargetY?.position.value(Sign.SIGNED)
             },
             "drivingForce".key() toDevEntry {
-                "${data.bodyData.drivingForceX.value(Sign.X)},${data.bodyData.drivingForceY.value(Sign.Y)}"
+                "${data.drivingForceX.value(Sign.X)},${data.drivingForceY.value(Sign.Y)}"
             },
             "normalReactionForce".key() toDevEntry {
-                "${data.bodyData.normalReactionForceX.value(Sign.X)}," +
-                    "${data.bodyData.normalReactionForceY.value(Sign.Y)}"
+                "${data.normalReactionForceX.value(Sign.X)}," +
+                    "${data.normalReactionForceY.value(Sign.Y)}"
             },
             "normalForce".key() toDevEntry {
-                "${data.bodyData.normalForceX.value(Sign.X)},${data.bodyData.normalForceY.value(Sign.Y)}"
+                "${data.normalForceX.value(Sign.X)},${data.normalForceY.value(Sign.Y)}"
             },
             "frictionReactionForce".key() toDevEntry {
-                "${data.bodyData.frictionReactionForceX.value(Sign.X)},${0f.value(Sign.Y)}"
+                "${data.frictionReactionForceX.value(Sign.X)},${0f.value(Sign.Y)}"
             },
             "friction".key() toDevEntry {
-                "${data.bodyData.frictionX.value(Sign.X)},${0f.value(Sign.Y)}"
+                "${data.frictionX.value(Sign.X)},${0f.value(Sign.Y)}"
             },
             "force".key() toDevEntry {
-                "${data.bodyData.forceX.value(Sign.X)},${data.bodyData.forceY.value(Sign.Y)}"
+                "${data.forceX.value(Sign.X)},${data.forceY.value(Sign.Y)}"
             },
             "acceleration".key() toDevEntry {
-                "${data.bodyData.accelerationX.value(Sign.X)},${data.bodyData.accelerationY.value(Sign.Y)}"
+                "${data.accelerationX.value(Sign.X)},${data.accelerationY.value(Sign.Y)}"
             },
             "velocity".key() toDevEntry {
-                "${data.bodyData.velocityX.value(Sign.X)},${data.bodyData.velocityY.value(Sign.Y)}"
+                "${data.velocityX.value(Sign.X)},${data.velocityY.value(Sign.Y)}"
             },
             "position".key() toDevEntry {
-                "${data.bodyData.position.x.value(Sign.SIGNED)},${data.bodyData.position.y.value(Sign.SIGNED)}"
+                "${data.position.x.value(Sign.SIGNED)},${data.position.y.value(Sign.SIGNED)}"
             },
             "swimBehavior".key() toDevEntry {
-                "${data.bodyData.swimBehaviorX?.drivingTarget?.position.value(Sign.SIGNED)}," +
-                    "${data.bodyData.swimBehaviorY?.drivingTarget?.position.value(Sign.SIGNED)}," +
-                    "${data.bodyData.swimBehaviorX?.cooldownTicks},${data.bodyData.swimBehaviorY?.cooldownTicks}"
+                "${data.swimBehaviorX?.drivingTarget?.position.value(Sign.SIGNED)}," +
+                    "${data.swimBehaviorY?.drivingTarget?.position.value(Sign.SIGNED)}," +
+                    "${data.swimBehaviorX?.cooldownTicks},${data.swimBehaviorY?.cooldownTicks}"
             },
         )
     }
@@ -411,31 +413,94 @@ class TankComponent(
     private fun Boolean.value(): String {
         return "%8s".format(toString()).colorMarkup(if (this) Color.GREEN else Color.RED)
     }
+
+    companion object {
+        private const val WIDTH_DP = 960f
+        private const val HEIGHT_DP = 600f
+    }
 }
 
-private class BodyDataComponent(
-    var bodyData: BodyData,
-) : Component
+class BodyInitData(
+    val velocityX: Float,
+    val velocityY: Float,
+    val position: BodyPosition,
+    val swimBehaviorX: BodyHelper.SwimBehavior?,
+    val swimBehaviorY: BodyHelper.SwimBehavior?,
+)
 
-private class BodyPositionComponent(
+class BodyDataComponent(
+    val def: BodyDef,
+    var bodyInitData: BodyInitData?,
+    var width: Float = 0f,
+    var height: Float = 0f,
+    var halfWidth: Float = 0f,
+    var halfHeight: Float = 0f,
+    var minX: Float = 0f,
+    var maxX: Float = 0f,
+    var minY: Float = 0f,
+    var maxY: Float = 0f,
+    var left: Float = 0f,
+    var right: Float = 0f,
+    var bottom: Float = 0f,
+    var top: Float = 0f,
+    var isInsideLeft: Boolean = false,
+    var isInsideRight: Boolean = false,
+    var isInsideBottom: Boolean = false,
+    var isInsideTop: Boolean = false,
+    var area: Float = 0f,
+    var areaX: Float = 0f,
+    var areaY: Float = 0f,
+    var areaInWater: Float = 0f,
+    var density: Float = 0f,
+    var mass: Float = 0f,
+    var gravityY: Float = 0f,
+    var buoyancyY: Float = 0f,
+    var dragX: Float = 0f,
+    var dragY: Float = 0f,
+    var drivingTargetX: BodyDrivingTarget? = null,
+    var drivingTargetY: BodyDrivingTarget? = null,
+    var drivingForceX: Float = 0f,
+    var drivingForceY: Float = 0f,
+    var normalReactionForceX: Float = 0f,
+    var normalReactionForceY: Float = 0f,
+    var normalForceX: Float = 0f,
+    var normalForceY: Float = 0f,
+    var frictionReactionForceX: Float = 0f,
+    var frictionX: Float = 0f,
+    var forceX: Float = 0f,
+    var forceY: Float = 0f,
+    var accelerationX: Float = 0f,
+    var accelerationY: Float = 0f,
+    var velocityX: Float = 0f,
+    var velocityY: Float = 0f,
+    var position: BodyPosition = BodyPosition(0f, 0f),
+    var swimBehaviorX: BodyHelper.SwimBehavior? = null,
+    var swimBehaviorY: BodyHelper.SwimBehavior? = null,
+) : Component {
+    fun contains(x: Float, y: Float): Boolean {
+        return x in left..right && y in bottom..top
+    }
+}
+
+class BodyPositionComponent(
     var bodyPosition: BodyPosition,
 ) : Component
 
-private class TextureRegionComponent(
+class TextureRegionComponent(
     val textureRegion: TextureRegion,
 ) : Component {
     val width: Float = textureRegion.regionWidth.pxToMeter
     val height: Float = textureRegion.regionHeight.pxToMeter
 }
 
-private object ComponentMappers {
+object ComponentMappers {
     val tank: ComponentMapper<TankComponent> = mapperFor()
     val bodyData: ComponentMapper<BodyDataComponent> = mapperFor()
     val bodyPosition: ComponentMapper<BodyPositionComponent> = mapperFor()
     val textureRegion: ComponentMapper<TextureRegionComponent> = mapperFor()
 }
 
-private class TankDrawSystem(
+class TankDrawSystem(
     private val updateType: UpdateType,
     private val groupWrapper: TankGroupWrapper,
     private val shapeRendererHelper: ShapeRendererHelper,
@@ -454,9 +519,10 @@ private class TankDrawSystem(
     }
 }
 
-private class BodyTickSystem(
+class BodyTickSystem(
     private val updateType: UpdateType,
 ) : IteratingSystem(allOf(
+    TankComponent::class,
     BodyDataComponent::class,
     BodyPositionComponent::class,
 ).get()) {
@@ -465,14 +531,182 @@ private class BodyTickSystem(
     }
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
+        val tank = ComponentMappers.tank.get(entity)
         val bodyData = ComponentMappers.bodyData.get(entity)
         val bodyPosition = ComponentMappers.bodyPosition.get(entity)
-        bodyData.bodyData = bodyData.bodyData.tick(deltaTime)
-        bodyPosition.bodyPosition = bodyData.bodyData.position
+
+        val bodyDef = bodyData.def
+
+        val lastVelocityX: Float
+        val lastVelocityY: Float
+        val lastPosition: BodyPosition
+        val lastSwimBehaviorX: BodyHelper.SwimBehavior?
+        val lastSwimBehaviorY: BodyHelper.SwimBehavior?
+
+        val bodyInitData = bodyData.bodyInitData
+        if (bodyInitData == null) {
+            lastVelocityX = bodyData.velocityX
+            lastVelocityY = bodyData.velocityY
+            lastPosition = bodyData.position
+            lastSwimBehaviorX = bodyData.swimBehaviorX
+            lastSwimBehaviorY = bodyData.swimBehaviorY
+        } else {
+            lastVelocityX = bodyInitData.velocityX
+            lastVelocityY = bodyInitData.velocityY
+            lastPosition = bodyInitData.position
+            lastSwimBehaviorX = bodyInitData.swimBehaviorX
+            lastSwimBehaviorY = bodyInitData.swimBehaviorY
+            bodyData.bodyInitData = null
+        }
+
+        bodyData.width = bodyDef.width
+        bodyData.height = bodyDef.height
+
+        bodyData.halfWidth = bodyData.width / 2f
+        bodyData.halfHeight = bodyData.height / 2f
+
+        bodyData.minX = bodyData.halfWidth
+        bodyData.maxX = tank.width - bodyData.halfWidth
+        bodyData.minY = bodyData.halfHeight
+        bodyData.maxY = Float.MAX_VALUE
+
+        bodyData.left = lastPosition.x - bodyData.halfWidth
+        bodyData.right = bodyData.left + bodyData.width
+        bodyData.bottom = lastPosition.y - bodyData.halfHeight
+        bodyData.top = bodyData.bottom + bodyData.height
+
+        bodyData.isInsideLeft = bodyData.left > 0f
+        bodyData.isInsideRight = bodyData.right < tank.width
+        bodyData.isInsideBottom = bodyData.bottom > 0f
+        bodyData.isInsideTop = true
+
+        bodyData.area = bodyData.width * bodyData.height
+
+        bodyData.areaX = bodyData.height * bodyData.height
+        bodyData.areaY = bodyData.width * bodyData.width
+
+        bodyData.areaInWater = ((tank.height - bodyData.bottom) / bodyData.height).coerceIn(0f, 1f) * bodyData.area
+
+        bodyData.density = bodyDef.density
+
+        bodyData.mass = bodyData.area * bodyData.density
+
+        bodyData.gravityY = BodyHelper.gravityY(bodyData.mass)
+
+        bodyData.buoyancyY = BodyHelper.buoyancyY(bodyData.areaInWater)
+
+        bodyData.dragX = BodyHelper.drag(
+            velocity = lastVelocityX,
+            dragCoefficient = bodyDef.dragCoefficient,
+            crossSectionalArea = bodyData.areaX,
+        )
+        bodyData.dragY = BodyHelper.drag(
+            velocity = lastVelocityY,
+            dragCoefficient = bodyDef.dragCoefficient,
+            crossSectionalArea = bodyData.areaY,
+        )
+
+        bodyData.drivingTargetX = lastSwimBehaviorX?.drivingTarget
+        bodyData.drivingTargetY = lastSwimBehaviorY?.drivingTarget
+
+        bodyData.drivingForceX = BodyHelper.drivingForce(
+            drivingAcceleration = bodyDef.drivingAccelerationX,
+            drivingTarget = bodyData.drivingTargetX,
+            position = lastPosition.x,
+            mass = bodyData.mass,
+            velocity = lastVelocityX,
+        )
+        bodyData.drivingForceY = BodyHelper.drivingForce(
+            drivingAcceleration = bodyDef.drivingAccelerationY,
+            drivingTarget = bodyData.drivingTargetY,
+            position = lastPosition.y,
+            mass = bodyData.mass,
+            velocity = lastVelocityY,
+        )
+
+        bodyData.normalReactionForceX = BodyHelper.force(bodyData.dragX, bodyData.drivingForceX)
+        bodyData.normalReactionForceY = BodyHelper.force(bodyData.gravityY, bodyData.drivingForceY, bodyData.buoyancyY, bodyData.dragY)
+
+        bodyData.normalForceX = BodyHelper.normalForce(
+            isInsideLeftOrBottom = bodyData.isInsideLeft,
+            isInsideRightOrTop = bodyData.isInsideRight,
+            normalReactionForce = bodyData.normalReactionForceX
+        )
+        bodyData.normalForceY = BodyHelper.normalForce(
+            isInsideLeftOrBottom = bodyData.isInsideBottom,
+            isInsideRightOrTop = bodyData.isInsideTop,
+            normalReactionForce = bodyData.normalReactionForceY
+        )
+
+        bodyData.frictionReactionForceX = BodyHelper.force(bodyData.normalReactionForceX, bodyData.normalForceX)
+
+        bodyData.frictionX = BodyHelper.frictionX(
+            normalReactionForceY = bodyData.normalReactionForceY,
+            frictionCoefficient = bodyDef.frictionCoefficient,
+            isInsideBottom = bodyData.isInsideBottom,
+            frictionReactionForceX = bodyData.frictionReactionForceX,
+            velocityX = lastVelocityX,
+        )
+
+        bodyData.forceX = BodyHelper.force(bodyData.frictionReactionForceX, bodyData.frictionX)
+        bodyData.forceY = BodyHelper.force(bodyData.normalReactionForceY, bodyData.normalForceY)
+
+        bodyData.accelerationX = BodyHelper.acceleration(bodyData.forceX, bodyData.mass)
+        bodyData.accelerationY = BodyHelper.acceleration(bodyData.forceY, bodyData.mass)
+
+        bodyData.velocityX = BodyHelper.velocity(
+            velocity = lastVelocityX,
+            acceleration = bodyData.accelerationX,
+            delta = deltaTime,
+            isInsideLeftOrBottom = bodyData.isInsideLeft,
+            isInsideRightOrTop = bodyData.isInsideRight,
+            friction = bodyData.frictionX,
+        )
+        bodyData.velocityY = BodyHelper.velocity(
+            velocity = lastVelocityY,
+            acceleration = bodyData.accelerationY,
+            delta = deltaTime,
+            isInsideLeftOrBottom = bodyData.isInsideBottom,
+            isInsideRightOrTop = bodyData.isInsideTop,
+            friction = 0f,
+        )
+
+        bodyData.position = BodyPosition(
+            x = BodyHelper.position(
+                position = lastPosition.x,
+                velocity = bodyData.velocityX,
+                delta = deltaTime,
+                minPosition = bodyData.minX,
+                maxPosition = bodyData.maxX,
+            ),
+            y = BodyHelper.position(
+                position = lastPosition.y,
+                velocity = bodyData.velocityY,
+                delta = deltaTime,
+                minPosition = bodyData.minY,
+                maxPosition = bodyData.maxY,
+            ),
+        )
+        bodyData.swimBehaviorX = BodyHelper.swimBehavior(
+            swimBehavior = lastSwimBehaviorX,
+            tankSize = tank.width,
+            leftOrBottom = bodyData.left,
+            rightOrTop = bodyData.right,
+            defSwimBehavior = bodyDef.swimBehaviorX,
+        )
+        bodyData.swimBehaviorY = BodyHelper.swimBehavior(
+            swimBehavior = lastSwimBehaviorY,
+            tankSize = tank.height,
+            leftOrBottom = bodyData.bottom,
+            rightOrTop = bodyData.top,
+            defSwimBehavior = bodyDef.swimBehaviorY,
+        )
+
+        bodyPosition.bodyPosition = bodyData.position
     }
 }
 
-private class BodyActSystem(
+class BodyActSystem(
     private val updateType: UpdateType,
 ) : IteratingSystem(allOf(
     BodyDataComponent::class,
@@ -489,26 +723,26 @@ private class BodyActSystem(
             BodyPosition(
                 x = BodyHelper.position(
                     position = bodyPosition.bodyPosition.x,
-                    velocity = bodyData.bodyData.velocityX,
+                    velocity = bodyData.velocityX,
                     delta = deltaTime,
-                    minPosition = bodyData.bodyData.minX,
-                    maxPosition = bodyData.bodyData.maxX,
+                    minPosition = bodyData.minX,
+                    maxPosition = bodyData.maxX,
                 ),
                 y = BodyHelper.position(
                     position = bodyPosition.bodyPosition.y,
-                    velocity = bodyData.bodyData.velocityY,
+                    velocity = bodyData.velocityY,
                     delta = deltaTime,
-                    minPosition = bodyData.bodyData.minY,
-                    maxPosition = bodyData.bodyData.maxY,
+                    minPosition = bodyData.minY,
+                    maxPosition = bodyData.maxY,
                 ),
             )
         } else {
-            bodyData.bodyData.position
+            bodyData.position
         }
     }
 }
 
-private class BodyDrawSystem(
+class BodyDrawSystem(
     private val updateType: UpdateType,
     private val groupWrapper: TankGroupWrapper,
     private val shapeRendererHelper: ShapeRendererHelper,
@@ -531,7 +765,7 @@ private class BodyDrawSystem(
     }
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val tankComponent = ComponentMappers.tank.get(entity)
+        val tank = ComponentMappers.tank.get(entity)
         val bodyData = ComponentMappers.bodyData.get(entity)
         val bodyPosition = ComponentMappers.bodyPosition.get(entity)
         val textureRegion = ComponentMappers.textureRegion.get(entity)
@@ -543,28 +777,28 @@ private class BodyDrawSystem(
             textureRegion.height,
         )
         shapeRendererHelper.draw(
-            enabled = tankComponent.selectedBodyEntity() === entity,
+            enabled = tank.selectedBodyEntity() === entity,
             batch = batch,
         ) {
             rect(
-                bodyData.bodyData.left,
-                bodyData.bodyData.bottom,
-                bodyData.bodyData.width,
-                bodyData.bodyData.height,
+                bodyData.left,
+                bodyData.bottom,
+                bodyData.width,
+                bodyData.height,
             )
-            bodyData.bodyData.swimBehaviorX?.drivingTarget?.let { drivingTarget ->
+            bodyData.swimBehaviorX?.drivingTarget?.let { drivingTarget ->
                 line(
                     drivingTarget.position,
                     0f,
                     drivingTarget.position,
-                    bodyData.bodyData.tankData.height,
+                    tank.height,
                 )
             }
-            bodyData.bodyData.swimBehaviorY?.drivingTarget?.let { drivingTarget ->
+            bodyData.swimBehaviorY?.drivingTarget?.let { drivingTarget ->
                 line(
                     0f,
                     drivingTarget.position,
-                    bodyData.bodyData.tankData.width,
+                    tank.width,
                     drivingTarget.position,
                 )
             }
