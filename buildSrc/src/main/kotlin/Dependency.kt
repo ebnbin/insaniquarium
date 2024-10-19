@@ -4,14 +4,14 @@ object Dependency {
         const val GDX = "1.12.1"
 
         // https://github.com/MobiVM/robovm
-        const val ROBOVM = "2.3.21"
+        const val ROBOVM = "2.3.22"
 
         // https://github.com/libktx/ktx
-        const val KTX = "1.12.1-rc1"
+        const val KTX = "1.12.1-rc2"
     }
 
     // https://github.com/JetBrains/kotlin
-    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.0"
+    const val KOTLIN_GRADLE_PLUGIN = "org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21"
 
     // https://github.com/libgdx/libgdx
     const val GDX = "com.badlogicgames.gdx:gdx:${Version.GDX}"
@@ -42,7 +42,7 @@ object Dependency {
     const val GDX_TOOLS = "com.badlogicgames.gdx:gdx-tools:${Version.GDX}"
 
     // https://maven.google.com/web/index.html
-    const val GRADLE = "com.android.tools.build:gradle:8.2.2"
+    const val GRADLE = "com.android.tools.build:gradle:8.5.2"
 
     // https://github.com/MobiVM/robovm
     const val ROBOVM_GRADLE_PLUGIN = "com.mobidevelop.robovm:robovm-gradle-plugin:${Version.ROBOVM}"

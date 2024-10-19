@@ -7,7 +7,7 @@ java.toolchain.languageVersion = JavaLanguageVersion.of(Version.JAVA)
 
 android {
     namespace = "dev.ebnbin.insaniquarium"
-    compileSdk = 34
+    compileSdk = 35
     sourceSets.named("main").configure {
         assets.srcDirs(
             rootProject.file("assets-kgdx"),
@@ -16,7 +16,7 @@ android {
     }
     defaultConfig {
         minSdk = 30
-        targetSdk = 34
+        targetSdk = 35
         versionCode = Version.VERSION_CODE
         versionName = Version.VERSION
     }
