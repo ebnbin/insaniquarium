@@ -27,7 +27,7 @@ Useful Gradle tasks and flags:
 - `build`: builds sources and archives of every project.
 - `clean`: removes `build` folders, which store compiled classes and built archives.
 - `tool:run`: starts the headless application. Note: if headless sources were not modified - and the application still creates `ApplicationListener` from `core` project - this task might fail due to no graphics support.
-- `desktop:jar`: builds application's runnable jar, which can be found at `desktop/build/lib`.
+- `desktop:jar`: builds application's runnable jar, which can be found at `desktop/build/libs`.
 - `desktop:run`: starts the application.
 - `test`: runs unit tests (if any).
 
