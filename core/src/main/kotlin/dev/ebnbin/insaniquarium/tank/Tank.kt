@@ -144,16 +144,17 @@ class Tank(
     ) {
         val entity = engine.createEntity()
         entity.add(tankComponent)
-        entity.add(BodyDataComponent(
+        entity.add(BodyDefComponent(
             def = type.def,
-            bodyInitData = BodyInitData(
-                velocityX = 0f,
-                velocityY = 0f,
-                position = position,
-                swimBehaviorX = null,
-                swimBehaviorY = null,
-            ),
         ))
+        entity.add(BodyInitDataComponent(
+            velocityX = 0f,
+            velocityY = 0f,
+            position = position,
+            swimBehaviorX = null,
+            swimBehaviorY = null,
+        ))
+        entity.add(BodyDataComponent())
         entity.add(BodyPositionComponent(
             bodyPosition = position,
         ))
@@ -269,8 +270,9 @@ class TankComponent(
                 return
             } else {
                 selectedBodyEntity = entity
+                val bodyDef = ComponentMappers.bodyDef.get(entity)
                 val bodyData = ComponentMappers.bodyData.get(entity)
-                devInfoEntryList = createDevInfoEntryList(bodyData).onEach { entry ->
+                devInfoEntryList = createDevInfoEntryList(bodyDef, bodyData).onEach { entry ->
                     groupWrapper.stage.putDevInfo(entry)
                 }
             }
@@ -289,8 +291,9 @@ class TankComponent(
                         groupWrapper.stage.removeDevInfo(entry)
                     }
                     selectedBodyEntity = entity
+                    val bodyDef = ComponentMappers.bodyDef.get(entity)
                     val bodyData = ComponentMappers.bodyData.get(entity)
-                    devInfoEntryList = createDevInfoEntryList(bodyData).onEach { entry ->
+                    devInfoEntryList = createDevInfoEntryList(bodyDef, bodyData).onEach { entry ->
                         groupWrapper.stage.putDevInfo(entry)
                     }
                 }
@@ -302,10 +305,10 @@ class TankComponent(
         return selectedBodyEntity
     }
 
-    private fun createDevInfoEntryList(data: BodyDataComponent): List<DevEntry> {
+    private fun createDevInfoEntryList(bodyDef: BodyDefComponent, data: BodyDataComponent): List<DevEntry> {
         return listOf(
             "type" toDevEntry {
-                data.def.id
+                bodyDef.def.id
             },
             "size".key() toDevEntry {
                 "${data.width.value(Sign.UNSIGNED)},${data.height.value(Sign.UNSIGNED)}"
@@ -420,17 +423,20 @@ class TankComponent(
     }
 }
 
-class BodyInitData(
+class BodyInitDataComponent(
+    var initialized: Boolean = false,
     val velocityX: Float,
     val velocityY: Float,
     val position: BodyPosition,
     val swimBehaviorX: BodyHelper.SwimBehavior?,
     val swimBehaviorY: BodyHelper.SwimBehavior?,
-)
+) : Component
+
+class BodyDefComponent(
+    val def: BodyDef,
+) : Component
 
 class BodyDataComponent(
-    val def: BodyDef,
-    var bodyInitData: BodyInitData?,
     var width: Float = 0f,
     var height: Float = 0f,
     var halfWidth: Float = 0f,
@@ -495,6 +501,8 @@ class TextureRegionComponent(
 
 object ComponentMappers {
     val tank: ComponentMapper<TankComponent> = mapperFor()
+    val bodyDef: ComponentMapper<BodyDefComponent> = mapperFor()
+    val bodyInitData: ComponentMapper<BodyInitDataComponent> = mapperFor()
     val bodyData: ComponentMapper<BodyDataComponent> = mapperFor()
     val bodyPosition: ComponentMapper<BodyPositionComponent> = mapperFor()
     val textureRegion: ComponentMapper<TextureRegionComponent> = mapperFor()
@@ -532,10 +540,10 @@ class BodyTickSystem(
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
         val tank = ComponentMappers.tank.get(entity)
+        val bodyDef = ComponentMappers.bodyDef.get(entity).def
+        val bodyInitData = ComponentMappers.bodyInitData.get(entity)
         val bodyData = ComponentMappers.bodyData.get(entity)
         val bodyPosition = ComponentMappers.bodyPosition.get(entity)
-
-        val bodyDef = bodyData.def
 
         val lastVelocityX: Float
         val lastVelocityY: Float
@@ -543,8 +551,7 @@ class BodyTickSystem(
         val lastSwimBehaviorX: BodyHelper.SwimBehavior?
         val lastSwimBehaviorY: BodyHelper.SwimBehavior?
 
-        val bodyInitData = bodyData.bodyInitData
-        if (bodyInitData == null) {
+        if (bodyInitData.initialized) {
             lastVelocityX = bodyData.velocityX
             lastVelocityY = bodyData.velocityY
             lastPosition = bodyData.position
@@ -556,7 +563,7 @@ class BodyTickSystem(
             lastPosition = bodyInitData.position
             lastSwimBehaviorX = bodyInitData.swimBehaviorX
             lastSwimBehaviorY = bodyInitData.swimBehaviorY
-            bodyData.bodyInitData = null
+            bodyInitData.initialized = true
         }
 
         bodyData.width = bodyDef.width
