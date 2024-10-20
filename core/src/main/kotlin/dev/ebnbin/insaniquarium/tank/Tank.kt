@@ -130,8 +130,9 @@ class Tank(
     fun addedToStage(stage: TankStage) {
         engine.addSystem(BodyActSystem(updateType))
         engine.addSystem(BodyTickSystem(updateType))
-        engine.addSystem(TankDrawSystem(updateType, groupWrapper, shapeRendererHelper))
-        engine.addSystem(BodyDrawSystem(updateType, groupWrapper, shapeRendererHelper))
+        engine.addSystem(BodyDrawSystem(updateType, groupWrapper))
+        engine.addSystem(TankDrawDebugSystem(updateType, groupWrapper, shapeRendererHelper))
+        engine.addSystem(BodyDrawDebugSystem(updateType, groupWrapper, shapeRendererHelper))
     }
 
     fun removedFromStage(stage: TankStage) {
@@ -508,7 +509,7 @@ object ComponentMappers {
     val textureRegion: ComponentMapper<TextureRegionComponent> = mapperFor()
 }
 
-class TankDrawSystem(
+class TankDrawDebugSystem(
     private val updateType: UpdateType,
     private val groupWrapper: TankGroupWrapper,
     private val shapeRendererHelper: ShapeRendererHelper,
@@ -752,10 +753,7 @@ class BodyActSystem(
 class BodyDrawSystem(
     private val updateType: UpdateType,
     private val groupWrapper: TankGroupWrapper,
-    private val shapeRendererHelper: ShapeRendererHelper,
 ) : IteratingSystem(allOf(
-    TankComponent::class,
-    BodyDataComponent::class,
     BodyPositionComponent::class,
     TextureRegionComponent::class,
 ).get()) {
@@ -772,8 +770,6 @@ class BodyDrawSystem(
     }
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
-        val tank = ComponentMappers.tank.get(entity)
-        val bodyData = ComponentMappers.bodyData.get(entity)
         val bodyPosition = ComponentMappers.bodyPosition.get(entity)
         val textureRegion = ComponentMappers.textureRegion.get(entity)
         batch.draw(
@@ -783,6 +779,32 @@ class BodyDrawSystem(
             textureRegion.width,
             textureRegion.height,
         )
+    }
+}
+
+class BodyDrawDebugSystem(
+    private val updateType: UpdateType,
+    private val groupWrapper: TankGroupWrapper,
+    private val shapeRendererHelper: ShapeRendererHelper,
+) : IteratingSystem(allOf(
+    TankComponent::class,
+    BodyDataComponent::class,
+).get()) {
+    private val batch: Batch = groupWrapper.batch
+
+    override fun checkProcessing(): Boolean {
+        return updateType.type == UpdateType.Type.DRAW
+    }
+
+    override fun update(deltaTime: Float) {
+        groupWrapper.applyTransform(batch)
+        super.update(deltaTime)
+        groupWrapper.resetTransform(batch)
+    }
+
+    override fun processEntity(entity: Entity, deltaTime: Float) {
+        val tank = ComponentMappers.tank.get(entity)
+        val bodyData = ComponentMappers.bodyData.get(entity)
         shapeRendererHelper.draw(
             enabled = tank.selectedBodyEntity() === entity,
             batch = batch,
