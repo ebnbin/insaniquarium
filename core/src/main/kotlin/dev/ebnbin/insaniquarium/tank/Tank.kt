@@ -117,8 +117,12 @@ class Tank(
         engine.update(delta)
     }
 
-    fun act(delta: Float) {
-        updateType.type = UpdateType.Type.ACT
+    fun act(delta: Float, enableTick: Boolean) {
+        updateType.type = if (enableTick) {
+            UpdateType.Type.ACT_ENABLE_TICK
+        } else {
+            UpdateType.Type.ACT_DISABLE_TICK
+        }
         engine.update(delta)
     }
 
@@ -250,7 +254,8 @@ data class UpdateType(
     enum class Type {
         NONE,
         TICK,
-        ACT,
+        ACT_DISABLE_TICK,
+        ACT_ENABLE_TICK,
         DRAW,
         ;
     }
@@ -533,7 +538,6 @@ class BodyTickSystem(
 ) : IteratingSystem(allOf(
     TankComponent::class,
     BodyDataComponent::class,
-    BodyPositionComponent::class,
 ).get()) {
     override fun checkProcessing(): Boolean {
         return updateType.type == UpdateType.Type.TICK
@@ -544,7 +548,6 @@ class BodyTickSystem(
         val bodyDef = ComponentMappers.bodyDef.get(entity).def
         val bodyInitData = ComponentMappers.bodyInitData.get(entity)
         val bodyData = ComponentMappers.bodyData.get(entity)
-        val bodyPosition = ComponentMappers.bodyPosition.get(entity)
 
         val lastVelocityX: Float
         val lastVelocityY: Float
@@ -709,8 +712,6 @@ class BodyTickSystem(
             rightOrTop = bodyData.top,
             defSwimBehavior = bodyDef.swimBehaviorY,
         )
-
-        bodyPosition.bodyPosition = bodyData.position
     }
 }
 
@@ -721,31 +722,36 @@ class BodyActSystem(
     BodyPositionComponent::class,
 ).get()) {
     override fun checkProcessing(): Boolean {
-        return updateType.type == UpdateType.Type.ACT
+        return updateType.type == UpdateType.Type.ACT_DISABLE_TICK ||
+            updateType.type == UpdateType.Type.ACT_ENABLE_TICK
     }
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
         val bodyData = ComponentMappers.bodyData.get(entity)
         val bodyPosition = ComponentMappers.bodyPosition.get(entity)
-        bodyPosition.bodyPosition = if (PreferenceManager.enableBodySmoothPosition.value) {
-            BodyPosition(
-                x = BodyHelper.position(
-                    position = bodyPosition.bodyPosition.x,
-                    velocity = bodyData.velocityX,
-                    delta = deltaTime,
-                    minPosition = bodyData.minX,
-                    maxPosition = bodyData.maxX,
-                ),
-                y = BodyHelper.position(
-                    position = bodyPosition.bodyPosition.y,
-                    velocity = bodyData.velocityY,
-                    delta = deltaTime,
-                    minPosition = bodyData.minY,
-                    maxPosition = bodyData.maxY,
-                ),
-            )
-        } else {
+        bodyPosition.bodyPosition = if (updateType.type == UpdateType.Type.ACT_ENABLE_TICK) {
             bodyData.position
+        } else {
+            if (PreferenceManager.enableBodySmoothPosition.value) {
+                BodyPosition(
+                    x = BodyHelper.position(
+                        position = bodyPosition.bodyPosition.x,
+                        velocity = bodyData.velocityX,
+                        delta = deltaTime,
+                        minPosition = bodyData.minX,
+                        maxPosition = bodyData.maxX,
+                    ),
+                    y = BodyHelper.position(
+                        position = bodyPosition.bodyPosition.y,
+                        velocity = bodyData.velocityY,
+                        delta = deltaTime,
+                        minPosition = bodyData.minY,
+                        maxPosition = bodyData.maxY,
+                    ),
+                )
+            } else {
+                bodyData.position
+            }
         }
     }
 }

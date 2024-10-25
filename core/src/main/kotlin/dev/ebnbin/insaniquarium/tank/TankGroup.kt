@@ -47,27 +47,28 @@ class TankGroup : Group() {
     override fun act(delta: Float) {
         val tankStage = stage as TankStage? ?: return
         val tickDelta = tankStage.tickDelta
-        if (tickDelta > 0) {
+        val enableTick = if (tickDelta > 0) {
             tickNanoAccumulator += measureNanoTime {
-                super.act(delta)
                 tank.tick(tickDelta)
             }
             if (tankStage.ticks % 20 == 0) {
                 tickMillis = tickNanoAccumulator / 1_000_000 / 20
                 tickNanoAccumulator = 0L
             }
+            true
         } else {
-            actNanoAccumulator += measureNanoTime {
-                super.act(delta)
-                tank.act(delta)
-            }
-            ++actCount
-            if (System.nanoTime() - actStartNano > 1_000_000_000) {
-                actMillis = actNanoAccumulator / 1_000_000 / actCount
-                actStartNano = System.nanoTime()
-                actNanoAccumulator = 0L
-                actCount = 0
-            }
+            false
+        }
+        actNanoAccumulator += measureNanoTime {
+            super.act(delta)
+            tank.act(delta = delta, enableTick = enableTick)
+        }
+        ++actCount
+        if (System.nanoTime() - actStartNano > 1_000_000_000) {
+            actMillis = actNanoAccumulator / 1_000_000 / actCount
+            actStartNano = System.nanoTime()
+            actNanoAccumulator = 0L
+            actCount = 0
         }
     }
 
