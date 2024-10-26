@@ -3,7 +3,7 @@ plugins {
     kotlin("android")
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(Version.JAVA)
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(Version.JAVA))
 
 android {
     namespace = "dev.ebnbin.insaniquarium"

@@ -3,7 +3,7 @@ plugins {
     id("robovm")
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(Version.JAVA)
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(Version.JAVA))
 
 dependencies {
     implementation(project(":core"))

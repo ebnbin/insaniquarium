@@ -3,7 +3,7 @@ plugins {
     application
 }
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(Version.JAVA)
+java.toolchain.languageVersion.set(JavaLanguageVersion.of(Version.JAVA))
 
 sourceSets.main.configure {
     resources.srcDirs(
@@ -12,7 +12,7 @@ sourceSets.main.configure {
     )
 }
 
-application.mainClass = "dev.ebnbin.insaniquarium.tool.ToolLauncher"
+application.mainClass.set("dev.ebnbin.insaniquarium.tool.ToolLauncher")
 
 dependencies {
     implementation(project(":core"))
