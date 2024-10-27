@@ -175,6 +175,10 @@ abstract class Game : ApplicationListener {
         devMessageStage.addMessage(message)
     }
 
+    fun putDevInfo(getText: (delta: Float) -> String) {
+        gameDevInfoStage.putInfo(getText)
+    }
+
     open fun devScreenList(): List<Screen.Creator> {
         return emptyList()
     }

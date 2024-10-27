@@ -20,7 +20,9 @@ internal class KgdxDevInfoStage : LifecycleStage(WorldFitViewport()) {
             verticalGroup.align(Align.topRight)
             verticalGroup.columnAlign(Align.right)
             INFO_LIST.forEach { entry ->
-                val devLabel = DevLabel(entry)
+                val devLabel = DevLabel {
+                    entry.getText(it)
+                }
                 verticalGroup.addActor(devLabel)
             }
             addActor(verticalGroup)

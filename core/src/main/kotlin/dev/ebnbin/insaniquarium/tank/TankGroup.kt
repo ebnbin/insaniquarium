@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener
 import com.badlogic.gdx.scenes.scene2d.Stage
 import dev.ebnbin.kgdx.dev.DevEntry
 import dev.ebnbin.kgdx.dev.toDevEntry
+import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.util.diffStage
 import kotlin.system.measureNanoTime
 
@@ -70,6 +71,25 @@ class TankGroup : Group() {
             actNanoAccumulator = 0L
             actCount = 0
         }
+
+        game.putDevInfo {
+            bodyCountDevEntry.getText(it)
+        }
+        game.putDevInfo {
+            tickTimeDevEntry.getText(it)
+        }
+        game.putDevInfo {
+            actTimeDevEntry.getText(it)
+        }
+        game.putDevInfo {
+            drawTimeDevEntry.getText(it)
+        }
+        game.putDevInfo {
+            devBodyTypeDevEntry.getText(it)
+        }
+        game.putDevInfo {
+            touchPositionDevEntry.getText(it)
+        }
     }
 
     override fun draw(batch: Batch, parentAlpha: Float) {
@@ -126,22 +146,10 @@ class TankGroup : Group() {
     }
 
     private fun addedToStage(stage: TankStage) {
-        stage.putDevInfo(bodyCountDevEntry)
-        stage.putDevInfo(tickTimeDevEntry)
-        stage.putDevInfo(actTimeDevEntry)
-        stage.putDevInfo(drawTimeDevEntry)
-        stage.putDevInfo(devBodyTypeDevEntry)
-        stage.putDevInfo(touchPositionDevEntry)
         tank.addedToStage(stage)
     }
 
     private fun removedFromStage(stage: TankStage) {
         tank.removedFromStage(stage)
-        stage.removeDevInfo(touchPositionDevEntry)
-        stage.removeDevInfo(devBodyTypeDevEntry)
-        stage.removeDevInfo(drawTimeDevEntry)
-        stage.removeDevInfo(actTimeDevEntry)
-        stage.removeDevInfo(tickTimeDevEntry)
-        stage.removeDevInfo(bodyCountDevEntry)
     }
 }

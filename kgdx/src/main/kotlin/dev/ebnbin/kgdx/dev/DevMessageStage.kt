@@ -17,11 +17,9 @@ internal class DevMessageStage : LifecycleStage(WorldFitViewport()) {
         if (verticalGroup.children.size >= MAX_SIZE) {
             verticalGroup.removeActorAt(0, true)
         }
-        val devLabel = DevLabel(
-            entry = DevEntry("") {
-                message
-            },
-        )
+        val devLabel = DevLabel {
+            message
+        }
         devLabel.userObject = System.currentTimeMillis()
         verticalGroup.addActor(devLabel)
     }

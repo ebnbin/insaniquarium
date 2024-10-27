@@ -5,7 +5,6 @@ import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.Viewport
 import com.kotcrab.vis.ui.widget.Menu
 import com.kotcrab.vis.ui.widget.MenuBar
-import dev.ebnbin.kgdx.dev.DevEntry
 import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.preference.KgdxPreferenceManager
 import dev.ebnbin.kgdx.util.WorldScreenViewport
@@ -98,11 +97,6 @@ abstract class LifecycleStage : Stage, LifecycleScene {
         super.act(delta)
     }
 
-    override fun dispose() {
-        game.gameDevInfoStage.removeInfo(this)
-        super.dispose()
-    }
-
     @Deprecated("", ReplaceWith(""))
     final override fun act() {
         super.act()
@@ -112,14 +106,6 @@ abstract class LifecycleStage : Stage, LifecycleScene {
         get() = false
 
     protected open fun createDevMenu(menuBar: MenuBar, menu: Menu) {
-    }
-
-    fun putDevInfo(entry: DevEntry) {
-        game.gameDevInfoStage.putInfo(this, entry)
-    }
-
-    fun removeDevInfo(entry: DevEntry) {
-        game.gameDevInfoStage.removeInfo(this, entry)
     }
 
     companion object {

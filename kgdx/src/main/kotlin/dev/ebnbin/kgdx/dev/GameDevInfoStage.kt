@@ -14,30 +14,22 @@ internal class GameDevInfoStage : LifecycleStage(WorldFitViewport()) {
         addActor(verticalGroup)
     }
 
-    fun putInfo(stage: LifecycleStage, entry: DevEntry) {
-        val devLabel = DevLabel(entry)
-        devLabel.userObject = stage
-        verticalGroup.addActor(devLabel)
+    private val infoList: MutableList<(delta: Float) -> String> = mutableListOf()
+
+    fun putInfo(getText: (delta: Float) -> String) {
+        infoList.add(getText)
     }
 
-    fun removeInfo(stage: LifecycleStage, entry: DevEntry) {
-        val iterator = verticalGroup.children.iterator()
-        while (iterator.hasNext()) {
-            val devLabel = iterator.next() as DevLabel
-            if (devLabel.userObject === stage && devLabel.entry === entry) {
-                verticalGroup.removeActor(devLabel)
+    override fun act(delta: Float) {
+        verticalGroup.clearChildren()
+        infoList.forEach { getText ->
+            val devLabel = DevLabel {
+                getText(it)
             }
+            verticalGroup.addActor(devLabel)
         }
-    }
-
-    fun removeInfo(stage: LifecycleStage) {
-        val iterator = verticalGroup.children.iterator()
-        while (iterator.hasNext()) {
-            val devLabel = iterator.next() as DevLabel
-            if (devLabel.userObject === stage) {
-                verticalGroup.removeActor(devLabel)
-            }
-        }
+        infoList.clear()
+        super.act(delta)
     }
 
     override val isRendering: Boolean

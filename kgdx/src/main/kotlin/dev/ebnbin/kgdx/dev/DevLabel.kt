@@ -10,11 +10,11 @@ import ktx.assets.disposeSafely
 import ktx.graphics.copy
 
 internal class DevLabel(
-    val entry: DevEntry,
+    val getText: (delta: Float) -> String?,
 ) : Label(null, LabelStyle(game.assets.freeType("kgdx_dev").get(), null)) {
     override fun act(delta: Float) {
         super.act(delta)
-        val text = entry.getText(delta)
+        val text = getText(delta)
         setText(text)
     }
 

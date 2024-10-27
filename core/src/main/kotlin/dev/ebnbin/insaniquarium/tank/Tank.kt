@@ -21,6 +21,7 @@ import dev.ebnbin.insaniquarium.body.BodyType
 import dev.ebnbin.insaniquarium.preference.PreferenceManager
 import dev.ebnbin.kgdx.dev.DevEntry
 import dev.ebnbin.kgdx.dev.toDevEntry
+import dev.ebnbin.kgdx.game
 import dev.ebnbin.kgdx.ui.AnimationImage
 import dev.ebnbin.kgdx.util.ShapeRendererHelper
 import dev.ebnbin.kgdx.util.checkBoxMenuItem
@@ -132,7 +133,7 @@ class Tank(
     }
 
     fun addedToStage(stage: TankStage) {
-        engine.addSystem(BodyActSystem(updateType))
+        engine.addSystem(BodyActSystem(tankComponent, updateType))
         engine.addSystem(BodyTickSystem(updateType))
         engine.addSystem(BodyDrawSystem(updateType, groupWrapper))
         engine.addSystem(TankDrawDebugSystem(updateType, groupWrapper, shapeRendererHelper))
@@ -268,47 +269,25 @@ class TankComponent(
     var touchPosition: BodyPosition? = null,
     var selectedBodyType: BodyType? = null,
     private var selectedBodyEntity: Entity? = null,
-    private var devInfoEntryList: List<DevEntry>? = null,
 ) : Component {
     fun selectBodyEntity(entity: Entity?) {
-        if (selectedBodyEntity == null) {
-            if (entity == null) {
-                return
-            } else {
-                selectedBodyEntity = entity
-                val bodyDef = ComponentMappers.bodyDef.get(entity)
-                val bodyData = ComponentMappers.bodyData.get(entity)
-                devInfoEntryList = createDevInfoEntryList(bodyDef, bodyData).onEach { entry ->
-                    groupWrapper.stage.putDevInfo(entry)
-                }
-            }
-        } else {
-            if (entity == null) {
-                devInfoEntryList?.reversed()?.forEach { entry ->
-                    groupWrapper.stage.removeDevInfo(entry)
-                }
-                devInfoEntryList = null
-                selectedBodyEntity = null
-            } else {
-                if (selectedBodyEntity === entity) {
-                    return
-                } else {
-                    devInfoEntryList?.reversed()?.forEach { entry ->
-                        groupWrapper.stage.removeDevInfo(entry)
-                    }
-                    selectedBodyEntity = entity
-                    val bodyDef = ComponentMappers.bodyDef.get(entity)
-                    val bodyData = ComponentMappers.bodyData.get(entity)
-                    devInfoEntryList = createDevInfoEntryList(bodyDef, bodyData).onEach { entry ->
-                        groupWrapper.stage.putDevInfo(entry)
-                    }
-                }
-            }
-        }
+        selectedBodyEntity = entity
     }
 
     fun selectedBodyEntity(): Entity? {
         return selectedBodyEntity
+    }
+
+    fun putDevInfo() {
+        val entity = selectedBodyEntity ?: return
+        val bodyDef = ComponentMappers.bodyDef.get(entity)
+        val bodyData = ComponentMappers.bodyData.get(entity)
+        val devInfoEntryList = createDevInfoEntryList(bodyDef, bodyData)
+        devInfoEntryList.forEach { entry ->
+            game.putDevInfo {
+                entry.getText(it)
+            }
+        }
     }
 
     private fun createDevInfoEntryList(bodyDef: BodyDefComponent, data: BodyDataComponent): List<DevEntry> {
@@ -716,6 +695,7 @@ class BodyTickSystem(
 }
 
 class BodyActSystem(
+    private val tankComponent: TankComponent,
     private val updateType: UpdateType,
 ) : IteratingSystem(allOf(
     BodyDataComponent::class,
@@ -724,6 +704,11 @@ class BodyActSystem(
     override fun checkProcessing(): Boolean {
         return updateType.type == UpdateType.Type.ACT_DISABLE_TICK ||
             updateType.type == UpdateType.Type.ACT_ENABLE_TICK
+    }
+
+    override fun update(deltaTime: Float) {
+        super.update(deltaTime)
+        tankComponent.putDevInfo()
     }
 
     override fun processEntity(entity: Entity, deltaTime: Float) {
